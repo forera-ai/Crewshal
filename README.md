@@ -8,9 +8,9 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
-**Phase 0: research and evaluation planning.** This repository contains the initial research documents and the accepted naming decision. There is no executable runtime, installable package or working CLI yet. Proposed capabilities and numerical evaluation thresholds are not demonstrated results.
+**Phase 0 and Phase 1 complete; Phase 2A is next.** The owner authorized advancing into implementation on 2026-10-02. This repository contains research, naming decisions and a minimal architecture proposal. There is no executable runtime, installable package or working CLI yet. Proposed capabilities and numerical evaluation thresholds are not demonstrated results.
 
-Architecture, implementation language and runtime adapters remain undecided. Architecture work requires a separate owner decision; implementation follows architectural review.
+The proposal uses a local Python coordinator with Codex and Claude Code adapters, subject to capability and isolation qualification. Implementation proceeds in bounded sessions. Agent writes require execution qualification; paid evaluation requires a confirmed protocol and spending ceiling.
 
 ## Intended workflow
 
@@ -23,12 +23,19 @@ Architecture, implementation language and runtime adapters remain undecided. Arc
 
 This workflow is the proposed experiment, not existing functionality. The owner retains authority over consequential actions. The project will use a clean, independent implementation; proprietary predecessor code, prompts, configurations and artifacts are excluded.
 
+## Development sessions
+
+Work proceeds one phase or major milestone per session. Read the [rolling handoff](docs/HANDOFF.md) for current state and the next-session prompt, and the [development plan](docs/DEVELOPMENT-PLAN.md) for standalone acceptance gates. [AGENTS.md](AGENTS.md) records the persistent session contract. The next session is Phase 2A: passive discovery and human confirmation.
+
 ## Research and decisions
 
 - [Product hypothesis and owner brief](PRODUCT-HYPOTHESIS.md)
 - [Competitive landscape and naming](COMPETITIVE-LANDSCAPE.md)
 - [Predecessor concept audit](AUDIT.md)
 - [Initial evaluation plan](INITIAL-EVALUATION-PLAN.md)
+- [Phase 0 closure and remaining gates](docs/PHASE-0-CLOSURE.md)
+- [Accepted minimal architecture](docs/ARCHITECTURE.md)
+- [Accepted architecture decision](docs/decisions/0002-minimal-architecture.md)
 - [Accepted name and repository initialization](docs/decisions/0001-name-and-repository.md)
 
 The current recommendation is to narrow the product to confirmed repository adaptation and portable evidence, and evaluate it against simpler workflows and existing tools before broader development.

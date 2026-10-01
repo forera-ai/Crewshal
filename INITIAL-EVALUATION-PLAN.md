@@ -1,5 +1,7 @@
 # Crewshal — Phase 0 initial evaluation plan
 
+Transition note (2026-10-02): Phase 1 architecture work is authorized. This evaluation protocol remains proposed; corpus, thresholds, baseline conformance and spending require confirmation before evaluation. See [Phase 0 closure](docs/PHASE-0-CLOSURE.md) and [architecture proposal](docs/ARCHITECTURE.md).
+
 Date: 2026-10-01. Consumer: owner approving acceptance criteria and later evaluation operators. Status: proposed preregistration; no agent benchmark, paid model run or product implementation was performed. Numerical bars below are decision proposals, not measured results or statistical guarantees. Freeze them before major functionality is implemented.
 
 ## Questions to answer

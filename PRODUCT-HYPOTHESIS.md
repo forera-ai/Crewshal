@@ -1,6 +1,6 @@
 # Crewshal — Phase 0 product hypothesis and owner decision
 
-Date: 2026-10-01. Consumer: owner deciding whether to authorize Phase 1. Accepted product name: Crewshal, pronounced like “crucial”. The owner authorized naming and repository initialization on 2026-10-01; Phase 1 architecture remains unapproved. This document proposes a boundary; it does not choose architecture, configuration syntax, language or dependencies.
+Date: 2026-10-01. Consumer: owner deciding whether to authorize Phase 1. Accepted product name: Crewshal, pronounced like “crucial”. The owner authorized naming and repository initialization on 2026-10-01; Update 2026-10-02: the owner authorized Phase 1 architecture work; the owner subsequently instructed moving to the next step, accepting the initial architecture direction. This document proposes a boundary; it does not choose architecture, configuration syntax, language or dependencies.
 
 ## Recommendation: MODIFY
 
@@ -70,4 +70,4 @@ Discovery does not execute repository instructions, hooks or dependency scripts.
 
 GO to broader development only if the preregistered evaluation shows reduced configuration effort, portable control behavior, adequate quality and acceptable overhead. Prefer integration if a competitor supplies the needed execution and only discovery/evidence translation is missing. Abandon a separate product if those advantages disappear under fair baselines or require excessive ceremony.
 
-The immediate owner decision is whether to authorize **Phase 1 architecture for this narrowed experiment**, revise its boundary, or stop. Naming and publication of the initial research repository were separately authorized on 2026-10-01. Approval for architecture does not authorize runtime implementation, benchmark spend or broader autonomous execution. Phase 1 must stop for architectural review, as the mission requires.
+The owner authorized **Phase 1 architecture for this narrowed experiment** on 2026-10-02. The owner subsequently authorized continuing to the next step; the [architecture](docs/ARCHITECTURE.md) is the accepted initial direction. Follow the bounded-session development plan for implementation. Naming and publication of the initial research repository were separately authorized on 2026-10-01. Approval for architecture does not authorize runtime implementation, benchmark spend or broader autonomous execution. Phase 1 must stop for architectural review, as the mission requires.

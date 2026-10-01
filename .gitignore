@@ -1,0 +1,11 @@
+# Local filesystem metadata
+.DS_Store
+
+# Credentials and local environment configuration
+.env
+.env.*
+!.env.example
+
+# Private evaluation/run artifacts; sanitized fixtures may be added explicitly.
+/.crewshal/
+/artifacts/

@@ -2,6 +2,12 @@
 
 Versions follow semantic versioning. Remote branch publication is distinct from a package-registry release; no registry release has occurred.
 
+## 0.8.4 — 2026-10-02
+
+- Record direct owner approval of the exact operational resource envelope in a separate digest-bound record; preserve historical proposal, readiness bindings and original grants unchanged.
+- Document remaining operational identity/inner-enforcement gates and update continuation inputs. Current host access is missing; no remote connection, operational fixture or native probe ran.
+- Reproduce 78 offline tests. Phase 2C remains blocked; resource authority alone grants no execution.
+
 ## 0.8.3 — 2026-10-02
 
 - Reverify two owner-supplied replacements with prospectively frozen trusted KVM HLT runs. Preserve the first memory-admission refusal; the second host passes sampled memory/disk headroom. No host is purchased or resized.

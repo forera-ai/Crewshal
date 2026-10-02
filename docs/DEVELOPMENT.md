@@ -15,6 +15,7 @@ rtk proxy uv pip install --python .venv/bin/python --no-deps -e .
 rtk proxy .venv/bin/python -m unittest tests.acceptance.test_phase_2a
 rtk proxy .venv/bin/python -m unittest tests.acceptance.test_phase_2b
 rtk proxy .venv/bin/python -m unittest tests.acceptance.test_phase_2c
+rtk proxy .venv/bin/python -m unittest tests.acceptance.test_phase_2c_substrate
 rtk proxy .venv/bin/python -m unittest discover -s tests -t .
 rtk proxy .venv/bin/ruff check src tests scripts
 rtk proxy .venv/bin/ruff format --check src tests scripts
@@ -24,7 +25,7 @@ rtk proxy uv build --offline
 
 Dependency preparation may use the package index; tests need no network, provider credentials or earlier artifacts. The hash-locked file pins all development/runtime dependencies; the isolated build backend is separately pinned in pyproject.toml. `uv build --offline` needs its pinned build dependency already cached, as with the preceding editable installation. To prepare another machine for disconnected installation, first obtain its required wheels and build dependency. An empty cache is not an offline install source.
 
-For artifact verification, create a second external environment, install requirements-dev.lock with `--offline --require-hashes`, then install `dist/crewshal-0.3.0-py3-none-any.whl` with `--offline --no-deps`. Run all three acceptance modules and the complete unittest suite with that interpreter from the checkout. Tests live in the checkout; application imports must resolve to the external environment's site-packages, not src. Tests create all repository/state/interaction/database/artifact fixtures themselves.
+For artifact verification, create a second external environment, install requirements-dev.lock with `--offline --require-hashes`, then install `dist/crewshal-0.4.0-py3-none-any.whl` with `--offline --no-deps`. Run all four acceptance modules and the complete unittest suite with that interpreter from the checkout. Tests live in the checkout; application imports must resolve to the external environment's site-packages, not src. Tests create all repository/state/interaction/database/artifact fixtures themselves.
 
 On the verified macOS host, tests additionally passed under the following process-level network denial with an empty inherited environment and a temporary HOME. This test wrapper does not qualify a future worker execution environment:
 
@@ -89,12 +90,15 @@ See [the handoff](HANDOFF.md) for recorded evidence and the next milestone.
 
 ## Phase 2C blocked preflight
 
-Package 0.3.0 includes qualification records and refusal fixtures, not a worker launcher or completed containment harness. See [execution qualification](EXECUTION-QUALIFICATION.md). Reproduce the preflight with a fresh, nonexistent external report path:
+Package 0.4.0 includes qualification records/refusal fixtures and a partial synthetic Linux substrate harness; no product runtime launcher or completed execution qualification. See [execution qualification](EXECUTION-QUALIFICATION.md). Reproduce the preflight with a fresh, nonexistent external report path:
 
 ```sh
 rtk proxy .venv/bin/python scripts/qualify_phase_2c.py \
   --manifest docs/qualification/phase-2c-v1.json \
+  --docker-host unix:///Users/hamedprooshani/.docker/run/docker.sock \
   --output /private/tmp/crewshal-2c-new-observation.json
 ```
 
-Exit 2 means denied; the utility never grants execution. It uses an empty synthetic HOME/Docker configuration and only the explicit local endpoint. It does not inspect host credential stores or start a container. Its fixed manifest digest refuses retrospective changes. All worker boundary cases remain unavailable until an actual bounded probe runner and accepted synthetic-tested credential mediation exist. Fresh Linux execution is not demonstrated by the macOS network-denied package tests.
+Exit 2 means denied; the utility never grants execution. It uses an empty synthetic HOME/Docker configuration and only the explicit local endpoint. It does not inspect host credential stores or start a container. Its fixed manifest digest refuses retrospective changes. This preflight alone leaves all worker cases unavailable. The separate active v4 utility demonstrates nine bounded cases; eleven whole-boundary cases and accepted synthetic-tested credential mediation remain unavailable. Fresh Linux execution is not demonstrated by the macOS network-denied package tests.
+
+See [Linux substrate probes](LINUX-SUBSTRATE-PROBES.md) for the active v4 hash-bound invocation, nine passed subset cases and eleven unavailable whole-boundary cases. Offline fixture/record checks need no Docker; real substrate probes need the explicit engine endpoint and pinned cached image. The older v1 preflight remains a denial utility, even with a responding daemon. Neither result grants agent writes.

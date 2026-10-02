@@ -1,5 +1,7 @@
 # Phase 2C qualification checkpoint
 
+Historical 0.3.0 checkpoint; superseded in part by [the 0.4.0 Linux resumption](LINUX-SUBSTRATE-PROBES.md). The explicit Desktop endpoint now responds and nine filesystem/environment cases pass. Full Phase 2C remains denied.
+
 Date: 2026-10-02. Outcome: **blocked, denied profile**. Package 0.3.0 adds compatible qualification record/refusal APIs and bounded assessment utilities; it does not complete Phase 2C. No worker was launched, no containment case passed, and Phase 2D is not authorized.
 
 ## Frozen protocol and evidence

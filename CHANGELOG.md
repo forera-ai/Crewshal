@@ -2,6 +2,14 @@
 
 Versions follow semantic versioning. Remote branch publication is distinct from a package-registry release; no registry release has occurred.
 
+## 0.4.0 — 2026-10-02
+
+- Resume Phase 2C against the owner-supplied Docker Desktop endpoint and cached immutable Alpine image, without downloads or model/provider calls.
+- Add a frozen synthetic Linux substrate utility with explicit source/image/grant checks, non-root read-only containment, independent protected fixture comparisons and scoped container cleanup.
+- Record two final fresh-fixture runs passing nine filesystem/environment cases. Preserve the failed parent oracle and incomplete relative-link variant observations through prospective v2/v3/v4 amendments.
+- Add five independent offline grant/record/failure checks; verify 49 total tests. Expose an explicit local endpoint option in the historical preflight utility.
+- Keep eleven mandatory runtime/network/process/credential cases unavailable and full qualification denied. Update resumption evidence and inputs; no Phase 2D or live worker access is enabled.
+
 ## 0.3.0 — 2026-10-02
 
 - Add closed qualification identity/result records with mandatory-case refusal and invalidation on substrate, runtime, configuration, grant, toolchain, harness, protocol and credential-design changes. Even passing synthetic records never grant execution.

@@ -66,8 +66,11 @@ def capture(argv: list[str], environment: dict[str, str]) -> dict[str, object]:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--manifest", type=Path, required=True)
+    parser.add_argument("--docker-host", default="unix:///var/run/docker.sock")
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
+    if not args.docker_host.startswith("unix:///"):
+        parser.error("preflight requires an explicit local Unix socket")
     raw = args.manifest.read_bytes()
     if fingerprint(raw) != FROZEN_MANIFEST:
         parser.error("frozen manifest digest mismatch; amend prospectively before probes")
@@ -81,7 +84,7 @@ def main() -> int:
             "PATH": "/opt/homebrew/bin:/usr/bin:/bin",
             "HOME": home,
             "DOCKER_CONFIG": home,
-            "DOCKER_HOST": "unix:///var/run/docker.sock",
+            "DOCKER_HOST": args.docker_host,
         }
         docker = shutil.which("docker", path=environment["PATH"]) or "/nonexistent/docker"
         client = capture([docker, "--version"], environment)
@@ -97,7 +100,7 @@ def main() -> int:
             host_kernel=platform.release(),
             architecture=platform.machine(),
             substrate="linux-container-docker",
-            substrate_version=str(server["stdout"]).strip() if available else None,
+            substrate_version=fingerprint(str(server["stdout"]).encode()) if available else None,
             # No image/runtime/broker has been selected or qualified.
             toolchain=fingerprint(
                 json.dumps(

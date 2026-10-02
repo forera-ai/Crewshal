@@ -89,3 +89,7 @@ Version 0.8.0 demonstrates the Linux SBX file-store fallback twice in separate u
 ### Phase 2C temporary KVM host capability — 2026-10-02
 
 Version 0.8.1 records two frozen trusted 1 MiB x86 HLT executions on an owner-supplied temporary Ubuntu 24.04.5 VPS. KVM API 12, VM/vCPU creation and exit reason 5 pass. A supplementary non-KVM-user device access attempt is denied. Final process/FD inventories find no SBX/QEMU process or remaining KVM VM/vCPU handle; no remote file/package was created and SSH is disconnected. This demonstrates host hardware access only, not SBX, broker authority, native configuration or inner resource enforcement. The owner plans to delete the host; reverify any replacement before use. Full 2C remains blocked. See [host evidence](KVM-HOST-ASSESSMENT.md).
+
+### Phase 2C operational preparation and resource decision — 2026-10-02
+
+Version 0.8.2 prepares the official x86_64 SBX bundle locally and matches the published release digest, without executing bundled programs. The [operational proposal](SBX-OPERATIONAL-PROPOSAL.md) specifies concrete resource ceilings and the required freeze-before-start sequence. Current disposable host access and owner resource approval remain pending. All 78 offline tests pass; no operational/native probe or new whole-runtime criterion passes. Phase 2C remains blocked and 2D stays gated.

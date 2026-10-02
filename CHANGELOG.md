@@ -2,6 +2,12 @@
 
 Versions follow semantic versioning. Remote branch publication is distinct from a package-registry release; no registry release has occurred.
 
+## 0.8.2 — 2026-10-02
+
+- Prepare and digest-pin the official SBX 0.46.0 Linux amd64 archive and all extracted regular files; no bundled executable, installer, daemon or native runtime was run.
+- Present a concrete operational resource proposal, freeze-before-start sequence and explicit current-host/access requirements while preserving original worker limits.
+- Reproduce 78 offline tests. Keep Phase 2C blocked pending host access, owner resource decision, operational identities and independently observed inner/request boundaries. No new whole-runtime criterion passes.
+
 ## 0.8.1 — 2026-10-02
 
 - Document an owner-supplied temporary Ubuntu x86_64 VPS: KVM API/VM/vCPU checks and two prospectively frozen 1 MiB trusted HLT executions pass.

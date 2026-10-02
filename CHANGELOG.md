@@ -2,6 +2,13 @@
 
 Versions follow semantic versioning. Remote branch publication is distinct from a package-registry release; no registry release has occurred.
 
+## 0.8.1 — 2026-10-02
+
+- Document an owner-supplied temporary Ubuntu x86_64 VPS: KVM API/VM/vCPU checks and two prospectively frozen 1 MiB trusted HLT executions pass.
+- Preserve exact probe source, protocol and sanitized observations, including a supplementary denied non-KVM-user access attempt and a final empty VM/vCPU handle inventory.
+- Resolve the observed KVM capability prerequisite for this host only. No remote files, packages, broker, native worker or provider operation were created; SSH disconnected before deletion handover.
+- Keep Phase 2C denied. Operational SBX identities/configuration, inner enforcement, request authority and remaining whole-runtime checks still need separate evidence. Temporary host deletion requires fresh verification next session.
+
 ## 0.8.0 — 2026-10-02
 
 - Add a prospectively frozen Linux SBX credential-store preflight in disposable unprivileged Ubuntu containers. Verify the synthetic file-store fallback twice without host-store access, login, worker or provider requests.

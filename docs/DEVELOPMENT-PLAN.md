@@ -4,7 +4,7 @@ Owner declaration recorded: 2026-10-02. Consumer: owner and each implementation/
 
 ## Operating contract
 
-Each row below is one separate session boundary. The current session closes Phase 1 and establishes this workflow; the next session is **2A**. Do not run several milestones in one chat merely because time remains. Start by reading [HANDOFF.md](HANDOFF.md), identify prerequisites, inspect the actual checkout, and state scope. Finish with a checkpoint, reproducible evidence, updated handoff and a complete next-session prompt. A failed required criterion leaves the milestone incomplete.
+Each row below is one separate session boundary. Phase 2A is complete; the next session is **2B**. Do not run several milestones in one chat merely because time remains. Start by reading [HANDOFF.md](HANDOFF.md), identify prerequisites, inspect the actual checkout, and state scope. Finish with a checkpoint, reproducible evidence, updated handoff and a complete next-session prompt. A failed required criterion leaves the milestone incomplete.
 
 A milestone has four parts: plan the concrete change; implement only its scope; independently exercise its observable behavior; deliver evidence and handoff. Verification must include failure cases, not implementation-mirroring assertions. Tests should operate from a fresh checkout using synthetic fixtures and temporary state. Code from completed prerequisites may be required, but their generated artifacts or earlier test runs must not be required.
 
@@ -14,8 +14,8 @@ A milestone has four parts: plan the concrete change; implement only its scope; 
 |---|---|---|---|---|
 | 0 | Evidence/audit, collision screening, narrowed hypothesis and evaluation proposal | Owner mission | Required reports exist; provenance/limitations visible; no copied private material or unsupported results | Complete |
 | 1 | Minimal architecture and consequential ADR | 0 and owner authorization | Domain, discovery, adapters, capabilities, policy/risk/routing, evidence, security, recovery and usage defined; initial direction accepted | Complete |
-| 2A | Installable Python foundation and passive discovery → correction → confirmed model | 1 | Offline acceptance suite and CLI workflow below; no command execution or runtime writes | Next |
-| 2B | Durable state, pure gates and trusted evidence contracts | 2A | Crash/recovery fixtures, forged/stale evidence rejection, explicit unavailable/waiver states; deterministic suite | Planned |
+| 2A | Installable Python foundation and passive discovery → correction → confirmed model | 1 | Offline acceptance suite and CLI workflow below; no command execution or runtime writes | Complete; 12 offline acceptance cases, wheel install and static checks passed on 2026-10-02; see HANDOFF.md |
+| 2B | Durable state, pure gates and trusted evidence contracts | 2A | Crash/recovery fixtures, forged/stale evidence rejection, explicit unavailable/waiver states; deterministic suite | Next |
 | 2C | Reuse decision and execution-environment qualification | 2B | Existing execution seams assessed against frozen cases; chosen substrate passes containment probes; denied boundaries documented | Planned; write gate |
 | 2D | First real runtime and deterministic checks | 2C passed | Bounded live implementation produces candidate and coordinator-captured evidence; fake/offline adapter regressions pass | Planned; live authorization needed |
 | 2E | Second runtime, independent review and full vertical slice | 2D | Both role assignments work on the same confirmed model; provider independence, disagreement/remediation and no-review low-risk path verified | Planned; live authorization needed |
@@ -26,7 +26,7 @@ A milestone has four parts: plan the concrete change; implement only its scope; 
 
 The proposed first slice is Python/TypeScript discovery and separately qualified Linux execution. Four-stack evaluation remains the target; expanding to Swift/.NET or amending the protocol must precede hold-out exposure. Do not convert a two-stack pilot into a four-stack portability claim.
 
-## 2A — next session specification
+## 2A — completed specification
 
 Deliver a small Python package and CLI entry point, a versioned project-model contract and supported manifest discovery. Implement the interactive discover/propose/correct/confirm/materialize path. Use maintained validation/parsing where appropriate, pin direct dependencies, and document a reproducible development setup. No runtime launcher, model call, container run, new provider SDK, speculative configuration collection or automatic repository mutation.
 

@@ -2,6 +2,14 @@
 
 Versions follow semantic versioning. Remote branch publication is distinct from a package-registry release; no registry release has occurred.
 
+## 0.5.0 — 2026-10-02
+
+- Add prospectively frozen cached-Alpine detached-grandchild, cancellation, five-second deadline initiation and separate credential-free validator probes.
+- Record two fresh-fixture runs passing four bounded cases with independent engine state, process-session, heartbeat and protected-candidate checks. Keep prior filesystem observations separate; no combined runtime qualification is inferred.
+- Add six offline failure/refusal methods; verify 55 total tests, static checks and a fresh installed wheel without test network access.
+- Identify the documented Docker Sandboxes host-side credential proxy as an untested candidate. The installed `docker sandbox` command is removed and `sbx` is absent from the session PATH; no broker was installed or host credential store accessed.
+- Preserve full Phase 2C denial. Full TCP/UDP/DNS/IPv6 sinks, native hooks/MCP/plugins/instructions, accepted credential mediation and whole-runtime binding/refusal still require qualification. No Phase 2D or execution grant.
+
 ## 0.4.0 — 2026-10-02
 
 - Resume Phase 2C against the owner-supplied Docker Desktop endpoint and cached immutable Alpine image, without downloads or model/provider calls.

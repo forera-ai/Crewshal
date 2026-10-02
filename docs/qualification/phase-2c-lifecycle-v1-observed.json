@@ -1,0 +1,608 @@
+{
+  "schema_version": 1,
+  "qualification": {
+    "schema_version": 1,
+    "id": "phase-2c-lifecycle-subset",
+    "identity": {
+      "host_os": "macOS-27.2-arm64-arm-64bit",
+      "host_kernel": "27.2.0",
+      "architecture": "arm64",
+      "substrate": "docker-desktop-linux-lifecycle-subset",
+      "substrate_version": "e202f155a1bea0e06fbf124f1030cffb8db96a4271bd693eff00381128ac8f45",
+      "image": "5b10f432ef3da1b8d4c7eb6c487f2f5a8f096bc91145e68878dd4a5019afde11",
+      "runtime": "synthetic-busybox-shell-only",
+      "toolchain": "470e4cbefa2494f1b2a3bb33bffebeaffb43461a2ba605c348af7d3d14ce31e3",
+      "configuration": "b290a6371afe16441a997ae54dccbcd481c1d76a1accb60873f5ae664d4ae271",
+      "grant": "876537c31117c22ca6772a1e206ab603eaaa12e22f922d37acdd19ed0691470f",
+      "harness": "20940da29590f8e263d842a32759d227c3ebb0e6e96c1b394d3d595a7f57c598",
+      "manifest": "930e601021f95e01488f10582feb5adadc4bdd76c566edbd34486d0feb93b2ef",
+      "credential_design": null
+    },
+    "results": [
+      {
+        "case": "allowed-grant",
+        "status": "unavailable",
+        "observation": "Outside this subset; no promotion of previous observations"
+      },
+      {
+        "case": "external-read",
+        "status": "unavailable",
+        "observation": "Outside this subset; no promotion of previous observations"
+      },
+      {
+        "case": "external-write",
+        "status": "unavailable",
+        "observation": "Outside this subset; no promotion of previous observations"
+      },
+      {
+        "case": "original-checkout",
+        "status": "unavailable",
+        "observation": "Outside this subset; no promotion of previous observations"
+      },
+      {
+        "case": "coordinator-state",
+        "status": "unavailable",
+        "observation": "Outside this subset; no promotion of previous observations"
+      },
+      {
+        "case": "symlink-escape",
+        "status": "unavailable",
+        "observation": "Outside this subset; no promotion of previous observations"
+      },
+      {
+        "case": "new-file-escape",
+        "status": "unavailable",
+        "observation": "Outside this subset; no promotion of previous observations"
+      },
+      {
+        "case": "metadata-escape",
+        "status": "unavailable",
+        "observation": "Outside this subset; no promotion of previous observations"
+      },
+      {
+        "case": "network-egress",
+        "status": "unavailable",
+        "observation": "Outside this subset; no promotion of previous observations"
+      },
+      {
+        "case": "environment-credentials",
+        "status": "unavailable",
+        "observation": "Outside this subset; no promotion of previous observations"
+      },
+      {
+        "case": "repository-hooks",
+        "status": "unavailable",
+        "observation": "Outside this subset; no promotion of previous observations"
+      },
+      {
+        "case": "global-hooks",
+        "status": "unavailable",
+        "observation": "Outside this subset; no promotion of previous observations"
+      },
+      {
+        "case": "mcp-plugins-instructions",
+        "status": "unavailable",
+        "observation": "Outside this subset; no promotion of previous observations"
+      },
+      {
+        "case": "descendant-escape",
+        "status": "passed",
+        "observation": "Synthetic process/validator and independent engine/parent observations; no native runtime or broker"
+      },
+      {
+        "case": "cancellation",
+        "status": "passed",
+        "observation": "Synthetic process/validator and independent engine/parent observations; no native runtime or broker"
+      },
+      {
+        "case": "deadline",
+        "status": "passed",
+        "observation": "Synthetic process/validator and independent engine/parent observations; no native runtime or broker"
+      },
+      {
+        "case": "credential-mediation",
+        "status": "unavailable",
+        "observation": "Outside this subset; no promotion of previous observations"
+      },
+      {
+        "case": "credential-free-validation",
+        "status": "passed",
+        "observation": "Synthetic process/validator and independent engine/parent observations; no native runtime or broker"
+      },
+      {
+        "case": "configuration-binding",
+        "status": "unavailable",
+        "observation": "Outside this subset; no promotion of previous observations"
+      },
+      {
+        "case": "qualification-refusal",
+        "status": "unavailable",
+        "observation": "Outside this subset; no promotion of previous observations"
+      }
+    ],
+    "execution_allowed": false
+  },
+  "decision": {
+    "status": "denied",
+    "reasons": [
+      "unresolved substrate/runtime/credential design",
+      "allowed-grant: unavailable",
+      "external-read: unavailable",
+      "external-write: unavailable",
+      "original-checkout: unavailable",
+      "coordinator-state: unavailable",
+      "symlink-escape: unavailable",
+      "new-file-escape: unavailable",
+      "metadata-escape: unavailable",
+      "network-egress: unavailable",
+      "environment-credentials: unavailable",
+      "repository-hooks: unavailable",
+      "global-hooks: unavailable",
+      "mcp-plugins-instructions: unavailable",
+      "credential-mediation: unavailable",
+      "configuration-binding: unavailable",
+      "qualification-refusal: unavailable"
+    ],
+    "execution_allowed": false
+  },
+  "server": {
+    "argv": [
+      "/opt/homebrew/bin/docker",
+      "version",
+      "--format",
+      "{{json .Server}}"
+    ],
+    "exit": 0,
+    "stdout": "{\"Platform\":{\"Name\":\"Docker Desktop 4.93.0 (240920)\"},\"Version\":\"29.8.1\",\"ApiVersion\":\"1.56\",\"MinAPIVersion\":\"1.40\",\"Os\":\"linux\",\"Arch\":\"arm64\",\"Components\":[{\"Name\":\"Engine\",\"Version\":\"29.8.1\",\"Details\":{\"ApiVersion\":\"1.56\",\"Arch\":\"arm64\",\"BuildTime\":\"Tue Sep 15 16:25:04 2026\",\"Experimental\":\"false\",\"GitCommit\":\"464cd50\",\"GoVersion\":\"go1.26.8\",\"KernelVersion\":\"7.0.14-linuxkit\",\"MinAPIVersion\":\"1.40\",\"Module\":\"github.com/moby/moby/v2\",\"ModuleVersion\":\"v2.0.0+unknown\",\"Os\":\"linux\"}},{\"Name\":\"containerd\",\"Version\":\"v2.3.5\",\"Details\":{\"GitCommit\":\"1294c24a7da8e5a793ed378161673abe94118892\"}},{\"Name\":\"runc\",\"Version\":\"1.5.1\",\"Details\":{\"GitCommit\":\"v1.5.1-0-g8f2685a4\"}},{\"Name\":\"docker-init\",\"Version\":\"0.19.0\",\"Details\":{\"GitCommit\":\"de40ad0\"}}],\"GitCommit\":\"464cd50\",\"GoVersion\":\"go1.26.8\",\"KernelVersion\":\"7.0.14-linuxkit\",\"BuildTime\":\"2026-09-15T16:25:04.000000000+00:00\"}\n",
+    "stderr": ""
+  },
+  "observations": [
+    {
+      "mode": "cancel",
+      "commands": [
+        {
+          "argv": [
+            "/opt/homebrew/bin/docker",
+            "create",
+            "--pull=never",
+            "--name",
+            "<fixture-container>",
+            "--label",
+            "crewshal.qualification=2c-lifecycle",
+            "--network=none",
+            "--read-only",
+            "--user=65532:65532",
+            "--cap-drop=ALL",
+            "--security-opt=no-new-privileges",
+            "--pids-limit=32",
+            "--memory=128m",
+            "--cpus=1",
+            "--log-driver=none",
+            "--entrypoint=/bin/sh",
+            "--mount",
+            "type=bind,src=<synthetic-root>/cancel/input,dst=/input,readonly",
+            "--mount",
+            "type=bind,src=<synthetic-root>/cancel/owned,dst=/candidate/owned",
+            "--tmpfs",
+            "/scratch:rw,noexec,nosuid,nodev,size=16777216,mode=1777",
+            "--env",
+            "HOME=/scratch/home",
+            "--env",
+            "HOST_FIXTURE=<synthetic-root>/cancel",
+            "sha256:5b10f432ef3da1b8d4c7eb6c487f2f5a8f096bc91145e68878dd4a5019afde11",
+            "/input/probe.sh"
+          ],
+          "exit": 0,
+          "stdout": "64b0ce2c2ec53e10ae03d1317230b84fe97e0bcbb70e199ecd5a3748526886bd\n",
+          "stderr": ""
+        },
+        {
+          "argv": [
+            "/opt/homebrew/bin/docker",
+            "inspect",
+            "<fixture-container>"
+          ],
+          "exit": 0,
+          "stdout": "[\n    {\n        \"Id\": \"64b0ce2c2ec53e10ae03d1317230b84fe97e0bcbb70e199ecd5a3748526886bd\",\n        \"Created\": \"2026-10-02T12:35:03.033622802Z\",\n        \"Path\": \"/bin/sh\",\n        \"Args\": [\n            \"/input/probe.sh\"\n        ],\n        \"State\": {\n            \"Status\": \"created\",\n            \"Running\": false,\n            \"Paused\": false,\n            \"Restarting\": false,\n            \"OOMKilled\": false,\n            \"Dead\": false,\n            \"Pid\": 0,\n            \"ExitCode\": 0,\n            \"Error\": \"\",\n            \"StartedAt\": \"0001-01-01T00:00:00Z\",\n            \"FinishedAt\": \"0001-01-01T00:00:00Z\"\n        },\n        \"Image\": \"sha256:5b10f432ef3da1b8d4c7eb6c487f2f5a8f096bc91145e68878dd4a5019afde11\",\n        \"ResolvConfPath\": \"\",\n        \"HostnamePath\": \"\",\n        \"HostsPath\": \"\",\n        \"LogPath\": \"\",\n        \"Name\": \"/<fixture-container>\",\n        \"RestartCount\": 0,\n        \"Driver\": \"overlayfs\",\n        \"Platform\": \"linux\",\n        \"MountLabel\": \"\",\n        \"ProcessLabel\": \"\",\n        \"AppArmorProfile\": \"\",\n        \"ExecIDs\": null,\n        \"HostConfig\": {\n            \"Binds\": null,\n            \"ContainerIDFile\": \"\",\n            \"LogConfig\": {\n                \"Type\": \"none\",\n                \"Config\": {}\n            },\n            \"NetworkMode\": \"none\",\n            \"PortBindings\": {},\n            \"RestartPolicy\": {\n                \"Name\": \"no\",\n                \"MaximumRetryCount\": 0\n            },\n            \"AutoRemove\": false,\n            \"VolumeDriver\": \"\",\n            \"VolumesFrom\": null,\n            \"ConsoleSize\": [\n                0,\n                0\n            ],\n            \"CapAdd\": null,\n            \"CapDrop\": [\n                \"ALL\"\n            ],\n            \"CgroupnsMode\": \"private\",\n            \"Dns\": null,\n            \"DnsOptions\": [],\n            \"DnsSearch\": [],\n            \"ExtraHosts\": null,\n            \"GroupAdd\": null,\n            \"IpcMode\": \"private\",\n            \"Cgroup\": \"\",\n            \"Links\": null,\n            \"OomScoreAdj\": 0,\n            \"PidMode\": \"\",\n            \"Privileged\": false,\n            \"PublishAllPorts\": false,\n            \"ReadonlyRootfs\": true,\n            \"SecurityOpt\": [\n                \"no-new-privileges\"\n            ],\n            \"Tmpfs\": {\n                \"/scratch\": \"rw,noexec,nosuid,nodev,size=16777216,mode=1777\"\n            },\n            \"UTSMode\": \"\",\n            \"UsernsMode\": \"\",\n            \"ShmSize\": 67108864,\n            \"Runtime\": \"runc\",\n            \"Isolation\": \"\",\n            \"CpuShares\": 0,\n            \"Memory\": 134217728,\n            \"NanoCpus\": 1000000000,\n            \"CgroupParent\": \"\",\n            \"BlkioWeight\": 0,\n            \"BlkioWeightDevice\": [],\n            \"BlkioDeviceReadBps\": [],\n            \"BlkioDeviceWriteBps\": [],\n            \"BlkioDeviceReadIOps\": [],\n            \"BlkioDeviceWriteIOps\": [],\n            \"CpuPeriod\": 0,\n            \"CpuQuota\": 0,\n            \"CpuRealtimePeriod\": 0,\n            \"CpuRealtimeRuntime\": 0,\n            \"CpusetCpus\": \"\",\n            \"CpusetMems\": \"\",\n            \"Devices\": [],\n            \"DeviceCgroupRules\": null,\n            \"DeviceRequests\": null,\n            \"MemoryReservation\": 0,\n            \"MemorySwap\": 268435456,\n            \"MemorySwappiness\": null,\n            \"OomKillDisable\": false,\n            \"PidsLimit\": 32,\n            \"Ulimits\": null,\n            \"CpuCount\": 0,\n            \"CpuPercent\": 0,\n            \"IOMaximumIOps\": 0,\n            \"IOMaximumBandwidth\": 0,\n            \"Mounts\": [\n                {\n                    \"Type\": \"bind\",\n                    \"Source\": \"<synthetic-root>/cancel/input\",\n                    \"Target\": \"/input\",\n                    \"ReadOnly\": true\n                },\n                {\n                    \"Type\": \"bind\",\n                    \"Source\": \"<synthetic-root>/cancel/owned\",\n                    \"Target\": \"/candidate/owned\"\n                }\n            ],\n            \"MaskedPaths\": [\n                \"/proc/acpi\",\n                \"/proc/asound\",\n                \"/proc/interrupts\",\n                \"/proc/kcore\",\n                \"/proc/keys\",\n                \"/proc/latency_stats\",\n                \"/proc/sched_debug\",\n                \"/proc/scsi\",\n                \"/proc/timer_list\",\n                \"/proc/timer_stats\",\n                \"/sys/devices/virtual/powercap\",\n                \"/sys/firmware\"\n            ],\n            \"ReadonlyPaths\": [\n                \"/proc/bus\",\n                \"/proc/fs\",\n                \"/proc/irq\",\n                \"/proc/sys\",\n                \"/proc/sysrq-trigger\"\n            ]\n        },\n        \"Storage\": {\n            \"RootFS\": {\n                \"Snapshot\": {\n                    \"Name\": \"overlayfs\"\n                }\n            }\n        },\n        \"Mounts\": [\n            {\n                \"Type\": \"bind\",\n                \"Source\": \"<synthetic-root>/cancel/input\",\n                \"Destination\": \"/input\",\n                \"Mode\": \"\",\n                \"RW\": false,\n                \"Propagation\": \"rprivate\"\n            },\n            {\n                \"Type\": \"bind\",\n                \"Source\": \"<synthetic-root>/cancel/owned\",\n                \"Destination\": \"/candidate/owned\",\n                \"Mode\": \"\",\n                \"RW\": true,\n                \"Propagation\": \"rprivate\"\n            }\n        ],\n        \"Config\": {\n            \"Hostname\": \"64b0ce2c2ec5\",\n            \"Domainname\": \"\",\n            \"User\": \"65532:65532\",\n            \"AttachStdin\": false,\n            \"AttachStdout\": true,\n            \"AttachStderr\": true,\n            \"Tty\": false,\n            \"OpenStdin\": false,\n            \"StdinOnce\": false,\n            \"Env\": [\n                \"HOME=/scratch/home\",\n                \"HOST_FIXTURE=<synthetic-root>/cancel\",\n                \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\"\n            ],\n            \"Cmd\": [\n                \"/input/probe.sh\"\n            ],\n            \"Image\": \"sha256:5b10f432ef3da1b8d4c7eb6c487f2f5a8f096bc91145e68878dd4a5019afde11\",\n            \"Volumes\": null,\n            \"WorkingDir\": \"/\",\n            \"Entrypoint\": [\n                \"/bin/sh\"\n            ],\n            \"Labels\": {\n                \"crewshal.qualification\": \"2c-lifecycle\"\n            }\n        },\n        \"NetworkSettings\": {\n            \"SandboxID\": \"\",\n            \"SandboxKey\": \"\",\n            \"Ports\": {},\n            \"Networks\": {\n                \"none\": {\n                    \"IPAMConfig\": null,\n                    \"Links\": null,\n                    \"Aliases\": null,\n                    \"DriverOpts\": null,\n                    \"GwPriority\": 0,\n                    \"NetworkID\": \"\",\n                    \"EndpointID\": \"\",\n                    \"Gateway\": \"\",\n                    \"IPAddress\": \"\",\n                    \"MacAddress\": \"\",\n                    \"IPPrefixLen\": 0,\n                    \"IPv6Gateway\": \"\",\n                    \"GlobalIPv6Address\": \"\",\n                    \"GlobalIPv6PrefixLen\": 0,\n                    \"DNSNames\": null\n                }\n            }\n        },\n        \"ImageManifestDescriptor\": {\n            \"mediaType\": \"application/vnd.oci.image.manifest.v1+json\",\n            \"digest\": \"sha256:378c4c5418f7493bd500ad21ffb43818d0689daaad43e3261859fb417d1481a0\",\n            \"size\": 1025,\n            \"annotations\": {\n                \"com.docker.official-images.bashbrew.arch\": \"arm64v8\",\n                \"org.opencontainers.image.base.name\": \"scratch\",\n                \"org.opencontainers.image.created\": \"2026-04-15T20:01:01Z\",\n                \"org.opencontainers.image.revision\": \"c68e08480b8fb053591ade7dbaffa2ea67db2f56\",\n                \"org.opencontainers.image.source\": \"https://github.com/alpinelinux/docker-alpine.git#c68e08480b8fb053591ade7dbaffa2ea67db2f56:aarch64\",\n                \"org.opencontainers.image.url\": \"https://hub.docker.com/_/alpine\",\n                \"org.opencontainers.image.version\": \"3.23.4\"\n            },\n            \"platform\": {\n                \"architecture\": \"arm64\",\n                \"os\": \"linux\",\n                \"variant\": \"v8\"\n            }\n        }\n    }\n]\n",
+          "stderr": ""
+        },
+        {
+          "argv": [
+            "/opt/homebrew/bin/docker",
+            "start",
+            "<fixture-container>"
+          ],
+          "exit": 0,
+          "stdout": "<fixture-container>\n",
+          "stderr": ""
+        },
+        {
+          "argv": [
+            "/opt/homebrew/bin/docker",
+            "top",
+            "<fixture-container>",
+            "-eo",
+            "pid,ppid,sid,args"
+          ],
+          "exit": 0,
+          "stdout": "PID                 PPID                SID                 COMMAND\n2033                2009                2033                /bin/sh /input/probe.sh\n2048                2033                2033                sleep 1\n2049                2033                2047                /bin/sh -c if cat /original/canary >/scratch/read 2>/scratch/error; then exit 51; fi if printf forbidden > /input/read.txt 2>/scratch/error; then exit 52; fi if wget -T 1 -O /scratch/network http://192.0.2.1/ 2>/scratch/error; then exit 53; fi [ -z \"${CREWSHAL_SYNTHETIC_SECRET+x}\" ] [ -z \"${SSH_AUTH_SOCK+x}\" ] printf \"%s\\n\" \"$$\" > /candidate/owned/descendant.pid cat /proc/$$/status > /candidate/owned/descendant.status printf ready > /candidate/owned/ready while :; do printf x >> /candidate/owned/heartbeat; sleep 0.05; done\n2053                2049                2047                sleep 0.05\n",
+          "stderr": ""
+        },
+        {
+          "argv": [
+            "/opt/homebrew/bin/docker",
+            "kill",
+            "--signal=KILL",
+            "<fixture-container>"
+          ],
+          "exit": 0,
+          "stdout": "<fixture-container>\n",
+          "stderr": ""
+        },
+        {
+          "argv": [
+            "/opt/homebrew/bin/docker",
+            "inspect",
+            "--format",
+            "{{json .State}}",
+            "<fixture-container>"
+          ],
+          "exit": 0,
+          "stdout": "{\"Status\":\"exited\",\"Running\":false,\"Paused\":false,\"Restarting\":false,\"OOMKilled\":false,\"Dead\":false,\"Pid\":0,\"ExitCode\":137,\"Error\":\"\",\"StartedAt\":\"2026-10-02T12:35:03.131332844Z\",\"FinishedAt\":\"2026-10-02T12:35:03.262773927Z\"}\n",
+          "stderr": ""
+        },
+        {
+          "argv": [
+            "/opt/homebrew/bin/docker",
+            "rm",
+            "--force",
+            "<fixture-container>"
+          ],
+          "exit": 0,
+          "stdout": "<fixture-container>\n",
+          "stderr": ""
+        }
+      ],
+      "grant_verified": true,
+      "image": "sha256:5b10f432ef3da1b8d4c7eb6c487f2f5a8f096bc91145e68878dd4a5019afde11",
+      "ready": true,
+      "heartbeat_before": 1,
+      "process_table": "PID                 PPID                SID                 COMMAND\n2033                2009                2033                /bin/sh /input/probe.sh\n2048                2033                2033                sleep 1\n2049                2033                2047                /bin/sh -c if cat /original/canary >/scratch/read 2>/scratch/error; then exit 51; fi if printf forbidden > /input/read.txt 2>/scratch/error; then exit 52; fi if wget -T 1 -O /scratch/network http://192.0.2.1/ 2>/scratch/error; then exit 53; fi [ -z \"${CREWSHAL_SYNTHETIC_SECRET+x}\" ] [ -z \"${SSH_AUTH_SOCK+x}\" ] printf \"%s\\n\" \"$$\" > /candidate/owned/descendant.pid cat /proc/$$/status > /candidate/owned/descendant.status printf ready > /candidate/owned/ready while :; do printf x >> /candidate/owned/heartbeat; sleep 0.05; done\n2053                2049                2047                sleep 0.05\n",
+      "detached_descendant": true,
+      "kill_requested_seconds": 0.15396475000306964,
+      "termination_reason": "cancelled",
+      "kill_exit": 0,
+      "terminal": {
+        "Status": "exited",
+        "Running": false,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 0,
+        "ExitCode": 137,
+        "Error": "",
+        "StartedAt": "2026-10-02T12:35:03.131332844Z",
+        "FinishedAt": "2026-10-02T12:35:03.262773927Z"
+      },
+      "heartbeat_samples_after": [
+        2,
+        2,
+        2
+      ],
+      "heartbeat_stopped": true,
+      "removed": true,
+      "protected_unchanged": true,
+      "owned_files": {
+        "descendant.pid": {
+          "mode": 33188,
+          "links": 1,
+          "content": "2e6d31a5983a91251bfae5aefa1c0a19d8ba3cf601d0e8a706b4cfa9661a6b8a"
+        },
+        "descendant.status": {
+          "mode": 33188,
+          "links": 1,
+          "content": "477cb6a0bf38f40b9df2b7d9e47b8a788c3bbae8db719987d312c81ce30bd76d"
+        },
+        "heartbeat": {
+          "mode": 33188,
+          "links": 1,
+          "content": "5dde896887f6754c9b15bfe3a441ae4806df2fde94001311e08bf110622e0bbe"
+        },
+        "ready": {
+          "mode": 33188,
+          "links": 1,
+          "content": "b24d6d33736ecd5604a4b17bc9c6481039fac362bb7df044ef1c10a2bfd21db6"
+        }
+      },
+      "passed": true
+    },
+    {
+      "mode": "deadline",
+      "commands": [
+        {
+          "argv": [
+            "/opt/homebrew/bin/docker",
+            "create",
+            "--pull=never",
+            "--name",
+            "<fixture-container>",
+            "--label",
+            "crewshal.qualification=2c-lifecycle",
+            "--network=none",
+            "--read-only",
+            "--user=65532:65532",
+            "--cap-drop=ALL",
+            "--security-opt=no-new-privileges",
+            "--pids-limit=32",
+            "--memory=128m",
+            "--cpus=1",
+            "--log-driver=none",
+            "--entrypoint=/bin/sh",
+            "--mount",
+            "type=bind,src=<synthetic-root>/deadline/input,dst=/input,readonly",
+            "--mount",
+            "type=bind,src=<synthetic-root>/deadline/owned,dst=/candidate/owned",
+            "--tmpfs",
+            "/scratch:rw,noexec,nosuid,nodev,size=16777216,mode=1777",
+            "--env",
+            "HOME=/scratch/home",
+            "--env",
+            "HOST_FIXTURE=<synthetic-root>/deadline",
+            "sha256:5b10f432ef3da1b8d4c7eb6c487f2f5a8f096bc91145e68878dd4a5019afde11",
+            "/input/probe.sh"
+          ],
+          "exit": 0,
+          "stdout": "17278786fc4d203dcc2d4955295e70942453126f533352fd083c0955ed2a25f9\n",
+          "stderr": ""
+        },
+        {
+          "argv": [
+            "/opt/homebrew/bin/docker",
+            "inspect",
+            "<fixture-container>"
+          ],
+          "exit": 0,
+          "stdout": "[\n    {\n        \"Id\": \"17278786fc4d203dcc2d4955295e70942453126f533352fd083c0955ed2a25f9\",\n        \"Created\": \"2026-10-02T12:35:03.688482178Z\",\n        \"Path\": \"/bin/sh\",\n        \"Args\": [\n            \"/input/probe.sh\"\n        ],\n        \"State\": {\n            \"Status\": \"created\",\n            \"Running\": false,\n            \"Paused\": false,\n            \"Restarting\": false,\n            \"OOMKilled\": false,\n            \"Dead\": false,\n            \"Pid\": 0,\n            \"ExitCode\": 0,\n            \"Error\": \"\",\n            \"StartedAt\": \"0001-01-01T00:00:00Z\",\n            \"FinishedAt\": \"0001-01-01T00:00:00Z\"\n        },\n        \"Image\": \"sha256:5b10f432ef3da1b8d4c7eb6c487f2f5a8f096bc91145e68878dd4a5019afde11\",\n        \"ResolvConfPath\": \"\",\n        \"HostnamePath\": \"\",\n        \"HostsPath\": \"\",\n        \"LogPath\": \"\",\n        \"Name\": \"/<fixture-container>\",\n        \"RestartCount\": 0,\n        \"Driver\": \"overlayfs\",\n        \"Platform\": \"linux\",\n        \"MountLabel\": \"\",\n        \"ProcessLabel\": \"\",\n        \"AppArmorProfile\": \"\",\n        \"ExecIDs\": null,\n        \"HostConfig\": {\n            \"Binds\": null,\n            \"ContainerIDFile\": \"\",\n            \"LogConfig\": {\n                \"Type\": \"none\",\n                \"Config\": {}\n            },\n            \"NetworkMode\": \"none\",\n            \"PortBindings\": {},\n            \"RestartPolicy\": {\n                \"Name\": \"no\",\n                \"MaximumRetryCount\": 0\n            },\n            \"AutoRemove\": false,\n            \"VolumeDriver\": \"\",\n            \"VolumesFrom\": null,\n            \"ConsoleSize\": [\n                0,\n                0\n            ],\n            \"CapAdd\": null,\n            \"CapDrop\": [\n                \"ALL\"\n            ],\n            \"CgroupnsMode\": \"private\",\n            \"Dns\": null,\n            \"DnsOptions\": [],\n            \"DnsSearch\": [],\n            \"ExtraHosts\": null,\n            \"GroupAdd\": null,\n            \"IpcMode\": \"private\",\n            \"Cgroup\": \"\",\n            \"Links\": null,\n            \"OomScoreAdj\": 0,\n            \"PidMode\": \"\",\n            \"Privileged\": false,\n            \"PublishAllPorts\": false,\n            \"ReadonlyRootfs\": true,\n            \"SecurityOpt\": [\n                \"no-new-privileges\"\n            ],\n            \"Tmpfs\": {\n                \"/scratch\": \"rw,noexec,nosuid,nodev,size=16777216,mode=1777\"\n            },\n            \"UTSMode\": \"\",\n            \"UsernsMode\": \"\",\n            \"ShmSize\": 67108864,\n            \"Runtime\": \"runc\",\n            \"Isolation\": \"\",\n            \"CpuShares\": 0,\n            \"Memory\": 134217728,\n            \"NanoCpus\": 1000000000,\n            \"CgroupParent\": \"\",\n            \"BlkioWeight\": 0,\n            \"BlkioWeightDevice\": [],\n            \"BlkioDeviceReadBps\": [],\n            \"BlkioDeviceWriteBps\": [],\n            \"BlkioDeviceReadIOps\": [],\n            \"BlkioDeviceWriteIOps\": [],\n            \"CpuPeriod\": 0,\n            \"CpuQuota\": 0,\n            \"CpuRealtimePeriod\": 0,\n            \"CpuRealtimeRuntime\": 0,\n            \"CpusetCpus\": \"\",\n            \"CpusetMems\": \"\",\n            \"Devices\": [],\n            \"DeviceCgroupRules\": null,\n            \"DeviceRequests\": null,\n            \"MemoryReservation\": 0,\n            \"MemorySwap\": 268435456,\n            \"MemorySwappiness\": null,\n            \"OomKillDisable\": false,\n            \"PidsLimit\": 32,\n            \"Ulimits\": null,\n            \"CpuCount\": 0,\n            \"CpuPercent\": 0,\n            \"IOMaximumIOps\": 0,\n            \"IOMaximumBandwidth\": 0,\n            \"Mounts\": [\n                {\n                    \"Type\": \"bind\",\n                    \"Source\": \"<synthetic-root>/deadline/input\",\n                    \"Target\": \"/input\",\n                    \"ReadOnly\": true\n                },\n                {\n                    \"Type\": \"bind\",\n                    \"Source\": \"<synthetic-root>/deadline/owned\",\n                    \"Target\": \"/candidate/owned\"\n                }\n            ],\n            \"MaskedPaths\": [\n                \"/proc/acpi\",\n                \"/proc/asound\",\n                \"/proc/interrupts\",\n                \"/proc/kcore\",\n                \"/proc/keys\",\n                \"/proc/latency_stats\",\n                \"/proc/sched_debug\",\n                \"/proc/scsi\",\n                \"/proc/timer_list\",\n                \"/proc/timer_stats\",\n                \"/sys/devices/virtual/powercap\",\n                \"/sys/firmware\"\n            ],\n            \"ReadonlyPaths\": [\n                \"/proc/bus\",\n                \"/proc/fs\",\n                \"/proc/irq\",\n                \"/proc/sys\",\n                \"/proc/sysrq-trigger\"\n            ]\n        },\n        \"Storage\": {\n            \"RootFS\": {\n                \"Snapshot\": {\n                    \"Name\": \"overlayfs\"\n                }\n            }\n        },\n        \"Mounts\": [\n            {\n                \"Type\": \"bind\",\n                \"Source\": \"<synthetic-root>/deadline/input\",\n                \"Destination\": \"/input\",\n                \"Mode\": \"\",\n                \"RW\": false,\n                \"Propagation\": \"rprivate\"\n            },\n            {\n                \"Type\": \"bind\",\n                \"Source\": \"<synthetic-root>/deadline/owned\",\n                \"Destination\": \"/candidate/owned\",\n                \"Mode\": \"\",\n                \"RW\": true,\n                \"Propagation\": \"rprivate\"\n            }\n        ],\n        \"Config\": {\n            \"Hostname\": \"17278786fc4d\",\n            \"Domainname\": \"\",\n            \"User\": \"65532:65532\",\n            \"AttachStdin\": false,\n            \"AttachStdout\": true,\n            \"AttachStderr\": true,\n            \"Tty\": false,\n            \"OpenStdin\": false,\n            \"StdinOnce\": false,\n            \"Env\": [\n                \"HOME=/scratch/home\",\n                \"HOST_FIXTURE=<synthetic-root>/deadline\",\n                \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\"\n            ],\n            \"Cmd\": [\n                \"/input/probe.sh\"\n            ],\n            \"Image\": \"sha256:5b10f432ef3da1b8d4c7eb6c487f2f5a8f096bc91145e68878dd4a5019afde11\",\n            \"Volumes\": null,\n            \"WorkingDir\": \"/\",\n            \"Entrypoint\": [\n                \"/bin/sh\"\n            ],\n            \"Labels\": {\n                \"crewshal.qualification\": \"2c-lifecycle\"\n            }\n        },\n        \"NetworkSettings\": {\n            \"SandboxID\": \"\",\n            \"SandboxKey\": \"\",\n            \"Ports\": {},\n            \"Networks\": {\n                \"none\": {\n                    \"IPAMConfig\": null,\n                    \"Links\": null,\n                    \"Aliases\": null,\n                    \"DriverOpts\": null,\n                    \"GwPriority\": 0,\n                    \"NetworkID\": \"\",\n                    \"EndpointID\": \"\",\n                    \"Gateway\": \"\",\n                    \"IPAddress\": \"\",\n                    \"MacAddress\": \"\",\n                    \"IPPrefixLen\": 0,\n                    \"IPv6Gateway\": \"\",\n                    \"GlobalIPv6Address\": \"\",\n                    \"GlobalIPv6PrefixLen\": 0,\n                    \"DNSNames\": null\n                }\n            }\n        },\n        \"ImageManifestDescriptor\": {\n            \"mediaType\": \"application/vnd.oci.image.manifest.v1+json\",\n            \"digest\": \"sha256:378c4c5418f7493bd500ad21ffb43818d0689daaad43e3261859fb417d1481a0\",\n            \"size\": 1025,\n            \"annotations\": {\n                \"com.docker.official-images.bashbrew.arch\": \"arm64v8\",\n                \"org.opencontainers.image.base.name\": \"scratch\",\n                \"org.opencontainers.image.created\": \"2026-04-15T20:01:01Z\",\n                \"org.opencontainers.image.revision\": \"c68e08480b8fb053591ade7dbaffa2ea67db2f56\",\n                \"org.opencontainers.image.source\": \"https://github.com/alpinelinux/docker-alpine.git#c68e08480b8fb053591ade7dbaffa2ea67db2f56:aarch64\",\n                \"org.opencontainers.image.url\": \"https://hub.docker.com/_/alpine\",\n                \"org.opencontainers.image.version\": \"3.23.4\"\n            },\n            \"platform\": {\n                \"architecture\": \"arm64\",\n                \"os\": \"linux\",\n                \"variant\": \"v8\"\n            }\n        }\n    }\n]\n",
+          "stderr": ""
+        },
+        {
+          "argv": [
+            "/opt/homebrew/bin/docker",
+            "start",
+            "<fixture-container>"
+          ],
+          "exit": 0,
+          "stdout": "<fixture-container>\n",
+          "stderr": ""
+        },
+        {
+          "argv": [
+            "/opt/homebrew/bin/docker",
+            "top",
+            "<fixture-container>",
+            "-eo",
+            "pid,ppid,sid,args"
+          ],
+          "exit": 0,
+          "stdout": "PID                 PPID                SID                 COMMAND\n2120                2099                2120                /bin/sh /input/probe.sh\n2139                2120                2120                sleep 1\n2140                2120                2138                /bin/sh -c if cat /original/canary >/scratch/read 2>/scratch/error; then exit 51; fi if printf forbidden > /input/read.txt 2>/scratch/error; then exit 52; fi if wget -T 1 -O /scratch/network http://192.0.2.1/ 2>/scratch/error; then exit 53; fi [ -z \"${CREWSHAL_SYNTHETIC_SECRET+x}\" ] [ -z \"${SSH_AUTH_SOCK+x}\" ] printf \"%s\\n\" \"$$\" > /candidate/owned/descendant.pid cat /proc/$$/status > /candidate/owned/descendant.status printf ready > /candidate/owned/ready while :; do printf x >> /candidate/owned/heartbeat; sleep 0.05; done\n2144                2140                2138                sleep 0.05\n",
+          "stderr": ""
+        },
+        {
+          "argv": [
+            "/opt/homebrew/bin/docker",
+            "kill",
+            "--signal=KILL",
+            "<fixture-container>"
+          ],
+          "exit": 0,
+          "stdout": "<fixture-container>\n",
+          "stderr": ""
+        },
+        {
+          "argv": [
+            "/opt/homebrew/bin/docker",
+            "inspect",
+            "--format",
+            "{{json .State}}",
+            "<fixture-container>"
+          ],
+          "exit": 0,
+          "stdout": "{\"Status\":\"exited\",\"Running\":false,\"Paused\":false,\"Restarting\":false,\"OOMKilled\":false,\"Dead\":false,\"Pid\":0,\"ExitCode\":137,\"Error\":\"\",\"StartedAt\":\"2026-10-02T12:35:03.756380928Z\",\"FinishedAt\":\"2026-10-02T12:35:08.764370847Z\"}\n",
+          "stderr": ""
+        },
+        {
+          "argv": [
+            "/opt/homebrew/bin/docker",
+            "rm",
+            "--force",
+            "<fixture-container>"
+          ],
+          "exit": 0,
+          "stdout": "<fixture-container>\n",
+          "stderr": ""
+        }
+      ],
+      "grant_verified": true,
+      "image": "sha256:5b10f432ef3da1b8d4c7eb6c487f2f5a8f096bc91145e68878dd4a5019afde11",
+      "ready": true,
+      "heartbeat_before": 1,
+      "process_table": "PID                 PPID                SID                 COMMAND\n2120                2099                2120                /bin/sh /input/probe.sh\n2139                2120                2120                sleep 1\n2140                2120                2138                /bin/sh -c if cat /original/canary >/scratch/read 2>/scratch/error; then exit 51; fi if printf forbidden > /input/read.txt 2>/scratch/error; then exit 52; fi if wget -T 1 -O /scratch/network http://192.0.2.1/ 2>/scratch/error; then exit 53; fi [ -z \"${CREWSHAL_SYNTHETIC_SECRET+x}\" ] [ -z \"${SSH_AUTH_SOCK+x}\" ] printf \"%s\\n\" \"$$\" > /candidate/owned/descendant.pid cat /proc/$$/status > /candidate/owned/descendant.status printf ready > /candidate/owned/ready while :; do printf x >> /candidate/owned/heartbeat; sleep 0.05; done\n2144                2140                2138                sleep 0.05\n",
+      "detached_descendant": true,
+      "kill_requested_seconds": 5.000882374937646,
+      "termination_reason": "timeout",
+      "kill_exit": 0,
+      "terminal": {
+        "Status": "exited",
+        "Running": false,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 0,
+        "ExitCode": 137,
+        "Error": "",
+        "StartedAt": "2026-10-02T12:35:03.756380928Z",
+        "FinishedAt": "2026-10-02T12:35:08.764370847Z"
+      },
+      "heartbeat_samples_after": [
+        92,
+        92,
+        92
+      ],
+      "heartbeat_stopped": true,
+      "removed": true,
+      "protected_unchanged": true,
+      "owned_files": {
+        "descendant.pid": {
+          "mode": 33188,
+          "links": 1,
+          "content": "25d4f2a86deb5e2574bb3210b67bb24fcc4afb19f93a7b65a057daa874a9d18e"
+        },
+        "descendant.status": {
+          "mode": 33188,
+          "links": 1,
+          "content": "9abc1df17a3d279de47a22d5dcfacb1a0cbdc857d2397d134525fdfdb29ddf9c"
+        },
+        "heartbeat": {
+          "mode": 33188,
+          "links": 1,
+          "content": "07b1ab5a68bbd57029cd7480e08523515e2d4f75f7b453aba241382174be64c0"
+        },
+        "ready": {
+          "mode": 33188,
+          "links": 1,
+          "content": "b24d6d33736ecd5604a4b17bc9c6481039fac362bb7df044ef1c10a2bfd21db6"
+        }
+      },
+      "passed": true
+    },
+    {
+      "mode": "validator",
+      "commands": [
+        {
+          "argv": [
+            "/opt/homebrew/bin/docker",
+            "create",
+            "--pull=never",
+            "--name",
+            "<fixture-container>",
+            "--label",
+            "crewshal.qualification=2c-lifecycle",
+            "--network=none",
+            "--read-only",
+            "--user=65532:65532",
+            "--cap-drop=ALL",
+            "--security-opt=no-new-privileges",
+            "--pids-limit=32",
+            "--memory=128m",
+            "--cpus=1",
+            "--log-driver=none",
+            "--entrypoint=/bin/sh",
+            "--mount",
+            "type=bind,src=<synthetic-root>/validator/input,dst=/input,readonly",
+            "--mount",
+            "type=bind,src=<synthetic-root>/validator/owned,dst=/candidate/owned",
+            "--tmpfs",
+            "/scratch:rw,noexec,nosuid,nodev,size=16777216,mode=1777",
+            "--env",
+            "HOME=/scratch/home",
+            "--env",
+            "HOST_FIXTURE=<synthetic-root>/validator",
+            "sha256:5b10f432ef3da1b8d4c7eb6c487f2f5a8f096bc91145e68878dd4a5019afde11",
+            "/input/probe.sh"
+          ],
+          "exit": 0,
+          "stdout": "fed2c9741b07ed1b22f156b33032084128016b4c676b98da7a7a49efa854f4c4\n",
+          "stderr": ""
+        },
+        {
+          "argv": [
+            "/opt/homebrew/bin/docker",
+            "inspect",
+            "<fixture-container>"
+          ],
+          "exit": 0,
+          "stdout": "[\n    {\n        \"Id\": \"fed2c9741b07ed1b22f156b33032084128016b4c676b98da7a7a49efa854f4c4\",\n        \"Created\": \"2026-10-02T12:35:09.198220805Z\",\n        \"Path\": \"/bin/sh\",\n        \"Args\": [\n            \"/input/probe.sh\"\n        ],\n        \"State\": {\n            \"Status\": \"created\",\n            \"Running\": false,\n            \"Paused\": false,\n            \"Restarting\": false,\n            \"OOMKilled\": false,\n            \"Dead\": false,\n            \"Pid\": 0,\n            \"ExitCode\": 0,\n            \"Error\": \"\",\n            \"StartedAt\": \"0001-01-01T00:00:00Z\",\n            \"FinishedAt\": \"0001-01-01T00:00:00Z\"\n        },\n        \"Image\": \"sha256:5b10f432ef3da1b8d4c7eb6c487f2f5a8f096bc91145e68878dd4a5019afde11\",\n        \"ResolvConfPath\": \"\",\n        \"HostnamePath\": \"\",\n        \"HostsPath\": \"\",\n        \"LogPath\": \"\",\n        \"Name\": \"/<fixture-container>\",\n        \"RestartCount\": 0,\n        \"Driver\": \"overlayfs\",\n        \"Platform\": \"linux\",\n        \"MountLabel\": \"\",\n        \"ProcessLabel\": \"\",\n        \"AppArmorProfile\": \"\",\n        \"ExecIDs\": null,\n        \"HostConfig\": {\n            \"Binds\": null,\n            \"ContainerIDFile\": \"\",\n            \"LogConfig\": {\n                \"Type\": \"none\",\n                \"Config\": {}\n            },\n            \"NetworkMode\": \"none\",\n            \"PortBindings\": {},\n            \"RestartPolicy\": {\n                \"Name\": \"no\",\n                \"MaximumRetryCount\": 0\n            },\n            \"AutoRemove\": false,\n            \"VolumeDriver\": \"\",\n            \"VolumesFrom\": null,\n            \"ConsoleSize\": [\n                0,\n                0\n            ],\n            \"CapAdd\": null,\n            \"CapDrop\": [\n                \"ALL\"\n            ],\n            \"CgroupnsMode\": \"private\",\n            \"Dns\": null,\n            \"DnsOptions\": [],\n            \"DnsSearch\": [],\n            \"ExtraHosts\": null,\n            \"GroupAdd\": null,\n            \"IpcMode\": \"private\",\n            \"Cgroup\": \"\",\n            \"Links\": null,\n            \"OomScoreAdj\": 0,\n            \"PidMode\": \"\",\n            \"Privileged\": false,\n            \"PublishAllPorts\": false,\n            \"ReadonlyRootfs\": true,\n            \"SecurityOpt\": [\n                \"no-new-privileges\"\n            ],\n            \"Tmpfs\": {\n                \"/scratch\": \"rw,noexec,nosuid,nodev,size=16777216,mode=1777\"\n            },\n            \"UTSMode\": \"\",\n            \"UsernsMode\": \"\",\n            \"ShmSize\": 67108864,\n            \"Runtime\": \"runc\",\n            \"Isolation\": \"\",\n            \"CpuShares\": 0,\n            \"Memory\": 134217728,\n            \"NanoCpus\": 1000000000,\n            \"CgroupParent\": \"\",\n            \"BlkioWeight\": 0,\n            \"BlkioWeightDevice\": [],\n            \"BlkioDeviceReadBps\": [],\n            \"BlkioDeviceWriteBps\": [],\n            \"BlkioDeviceReadIOps\": [],\n            \"BlkioDeviceWriteIOps\": [],\n            \"CpuPeriod\": 0,\n            \"CpuQuota\": 0,\n            \"CpuRealtimePeriod\": 0,\n            \"CpuRealtimeRuntime\": 0,\n            \"CpusetCpus\": \"\",\n            \"CpusetMems\": \"\",\n            \"Devices\": [],\n            \"DeviceCgroupRules\": null,\n            \"DeviceRequests\": null,\n            \"MemoryReservation\": 0,\n            \"MemorySwap\": 268435456,\n            \"MemorySwappiness\": null,\n            \"OomKillDisable\": false,\n            \"PidsLimit\": 32,\n            \"Ulimits\": null,\n            \"CpuCount\": 0,\n            \"CpuPercent\": 0,\n            \"IOMaximumIOps\": 0,\n            \"IOMaximumBandwidth\": 0,\n            \"Mounts\": [\n                {\n                    \"Type\": \"bind\",\n                    \"Source\": \"<synthetic-root>/validator/input\",\n                    \"Target\": \"/input\",\n                    \"ReadOnly\": true\n                },\n                {\n                    \"Type\": \"bind\",\n                    \"Source\": \"<synthetic-root>/validator/owned\",\n                    \"Target\": \"/candidate/owned\"\n                }\n            ],\n            \"MaskedPaths\": [\n                \"/proc/acpi\",\n                \"/proc/asound\",\n                \"/proc/interrupts\",\n                \"/proc/kcore\",\n                \"/proc/keys\",\n                \"/proc/latency_stats\",\n                \"/proc/sched_debug\",\n                \"/proc/scsi\",\n                \"/proc/timer_list\",\n                \"/proc/timer_stats\",\n                \"/sys/devices/virtual/powercap\",\n                \"/sys/firmware\"\n            ],\n            \"ReadonlyPaths\": [\n                \"/proc/bus\",\n                \"/proc/fs\",\n                \"/proc/irq\",\n                \"/proc/sys\",\n                \"/proc/sysrq-trigger\"\n            ]\n        },\n        \"Storage\": {\n            \"RootFS\": {\n                \"Snapshot\": {\n                    \"Name\": \"overlayfs\"\n                }\n            }\n        },\n        \"Mounts\": [\n            {\n                \"Type\": \"bind\",\n                \"Source\": \"<synthetic-root>/validator/input\",\n                \"Destination\": \"/input\",\n                \"Mode\": \"\",\n                \"RW\": false,\n                \"Propagation\": \"rprivate\"\n            },\n            {\n                \"Type\": \"bind\",\n                \"Source\": \"<synthetic-root>/validator/owned\",\n                \"Destination\": \"/candidate/owned\",\n                \"Mode\": \"\",\n                \"RW\": true,\n                \"Propagation\": \"rprivate\"\n            }\n        ],\n        \"Config\": {\n            \"Hostname\": \"fed2c9741b07\",\n            \"Domainname\": \"\",\n            \"User\": \"65532:65532\",\n            \"AttachStdin\": false,\n            \"AttachStdout\": true,\n            \"AttachStderr\": true,\n            \"Tty\": false,\n            \"OpenStdin\": false,\n            \"StdinOnce\": false,\n            \"Env\": [\n                \"HOME=/scratch/home\",\n                \"HOST_FIXTURE=<synthetic-root>/validator\",\n                \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\"\n            ],\n            \"Cmd\": [\n                \"/input/probe.sh\"\n            ],\n            \"Image\": \"sha256:5b10f432ef3da1b8d4c7eb6c487f2f5a8f096bc91145e68878dd4a5019afde11\",\n            \"Volumes\": null,\n            \"WorkingDir\": \"/\",\n            \"Entrypoint\": [\n                \"/bin/sh\"\n            ],\n            \"Labels\": {\n                \"crewshal.qualification\": \"2c-lifecycle\"\n            }\n        },\n        \"NetworkSettings\": {\n            \"SandboxID\": \"\",\n            \"SandboxKey\": \"\",\n            \"Ports\": {},\n            \"Networks\": {\n                \"none\": {\n                    \"IPAMConfig\": null,\n                    \"Links\": null,\n                    \"Aliases\": null,\n                    \"DriverOpts\": null,\n                    \"GwPriority\": 0,\n                    \"NetworkID\": \"\",\n                    \"EndpointID\": \"\",\n                    \"Gateway\": \"\",\n                    \"IPAddress\": \"\",\n                    \"MacAddress\": \"\",\n                    \"IPPrefixLen\": 0,\n                    \"IPv6Gateway\": \"\",\n                    \"GlobalIPv6Address\": \"\",\n                    \"GlobalIPv6PrefixLen\": 0,\n                    \"DNSNames\": null\n                }\n            }\n        },\n        \"ImageManifestDescriptor\": {\n            \"mediaType\": \"application/vnd.oci.image.manifest.v1+json\",\n            \"digest\": \"sha256:378c4c5418f7493bd500ad21ffb43818d0689daaad43e3261859fb417d1481a0\",\n            \"size\": 1025,\n            \"annotations\": {\n                \"com.docker.official-images.bashbrew.arch\": \"arm64v8\",\n                \"org.opencontainers.image.base.name\": \"scratch\",\n                \"org.opencontainers.image.created\": \"2026-04-15T20:01:01Z\",\n                \"org.opencontainers.image.revision\": \"c68e08480b8fb053591ade7dbaffa2ea67db2f56\",\n                \"org.opencontainers.image.source\": \"https://github.com/alpinelinux/docker-alpine.git#c68e08480b8fb053591ade7dbaffa2ea67db2f56:aarch64\",\n                \"org.opencontainers.image.url\": \"https://hub.docker.com/_/alpine\",\n                \"org.opencontainers.image.version\": \"3.23.4\"\n            },\n            \"platform\": {\n                \"architecture\": \"arm64\",\n                \"os\": \"linux\",\n                \"variant\": \"v8\"\n            }\n        }\n    }\n]\n",
+          "stderr": ""
+        },
+        {
+          "argv": [
+            "/opt/homebrew/bin/docker",
+            "start",
+            "<fixture-container>"
+          ],
+          "exit": 0,
+          "stdout": "<fixture-container>\n",
+          "stderr": ""
+        },
+        {
+          "argv": [
+            "/opt/homebrew/bin/docker",
+            "wait",
+            "<fixture-container>"
+          ],
+          "exit": 0,
+          "stdout": "0\n",
+          "stderr": ""
+        },
+        {
+          "argv": [
+            "/opt/homebrew/bin/docker",
+            "inspect",
+            "--format",
+            "{{json .State}}",
+            "<fixture-container>"
+          ],
+          "exit": 0,
+          "stdout": "{\"Status\":\"exited\",\"Running\":false,\"Paused\":false,\"Restarting\":false,\"OOMKilled\":false,\"Dead\":false,\"Pid\":0,\"ExitCode\":0,\"Error\":\"\",\"StartedAt\":\"2026-10-02T12:35:09.269844847Z\",\"FinishedAt\":\"2026-10-02T12:35:09.307011972Z\"}\n",
+          "stderr": ""
+        },
+        {
+          "argv": [
+            "/opt/homebrew/bin/docker",
+            "rm",
+            "--force",
+            "<fixture-container>"
+          ],
+          "exit": 0,
+          "stdout": "<fixture-container>\n",
+          "stderr": ""
+        }
+      ],
+      "grant_verified": true,
+      "image": "sha256:5b10f432ef3da1b8d4c7eb6c487f2f5a8f096bc91145e68878dd4a5019afde11",
+      "ready": true,
+      "terminal": {
+        "Status": "exited",
+        "Running": false,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 0,
+        "ExitCode": 0,
+        "Error": "",
+        "StartedAt": "2026-10-02T12:35:09.269844847Z",
+        "FinishedAt": "2026-10-02T12:35:09.307011972Z"
+      },
+      "validated": true,
+      "removed": true,
+      "protected_unchanged": true,
+      "owned_files": {
+        "candidate.sha256": {
+          "mode": 33188,
+          "links": 1,
+          "content": "6f30dcb45a4888cb6367dbe41f955f11abfadece32285432ae74e854ecaef63e"
+        },
+        "validated": {
+          "mode": 33188,
+          "links": 1,
+          "content": "e3e4aec3737242616e0b3dd3a6c7eaaf3fe42746de7209e880dae8db335799cd"
+        }
+      },
+      "passed": true
+    }
+  ],
+  "scope": "Four bounded synthetic lifecycle/validator cases; HTTP denial is not full network-egress qualification"
+}

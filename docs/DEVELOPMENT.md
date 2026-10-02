@@ -19,6 +19,7 @@ rtk proxy .venv/bin/python -m unittest tests.acceptance.test_phase_2c_substrate
 rtk proxy .venv/bin/python -m unittest tests.acceptance.test_phase_2c_lifecycle
 rtk proxy .venv/bin/python -m unittest tests.acceptance.test_phase_2c_network
 rtk proxy .venv/bin/python -m unittest tests.acceptance.test_phase_2c_protocol
+rtk proxy .venv/bin/python -m unittest tests.acceptance.test_phase_2c_broker_environment
 rtk proxy .venv/bin/python -m unittest discover -s tests -t .
 rtk proxy .venv/bin/ruff check src tests scripts
 rtk proxy .venv/bin/ruff format --check src tests scripts
@@ -28,7 +29,7 @@ rtk proxy uv build --offline
 
 Dependency preparation may use the package index; tests need no network, provider credentials or earlier artifacts. The hash-locked file pins all development/runtime dependencies; the isolated build backend is separately pinned in pyproject.toml. `uv build --offline` needs its pinned build dependency already cached, as with the preceding editable installation. To prepare another machine for disconnected installation, first obtain its required wheels and build dependency. An empty cache is not an offline install source.
 
-For artifact verification, create a second external environment, install requirements-dev.lock with `--offline --require-hashes`, then install `dist/crewshal-0.7.0-py3-none-any.whl` with `--offline --no-deps`. Run all seven acceptance modules and the complete unittest suite with that interpreter from the checkout. Tests live in the checkout; application imports must resolve to the external environment's site-packages, not src. Tests create all repository/state/interaction/database/artifact fixtures themselves.
+For artifact verification, create a second external environment, install requirements-dev.lock with `--offline --require-hashes`, then install `dist/crewshal-0.8.0-py3-none-any.whl` with `--offline --no-deps`. Run all eight acceptance modules and the complete unittest suite with that interpreter from the checkout. Tests live in the checkout; application imports must resolve to the external environment's site-packages, not src. Tests create all repository/state/interaction/database/artifact fixtures themselves.
 
 On the verified macOS host, tests additionally passed under the following process-level network denial with an empty inherited environment and a temporary HOME. This test wrapper does not qualify a future worker execution environment:
 
@@ -93,7 +94,7 @@ See [the handoff](HANDOFF.md) for recorded evidence and the next milestone.
 
 ## Phase 2C blocked preflight
 
-Package 0.7.0 includes qualification records/refusal fixtures and a partial synthetic Linux substrate harness; no product runtime launcher or completed execution qualification. See [execution qualification](EXECUTION-QUALIFICATION.md). Reproduce the preflight with a fresh, nonexistent external report path:
+Package 0.8.0 includes qualification records/refusal fixtures and a partial synthetic Linux substrate harness; no product runtime launcher or completed execution qualification. See [execution qualification](EXECUTION-QUALIFICATION.md). Reproduce the preflight with a fresh, nonexistent external report path:
 
 ```sh
 rtk proxy .venv/bin/python scripts/qualify_phase_2c.py \
@@ -117,3 +118,7 @@ The separate [network checkpoint](NETWORK-SUBSTRATE-PROBES.md) records two fresh
 ## Phase 2C prospective SBX protocol
 
 The [resource/configuration protocol](SBX-RESOURCE-CONFIGURATION-PROTOCOL.md) and [help-only assessment](SBX-PROTOCOL-ASSESSMENT.md) preserve the worker ceiling and define the remaining operational oracles. The pinned utility exposes no daemon, login, secret-store or worker operation. Its seven offline acceptance methods need neither SBX nor Docker; the real help assessment needs the exact external Darwin binary and intentionally returns 2. Full qualification remains denied. No previous temporary extraction is required.
+
+## Phase 2C disposable broker-store preflight
+
+The [broker environment assessment](BROKER-ENVIRONMENT-ASSESSMENT.md) documents preparation and the frozen v3 invocation. Two separate Ubuntu fixtures demonstrate synthetic secret save/list and independently observed private backing storage. This avoids the real macOS store but does not qualify an operational broker, native runtime or authenticated request. The observed Linux host has no KVM device/sysfs entry. The utility uses a pinned external official bundle, `--pull=never`, no network or host-secret mounts, exact effective grant checks and unique-handle cleanup. It always exits 2; all twenty whole-runtime results remain unavailable. Eight offline methods need no Docker, SBX, credentials or previous temporary directory. Historical v1/v2 oracle failures and source snapshots remain recorded.

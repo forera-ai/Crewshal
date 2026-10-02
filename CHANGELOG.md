@@ -2,6 +2,13 @@
 
 Versions follow semantic versioning. Remote branch publication is distinct from a package-registry release; no registry release has occurred.
 
+## 0.8.0 — 2026-10-02
+
+- Add a prospectively frozen Linux SBX credential-store preflight in disposable unprivileged Ubuntu containers. Verify the synthetic file-store fallback twice without host-store access, login, worker or provider requests.
+- Pin the official Linux archive, full extracted bundle and Ubuntu image; inspect effective grants before/after and remove only owned fixture handles. Preserve the v1 tmpfs-copy and v2 oracle failures and source snapshots.
+- Add eight offline refusal/oracle methods; verify 78 total tests and installed-wheel/static checks. Preserve all original twenty criteria, worker limits, earlier manifests and execution denial.
+- Keep Phase 2C blocked: the observed Linux test host lacks KVM; operational outer allocation, native runtime containment/configuration and caller/request authority remain unresolved. No Phase 2D or broker-design acceptance.
+
 ## 0.7.0 — 2026-10-02
 
 - Freeze the prospective SBX resource/configuration protocol, preserving every original criterion and the 128 MiB worker ceiling. Separate the pending 512 MiB outer proposal and explicit isolated credential-store prerequisite.

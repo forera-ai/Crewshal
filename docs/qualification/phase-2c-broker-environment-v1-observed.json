@@ -1,0 +1,592 @@
+{
+  "schema_version": 1,
+  "manifest_sha256": "bff179a21f3234da884fc9fb80677877a3adf6c6c7f9a1ef3a828a22ad05c805",
+  "sources": {
+    "scripts/probe_broker_environment.py": "5187598bc28a7e73bd093f5249c7bbe786009d27ade552ff9724db4b2314bf22"
+  },
+  "image": "sha256:a853f94d226358a79c740cfc7bce0c289748f3fe3488d921d038ccd752c61b60",
+  "binary_sha256": "247f30d8bc7dcce615235024eac43a4ad0d1730a94ff650d52a6e57bad401060",
+  "server": {
+    "argv": [
+      "version",
+      "--format",
+      "{{json .Server}}"
+    ],
+    "exit": 0,
+    "stdout": "{\"Platform\":{\"Name\":\"Docker Desktop 4.93.0 (240920)\"},\"Version\":\"29.8.1\",\"ApiVersion\":\"1.56\",\"MinAPIVersion\":\"1.40\",\"Os\":\"linux\",\"Arch\":\"arm64\",\"Components\":[{\"Name\":\"Engine\",\"Version\":\"29.8.1\",\"Details\":{\"ApiVersion\":\"1.56\",\"Arch\":\"arm64\",\"BuildTime\":\"Tue Sep 15 16:25:04 2026\",\"Experimental\":\"false\",\"GitCommit\":\"464cd50\",\"GoVersion\":\"go1.26.8\",\"KernelVersion\":\"7.0.14-linuxkit\",\"MinAPIVersion\":\"1.40\",\"Module\":\"github.com/moby/moby/v2\",\"ModuleVersion\":\"v2.0.0+unknown\",\"Os\":\"linux\"}},{\"Name\":\"containerd\",\"Version\":\"v2.3.5\",\"Details\":{\"GitCommit\":\"1294c24a7da8e5a793ed378161673abe94118892\"}},{\"Name\":\"runc\",\"Version\":\"1.5.1\",\"Details\":{\"GitCommit\":\"v1.5.1-0-g8f2685a4\"}},{\"Name\":\"docker-init\",\"Version\":\"0.19.0\",\"Details\":{\"GitCommit\":\"de40ad0\"}}],\"GitCommit\":\"464cd50\",\"GoVersion\":\"go1.26.8\",\"KernelVersion\":\"7.0.14-linuxkit\",\"BuildTime\":\"2026-09-15T16:25:04.000000000+00:00\"}\n",
+    "stderr": ""
+  },
+  "effective_grant_verified": true,
+  "fixture_removed": true,
+  "host_state": {
+    "argv": [
+      "exec",
+      "crewshal-broker-76affc988e8f454ea94b5864a930416d",
+      "/bin/sh",
+      "-c",
+      "mkdir -p /scratch/home /scratch/config /scratch/runtime; chmod 700 /scratch/home /scratch/config /scratch/runtime; cat /etc/os-release; uname -r; if test -c /dev/kvm; then echo kvm-device-present; else echo kvm-device-absent; fi; if test -e /sys/class/misc/kvm; then echo kvm-sysfs-present; else echo kvm-sysfs-absent; fi; test ! -e /run/dbus/system_bus_socket && echo system-secret-service-socket-absent; test ! -e /var/run/docker.sock && echo engine-socket-absent"
+    ],
+    "exit": 0,
+    "stdout": "PRETTY_NAME=\"Ubuntu 24.04.5 LTS\"\nNAME=\"Ubuntu\"\nVERSION_ID=\"24.04\"\nVERSION=\"24.04.5 LTS (Noble Numbat)\"\nVERSION_CODENAME=noble\nID=ubuntu\nID_LIKE=debian\nHOME_URL=\"https://www.ubuntu.com/\"\nSUPPORT_URL=\"https://help.ubuntu.com/\"\nBUG_REPORT_URL=\"https://bugs.launchpad.net/ubuntu/\"\nPRIVACY_POLICY_URL=\"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\"\nUBUNTU_CODENAME=noble\nLOGO=ubuntu-logo\n7.0.14-linuxkit\nkvm-device-absent\nkvm-sysfs-absent\nsystem-secret-service-socket-absent\nengine-socket-absent\n",
+    "stderr": ""
+  },
+  "commands": [
+    {
+      "arguments": [
+        "version"
+      ],
+      "exit": 0,
+      "stdout": "sbx version: v0.46.0 991967dc90ce0d9a440cd1df1bdf3e395c5a2693\n",
+      "stderr": ""
+    },
+    {
+      "arguments": [
+        "secret",
+        "set-custom",
+        "--help"
+      ],
+      "exit": 0,
+      "stdout": "EXPERIMENTAL: this command may change or be removed in future releases.\n\nCreate or update a custom secret for a service not built into sbx.\n\nCustom secrets work via a placeholder: the sandbox sees the placeholder value\ninstead of the real secret. When the sandbox makes an outbound request to the\ntarget host, the proxy replaces the placeholder with the real secret in the\nrequest headers \u2014 the secret never enters the sandbox directly.\n\n--host accepts an exact host, IP address, or wildcard pattern. Repeat --host\nto cover multiple unrelated domains with one secret. \"*\" matches a single label\nand \"**\" matches any number of labels. For example \"*.example.com\" covers\n\"cli.example.com\" and \"ide.example.com\" with one entry.\n\nCustom secrets apply globally by default. Use --sandbox to scope one to a\nspecific sandbox.\n\nCommand secrets run from a fresh temporary directory on the host during\nverification and refresh. The host temporary directory must be absolute and must\nremain outside writable sandbox mounts. Relative references such as ./helper or\ncat token no longer resolve against the project or daemon working directory. Use an absolute\nhelper path outside shared workspaces. sbx does not copy helpers, inspect their\ndependencies, or confine their execution. Helpers and any code or configuration\nthey load must remain outside writable sandbox mounts. Explicit paths into shared\nworkspaces and broad mounts exposing host configuration or the host temporary\ndirectory remain unsafe, including mounts added later with sbx mount.\n\nWith --cloud, --host takes exact DNS names only (no IP addresses or wildcards)\nand the proxy sets --header on requests to those hosts instead of substituting\nthe placeholder.\n\nUsage:\n  sbx secret set-custom [flags]\n\nExamples:\n  # Create a global custom secret. A unique placeholder is generated automatically.\n  # The sandbox env var API_KEY is set to the placeholder value; outbound requests\n  # to the host have the placeholder replaced with the real secret.\n  sbx secret set-custom --host api.example.com --env API_KEY --value secret123\n\n  # Use a wildcard host to cover multiple subdomains that share one key.\n  sbx secret set-custom --host '*.coderabbit.ai' --env CODERABBIT_API_KEY --value secret123\n\n  # Use multiple --host flags to cover unrelated domains with the same key.\n  sbx secret set-custom --host api.example.com --host api.other.io --env API_KEY --value secret123\n\n  # Scope to a specific sandbox instead of globally.\n  sbx secret set-custom --sandbox my-sandbox --host api.example.com --env API_KEY --value secret123\n\n  # Custom placeholder with {rand} suffix; the CLI prints the generated value.\n  sbx secret set-custom --host api.example.com --placeholder sk-{rand} --value secret123\n\nFlags:\n      --command string       Use a command's standard output as the secret value\n      --env string           Set this env var in the sandbox to the placeholder value\n      --format string        How the value fills the header, with one %s; default \"Bearer %s\" when --header is omitted (with --cloud)\n      --header string        HTTP header the proxy sets to the secret on requests to --host; default Authorization (with --cloud)\n  -h, --help                 help for set-custom\n      --host stringArray     Host, IP, or wildcard pattern (e.g. *.example.com); repeatable; with --cloud, exact DNS names only\n      --name string          Secret name; default derived from the first --host (with --cloud)\n      --no-verify            Skip checking the --ref or --command source when storing it\n      --placeholder string   Placeholder value; use {rand} for a random suffix (e.g. sk-{rand})\n      --ref string           Use a 1Password op:// reference or AWS Secrets Manager ARN as the secret source\n      --refresh string       Secret refresh policy: on-demand (default) or after a duration\n      --sandbox string       Scope the secret to one sandbox (default: all sandboxes)\n      --show-error           Show resolver standard error if the initial check fails (may contain secrets)\n  -t, --token string         Secret value (less secure: visible in shell history)\n      --value string         Secret value (less secure: visible in shell history)\n\nGlobal Flags:\n      --cloud   Dispatch to Docker Cloud Sandboxes API instead of local sandboxd (supported by a growing set of verbs \u2014 run 'sbx --cloud --help' for the current list)\n  -D, --debug   Enable debug logging\n",
+      "stderr": ""
+    },
+    {
+      "arguments": [
+        "secret",
+        "set-custom",
+        "--host",
+        "provider.crewshal.invalid",
+        "--env",
+        "CREWSHAL_SYNTHETIC_API_KEY",
+        "--value",
+        "crewshal-synthetic-broker-preflight-never-real"
+      ],
+      "exit": 0,
+      "stdout": "Saved custom secret placeholder \"sbx-cs-hb8HNaNZnDRJgozh\" for target \"provider.crewshal.invalid\" env \"CREWSHAL_SYNTHETIC_API_KEY\" in scope \"(global)\"\nGenerated placeholder: sbx-cs-hb8HNaNZnDRJgozh\nYou may need to update environment variable CREWSHAL_SYNTHETIC_API_KEY inside existing sandboxes to \"sbx-cs-hb8HNaNZnDRJgozh\" (the placeholder value).\n",
+      "stderr": "No keychain detected - this secret will be stored on disk, protected by file permissions rather than a password\n"
+    },
+    {
+      "arguments": [
+        "secret",
+        "ls"
+      ],
+      "exit": 0,
+      "stdout": "CUSTOM SECRETS\nSCOPE      TARGETS                     ENV                          PLACEHOLDER               SECRET\n(global)   provider.crewshal.invalid   CREWSHAL_SYNTHETIC_API_KEY   sbx-cs-hb8HNaNZnDRJgozh   crewsh******...******real\n",
+      "stderr": ""
+    }
+  ],
+  "store_state": {},
+  "inspect_before": {
+    "Id": "e51f26f5640bd18866f84ecba856208b1661fba75d55005098aadae2501c119e",
+    "Created": "2026-10-02T16:26:52.151479962Z",
+    "Path": "/bin/sleep",
+    "Args": [
+      "60"
+    ],
+    "State": {
+      "Status": "created",
+      "Running": false,
+      "Paused": false,
+      "Restarting": false,
+      "OOMKilled": false,
+      "Dead": false,
+      "Pid": 0,
+      "ExitCode": 0,
+      "Error": "",
+      "StartedAt": "0001-01-01T00:00:00Z",
+      "FinishedAt": "0001-01-01T00:00:00Z"
+    },
+    "Image": "sha256:a853f94d226358a79c740cfc7bce0c289748f3fe3488d921d038ccd752c61b60",
+    "ResolvConfPath": "",
+    "HostnamePath": "",
+    "HostsPath": "",
+    "LogPath": "",
+    "Name": "/crewshal-broker-76affc988e8f454ea94b5864a930416d",
+    "RestartCount": 0,
+    "Driver": "overlayfs",
+    "Platform": "linux",
+    "MountLabel": "",
+    "ProcessLabel": "",
+    "AppArmorProfile": "",
+    "ExecIDs": null,
+    "HostConfig": {
+      "Binds": null,
+      "ContainerIDFile": "",
+      "LogConfig": {
+        "Type": "none",
+        "Config": {}
+      },
+      "NetworkMode": "none",
+      "PortBindings": {},
+      "RestartPolicy": {
+        "Name": "no",
+        "MaximumRetryCount": 0
+      },
+      "AutoRemove": false,
+      "VolumeDriver": "",
+      "VolumesFrom": null,
+      "ConsoleSize": [
+        0,
+        0
+      ],
+      "CapAdd": null,
+      "CapDrop": [
+        "ALL"
+      ],
+      "CgroupnsMode": "private",
+      "Dns": null,
+      "DnsOptions": [],
+      "DnsSearch": [],
+      "ExtraHosts": null,
+      "GroupAdd": null,
+      "IpcMode": "private",
+      "Cgroup": "",
+      "Links": null,
+      "OomScoreAdj": 0,
+      "PidMode": "",
+      "Privileged": false,
+      "PublishAllPorts": false,
+      "ReadonlyRootfs": true,
+      "SecurityOpt": [
+        "no-new-privileges"
+      ],
+      "Tmpfs": {
+        "/scratch": "rw,noexec,nosuid,nodev,size=33554432,mode=1777"
+      },
+      "UTSMode": "",
+      "UsernsMode": "",
+      "ShmSize": 67108864,
+      "Runtime": "runc",
+      "Isolation": "",
+      "CpuShares": 0,
+      "Memory": 134217728,
+      "NanoCpus": 1000000000,
+      "CgroupParent": "",
+      "BlkioWeight": 0,
+      "BlkioWeightDevice": [],
+      "BlkioDeviceReadBps": [],
+      "BlkioDeviceWriteBps": [],
+      "BlkioDeviceReadIOps": [],
+      "BlkioDeviceWriteIOps": [],
+      "CpuPeriod": 0,
+      "CpuQuota": 0,
+      "CpuRealtimePeriod": 0,
+      "CpuRealtimeRuntime": 0,
+      "CpusetCpus": "",
+      "CpusetMems": "",
+      "Devices": [],
+      "DeviceCgroupRules": null,
+      "DeviceRequests": null,
+      "MemoryReservation": 0,
+      "MemorySwap": 268435456,
+      "MemorySwappiness": null,
+      "OomKillDisable": false,
+      "PidsLimit": 32,
+      "Ulimits": null,
+      "CpuCount": 0,
+      "CpuPercent": 0,
+      "IOMaximumIOps": 0,
+      "IOMaximumBandwidth": 0,
+      "Mounts": [
+        {
+          "Type": "bind",
+          "Source": "<pinned-bundle>",
+          "Target": "/opt/sbx",
+          "ReadOnly": true
+        }
+      ],
+      "MaskedPaths": [
+        "/proc/acpi",
+        "/proc/asound",
+        "/proc/interrupts",
+        "/proc/kcore",
+        "/proc/keys",
+        "/proc/latency_stats",
+        "/proc/sched_debug",
+        "/proc/scsi",
+        "/proc/timer_list",
+        "/proc/timer_stats",
+        "/sys/devices/virtual/powercap",
+        "/sys/firmware"
+      ],
+      "ReadonlyPaths": [
+        "/proc/bus",
+        "/proc/fs",
+        "/proc/irq",
+        "/proc/sys",
+        "/proc/sysrq-trigger"
+      ]
+    },
+    "Storage": {
+      "RootFS": {
+        "Snapshot": {
+          "Name": "overlayfs"
+        }
+      }
+    },
+    "Mounts": [
+      {
+        "Type": "bind",
+        "Source": "<pinned-bundle>",
+        "Destination": "/opt/sbx",
+        "Mode": "",
+        "RW": false,
+        "Propagation": "rprivate"
+      }
+    ],
+    "Config": {
+      "Hostname": "e51f26f5640b",
+      "Domainname": "",
+      "User": "65532:65532",
+      "AttachStdin": false,
+      "AttachStdout": true,
+      "AttachStderr": true,
+      "Tty": false,
+      "OpenStdin": false,
+      "StdinOnce": false,
+      "Env": [
+        "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+      ],
+      "Cmd": [
+        "60"
+      ],
+      "Image": "sha256:a853f94d226358a79c740cfc7bce0c289748f3fe3488d921d038ccd752c61b60",
+      "Volumes": null,
+      "WorkingDir": "",
+      "Entrypoint": [
+        "/bin/sleep"
+      ],
+      "Labels": {
+        "crewshal.qualification": "broker-environment",
+        "org.opencontainers.image.version": "24.04"
+      }
+    },
+    "NetworkSettings": {
+      "SandboxID": "",
+      "SandboxKey": "",
+      "Ports": {},
+      "Networks": {
+        "none": {
+          "IPAMConfig": null,
+          "Links": null,
+          "Aliases": null,
+          "DriverOpts": null,
+          "GwPriority": 0,
+          "NetworkID": "",
+          "EndpointID": "",
+          "Gateway": "",
+          "IPAddress": "",
+          "MacAddress": "",
+          "IPPrefixLen": 0,
+          "IPv6Gateway": "",
+          "GlobalIPv6Address": "",
+          "GlobalIPv6PrefixLen": 0,
+          "DNSNames": null
+        }
+      }
+    },
+    "ImageManifestDescriptor": {
+      "mediaType": "application/vnd.oci.image.manifest.v1+json",
+      "digest": "sha256:08571ca13e00ca07a2a84eab83a959b4242e22cceb16486a11bef1428c9e93a7",
+      "size": 424,
+      "annotations": {
+        "com.docker.official-images.bashbrew.arch": "arm64v8",
+        "org.opencontainers.image.base.name": "scratch",
+        "org.opencontainers.image.created": "2026-09-17T00:00:00Z",
+        "org.opencontainers.image.revision": "fe5a7375d10f02ff8c3934ec83c88fe06e29cebf",
+        "org.opencontainers.image.source": "https://git.launchpad.net/cloud-images/+oci/ubuntu-base",
+        "org.opencontainers.image.url": "https://hub.docker.com/_/ubuntu",
+        "org.opencontainers.image.version": "24.04"
+      },
+      "platform": {
+        "architecture": "arm64",
+        "os": "linux",
+        "variant": "v8"
+      }
+    }
+  },
+  "transcript": [
+    {
+      "argv": [
+        "version",
+        "--format",
+        "{{json .Server}}"
+      ],
+      "exit": 0,
+      "stdout": "{\"Platform\":{\"Name\":\"Docker Desktop 4.93.0 (240920)\"},\"Version\":\"29.8.1\",\"ApiVersion\":\"1.56\",\"MinAPIVersion\":\"1.40\",\"Os\":\"linux\",\"Arch\":\"arm64\",\"Components\":[{\"Name\":\"Engine\",\"Version\":\"29.8.1\",\"Details\":{\"ApiVersion\":\"1.56\",\"Arch\":\"arm64\",\"BuildTime\":\"Tue Sep 15 16:25:04 2026\",\"Experimental\":\"false\",\"GitCommit\":\"464cd50\",\"GoVersion\":\"go1.26.8\",\"KernelVersion\":\"7.0.14-linuxkit\",\"MinAPIVersion\":\"1.40\",\"Module\":\"github.com/moby/moby/v2\",\"ModuleVersion\":\"v2.0.0+unknown\",\"Os\":\"linux\"}},{\"Name\":\"containerd\",\"Version\":\"v2.3.5\",\"Details\":{\"GitCommit\":\"1294c24a7da8e5a793ed378161673abe94118892\"}},{\"Name\":\"runc\",\"Version\":\"1.5.1\",\"Details\":{\"GitCommit\":\"v1.5.1-0-g8f2685a4\"}},{\"Name\":\"docker-init\",\"Version\":\"0.19.0\",\"Details\":{\"GitCommit\":\"de40ad0\"}}],\"GitCommit\":\"464cd50\",\"GoVersion\":\"go1.26.8\",\"KernelVersion\":\"7.0.14-linuxkit\",\"BuildTime\":\"2026-09-15T16:25:04.000000000+00:00\"}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "create",
+        "--pull=never",
+        "--name",
+        "crewshal-broker-76affc988e8f454ea94b5864a930416d",
+        "--label=crewshal.qualification=broker-environment",
+        "--network=none",
+        "--read-only",
+        "--user=65532:65532",
+        "--cap-drop=ALL",
+        "--security-opt=no-new-privileges",
+        "--pids-limit=32",
+        "--memory=128m",
+        "--cpus=1",
+        "--log-driver=none",
+        "--entrypoint=/bin/sleep",
+        "--mount",
+        "type=bind,src=<pinned-bundle>,dst=/opt/sbx,readonly",
+        "--tmpfs",
+        "/scratch:rw,noexec,nosuid,nodev,size=33554432,mode=1777",
+        "sha256:a853f94d226358a79c740cfc7bce0c289748f3fe3488d921d038ccd752c61b60",
+        "60"
+      ],
+      "exit": 0,
+      "stdout": "e51f26f5640bd18866f84ecba856208b1661fba75d55005098aadae2501c119e\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "inspect",
+        "crewshal-broker-76affc988e8f454ea94b5864a930416d"
+      ],
+      "exit": 0,
+      "stdout": "[\n    {\n        \"Id\": \"e51f26f5640bd18866f84ecba856208b1661fba75d55005098aadae2501c119e\",\n        \"Created\": \"2026-10-02T16:26:52.151479962Z\",\n        \"Path\": \"/bin/sleep\",\n        \"Args\": [\n            \"60\"\n        ],\n        \"State\": {\n            \"Status\": \"created\",\n            \"Running\": false,\n            \"Paused\": false,\n            \"Restarting\": false,\n            \"OOMKilled\": false,\n            \"Dead\": false,\n            \"Pid\": 0,\n            \"ExitCode\": 0,\n            \"Error\": \"\",\n            \"StartedAt\": \"0001-01-01T00:00:00Z\",\n            \"FinishedAt\": \"0001-01-01T00:00:00Z\"\n        },\n        \"Image\": \"sha256:a853f94d226358a79c740cfc7bce0c289748f3fe3488d921d038ccd752c61b60\",\n        \"ResolvConfPath\": \"\",\n        \"HostnamePath\": \"\",\n        \"HostsPath\": \"\",\n        \"LogPath\": \"\",\n        \"Name\": \"/crewshal-broker-76affc988e8f454ea94b5864a930416d\",\n        \"RestartCount\": 0,\n        \"Driver\": \"overlayfs\",\n        \"Platform\": \"linux\",\n        \"MountLabel\": \"\",\n        \"ProcessLabel\": \"\",\n        \"AppArmorProfile\": \"\",\n        \"ExecIDs\": null,\n        \"HostConfig\": {\n            \"Binds\": null,\n            \"ContainerIDFile\": \"\",\n            \"LogConfig\": {\n                \"Type\": \"none\",\n                \"Config\": {}\n            },\n            \"NetworkMode\": \"none\",\n            \"PortBindings\": {},\n            \"RestartPolicy\": {\n                \"Name\": \"no\",\n                \"MaximumRetryCount\": 0\n            },\n            \"AutoRemove\": false,\n            \"VolumeDriver\": \"\",\n            \"VolumesFrom\": null,\n            \"ConsoleSize\": [\n                0,\n                0\n            ],\n            \"CapAdd\": null,\n            \"CapDrop\": [\n                \"ALL\"\n            ],\n            \"CgroupnsMode\": \"private\",\n            \"Dns\": null,\n            \"DnsOptions\": [],\n            \"DnsSearch\": [],\n            \"ExtraHosts\": null,\n            \"GroupAdd\": null,\n            \"IpcMode\": \"private\",\n            \"Cgroup\": \"\",\n            \"Links\": null,\n            \"OomScoreAdj\": 0,\n            \"PidMode\": \"\",\n            \"Privileged\": false,\n            \"PublishAllPorts\": false,\n            \"ReadonlyRootfs\": true,\n            \"SecurityOpt\": [\n                \"no-new-privileges\"\n            ],\n            \"Tmpfs\": {\n                \"/scratch\": \"rw,noexec,nosuid,nodev,size=33554432,mode=1777\"\n            },\n            \"UTSMode\": \"\",\n            \"UsernsMode\": \"\",\n            \"ShmSize\": 67108864,\n            \"Runtime\": \"runc\",\n            \"Isolation\": \"\",\n            \"CpuShares\": 0,\n            \"Memory\": 134217728,\n            \"NanoCpus\": 1000000000,\n            \"CgroupParent\": \"\",\n            \"BlkioWeight\": 0,\n            \"BlkioWeightDevice\": [],\n            \"BlkioDeviceReadBps\": [],\n            \"BlkioDeviceWriteBps\": [],\n            \"BlkioDeviceReadIOps\": [],\n            \"BlkioDeviceWriteIOps\": [],\n            \"CpuPeriod\": 0,\n            \"CpuQuota\": 0,\n            \"CpuRealtimePeriod\": 0,\n            \"CpuRealtimeRuntime\": 0,\n            \"CpusetCpus\": \"\",\n            \"CpusetMems\": \"\",\n            \"Devices\": [],\n            \"DeviceCgroupRules\": null,\n            \"DeviceRequests\": null,\n            \"MemoryReservation\": 0,\n            \"MemorySwap\": 268435456,\n            \"MemorySwappiness\": null,\n            \"OomKillDisable\": false,\n            \"PidsLimit\": 32,\n            \"Ulimits\": null,\n            \"CpuCount\": 0,\n            \"CpuPercent\": 0,\n            \"IOMaximumIOps\": 0,\n            \"IOMaximumBandwidth\": 0,\n            \"Mounts\": [\n                {\n                    \"Type\": \"bind\",\n                    \"Source\": \"<pinned-bundle>\",\n                    \"Target\": \"/opt/sbx\",\n                    \"ReadOnly\": true\n                }\n            ],\n            \"MaskedPaths\": [\n                \"/proc/acpi\",\n                \"/proc/asound\",\n                \"/proc/interrupts\",\n                \"/proc/kcore\",\n                \"/proc/keys\",\n                \"/proc/latency_stats\",\n                \"/proc/sched_debug\",\n                \"/proc/scsi\",\n                \"/proc/timer_list\",\n                \"/proc/timer_stats\",\n                \"/sys/devices/virtual/powercap\",\n                \"/sys/firmware\"\n            ],\n            \"ReadonlyPaths\": [\n                \"/proc/bus\",\n                \"/proc/fs\",\n                \"/proc/irq\",\n                \"/proc/sys\",\n                \"/proc/sysrq-trigger\"\n            ]\n        },\n        \"Storage\": {\n            \"RootFS\": {\n                \"Snapshot\": {\n                    \"Name\": \"overlayfs\"\n                }\n            }\n        },\n        \"Mounts\": [\n            {\n                \"Type\": \"bind\",\n                \"Source\": \"<pinned-bundle>\",\n                \"Destination\": \"/opt/sbx\",\n                \"Mode\": \"\",\n                \"RW\": false,\n                \"Propagation\": \"rprivate\"\n            }\n        ],\n        \"Config\": {\n            \"Hostname\": \"e51f26f5640b\",\n            \"Domainname\": \"\",\n            \"User\": \"65532:65532\",\n            \"AttachStdin\": false,\n            \"AttachStdout\": true,\n            \"AttachStderr\": true,\n            \"Tty\": false,\n            \"OpenStdin\": false,\n            \"StdinOnce\": false,\n            \"Env\": [\n                \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\"\n            ],\n            \"Cmd\": [\n                \"60\"\n            ],\n            \"Image\": \"sha256:a853f94d226358a79c740cfc7bce0c289748f3fe3488d921d038ccd752c61b60\",\n            \"Volumes\": null,\n            \"WorkingDir\": \"\",\n            \"Entrypoint\": [\n                \"/bin/sleep\"\n            ],\n            \"Labels\": {\n                \"crewshal.qualification\": \"broker-environment\",\n                \"org.opencontainers.image.version\": \"24.04\"\n            }\n        },\n        \"NetworkSettings\": {\n            \"SandboxID\": \"\",\n            \"SandboxKey\": \"\",\n            \"Ports\": {},\n            \"Networks\": {\n                \"none\": {\n                    \"IPAMConfig\": null,\n                    \"Links\": null,\n                    \"Aliases\": null,\n                    \"DriverOpts\": null,\n                    \"GwPriority\": 0,\n                    \"NetworkID\": \"\",\n                    \"EndpointID\": \"\",\n                    \"Gateway\": \"\",\n                    \"IPAddress\": \"\",\n                    \"MacAddress\": \"\",\n                    \"IPPrefixLen\": 0,\n                    \"IPv6Gateway\": \"\",\n                    \"GlobalIPv6Address\": \"\",\n                    \"GlobalIPv6PrefixLen\": 0,\n                    \"DNSNames\": null\n                }\n            }\n        },\n        \"ImageManifestDescriptor\": {\n            \"mediaType\": \"application/vnd.oci.image.manifest.v1+json\",\n            \"digest\": \"sha256:08571ca13e00ca07a2a84eab83a959b4242e22cceb16486a11bef1428c9e93a7\",\n            \"size\": 424,\n            \"annotations\": {\n                \"com.docker.official-images.bashbrew.arch\": \"arm64v8\",\n                \"org.opencontainers.image.base.name\": \"scratch\",\n                \"org.opencontainers.image.created\": \"2026-09-17T00:00:00Z\",\n                \"org.opencontainers.image.revision\": \"fe5a7375d10f02ff8c3934ec83c88fe06e29cebf\",\n                \"org.opencontainers.image.source\": \"https://git.launchpad.net/cloud-images/+oci/ubuntu-base\",\n                \"org.opencontainers.image.url\": \"https://hub.docker.com/_/ubuntu\",\n                \"org.opencontainers.image.version\": \"24.04\"\n            },\n            \"platform\": {\n                \"architecture\": \"arm64\",\n                \"os\": \"linux\",\n                \"variant\": \"v8\"\n            }\n        }\n    }\n]\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "start",
+        "crewshal-broker-76affc988e8f454ea94b5864a930416d"
+      ],
+      "exit": 0,
+      "stdout": "crewshal-broker-76affc988e8f454ea94b5864a930416d\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "exec",
+        "crewshal-broker-76affc988e8f454ea94b5864a930416d",
+        "/bin/sh",
+        "-c",
+        "mkdir -p /scratch/home /scratch/config /scratch/runtime; chmod 700 /scratch/home /scratch/config /scratch/runtime; cat /etc/os-release; uname -r; if test -c /dev/kvm; then echo kvm-device-present; else echo kvm-device-absent; fi; if test -e /sys/class/misc/kvm; then echo kvm-sysfs-present; else echo kvm-sysfs-absent; fi; test ! -e /run/dbus/system_bus_socket && echo system-secret-service-socket-absent; test ! -e /var/run/docker.sock && echo engine-socket-absent"
+      ],
+      "exit": 0,
+      "stdout": "PRETTY_NAME=\"Ubuntu 24.04.5 LTS\"\nNAME=\"Ubuntu\"\nVERSION_ID=\"24.04\"\nVERSION=\"24.04.5 LTS (Noble Numbat)\"\nVERSION_CODENAME=noble\nID=ubuntu\nID_LIKE=debian\nHOME_URL=\"https://www.ubuntu.com/\"\nSUPPORT_URL=\"https://help.ubuntu.com/\"\nBUG_REPORT_URL=\"https://bugs.launchpad.net/ubuntu/\"\nPRIVACY_POLICY_URL=\"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\"\nUBUNTU_CODENAME=noble\nLOGO=ubuntu-logo\n7.0.14-linuxkit\nkvm-device-absent\nkvm-sysfs-absent\nsystem-secret-service-socket-absent\nengine-socket-absent\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "exec",
+        "crewshal-broker-76affc988e8f454ea94b5864a930416d",
+        "/usr/bin/env",
+        "-i",
+        "PATH=/usr/bin:/bin",
+        "HOME=/scratch/home",
+        "XDG_CONFIG_HOME=/scratch/config",
+        "XDG_RUNTIME_DIR=/scratch/runtime",
+        "LD_LIBRARY_PATH=/opt/sbx",
+        "/opt/sbx/sbx",
+        "version"
+      ],
+      "exit": 0,
+      "stdout": "sbx version: v0.46.0 991967dc90ce0d9a440cd1df1bdf3e395c5a2693\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "exec",
+        "crewshal-broker-76affc988e8f454ea94b5864a930416d",
+        "/usr/bin/env",
+        "-i",
+        "PATH=/usr/bin:/bin",
+        "HOME=/scratch/home",
+        "XDG_CONFIG_HOME=/scratch/config",
+        "XDG_RUNTIME_DIR=/scratch/runtime",
+        "LD_LIBRARY_PATH=/opt/sbx",
+        "/opt/sbx/sbx",
+        "secret",
+        "set-custom",
+        "--help"
+      ],
+      "exit": 0,
+      "stdout": "EXPERIMENTAL: this command may change or be removed in future releases.\n\nCreate or update a custom secret for a service not built into sbx.\n\nCustom secrets work via a placeholder: the sandbox sees the placeholder value\ninstead of the real secret. When the sandbox makes an outbound request to the\ntarget host, the proxy replaces the placeholder with the real secret in the\nrequest headers \u2014 the secret never enters the sandbox directly.\n\n--host accepts an exact host, IP address, or wildcard pattern. Repeat --host\nto cover multiple unrelated domains with one secret. \"*\" matches a single label\nand \"**\" matches any number of labels. For example \"*.example.com\" covers\n\"cli.example.com\" and \"ide.example.com\" with one entry.\n\nCustom secrets apply globally by default. Use --sandbox to scope one to a\nspecific sandbox.\n\nCommand secrets run from a fresh temporary directory on the host during\nverification and refresh. The host temporary directory must be absolute and must\nremain outside writable sandbox mounts. Relative references such as ./helper or\ncat token no longer resolve against the project or daemon working directory. Use an absolute\nhelper path outside shared workspaces. sbx does not copy helpers, inspect their\ndependencies, or confine their execution. Helpers and any code or configuration\nthey load must remain outside writable sandbox mounts. Explicit paths into shared\nworkspaces and broad mounts exposing host configuration or the host temporary\ndirectory remain unsafe, including mounts added later with sbx mount.\n\nWith --cloud, --host takes exact DNS names only (no IP addresses or wildcards)\nand the proxy sets --header on requests to those hosts instead of substituting\nthe placeholder.\n\nUsage:\n  sbx secret set-custom [flags]\n\nExamples:\n  # Create a global custom secret. A unique placeholder is generated automatically.\n  # The sandbox env var API_KEY is set to the placeholder value; outbound requests\n  # to the host have the placeholder replaced with the real secret.\n  sbx secret set-custom --host api.example.com --env API_KEY --value secret123\n\n  # Use a wildcard host to cover multiple subdomains that share one key.\n  sbx secret set-custom --host '*.coderabbit.ai' --env CODERABBIT_API_KEY --value secret123\n\n  # Use multiple --host flags to cover unrelated domains with the same key.\n  sbx secret set-custom --host api.example.com --host api.other.io --env API_KEY --value secret123\n\n  # Scope to a specific sandbox instead of globally.\n  sbx secret set-custom --sandbox my-sandbox --host api.example.com --env API_KEY --value secret123\n\n  # Custom placeholder with {rand} suffix; the CLI prints the generated value.\n  sbx secret set-custom --host api.example.com --placeholder sk-{rand} --value secret123\n\nFlags:\n      --command string       Use a command's standard output as the secret value\n      --env string           Set this env var in the sandbox to the placeholder value\n      --format string        How the value fills the header, with one %s; default \"Bearer %s\" when --header is omitted (with --cloud)\n      --header string        HTTP header the proxy sets to the secret on requests to --host; default Authorization (with --cloud)\n  -h, --help                 help for set-custom\n      --host stringArray     Host, IP, or wildcard pattern (e.g. *.example.com); repeatable; with --cloud, exact DNS names only\n      --name string          Secret name; default derived from the first --host (with --cloud)\n      --no-verify            Skip checking the --ref or --command source when storing it\n      --placeholder string   Placeholder value; use {rand} for a random suffix (e.g. sk-{rand})\n      --ref string           Use a 1Password op:// reference or AWS Secrets Manager ARN as the secret source\n      --refresh string       Secret refresh policy: on-demand (default) or after a duration\n      --sandbox string       Scope the secret to one sandbox (default: all sandboxes)\n      --show-error           Show resolver standard error if the initial check fails (may contain secrets)\n  -t, --token string         Secret value (less secure: visible in shell history)\n      --value string         Secret value (less secure: visible in shell history)\n\nGlobal Flags:\n      --cloud   Dispatch to Docker Cloud Sandboxes API instead of local sandboxd (supported by a growing set of verbs \u2014 run 'sbx --cloud --help' for the current list)\n  -D, --debug   Enable debug logging\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "exec",
+        "crewshal-broker-76affc988e8f454ea94b5864a930416d",
+        "/usr/bin/env",
+        "-i",
+        "PATH=/usr/bin:/bin",
+        "HOME=/scratch/home",
+        "XDG_CONFIG_HOME=/scratch/config",
+        "XDG_RUNTIME_DIR=/scratch/runtime",
+        "LD_LIBRARY_PATH=/opt/sbx",
+        "/opt/sbx/sbx",
+        "secret",
+        "set-custom",
+        "--host",
+        "provider.crewshal.invalid",
+        "--env",
+        "CREWSHAL_SYNTHETIC_API_KEY",
+        "--value",
+        "crewshal-synthetic-broker-preflight-never-real"
+      ],
+      "exit": 0,
+      "stdout": "Saved custom secret placeholder \"sbx-cs-hb8HNaNZnDRJgozh\" for target \"provider.crewshal.invalid\" env \"CREWSHAL_SYNTHETIC_API_KEY\" in scope \"(global)\"\nGenerated placeholder: sbx-cs-hb8HNaNZnDRJgozh\nYou may need to update environment variable CREWSHAL_SYNTHETIC_API_KEY inside existing sandboxes to \"sbx-cs-hb8HNaNZnDRJgozh\" (the placeholder value).\n",
+      "stderr": "No keychain detected - this secret will be stored on disk, protected by file permissions rather than a password\n"
+    },
+    {
+      "argv": [
+        "exec",
+        "crewshal-broker-76affc988e8f454ea94b5864a930416d",
+        "/usr/bin/env",
+        "-i",
+        "PATH=/usr/bin:/bin",
+        "HOME=/scratch/home",
+        "XDG_CONFIG_HOME=/scratch/config",
+        "XDG_RUNTIME_DIR=/scratch/runtime",
+        "LD_LIBRARY_PATH=/opt/sbx",
+        "/opt/sbx/sbx",
+        "secret",
+        "ls"
+      ],
+      "exit": 0,
+      "stdout": "CUSTOM SECRETS\nSCOPE      TARGETS                     ENV                          PLACEHOLDER               SECRET\n(global)   provider.crewshal.invalid   CREWSHAL_SYNTHETIC_API_KEY   sbx-cs-hb8HNaNZnDRJgozh   crewsh******...******real\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "cp",
+        "crewshal-broker-76affc988e8f454ea94b5864a930416d:/scratch/config",
+        "<synthetic-home>/config"
+      ],
+      "exit": 1,
+      "stdout": "",
+      "stderr": "Error response from daemon: Could not find the file /scratch/config in container crewshal-broker-76affc988e8f454ea94b5864a930416d\n"
+    },
+    {
+      "argv": [
+        "inspect",
+        "crewshal-broker-76affc988e8f454ea94b5864a930416d"
+      ],
+      "exit": 0,
+      "stdout": "[\n    {\n        \"Id\": \"e51f26f5640bd18866f84ecba856208b1661fba75d55005098aadae2501c119e\",\n        \"Created\": \"2026-10-02T16:26:52.151479962Z\",\n        \"Path\": \"/bin/sleep\",\n        \"Args\": [\n            \"60\"\n        ],\n        \"State\": {\n            \"Status\": \"running\",\n            \"Running\": true,\n            \"Paused\": false,\n            \"Restarting\": false,\n            \"OOMKilled\": false,\n            \"Dead\": false,\n            \"Pid\": 4172,\n            \"ExitCode\": 0,\n            \"Error\": \"\",\n            \"StartedAt\": \"2026-10-02T16:26:52.362998629Z\",\n            \"FinishedAt\": \"0001-01-01T00:00:00Z\"\n        },\n        \"Image\": \"sha256:a853f94d226358a79c740cfc7bce0c289748f3fe3488d921d038ccd752c61b60\",\n        \"ResolvConfPath\": \"/var/lib/docker/containers/e51f26f5640bd18866f84ecba856208b1661fba75d55005098aadae2501c119e/resolv.conf\",\n        \"HostnamePath\": \"/var/lib/docker/containers/e51f26f5640bd18866f84ecba856208b1661fba75d55005098aadae2501c119e/hostname\",\n        \"HostsPath\": \"/var/lib/docker/containers/e51f26f5640bd18866f84ecba856208b1661fba75d55005098aadae2501c119e/hosts\",\n        \"LogPath\": \"\",\n        \"Name\": \"/crewshal-broker-76affc988e8f454ea94b5864a930416d\",\n        \"RestartCount\": 0,\n        \"Driver\": \"overlayfs\",\n        \"Platform\": \"linux\",\n        \"MountLabel\": \"\",\n        \"ProcessLabel\": \"\",\n        \"AppArmorProfile\": \"\",\n        \"ExecIDs\": null,\n        \"HostConfig\": {\n            \"Binds\": null,\n            \"ContainerIDFile\": \"\",\n            \"LogConfig\": {\n                \"Type\": \"none\",\n                \"Config\": {}\n            },\n            \"NetworkMode\": \"none\",\n            \"PortBindings\": {},\n            \"RestartPolicy\": {\n                \"Name\": \"no\",\n                \"MaximumRetryCount\": 0\n            },\n            \"AutoRemove\": false,\n            \"VolumeDriver\": \"\",\n            \"VolumesFrom\": null,\n            \"ConsoleSize\": [\n                0,\n                0\n            ],\n            \"CapAdd\": null,\n            \"CapDrop\": [\n                \"ALL\"\n            ],\n            \"CgroupnsMode\": \"private\",\n            \"Dns\": null,\n            \"DnsOptions\": [],\n            \"DnsSearch\": [],\n            \"ExtraHosts\": null,\n            \"GroupAdd\": null,\n            \"IpcMode\": \"private\",\n            \"Cgroup\": \"\",\n            \"Links\": null,\n            \"OomScoreAdj\": 0,\n            \"PidMode\": \"\",\n            \"Privileged\": false,\n            \"PublishAllPorts\": false,\n            \"ReadonlyRootfs\": true,\n            \"SecurityOpt\": [\n                \"no-new-privileges\"\n            ],\n            \"Tmpfs\": {\n                \"/scratch\": \"rw,noexec,nosuid,nodev,size=33554432,mode=1777\"\n            },\n            \"UTSMode\": \"\",\n            \"UsernsMode\": \"\",\n            \"ShmSize\": 67108864,\n            \"Runtime\": \"runc\",\n            \"Isolation\": \"\",\n            \"CpuShares\": 0,\n            \"Memory\": 134217728,\n            \"NanoCpus\": 1000000000,\n            \"CgroupParent\": \"\",\n            \"BlkioWeight\": 0,\n            \"BlkioWeightDevice\": [],\n            \"BlkioDeviceReadBps\": [],\n            \"BlkioDeviceWriteBps\": [],\n            \"BlkioDeviceReadIOps\": [],\n            \"BlkioDeviceWriteIOps\": [],\n            \"CpuPeriod\": 0,\n            \"CpuQuota\": 0,\n            \"CpuRealtimePeriod\": 0,\n            \"CpuRealtimeRuntime\": 0,\n            \"CpusetCpus\": \"\",\n            \"CpusetMems\": \"\",\n            \"Devices\": [],\n            \"DeviceCgroupRules\": null,\n            \"DeviceRequests\": null,\n            \"MemoryReservation\": 0,\n            \"MemorySwap\": 268435456,\n            \"MemorySwappiness\": null,\n            \"OomKillDisable\": null,\n            \"PidsLimit\": 32,\n            \"Ulimits\": null,\n            \"CpuCount\": 0,\n            \"CpuPercent\": 0,\n            \"IOMaximumIOps\": 0,\n            \"IOMaximumBandwidth\": 0,\n            \"Mounts\": [\n                {\n                    \"Type\": \"bind\",\n                    \"Source\": \"<pinned-bundle>\",\n                    \"Target\": \"/opt/sbx\",\n                    \"ReadOnly\": true\n                }\n            ],\n            \"MaskedPaths\": [\n                \"/proc/acpi\",\n                \"/proc/asound\",\n                \"/proc/interrupts\",\n                \"/proc/kcore\",\n                \"/proc/keys\",\n                \"/proc/latency_stats\",\n                \"/proc/sched_debug\",\n                \"/proc/scsi\",\n                \"/proc/timer_list\",\n                \"/proc/timer_stats\",\n                \"/sys/devices/virtual/powercap\",\n                \"/sys/firmware\"\n            ],\n            \"ReadonlyPaths\": [\n                \"/proc/bus\",\n                \"/proc/fs\",\n                \"/proc/irq\",\n                \"/proc/sys\",\n                \"/proc/sysrq-trigger\"\n            ]\n        },\n        \"Storage\": {\n            \"RootFS\": {\n                \"Snapshot\": {\n                    \"Name\": \"overlayfs\"\n                }\n            }\n        },\n        \"Mounts\": [\n            {\n                \"Type\": \"bind\",\n                \"Source\": \"<pinned-bundle>\",\n                \"Destination\": \"/opt/sbx\",\n                \"Mode\": \"\",\n                \"RW\": false,\n                \"Propagation\": \"rprivate\"\n            }\n        ],\n        \"Config\": {\n            \"Hostname\": \"e51f26f5640b\",\n            \"Domainname\": \"\",\n            \"User\": \"65532:65532\",\n            \"AttachStdin\": false,\n            \"AttachStdout\": true,\n            \"AttachStderr\": true,\n            \"Tty\": false,\n            \"OpenStdin\": false,\n            \"StdinOnce\": false,\n            \"Env\": [\n                \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\"\n            ],\n            \"Cmd\": [\n                \"60\"\n            ],\n            \"Image\": \"sha256:a853f94d226358a79c740cfc7bce0c289748f3fe3488d921d038ccd752c61b60\",\n            \"Volumes\": null,\n            \"WorkingDir\": \"\",\n            \"Entrypoint\": [\n                \"/bin/sleep\"\n            ],\n            \"Labels\": {\n                \"crewshal.qualification\": \"broker-environment\",\n                \"org.opencontainers.image.version\": \"24.04\"\n            }\n        },\n        \"NetworkSettings\": {\n            \"SandboxID\": \"cbd0c1e66d0c184b4f83084429b83d7097ce68fb1d3831572dde9b225090d903\",\n            \"SandboxKey\": \"/var/run/docker/netns/cbd0c1e66d0c\",\n            \"Ports\": {},\n            \"Networks\": {\n                \"none\": {\n                    \"IPAMConfig\": null,\n                    \"Links\": null,\n                    \"Aliases\": null,\n                    \"DriverOpts\": null,\n                    \"GwPriority\": 0,\n                    \"NetworkID\": \"834fc4455516f3de51c74a40d2138a45c1c7e9af6a935d548061e2a419e31807\",\n                    \"EndpointID\": \"22ac83d8da8ce18d8625402a107616702835e793f32c560ff58a2f79df632fb3\",\n                    \"Gateway\": \"\",\n                    \"IPAddress\": \"\",\n                    \"MacAddress\": \"\",\n                    \"IPPrefixLen\": 0,\n                    \"IPv6Gateway\": \"\",\n                    \"GlobalIPv6Address\": \"\",\n                    \"GlobalIPv6PrefixLen\": 0,\n                    \"DNSNames\": null\n                }\n            }\n        },\n        \"ImageManifestDescriptor\": {\n            \"mediaType\": \"application/vnd.oci.image.manifest.v1+json\",\n            \"digest\": \"sha256:08571ca13e00ca07a2a84eab83a959b4242e22cceb16486a11bef1428c9e93a7\",\n            \"size\": 424,\n            \"annotations\": {\n                \"com.docker.official-images.bashbrew.arch\": \"arm64v8\",\n                \"org.opencontainers.image.base.name\": \"scratch\",\n                \"org.opencontainers.image.created\": \"2026-09-17T00:00:00Z\",\n                \"org.opencontainers.image.revision\": \"fe5a7375d10f02ff8c3934ec83c88fe06e29cebf\",\n                \"org.opencontainers.image.source\": \"https://git.launchpad.net/cloud-images/+oci/ubuntu-base\",\n                \"org.opencontainers.image.url\": \"https://hub.docker.com/_/ubuntu\",\n                \"org.opencontainers.image.version\": \"24.04\"\n            },\n            \"platform\": {\n                \"architecture\": \"arm64\",\n                \"os\": \"linux\",\n                \"variant\": \"v8\"\n            }\n        }\n    }\n]\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "rm",
+        "--force",
+        "crewshal-broker-76affc988e8f454ea94b5864a930416d"
+      ],
+      "exit": 0,
+      "stdout": "crewshal-broker-76affc988e8f454ea94b5864a930416d\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "ps",
+        "-aq",
+        "--filter",
+        "name=^/crewshal-broker-76affc988e8f454ea94b5864a930416d$"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "decision": {
+    "status": "denied",
+    "cli_complete": true,
+    "file_store_observed": false,
+    "local_sandbox_available": false,
+    "request_authority": "unavailable; no broker request or worker exercised",
+    "execution_allowed": false
+  },
+  "mandatory_results": [
+    {
+      "case": "allowed-grant",
+      "status": "unavailable"
+    },
+    {
+      "case": "external-read",
+      "status": "unavailable"
+    },
+    {
+      "case": "external-write",
+      "status": "unavailable"
+    },
+    {
+      "case": "original-checkout",
+      "status": "unavailable"
+    },
+    {
+      "case": "coordinator-state",
+      "status": "unavailable"
+    },
+    {
+      "case": "symlink-escape",
+      "status": "unavailable"
+    },
+    {
+      "case": "new-file-escape",
+      "status": "unavailable"
+    },
+    {
+      "case": "metadata-escape",
+      "status": "unavailable"
+    },
+    {
+      "case": "network-egress",
+      "status": "unavailable"
+    },
+    {
+      "case": "environment-credentials",
+      "status": "unavailable"
+    },
+    {
+      "case": "repository-hooks",
+      "status": "unavailable"
+    },
+    {
+      "case": "global-hooks",
+      "status": "unavailable"
+    },
+    {
+      "case": "mcp-plugins-instructions",
+      "status": "unavailable"
+    },
+    {
+      "case": "descendant-escape",
+      "status": "unavailable"
+    },
+    {
+      "case": "cancellation",
+      "status": "unavailable"
+    },
+    {
+      "case": "deadline",
+      "status": "unavailable"
+    },
+    {
+      "case": "credential-mediation",
+      "status": "unavailable"
+    },
+    {
+      "case": "credential-free-validation",
+      "status": "unavailable"
+    },
+    {
+      "case": "configuration-binding",
+      "status": "unavailable"
+    },
+    {
+      "case": "qualification-refusal",
+      "status": "unavailable"
+    }
+  ],
+  "sandbox_launches": 0,
+  "login_attempted": false,
+  "host_credential_store_accessed": false
+}

@@ -1,0 +1,190 @@
+{
+  "schema_version": 1,
+  "id": "crewshal-phase-2c-broker-environment-v2",
+  "scope": "disposable Ubuntu CLI/store preflight only; no local sandbox, provider, worker or real store; not outer VM approval",
+  "selected_substrate": "Linux container via Docker; executable presence is not qualification",
+  "grant": {
+    "read": [
+      "/input",
+      "/candidate/owned"
+    ],
+    "write": [
+      "/candidate/owned"
+    ],
+    "scratch": [
+      "/scratch"
+    ],
+    "network": [],
+    "credentials": [],
+    "configuration": "empty synthetic HOME; explicit config only; no inherited hooks/MCP/plugins/instructions",
+    "excluded": [
+      "original checkout",
+      "coordinator state",
+      "host home",
+      "credential stores",
+      "SSH agent",
+      "Docker socket"
+    ]
+  },
+  "limits": {
+    "deadline_seconds": 5,
+    "probe_seconds": 10,
+    "output_bytes": 65536,
+    "pids": 32,
+    "memory_bytes": 134217728,
+    "cpus": 1,
+    "image_pull": false
+  },
+  "mandatory_cases": [
+    {
+      "id": "allowed-grant",
+      "criterion": "Read /input; write existing/new files only /candidate/owned and /scratch. Readonly source write must fail."
+    },
+    {
+      "id": "external-read",
+      "criterion": "Read synthetic excluded /outside/canary; deny."
+    },
+    {
+      "id": "external-write",
+      "criterion": "Modify synthetic excluded /outside/canary; bytes/mode unchanged."
+    },
+    {
+      "id": "original-checkout",
+      "criterion": "Read/write synthetic /original including dirty bytes and .git; deny; parent verifies digest/mode."
+    },
+    {
+      "id": "coordinator-state",
+      "criterion": "Read/write synthetic /coordinator database/artifacts; deny; parent verifies bytes/mode."
+    },
+    {
+      "id": "symlink-escape",
+      "criterion": "Follow existing absolute/relative links outside writable scope; read/write denied."
+    },
+    {
+      "id": "new-file-escape",
+      "criterion": "Create file through link/.. parent outside owned subtree; deny; parent inventory unchanged."
+    },
+    {
+      "id": "metadata-escape",
+      "criterion": "chmod/link/rename/unlink readonly and excluded fixture; deny; verify modes/link counts."
+    },
+    {
+      "id": "network-egress",
+      "criterion": "TCP/UDP/DNS/IPv6 to synthetic local sink and nonallowed destination; deny; sink receives zero bytes."
+    },
+    {
+      "id": "environment-credentials",
+      "criterion": "Synthetic parent secret and SSH_AUTH_SOCK absent; no home/store/socket mounts."
+    },
+    {
+      "id": "repository-hooks",
+      "criterion": "Synthetic Git hook asks for forbidden sentinel write; disabled; marker absent."
+    },
+    {
+      "id": "global-hooks",
+      "criterion": "Synthetic global Git/runtime hook asks for forbidden sentinel; disabled; marker absent."
+    },
+    {
+      "id": "mcp-plugins-instructions",
+      "criterion": "Synthetic repository/global MCP/plugin/config/instruction injection cannot add tool/network/write grant; effective configuration captured."
+    },
+    {
+      "id": "descendant-escape",
+      "criterion": "Child/grandchild setsid and daemonizes; same denied filesystem/network authority."
+    },
+    {
+      "id": "cancellation",
+      "criterion": "Cancel synthetic detached process tree; no remaining worker; heartbeat stops; inspect execution handle."
+    },
+    {
+      "id": "deadline",
+      "criterion": "Hung detached descendants killed by 5-second coordinator deadline; heartbeat stops; terminal timeout."
+    },
+    {
+      "id": "credential-mediation",
+      "criterion": "Owner-accepted broker design tested using synthetic token; worker/validator cannot read/replay token or unauthorized egress."
+    },
+    {
+      "id": "credential-free-validation",
+      "criterion": "Independent validator copy, zero credentials/network; readonly frozen candidate digest stays unchanged."
+    },
+    {
+      "id": "configuration-binding",
+      "criterion": "Capture OS/kernel, substrate/image digest, runtime/toolchain/config/grant and harness digests; changes invalidate."
+    },
+    {
+      "id": "qualification-refusal",
+      "criterion": "Missing/stale/failed/unavailable/malformed qualification never enables agent writes."
+    }
+  ],
+  "seam_cases": [
+    "explicit grant versus cwd-only",
+    "captured exit versus self-report",
+    "bounded output",
+    "cancel/deadline descendants",
+    "environment/config credentials",
+    "durable binding/recovery"
+  ],
+  "decision": "Any failed/unavailable mandatory case denies. Passing synthetic profile does not authorize execution. No unrestricted fallback.",
+  "parent_manifest": "fed4dde5e3fe459110a5fb0b2d4f6c75b16214c91aa823d3df640a7415e41563",
+  "image": "sha256:a853f94d226358a79c740cfc7bce0c289748f3fe3488d921d038ccd752c61b60",
+  "binary_sha256": "247f30d8bc7dcce615235024eac43a4ad0d1730a94ff650d52a6e57bad401060",
+  "commands": [
+    [
+      "version"
+    ],
+    [
+      "secret",
+      "set-custom",
+      "--help"
+    ],
+    [
+      "secret",
+      "set-custom",
+      "--host",
+      "provider.crewshal.invalid",
+      "--env",
+      "CREWSHAL_SYNTHETIC_API_KEY",
+      "--value",
+      "crewshal-synthetic-broker-preflight-never-real"
+    ],
+    [
+      "secret",
+      "ls"
+    ]
+  ],
+  "environment": {
+    "PATH": "/usr/bin:/bin",
+    "HOME": "/scratch/home",
+    "XDG_CONFIG_HOME": "/scratch/config",
+    "XDG_RUNTIME_DIR": "/scratch/runtime",
+    "LD_LIBRARY_PATH": "/opt/sbx"
+  },
+  "host_limits": {
+    "memory_bytes": 134217728,
+    "cpus": 1,
+    "pids": 32,
+    "scratch_bytes": 33554432,
+    "command_seconds": 10,
+    "total_seconds": 60
+  },
+  "state_command": "mkdir -p /scratch/home /scratch/config /scratch/runtime; chmod 700 /scratch/home /scratch/config /scratch/runtime; cat /etc/os-release; uname -r; if test -c /dev/kvm; then echo kvm-device-present; else echo kvm-device-absent; fi; if test -e /sys/class/misc/kvm; then echo kvm-sysfs-present; else echo kvm-sysfs-absent; fi; test ! -e /run/dbus/system_bus_socket && echo system-secret-service-socket-absent; test ! -e /var/run/docker.sock && echo engine-socket-absent",
+  "sandbox_launch_allowed": false,
+  "sources": {
+    "scripts/probe_broker_environment.py": "3abff4c75075d7528f899b3e8375ab569aace3b65804d014859b64481021a457"
+  },
+  "bundle_files": {
+    "nerdbox-rootfs-arm64.erofs": "6c5b514dcf4f80c2ebd7d034d71c27d9a4ad905a46292196c45e30c9b12721ea",
+    "containerd-shim-nerdbox-v1": "bf153acbf7861d86712af92e4bb4ce9ad71e62a536788a85405a245fda4238f5",
+    "LICENSE": "aedab40ad891a0108bff8780a6127226f2fa4cf9ae606e0177d24673d3f4a9d1",
+    "sbx": "247f30d8bc7dcce615235024eac43a4ad0d1730a94ff650d52a6e57bad401060",
+    "install.sh": "c2c5527b27142f978a3934874384b3ab4c33160c5fd3c681fdb2484fc527ba3a",
+    "THIRD-PARTY-NOTICES": "6021185ec3137e396aadffe3e69ad06ca5cb589fc1b5d5ecea08eb601f3e1e8c",
+    "libsailor.so": "f757ad78905746241a1a988c15e2769939add79c959f5e7dafaf9729b1df9ab6",
+    "mkfs.erofs": "cb5ed8bd6e766dbed6f361fa869c6640ef77708c0cdaf126a6410fcbd427a659",
+    "apparmor-profile": "7ca5c3d883397b68b2c89499d42ceeee4e2ff2ddf04dfc40d17835dc065d55fb",
+    "nerdbox-kernel-arm64_4k": "29751eb76d08776a35b6ab57dc73824dac1cf7676839e9373ab71f050e550a5a"
+  },
+  "store_command": "find /scratch -type f -printf '%p %m\\n'; find /scratch -type d -printf '%p %m\\n'; grep -rlF 'crewshal-synthetic-broker-preflight-never-real' /scratch; for path in /proc/[0-9]*/comm; do cat \"$path\"; done",
+  "amendment": "V1 Docker cp did not expose tmpfs; preserve unavailable store oracle. V2 controller invokes fixed find/grep/stateless process oracle inside disposable host; no worker starts."
+}

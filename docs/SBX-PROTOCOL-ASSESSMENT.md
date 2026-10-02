@@ -2,6 +2,8 @@
 
 Date: 2026-10-02. Package 0.7.0. **Phase 2C remains blocked and execution remains denied.** The [resource/configuration protocol](SBX-RESOURCE-CONFIGURATION-PROTOCOL.md) specifies the unchanged worker limits, a separately accounted pending outer allocation, credential-store prerequisites and the exact remaining probes. This is a protocol/refusal checkpoint, not an operational containment or credential qualification.
 
+The later [0.8.0 broker-store assessment](BROKER-ENVIRONMENT-ASSESSMENT.md) demonstrates isolated Linux synthetic store operations in a new separate profile. It does not change this frozen help-only evidence or qualify the operational broker.
+
 ## Frozen evidence
 
 Manifest: [SBX protocol v1](qualification/phase-2c-sbx-protocol-v1.json), SHA-256 `976d7ad7b6fe4ef8b2c2dbea981851d03fb2b713942e8dcecab3f6ec24b13f79`. All twenty original cases, grant and limits remain identical to original v1. The manifest binds the protocol document and both source files. It was finalized before the delivered assessor invoked the binary; subsequent relevant changes require a new prospective profile, not an edited observation.

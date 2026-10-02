@@ -1,6 +1,6 @@
 # Linux substrate probe checkpoint
 
-Date: 2026-10-02. Current package 0.5.0; filesystem evidence below remains the historical 0.4.0 record. See the separate lifecycle resumption at the end. **Phase 2C remains blocked.** The owner supplied running Docker Desktop. Its explicit local socket responds; the earlier default-socket failure is historical, not a claim that Docker is unavailable now.
+Date: 2026-10-02. Current package 0.6.0; filesystem evidence below remains the historical 0.4.0 record. See the separate lifecycle resumption at the end. **Phase 2C remains blocked.** The owner supplied running Docker Desktop. Its explicit local socket responds; the earlier default-socket failure is historical, not a claim that Docker is unavailable now.
 
 ## Actual environment and grant
 
@@ -83,3 +83,7 @@ rtk proxy .venv/bin/python -m scripts.probe_linux_lifecycle \
 ```
 
 Expected exit 2 preserves denial. Prior temporary containers/directories are not prerequisites. Offline `tests.acceptance.test_phase_2c_lifecycle` exercises terminal/activity/deadline/integrity failures, unsafe-grant refusal before start with cleanup, frozen-source/protocol drift refusal and denied subset identity invalidation. The complete offline suite has 55 methods; final installed-wheel evidence is in HANDOFF.md. Continue only Phase 2C using the updated resumption prompt.
+
+## Network resumption — 2026-10-02
+
+Package 0.6.0 adds a separate [network subset and SBX preparation checkpoint](NETWORK-SUBSTRATE-PROBES.md). Two fresh-fixture runs pass the bounded synthetic network criterion; full native runtime/network conformance and credential mediation remain unproved. The nine filesystem and four lifecycle/validator observations remain separate and are not combined with this result. Earlier statements about missing full sink probes describe their historical checkpoints. Phase 2C remains denied; do not begin 2D.

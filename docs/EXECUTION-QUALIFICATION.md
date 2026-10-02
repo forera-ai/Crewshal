@@ -1,6 +1,6 @@
 # Phase 2C qualification checkpoint
 
-Historical 0.3.0 checkpoint; superseded in part by [the 0.4.0 Linux resumption](LINUX-SUBSTRATE-PROBES.md). The explicit Desktop endpoint now responds and nine filesystem/environment cases pass. The [0.5.0 lifecycle resumption](LINUX-SUBSTRATE-PROBES.md#lifecycle-and-validator-resumption--2026-10-02) adds four separate bounded observations. Full Phase 2C remains denied.
+Historical 0.3.0 checkpoint; superseded in part by [the 0.4.0 Linux resumption](LINUX-SUBSTRATE-PROBES.md). The explicit Desktop endpoint now responds and nine filesystem/environment cases pass. The [0.5.0 lifecycle resumption](LINUX-SUBSTRATE-PROBES.md#lifecycle-and-validator-resumption--2026-10-02) adds four separate bounded observations. The [0.6.0 network checkpoint](NETWORK-SUBSTRATE-PROBES.md) adds a separate synthetic socket subset and read-only SBX preparation. Full Phase 2C remains denied.
 
 Date: 2026-10-02. Outcome: **blocked, denied profile**. Package 0.3.0 adds compatible qualification record/refusal APIs and bounded assessment utilities; it does not complete Phase 2C. No worker was launched, no containment case passed, and Phase 2D is not authorized.
 

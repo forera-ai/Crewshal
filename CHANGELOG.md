@@ -2,6 +2,14 @@
 
 Versions follow semantic versioning. Remote branch publication is distinct from a package-registry release; no registry release has occurred.
 
+## 0.6.0 — 2026-10-02
+
+- Add a prospectively frozen, separate synthetic network subset using an immutable official Python image, two internal dual-stack sinks and twelve worker TCP/UDP/DNS-wire attempts. Positive controls before and after establish sink reachability; independent receipts establish zero denied traffic.
+- Record two passing fresh-fixture v3 runs. Preserve v1/v2 pre-client failures, frozen runner snapshots and the corrected address-inspection diagnosis; never promote failed observations.
+- Add eight offline falsification/refusal methods. Verify 63 total tests, static checks and a fresh installed wheel with test network denied.
+- Prepare the official SBX 0.46.0 archive within owner-approved bounds and inspect help/version offline. Record sandbox memory/prospective resource-mapping and documented login prerequisites; no daemon, credential store or provider was used.
+- Keep full Phase 2C denied. Native runtime configuration/network, accepted credential mediation and whole-runtime binding/refusal remain unqualified. No adapter or Phase 2D work.
+
 ## 0.5.0 — 2026-10-02
 
 - Add prospectively frozen cached-Alpine detached-grandchild, cancellation, five-second deadline initiation and separate credential-free validator probes.

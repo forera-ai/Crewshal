@@ -1,0 +1,3027 @@
+{
+  "commands": [
+    {
+      "argv": [
+        "/opt/homebrew/bin/docker",
+        "network",
+        "create",
+        "--internal",
+        "--ipv6",
+        "--subnet",
+        "10.243.141.0/24",
+        "--subnet",
+        "fd2c:7eec:d35e::/64",
+        "--label",
+        "crewshal.qualification=2c-network",
+        "<fixture-096d90de>"
+      ],
+      "exit": 0,
+      "stdout": "deed0676f12c5d1aff546c2efdab5e040005c4918d2ef14be146347b5bc7cb5f\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/opt/homebrew/bin/docker",
+        "network",
+        "inspect",
+        "<fixture-096d90de>"
+      ],
+      "exit": 0,
+      "stdout": "[\n    {\n        \"Name\": \"<fixture-096d90de>\",\n        \"Id\": \"deed0676f12c5d1aff546c2efdab5e040005c4918d2ef14be146347b5bc7cb5f\",\n        \"Created\": \"2026-10-02T13:26:49.933718212Z\",\n        \"Scope\": \"local\",\n        \"Driver\": \"bridge\",\n        \"EnableIPv4\": true,\n        \"EnableIPv6\": true,\n        \"IPAM\": {\n            \"Driver\": \"default\",\n            \"Options\": {},\n            \"Config\": [\n                {\n                    \"Subnet\": \"10.243.141.0/24\",\n                    \"Gateway\": \"10.243.141.1\"\n                },\n                {\n                    \"Subnet\": \"fd2c:7eec:d35e::/64\",\n                    \"Gateway\": \"fd2c:7eec:d35e::1\"\n                }\n            ]\n        },\n        \"Internal\": true,\n        \"Attachable\": false,\n        \"Ingress\": false,\n        \"ConfigFrom\": {\n            \"Network\": \"\"\n        },\n        \"ConfigOnly\": false,\n        \"Options\": {\n            \"com.docker.network.enable_ipv4\": \"true\"\n        },\n        \"Labels\": {\n            \"crewshal.qualification\": \"2c-network\"\n        },\n        \"Containers\": {},\n        \"Status\": {\n            \"IPAM\": {\n                \"Subnets\": {\n                    \"10.243.141.0/24\": {\n                        \"IPsInUse\": 3,\n                        \"DynamicIPsAvailable\": 253\n                    },\n                    \"fd2c:7eec:d35e::/64\": {\n                        \"IPsInUse\": 2,\n                        \"DynamicIPsAvailable\": 18446744073709551614\n                    }\n                }\n            }\n        }\n    }\n]\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/opt/homebrew/bin/docker",
+        "create",
+        "--pull=never",
+        "--name",
+        "<fixture-771a3f8d>",
+        "--label",
+        "crewshal.qualification=2c-network",
+        "--network",
+        "<fixture-096d90de>",
+        "--read-only",
+        "--user=65532:65532",
+        "--cap-drop=ALL",
+        "--security-opt=no-new-privileges",
+        "--pids-limit=32",
+        "--memory=128m",
+        "--cpus=1",
+        "--log-driver=none",
+        "--entrypoint=/usr/local/bin/python",
+        "--mount",
+        "type=bind,src=<synthetic-root>/primary/input,dst=/input,readonly",
+        "--mount",
+        "type=bind,src=<synthetic-root>/primary/owned,dst=/candidate/owned",
+        "--tmpfs",
+        "/scratch:rw,noexec,nosuid,nodev,size=16777216,mode=1777",
+        "--env",
+        "HOME=/scratch/home",
+        "--env",
+        "PYTHONDONTWRITEBYTECODE=1",
+        "sha256:4c47124a8391cb7a9f571164147d154777cf012a4ece5f86097130d7a4478111",
+        "/input/network_sink.py"
+      ],
+      "exit": 0,
+      "stdout": "874b5dec04f60a252bcf71c18eed13a03388ba5fb664c1012a8d9f10e90cde66\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/opt/homebrew/bin/docker",
+        "inspect",
+        "<fixture-771a3f8d>"
+      ],
+      "exit": 0,
+      "stdout": "[\n    {\n        \"Id\": \"874b5dec04f60a252bcf71c18eed13a03388ba5fb664c1012a8d9f10e90cde66\",\n        \"Created\": \"2026-10-02T13:26:50.051842962Z\",\n        \"Path\": \"/usr/local/bin/python\",\n        \"Args\": [\n            \"/input/network_sink.py\"\n        ],\n        \"State\": {\n            \"Status\": \"created\",\n            \"Running\": false,\n            \"Paused\": false,\n            \"Restarting\": false,\n            \"OOMKilled\": false,\n            \"Dead\": false,\n            \"Pid\": 0,\n            \"ExitCode\": 0,\n            \"Error\": \"\",\n            \"StartedAt\": \"0001-01-01T00:00:00Z\",\n            \"FinishedAt\": \"0001-01-01T00:00:00Z\"\n        },\n        \"Image\": \"sha256:4c47124a8391cb7a9f571164147d154777cf012a4ece5f86097130d7a4478111\",\n        \"ResolvConfPath\": \"\",\n        \"HostnamePath\": \"\",\n        \"HostsPath\": \"\",\n        \"LogPath\": \"\",\n        \"Name\": \"/<fixture-771a3f8d>\",\n        \"RestartCount\": 0,\n        \"Driver\": \"overlayfs\",\n        \"Platform\": \"linux\",\n        \"MountLabel\": \"\",\n        \"ProcessLabel\": \"\",\n        \"AppArmorProfile\": \"\",\n        \"ExecIDs\": null,\n        \"HostConfig\": {\n            \"Binds\": null,\n            \"ContainerIDFile\": \"\",\n            \"LogConfig\": {\n                \"Type\": \"none\",\n                \"Config\": {}\n            },\n            \"NetworkMode\": \"<fixture-096d90de>\",\n            \"PortBindings\": {},\n            \"RestartPolicy\": {\n                \"Name\": \"no\",\n                \"MaximumRetryCount\": 0\n            },\n            \"AutoRemove\": false,\n            \"VolumeDriver\": \"\",\n            \"VolumesFrom\": null,\n            \"ConsoleSize\": [\n                0,\n                0\n            ],\n            \"CapAdd\": null,\n            \"CapDrop\": [\n                \"ALL\"\n            ],\n            \"CgroupnsMode\": \"private\",\n            \"Dns\": null,\n            \"DnsOptions\": [],\n            \"DnsSearch\": [],\n            \"ExtraHosts\": null,\n            \"GroupAdd\": null,\n            \"IpcMode\": \"private\",\n            \"Cgroup\": \"\",\n            \"Links\": null,\n            \"OomScoreAdj\": 0,\n            \"PidMode\": \"\",\n            \"Privileged\": false,\n            \"PublishAllPorts\": false,\n            \"ReadonlyRootfs\": true,\n            \"SecurityOpt\": [\n                \"no-new-privileges\"\n            ],\n            \"Tmpfs\": {\n                \"/scratch\": \"rw,noexec,nosuid,nodev,size=16777216,mode=1777\"\n            },\n            \"UTSMode\": \"\",\n            \"UsernsMode\": \"\",\n            \"ShmSize\": 67108864,\n            \"Runtime\": \"runc\",\n            \"Isolation\": \"\",\n            \"CpuShares\": 0,\n            \"Memory\": 134217728,\n            \"NanoCpus\": 1000000000,\n            \"CgroupParent\": \"\",\n            \"BlkioWeight\": 0,\n            \"BlkioWeightDevice\": [],\n            \"BlkioDeviceReadBps\": [],\n            \"BlkioDeviceWriteBps\": [],\n            \"BlkioDeviceReadIOps\": [],\n            \"BlkioDeviceWriteIOps\": [],\n            \"CpuPeriod\": 0,\n            \"CpuQuota\": 0,\n            \"CpuRealtimePeriod\": 0,\n            \"CpuRealtimeRuntime\": 0,\n            \"CpusetCpus\": \"\",\n            \"CpusetMems\": \"\",\n            \"Devices\": [],\n            \"DeviceCgroupRules\": null,\n            \"DeviceRequests\": null,\n            \"MemoryReservation\": 0,\n            \"MemorySwap\": 268435456,\n            \"MemorySwappiness\": null,\n            \"OomKillDisable\": false,\n            \"PidsLimit\": 32,\n            \"Ulimits\": null,\n            \"CpuCount\": 0,\n            \"CpuPercent\": 0,\n            \"IOMaximumIOps\": 0,\n            \"IOMaximumBandwidth\": 0,\n            \"Mounts\": [\n                {\n                    \"Type\": \"bind\",\n                    \"Source\": \"<synthetic-root>/primary/input\",\n                    \"Target\": \"/input\",\n                    \"ReadOnly\": true\n                },\n                {\n                    \"Type\": \"bind\",\n                    \"Source\": \"<synthetic-root>/primary/owned\",\n                    \"Target\": \"/candidate/owned\"\n                }\n            ],\n            \"MaskedPaths\": [\n                \"/proc/acpi\",\n                \"/proc/asound\",\n                \"/proc/interrupts\",\n                \"/proc/kcore\",\n                \"/proc/keys\",\n                \"/proc/latency_stats\",\n                \"/proc/sched_debug\",\n                \"/proc/scsi\",\n                \"/proc/timer_list\",\n                \"/proc/timer_stats\",\n                \"/sys/devices/virtual/powercap\",\n                \"/sys/firmware\"\n            ],\n            \"ReadonlyPaths\": [\n                \"/proc/bus\",\n                \"/proc/fs\",\n                \"/proc/irq\",\n                \"/proc/sys\",\n                \"/proc/sysrq-trigger\"\n            ]\n        },\n        \"Storage\": {\n            \"RootFS\": {\n                \"Snapshot\": {\n                    \"Name\": \"overlayfs\"\n                }\n            }\n        },\n        \"Mounts\": [\n            {\n                \"Type\": \"bind\",\n                \"Source\": \"<synthetic-root>/primary/input\",\n                \"Destination\": \"/input\",\n                \"Mode\": \"\",\n                \"RW\": false,\n                \"Propagation\": \"rprivate\"\n            },\n            {\n                \"Type\": \"bind\",\n                \"Source\": \"<synthetic-root>/primary/owned\",\n                \"Destination\": \"/candidate/owned\",\n                \"Mode\": \"\",\n                \"RW\": true,\n                \"Propagation\": \"rprivate\"\n            }\n        ],\n        \"Config\": {\n            \"Hostname\": \"874b5dec04f6\",\n            \"Domainname\": \"\",\n            \"User\": \"65532:65532\",\n            \"AttachStdin\": false,\n            \"AttachStdout\": true,\n            \"AttachStderr\": true,\n            \"Tty\": false,\n            \"OpenStdin\": false,\n            \"StdinOnce\": false,\n            \"Env\": [\n                \"HOME=/scratch/home\",\n                \"PYTHONDONTWRITEBYTECODE=1\",\n                \"PATH=/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\",\n                \"LANG=C.UTF-8\",\n                \"GPG_KEY=7169605F62C751356D054A26A821E680E5FA6305\",\n                \"PYTHON_VERSION=3.12.14\",\n                \"PYTHON_SHA256=5c8462af5790baf43a321a1559dbe0db06d1be4300fb85fb53c40060668e548a\"\n            ],\n            \"Cmd\": [\n                \"/input/network_sink.py\"\n            ],\n            \"Image\": \"sha256:4c47124a8391cb7a9f571164147d154777cf012a4ece5f86097130d7a4478111\",\n            \"Volumes\": null,\n            \"WorkingDir\": \"/\",\n            \"Entrypoint\": [\n                \"/usr/local/bin/python\"\n            ],\n            \"Labels\": {\n                \"crewshal.qualification\": \"2c-network\"\n            }\n        },\n        \"NetworkSettings\": {\n            \"SandboxID\": \"\",\n            \"SandboxKey\": \"\",\n            \"Ports\": {},\n            \"Networks\": {\n                \"<fixture-096d90de>\": {\n                    \"IPAMConfig\": null,\n                    \"Links\": null,\n                    \"Aliases\": null,\n                    \"DriverOpts\": null,\n                    \"GwPriority\": 0,\n                    \"NetworkID\": \"\",\n                    \"EndpointID\": \"\",\n                    \"Gateway\": \"\",\n                    \"IPAddress\": \"\",\n                    \"MacAddress\": \"\",\n                    \"IPPrefixLen\": 0,\n                    \"IPv6Gateway\": \"\",\n                    \"GlobalIPv6Address\": \"\",\n                    \"GlobalIPv6PrefixLen\": 0,\n                    \"DNSNames\": null\n                }\n            }\n        },\n        \"ImageManifestDescriptor\": {\n            \"mediaType\": \"application/vnd.oci.image.manifest.v1+json\",\n            \"digest\": \"sha256:34d4d54d6f68a1980ad02433a5078d998ab394d55c97d953efa50b442135baf2\",\n            \"size\": 1737,\n            \"annotations\": {\n                \"com.docker.official-images.bashbrew.arch\": \"arm64v8\",\n                \"org.opencontainers.image.base.digest\": \"sha256:260479a1cfaf304c4c20da7f8405d3ce313513dcd534bb743257bdd2fe0f3e2d\",\n                \"org.opencontainers.image.base.name\": \"alpine:3.24\",\n                \"org.opencontainers.image.created\": \"2026-09-17T21:51:41Z\",\n                \"org.opencontainers.image.revision\": \"688a0b86bb44289df16a363e9f41d90514c1a5f9\",\n                \"org.opencontainers.image.source\": \"https://github.com/docker-library/python.git#688a0b86bb44289df16a363e9f41d90514c1a5f9:3.12/alpine3.24\",\n                \"org.opencontainers.image.url\": \"https://hub.docker.com/_/python\",\n                \"org.opencontainers.image.version\": \"3.12.14-alpine3.24\"\n            },\n            \"platform\": {\n                \"architecture\": \"arm64\",\n                \"os\": \"linux\",\n                \"variant\": \"v8\"\n            }\n        }\n    }\n]\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/opt/homebrew/bin/docker",
+        "start",
+        "<fixture-771a3f8d>"
+      ],
+      "exit": 0,
+      "stdout": "<fixture-771a3f8d>\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/opt/homebrew/bin/docker",
+        "inspect",
+        "<fixture-771a3f8d>"
+      ],
+      "exit": 0,
+      "stdout": "[\n    {\n        \"Id\": \"874b5dec04f60a252bcf71c18eed13a03388ba5fb664c1012a8d9f10e90cde66\",\n        \"Created\": \"2026-10-02T13:26:50.051842962Z\",\n        \"Path\": \"/usr/local/bin/python\",\n        \"Args\": [\n            \"/input/network_sink.py\"\n        ],\n        \"State\": {\n            \"Status\": \"running\",\n            \"Running\": true,\n            \"Paused\": false,\n            \"Restarting\": false,\n            \"OOMKilled\": false,\n            \"Dead\": false,\n            \"Pid\": 3481,\n            \"ExitCode\": 0,\n            \"Error\": \"\",\n            \"StartedAt\": \"2026-10-02T13:26:50.209815712Z\",\n            \"FinishedAt\": \"0001-01-01T00:00:00Z\"\n        },\n        \"Image\": \"sha256:4c47124a8391cb7a9f571164147d154777cf012a4ece5f86097130d7a4478111\",\n        \"ResolvConfPath\": \"/var/lib/docker/containers/874b5dec04f60a252bcf71c18eed13a03388ba5fb664c1012a8d9f10e90cde66/resolv.conf\",\n        \"HostnamePath\": \"/var/lib/docker/containers/874b5dec04f60a252bcf71c18eed13a03388ba5fb664c1012a8d9f10e90cde66/hostname\",\n        \"HostsPath\": \"/var/lib/docker/containers/874b5dec04f60a252bcf71c18eed13a03388ba5fb664c1012a8d9f10e90cde66/hosts\",\n        \"LogPath\": \"\",\n        \"Name\": \"/<fixture-771a3f8d>\",\n        \"RestartCount\": 0,\n        \"Driver\": \"overlayfs\",\n        \"Platform\": \"linux\",\n        \"MountLabel\": \"\",\n        \"ProcessLabel\": \"\",\n        \"AppArmorProfile\": \"\",\n        \"ExecIDs\": null,\n        \"HostConfig\": {\n            \"Binds\": null,\n            \"ContainerIDFile\": \"\",\n            \"LogConfig\": {\n                \"Type\": \"none\",\n                \"Config\": {}\n            },\n            \"NetworkMode\": \"<fixture-096d90de>\",\n            \"PortBindings\": {},\n            \"RestartPolicy\": {\n                \"Name\": \"no\",\n                \"MaximumRetryCount\": 0\n            },\n            \"AutoRemove\": false,\n            \"VolumeDriver\": \"\",\n            \"VolumesFrom\": null,\n            \"ConsoleSize\": [\n                0,\n                0\n            ],\n            \"CapAdd\": null,\n            \"CapDrop\": [\n                \"ALL\"\n            ],\n            \"CgroupnsMode\": \"private\",\n            \"Dns\": null,\n            \"DnsOptions\": [],\n            \"DnsSearch\": [],\n            \"ExtraHosts\": null,\n            \"GroupAdd\": null,\n            \"IpcMode\": \"private\",\n            \"Cgroup\": \"\",\n            \"Links\": null,\n            \"OomScoreAdj\": 0,\n            \"PidMode\": \"\",\n            \"Privileged\": false,\n            \"PublishAllPorts\": false,\n            \"ReadonlyRootfs\": true,\n            \"SecurityOpt\": [\n                \"no-new-privileges\"\n            ],\n            \"Tmpfs\": {\n                \"/scratch\": \"rw,noexec,nosuid,nodev,size=16777216,mode=1777\"\n            },\n            \"UTSMode\": \"\",\n            \"UsernsMode\": \"\",\n            \"ShmSize\": 67108864,\n            \"Runtime\": \"runc\",\n            \"Isolation\": \"\",\n            \"CpuShares\": 0,\n            \"Memory\": 134217728,\n            \"NanoCpus\": 1000000000,\n            \"CgroupParent\": \"\",\n            \"BlkioWeight\": 0,\n            \"BlkioWeightDevice\": [],\n            \"BlkioDeviceReadBps\": [],\n            \"BlkioDeviceWriteBps\": [],\n            \"BlkioDeviceReadIOps\": [],\n            \"BlkioDeviceWriteIOps\": [],\n            \"CpuPeriod\": 0,\n            \"CpuQuota\": 0,\n            \"CpuRealtimePeriod\": 0,\n            \"CpuRealtimeRuntime\": 0,\n            \"CpusetCpus\": \"\",\n            \"CpusetMems\": \"\",\n            \"Devices\": [],\n            \"DeviceCgroupRules\": null,\n            \"DeviceRequests\": null,\n            \"MemoryReservation\": 0,\n            \"MemorySwap\": 268435456,\n            \"MemorySwappiness\": null,\n            \"OomKillDisable\": null,\n            \"PidsLimit\": 32,\n            \"Ulimits\": null,\n            \"CpuCount\": 0,\n            \"CpuPercent\": 0,\n            \"IOMaximumIOps\": 0,\n            \"IOMaximumBandwidth\": 0,\n            \"Mounts\": [\n                {\n                    \"Type\": \"bind\",\n                    \"Source\": \"<synthetic-root>/primary/input\",\n                    \"Target\": \"/input\",\n                    \"ReadOnly\": true\n                },\n                {\n                    \"Type\": \"bind\",\n                    \"Source\": \"<synthetic-root>/primary/owned\",\n                    \"Target\": \"/candidate/owned\"\n                }\n            ],\n            \"MaskedPaths\": [\n                \"/proc/acpi\",\n                \"/proc/asound\",\n                \"/proc/interrupts\",\n                \"/proc/kcore\",\n                \"/proc/keys\",\n                \"/proc/latency_stats\",\n                \"/proc/sched_debug\",\n                \"/proc/scsi\",\n                \"/proc/timer_list\",\n                \"/proc/timer_stats\",\n                \"/sys/devices/virtual/powercap\",\n                \"/sys/firmware\"\n            ],\n            \"ReadonlyPaths\": [\n                \"/proc/bus\",\n                \"/proc/fs\",\n                \"/proc/irq\",\n                \"/proc/sys\",\n                \"/proc/sysrq-trigger\"\n            ]\n        },\n        \"Storage\": {\n            \"RootFS\": {\n                \"Snapshot\": {\n                    \"Name\": \"overlayfs\"\n                }\n            }\n        },\n        \"Mounts\": [\n            {\n                \"Type\": \"bind\",\n                \"Source\": \"<synthetic-root>/primary/input\",\n                \"Destination\": \"/input\",\n                \"Mode\": \"\",\n                \"RW\": false,\n                \"Propagation\": \"rprivate\"\n            },\n            {\n                \"Type\": \"bind\",\n                \"Source\": \"<synthetic-root>/primary/owned\",\n                \"Destination\": \"/candidate/owned\",\n                \"Mode\": \"\",\n                \"RW\": true,\n                \"Propagation\": \"rprivate\"\n            }\n        ],\n        \"Config\": {\n            \"Hostname\": \"874b5dec04f6\",\n            \"Domainname\": \"\",\n            \"User\": \"65532:65532\",\n            \"AttachStdin\": false,\n            \"AttachStdout\": true,\n            \"AttachStderr\": true,\n            \"Tty\": false,\n            \"OpenStdin\": false,\n            \"StdinOnce\": false,\n            \"Env\": [\n                \"HOME=/scratch/home\",\n                \"PYTHONDONTWRITEBYTECODE=1\",\n                \"PATH=/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\",\n                \"LANG=C.UTF-8\",\n                \"GPG_KEY=7169605F62C751356D054A26A821E680E5FA6305\",\n                \"PYTHON_VERSION=3.12.14\",\n                \"PYTHON_SHA256=5c8462af5790baf43a321a1559dbe0db06d1be4300fb85fb53c40060668e548a\"\n            ],\n            \"Cmd\": [\n                \"/input/network_sink.py\"\n            ],\n            \"Image\": \"sha256:4c47124a8391cb7a9f571164147d154777cf012a4ece5f86097130d7a4478111\",\n            \"Volumes\": null,\n            \"WorkingDir\": \"/\",\n            \"Entrypoint\": [\n                \"/usr/local/bin/python\"\n            ],\n            \"Labels\": {\n                \"crewshal.qualification\": \"2c-network\"\n            }\n        },\n        \"NetworkSettings\": {\n            \"SandboxID\": \"05bc9f09edbda29f32e7f5155c63321cd7a1e6dcdbc967f6fbc60ce2b9ba7a3a\",\n            \"SandboxKey\": \"/var/run/docker/netns/05bc9f09edbd\",\n            \"Ports\": {},\n            \"Networks\": {\n                \"<fixture-096d90de>\": {\n                    \"IPAMConfig\": null,\n                    \"Links\": null,\n                    \"Aliases\": null,\n                    \"DriverOpts\": null,\n                    \"GwPriority\": 0,\n                    \"NetworkID\": \"deed0676f12c5d1aff546c2efdab5e040005c4918d2ef14be146347b5bc7cb5f\",\n                    \"EndpointID\": \"d9767fe39d2e2eee03adb679f3cb026e8631786949b62c2f43711d7399103982\",\n                    \"Gateway\": \"\",\n                    \"IPAddress\": \"10.243.141.2\",\n                    \"MacAddress\": \"96:6c:43:10:93:ed\",\n                    \"IPPrefixLen\": 24,\n                    \"IPv6Gateway\": \"\",\n                    \"GlobalIPv6Address\": \"fd2c:7eec:d35e::2\",\n                    \"GlobalIPv6PrefixLen\": 64,\n                    \"DNSNames\": [\n                        \"<fixture-771a3f8d>\",\n                        \"874b5dec04f6\"\n                    ]\n                }\n            }\n        },\n        \"ImageManifestDescriptor\": {\n            \"mediaType\": \"application/vnd.oci.image.manifest.v1+json\",\n            \"digest\": \"sha256:34d4d54d6f68a1980ad02433a5078d998ab394d55c97d953efa50b442135baf2\",\n            \"size\": 1737,\n            \"annotations\": {\n                \"com.docker.official-images.bashbrew.arch\": \"arm64v8\",\n                \"org.opencontainers.image.base.digest\": \"sha256:260479a1cfaf304c4c20da7f8405d3ce313513dcd534bb743257bdd2fe0f3e2d\",\n                \"org.opencontainers.image.base.name\": \"alpine:3.24\",\n                \"org.opencontainers.image.created\": \"2026-09-17T21:51:41Z\",\n                \"org.opencontainers.image.revision\": \"688a0b86bb44289df16a363e9f41d90514c1a5f9\",\n                \"org.opencontainers.image.source\": \"https://github.com/docker-library/python.git#688a0b86bb44289df16a363e9f41d90514c1a5f9:3.12/alpine3.24\",\n                \"org.opencontainers.image.url\": \"https://hub.docker.com/_/python\",\n                \"org.opencontainers.image.version\": \"3.12.14-alpine3.24\"\n            },\n            \"platform\": {\n                \"architecture\": \"arm64\",\n                \"os\": \"linux\",\n                \"variant\": \"v8\"\n            }\n        }\n    }\n]\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/opt/homebrew/bin/docker",
+        "create",
+        "--pull=never",
+        "--name",
+        "<fixture-e3cf3688>",
+        "--label",
+        "crewshal.qualification=2c-network",
+        "--network",
+        "<fixture-096d90de>",
+        "--read-only",
+        "--user=65532:65532",
+        "--cap-drop=ALL",
+        "--security-opt=no-new-privileges",
+        "--pids-limit=32",
+        "--memory=128m",
+        "--cpus=1",
+        "--log-driver=none",
+        "--entrypoint=/usr/local/bin/python",
+        "--mount",
+        "type=bind,src=<synthetic-root>/nonallowed/input,dst=/input,readonly",
+        "--mount",
+        "type=bind,src=<synthetic-root>/nonallowed/owned,dst=/candidate/owned",
+        "--tmpfs",
+        "/scratch:rw,noexec,nosuid,nodev,size=16777216,mode=1777",
+        "--env",
+        "HOME=/scratch/home",
+        "--env",
+        "PYTHONDONTWRITEBYTECODE=1",
+        "sha256:4c47124a8391cb7a9f571164147d154777cf012a4ece5f86097130d7a4478111",
+        "/input/network_sink.py"
+      ],
+      "exit": 0,
+      "stdout": "610200998e2c3afab4349fbe9c93674435711d0b80d2a567b1957e36ded8bc5c\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/opt/homebrew/bin/docker",
+        "inspect",
+        "<fixture-e3cf3688>"
+      ],
+      "exit": 0,
+      "stdout": "[\n    {\n        \"Id\": \"610200998e2c3afab4349fbe9c93674435711d0b80d2a567b1957e36ded8bc5c\",\n        \"Created\": \"2026-10-02T13:26:50.434629296Z\",\n        \"Path\": \"/usr/local/bin/python\",\n        \"Args\": [\n            \"/input/network_sink.py\"\n        ],\n        \"State\": {\n            \"Status\": \"created\",\n            \"Running\": false,\n            \"Paused\": false,\n            \"Restarting\": false,\n            \"OOMKilled\": false,\n            \"Dead\": false,\n            \"Pid\": 0,\n            \"ExitCode\": 0,\n            \"Error\": \"\",\n            \"StartedAt\": \"0001-01-01T00:00:00Z\",\n            \"FinishedAt\": \"0001-01-01T00:00:00Z\"\n        },\n        \"Image\": \"sha256:4c47124a8391cb7a9f571164147d154777cf012a4ece5f86097130d7a4478111\",\n        \"ResolvConfPath\": \"\",\n        \"HostnamePath\": \"\",\n        \"HostsPath\": \"\",\n        \"LogPath\": \"\",\n        \"Name\": \"/<fixture-e3cf3688>\",\n        \"RestartCount\": 0,\n        \"Driver\": \"overlayfs\",\n        \"Platform\": \"linux\",\n        \"MountLabel\": \"\",\n        \"ProcessLabel\": \"\",\n        \"AppArmorProfile\": \"\",\n        \"ExecIDs\": null,\n        \"HostConfig\": {\n            \"Binds\": null,\n            \"ContainerIDFile\": \"\",\n            \"LogConfig\": {\n                \"Type\": \"none\",\n                \"Config\": {}\n            },\n            \"NetworkMode\": \"<fixture-096d90de>\",\n            \"PortBindings\": {},\n            \"RestartPolicy\": {\n                \"Name\": \"no\",\n                \"MaximumRetryCount\": 0\n            },\n            \"AutoRemove\": false,\n            \"VolumeDriver\": \"\",\n            \"VolumesFrom\": null,\n            \"ConsoleSize\": [\n                0,\n                0\n            ],\n            \"CapAdd\": null,\n            \"CapDrop\": [\n                \"ALL\"\n            ],\n            \"CgroupnsMode\": \"private\",\n            \"Dns\": null,\n            \"DnsOptions\": [],\n            \"DnsSearch\": [],\n            \"ExtraHosts\": null,\n            \"GroupAdd\": null,\n            \"IpcMode\": \"private\",\n            \"Cgroup\": \"\",\n            \"Links\": null,\n            \"OomScoreAdj\": 0,\n            \"PidMode\": \"\",\n            \"Privileged\": false,\n            \"PublishAllPorts\": false,\n            \"ReadonlyRootfs\": true,\n            \"SecurityOpt\": [\n                \"no-new-privileges\"\n            ],\n            \"Tmpfs\": {\n                \"/scratch\": \"rw,noexec,nosuid,nodev,size=16777216,mode=1777\"\n            },\n            \"UTSMode\": \"\",\n            \"UsernsMode\": \"\",\n            \"ShmSize\": 67108864,\n            \"Runtime\": \"runc\",\n            \"Isolation\": \"\",\n            \"CpuShares\": 0,\n            \"Memory\": 134217728,\n            \"NanoCpus\": 1000000000,\n            \"CgroupParent\": \"\",\n            \"BlkioWeight\": 0,\n            \"BlkioWeightDevice\": [],\n            \"BlkioDeviceReadBps\": [],\n            \"BlkioDeviceWriteBps\": [],\n            \"BlkioDeviceReadIOps\": [],\n            \"BlkioDeviceWriteIOps\": [],\n            \"CpuPeriod\": 0,\n            \"CpuQuota\": 0,\n            \"CpuRealtimePeriod\": 0,\n            \"CpuRealtimeRuntime\": 0,\n            \"CpusetCpus\": \"\",\n            \"CpusetMems\": \"\",\n            \"Devices\": [],\n            \"DeviceCgroupRules\": null,\n            \"DeviceRequests\": null,\n            \"MemoryReservation\": 0,\n            \"MemorySwap\": 268435456,\n            \"MemorySwappiness\": null,\n            \"OomKillDisable\": false,\n            \"PidsLimit\": 32,\n            \"Ulimits\": null,\n            \"CpuCount\": 0,\n            \"CpuPercent\": 0,\n            \"IOMaximumIOps\": 0,\n            \"IOMaximumBandwidth\": 0,\n            \"Mounts\": [\n                {\n                    \"Type\": \"bind\",\n                    \"Source\": \"<synthetic-root>/nonallowed/input\",\n                    \"Target\": \"/input\",\n                    \"ReadOnly\": true\n                },\n                {\n                    \"Type\": \"bind\",\n                    \"Source\": \"<synthetic-root>/nonallowed/owned\",\n                    \"Target\": \"/candidate/owned\"\n                }\n            ],\n            \"MaskedPaths\": [\n                \"/proc/acpi\",\n                \"/proc/asound\",\n                \"/proc/interrupts\",\n                \"/proc/kcore\",\n                \"/proc/keys\",\n                \"/proc/latency_stats\",\n                \"/proc/sched_debug\",\n                \"/proc/scsi\",\n                \"/proc/timer_list\",\n                \"/proc/timer_stats\",\n                \"/sys/devices/virtual/powercap\",\n                \"/sys/firmware\"\n            ],\n            \"ReadonlyPaths\": [\n                \"/proc/bus\",\n                \"/proc/fs\",\n                \"/proc/irq\",\n                \"/proc/sys\",\n                \"/proc/sysrq-trigger\"\n            ]\n        },\n        \"Storage\": {\n            \"RootFS\": {\n                \"Snapshot\": {\n                    \"Name\": \"overlayfs\"\n                }\n            }\n        },\n        \"Mounts\": [\n            {\n                \"Type\": \"bind\",\n                \"Source\": \"<synthetic-root>/nonallowed/input\",\n                \"Destination\": \"/input\",\n                \"Mode\": \"\",\n                \"RW\": false,\n                \"Propagation\": \"rprivate\"\n            },\n            {\n                \"Type\": \"bind\",\n                \"Source\": \"<synthetic-root>/nonallowed/owned\",\n                \"Destination\": \"/candidate/owned\",\n                \"Mode\": \"\",\n                \"RW\": true,\n                \"Propagation\": \"rprivate\"\n            }\n        ],\n        \"Config\": {\n            \"Hostname\": \"610200998e2c\",\n            \"Domainname\": \"\",\n            \"User\": \"65532:65532\",\n            \"AttachStdin\": false,\n            \"AttachStdout\": true,\n            \"AttachStderr\": true,\n            \"Tty\": false,\n            \"OpenStdin\": false,\n            \"StdinOnce\": false,\n            \"Env\": [\n                \"HOME=/scratch/home\",\n                \"PYTHONDONTWRITEBYTECODE=1\",\n                \"PATH=/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\",\n                \"LANG=C.UTF-8\",\n                \"GPG_KEY=7169605F62C751356D054A26A821E680E5FA6305\",\n                \"PYTHON_VERSION=3.12.14\",\n                \"PYTHON_SHA256=5c8462af5790baf43a321a1559dbe0db06d1be4300fb85fb53c40060668e548a\"\n            ],\n            \"Cmd\": [\n                \"/input/network_sink.py\"\n            ],\n            \"Image\": \"sha256:4c47124a8391cb7a9f571164147d154777cf012a4ece5f86097130d7a4478111\",\n            \"Volumes\": null,\n            \"WorkingDir\": \"/\",\n            \"Entrypoint\": [\n                \"/usr/local/bin/python\"\n            ],\n            \"Labels\": {\n                \"crewshal.qualification\": \"2c-network\"\n            }\n        },\n        \"NetworkSettings\": {\n            \"SandboxID\": \"\",\n            \"SandboxKey\": \"\",\n            \"Ports\": {},\n            \"Networks\": {\n                \"<fixture-096d90de>\": {\n                    \"IPAMConfig\": null,\n                    \"Links\": null,\n                    \"Aliases\": null,\n                    \"DriverOpts\": null,\n                    \"GwPriority\": 0,\n                    \"NetworkID\": \"\",\n                    \"EndpointID\": \"\",\n                    \"Gateway\": \"\",\n                    \"IPAddress\": \"\",\n                    \"MacAddress\": \"\",\n                    \"IPPrefixLen\": 0,\n                    \"IPv6Gateway\": \"\",\n                    \"GlobalIPv6Address\": \"\",\n                    \"GlobalIPv6PrefixLen\": 0,\n                    \"DNSNames\": null\n                }\n            }\n        },\n        \"ImageManifestDescriptor\": {\n            \"mediaType\": \"application/vnd.oci.image.manifest.v1+json\",\n            \"digest\": \"sha256:34d4d54d6f68a1980ad02433a5078d998ab394d55c97d953efa50b442135baf2\",\n            \"size\": 1737,\n            \"annotations\": {\n                \"com.docker.official-images.bashbrew.arch\": \"arm64v8\",\n                \"org.opencontainers.image.base.digest\": \"sha256:260479a1cfaf304c4c20da7f8405d3ce313513dcd534bb743257bdd2fe0f3e2d\",\n                \"org.opencontainers.image.base.name\": \"alpine:3.24\",\n                \"org.opencontainers.image.created\": \"2026-09-17T21:51:41Z\",\n                \"org.opencontainers.image.revision\": \"688a0b86bb44289df16a363e9f41d90514c1a5f9\",\n                \"org.opencontainers.image.source\": \"https://github.com/docker-library/python.git#688a0b86bb44289df16a363e9f41d90514c1a5f9:3.12/alpine3.24\",\n                \"org.opencontainers.image.url\": \"https://hub.docker.com/_/python\",\n                \"org.opencontainers.image.version\": \"3.12.14-alpine3.24\"\n            },\n            \"platform\": {\n                \"architecture\": \"arm64\",\n                \"os\": \"linux\",\n                \"variant\": \"v8\"\n            }\n        }\n    }\n]\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/opt/homebrew/bin/docker",
+        "start",
+        "<fixture-e3cf3688>"
+      ],
+      "exit": 0,
+      "stdout": "<fixture-e3cf3688>\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/opt/homebrew/bin/docker",
+        "inspect",
+        "<fixture-e3cf3688>"
+      ],
+      "exit": 0,
+      "stdout": "[\n    {\n        \"Id\": \"610200998e2c3afab4349fbe9c93674435711d0b80d2a567b1957e36ded8bc5c\",\n        \"Created\": \"2026-10-02T13:26:50.434629296Z\",\n        \"Path\": \"/usr/local/bin/python\",\n        \"Args\": [\n            \"/input/network_sink.py\"\n        ],\n        \"State\": {\n            \"Status\": \"running\",\n            \"Running\": true,\n            \"Paused\": false,\n            \"Restarting\": false,\n            \"OOMKilled\": false,\n            \"Dead\": false,\n            \"Pid\": 3535,\n            \"ExitCode\": 0,\n            \"Error\": \"\",\n            \"StartedAt\": \"2026-10-02T13:26:50.571860296Z\",\n            \"FinishedAt\": \"0001-01-01T00:00:00Z\"\n        },\n        \"Image\": \"sha256:4c47124a8391cb7a9f571164147d154777cf012a4ece5f86097130d7a4478111\",\n        \"ResolvConfPath\": \"/var/lib/docker/containers/610200998e2c3afab4349fbe9c93674435711d0b80d2a567b1957e36ded8bc5c/resolv.conf\",\n        \"HostnamePath\": \"/var/lib/docker/containers/610200998e2c3afab4349fbe9c93674435711d0b80d2a567b1957e36ded8bc5c/hostname\",\n        \"HostsPath\": \"/var/lib/docker/containers/610200998e2c3afab4349fbe9c93674435711d0b80d2a567b1957e36ded8bc5c/hosts\",\n        \"LogPath\": \"\",\n        \"Name\": \"/<fixture-e3cf3688>\",\n        \"RestartCount\": 0,\n        \"Driver\": \"overlayfs\",\n        \"Platform\": \"linux\",\n        \"MountLabel\": \"\",\n        \"ProcessLabel\": \"\",\n        \"AppArmorProfile\": \"\",\n        \"ExecIDs\": null,\n        \"HostConfig\": {\n            \"Binds\": null,\n            \"ContainerIDFile\": \"\",\n            \"LogConfig\": {\n                \"Type\": \"none\",\n                \"Config\": {}\n            },\n            \"NetworkMode\": \"<fixture-096d90de>\",\n            \"PortBindings\": {},\n            \"RestartPolicy\": {\n                \"Name\": \"no\",\n                \"MaximumRetryCount\": 0\n            },\n            \"AutoRemove\": false,\n            \"VolumeDriver\": \"\",\n            \"VolumesFrom\": null,\n            \"ConsoleSize\": [\n                0,\n                0\n            ],\n            \"CapAdd\": null,\n            \"CapDrop\": [\n                \"ALL\"\n            ],\n            \"CgroupnsMode\": \"private\",\n            \"Dns\": null,\n            \"DnsOptions\": [],\n            \"DnsSearch\": [],\n            \"ExtraHosts\": null,\n            \"GroupAdd\": null,\n            \"IpcMode\": \"private\",\n            \"Cgroup\": \"\",\n            \"Links\": null,\n            \"OomScoreAdj\": 0,\n            \"PidMode\": \"\",\n            \"Privileged\": false,\n            \"PublishAllPorts\": false,\n            \"ReadonlyRootfs\": true,\n            \"SecurityOpt\": [\n                \"no-new-privileges\"\n            ],\n            \"Tmpfs\": {\n                \"/scratch\": \"rw,noexec,nosuid,nodev,size=16777216,mode=1777\"\n            },\n            \"UTSMode\": \"\",\n            \"UsernsMode\": \"\",\n            \"ShmSize\": 67108864,\n            \"Runtime\": \"runc\",\n            \"Isolation\": \"\",\n            \"CpuShares\": 0,\n            \"Memory\": 134217728,\n            \"NanoCpus\": 1000000000,\n            \"CgroupParent\": \"\",\n            \"BlkioWeight\": 0,\n            \"BlkioWeightDevice\": [],\n            \"BlkioDeviceReadBps\": [],\n            \"BlkioDeviceWriteBps\": [],\n            \"BlkioDeviceReadIOps\": [],\n            \"BlkioDeviceWriteIOps\": [],\n            \"CpuPeriod\": 0,\n            \"CpuQuota\": 0,\n            \"CpuRealtimePeriod\": 0,\n            \"CpuRealtimeRuntime\": 0,\n            \"CpusetCpus\": \"\",\n            \"CpusetMems\": \"\",\n            \"Devices\": [],\n            \"DeviceCgroupRules\": null,\n            \"DeviceRequests\": null,\n            \"MemoryReservation\": 0,\n            \"MemorySwap\": 268435456,\n            \"MemorySwappiness\": null,\n            \"OomKillDisable\": null,\n            \"PidsLimit\": 32,\n            \"Ulimits\": null,\n            \"CpuCount\": 0,\n            \"CpuPercent\": 0,\n            \"IOMaximumIOps\": 0,\n            \"IOMaximumBandwidth\": 0,\n            \"Mounts\": [\n                {\n                    \"Type\": \"bind\",\n                    \"Source\": \"<synthetic-root>/nonallowed/input\",\n                    \"Target\": \"/input\",\n                    \"ReadOnly\": true\n                },\n                {\n                    \"Type\": \"bind\",\n                    \"Source\": \"<synthetic-root>/nonallowed/owned\",\n                    \"Target\": \"/candidate/owned\"\n                }\n            ],\n            \"MaskedPaths\": [\n                \"/proc/acpi\",\n                \"/proc/asound\",\n                \"/proc/interrupts\",\n                \"/proc/kcore\",\n                \"/proc/keys\",\n                \"/proc/latency_stats\",\n                \"/proc/sched_debug\",\n                \"/proc/scsi\",\n                \"/proc/timer_list\",\n                \"/proc/timer_stats\",\n                \"/sys/devices/virtual/powercap\",\n                \"/sys/firmware\"\n            ],\n            \"ReadonlyPaths\": [\n                \"/proc/bus\",\n                \"/proc/fs\",\n                \"/proc/irq\",\n                \"/proc/sys\",\n                \"/proc/sysrq-trigger\"\n            ]\n        },\n        \"Storage\": {\n            \"RootFS\": {\n                \"Snapshot\": {\n                    \"Name\": \"overlayfs\"\n                }\n            }\n        },\n        \"Mounts\": [\n            {\n                \"Type\": \"bind\",\n                \"Source\": \"<synthetic-root>/nonallowed/input\",\n                \"Destination\": \"/input\",\n                \"Mode\": \"\",\n                \"RW\": false,\n                \"Propagation\": \"rprivate\"\n            },\n            {\n                \"Type\": \"bind\",\n                \"Source\": \"<synthetic-root>/nonallowed/owned\",\n                \"Destination\": \"/candidate/owned\",\n                \"Mode\": \"\",\n                \"RW\": true,\n                \"Propagation\": \"rprivate\"\n            }\n        ],\n        \"Config\": {\n            \"Hostname\": \"610200998e2c\",\n            \"Domainname\": \"\",\n            \"User\": \"65532:65532\",\n            \"AttachStdin\": false,\n            \"AttachStdout\": true,\n            \"AttachStderr\": true,\n            \"Tty\": false,\n            \"OpenStdin\": false,\n            \"StdinOnce\": false,\n            \"Env\": [\n                \"HOME=/scratch/home\",\n                \"PYTHONDONTWRITEBYTECODE=1\",\n                \"PATH=/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\",\n                \"LANG=C.UTF-8\",\n                \"GPG_KEY=7169605F62C751356D054A26A821E680E5FA6305\",\n                \"PYTHON_VERSION=3.12.14\",\n                \"PYTHON_SHA256=5c8462af5790baf43a321a1559dbe0db06d1be4300fb85fb53c40060668e548a\"\n            ],\n            \"Cmd\": [\n                \"/input/network_sink.py\"\n            ],\n            \"Image\": \"sha256:4c47124a8391cb7a9f571164147d154777cf012a4ece5f86097130d7a4478111\",\n            \"Volumes\": null,\n            \"WorkingDir\": \"/\",\n            \"Entrypoint\": [\n                \"/usr/local/bin/python\"\n            ],\n            \"Labels\": {\n                \"crewshal.qualification\": \"2c-network\"\n            }\n        },\n        \"NetworkSettings\": {\n            \"SandboxID\": \"41aaec41d5e122e8aca33c4ac03baa75274df0fcd93eaddafc91522343df5dd4\",\n            \"SandboxKey\": \"/var/run/docker/netns/41aaec41d5e1\",\n            \"Ports\": {},\n            \"Networks\": {\n                \"<fixture-096d90de>\": {\n                    \"IPAMConfig\": null,\n                    \"Links\": null,\n                    \"Aliases\": null,\n                    \"DriverOpts\": null,\n                    \"GwPriority\": 0,\n                    \"NetworkID\": \"deed0676f12c5d1aff546c2efdab5e040005c4918d2ef14be146347b5bc7cb5f\",\n                    \"EndpointID\": \"92a3fbdff505e5f08260176bdcb0eeff49452ccbe5a99e4a1e50c8b18dca18f1\",\n                    \"Gateway\": \"\",\n                    \"IPAddress\": \"10.243.141.3\",\n                    \"MacAddress\": \"6e:16:df:2b:81:88\",\n                    \"IPPrefixLen\": 24,\n                    \"IPv6Gateway\": \"\",\n                    \"GlobalIPv6Address\": \"fd2c:7eec:d35e::3\",\n                    \"GlobalIPv6PrefixLen\": 64,\n                    \"DNSNames\": [\n                        \"<fixture-e3cf3688>\",\n                        \"610200998e2c\"\n                    ]\n                }\n            }\n        },\n        \"ImageManifestDescriptor\": {\n            \"mediaType\": \"application/vnd.oci.image.manifest.v1+json\",\n            \"digest\": \"sha256:34d4d54d6f68a1980ad02433a5078d998ab394d55c97d953efa50b442135baf2\",\n            \"size\": 1737,\n            \"annotations\": {\n                \"com.docker.official-images.bashbrew.arch\": \"arm64v8\",\n                \"org.opencontainers.image.base.digest\": \"sha256:260479a1cfaf304c4c20da7f8405d3ce313513dcd534bb743257bdd2fe0f3e2d\",\n                \"org.opencontainers.image.base.name\": \"alpine:3.24\",\n                \"org.opencontainers.image.created\": \"2026-09-17T21:51:41Z\",\n                \"org.opencontainers.image.revision\": \"688a0b86bb44289df16a363e9f41d90514c1a5f9\",\n                \"org.opencontainers.image.source\": \"https://github.com/docker-library/python.git#688a0b86bb44289df16a363e9f41d90514c1a5f9:3.12/alpine3.24\",\n                \"org.opencontainers.image.url\": \"https://hub.docker.com/_/python\",\n                \"org.opencontainers.image.version\": \"3.12.14-alpine3.24\"\n            },\n            \"platform\": {\n                \"architecture\": \"arm64\",\n                \"os\": \"linux\",\n                \"variant\": \"v8\"\n            }\n        }\n    }\n]\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/opt/homebrew/bin/docker",
+        "create",
+        "--pull=never",
+        "--name",
+        "<fixture-99566c20>",
+        "--label",
+        "crewshal.qualification=2c-network",
+        "--network",
+        "<fixture-096d90de>",
+        "--read-only",
+        "--user=65532:65532",
+        "--cap-drop=ALL",
+        "--security-opt=no-new-privileges",
+        "--pids-limit=32",
+        "--memory=128m",
+        "--cpus=1",
+        "--log-driver=none",
+        "--entrypoint=/usr/local/bin/python",
+        "--mount",
+        "type=bind,src=<synthetic-root>/before/input,dst=/input,readonly",
+        "--mount",
+        "type=bind,src=<synthetic-root>/before/owned,dst=/candidate/owned",
+        "--tmpfs",
+        "/scratch:rw,noexec,nosuid,nodev,size=16777216,mode=1777",
+        "--env",
+        "HOME=/scratch/home",
+        "--env",
+        "PYTHONDONTWRITEBYTECODE=1",
+        "sha256:4c47124a8391cb7a9f571164147d154777cf012a4ece5f86097130d7a4478111",
+        "/input/network_client.py",
+        "before"
+      ],
+      "exit": 0,
+      "stdout": "38bc6b7f583718106024b7d3a5e821ff602069cf9cc2478ce6788ce9afb453c0\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/opt/homebrew/bin/docker",
+        "inspect",
+        "<fixture-99566c20>"
+      ],
+      "exit": 0,
+      "stdout": "[\n    {\n        \"Id\": \"38bc6b7f583718106024b7d3a5e821ff602069cf9cc2478ce6788ce9afb453c0\",\n        \"Created\": \"2026-10-02T13:26:50.761332838Z\",\n        \"Path\": \"/usr/local/bin/python\",\n        \"Args\": [\n            \"/input/network_client.py\",\n            \"before\"\n        ],\n        \"State\": {\n            \"Status\": \"created\",\n            \"Running\": false,\n            \"Paused\": false,\n            \"Restarting\": false,\n            \"OOMKilled\": false,\n            \"Dead\": false,\n            \"Pid\": 0,\n            \"ExitCode\": 0,\n            \"Error\": \"\",\n            \"StartedAt\": \"0001-01-01T00:00:00Z\",\n            \"FinishedAt\": \"0001-01-01T00:00:00Z\"\n        },\n        \"Image\": \"sha256:4c47124a8391cb7a9f571164147d154777cf012a4ece5f86097130d7a4478111\",\n        \"ResolvConfPath\": \"\",\n        \"HostnamePath\": \"\",\n        \"HostsPath\": \"\",\n        \"LogPath\": \"\",\n        \"Name\": \"/<fixture-99566c20>\",\n        \"RestartCount\": 0,\n        \"Driver\": \"overlayfs\",\n        \"Platform\": \"linux\",\n        \"MountLabel\": \"\",\n        \"ProcessLabel\": \"\",\n        \"AppArmorProfile\": \"\",\n        \"ExecIDs\": null,\n        \"HostConfig\": {\n            \"Binds\": null,\n            \"ContainerIDFile\": \"\",\n            \"LogConfig\": {\n                \"Type\": \"none\",\n                \"Config\": {}\n            },\n            \"NetworkMode\": \"<fixture-096d90de>\",\n            \"PortBindings\": {},\n            \"RestartPolicy\": {\n                \"Name\": \"no\",\n                \"MaximumRetryCount\": 0\n            },\n            \"AutoRemove\": false,\n            \"VolumeDriver\": \"\",\n            \"VolumesFrom\": null,\n            \"ConsoleSize\": [\n                0,\n                0\n            ],\n            \"CapAdd\": null,\n            \"CapDrop\": [\n                \"ALL\"\n            ],\n            \"CgroupnsMode\": \"private\",\n            \"Dns\": null,\n            \"DnsOptions\": [],\n            \"DnsSearch\": [],\n            \"ExtraHosts\": null,\n            \"GroupAdd\": null,\n            \"IpcMode\": \"private\",\n            \"Cgroup\": \"\",\n            \"Links\": null,\n            \"OomScoreAdj\": 0,\n            \"PidMode\": \"\",\n            \"Privileged\": false,\n            \"PublishAllPorts\": false,\n            \"ReadonlyRootfs\": true,\n            \"SecurityOpt\": [\n                \"no-new-privileges\"\n            ],\n            \"Tmpfs\": {\n                \"/scratch\": \"rw,noexec,nosuid,nodev,size=16777216,mode=1777\"\n            },\n            \"UTSMode\": \"\",\n            \"UsernsMode\": \"\",\n            \"ShmSize\": 67108864,\n            \"Runtime\": \"runc\",\n            \"Isolation\": \"\",\n            \"CpuShares\": 0,\n            \"Memory\": 134217728,\n            \"NanoCpus\": 1000000000,\n            \"CgroupParent\": \"\",\n            \"BlkioWeight\": 0,\n            \"BlkioWeightDevice\": [],\n            \"BlkioDeviceReadBps\": [],\n            \"BlkioDeviceWriteBps\": [],\n            \"BlkioDeviceReadIOps\": [],\n            \"BlkioDeviceWriteIOps\": [],\n            \"CpuPeriod\": 0,\n            \"CpuQuota\": 0,\n            \"CpuRealtimePeriod\": 0,\n            \"CpuRealtimeRuntime\": 0,\n            \"CpusetCpus\": \"\",\n            \"CpusetMems\": \"\",\n            \"Devices\": [],\n            \"DeviceCgroupRules\": null,\n            \"DeviceRequests\": null,\n            \"MemoryReservation\": 0,\n            \"MemorySwap\": 268435456,\n            \"MemorySwappiness\": null,\n            \"OomKillDisable\": false,\n            \"PidsLimit\": 32,\n            \"Ulimits\": null,\n            \"CpuCount\": 0,\n            \"CpuPercent\": 0,\n            \"IOMaximumIOps\": 0,\n            \"IOMaximumBandwidth\": 0,\n            \"Mounts\": [\n                {\n                    \"Type\": \"bind\",\n                    \"Source\": \"<synthetic-root>/before/input\",\n                    \"Target\": \"/input\",\n                    \"ReadOnly\": true\n                },\n                {\n                    \"Type\": \"bind\",\n                    \"Source\": \"<synthetic-root>/before/owned\",\n                    \"Target\": \"/candidate/owned\"\n                }\n            ],\n            \"MaskedPaths\": [\n                \"/proc/acpi\",\n                \"/proc/asound\",\n                \"/proc/interrupts\",\n                \"/proc/kcore\",\n                \"/proc/keys\",\n                \"/proc/latency_stats\",\n                \"/proc/sched_debug\",\n                \"/proc/scsi\",\n                \"/proc/timer_list\",\n                \"/proc/timer_stats\",\n                \"/sys/devices/virtual/powercap\",\n                \"/sys/firmware\"\n            ],\n            \"ReadonlyPaths\": [\n                \"/proc/bus\",\n                \"/proc/fs\",\n                \"/proc/irq\",\n                \"/proc/sys\",\n                \"/proc/sysrq-trigger\"\n            ]\n        },\n        \"Storage\": {\n            \"RootFS\": {\n                \"Snapshot\": {\n                    \"Name\": \"overlayfs\"\n                }\n            }\n        },\n        \"Mounts\": [\n            {\n                \"Type\": \"bind\",\n                \"Source\": \"<synthetic-root>/before/input\",\n                \"Destination\": \"/input\",\n                \"Mode\": \"\",\n                \"RW\": false,\n                \"Propagation\": \"rprivate\"\n            },\n            {\n                \"Type\": \"bind\",\n                \"Source\": \"<synthetic-root>/before/owned\",\n                \"Destination\": \"/candidate/owned\",\n                \"Mode\": \"\",\n                \"RW\": true,\n                \"Propagation\": \"rprivate\"\n            }\n        ],\n        \"Config\": {\n            \"Hostname\": \"38bc6b7f5837\",\n            \"Domainname\": \"\",\n            \"User\": \"65532:65532\",\n            \"AttachStdin\": false,\n            \"AttachStdout\": true,\n            \"AttachStderr\": true,\n            \"Tty\": false,\n            \"OpenStdin\": false,\n            \"StdinOnce\": false,\n            \"Env\": [\n                \"HOME=/scratch/home\",\n                \"PYTHONDONTWRITEBYTECODE=1\",\n                \"PATH=/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\",\n                \"LANG=C.UTF-8\",\n                \"GPG_KEY=7169605F62C751356D054A26A821E680E5FA6305\",\n                \"PYTHON_VERSION=3.12.14\",\n                \"PYTHON_SHA256=5c8462af5790baf43a321a1559dbe0db06d1be4300fb85fb53c40060668e548a\"\n            ],\n            \"Cmd\": [\n                \"/input/network_client.py\",\n                \"before\"\n            ],\n            \"Image\": \"sha256:4c47124a8391cb7a9f571164147d154777cf012a4ece5f86097130d7a4478111\",\n            \"Volumes\": null,\n            \"WorkingDir\": \"/\",\n            \"Entrypoint\": [\n                \"/usr/local/bin/python\"\n            ],\n            \"Labels\": {\n                \"crewshal.qualification\": \"2c-network\"\n            }\n        },\n        \"NetworkSettings\": {\n            \"SandboxID\": \"\",\n            \"SandboxKey\": \"\",\n            \"Ports\": {},\n            \"Networks\": {\n                \"<fixture-096d90de>\": {\n                    \"IPAMConfig\": null,\n                    \"Links\": null,\n                    \"Aliases\": null,\n                    \"DriverOpts\": null,\n                    \"GwPriority\": 0,\n                    \"NetworkID\": \"\",\n                    \"EndpointID\": \"\",\n                    \"Gateway\": \"\",\n                    \"IPAddress\": \"\",\n                    \"MacAddress\": \"\",\n                    \"IPPrefixLen\": 0,\n                    \"IPv6Gateway\": \"\",\n                    \"GlobalIPv6Address\": \"\",\n                    \"GlobalIPv6PrefixLen\": 0,\n                    \"DNSNames\": null\n                }\n            }\n        },\n        \"ImageManifestDescriptor\": {\n            \"mediaType\": \"application/vnd.oci.image.manifest.v1+json\",\n            \"digest\": \"sha256:34d4d54d6f68a1980ad02433a5078d998ab394d55c97d953efa50b442135baf2\",\n            \"size\": 1737,\n            \"annotations\": {\n                \"com.docker.official-images.bashbrew.arch\": \"arm64v8\",\n                \"org.opencontainers.image.base.digest\": \"sha256:260479a1cfaf304c4c20da7f8405d3ce313513dcd534bb743257bdd2fe0f3e2d\",\n                \"org.opencontainers.image.base.name\": \"alpine:3.24\",\n                \"org.opencontainers.image.created\": \"2026-09-17T21:51:41Z\",\n                \"org.opencontainers.image.revision\": \"688a0b86bb44289df16a363e9f41d90514c1a5f9\",\n                \"org.opencontainers.image.source\": \"https://github.com/docker-library/python.git#688a0b86bb44289df16a363e9f41d90514c1a5f9:3.12/alpine3.24\",\n                \"org.opencontainers.image.url\": \"https://hub.docker.com/_/python\",\n                \"org.opencontainers.image.version\": \"3.12.14-alpine3.24\"\n            },\n            \"platform\": {\n                \"architecture\": \"arm64\",\n                \"os\": \"linux\",\n                \"variant\": \"v8\"\n            }\n        }\n    }\n]\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/opt/homebrew/bin/docker",
+        "start",
+        "<fixture-99566c20>"
+      ],
+      "exit": 0,
+      "stdout": "<fixture-99566c20>\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/opt/homebrew/bin/docker",
+        "inspect",
+        "--format",
+        "{{json .State}}",
+        "<fixture-99566c20>"
+      ],
+      "exit": 0,
+      "stdout": "{\"Status\":\"running\",\"Running\":true,\"Paused\":false,\"Restarting\":false,\"OOMKilled\":false,\"Dead\":false,\"Pid\":3589,\"ExitCode\":0,\"Error\":\"\",\"StartedAt\":\"2026-10-02T13:26:50.848812171Z\",\"FinishedAt\":\"0001-01-01T00:00:00Z\"}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/opt/homebrew/bin/docker",
+        "inspect",
+        "--format",
+        "{{json .State}}",
+        "<fixture-99566c20>"
+      ],
+      "exit": 0,
+      "stdout": "{\"Status\":\"running\",\"Running\":true,\"Paused\":false,\"Restarting\":false,\"OOMKilled\":false,\"Dead\":false,\"Pid\":3589,\"ExitCode\":0,\"Error\":\"\",\"StartedAt\":\"2026-10-02T13:26:50.848812171Z\",\"FinishedAt\":\"0001-01-01T00:00:00Z\"}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/opt/homebrew/bin/docker",
+        "inspect",
+        "--format",
+        "{{json .State}}",
+        "<fixture-99566c20>"
+      ],
+      "exit": 0,
+      "stdout": "{\"Status\":\"exited\",\"Running\":false,\"Paused\":false,\"Restarting\":false,\"OOMKilled\":false,\"Dead\":false,\"Pid\":0,\"ExitCode\":0,\"Error\":\"\",\"StartedAt\":\"2026-10-02T13:26:50.848812171Z\",\"FinishedAt\":\"2026-10-02T13:26:51.005872088Z\"}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/opt/homebrew/bin/docker",
+        "create",
+        "--pull=never",
+        "--name",
+        "<fixture-d1262503>",
+        "--label",
+        "crewshal.qualification=2c-network",
+        "--network",
+        "none",
+        "--read-only",
+        "--user=65532:65532",
+        "--cap-drop=ALL",
+        "--security-opt=no-new-privileges",
+        "--pids-limit=32",
+        "--memory=128m",
+        "--cpus=1",
+        "--log-driver=none",
+        "--entrypoint=/usr/local/bin/python",
+        "--mount",
+        "type=bind,src=<synthetic-root>/denied/input,dst=/input,readonly",
+        "--mount",
+        "type=bind,src=<synthetic-root>/denied/owned,dst=/candidate/owned",
+        "--tmpfs",
+        "/scratch:rw,noexec,nosuid,nodev,size=16777216,mode=1777",
+        "--env",
+        "HOME=/scratch/home",
+        "--env",
+        "PYTHONDONTWRITEBYTECODE=1",
+        "sha256:4c47124a8391cb7a9f571164147d154777cf012a4ece5f86097130d7a4478111",
+        "/input/network_client.py",
+        "denied"
+      ],
+      "exit": 0,
+      "stdout": "8189ca044409ba4475aeba067d07fbe202ac3ea13fde79ebc7f9b55a7966ce34\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/opt/homebrew/bin/docker",
+        "inspect",
+        "<fixture-d1262503>"
+      ],
+      "exit": 0,
+      "stdout": "[\n    {\n        \"Id\": \"8189ca044409ba4475aeba067d07fbe202ac3ea13fde79ebc7f9b55a7966ce34\",\n        \"Created\": \"2026-10-02T13:26:51.186529963Z\",\n        \"Path\": \"/usr/local/bin/python\",\n        \"Args\": [\n            \"/input/network_client.py\",\n            \"denied\"\n        ],\n        \"State\": {\n            \"Status\": \"created\",\n            \"Running\": false,\n            \"Paused\": false,\n            \"Restarting\": false,\n            \"OOMKilled\": false,\n            \"Dead\": false,\n            \"Pid\": 0,\n            \"ExitCode\": 0,\n            \"Error\": \"\",\n            \"StartedAt\": \"0001-01-01T00:00:00Z\",\n            \"FinishedAt\": \"0001-01-01T00:00:00Z\"\n        },\n        \"Image\": \"sha256:4c47124a8391cb7a9f571164147d154777cf012a4ece5f86097130d7a4478111\",\n        \"ResolvConfPath\": \"\",\n        \"HostnamePath\": \"\",\n        \"HostsPath\": \"\",\n        \"LogPath\": \"\",\n        \"Name\": \"/<fixture-d1262503>\",\n        \"RestartCount\": 0,\n        \"Driver\": \"overlayfs\",\n        \"Platform\": \"linux\",\n        \"MountLabel\": \"\",\n        \"ProcessLabel\": \"\",\n        \"AppArmorProfile\": \"\",\n        \"ExecIDs\": null,\n        \"HostConfig\": {\n            \"Binds\": null,\n            \"ContainerIDFile\": \"\",\n            \"LogConfig\": {\n                \"Type\": \"none\",\n                \"Config\": {}\n            },\n            \"NetworkMode\": \"none\",\n            \"PortBindings\": {},\n            \"RestartPolicy\": {\n                \"Name\": \"no\",\n                \"MaximumRetryCount\": 0\n            },\n            \"AutoRemove\": false,\n            \"VolumeDriver\": \"\",\n            \"VolumesFrom\": null,\n            \"ConsoleSize\": [\n                0,\n                0\n            ],\n            \"CapAdd\": null,\n            \"CapDrop\": [\n                \"ALL\"\n            ],\n            \"CgroupnsMode\": \"private\",\n            \"Dns\": null,\n            \"DnsOptions\": [],\n            \"DnsSearch\": [],\n            \"ExtraHosts\": null,\n            \"GroupAdd\": null,\n            \"IpcMode\": \"private\",\n            \"Cgroup\": \"\",\n            \"Links\": null,\n            \"OomScoreAdj\": 0,\n            \"PidMode\": \"\",\n            \"Privileged\": false,\n            \"PublishAllPorts\": false,\n            \"ReadonlyRootfs\": true,\n            \"SecurityOpt\": [\n                \"no-new-privileges\"\n            ],\n            \"Tmpfs\": {\n                \"/scratch\": \"rw,noexec,nosuid,nodev,size=16777216,mode=1777\"\n            },\n            \"UTSMode\": \"\",\n            \"UsernsMode\": \"\",\n            \"ShmSize\": 67108864,\n            \"Runtime\": \"runc\",\n            \"Isolation\": \"\",\n            \"CpuShares\": 0,\n            \"Memory\": 134217728,\n            \"NanoCpus\": 1000000000,\n            \"CgroupParent\": \"\",\n            \"BlkioWeight\": 0,\n            \"BlkioWeightDevice\": [],\n            \"BlkioDeviceReadBps\": [],\n            \"BlkioDeviceWriteBps\": [],\n            \"BlkioDeviceReadIOps\": [],\n            \"BlkioDeviceWriteIOps\": [],\n            \"CpuPeriod\": 0,\n            \"CpuQuota\": 0,\n            \"CpuRealtimePeriod\": 0,\n            \"CpuRealtimeRuntime\": 0,\n            \"CpusetCpus\": \"\",\n            \"CpusetMems\": \"\",\n            \"Devices\": [],\n            \"DeviceCgroupRules\": null,\n            \"DeviceRequests\": null,\n            \"MemoryReservation\": 0,\n            \"MemorySwap\": 268435456,\n            \"MemorySwappiness\": null,\n            \"OomKillDisable\": false,\n            \"PidsLimit\": 32,\n            \"Ulimits\": null,\n            \"CpuCount\": 0,\n            \"CpuPercent\": 0,\n            \"IOMaximumIOps\": 0,\n            \"IOMaximumBandwidth\": 0,\n            \"Mounts\": [\n                {\n                    \"Type\": \"bind\",\n                    \"Source\": \"<synthetic-root>/denied/input\",\n                    \"Target\": \"/input\",\n                    \"ReadOnly\": true\n                },\n                {\n                    \"Type\": \"bind\",\n                    \"Source\": \"<synthetic-root>/denied/owned\",\n                    \"Target\": \"/candidate/owned\"\n                }\n            ],\n            \"MaskedPaths\": [\n                \"/proc/acpi\",\n                \"/proc/asound\",\n                \"/proc/interrupts\",\n                \"/proc/kcore\",\n                \"/proc/keys\",\n                \"/proc/latency_stats\",\n                \"/proc/sched_debug\",\n                \"/proc/scsi\",\n                \"/proc/timer_list\",\n                \"/proc/timer_stats\",\n                \"/sys/devices/virtual/powercap\",\n                \"/sys/firmware\"\n            ],\n            \"ReadonlyPaths\": [\n                \"/proc/bus\",\n                \"/proc/fs\",\n                \"/proc/irq\",\n                \"/proc/sys\",\n                \"/proc/sysrq-trigger\"\n            ]\n        },\n        \"Storage\": {\n            \"RootFS\": {\n                \"Snapshot\": {\n                    \"Name\": \"overlayfs\"\n                }\n            }\n        },\n        \"Mounts\": [\n            {\n                \"Type\": \"bind\",\n                \"Source\": \"<synthetic-root>/denied/input\",\n                \"Destination\": \"/input\",\n                \"Mode\": \"\",\n                \"RW\": false,\n                \"Propagation\": \"rprivate\"\n            },\n            {\n                \"Type\": \"bind\",\n                \"Source\": \"<synthetic-root>/denied/owned\",\n                \"Destination\": \"/candidate/owned\",\n                \"Mode\": \"\",\n                \"RW\": true,\n                \"Propagation\": \"rprivate\"\n            }\n        ],\n        \"Config\": {\n            \"Hostname\": \"8189ca044409\",\n            \"Domainname\": \"\",\n            \"User\": \"65532:65532\",\n            \"AttachStdin\": false,\n            \"AttachStdout\": true,\n            \"AttachStderr\": true,\n            \"Tty\": false,\n            \"OpenStdin\": false,\n            \"StdinOnce\": false,\n            \"Env\": [\n                \"PYTHONDONTWRITEBYTECODE=1\",\n                \"HOME=/scratch/home\",\n                \"PATH=/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\",\n                \"LANG=C.UTF-8\",\n                \"GPG_KEY=7169605F62C751356D054A26A821E680E5FA6305\",\n                \"PYTHON_VERSION=3.12.14\",\n                \"PYTHON_SHA256=5c8462af5790baf43a321a1559dbe0db06d1be4300fb85fb53c40060668e548a\"\n            ],\n            \"Cmd\": [\n                \"/input/network_client.py\",\n                \"denied\"\n            ],\n            \"Image\": \"sha256:4c47124a8391cb7a9f571164147d154777cf012a4ece5f86097130d7a4478111\",\n            \"Volumes\": null,\n            \"WorkingDir\": \"/\",\n            \"Entrypoint\": [\n                \"/usr/local/bin/python\"\n            ],\n            \"Labels\": {\n                \"crewshal.qualification\": \"2c-network\"\n            }\n        },\n        \"NetworkSettings\": {\n            \"SandboxID\": \"\",\n            \"SandboxKey\": \"\",\n            \"Ports\": {},\n            \"Networks\": {\n                \"none\": {\n                    \"IPAMConfig\": null,\n                    \"Links\": null,\n                    \"Aliases\": null,\n                    \"DriverOpts\": null,\n                    \"GwPriority\": 0,\n                    \"NetworkID\": \"\",\n                    \"EndpointID\": \"\",\n                    \"Gateway\": \"\",\n                    \"IPAddress\": \"\",\n                    \"MacAddress\": \"\",\n                    \"IPPrefixLen\": 0,\n                    \"IPv6Gateway\": \"\",\n                    \"GlobalIPv6Address\": \"\",\n                    \"GlobalIPv6PrefixLen\": 0,\n                    \"DNSNames\": null\n                }\n            }\n        },\n        \"ImageManifestDescriptor\": {\n            \"mediaType\": \"application/vnd.oci.image.manifest.v1+json\",\n            \"digest\": \"sha256:34d4d54d6f68a1980ad02433a5078d998ab394d55c97d953efa50b442135baf2\",\n            \"size\": 1737,\n            \"annotations\": {\n                \"com.docker.official-images.bashbrew.arch\": \"arm64v8\",\n                \"org.opencontainers.image.base.digest\": \"sha256:260479a1cfaf304c4c20da7f8405d3ce313513dcd534bb743257bdd2fe0f3e2d\",\n                \"org.opencontainers.image.base.name\": \"alpine:3.24\",\n                \"org.opencontainers.image.created\": \"2026-09-17T21:51:41Z\",\n                \"org.opencontainers.image.revision\": \"688a0b86bb44289df16a363e9f41d90514c1a5f9\",\n                \"org.opencontainers.image.source\": \"https://github.com/docker-library/python.git#688a0b86bb44289df16a363e9f41d90514c1a5f9:3.12/alpine3.24\",\n                \"org.opencontainers.image.url\": \"https://hub.docker.com/_/python\",\n                \"org.opencontainers.image.version\": \"3.12.14-alpine3.24\"\n            },\n            \"platform\": {\n                \"architecture\": \"arm64\",\n                \"os\": \"linux\",\n                \"variant\": \"v8\"\n            }\n        }\n    }\n]\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/opt/homebrew/bin/docker",
+        "start",
+        "<fixture-d1262503>"
+      ],
+      "exit": 0,
+      "stdout": "<fixture-d1262503>\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/opt/homebrew/bin/docker",
+        "inspect",
+        "--format",
+        "{{json .State}}",
+        "<fixture-d1262503>"
+      ],
+      "exit": 0,
+      "stdout": "{\"Status\":\"running\",\"Running\":true,\"Paused\":false,\"Restarting\":false,\"OOMKilled\":false,\"Dead\":false,\"Pid\":3667,\"ExitCode\":0,\"Error\":\"\",\"StartedAt\":\"2026-10-02T13:26:51.291649213Z\",\"FinishedAt\":\"0001-01-01T00:00:00Z\"}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/opt/homebrew/bin/docker",
+        "inspect",
+        "--format",
+        "{{json .State}}",
+        "<fixture-d1262503>"
+      ],
+      "exit": 0,
+      "stdout": "{\"Status\":\"running\",\"Running\":true,\"Paused\":false,\"Restarting\":false,\"OOMKilled\":false,\"Dead\":false,\"Pid\":3667,\"ExitCode\":0,\"Error\":\"\",\"StartedAt\":\"2026-10-02T13:26:51.291649213Z\",\"FinishedAt\":\"0001-01-01T00:00:00Z\"}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/opt/homebrew/bin/docker",
+        "inspect",
+        "--format",
+        "{{json .State}}",
+        "<fixture-d1262503>"
+      ],
+      "exit": 0,
+      "stdout": "{\"Status\":\"exited\",\"Running\":false,\"Paused\":false,\"Restarting\":false,\"OOMKilled\":false,\"Dead\":false,\"Pid\":0,\"ExitCode\":0,\"Error\":\"\",\"StartedAt\":\"2026-10-02T13:26:51.291649213Z\",\"FinishedAt\":\"2026-10-02T13:26:51.442529963Z\"}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/opt/homebrew/bin/docker",
+        "create",
+        "--pull=never",
+        "--name",
+        "<fixture-06167e36>",
+        "--label",
+        "crewshal.qualification=2c-network",
+        "--network",
+        "<fixture-096d90de>",
+        "--read-only",
+        "--user=65532:65532",
+        "--cap-drop=ALL",
+        "--security-opt=no-new-privileges",
+        "--pids-limit=32",
+        "--memory=128m",
+        "--cpus=1",
+        "--log-driver=none",
+        "--entrypoint=/usr/local/bin/python",
+        "--mount",
+        "type=bind,src=<synthetic-root>/after/input,dst=/input,readonly",
+        "--mount",
+        "type=bind,src=<synthetic-root>/after/owned,dst=/candidate/owned",
+        "--tmpfs",
+        "/scratch:rw,noexec,nosuid,nodev,size=16777216,mode=1777",
+        "--env",
+        "HOME=/scratch/home",
+        "--env",
+        "PYTHONDONTWRITEBYTECODE=1",
+        "sha256:4c47124a8391cb7a9f571164147d154777cf012a4ece5f86097130d7a4478111",
+        "/input/network_client.py",
+        "after"
+      ],
+      "exit": 0,
+      "stdout": "21af1393cc40e20b6e0a8acf43a8488dd030a3876e6a862af38538a5e4f97fb6\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/opt/homebrew/bin/docker",
+        "inspect",
+        "<fixture-06167e36>"
+      ],
+      "exit": 0,
+      "stdout": "[\n    {\n        \"Id\": \"21af1393cc40e20b6e0a8acf43a8488dd030a3876e6a862af38538a5e4f97fb6\",\n        \"Created\": \"2026-10-02T13:26:51.625379005Z\",\n        \"Path\": \"/usr/local/bin/python\",\n        \"Args\": [\n            \"/input/network_client.py\",\n            \"after\"\n        ],\n        \"State\": {\n            \"Status\": \"created\",\n            \"Running\": false,\n            \"Paused\": false,\n            \"Restarting\": false,\n            \"OOMKilled\": false,\n            \"Dead\": false,\n            \"Pid\": 0,\n            \"ExitCode\": 0,\n            \"Error\": \"\",\n            \"StartedAt\": \"0001-01-01T00:00:00Z\",\n            \"FinishedAt\": \"0001-01-01T00:00:00Z\"\n        },\n        \"Image\": \"sha256:4c47124a8391cb7a9f571164147d154777cf012a4ece5f86097130d7a4478111\",\n        \"ResolvConfPath\": \"\",\n        \"HostnamePath\": \"\",\n        \"HostsPath\": \"\",\n        \"LogPath\": \"\",\n        \"Name\": \"/<fixture-06167e36>\",\n        \"RestartCount\": 0,\n        \"Driver\": \"overlayfs\",\n        \"Platform\": \"linux\",\n        \"MountLabel\": \"\",\n        \"ProcessLabel\": \"\",\n        \"AppArmorProfile\": \"\",\n        \"ExecIDs\": null,\n        \"HostConfig\": {\n            \"Binds\": null,\n            \"ContainerIDFile\": \"\",\n            \"LogConfig\": {\n                \"Type\": \"none\",\n                \"Config\": {}\n            },\n            \"NetworkMode\": \"<fixture-096d90de>\",\n            \"PortBindings\": {},\n            \"RestartPolicy\": {\n                \"Name\": \"no\",\n                \"MaximumRetryCount\": 0\n            },\n            \"AutoRemove\": false,\n            \"VolumeDriver\": \"\",\n            \"VolumesFrom\": null,\n            \"ConsoleSize\": [\n                0,\n                0\n            ],\n            \"CapAdd\": null,\n            \"CapDrop\": [\n                \"ALL\"\n            ],\n            \"CgroupnsMode\": \"private\",\n            \"Dns\": null,\n            \"DnsOptions\": [],\n            \"DnsSearch\": [],\n            \"ExtraHosts\": null,\n            \"GroupAdd\": null,\n            \"IpcMode\": \"private\",\n            \"Cgroup\": \"\",\n            \"Links\": null,\n            \"OomScoreAdj\": 0,\n            \"PidMode\": \"\",\n            \"Privileged\": false,\n            \"PublishAllPorts\": false,\n            \"ReadonlyRootfs\": true,\n            \"SecurityOpt\": [\n                \"no-new-privileges\"\n            ],\n            \"Tmpfs\": {\n                \"/scratch\": \"rw,noexec,nosuid,nodev,size=16777216,mode=1777\"\n            },\n            \"UTSMode\": \"\",\n            \"UsernsMode\": \"\",\n            \"ShmSize\": 67108864,\n            \"Runtime\": \"runc\",\n            \"Isolation\": \"\",\n            \"CpuShares\": 0,\n            \"Memory\": 134217728,\n            \"NanoCpus\": 1000000000,\n            \"CgroupParent\": \"\",\n            \"BlkioWeight\": 0,\n            \"BlkioWeightDevice\": [],\n            \"BlkioDeviceReadBps\": [],\n            \"BlkioDeviceWriteBps\": [],\n            \"BlkioDeviceReadIOps\": [],\n            \"BlkioDeviceWriteIOps\": [],\n            \"CpuPeriod\": 0,\n            \"CpuQuota\": 0,\n            \"CpuRealtimePeriod\": 0,\n            \"CpuRealtimeRuntime\": 0,\n            \"CpusetCpus\": \"\",\n            \"CpusetMems\": \"\",\n            \"Devices\": [],\n            \"DeviceCgroupRules\": null,\n            \"DeviceRequests\": null,\n            \"MemoryReservation\": 0,\n            \"MemorySwap\": 268435456,\n            \"MemorySwappiness\": null,\n            \"OomKillDisable\": false,\n            \"PidsLimit\": 32,\n            \"Ulimits\": null,\n            \"CpuCount\": 0,\n            \"CpuPercent\": 0,\n            \"IOMaximumIOps\": 0,\n            \"IOMaximumBandwidth\": 0,\n            \"Mounts\": [\n                {\n                    \"Type\": \"bind\",\n                    \"Source\": \"<synthetic-root>/after/input\",\n                    \"Target\": \"/input\",\n                    \"ReadOnly\": true\n                },\n                {\n                    \"Type\": \"bind\",\n                    \"Source\": \"<synthetic-root>/after/owned\",\n                    \"Target\": \"/candidate/owned\"\n                }\n            ],\n            \"MaskedPaths\": [\n                \"/proc/acpi\",\n                \"/proc/asound\",\n                \"/proc/interrupts\",\n                \"/proc/kcore\",\n                \"/proc/keys\",\n                \"/proc/latency_stats\",\n                \"/proc/sched_debug\",\n                \"/proc/scsi\",\n                \"/proc/timer_list\",\n                \"/proc/timer_stats\",\n                \"/sys/devices/virtual/powercap\",\n                \"/sys/firmware\"\n            ],\n            \"ReadonlyPaths\": [\n                \"/proc/bus\",\n                \"/proc/fs\",\n                \"/proc/irq\",\n                \"/proc/sys\",\n                \"/proc/sysrq-trigger\"\n            ]\n        },\n        \"Storage\": {\n            \"RootFS\": {\n                \"Snapshot\": {\n                    \"Name\": \"overlayfs\"\n                }\n            }\n        },\n        \"Mounts\": [\n            {\n                \"Type\": \"bind\",\n                \"Source\": \"<synthetic-root>/after/input\",\n                \"Destination\": \"/input\",\n                \"Mode\": \"\",\n                \"RW\": false,\n                \"Propagation\": \"rprivate\"\n            },\n            {\n                \"Type\": \"bind\",\n                \"Source\": \"<synthetic-root>/after/owned\",\n                \"Destination\": \"/candidate/owned\",\n                \"Mode\": \"\",\n                \"RW\": true,\n                \"Propagation\": \"rprivate\"\n            }\n        ],\n        \"Config\": {\n            \"Hostname\": \"21af1393cc40\",\n            \"Domainname\": \"\",\n            \"User\": \"65532:65532\",\n            \"AttachStdin\": false,\n            \"AttachStdout\": true,\n            \"AttachStderr\": true,\n            \"Tty\": false,\n            \"OpenStdin\": false,\n            \"StdinOnce\": false,\n            \"Env\": [\n                \"HOME=/scratch/home\",\n                \"PYTHONDONTWRITEBYTECODE=1\",\n                \"PATH=/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\",\n                \"LANG=C.UTF-8\",\n                \"GPG_KEY=7169605F62C751356D054A26A821E680E5FA6305\",\n                \"PYTHON_VERSION=3.12.14\",\n                \"PYTHON_SHA256=5c8462af5790baf43a321a1559dbe0db06d1be4300fb85fb53c40060668e548a\"\n            ],\n            \"Cmd\": [\n                \"/input/network_client.py\",\n                \"after\"\n            ],\n            \"Image\": \"sha256:4c47124a8391cb7a9f571164147d154777cf012a4ece5f86097130d7a4478111\",\n            \"Volumes\": null,\n            \"WorkingDir\": \"/\",\n            \"Entrypoint\": [\n                \"/usr/local/bin/python\"\n            ],\n            \"Labels\": {\n                \"crewshal.qualification\": \"2c-network\"\n            }\n        },\n        \"NetworkSettings\": {\n            \"SandboxID\": \"\",\n            \"SandboxKey\": \"\",\n            \"Ports\": {},\n            \"Networks\": {\n                \"<fixture-096d90de>\": {\n                    \"IPAMConfig\": null,\n                    \"Links\": null,\n                    \"Aliases\": null,\n                    \"DriverOpts\": null,\n                    \"GwPriority\": 0,\n                    \"NetworkID\": \"\",\n                    \"EndpointID\": \"\",\n                    \"Gateway\": \"\",\n                    \"IPAddress\": \"\",\n                    \"MacAddress\": \"\",\n                    \"IPPrefixLen\": 0,\n                    \"IPv6Gateway\": \"\",\n                    \"GlobalIPv6Address\": \"\",\n                    \"GlobalIPv6PrefixLen\": 0,\n                    \"DNSNames\": null\n                }\n            }\n        },\n        \"ImageManifestDescriptor\": {\n            \"mediaType\": \"application/vnd.oci.image.manifest.v1+json\",\n            \"digest\": \"sha256:34d4d54d6f68a1980ad02433a5078d998ab394d55c97d953efa50b442135baf2\",\n            \"size\": 1737,\n            \"annotations\": {\n                \"com.docker.official-images.bashbrew.arch\": \"arm64v8\",\n                \"org.opencontainers.image.base.digest\": \"sha256:260479a1cfaf304c4c20da7f8405d3ce313513dcd534bb743257bdd2fe0f3e2d\",\n                \"org.opencontainers.image.base.name\": \"alpine:3.24\",\n                \"org.opencontainers.image.created\": \"2026-09-17T21:51:41Z\",\n                \"org.opencontainers.image.revision\": \"688a0b86bb44289df16a363e9f41d90514c1a5f9\",\n                \"org.opencontainers.image.source\": \"https://github.com/docker-library/python.git#688a0b86bb44289df16a363e9f41d90514c1a5f9:3.12/alpine3.24\",\n                \"org.opencontainers.image.url\": \"https://hub.docker.com/_/python\",\n                \"org.opencontainers.image.version\": \"3.12.14-alpine3.24\"\n            },\n            \"platform\": {\n                \"architecture\": \"arm64\",\n                \"os\": \"linux\",\n                \"variant\": \"v8\"\n            }\n        }\n    }\n]\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/opt/homebrew/bin/docker",
+        "start",
+        "<fixture-06167e36>"
+      ],
+      "exit": 0,
+      "stdout": "<fixture-06167e36>\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/opt/homebrew/bin/docker",
+        "inspect",
+        "--format",
+        "{{json .State}}",
+        "<fixture-06167e36>"
+      ],
+      "exit": 0,
+      "stdout": "{\"Status\":\"running\",\"Running\":true,\"Paused\":false,\"Restarting\":false,\"OOMKilled\":false,\"Dead\":false,\"Pid\":3733,\"ExitCode\":0,\"Error\":\"\",\"StartedAt\":\"2026-10-02T13:26:51.726095588Z\",\"FinishedAt\":\"0001-01-01T00:00:00Z\"}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/opt/homebrew/bin/docker",
+        "inspect",
+        "--format",
+        "{{json .State}}",
+        "<fixture-06167e36>"
+      ],
+      "exit": 0,
+      "stdout": "{\"Status\":\"running\",\"Running\":true,\"Paused\":false,\"Restarting\":false,\"OOMKilled\":false,\"Dead\":false,\"Pid\":3733,\"ExitCode\":0,\"Error\":\"\",\"StartedAt\":\"2026-10-02T13:26:51.726095588Z\",\"FinishedAt\":\"0001-01-01T00:00:00Z\"}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/opt/homebrew/bin/docker",
+        "inspect",
+        "--format",
+        "{{json .State}}",
+        "<fixture-06167e36>"
+      ],
+      "exit": 0,
+      "stdout": "{\"Status\":\"exited\",\"Running\":false,\"Paused\":false,\"Restarting\":false,\"OOMKilled\":false,\"Dead\":false,\"Pid\":0,\"ExitCode\":0,\"Error\":\"\",\"StartedAt\":\"2026-10-02T13:26:51.726095588Z\",\"FinishedAt\":\"2026-10-02T13:26:51.894773255Z\"}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/opt/homebrew/bin/docker",
+        "rm",
+        "--force",
+        "<fixture-771a3f8d>"
+      ],
+      "exit": 0,
+      "stdout": "<fixture-771a3f8d>\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/opt/homebrew/bin/docker",
+        "rm",
+        "--force",
+        "<fixture-e3cf3688>"
+      ],
+      "exit": 0,
+      "stdout": "<fixture-e3cf3688>\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/opt/homebrew/bin/docker",
+        "rm",
+        "--force",
+        "<fixture-99566c20>"
+      ],
+      "exit": 0,
+      "stdout": "<fixture-99566c20>\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/opt/homebrew/bin/docker",
+        "rm",
+        "--force",
+        "<fixture-d1262503>"
+      ],
+      "exit": 0,
+      "stdout": "<fixture-d1262503>\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/opt/homebrew/bin/docker",
+        "rm",
+        "--force",
+        "<fixture-06167e36>"
+      ],
+      "exit": 0,
+      "stdout": "<fixture-06167e36>\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/opt/homebrew/bin/docker",
+        "network",
+        "rm",
+        "<fixture-096d90de>"
+      ],
+      "exit": 0,
+      "stdout": "<fixture-096d90de>\n",
+      "stderr": ""
+    }
+  ],
+  "clients": {
+    "before": {
+      "grant_verified": true,
+      "inspection": {
+        "Id": "38bc6b7f583718106024b7d3a5e821ff602069cf9cc2478ce6788ce9afb453c0",
+        "Created": "2026-10-02T13:26:50.761332838Z",
+        "Path": "/usr/local/bin/python",
+        "Args": [
+          "/input/network_client.py",
+          "before"
+        ],
+        "State": {
+          "Status": "created",
+          "Running": false,
+          "Paused": false,
+          "Restarting": false,
+          "OOMKilled": false,
+          "Dead": false,
+          "Pid": 0,
+          "ExitCode": 0,
+          "Error": "",
+          "StartedAt": "0001-01-01T00:00:00Z",
+          "FinishedAt": "0001-01-01T00:00:00Z"
+        },
+        "Image": "sha256:4c47124a8391cb7a9f571164147d154777cf012a4ece5f86097130d7a4478111",
+        "ResolvConfPath": "",
+        "HostnamePath": "",
+        "HostsPath": "",
+        "LogPath": "",
+        "Name": "/<fixture-99566c20>",
+        "RestartCount": 0,
+        "Driver": "overlayfs",
+        "Platform": "linux",
+        "MountLabel": "",
+        "ProcessLabel": "",
+        "AppArmorProfile": "",
+        "ExecIDs": null,
+        "HostConfig": {
+          "Binds": null,
+          "ContainerIDFile": "",
+          "LogConfig": {
+            "Type": "none",
+            "Config": {}
+          },
+          "NetworkMode": "<fixture-096d90de>",
+          "PortBindings": {},
+          "RestartPolicy": {
+            "Name": "no",
+            "MaximumRetryCount": 0
+          },
+          "AutoRemove": false,
+          "VolumeDriver": "",
+          "VolumesFrom": null,
+          "ConsoleSize": [
+            0,
+            0
+          ],
+          "CapAdd": null,
+          "CapDrop": [
+            "ALL"
+          ],
+          "CgroupnsMode": "private",
+          "Dns": null,
+          "DnsOptions": [],
+          "DnsSearch": [],
+          "ExtraHosts": null,
+          "GroupAdd": null,
+          "IpcMode": "private",
+          "Cgroup": "",
+          "Links": null,
+          "OomScoreAdj": 0,
+          "PidMode": "",
+          "Privileged": false,
+          "PublishAllPorts": false,
+          "ReadonlyRootfs": true,
+          "SecurityOpt": [
+            "no-new-privileges"
+          ],
+          "Tmpfs": {
+            "/scratch": "rw,noexec,nosuid,nodev,size=16777216,mode=1777"
+          },
+          "UTSMode": "",
+          "UsernsMode": "",
+          "ShmSize": 67108864,
+          "Runtime": "runc",
+          "Isolation": "",
+          "CpuShares": 0,
+          "Memory": 134217728,
+          "NanoCpus": 1000000000,
+          "CgroupParent": "",
+          "BlkioWeight": 0,
+          "BlkioWeightDevice": [],
+          "BlkioDeviceReadBps": [],
+          "BlkioDeviceWriteBps": [],
+          "BlkioDeviceReadIOps": [],
+          "BlkioDeviceWriteIOps": [],
+          "CpuPeriod": 0,
+          "CpuQuota": 0,
+          "CpuRealtimePeriod": 0,
+          "CpuRealtimeRuntime": 0,
+          "CpusetCpus": "",
+          "CpusetMems": "",
+          "Devices": [],
+          "DeviceCgroupRules": null,
+          "DeviceRequests": null,
+          "MemoryReservation": 0,
+          "MemorySwap": 268435456,
+          "MemorySwappiness": null,
+          "OomKillDisable": false,
+          "PidsLimit": 32,
+          "Ulimits": null,
+          "CpuCount": 0,
+          "CpuPercent": 0,
+          "IOMaximumIOps": 0,
+          "IOMaximumBandwidth": 0,
+          "Mounts": [
+            {
+              "Type": "bind",
+              "Source": "<synthetic-root>/before/input",
+              "Target": "/input",
+              "ReadOnly": true
+            },
+            {
+              "Type": "bind",
+              "Source": "<synthetic-root>/before/owned",
+              "Target": "/candidate/owned"
+            }
+          ],
+          "MaskedPaths": [
+            "/proc/acpi",
+            "/proc/asound",
+            "/proc/interrupts",
+            "/proc/kcore",
+            "/proc/keys",
+            "/proc/latency_stats",
+            "/proc/sched_debug",
+            "/proc/scsi",
+            "/proc/timer_list",
+            "/proc/timer_stats",
+            "/sys/devices/virtual/powercap",
+            "/sys/firmware"
+          ],
+          "ReadonlyPaths": [
+            "/proc/bus",
+            "/proc/fs",
+            "/proc/irq",
+            "/proc/sys",
+            "/proc/sysrq-trigger"
+          ]
+        },
+        "Storage": {
+          "RootFS": {
+            "Snapshot": {
+              "Name": "overlayfs"
+            }
+          }
+        },
+        "Mounts": [
+          {
+            "Type": "bind",
+            "Source": "<synthetic-root>/before/input",
+            "Destination": "/input",
+            "Mode": "",
+            "RW": false,
+            "Propagation": "rprivate"
+          },
+          {
+            "Type": "bind",
+            "Source": "<synthetic-root>/before/owned",
+            "Destination": "/candidate/owned",
+            "Mode": "",
+            "RW": true,
+            "Propagation": "rprivate"
+          }
+        ],
+        "Config": {
+          "Hostname": "38bc6b7f5837",
+          "Domainname": "",
+          "User": "65532:65532",
+          "AttachStdin": false,
+          "AttachStdout": true,
+          "AttachStderr": true,
+          "Tty": false,
+          "OpenStdin": false,
+          "StdinOnce": false,
+          "Env": [
+            "HOME=/scratch/home",
+            "PYTHONDONTWRITEBYTECODE=1",
+            "PATH=/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+            "LANG=C.UTF-8",
+            "GPG_KEY=7169605F62C751356D054A26A821E680E5FA6305",
+            "PYTHON_VERSION=3.12.14",
+            "PYTHON_SHA256=5c8462af5790baf43a321a1559dbe0db06d1be4300fb85fb53c40060668e548a"
+          ],
+          "Cmd": [
+            "/input/network_client.py",
+            "before"
+          ],
+          "Image": "sha256:4c47124a8391cb7a9f571164147d154777cf012a4ece5f86097130d7a4478111",
+          "Volumes": null,
+          "WorkingDir": "/",
+          "Entrypoint": [
+            "/usr/local/bin/python"
+          ],
+          "Labels": {
+            "crewshal.qualification": "2c-network"
+          }
+        },
+        "NetworkSettings": {
+          "SandboxID": "",
+          "SandboxKey": "",
+          "Ports": {},
+          "Networks": {
+            "<fixture-096d90de>": {
+              "IPAMConfig": null,
+              "Links": null,
+              "Aliases": null,
+              "DriverOpts": null,
+              "GwPriority": 0,
+              "NetworkID": "",
+              "EndpointID": "",
+              "Gateway": "",
+              "IPAddress": "",
+              "MacAddress": "",
+              "IPPrefixLen": 0,
+              "IPv6Gateway": "",
+              "GlobalIPv6Address": "",
+              "GlobalIPv6PrefixLen": 0,
+              "DNSNames": null
+            }
+          }
+        },
+        "ImageManifestDescriptor": {
+          "mediaType": "application/vnd.oci.image.manifest.v1+json",
+          "digest": "sha256:34d4d54d6f68a1980ad02433a5078d998ab394d55c97d953efa50b442135baf2",
+          "size": 1737,
+          "annotations": {
+            "com.docker.official-images.bashbrew.arch": "arm64v8",
+            "org.opencontainers.image.base.digest": "sha256:260479a1cfaf304c4c20da7f8405d3ce313513dcd534bb743257bdd2fe0f3e2d",
+            "org.opencontainers.image.base.name": "alpine:3.24",
+            "org.opencontainers.image.created": "2026-09-17T21:51:41Z",
+            "org.opencontainers.image.revision": "688a0b86bb44289df16a363e9f41d90514c1a5f9",
+            "org.opencontainers.image.source": "https://github.com/docker-library/python.git#688a0b86bb44289df16a363e9f41d90514c1a5f9:3.12/alpine3.24",
+            "org.opencontainers.image.url": "https://hub.docker.com/_/python",
+            "org.opencontainers.image.version": "3.12.14-alpine3.24"
+          },
+          "platform": {
+            "architecture": "arm64",
+            "os": "linux",
+            "variant": "v8"
+          }
+        }
+      },
+      "deadline_exceeded": false,
+      "terminal": {
+        "Status": "exited",
+        "Running": false,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 0,
+        "ExitCode": 0,
+        "Error": "",
+        "StartedAt": "2026-10-02T13:26:50.848812171Z",
+        "FinishedAt": "2026-10-02T13:26:51.005872088Z"
+      },
+      "elapsed_seconds": 0.3125653339084238,
+      "result": {
+        "label": "before",
+        "outcomes": [
+          {
+            "target": "primary",
+            "family": "ipv4",
+            "protocol": "tcp",
+            "payload_hex": "6265666f72652e7072696d6172792e697076342e7463702e73796e7468657469632e696e76616c6964",
+            "connected": true,
+            "sent": true,
+            "echo": true
+          },
+          {
+            "target": "primary",
+            "family": "ipv4",
+            "protocol": "udp",
+            "payload_hex": "6265666f72652e7072696d6172792e697076342e7564702e73796e7468657469632e696e76616c6964",
+            "connected": true,
+            "sent": true,
+            "echo": true
+          },
+          {
+            "target": "primary",
+            "family": "ipv4",
+            "protocol": "dns",
+            "payload_hex": "2c0101000001000000000000066265666f7265077072696d617279046970763403646e730973796e74686574696307696e76616c69640000010001",
+            "connected": true,
+            "sent": true,
+            "echo": true
+          },
+          {
+            "target": "primary",
+            "family": "ipv6",
+            "protocol": "tcp",
+            "payload_hex": "6265666f72652e7072696d6172792e697076362e7463702e73796e7468657469632e696e76616c6964",
+            "connected": true,
+            "sent": true,
+            "echo": true
+          },
+          {
+            "target": "primary",
+            "family": "ipv6",
+            "protocol": "udp",
+            "payload_hex": "6265666f72652e7072696d6172792e697076362e7564702e73796e7468657469632e696e76616c6964",
+            "connected": true,
+            "sent": true,
+            "echo": true
+          },
+          {
+            "target": "primary",
+            "family": "ipv6",
+            "protocol": "dns",
+            "payload_hex": "2c0101000001000000000000066265666f7265077072696d617279046970763603646e730973796e74686574696307696e76616c69640000010001",
+            "connected": true,
+            "sent": true,
+            "echo": true
+          },
+          {
+            "target": "nonallowed",
+            "family": "ipv4",
+            "protocol": "tcp",
+            "payload_hex": "6265666f72652e6e6f6e616c6c6f7765642e697076342e7463702e73796e7468657469632e696e76616c6964",
+            "connected": true,
+            "sent": true,
+            "echo": true
+          },
+          {
+            "target": "nonallowed",
+            "family": "ipv4",
+            "protocol": "udp",
+            "payload_hex": "6265666f72652e6e6f6e616c6c6f7765642e697076342e7564702e73796e7468657469632e696e76616c6964",
+            "connected": true,
+            "sent": true,
+            "echo": true
+          },
+          {
+            "target": "nonallowed",
+            "family": "ipv4",
+            "protocol": "dns",
+            "payload_hex": "2c0101000001000000000000066265666f72650a6e6f6e616c6c6f776564046970763403646e730973796e74686574696307696e76616c69640000010001",
+            "connected": true,
+            "sent": true,
+            "echo": true
+          },
+          {
+            "target": "nonallowed",
+            "family": "ipv6",
+            "protocol": "tcp",
+            "payload_hex": "6265666f72652e6e6f6e616c6c6f7765642e697076362e7463702e73796e7468657469632e696e76616c6964",
+            "connected": true,
+            "sent": true,
+            "echo": true
+          },
+          {
+            "target": "nonallowed",
+            "family": "ipv6",
+            "protocol": "udp",
+            "payload_hex": "6265666f72652e6e6f6e616c6c6f7765642e697076362e7564702e73796e7468657469632e696e76616c6964",
+            "connected": true,
+            "sent": true,
+            "echo": true
+          },
+          {
+            "target": "nonallowed",
+            "family": "ipv6",
+            "protocol": "dns",
+            "payload_hex": "2c0101000001000000000000066265666f72650a6e6f6e616c6c6f776564046970763603646e730973796e74686574696307696e76616c69640000010001",
+            "connected": true,
+            "sent": true,
+            "echo": true
+          }
+        ],
+        "python": "3.12.14",
+        "kernel": "7.0.14-linuxkit",
+        "ipv6": true
+      },
+      "protected_unchanged": true
+    },
+    "denied": {
+      "grant_verified": true,
+      "inspection": {
+        "Id": "8189ca044409ba4475aeba067d07fbe202ac3ea13fde79ebc7f9b55a7966ce34",
+        "Created": "2026-10-02T13:26:51.186529963Z",
+        "Path": "/usr/local/bin/python",
+        "Args": [
+          "/input/network_client.py",
+          "denied"
+        ],
+        "State": {
+          "Status": "created",
+          "Running": false,
+          "Paused": false,
+          "Restarting": false,
+          "OOMKilled": false,
+          "Dead": false,
+          "Pid": 0,
+          "ExitCode": 0,
+          "Error": "",
+          "StartedAt": "0001-01-01T00:00:00Z",
+          "FinishedAt": "0001-01-01T00:00:00Z"
+        },
+        "Image": "sha256:4c47124a8391cb7a9f571164147d154777cf012a4ece5f86097130d7a4478111",
+        "ResolvConfPath": "",
+        "HostnamePath": "",
+        "HostsPath": "",
+        "LogPath": "",
+        "Name": "/<fixture-d1262503>",
+        "RestartCount": 0,
+        "Driver": "overlayfs",
+        "Platform": "linux",
+        "MountLabel": "",
+        "ProcessLabel": "",
+        "AppArmorProfile": "",
+        "ExecIDs": null,
+        "HostConfig": {
+          "Binds": null,
+          "ContainerIDFile": "",
+          "LogConfig": {
+            "Type": "none",
+            "Config": {}
+          },
+          "NetworkMode": "none",
+          "PortBindings": {},
+          "RestartPolicy": {
+            "Name": "no",
+            "MaximumRetryCount": 0
+          },
+          "AutoRemove": false,
+          "VolumeDriver": "",
+          "VolumesFrom": null,
+          "ConsoleSize": [
+            0,
+            0
+          ],
+          "CapAdd": null,
+          "CapDrop": [
+            "ALL"
+          ],
+          "CgroupnsMode": "private",
+          "Dns": null,
+          "DnsOptions": [],
+          "DnsSearch": [],
+          "ExtraHosts": null,
+          "GroupAdd": null,
+          "IpcMode": "private",
+          "Cgroup": "",
+          "Links": null,
+          "OomScoreAdj": 0,
+          "PidMode": "",
+          "Privileged": false,
+          "PublishAllPorts": false,
+          "ReadonlyRootfs": true,
+          "SecurityOpt": [
+            "no-new-privileges"
+          ],
+          "Tmpfs": {
+            "/scratch": "rw,noexec,nosuid,nodev,size=16777216,mode=1777"
+          },
+          "UTSMode": "",
+          "UsernsMode": "",
+          "ShmSize": 67108864,
+          "Runtime": "runc",
+          "Isolation": "",
+          "CpuShares": 0,
+          "Memory": 134217728,
+          "NanoCpus": 1000000000,
+          "CgroupParent": "",
+          "BlkioWeight": 0,
+          "BlkioWeightDevice": [],
+          "BlkioDeviceReadBps": [],
+          "BlkioDeviceWriteBps": [],
+          "BlkioDeviceReadIOps": [],
+          "BlkioDeviceWriteIOps": [],
+          "CpuPeriod": 0,
+          "CpuQuota": 0,
+          "CpuRealtimePeriod": 0,
+          "CpuRealtimeRuntime": 0,
+          "CpusetCpus": "",
+          "CpusetMems": "",
+          "Devices": [],
+          "DeviceCgroupRules": null,
+          "DeviceRequests": null,
+          "MemoryReservation": 0,
+          "MemorySwap": 268435456,
+          "MemorySwappiness": null,
+          "OomKillDisable": false,
+          "PidsLimit": 32,
+          "Ulimits": null,
+          "CpuCount": 0,
+          "CpuPercent": 0,
+          "IOMaximumIOps": 0,
+          "IOMaximumBandwidth": 0,
+          "Mounts": [
+            {
+              "Type": "bind",
+              "Source": "<synthetic-root>/denied/input",
+              "Target": "/input",
+              "ReadOnly": true
+            },
+            {
+              "Type": "bind",
+              "Source": "<synthetic-root>/denied/owned",
+              "Target": "/candidate/owned"
+            }
+          ],
+          "MaskedPaths": [
+            "/proc/acpi",
+            "/proc/asound",
+            "/proc/interrupts",
+            "/proc/kcore",
+            "/proc/keys",
+            "/proc/latency_stats",
+            "/proc/sched_debug",
+            "/proc/scsi",
+            "/proc/timer_list",
+            "/proc/timer_stats",
+            "/sys/devices/virtual/powercap",
+            "/sys/firmware"
+          ],
+          "ReadonlyPaths": [
+            "/proc/bus",
+            "/proc/fs",
+            "/proc/irq",
+            "/proc/sys",
+            "/proc/sysrq-trigger"
+          ]
+        },
+        "Storage": {
+          "RootFS": {
+            "Snapshot": {
+              "Name": "overlayfs"
+            }
+          }
+        },
+        "Mounts": [
+          {
+            "Type": "bind",
+            "Source": "<synthetic-root>/denied/input",
+            "Destination": "/input",
+            "Mode": "",
+            "RW": false,
+            "Propagation": "rprivate"
+          },
+          {
+            "Type": "bind",
+            "Source": "<synthetic-root>/denied/owned",
+            "Destination": "/candidate/owned",
+            "Mode": "",
+            "RW": true,
+            "Propagation": "rprivate"
+          }
+        ],
+        "Config": {
+          "Hostname": "8189ca044409",
+          "Domainname": "",
+          "User": "65532:65532",
+          "AttachStdin": false,
+          "AttachStdout": true,
+          "AttachStderr": true,
+          "Tty": false,
+          "OpenStdin": false,
+          "StdinOnce": false,
+          "Env": [
+            "PYTHONDONTWRITEBYTECODE=1",
+            "HOME=/scratch/home",
+            "PATH=/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+            "LANG=C.UTF-8",
+            "GPG_KEY=7169605F62C751356D054A26A821E680E5FA6305",
+            "PYTHON_VERSION=3.12.14",
+            "PYTHON_SHA256=5c8462af5790baf43a321a1559dbe0db06d1be4300fb85fb53c40060668e548a"
+          ],
+          "Cmd": [
+            "/input/network_client.py",
+            "denied"
+          ],
+          "Image": "sha256:4c47124a8391cb7a9f571164147d154777cf012a4ece5f86097130d7a4478111",
+          "Volumes": null,
+          "WorkingDir": "/",
+          "Entrypoint": [
+            "/usr/local/bin/python"
+          ],
+          "Labels": {
+            "crewshal.qualification": "2c-network"
+          }
+        },
+        "NetworkSettings": {
+          "SandboxID": "",
+          "SandboxKey": "",
+          "Ports": {},
+          "Networks": {
+            "none": {
+              "IPAMConfig": null,
+              "Links": null,
+              "Aliases": null,
+              "DriverOpts": null,
+              "GwPriority": 0,
+              "NetworkID": "",
+              "EndpointID": "",
+              "Gateway": "",
+              "IPAddress": "",
+              "MacAddress": "",
+              "IPPrefixLen": 0,
+              "IPv6Gateway": "",
+              "GlobalIPv6Address": "",
+              "GlobalIPv6PrefixLen": 0,
+              "DNSNames": null
+            }
+          }
+        },
+        "ImageManifestDescriptor": {
+          "mediaType": "application/vnd.oci.image.manifest.v1+json",
+          "digest": "sha256:34d4d54d6f68a1980ad02433a5078d998ab394d55c97d953efa50b442135baf2",
+          "size": 1737,
+          "annotations": {
+            "com.docker.official-images.bashbrew.arch": "arm64v8",
+            "org.opencontainers.image.base.digest": "sha256:260479a1cfaf304c4c20da7f8405d3ce313513dcd534bb743257bdd2fe0f3e2d",
+            "org.opencontainers.image.base.name": "alpine:3.24",
+            "org.opencontainers.image.created": "2026-09-17T21:51:41Z",
+            "org.opencontainers.image.revision": "688a0b86bb44289df16a363e9f41d90514c1a5f9",
+            "org.opencontainers.image.source": "https://github.com/docker-library/python.git#688a0b86bb44289df16a363e9f41d90514c1a5f9:3.12/alpine3.24",
+            "org.opencontainers.image.url": "https://hub.docker.com/_/python",
+            "org.opencontainers.image.version": "3.12.14-alpine3.24"
+          },
+          "platform": {
+            "architecture": "arm64",
+            "os": "linux",
+            "variant": "v8"
+          }
+        }
+      },
+      "deadline_exceeded": false,
+      "terminal": {
+        "Status": "exited",
+        "Running": false,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 0,
+        "ExitCode": 0,
+        "Error": "",
+        "StartedAt": "2026-10-02T13:26:51.291649213Z",
+        "FinishedAt": "2026-10-02T13:26:51.442529963Z"
+      },
+      "elapsed_seconds": 0.3233072499278933,
+      "result": {
+        "label": "denied",
+        "outcomes": [
+          {
+            "target": "primary",
+            "family": "ipv4",
+            "protocol": "tcp",
+            "payload_hex": "64656e6965642e7072696d6172792e697076342e7463702e73796e7468657469632e696e76616c6964",
+            "connected": false,
+            "sent": false,
+            "echo": false,
+            "error": "OSError: [Errno 101] Network unreachable"
+          },
+          {
+            "target": "primary",
+            "family": "ipv4",
+            "protocol": "udp",
+            "payload_hex": "64656e6965642e7072696d6172792e697076342e7564702e73796e7468657469632e696e76616c6964",
+            "connected": false,
+            "sent": false,
+            "echo": false,
+            "error": "OSError: [Errno 101] Network unreachable"
+          },
+          {
+            "target": "primary",
+            "family": "ipv4",
+            "protocol": "dns",
+            "payload_hex": "2c01010000010000000000000664656e696564077072696d617279046970763403646e730973796e74686574696307696e76616c69640000010001",
+            "connected": false,
+            "sent": false,
+            "echo": false,
+            "error": "OSError: [Errno 101] Network unreachable"
+          },
+          {
+            "target": "primary",
+            "family": "ipv6",
+            "protocol": "tcp",
+            "payload_hex": "64656e6965642e7072696d6172792e697076362e7463702e73796e7468657469632e696e76616c6964",
+            "connected": false,
+            "sent": false,
+            "echo": false,
+            "error": "OSError: [Errno 101] Network unreachable"
+          },
+          {
+            "target": "primary",
+            "family": "ipv6",
+            "protocol": "udp",
+            "payload_hex": "64656e6965642e7072696d6172792e697076362e7564702e73796e7468657469632e696e76616c6964",
+            "connected": false,
+            "sent": false,
+            "echo": false,
+            "error": "OSError: [Errno 101] Network unreachable"
+          },
+          {
+            "target": "primary",
+            "family": "ipv6",
+            "protocol": "dns",
+            "payload_hex": "2c01010000010000000000000664656e696564077072696d617279046970763603646e730973796e74686574696307696e76616c69640000010001",
+            "connected": false,
+            "sent": false,
+            "echo": false,
+            "error": "OSError: [Errno 101] Network unreachable"
+          },
+          {
+            "target": "nonallowed",
+            "family": "ipv4",
+            "protocol": "tcp",
+            "payload_hex": "64656e6965642e6e6f6e616c6c6f7765642e697076342e7463702e73796e7468657469632e696e76616c6964",
+            "connected": false,
+            "sent": false,
+            "echo": false,
+            "error": "OSError: [Errno 101] Network unreachable"
+          },
+          {
+            "target": "nonallowed",
+            "family": "ipv4",
+            "protocol": "udp",
+            "payload_hex": "64656e6965642e6e6f6e616c6c6f7765642e697076342e7564702e73796e7468657469632e696e76616c6964",
+            "connected": false,
+            "sent": false,
+            "echo": false,
+            "error": "OSError: [Errno 101] Network unreachable"
+          },
+          {
+            "target": "nonallowed",
+            "family": "ipv4",
+            "protocol": "dns",
+            "payload_hex": "2c01010000010000000000000664656e6965640a6e6f6e616c6c6f776564046970763403646e730973796e74686574696307696e76616c69640000010001",
+            "connected": false,
+            "sent": false,
+            "echo": false,
+            "error": "OSError: [Errno 101] Network unreachable"
+          },
+          {
+            "target": "nonallowed",
+            "family": "ipv6",
+            "protocol": "tcp",
+            "payload_hex": "64656e6965642e6e6f6e616c6c6f7765642e697076362e7463702e73796e7468657469632e696e76616c6964",
+            "connected": false,
+            "sent": false,
+            "echo": false,
+            "error": "OSError: [Errno 101] Network unreachable"
+          },
+          {
+            "target": "nonallowed",
+            "family": "ipv6",
+            "protocol": "udp",
+            "payload_hex": "64656e6965642e6e6f6e616c6c6f7765642e697076362e7564702e73796e7468657469632e696e76616c6964",
+            "connected": false,
+            "sent": false,
+            "echo": false,
+            "error": "OSError: [Errno 101] Network unreachable"
+          },
+          {
+            "target": "nonallowed",
+            "family": "ipv6",
+            "protocol": "dns",
+            "payload_hex": "2c01010000010000000000000664656e6965640a6e6f6e616c6c6f776564046970763603646e730973796e74686574696307696e76616c69640000010001",
+            "connected": false,
+            "sent": false,
+            "echo": false,
+            "error": "OSError: [Errno 101] Network unreachable"
+          }
+        ],
+        "python": "3.12.14",
+        "kernel": "7.0.14-linuxkit",
+        "ipv6": true
+      },
+      "protected_unchanged": true
+    },
+    "after": {
+      "grant_verified": true,
+      "inspection": {
+        "Id": "21af1393cc40e20b6e0a8acf43a8488dd030a3876e6a862af38538a5e4f97fb6",
+        "Created": "2026-10-02T13:26:51.625379005Z",
+        "Path": "/usr/local/bin/python",
+        "Args": [
+          "/input/network_client.py",
+          "after"
+        ],
+        "State": {
+          "Status": "created",
+          "Running": false,
+          "Paused": false,
+          "Restarting": false,
+          "OOMKilled": false,
+          "Dead": false,
+          "Pid": 0,
+          "ExitCode": 0,
+          "Error": "",
+          "StartedAt": "0001-01-01T00:00:00Z",
+          "FinishedAt": "0001-01-01T00:00:00Z"
+        },
+        "Image": "sha256:4c47124a8391cb7a9f571164147d154777cf012a4ece5f86097130d7a4478111",
+        "ResolvConfPath": "",
+        "HostnamePath": "",
+        "HostsPath": "",
+        "LogPath": "",
+        "Name": "/<fixture-06167e36>",
+        "RestartCount": 0,
+        "Driver": "overlayfs",
+        "Platform": "linux",
+        "MountLabel": "",
+        "ProcessLabel": "",
+        "AppArmorProfile": "",
+        "ExecIDs": null,
+        "HostConfig": {
+          "Binds": null,
+          "ContainerIDFile": "",
+          "LogConfig": {
+            "Type": "none",
+            "Config": {}
+          },
+          "NetworkMode": "<fixture-096d90de>",
+          "PortBindings": {},
+          "RestartPolicy": {
+            "Name": "no",
+            "MaximumRetryCount": 0
+          },
+          "AutoRemove": false,
+          "VolumeDriver": "",
+          "VolumesFrom": null,
+          "ConsoleSize": [
+            0,
+            0
+          ],
+          "CapAdd": null,
+          "CapDrop": [
+            "ALL"
+          ],
+          "CgroupnsMode": "private",
+          "Dns": null,
+          "DnsOptions": [],
+          "DnsSearch": [],
+          "ExtraHosts": null,
+          "GroupAdd": null,
+          "IpcMode": "private",
+          "Cgroup": "",
+          "Links": null,
+          "OomScoreAdj": 0,
+          "PidMode": "",
+          "Privileged": false,
+          "PublishAllPorts": false,
+          "ReadonlyRootfs": true,
+          "SecurityOpt": [
+            "no-new-privileges"
+          ],
+          "Tmpfs": {
+            "/scratch": "rw,noexec,nosuid,nodev,size=16777216,mode=1777"
+          },
+          "UTSMode": "",
+          "UsernsMode": "",
+          "ShmSize": 67108864,
+          "Runtime": "runc",
+          "Isolation": "",
+          "CpuShares": 0,
+          "Memory": 134217728,
+          "NanoCpus": 1000000000,
+          "CgroupParent": "",
+          "BlkioWeight": 0,
+          "BlkioWeightDevice": [],
+          "BlkioDeviceReadBps": [],
+          "BlkioDeviceWriteBps": [],
+          "BlkioDeviceReadIOps": [],
+          "BlkioDeviceWriteIOps": [],
+          "CpuPeriod": 0,
+          "CpuQuota": 0,
+          "CpuRealtimePeriod": 0,
+          "CpuRealtimeRuntime": 0,
+          "CpusetCpus": "",
+          "CpusetMems": "",
+          "Devices": [],
+          "DeviceCgroupRules": null,
+          "DeviceRequests": null,
+          "MemoryReservation": 0,
+          "MemorySwap": 268435456,
+          "MemorySwappiness": null,
+          "OomKillDisable": false,
+          "PidsLimit": 32,
+          "Ulimits": null,
+          "CpuCount": 0,
+          "CpuPercent": 0,
+          "IOMaximumIOps": 0,
+          "IOMaximumBandwidth": 0,
+          "Mounts": [
+            {
+              "Type": "bind",
+              "Source": "<synthetic-root>/after/input",
+              "Target": "/input",
+              "ReadOnly": true
+            },
+            {
+              "Type": "bind",
+              "Source": "<synthetic-root>/after/owned",
+              "Target": "/candidate/owned"
+            }
+          ],
+          "MaskedPaths": [
+            "/proc/acpi",
+            "/proc/asound",
+            "/proc/interrupts",
+            "/proc/kcore",
+            "/proc/keys",
+            "/proc/latency_stats",
+            "/proc/sched_debug",
+            "/proc/scsi",
+            "/proc/timer_list",
+            "/proc/timer_stats",
+            "/sys/devices/virtual/powercap",
+            "/sys/firmware"
+          ],
+          "ReadonlyPaths": [
+            "/proc/bus",
+            "/proc/fs",
+            "/proc/irq",
+            "/proc/sys",
+            "/proc/sysrq-trigger"
+          ]
+        },
+        "Storage": {
+          "RootFS": {
+            "Snapshot": {
+              "Name": "overlayfs"
+            }
+          }
+        },
+        "Mounts": [
+          {
+            "Type": "bind",
+            "Source": "<synthetic-root>/after/input",
+            "Destination": "/input",
+            "Mode": "",
+            "RW": false,
+            "Propagation": "rprivate"
+          },
+          {
+            "Type": "bind",
+            "Source": "<synthetic-root>/after/owned",
+            "Destination": "/candidate/owned",
+            "Mode": "",
+            "RW": true,
+            "Propagation": "rprivate"
+          }
+        ],
+        "Config": {
+          "Hostname": "21af1393cc40",
+          "Domainname": "",
+          "User": "65532:65532",
+          "AttachStdin": false,
+          "AttachStdout": true,
+          "AttachStderr": true,
+          "Tty": false,
+          "OpenStdin": false,
+          "StdinOnce": false,
+          "Env": [
+            "HOME=/scratch/home",
+            "PYTHONDONTWRITEBYTECODE=1",
+            "PATH=/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+            "LANG=C.UTF-8",
+            "GPG_KEY=7169605F62C751356D054A26A821E680E5FA6305",
+            "PYTHON_VERSION=3.12.14",
+            "PYTHON_SHA256=5c8462af5790baf43a321a1559dbe0db06d1be4300fb85fb53c40060668e548a"
+          ],
+          "Cmd": [
+            "/input/network_client.py",
+            "after"
+          ],
+          "Image": "sha256:4c47124a8391cb7a9f571164147d154777cf012a4ece5f86097130d7a4478111",
+          "Volumes": null,
+          "WorkingDir": "/",
+          "Entrypoint": [
+            "/usr/local/bin/python"
+          ],
+          "Labels": {
+            "crewshal.qualification": "2c-network"
+          }
+        },
+        "NetworkSettings": {
+          "SandboxID": "",
+          "SandboxKey": "",
+          "Ports": {},
+          "Networks": {
+            "<fixture-096d90de>": {
+              "IPAMConfig": null,
+              "Links": null,
+              "Aliases": null,
+              "DriverOpts": null,
+              "GwPriority": 0,
+              "NetworkID": "",
+              "EndpointID": "",
+              "Gateway": "",
+              "IPAddress": "",
+              "MacAddress": "",
+              "IPPrefixLen": 0,
+              "IPv6Gateway": "",
+              "GlobalIPv6Address": "",
+              "GlobalIPv6PrefixLen": 0,
+              "DNSNames": null
+            }
+          }
+        },
+        "ImageManifestDescriptor": {
+          "mediaType": "application/vnd.oci.image.manifest.v1+json",
+          "digest": "sha256:34d4d54d6f68a1980ad02433a5078d998ab394d55c97d953efa50b442135baf2",
+          "size": 1737,
+          "annotations": {
+            "com.docker.official-images.bashbrew.arch": "arm64v8",
+            "org.opencontainers.image.base.digest": "sha256:260479a1cfaf304c4c20da7f8405d3ce313513dcd534bb743257bdd2fe0f3e2d",
+            "org.opencontainers.image.base.name": "alpine:3.24",
+            "org.opencontainers.image.created": "2026-09-17T21:51:41Z",
+            "org.opencontainers.image.revision": "688a0b86bb44289df16a363e9f41d90514c1a5f9",
+            "org.opencontainers.image.source": "https://github.com/docker-library/python.git#688a0b86bb44289df16a363e9f41d90514c1a5f9:3.12/alpine3.24",
+            "org.opencontainers.image.url": "https://hub.docker.com/_/python",
+            "org.opencontainers.image.version": "3.12.14-alpine3.24"
+          },
+          "platform": {
+            "architecture": "arm64",
+            "os": "linux",
+            "variant": "v8"
+          }
+        }
+      },
+      "deadline_exceeded": false,
+      "terminal": {
+        "Status": "exited",
+        "Running": false,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 0,
+        "ExitCode": 0,
+        "Error": "",
+        "StartedAt": "2026-10-02T13:26:51.726095588Z",
+        "FinishedAt": "2026-10-02T13:26:51.894773255Z"
+      },
+      "elapsed_seconds": 0.34751562506426126,
+      "result": {
+        "label": "after",
+        "outcomes": [
+          {
+            "target": "primary",
+            "family": "ipv4",
+            "protocol": "tcp",
+            "payload_hex": "61667465722e7072696d6172792e697076342e7463702e73796e7468657469632e696e76616c6964",
+            "connected": true,
+            "sent": true,
+            "echo": true
+          },
+          {
+            "target": "primary",
+            "family": "ipv4",
+            "protocol": "udp",
+            "payload_hex": "61667465722e7072696d6172792e697076342e7564702e73796e7468657469632e696e76616c6964",
+            "connected": true,
+            "sent": true,
+            "echo": true
+          },
+          {
+            "target": "primary",
+            "family": "ipv4",
+            "protocol": "dns",
+            "payload_hex": "2c0101000001000000000000056166746572077072696d617279046970763403646e730973796e74686574696307696e76616c69640000010001",
+            "connected": true,
+            "sent": true,
+            "echo": true
+          },
+          {
+            "target": "primary",
+            "family": "ipv6",
+            "protocol": "tcp",
+            "payload_hex": "61667465722e7072696d6172792e697076362e7463702e73796e7468657469632e696e76616c6964",
+            "connected": true,
+            "sent": true,
+            "echo": true
+          },
+          {
+            "target": "primary",
+            "family": "ipv6",
+            "protocol": "udp",
+            "payload_hex": "61667465722e7072696d6172792e697076362e7564702e73796e7468657469632e696e76616c6964",
+            "connected": true,
+            "sent": true,
+            "echo": true
+          },
+          {
+            "target": "primary",
+            "family": "ipv6",
+            "protocol": "dns",
+            "payload_hex": "2c0101000001000000000000056166746572077072696d617279046970763603646e730973796e74686574696307696e76616c69640000010001",
+            "connected": true,
+            "sent": true,
+            "echo": true
+          },
+          {
+            "target": "nonallowed",
+            "family": "ipv4",
+            "protocol": "tcp",
+            "payload_hex": "61667465722e6e6f6e616c6c6f7765642e697076342e7463702e73796e7468657469632e696e76616c6964",
+            "connected": true,
+            "sent": true,
+            "echo": true
+          },
+          {
+            "target": "nonallowed",
+            "family": "ipv4",
+            "protocol": "udp",
+            "payload_hex": "61667465722e6e6f6e616c6c6f7765642e697076342e7564702e73796e7468657469632e696e76616c6964",
+            "connected": true,
+            "sent": true,
+            "echo": true
+          },
+          {
+            "target": "nonallowed",
+            "family": "ipv4",
+            "protocol": "dns",
+            "payload_hex": "2c01010000010000000000000561667465720a6e6f6e616c6c6f776564046970763403646e730973796e74686574696307696e76616c69640000010001",
+            "connected": true,
+            "sent": true,
+            "echo": true
+          },
+          {
+            "target": "nonallowed",
+            "family": "ipv6",
+            "protocol": "tcp",
+            "payload_hex": "61667465722e6e6f6e616c6c6f7765642e697076362e7463702e73796e7468657469632e696e76616c6964",
+            "connected": true,
+            "sent": true,
+            "echo": true
+          },
+          {
+            "target": "nonallowed",
+            "family": "ipv6",
+            "protocol": "udp",
+            "payload_hex": "61667465722e6e6f6e616c6c6f7765642e697076362e7564702e73796e7468657469632e696e76616c6964",
+            "connected": true,
+            "sent": true,
+            "echo": true
+          },
+          {
+            "target": "nonallowed",
+            "family": "ipv6",
+            "protocol": "dns",
+            "payload_hex": "2c01010000010000000000000561667465720a6e6f6e616c6c6f776564046970763603646e730973796e74686574696307696e76616c69640000010001",
+            "connected": true,
+            "sent": true,
+            "echo": true
+          }
+        ],
+        "python": "3.12.14",
+        "kernel": "7.0.14-linuxkit",
+        "ipv6": true
+      },
+      "protected_unchanged": true
+    }
+  },
+  "cleanup_ok": true,
+  "network_inspection": {
+    "Name": "<fixture-096d90de>",
+    "Id": "deed0676f12c5d1aff546c2efdab5e040005c4918d2ef14be146347b5bc7cb5f",
+    "Created": "2026-10-02T13:26:49.933718212Z",
+    "Scope": "local",
+    "Driver": "bridge",
+    "EnableIPv4": true,
+    "EnableIPv6": true,
+    "IPAM": {
+      "Driver": "default",
+      "Options": {},
+      "Config": [
+        {
+          "Subnet": "10.243.141.0/24",
+          "Gateway": "10.243.141.1"
+        },
+        {
+          "Subnet": "fd2c:7eec:d35e::/64",
+          "Gateway": "fd2c:7eec:d35e::1"
+        }
+      ]
+    },
+    "Internal": true,
+    "Attachable": false,
+    "Ingress": false,
+    "ConfigFrom": {
+      "Network": ""
+    },
+    "ConfigOnly": false,
+    "Options": {
+      "com.docker.network.enable_ipv4": "true"
+    },
+    "Labels": {
+      "crewshal.qualification": "2c-network"
+    },
+    "Containers": {},
+    "Status": {
+      "IPAM": {
+        "Subnets": {
+          "10.243.141.0/24": {
+            "IPsInUse": 3,
+            "DynamicIPsAvailable": 253
+          },
+          "fd2c:7eec:d35e::/64": {
+            "IPsInUse": 2,
+            "DynamicIPsAvailable": 18446744073709551614
+          }
+        }
+      }
+    }
+  },
+  "network_verified": true,
+  "sink_inspections": [
+    {
+      "Id": "874b5dec04f60a252bcf71c18eed13a03388ba5fb664c1012a8d9f10e90cde66",
+      "Created": "2026-10-02T13:26:50.051842962Z",
+      "Path": "/usr/local/bin/python",
+      "Args": [
+        "/input/network_sink.py"
+      ],
+      "State": {
+        "Status": "created",
+        "Running": false,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 0,
+        "ExitCode": 0,
+        "Error": "",
+        "StartedAt": "0001-01-01T00:00:00Z",
+        "FinishedAt": "0001-01-01T00:00:00Z"
+      },
+      "Image": "sha256:4c47124a8391cb7a9f571164147d154777cf012a4ece5f86097130d7a4478111",
+      "ResolvConfPath": "",
+      "HostnamePath": "",
+      "HostsPath": "",
+      "LogPath": "",
+      "Name": "/<fixture-771a3f8d>",
+      "RestartCount": 0,
+      "Driver": "overlayfs",
+      "Platform": "linux",
+      "MountLabel": "",
+      "ProcessLabel": "",
+      "AppArmorProfile": "",
+      "ExecIDs": null,
+      "HostConfig": {
+        "Binds": null,
+        "ContainerIDFile": "",
+        "LogConfig": {
+          "Type": "none",
+          "Config": {}
+        },
+        "NetworkMode": "<fixture-096d90de>",
+        "PortBindings": {},
+        "RestartPolicy": {
+          "Name": "no",
+          "MaximumRetryCount": 0
+        },
+        "AutoRemove": false,
+        "VolumeDriver": "",
+        "VolumesFrom": null,
+        "ConsoleSize": [
+          0,
+          0
+        ],
+        "CapAdd": null,
+        "CapDrop": [
+          "ALL"
+        ],
+        "CgroupnsMode": "private",
+        "Dns": null,
+        "DnsOptions": [],
+        "DnsSearch": [],
+        "ExtraHosts": null,
+        "GroupAdd": null,
+        "IpcMode": "private",
+        "Cgroup": "",
+        "Links": null,
+        "OomScoreAdj": 0,
+        "PidMode": "",
+        "Privileged": false,
+        "PublishAllPorts": false,
+        "ReadonlyRootfs": true,
+        "SecurityOpt": [
+          "no-new-privileges"
+        ],
+        "Tmpfs": {
+          "/scratch": "rw,noexec,nosuid,nodev,size=16777216,mode=1777"
+        },
+        "UTSMode": "",
+        "UsernsMode": "",
+        "ShmSize": 67108864,
+        "Runtime": "runc",
+        "Isolation": "",
+        "CpuShares": 0,
+        "Memory": 134217728,
+        "NanoCpus": 1000000000,
+        "CgroupParent": "",
+        "BlkioWeight": 0,
+        "BlkioWeightDevice": [],
+        "BlkioDeviceReadBps": [],
+        "BlkioDeviceWriteBps": [],
+        "BlkioDeviceReadIOps": [],
+        "BlkioDeviceWriteIOps": [],
+        "CpuPeriod": 0,
+        "CpuQuota": 0,
+        "CpuRealtimePeriod": 0,
+        "CpuRealtimeRuntime": 0,
+        "CpusetCpus": "",
+        "CpusetMems": "",
+        "Devices": [],
+        "DeviceCgroupRules": null,
+        "DeviceRequests": null,
+        "MemoryReservation": 0,
+        "MemorySwap": 268435456,
+        "MemorySwappiness": null,
+        "OomKillDisable": false,
+        "PidsLimit": 32,
+        "Ulimits": null,
+        "CpuCount": 0,
+        "CpuPercent": 0,
+        "IOMaximumIOps": 0,
+        "IOMaximumBandwidth": 0,
+        "Mounts": [
+          {
+            "Type": "bind",
+            "Source": "<synthetic-root>/primary/input",
+            "Target": "/input",
+            "ReadOnly": true
+          },
+          {
+            "Type": "bind",
+            "Source": "<synthetic-root>/primary/owned",
+            "Target": "/candidate/owned"
+          }
+        ],
+        "MaskedPaths": [
+          "/proc/acpi",
+          "/proc/asound",
+          "/proc/interrupts",
+          "/proc/kcore",
+          "/proc/keys",
+          "/proc/latency_stats",
+          "/proc/sched_debug",
+          "/proc/scsi",
+          "/proc/timer_list",
+          "/proc/timer_stats",
+          "/sys/devices/virtual/powercap",
+          "/sys/firmware"
+        ],
+        "ReadonlyPaths": [
+          "/proc/bus",
+          "/proc/fs",
+          "/proc/irq",
+          "/proc/sys",
+          "/proc/sysrq-trigger"
+        ]
+      },
+      "Storage": {
+        "RootFS": {
+          "Snapshot": {
+            "Name": "overlayfs"
+          }
+        }
+      },
+      "Mounts": [
+        {
+          "Type": "bind",
+          "Source": "<synthetic-root>/primary/input",
+          "Destination": "/input",
+          "Mode": "",
+          "RW": false,
+          "Propagation": "rprivate"
+        },
+        {
+          "Type": "bind",
+          "Source": "<synthetic-root>/primary/owned",
+          "Destination": "/candidate/owned",
+          "Mode": "",
+          "RW": true,
+          "Propagation": "rprivate"
+        }
+      ],
+      "Config": {
+        "Hostname": "874b5dec04f6",
+        "Domainname": "",
+        "User": "65532:65532",
+        "AttachStdin": false,
+        "AttachStdout": true,
+        "AttachStderr": true,
+        "Tty": false,
+        "OpenStdin": false,
+        "StdinOnce": false,
+        "Env": [
+          "HOME=/scratch/home",
+          "PYTHONDONTWRITEBYTECODE=1",
+          "PATH=/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+          "LANG=C.UTF-8",
+          "GPG_KEY=7169605F62C751356D054A26A821E680E5FA6305",
+          "PYTHON_VERSION=3.12.14",
+          "PYTHON_SHA256=5c8462af5790baf43a321a1559dbe0db06d1be4300fb85fb53c40060668e548a"
+        ],
+        "Cmd": [
+          "/input/network_sink.py"
+        ],
+        "Image": "sha256:4c47124a8391cb7a9f571164147d154777cf012a4ece5f86097130d7a4478111",
+        "Volumes": null,
+        "WorkingDir": "/",
+        "Entrypoint": [
+          "/usr/local/bin/python"
+        ],
+        "Labels": {
+          "crewshal.qualification": "2c-network"
+        }
+      },
+      "NetworkSettings": {
+        "SandboxID": "",
+        "SandboxKey": "",
+        "Ports": {},
+        "Networks": {
+          "<fixture-096d90de>": {
+            "IPAMConfig": null,
+            "Links": null,
+            "Aliases": null,
+            "DriverOpts": null,
+            "GwPriority": 0,
+            "NetworkID": "",
+            "EndpointID": "",
+            "Gateway": "",
+            "IPAddress": "",
+            "MacAddress": "",
+            "IPPrefixLen": 0,
+            "IPv6Gateway": "",
+            "GlobalIPv6Address": "",
+            "GlobalIPv6PrefixLen": 0,
+            "DNSNames": null
+          }
+        }
+      },
+      "ImageManifestDescriptor": {
+        "mediaType": "application/vnd.oci.image.manifest.v1+json",
+        "digest": "sha256:34d4d54d6f68a1980ad02433a5078d998ab394d55c97d953efa50b442135baf2",
+        "size": 1737,
+        "annotations": {
+          "com.docker.official-images.bashbrew.arch": "arm64v8",
+          "org.opencontainers.image.base.digest": "sha256:260479a1cfaf304c4c20da7f8405d3ce313513dcd534bb743257bdd2fe0f3e2d",
+          "org.opencontainers.image.base.name": "alpine:3.24",
+          "org.opencontainers.image.created": "2026-09-17T21:51:41Z",
+          "org.opencontainers.image.revision": "688a0b86bb44289df16a363e9f41d90514c1a5f9",
+          "org.opencontainers.image.source": "https://github.com/docker-library/python.git#688a0b86bb44289df16a363e9f41d90514c1a5f9:3.12/alpine3.24",
+          "org.opencontainers.image.url": "https://hub.docker.com/_/python",
+          "org.opencontainers.image.version": "3.12.14-alpine3.24"
+        },
+        "platform": {
+          "architecture": "arm64",
+          "os": "linux",
+          "variant": "v8"
+        }
+      }
+    },
+    {
+      "Id": "610200998e2c3afab4349fbe9c93674435711d0b80d2a567b1957e36ded8bc5c",
+      "Created": "2026-10-02T13:26:50.434629296Z",
+      "Path": "/usr/local/bin/python",
+      "Args": [
+        "/input/network_sink.py"
+      ],
+      "State": {
+        "Status": "created",
+        "Running": false,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 0,
+        "ExitCode": 0,
+        "Error": "",
+        "StartedAt": "0001-01-01T00:00:00Z",
+        "FinishedAt": "0001-01-01T00:00:00Z"
+      },
+      "Image": "sha256:4c47124a8391cb7a9f571164147d154777cf012a4ece5f86097130d7a4478111",
+      "ResolvConfPath": "",
+      "HostnamePath": "",
+      "HostsPath": "",
+      "LogPath": "",
+      "Name": "/<fixture-e3cf3688>",
+      "RestartCount": 0,
+      "Driver": "overlayfs",
+      "Platform": "linux",
+      "MountLabel": "",
+      "ProcessLabel": "",
+      "AppArmorProfile": "",
+      "ExecIDs": null,
+      "HostConfig": {
+        "Binds": null,
+        "ContainerIDFile": "",
+        "LogConfig": {
+          "Type": "none",
+          "Config": {}
+        },
+        "NetworkMode": "<fixture-096d90de>",
+        "PortBindings": {},
+        "RestartPolicy": {
+          "Name": "no",
+          "MaximumRetryCount": 0
+        },
+        "AutoRemove": false,
+        "VolumeDriver": "",
+        "VolumesFrom": null,
+        "ConsoleSize": [
+          0,
+          0
+        ],
+        "CapAdd": null,
+        "CapDrop": [
+          "ALL"
+        ],
+        "CgroupnsMode": "private",
+        "Dns": null,
+        "DnsOptions": [],
+        "DnsSearch": [],
+        "ExtraHosts": null,
+        "GroupAdd": null,
+        "IpcMode": "private",
+        "Cgroup": "",
+        "Links": null,
+        "OomScoreAdj": 0,
+        "PidMode": "",
+        "Privileged": false,
+        "PublishAllPorts": false,
+        "ReadonlyRootfs": true,
+        "SecurityOpt": [
+          "no-new-privileges"
+        ],
+        "Tmpfs": {
+          "/scratch": "rw,noexec,nosuid,nodev,size=16777216,mode=1777"
+        },
+        "UTSMode": "",
+        "UsernsMode": "",
+        "ShmSize": 67108864,
+        "Runtime": "runc",
+        "Isolation": "",
+        "CpuShares": 0,
+        "Memory": 134217728,
+        "NanoCpus": 1000000000,
+        "CgroupParent": "",
+        "BlkioWeight": 0,
+        "BlkioWeightDevice": [],
+        "BlkioDeviceReadBps": [],
+        "BlkioDeviceWriteBps": [],
+        "BlkioDeviceReadIOps": [],
+        "BlkioDeviceWriteIOps": [],
+        "CpuPeriod": 0,
+        "CpuQuota": 0,
+        "CpuRealtimePeriod": 0,
+        "CpuRealtimeRuntime": 0,
+        "CpusetCpus": "",
+        "CpusetMems": "",
+        "Devices": [],
+        "DeviceCgroupRules": null,
+        "DeviceRequests": null,
+        "MemoryReservation": 0,
+        "MemorySwap": 268435456,
+        "MemorySwappiness": null,
+        "OomKillDisable": false,
+        "PidsLimit": 32,
+        "Ulimits": null,
+        "CpuCount": 0,
+        "CpuPercent": 0,
+        "IOMaximumIOps": 0,
+        "IOMaximumBandwidth": 0,
+        "Mounts": [
+          {
+            "Type": "bind",
+            "Source": "<synthetic-root>/nonallowed/input",
+            "Target": "/input",
+            "ReadOnly": true
+          },
+          {
+            "Type": "bind",
+            "Source": "<synthetic-root>/nonallowed/owned",
+            "Target": "/candidate/owned"
+          }
+        ],
+        "MaskedPaths": [
+          "/proc/acpi",
+          "/proc/asound",
+          "/proc/interrupts",
+          "/proc/kcore",
+          "/proc/keys",
+          "/proc/latency_stats",
+          "/proc/sched_debug",
+          "/proc/scsi",
+          "/proc/timer_list",
+          "/proc/timer_stats",
+          "/sys/devices/virtual/powercap",
+          "/sys/firmware"
+        ],
+        "ReadonlyPaths": [
+          "/proc/bus",
+          "/proc/fs",
+          "/proc/irq",
+          "/proc/sys",
+          "/proc/sysrq-trigger"
+        ]
+      },
+      "Storage": {
+        "RootFS": {
+          "Snapshot": {
+            "Name": "overlayfs"
+          }
+        }
+      },
+      "Mounts": [
+        {
+          "Type": "bind",
+          "Source": "<synthetic-root>/nonallowed/input",
+          "Destination": "/input",
+          "Mode": "",
+          "RW": false,
+          "Propagation": "rprivate"
+        },
+        {
+          "Type": "bind",
+          "Source": "<synthetic-root>/nonallowed/owned",
+          "Destination": "/candidate/owned",
+          "Mode": "",
+          "RW": true,
+          "Propagation": "rprivate"
+        }
+      ],
+      "Config": {
+        "Hostname": "610200998e2c",
+        "Domainname": "",
+        "User": "65532:65532",
+        "AttachStdin": false,
+        "AttachStdout": true,
+        "AttachStderr": true,
+        "Tty": false,
+        "OpenStdin": false,
+        "StdinOnce": false,
+        "Env": [
+          "HOME=/scratch/home",
+          "PYTHONDONTWRITEBYTECODE=1",
+          "PATH=/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+          "LANG=C.UTF-8",
+          "GPG_KEY=7169605F62C751356D054A26A821E680E5FA6305",
+          "PYTHON_VERSION=3.12.14",
+          "PYTHON_SHA256=5c8462af5790baf43a321a1559dbe0db06d1be4300fb85fb53c40060668e548a"
+        ],
+        "Cmd": [
+          "/input/network_sink.py"
+        ],
+        "Image": "sha256:4c47124a8391cb7a9f571164147d154777cf012a4ece5f86097130d7a4478111",
+        "Volumes": null,
+        "WorkingDir": "/",
+        "Entrypoint": [
+          "/usr/local/bin/python"
+        ],
+        "Labels": {
+          "crewshal.qualification": "2c-network"
+        }
+      },
+      "NetworkSettings": {
+        "SandboxID": "",
+        "SandboxKey": "",
+        "Ports": {},
+        "Networks": {
+          "<fixture-096d90de>": {
+            "IPAMConfig": null,
+            "Links": null,
+            "Aliases": null,
+            "DriverOpts": null,
+            "GwPriority": 0,
+            "NetworkID": "",
+            "EndpointID": "",
+            "Gateway": "",
+            "IPAddress": "",
+            "MacAddress": "",
+            "IPPrefixLen": 0,
+            "IPv6Gateway": "",
+            "GlobalIPv6Address": "",
+            "GlobalIPv6PrefixLen": 0,
+            "DNSNames": null
+          }
+        }
+      },
+      "ImageManifestDescriptor": {
+        "mediaType": "application/vnd.oci.image.manifest.v1+json",
+        "digest": "sha256:34d4d54d6f68a1980ad02433a5078d998ab394d55c97d953efa50b442135baf2",
+        "size": 1737,
+        "annotations": {
+          "com.docker.official-images.bashbrew.arch": "arm64v8",
+          "org.opencontainers.image.base.digest": "sha256:260479a1cfaf304c4c20da7f8405d3ce313513dcd534bb743257bdd2fe0f3e2d",
+          "org.opencontainers.image.base.name": "alpine:3.24",
+          "org.opencontainers.image.created": "2026-09-17T21:51:41Z",
+          "org.opencontainers.image.revision": "688a0b86bb44289df16a363e9f41d90514c1a5f9",
+          "org.opencontainers.image.source": "https://github.com/docker-library/python.git#688a0b86bb44289df16a363e9f41d90514c1a5f9:3.12/alpine3.24",
+          "org.opencontainers.image.url": "https://hub.docker.com/_/python",
+          "org.opencontainers.image.version": "3.12.14-alpine3.24"
+        },
+        "platform": {
+          "architecture": "arm64",
+          "os": "linux",
+          "variant": "v8"
+        }
+      }
+    }
+  ],
+  "sink_running_inspections": [
+    {
+      "Id": "874b5dec04f60a252bcf71c18eed13a03388ba5fb664c1012a8d9f10e90cde66",
+      "Created": "2026-10-02T13:26:50.051842962Z",
+      "Path": "/usr/local/bin/python",
+      "Args": [
+        "/input/network_sink.py"
+      ],
+      "State": {
+        "Status": "running",
+        "Running": true,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 3481,
+        "ExitCode": 0,
+        "Error": "",
+        "StartedAt": "2026-10-02T13:26:50.209815712Z",
+        "FinishedAt": "0001-01-01T00:00:00Z"
+      },
+      "Image": "sha256:4c47124a8391cb7a9f571164147d154777cf012a4ece5f86097130d7a4478111",
+      "ResolvConfPath": "/var/lib/docker/containers/874b5dec04f60a252bcf71c18eed13a03388ba5fb664c1012a8d9f10e90cde66/resolv.conf",
+      "HostnamePath": "/var/lib/docker/containers/874b5dec04f60a252bcf71c18eed13a03388ba5fb664c1012a8d9f10e90cde66/hostname",
+      "HostsPath": "/var/lib/docker/containers/874b5dec04f60a252bcf71c18eed13a03388ba5fb664c1012a8d9f10e90cde66/hosts",
+      "LogPath": "",
+      "Name": "/<fixture-771a3f8d>",
+      "RestartCount": 0,
+      "Driver": "overlayfs",
+      "Platform": "linux",
+      "MountLabel": "",
+      "ProcessLabel": "",
+      "AppArmorProfile": "",
+      "ExecIDs": null,
+      "HostConfig": {
+        "Binds": null,
+        "ContainerIDFile": "",
+        "LogConfig": {
+          "Type": "none",
+          "Config": {}
+        },
+        "NetworkMode": "<fixture-096d90de>",
+        "PortBindings": {},
+        "RestartPolicy": {
+          "Name": "no",
+          "MaximumRetryCount": 0
+        },
+        "AutoRemove": false,
+        "VolumeDriver": "",
+        "VolumesFrom": null,
+        "ConsoleSize": [
+          0,
+          0
+        ],
+        "CapAdd": null,
+        "CapDrop": [
+          "ALL"
+        ],
+        "CgroupnsMode": "private",
+        "Dns": null,
+        "DnsOptions": [],
+        "DnsSearch": [],
+        "ExtraHosts": null,
+        "GroupAdd": null,
+        "IpcMode": "private",
+        "Cgroup": "",
+        "Links": null,
+        "OomScoreAdj": 0,
+        "PidMode": "",
+        "Privileged": false,
+        "PublishAllPorts": false,
+        "ReadonlyRootfs": true,
+        "SecurityOpt": [
+          "no-new-privileges"
+        ],
+        "Tmpfs": {
+          "/scratch": "rw,noexec,nosuid,nodev,size=16777216,mode=1777"
+        },
+        "UTSMode": "",
+        "UsernsMode": "",
+        "ShmSize": 67108864,
+        "Runtime": "runc",
+        "Isolation": "",
+        "CpuShares": 0,
+        "Memory": 134217728,
+        "NanoCpus": 1000000000,
+        "CgroupParent": "",
+        "BlkioWeight": 0,
+        "BlkioWeightDevice": [],
+        "BlkioDeviceReadBps": [],
+        "BlkioDeviceWriteBps": [],
+        "BlkioDeviceReadIOps": [],
+        "BlkioDeviceWriteIOps": [],
+        "CpuPeriod": 0,
+        "CpuQuota": 0,
+        "CpuRealtimePeriod": 0,
+        "CpuRealtimeRuntime": 0,
+        "CpusetCpus": "",
+        "CpusetMems": "",
+        "Devices": [],
+        "DeviceCgroupRules": null,
+        "DeviceRequests": null,
+        "MemoryReservation": 0,
+        "MemorySwap": 268435456,
+        "MemorySwappiness": null,
+        "OomKillDisable": null,
+        "PidsLimit": 32,
+        "Ulimits": null,
+        "CpuCount": 0,
+        "CpuPercent": 0,
+        "IOMaximumIOps": 0,
+        "IOMaximumBandwidth": 0,
+        "Mounts": [
+          {
+            "Type": "bind",
+            "Source": "<synthetic-root>/primary/input",
+            "Target": "/input",
+            "ReadOnly": true
+          },
+          {
+            "Type": "bind",
+            "Source": "<synthetic-root>/primary/owned",
+            "Target": "/candidate/owned"
+          }
+        ],
+        "MaskedPaths": [
+          "/proc/acpi",
+          "/proc/asound",
+          "/proc/interrupts",
+          "/proc/kcore",
+          "/proc/keys",
+          "/proc/latency_stats",
+          "/proc/sched_debug",
+          "/proc/scsi",
+          "/proc/timer_list",
+          "/proc/timer_stats",
+          "/sys/devices/virtual/powercap",
+          "/sys/firmware"
+        ],
+        "ReadonlyPaths": [
+          "/proc/bus",
+          "/proc/fs",
+          "/proc/irq",
+          "/proc/sys",
+          "/proc/sysrq-trigger"
+        ]
+      },
+      "Storage": {
+        "RootFS": {
+          "Snapshot": {
+            "Name": "overlayfs"
+          }
+        }
+      },
+      "Mounts": [
+        {
+          "Type": "bind",
+          "Source": "<synthetic-root>/primary/input",
+          "Destination": "/input",
+          "Mode": "",
+          "RW": false,
+          "Propagation": "rprivate"
+        },
+        {
+          "Type": "bind",
+          "Source": "<synthetic-root>/primary/owned",
+          "Destination": "/candidate/owned",
+          "Mode": "",
+          "RW": true,
+          "Propagation": "rprivate"
+        }
+      ],
+      "Config": {
+        "Hostname": "874b5dec04f6",
+        "Domainname": "",
+        "User": "65532:65532",
+        "AttachStdin": false,
+        "AttachStdout": true,
+        "AttachStderr": true,
+        "Tty": false,
+        "OpenStdin": false,
+        "StdinOnce": false,
+        "Env": [
+          "HOME=/scratch/home",
+          "PYTHONDONTWRITEBYTECODE=1",
+          "PATH=/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+          "LANG=C.UTF-8",
+          "GPG_KEY=7169605F62C751356D054A26A821E680E5FA6305",
+          "PYTHON_VERSION=3.12.14",
+          "PYTHON_SHA256=5c8462af5790baf43a321a1559dbe0db06d1be4300fb85fb53c40060668e548a"
+        ],
+        "Cmd": [
+          "/input/network_sink.py"
+        ],
+        "Image": "sha256:4c47124a8391cb7a9f571164147d154777cf012a4ece5f86097130d7a4478111",
+        "Volumes": null,
+        "WorkingDir": "/",
+        "Entrypoint": [
+          "/usr/local/bin/python"
+        ],
+        "Labels": {
+          "crewshal.qualification": "2c-network"
+        }
+      },
+      "NetworkSettings": {
+        "SandboxID": "05bc9f09edbda29f32e7f5155c63321cd7a1e6dcdbc967f6fbc60ce2b9ba7a3a",
+        "SandboxKey": "/var/run/docker/netns/05bc9f09edbd",
+        "Ports": {},
+        "Networks": {
+          "<fixture-096d90de>": {
+            "IPAMConfig": null,
+            "Links": null,
+            "Aliases": null,
+            "DriverOpts": null,
+            "GwPriority": 0,
+            "NetworkID": "deed0676f12c5d1aff546c2efdab5e040005c4918d2ef14be146347b5bc7cb5f",
+            "EndpointID": "d9767fe39d2e2eee03adb679f3cb026e8631786949b62c2f43711d7399103982",
+            "Gateway": "",
+            "IPAddress": "10.243.141.2",
+            "MacAddress": "96:6c:43:10:93:ed",
+            "IPPrefixLen": 24,
+            "IPv6Gateway": "",
+            "GlobalIPv6Address": "fd2c:7eec:d35e::2",
+            "GlobalIPv6PrefixLen": 64,
+            "DNSNames": [
+              "<fixture-771a3f8d>",
+              "874b5dec04f6"
+            ]
+          }
+        }
+      },
+      "ImageManifestDescriptor": {
+        "mediaType": "application/vnd.oci.image.manifest.v1+json",
+        "digest": "sha256:34d4d54d6f68a1980ad02433a5078d998ab394d55c97d953efa50b442135baf2",
+        "size": 1737,
+        "annotations": {
+          "com.docker.official-images.bashbrew.arch": "arm64v8",
+          "org.opencontainers.image.base.digest": "sha256:260479a1cfaf304c4c20da7f8405d3ce313513dcd534bb743257bdd2fe0f3e2d",
+          "org.opencontainers.image.base.name": "alpine:3.24",
+          "org.opencontainers.image.created": "2026-09-17T21:51:41Z",
+          "org.opencontainers.image.revision": "688a0b86bb44289df16a363e9f41d90514c1a5f9",
+          "org.opencontainers.image.source": "https://github.com/docker-library/python.git#688a0b86bb44289df16a363e9f41d90514c1a5f9:3.12/alpine3.24",
+          "org.opencontainers.image.url": "https://hub.docker.com/_/python",
+          "org.opencontainers.image.version": "3.12.14-alpine3.24"
+        },
+        "platform": {
+          "architecture": "arm64",
+          "os": "linux",
+          "variant": "v8"
+        }
+      }
+    },
+    {
+      "Id": "610200998e2c3afab4349fbe9c93674435711d0b80d2a567b1957e36ded8bc5c",
+      "Created": "2026-10-02T13:26:50.434629296Z",
+      "Path": "/usr/local/bin/python",
+      "Args": [
+        "/input/network_sink.py"
+      ],
+      "State": {
+        "Status": "running",
+        "Running": true,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 3535,
+        "ExitCode": 0,
+        "Error": "",
+        "StartedAt": "2026-10-02T13:26:50.571860296Z",
+        "FinishedAt": "0001-01-01T00:00:00Z"
+      },
+      "Image": "sha256:4c47124a8391cb7a9f571164147d154777cf012a4ece5f86097130d7a4478111",
+      "ResolvConfPath": "/var/lib/docker/containers/610200998e2c3afab4349fbe9c93674435711d0b80d2a567b1957e36ded8bc5c/resolv.conf",
+      "HostnamePath": "/var/lib/docker/containers/610200998e2c3afab4349fbe9c93674435711d0b80d2a567b1957e36ded8bc5c/hostname",
+      "HostsPath": "/var/lib/docker/containers/610200998e2c3afab4349fbe9c93674435711d0b80d2a567b1957e36ded8bc5c/hosts",
+      "LogPath": "",
+      "Name": "/<fixture-e3cf3688>",
+      "RestartCount": 0,
+      "Driver": "overlayfs",
+      "Platform": "linux",
+      "MountLabel": "",
+      "ProcessLabel": "",
+      "AppArmorProfile": "",
+      "ExecIDs": null,
+      "HostConfig": {
+        "Binds": null,
+        "ContainerIDFile": "",
+        "LogConfig": {
+          "Type": "none",
+          "Config": {}
+        },
+        "NetworkMode": "<fixture-096d90de>",
+        "PortBindings": {},
+        "RestartPolicy": {
+          "Name": "no",
+          "MaximumRetryCount": 0
+        },
+        "AutoRemove": false,
+        "VolumeDriver": "",
+        "VolumesFrom": null,
+        "ConsoleSize": [
+          0,
+          0
+        ],
+        "CapAdd": null,
+        "CapDrop": [
+          "ALL"
+        ],
+        "CgroupnsMode": "private",
+        "Dns": null,
+        "DnsOptions": [],
+        "DnsSearch": [],
+        "ExtraHosts": null,
+        "GroupAdd": null,
+        "IpcMode": "private",
+        "Cgroup": "",
+        "Links": null,
+        "OomScoreAdj": 0,
+        "PidMode": "",
+        "Privileged": false,
+        "PublishAllPorts": false,
+        "ReadonlyRootfs": true,
+        "SecurityOpt": [
+          "no-new-privileges"
+        ],
+        "Tmpfs": {
+          "/scratch": "rw,noexec,nosuid,nodev,size=16777216,mode=1777"
+        },
+        "UTSMode": "",
+        "UsernsMode": "",
+        "ShmSize": 67108864,
+        "Runtime": "runc",
+        "Isolation": "",
+        "CpuShares": 0,
+        "Memory": 134217728,
+        "NanoCpus": 1000000000,
+        "CgroupParent": "",
+        "BlkioWeight": 0,
+        "BlkioWeightDevice": [],
+        "BlkioDeviceReadBps": [],
+        "BlkioDeviceWriteBps": [],
+        "BlkioDeviceReadIOps": [],
+        "BlkioDeviceWriteIOps": [],
+        "CpuPeriod": 0,
+        "CpuQuota": 0,
+        "CpuRealtimePeriod": 0,
+        "CpuRealtimeRuntime": 0,
+        "CpusetCpus": "",
+        "CpusetMems": "",
+        "Devices": [],
+        "DeviceCgroupRules": null,
+        "DeviceRequests": null,
+        "MemoryReservation": 0,
+        "MemorySwap": 268435456,
+        "MemorySwappiness": null,
+        "OomKillDisable": null,
+        "PidsLimit": 32,
+        "Ulimits": null,
+        "CpuCount": 0,
+        "CpuPercent": 0,
+        "IOMaximumIOps": 0,
+        "IOMaximumBandwidth": 0,
+        "Mounts": [
+          {
+            "Type": "bind",
+            "Source": "<synthetic-root>/nonallowed/input",
+            "Target": "/input",
+            "ReadOnly": true
+          },
+          {
+            "Type": "bind",
+            "Source": "<synthetic-root>/nonallowed/owned",
+            "Target": "/candidate/owned"
+          }
+        ],
+        "MaskedPaths": [
+          "/proc/acpi",
+          "/proc/asound",
+          "/proc/interrupts",
+          "/proc/kcore",
+          "/proc/keys",
+          "/proc/latency_stats",
+          "/proc/sched_debug",
+          "/proc/scsi",
+          "/proc/timer_list",
+          "/proc/timer_stats",
+          "/sys/devices/virtual/powercap",
+          "/sys/firmware"
+        ],
+        "ReadonlyPaths": [
+          "/proc/bus",
+          "/proc/fs",
+          "/proc/irq",
+          "/proc/sys",
+          "/proc/sysrq-trigger"
+        ]
+      },
+      "Storage": {
+        "RootFS": {
+          "Snapshot": {
+            "Name": "overlayfs"
+          }
+        }
+      },
+      "Mounts": [
+        {
+          "Type": "bind",
+          "Source": "<synthetic-root>/nonallowed/input",
+          "Destination": "/input",
+          "Mode": "",
+          "RW": false,
+          "Propagation": "rprivate"
+        },
+        {
+          "Type": "bind",
+          "Source": "<synthetic-root>/nonallowed/owned",
+          "Destination": "/candidate/owned",
+          "Mode": "",
+          "RW": true,
+          "Propagation": "rprivate"
+        }
+      ],
+      "Config": {
+        "Hostname": "610200998e2c",
+        "Domainname": "",
+        "User": "65532:65532",
+        "AttachStdin": false,
+        "AttachStdout": true,
+        "AttachStderr": true,
+        "Tty": false,
+        "OpenStdin": false,
+        "StdinOnce": false,
+        "Env": [
+          "HOME=/scratch/home",
+          "PYTHONDONTWRITEBYTECODE=1",
+          "PATH=/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+          "LANG=C.UTF-8",
+          "GPG_KEY=7169605F62C751356D054A26A821E680E5FA6305",
+          "PYTHON_VERSION=3.12.14",
+          "PYTHON_SHA256=5c8462af5790baf43a321a1559dbe0db06d1be4300fb85fb53c40060668e548a"
+        ],
+        "Cmd": [
+          "/input/network_sink.py"
+        ],
+        "Image": "sha256:4c47124a8391cb7a9f571164147d154777cf012a4ece5f86097130d7a4478111",
+        "Volumes": null,
+        "WorkingDir": "/",
+        "Entrypoint": [
+          "/usr/local/bin/python"
+        ],
+        "Labels": {
+          "crewshal.qualification": "2c-network"
+        }
+      },
+      "NetworkSettings": {
+        "SandboxID": "41aaec41d5e122e8aca33c4ac03baa75274df0fcd93eaddafc91522343df5dd4",
+        "SandboxKey": "/var/run/docker/netns/41aaec41d5e1",
+        "Ports": {},
+        "Networks": {
+          "<fixture-096d90de>": {
+            "IPAMConfig": null,
+            "Links": null,
+            "Aliases": null,
+            "DriverOpts": null,
+            "GwPriority": 0,
+            "NetworkID": "deed0676f12c5d1aff546c2efdab5e040005c4918d2ef14be146347b5bc7cb5f",
+            "EndpointID": "92a3fbdff505e5f08260176bdcb0eeff49452ccbe5a99e4a1e50c8b18dca18f1",
+            "Gateway": "",
+            "IPAddress": "10.243.141.3",
+            "MacAddress": "6e:16:df:2b:81:88",
+            "IPPrefixLen": 24,
+            "IPv6Gateway": "",
+            "GlobalIPv6Address": "fd2c:7eec:d35e::3",
+            "GlobalIPv6PrefixLen": 64,
+            "DNSNames": [
+              "<fixture-e3cf3688>",
+              "610200998e2c"
+            ]
+          }
+        }
+      },
+      "ImageManifestDescriptor": {
+        "mediaType": "application/vnd.oci.image.manifest.v1+json",
+        "digest": "sha256:34d4d54d6f68a1980ad02433a5078d998ab394d55c97d953efa50b442135baf2",
+        "size": 1737,
+        "annotations": {
+          "com.docker.official-images.bashbrew.arch": "arm64v8",
+          "org.opencontainers.image.base.digest": "sha256:260479a1cfaf304c4c20da7f8405d3ce313513dcd534bb743257bdd2fe0f3e2d",
+          "org.opencontainers.image.base.name": "alpine:3.24",
+          "org.opencontainers.image.created": "2026-09-17T21:51:41Z",
+          "org.opencontainers.image.revision": "688a0b86bb44289df16a363e9f41d90514c1a5f9",
+          "org.opencontainers.image.source": "https://github.com/docker-library/python.git#688a0b86bb44289df16a363e9f41d90514c1a5f9:3.12/alpine3.24",
+          "org.opencontainers.image.url": "https://hub.docker.com/_/python",
+          "org.opencontainers.image.version": "3.12.14-alpine3.24"
+        },
+        "platform": {
+          "architecture": "arm64",
+          "os": "linux",
+          "variant": "v8"
+        }
+      }
+    }
+  ],
+  "sink_grants_verified": true,
+  "targets": {
+    "primary": {
+      "ipv4": "10.243.141.2",
+      "ipv6": "fd2c:7eec:d35e::2"
+    },
+    "nonallowed": {
+      "ipv4": "10.243.141.3",
+      "ipv6": "fd2c:7eec:d35e::3"
+    }
+  },
+  "events_before_denial": 12,
+  "events_after_denial": 12,
+  "sink_events": [
+    {
+      "family": "ipv4",
+      "protocol": "tcp",
+      "payload_hex": "6265666f72652e7072696d6172792e697076342e7463702e73796e7468657469632e696e76616c6964"
+    },
+    {
+      "family": "ipv4",
+      "protocol": "udp",
+      "payload_hex": "6265666f72652e7072696d6172792e697076342e7564702e73796e7468657469632e696e76616c6964"
+    },
+    {
+      "family": "ipv4",
+      "protocol": "dns",
+      "payload_hex": "2c0101000001000000000000066265666f7265077072696d617279046970763403646e730973796e74686574696307696e76616c69640000010001"
+    },
+    {
+      "family": "ipv6",
+      "protocol": "tcp",
+      "payload_hex": "6265666f72652e7072696d6172792e697076362e7463702e73796e7468657469632e696e76616c6964"
+    },
+    {
+      "family": "ipv6",
+      "protocol": "udp",
+      "payload_hex": "6265666f72652e7072696d6172792e697076362e7564702e73796e7468657469632e696e76616c6964"
+    },
+    {
+      "family": "ipv6",
+      "protocol": "dns",
+      "payload_hex": "2c0101000001000000000000066265666f7265077072696d617279046970763603646e730973796e74686574696307696e76616c69640000010001"
+    },
+    {
+      "family": "ipv4",
+      "protocol": "tcp",
+      "payload_hex": "61667465722e7072696d6172792e697076342e7463702e73796e7468657469632e696e76616c6964"
+    },
+    {
+      "family": "ipv4",
+      "protocol": "udp",
+      "payload_hex": "61667465722e7072696d6172792e697076342e7564702e73796e7468657469632e696e76616c6964"
+    },
+    {
+      "family": "ipv4",
+      "protocol": "dns",
+      "payload_hex": "2c0101000001000000000000056166746572077072696d617279046970763403646e730973796e74686574696307696e76616c69640000010001"
+    },
+    {
+      "family": "ipv6",
+      "protocol": "tcp",
+      "payload_hex": "61667465722e7072696d6172792e697076362e7463702e73796e7468657469632e696e76616c6964"
+    },
+    {
+      "family": "ipv6",
+      "protocol": "udp",
+      "payload_hex": "61667465722e7072696d6172792e697076362e7564702e73796e7468657469632e696e76616c6964"
+    },
+    {
+      "family": "ipv6",
+      "protocol": "dns",
+      "payload_hex": "2c0101000001000000000000056166746572077072696d617279046970763603646e730973796e74686574696307696e76616c69640000010001"
+    },
+    {
+      "family": "ipv4",
+      "protocol": "tcp",
+      "payload_hex": "6265666f72652e6e6f6e616c6c6f7765642e697076342e7463702e73796e7468657469632e696e76616c6964"
+    },
+    {
+      "family": "ipv4",
+      "protocol": "udp",
+      "payload_hex": "6265666f72652e6e6f6e616c6c6f7765642e697076342e7564702e73796e7468657469632e696e76616c6964"
+    },
+    {
+      "family": "ipv4",
+      "protocol": "dns",
+      "payload_hex": "2c0101000001000000000000066265666f72650a6e6f6e616c6c6f776564046970763403646e730973796e74686574696307696e76616c69640000010001"
+    },
+    {
+      "family": "ipv6",
+      "protocol": "tcp",
+      "payload_hex": "6265666f72652e6e6f6e616c6c6f7765642e697076362e7463702e73796e7468657469632e696e76616c6964"
+    },
+    {
+      "family": "ipv6",
+      "protocol": "udp",
+      "payload_hex": "6265666f72652e6e6f6e616c6c6f7765642e697076362e7564702e73796e7468657469632e696e76616c6964"
+    },
+    {
+      "family": "ipv6",
+      "protocol": "dns",
+      "payload_hex": "2c0101000001000000000000066265666f72650a6e6f6e616c6c6f776564046970763603646e730973796e74686574696307696e76616c69640000010001"
+    },
+    {
+      "family": "ipv4",
+      "protocol": "tcp",
+      "payload_hex": "61667465722e6e6f6e616c6c6f7765642e697076342e7463702e73796e7468657469632e696e76616c6964"
+    },
+    {
+      "family": "ipv4",
+      "protocol": "udp",
+      "payload_hex": "61667465722e6e6f6e616c6c6f7765642e697076342e7564702e73796e7468657469632e696e76616c6964"
+    },
+    {
+      "family": "ipv4",
+      "protocol": "dns",
+      "payload_hex": "2c01010000010000000000000561667465720a6e6f6e616c6c6f776564046970763403646e730973796e74686574696307696e76616c69640000010001"
+    },
+    {
+      "family": "ipv6",
+      "protocol": "tcp",
+      "payload_hex": "61667465722e6e6f6e616c6c6f7765642e697076362e7463702e73796e7468657469632e696e76616c6964"
+    },
+    {
+      "family": "ipv6",
+      "protocol": "udp",
+      "payload_hex": "61667465722e6e6f6e616c6c6f7765642e697076362e7564702e73796e7468657469632e696e76616c6964"
+    },
+    {
+      "family": "ipv6",
+      "protocol": "dns",
+      "payload_hex": "2c01010000010000000000000561667465720a6e6f6e616c6c6f776564046970763603646e730973796e74686574696307696e76616c69640000010001"
+    }
+  ],
+  "sink_heartbeat_advanced": true,
+  "sink_inputs_unchanged": true,
+  "passed": true,
+  "qualification": {
+    "schema_version": 1,
+    "id": "phase-2c-network-subset",
+    "identity": {
+      "host_os": "macOS-27.2-arm64-arm-64bit",
+      "host_kernel": "27.2.0",
+      "architecture": "arm64",
+      "substrate": "docker-desktop-linux-network-subset",
+      "substrate_version": "e202f155a1bea0e06fbf124f1030cffb8db96a4271bd693eff00381128ac8f45",
+      "image": "4c47124a8391cb7a9f571164147d154777cf012a4ece5f86097130d7a4478111",
+      "runtime": "synthetic-cpython-sockets-only",
+      "toolchain": "427eb0611e3bfe464b29a5194be5ed6c36e3ba6b1b880a04cb639d26aeb9e3ff",
+      "configuration": "c37e17d25e003f3836835fb9e676d5b930c20a75cf7507486951184b8788e2d9",
+      "grant": "876537c31117c22ca6772a1e206ab603eaaa12e22f922d37acdd19ed0691470f",
+      "harness": "7636e21bb257cae29397ec639122f67ee6c103ed62cf83f6d5868389126c512a",
+      "manifest": "82df51dd5acd305602b2cb826bbd56d305e5669c15e0d71c06c9f007bdf36eef",
+      "credential_design": null
+    },
+    "results": [
+      {
+        "case": "allowed-grant",
+        "status": "unavailable",
+        "observation": "Outside separate synthetic network subset; no native runtime or broker evidence"
+      },
+      {
+        "case": "external-read",
+        "status": "unavailable",
+        "observation": "Outside separate synthetic network subset; no native runtime or broker evidence"
+      },
+      {
+        "case": "external-write",
+        "status": "unavailable",
+        "observation": "Outside separate synthetic network subset; no native runtime or broker evidence"
+      },
+      {
+        "case": "original-checkout",
+        "status": "unavailable",
+        "observation": "Outside separate synthetic network subset; no native runtime or broker evidence"
+      },
+      {
+        "case": "coordinator-state",
+        "status": "unavailable",
+        "observation": "Outside separate synthetic network subset; no native runtime or broker evidence"
+      },
+      {
+        "case": "symlink-escape",
+        "status": "unavailable",
+        "observation": "Outside separate synthetic network subset; no native runtime or broker evidence"
+      },
+      {
+        "case": "new-file-escape",
+        "status": "unavailable",
+        "observation": "Outside separate synthetic network subset; no native runtime or broker evidence"
+      },
+      {
+        "case": "metadata-escape",
+        "status": "unavailable",
+        "observation": "Outside separate synthetic network subset; no native runtime or broker evidence"
+      },
+      {
+        "case": "network-egress",
+        "status": "passed",
+        "observation": "Synthetic socket attempts, bracketing positive sink controls and independent engine/parent observations"
+      },
+      {
+        "case": "environment-credentials",
+        "status": "unavailable",
+        "observation": "Outside separate synthetic network subset; no native runtime or broker evidence"
+      },
+      {
+        "case": "repository-hooks",
+        "status": "unavailable",
+        "observation": "Outside separate synthetic network subset; no native runtime or broker evidence"
+      },
+      {
+        "case": "global-hooks",
+        "status": "unavailable",
+        "observation": "Outside separate synthetic network subset; no native runtime or broker evidence"
+      },
+      {
+        "case": "mcp-plugins-instructions",
+        "status": "unavailable",
+        "observation": "Outside separate synthetic network subset; no native runtime or broker evidence"
+      },
+      {
+        "case": "descendant-escape",
+        "status": "unavailable",
+        "observation": "Outside separate synthetic network subset; no native runtime or broker evidence"
+      },
+      {
+        "case": "cancellation",
+        "status": "unavailable",
+        "observation": "Outside separate synthetic network subset; no native runtime or broker evidence"
+      },
+      {
+        "case": "deadline",
+        "status": "unavailable",
+        "observation": "Outside separate synthetic network subset; no native runtime or broker evidence"
+      },
+      {
+        "case": "credential-mediation",
+        "status": "unavailable",
+        "observation": "Outside separate synthetic network subset; no native runtime or broker evidence"
+      },
+      {
+        "case": "credential-free-validation",
+        "status": "unavailable",
+        "observation": "Outside separate synthetic network subset; no native runtime or broker evidence"
+      },
+      {
+        "case": "configuration-binding",
+        "status": "unavailable",
+        "observation": "Outside separate synthetic network subset; no native runtime or broker evidence"
+      },
+      {
+        "case": "qualification-refusal",
+        "status": "unavailable",
+        "observation": "Outside separate synthetic network subset; no native runtime or broker evidence"
+      }
+    ],
+    "execution_allowed": false
+  },
+  "decision": {
+    "status": "denied",
+    "reasons": [
+      "unresolved substrate/runtime/credential design",
+      "allowed-grant: unavailable",
+      "external-read: unavailable",
+      "external-write: unavailable",
+      "original-checkout: unavailable",
+      "coordinator-state: unavailable",
+      "symlink-escape: unavailable",
+      "new-file-escape: unavailable",
+      "metadata-escape: unavailable",
+      "environment-credentials: unavailable",
+      "repository-hooks: unavailable",
+      "global-hooks: unavailable",
+      "mcp-plugins-instructions: unavailable",
+      "descendant-escape: unavailable",
+      "cancellation: unavailable",
+      "deadline: unavailable",
+      "credential-mediation: unavailable",
+      "credential-free-validation: unavailable",
+      "configuration-binding: unavailable",
+      "qualification-refusal: unavailable"
+    ],
+    "execution_allowed": false
+  },
+  "schema_version": 1
+}

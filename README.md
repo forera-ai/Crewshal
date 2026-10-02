@@ -8,9 +8,9 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
-Local package version: **0.5.0**. See [CHANGELOG.md](CHANGELOG.md) for version history.
+Local package version: **0.6.0**. See [CHANGELOG.md](CHANGELOG.md) for version history.
 
-**Phases 0, 1, 2A and 2B complete; Phase 2C is blocked.** The Python package delivers passive discovery, explicit human decisions, private SQLite state with transactional version checks, supported migration with backup, inert launch-intent recovery contracts and deterministic gates over coordinator-captured evidence. The offline suite has 55 synthetic cases. Docker Desktop is connected; nine bounded filesystem/environment cases and four separate lifecycle/validator cases passed twice. These complementary subsets are not a combined qualified runtime. Full network, native configuration and credential mediation remain unproved. See [Linux substrate evidence](docs/LINUX-SUBSTRATE-PROBES.md). Public Orka helper probes retained synthetic ambient credentials and hook settings. Runtime execution, agent writes and comparative evaluation remain gated. See [qualification evidence and resumption conditions](docs/EXECUTION-QUALIFICATION.md). Numerical evaluation thresholds are not demonstrated results.
+**Phases 0, 1, 2A and 2B complete; Phase 2C is blocked.** The Python package delivers passive discovery, explicit human decisions, private SQLite state with transactional version checks, supported migration with backup, inert launch-intent recovery contracts and deterministic gates over coordinator-captured evidence. The offline suite has 63 synthetic cases. Docker Desktop is connected; nine bounded filesystem/environment cases and four separate lifecycle/validator cases passed twice. These complementary subsets are not a combined qualified runtime. A separate synthetic network subset passed twice with IPv4/IPv6 TCP, UDP and DNS-wire attempts plus independent positive sink controls. Native runtime network/configuration and credential mediation remain unproved. See [network evidence and preparation limits](docs/NETWORK-SUBSTRATE-PROBES.md). See [Linux substrate evidence](docs/LINUX-SUBSTRATE-PROBES.md). Public Orka helper probes retained synthetic ambient credentials and hook settings. Runtime execution, agent writes and comparative evaluation remain gated. See [qualification evidence and resumption conditions](docs/EXECUTION-QUALIFICATION.md). Numerical evaluation thresholds are not demonstrated results.
 
 The proposal uses a local Python coordinator with Codex and Claude Code adapters, subject to capability and isolation qualification. Implementation proceeds in bounded sessions. Agent writes require execution qualification; paid evaluation requires a confirmed protocol and spending ceiling.
 
@@ -27,7 +27,7 @@ Steps 1–3 are implemented for the bounded Python/TypeScript formats documented
 
 ## Development sessions
 
-Work proceeds one phase or major milestone per session. Read the [rolling handoff](docs/HANDOFF.md) for current state and the next-session prompt, and the [development plan](docs/DEVELOPMENT-PLAN.md) for standalone acceptance gates. [AGENTS.md](AGENTS.md) records the persistent session contract. The next session resumes Phase 2C: complete full network/native-runtime probes and the accepted credential mediation design. Use [the resumption prompt and exact inputs](docs/PHASE-2C-RESUME-PROMPT.md).
+Work proceeds one phase or major milestone per session. Read the [rolling handoff](docs/HANDOFF.md) for current state and the next-session prompt, and the [development plan](docs/DEVELOPMENT-PLAN.md) for standalone acceptance gates. [AGENTS.md](AGENTS.md) records the persistent session contract. The next session resumes Phase 2C: qualify native runtime configuration/network behavior and the accepted credential mediation design under prospective resource limits. Use [the resumption prompt and exact inputs](docs/PHASE-2C-RESUME-PROMPT.md).
 
 Each completed milestone ends with version, README, changelog and handoff updates, followed by a commit and remote branch push. See [the standing publishing rules](AGENTS.md). Development stops at the milestone boundary.
 
@@ -46,6 +46,7 @@ rtk proxy .venv/bin/python -m unittest tests.acceptance.test_phase_2b
 rtk proxy .venv/bin/python -m unittest tests.acceptance.test_phase_2c
 rtk proxy .venv/bin/python -m unittest tests.acceptance.test_phase_2c_substrate
 rtk proxy .venv/bin/python -m unittest tests.acceptance.test_phase_2c_lifecycle
+rtk proxy .venv/bin/python -m unittest tests.acceptance.test_phase_2c_network
 ```
 
 Without `--interactive` or an explicit decision batch, facts remain pending. No discovered command runs. State stays outside the target repository; exports require `--export` and never become execution approvals. See [setup, limits and verification](docs/DEVELOPMENT.md).

@@ -1,0 +1,732 @@
+{
+  "scope": "anonymous metadata discovery only; no layer bytes verified or template loaded",
+  "date": "2026-10-02",
+  "execution_allowed": false,
+  "templates": [
+    {
+      "repository": "docker/sandbox-templates",
+      "tag_discovery_only": "codex-docker",
+      "index_digest": "sha256:8b4cd0a46c8b600bc6b6a64af23c03d4c2807fbfc61f47568092a93fb9dc88b0",
+      "amd64_manifest_digest": "sha256:4478aac4b542421404a5a5c860164f88c42c201e8730c1f3174c8d749f781703",
+      "manifest": {
+        "schemaVersion": 2,
+        "mediaType": "application/vnd.oci.image.manifest.v1+json",
+        "config": {
+          "mediaType": "application/vnd.oci.image.config.v1+json",
+          "digest": "sha256:69eddaf8acd5e85915b47686e332af8f376f6fbf1a67d5640e91340a6daf74fd",
+          "size": 15774
+        },
+        "layers": [
+          {
+            "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+            "digest": "sha256:06e9d71331fb2b620a4f6c8064e0f84b284bb69a42c7c57b1c962bd4a4cdee76",
+            "size": 41569203
+          },
+          {
+            "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+            "digest": "sha256:f3db1cd940786339b09d8a60e47c66fea9502d788e6fab5bec91a4a77d4ced1c",
+            "size": 393
+          },
+          {
+            "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+            "digest": "sha256:c36379b5d5c19dcd3a3359efaedff15c411894a7c4de51553fc24f0fee32a77d",
+            "size": 138
+          },
+          {
+            "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+            "digest": "sha256:6709a1dc5a64e4cfa1598637d876b3269fb5bc423f7edd52be2c987ff63bf31f",
+            "size": 42665145
+          },
+          {
+            "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+            "digest": "sha256:6003c6d695281f7e72d25db8c27b0e82838a540efbf8a860a912d3ff27867d61",
+            "size": 1687
+          },
+          {
+            "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+            "digest": "sha256:31625719247da59a6d0cd214e511f7767ab8fe6bf53bf984c0809196c90c9ca6",
+            "size": 144
+          },
+          {
+            "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+            "digest": "sha256:c60defa4a0607da49916ca2b693afee17ad8009ecad36c81a1d2e0a9128ff7e0",
+            "size": 291
+          },
+          {
+            "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+            "digest": "sha256:169b2e9fa16aca7b0aa8b7dfa1573410e8b1aa2f849311ca7d6876984f4527e4",
+            "size": 1356
+          },
+          {
+            "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+            "digest": "sha256:5a382e934c278b7c8f3a1bd323103344c44ee8748aee60c2140aa243d90350f5",
+            "size": 337
+          },
+          {
+            "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+            "digest": "sha256:0871e1e82fcfcb64fae542f608be26d608f5aa5ef9a53e745300f1ecec7c7f35",
+            "size": 22127319
+          },
+          {
+            "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+            "digest": "sha256:fb3ee508e0092049f614e374ae9165f098a9b8fa028d67f9e1a49bc1b1abd81b",
+            "size": 2670749
+          },
+          {
+            "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+            "digest": "sha256:39bd9db62421bc7329680e0e9be9b091690d0e4e8d55545522b026f4a4944449",
+            "size": 103340854
+          },
+          {
+            "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+            "digest": "sha256:f18bfb52e75957e75f4cb929717da2a2be1ad233dce852aaaaba73d5a3370164",
+            "size": 324988005
+          },
+          {
+            "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+            "digest": "sha256:f52a4da35110af07f4c25a7c550aed5685cec33f77c3f598222b32463744accf",
+            "size": 67780120
+          },
+          {
+            "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+            "digest": "sha256:28359e5acef30f0300cf5f5bfc5ba1a6938c6b486da290288b209272eb11949d",
+            "size": 144
+          },
+          {
+            "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+            "digest": "sha256:cf26e89fc947eca6526e5461691bdc5863d16ce21ccedcfa4f54b610a8bdfa94",
+            "size": 257713753
+          }
+        ]
+      },
+      "config": {
+        "architecture": "amd64",
+        "config": {
+          "User": "agent",
+          "Env": [
+            "PATH=/home/agent/.local/bin:/usr/local/share/npm-global/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+            "NPM_CONFIG_PREFIX=/usr/local/share/npm-global",
+            "NO_PROXY=localhost,127.0.0.1,::1,172.17.0.0/16",
+            "no_proxy=localhost,127.0.0.1,::1,172.17.0.0/16",
+            "BASH_ENV=/etc/sandbox-persistent.sh"
+          ],
+          "Entrypoint": [
+            "tini",
+            "--"
+          ],
+          "Cmd": [
+            "codex"
+          ],
+          "WorkingDir": "/home/agent/workspace",
+          "Labels": {
+            "com.docker.sandboxes": "templates",
+            "com.docker.sandboxes.base": "ubuntu:questing",
+            "com.docker.sandboxes.flavor": "codex-docker",
+            "com.docker.sandboxes.start-docker": "true",
+            "org.opencontainers.image.created": "2026-08-17T09:02:45.677319+00:00",
+            "org.opencontainers.image.description": "The Ubuntu container image maintained by Canonical\n\nUbuntu is a Debian-based Linux operating system that runs from the desktop to the cloud, to all your internet connected things.\nIt is the world's most popular operating system across public clouds and OpenStack clouds.\nIt is the number one platform for containers; from Docker to Kubernetes to LXD, Ubuntu can run your containers at scale.\nFast, secure and simple, Ubuntu powers millions of PCs worldwide.\n",
+            "org.opencontainers.image.title": "ubuntu",
+            "org.opencontainers.image.version": "26.04"
+          },
+          "ArgsEscaped": true
+        },
+        "created": "2026-08-26T12:58:18.896374821Z",
+        "history": [
+          {
+            "created": "2026-08-17T09:02:45.075277503Z",
+            "created_by": "umoci raw add-layer --image /home/buildd/rockcraft-ubuntu-a6225d8d49f545f312e4b2d59bc5cd53/images/ubuntu:rockcraft-base /home/buildd/rockcraft-ubuntu-a6225d8d49f545f312e4b2d59bc5cd53/images/.temp_layer.9259.tar --tag 26.04"
+          },
+          {
+            "created": "2026-08-17T09:02:45.638690477Z",
+            "created_by": "umoci config --image /home/buildd/rockcraft-ubuntu-a6225d8d49f545f312e4b2d59bc5cd53/images/ubuntu:26.04 --clear=config.entrypoint --clear=config.cmd",
+            "comment": "Set entrypoint",
+            "empty_layer": true
+          },
+          {
+            "created": "2026-08-17T09:02:45.656252754Z",
+            "created_by": "umoci config --image /home/buildd/rockcraft-ubuntu-a6225d8d49f545f312e4b2d59bc5cd53/images/ubuntu:26.04 --clear=config.cmd --config.cmd /bin/bash",
+            "comment": "Set default commands",
+            "empty_layer": true
+          },
+          {
+            "created": "2026-08-17T09:02:45.671024321Z",
+            "created_by": "umoci config --image /home/buildd/rockcraft-ubuntu-a6225d8d49f545f312e4b2d59bc5cd53/images/ubuntu:26.04 --config.env PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+            "comment": "Set default PATH for bare-based rock",
+            "empty_layer": true
+          },
+          {
+            "created": "2026-08-17T09:02:45.682877016Z",
+            "created_by": "umoci config --image /home/buildd/rockcraft-ubuntu-a6225d8d49f545f312e4b2d59bc5cd53/images/ubuntu:26.04 --clear=config.labels --config.label org.opencontainers.image.version=26.04 --config.label org.opencontainers.image.title=ubuntu --config.label org.opencontainers.image.created=2026-08-17T09:02:45.677319+00:00 --config.label org.opencontainers.image.description=The Ubuntu container image maintained by Canonical\n\nUbuntu is a Debian-based Linux operating system that runs from the desktop to the cloud, to all your internet connected things.\nIt is the world's most popular operating system across public clouds and OpenStack clouds.\nIt is the number one platform for containers; from Docker to Kubernetes to LXD, Ubuntu can run your containers at scale.\nFast, secure and simple, Ubuntu powers millions of PCs worldwide.\n",
+            "comment": "Set labels",
+            "empty_layer": true
+          },
+          {
+            "created": "2026-08-17T09:02:45.700727906Z",
+            "created_by": "umoci config --image /home/buildd/rockcraft-ubuntu-a6225d8d49f545f312e4b2d59bc5cd53/images/ubuntu:26.04 --clear=manifest.annotations --manifest.annotation org.opencontainers.image.version=26.04 --manifest.annotation org.opencontainers.image.title=ubuntu --manifest.annotation org.opencontainers.image.created=2026-08-17T09:02:45.677319+00:00 --manifest.annotation org.opencontainers.image.description=The Ubuntu container image maintained by Canonical\n\nUbuntu is a Debian-based Linux operating system that runs from the desktop to the cloud, to all your internet connected things.\nIt is the world's most popular operating system across public clouds and OpenStack clouds.\nIt is the number one platform for containers; from Docker to Kubernetes to LXD, Ubuntu can run your containers at scale.\nFast, secure and simple, Ubuntu powers millions of PCs worldwide.\n",
+            "comment": "Set annotations",
+            "empty_layer": true
+          },
+          {
+            "created": "2026-08-17T09:02:45.714435851Z",
+            "created_by": "umoci raw add-layer --image /home/buildd/rockcraft-ubuntu-a6225d8d49f545f312e4b2d59bc5cd53/images/ubuntu:26.04 /home/buildd/rockcraft-ubuntu-a6225d8d49f545f312e4b2d59bc5cd53/images/.temp_layer.control_data.9259.tar",
+            "comment": "Add rock control metadata"
+          },
+          {
+            "created": "2026-08-26T12:54:04.349408277Z",
+            "created_by": "ARG TARGETPLATFORM=linux/amd64",
+            "comment": "buildkit.dockerfile.v0",
+            "empty_layer": true
+          },
+          {
+            "created": "2026-08-26T12:54:04.349408277Z",
+            "created_by": "ENV NPM_CONFIG_PREFIX=/usr/local/share/npm-global",
+            "comment": "buildkit.dockerfile.v0",
+            "empty_layer": true
+          },
+          {
+            "created": "2026-08-26T12:54:04.349408277Z",
+            "created_by": "ENV PATH=/home/agent/.local/bin:/usr/local/share/npm-global/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+            "comment": "buildkit.dockerfile.v0",
+            "empty_layer": true
+          },
+          {
+            "created": "2026-08-26T12:54:04.349408277Z",
+            "created_by": "ENV NO_PROXY=localhost,127.0.0.1,::1,172.17.0.0/16",
+            "comment": "buildkit.dockerfile.v0",
+            "empty_layer": true
+          },
+          {
+            "created": "2026-08-26T12:54:04.349408277Z",
+            "created_by": "ENV no_proxy=localhost,127.0.0.1,::1,172.17.0.0/16",
+            "comment": "buildkit.dockerfile.v0",
+            "empty_layer": true
+          },
+          {
+            "created": "2026-08-26T12:54:04.349408277Z",
+            "created_by": "WORKDIR /home/agent/workspace",
+            "comment": "buildkit.dockerfile.v0"
+          },
+          {
+            "created": "2026-08-26T12:54:15.760752569Z",
+            "created_by": "RUN |1 TARGETPLATFORM=linux/amd64 /bin/sh -c set -euxo pipefail\n# Add Docker repos\napt-get update\napt-get install -yy --no-install-recommends \\\n    ca-certificates \\\n    curl \\\n    gnupg\ninstall -m 0755 -d /etc/apt/keyrings\ncurl -fsSL https://download.docker.com/linux/ubuntu/gpg | \\\n    gpg --dearmor -o /etc/apt/keyrings/docker.gpg\nchmod a+r /etc/apt/keyrings/docker.gpg\necho \\\n    \"deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \\\n    $(. /etc/os-release && echo \"${UBUNTU_CODENAME:-$VERSION_CODENAME}\") stable\" | \\\n    tee /etc/apt/sources.list.d/docker.list > /dev/null\n # buildkit",
+            "comment": "buildkit.dockerfile.v0"
+          },
+          {
+            "created": "2026-08-26T12:54:15.934560424Z",
+            "created_by": "RUN |1 TARGETPLATFORM=linux/amd64 /bin/sh -c set -ex\n# Remove base image user\nuserdel ubuntu || true\n\n# Create non-root user\nuseradd --create-home --uid 1000 --shell /bin/bash agent\ngroupadd -f docker\nusermod -aG sudo agent\nusermod -aG docker agent\n\n# Configure sudoers\nmkdir /etc/sudoers.d\nchmod 0755 /etc/sudoers.d\necho \"agent ALL=(ALL) NOPASSWD:ALL\" > /etc/sudoers.d/agent\necho \"Defaults:%sudo env_keep += \\\"http_proxy https_proxy no_proxy HTTP_PROXY HTTPS_PROXY NO_PROXY SSL_CERT_FILE NODE_EXTRA_CA_CERTS REQUESTS_CA_BUNDLE JAVA_TOOL_OPTIONS\\\"\" > /etc/sudoers.d/proxyconfig\n\n# Create sandbox config\nmkdir -p /home/agent/.docker/sandbox/locks\n\n# Pre-create .local directories with correct ownership to prevent OCI runtime\n# from creating them as root when mounting volumes at deep paths like\n# /home/agent/.local/share/opencode (see docker/dash#914).\nmkdir -p /home/agent/.local/share /home/agent/.local/state\n\nchown -R agent:agent /home/agent\n\n# Set up npm global package folder under /usr/local/share\nmkdir -p /usr/local/share/npm-global\nchown -R agent:agent /usr/local/share/npm-global\n # buildkit",
+            "comment": "buildkit.dockerfile.v0"
+          },
+          {
+            "created": "2026-08-26T12:54:15.988280517Z",
+            "created_by": "RUN |1 TARGETPLATFORM=linux/amd64 /bin/sh -c touch /etc/sandbox-persistent.sh &&     chmod 644 /etc/sandbox-persistent.sh &&     chown agent:agent /etc/sandbox-persistent.sh # buildkit",
+            "comment": "buildkit.dockerfile.v0"
+          },
+          {
+            "created": "2026-08-26T12:54:15.988280517Z",
+            "created_by": "ENV BASH_ENV=/etc/sandbox-persistent.sh",
+            "comment": "buildkit.dockerfile.v0",
+            "empty_layer": true
+          },
+          {
+            "created": "2026-08-26T12:54:16.045479498Z",
+            "created_by": "RUN |1 TARGETPLATFORM=linux/amd64 /bin/sh -c set -ex\ncat > /etc/profile.d/sandbox-persistent.sh << 'PROFILEEOF'\n# Source the sandbox persistent environment file\nif [ -f /etc/sandbox-persistent.sh ]; then\n    . /etc/sandbox-persistent.sh\nfi\n\n# Export BASH_ENV so non-interactive child shells also source the persistent env\nexport BASH_ENV=/etc/sandbox-persistent.sh\nPROFILEEOF\nchmod 644 /etc/profile.d/sandbox-persistent.sh\n # buildkit",
+            "comment": "buildkit.dockerfile.v0"
+          },
+          {
+            "created": "2026-08-26T12:54:16.106580942Z",
+            "created_by": "RUN |1 TARGETPLATFORM=linux/amd64 /bin/sh -c set -ex\n# Create our prepend content\ncat > /tmp/sandbox-bashrc-prepend << 'PREPEND'\n# Docker Sandbox: Source persistent environment for interactive shells\nif [ -f /etc/sandbox-persistent.sh ]; then\n    . /etc/sandbox-persistent.sh\nfi\n\n# Export BASH_ENV so non-interactive child shells also source the persistent env\nexport BASH_ENV=/etc/sandbox-persistent.sh\n\nPREPEND\n\n# Prepend our content to existing bashrc\ncat /tmp/sandbox-bashrc-prepend /etc/bash.bashrc > /tmp/new-bashrc\nmv /tmp/new-bashrc /etc/bash.bashrc\nchmod 644 /etc/bash.bashrc\nrm /tmp/sandbox-bashrc-prepend\n # buildkit",
+            "comment": "buildkit.dockerfile.v0"
+          },
+          {
+            "created": "2026-08-26T12:54:16.177520293Z",
+            "created_by": "RUN |1 TARGETPLATFORM=linux/amd64 /bin/sh -c set -ex\ncat > /home/agent/.bashrc << 'BASHRCEOF'\n# Source the sandbox persistent environment file\nif [ -f /etc/sandbox-persistent.sh ]; then\n    . /etc/sandbox-persistent.sh\nfi\n\n# Export BASH_ENV for child non-interactive shells\nexport BASH_ENV=/etc/sandbox-persistent.sh\n\n# Enable colorized ls output by default\nalias ls='ls --color=auto'\nBASHRCEOF\nchmod 644 /home/agent/.bashrc\nchown agent:agent /home/agent/.bashrc\n # buildkit",
+            "comment": "buildkit.dockerfile.v0"
+          },
+          {
+            "created": "2026-08-26T12:53:59.801916061Z",
+            "created_by": "COPY /uv /usr/local/bin/uv # buildkit",
+            "comment": "buildkit.dockerfile.v0"
+          },
+          {
+            "created": "2026-08-26T12:53:59.801916061Z",
+            "created_by": "ARG TARGETARCH=amd64",
+            "comment": "buildkit.dockerfile.v0",
+            "empty_layer": true
+          },
+          {
+            "created": "2026-08-26T12:53:59.801916061Z",
+            "created_by": "ARG CLIPBOARD_BRIDGE_VERSION=v0.1.0",
+            "comment": "buildkit.dockerfile.v0",
+            "empty_layer": true
+          },
+          {
+            "created": "2026-08-26T12:54:16.796577758Z",
+            "created_by": "RUN |3 TARGETPLATFORM=linux/amd64 TARGETARCH=amd64 CLIPBOARD_BRIDGE_VERSION=v0.1.0 /bin/sh -c set -euxo pipefail\nbase=\"https://github.com/dvdksn/clipboardbridge/releases/download/${CLIPBOARD_BRIDGE_VERSION}\"\nasset=\"clipboard-bridge-linux-${TARGETARCH}\"\ntmp=$(mktemp -d)\ncurl -fsSL \"${base}/${asset}\"     -o \"${tmp}/${asset}\"\ncurl -fsSL \"${base}/SHA256SUMS\"   -o \"${tmp}/SHA256SUMS\"\n(cd \"${tmp}\" && grep \" ${asset}\\$\" SHA256SUMS | sha256sum -c -)\ninstall -m 0755 \"${tmp}/${asset}\" /usr/local/bin/clipboard-bridge\nrm -rf \"${tmp}\"\n # buildkit",
+            "comment": "buildkit.dockerfile.v0"
+          },
+          {
+            "created": "2026-08-26T12:54:16.796577758Z",
+            "created_by": "USER root",
+            "comment": "buildkit.dockerfile.v0",
+            "empty_layer": true
+          },
+          {
+            "created": "2026-08-26T12:54:29.34777173Z",
+            "created_by": "RUN |3 TARGETPLATFORM=linux/amd64 TARGETARCH=amd64 CLIPBOARD_BRIDGE_VERSION=v0.1.0 /bin/sh -c set -euxo pipefail\napt-get update\napt-get install -yy --no-install-recommends \\\n    bubblewrap \\\n    dnsutils \\\n    docker-buildx-plugin \\\n    docker-ce-cli \\\n    docker-compose-plugin \\\n    git \\\n    gh \\\n    jq \\\n    less \\\n    lsof \\\n    make \\\n    openssh-client \\\n    procps \\\n    psmisc \\\n    ripgrep \\\n    rsync \\\n    socat \\\n    sudo \\\n    tini \\\n    unzip\n\napt-get clean\nrm -rf /var/lib/apt/lists/*\n\n # buildkit",
+            "comment": "buildkit.dockerfile.v0"
+          },
+          {
+            "created": "2026-08-26T12:54:29.34777173Z",
+            "created_by": "USER agent",
+            "comment": "buildkit.dockerfile.v0",
+            "empty_layer": true
+          },
+          {
+            "created": "2026-08-26T12:54:29.34777173Z",
+            "created_by": "ENTRYPOINT [\"tini\" \"--\"]",
+            "comment": "buildkit.dockerfile.v0",
+            "empty_layer": true
+          },
+          {
+            "created": "2026-08-26T12:54:29.34777173Z",
+            "created_by": "USER root",
+            "comment": "buildkit.dockerfile.v0",
+            "empty_layer": true
+          },
+          {
+            "created": "2026-08-26T12:55:53.353884653Z",
+            "created_by": "RUN |3 TARGETPLATFORM=linux/amd64 TARGETARCH=amd64 CLIPBOARD_BRIDGE_VERSION=v0.1.0 /bin/sh -c set -euxo pipefail\napt-get update\napt-get install -yy --no-install-recommends \\\n    bc \\\n    default-jdk-headless \\\n    golang \\\n    man-db \\\n    nodejs \\\n    npm \\\n    python3 \\\n    python3-pip\n\napt-get clean\nrm -rf /var/lib/apt/lists/*\n\n # buildkit",
+            "comment": "buildkit.dockerfile.v0"
+          },
+          {
+            "created": "2026-08-26T12:55:53.353884653Z",
+            "created_by": "USER agent",
+            "comment": "buildkit.dockerfile.v0",
+            "empty_layer": true
+          },
+          {
+            "created": "2026-08-26T12:55:53.353884653Z",
+            "created_by": "USER root",
+            "comment": "buildkit.dockerfile.v0",
+            "empty_layer": true
+          },
+          {
+            "created": "2026-08-26T12:56:52.206071904Z",
+            "created_by": "RUN |3 TARGETPLATFORM=linux/amd64 TARGETARCH=amd64 CLIPBOARD_BRIDGE_VERSION=v0.1.0 /bin/sh -c set -euxo pipefail\napt-get update\napt-get install -yy --no-install-recommends \\\n    containerd.io \\\n    docker-ce\n\napt-get clean\nrm -rf /var/lib/apt/lists/*\n # buildkit",
+            "comment": "buildkit.dockerfile.v0"
+          },
+          {
+            "created": "2026-08-26T12:56:52.206071904Z",
+            "created_by": "USER agent",
+            "comment": "buildkit.dockerfile.v0",
+            "empty_layer": true
+          },
+          {
+            "created": "2026-08-26T12:57:57.682975615Z",
+            "created_by": "RUN |3 TARGETPLATFORM=linux/amd64 TARGETARCH=amd64 CLIPBOARD_BRIDGE_VERSION=v0.1.0 /bin/sh -c mkdir -p /home/agent/.codex # buildkit",
+            "comment": "buildkit.dockerfile.v0"
+          },
+          {
+            "created": "2026-08-26T12:58:18.896374821Z",
+            "created_by": "RUN |3 TARGETPLATFORM=linux/amd64 TARGETARCH=amd64 CLIPBOARD_BRIDGE_VERSION=v0.1.0 /bin/sh -c corepack npm install -g @openai/codex@latest     --include=optional     --fetch-timeout=300000     --fetch-retries=3     --fetch-retry-mintimeout=60000     && (corepack disable npm 2>&1 || echo \"corepack disable npm not needed\") # buildkit",
+            "comment": "buildkit.dockerfile.v0"
+          },
+          {
+            "created": "2026-08-26T12:58:18.896374821Z",
+            "created_by": "LABEL com.docker.sandboxes.start-docker=true",
+            "comment": "buildkit.dockerfile.v0",
+            "empty_layer": true
+          },
+          {
+            "created": "2026-08-26T12:58:18.896374821Z",
+            "created_by": "CMD [\"codex\"]",
+            "comment": "buildkit.dockerfile.v0",
+            "empty_layer": true
+          }
+        ],
+        "os": "linux",
+        "rootfs": {
+          "type": "layers",
+          "diff_ids": [
+            "sha256:b577adbc0b589bb7c1d3be98cc4b703e8228ab4413156754445e8b20a001c5d3",
+            "sha256:168f4b64baaa0d1f3b8a1a27acfa9cd0f29527ebda716df024dfa0e9e8f24ef9",
+            "sha256:0a62eae7d7e430dda7e688fc3f9c3acfcb810db2a856359bb960032b6745a470",
+            "sha256:2a7381a7c6077df63e11a27936a39bdac059985c6492e76b136f3c74d67fe3da",
+            "sha256:d548c103dbba0be242ea8cb3c18b9f473a4eff27d7e02a91833c0256dcc33d2c",
+            "sha256:a7ae327729423bdfe62779e22fff8054d5f290b79afee955e44ad1acea30f87c",
+            "sha256:4877c6c42ba04207898ab6476946892803fdc8ecc801455b393cfa814ac0f4fa",
+            "sha256:d1dc4c5a8bd12499776fb76a82b7159460d9a18d08109750a19f61557958509d",
+            "sha256:9c73d6d68e8fa81b678747b7d2d4351718a97a815f67e620fbbd15d37a1dab3f",
+            "sha256:c5e7a88713181c899f61881eada750a95c7c0198df555798942b6fa2e38fadb5",
+            "sha256:994bf72c668982a4917c573607ae1a978eb9e42dcc539fe2081666543b05a579",
+            "sha256:217d52263ea00c559336fd7d6eb87c7b7f72f60f9d5c707e79017cf7e5ab073a",
+            "sha256:957129a5fa7194c3ef2ffaf84344e15999fbe8fa60da618f7a55c59b01f7f5a7",
+            "sha256:c548ab62da687b1d874c7fbcd1effa3dfd84c9e6338805ed586e86dfd9a10d27",
+            "sha256:d41a0aa431e2a8cf220704353ed85b29c162da39061870cd9f74a5382aab373e",
+            "sha256:1f92d7648a501bc8891d0f952fd72579a63edf4b6c53c8192d5a62dd8d3d94f6"
+          ]
+        }
+      },
+      "compressed_layer_bytes": 862859638,
+      "scope": "anonymous official registry metadata only; layers not downloaded; no runtime executed",
+      "execution_allowed": false
+    },
+    {
+      "repository": "docker/sandbox-templates",
+      "tag_discovery_only": "shell-docker",
+      "index_digest": "sha256:1560168ac5fb9ce23d413c878349334c5845c07e264cd675d7867f0c78ad1761",
+      "amd64_manifest_digest": "sha256:5bbe8539825fe1cace6dda2fb66919ef819324d905bea2795b8516aee0198222",
+      "manifest": {
+        "schemaVersion": 2,
+        "mediaType": "application/vnd.oci.image.manifest.v1+json",
+        "config": {
+          "mediaType": "application/vnd.oci.image.config.v1+json",
+          "digest": "sha256:84e55b2a5e0b5f0f3f6f111627a0c0855e01fd19e99e1a2d5ad2a4b90c6f7a34",
+          "size": 15502
+        },
+        "layers": [
+          {
+            "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+            "digest": "sha256:09923199ca0ebd3ad9fb1dd1d0ab85d2b86aa388b988c8d4c8ee4f660fdb9e9e",
+            "size": 41572999
+          },
+          {
+            "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+            "digest": "sha256:d9b9856437537fc061e98f71ecab9d95d7745fbf7d7b871d2e54ca4c3b02ea5a",
+            "size": 391
+          },
+          {
+            "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+            "digest": "sha256:6be171d3b9c3ff0dc6622f6c86603ff46afb34e2fe9bed3f76dfe55f0c92be7d",
+            "size": 138
+          },
+          {
+            "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+            "digest": "sha256:9166e4106e2cc482858395ec32b8d509034031da8cc24567d26b8591db798b53",
+            "size": 40287008
+          },
+          {
+            "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+            "digest": "sha256:46c5432dd4eff6ed2ffb17617b43481c58380e81421c19948baaeac4823aa66e",
+            "size": 1686
+          },
+          {
+            "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+            "digest": "sha256:b935d4f96e4ce4b4a57afc9cc60a2fd918ff8442c0efda66df6fb3fb3c3fbae5",
+            "size": 143
+          },
+          {
+            "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+            "digest": "sha256:d95a895c408acfd51ca69b6a14e1eb035f6cdee8fe86d2d7648a49e9981d3caa",
+            "size": 287
+          },
+          {
+            "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+            "digest": "sha256:0313505564c0a7e7a2f515934f9d0853796181bec38aa9a3712a6eb2236fbdb0",
+            "size": 1354
+          },
+          {
+            "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+            "digest": "sha256:d4f18782e0b98ff9fd7fcd51a3dd028b25d72953f56d98f6ffa5dcfcbd5f8dc9",
+            "size": 336
+          },
+          {
+            "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+            "digest": "sha256:97e1027c0b26dc620e0e6164a4413c9cf431453f119090ddad9a8d0920a472c6",
+            "size": 22127303
+          },
+          {
+            "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+            "digest": "sha256:7ef398d18b17606d1fcbec337b67fcf5f5c30c5d113633956ad5bd716e202acc",
+            "size": 2670753
+          },
+          {
+            "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+            "digest": "sha256:debdb2a8429d5a840c550a009e7666d62beaf9aaa28935fc37794ff7032fa782",
+            "size": 99673627
+          },
+          {
+            "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+            "digest": "sha256:71c1bc8fa24b0ad8abf78697a303ee315a9624ee4405d4a1603f4756155eecde",
+            "size": 324988895
+          },
+          {
+            "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+            "digest": "sha256:ae16407265708ea557741320c52a2c88755a27ea29d60f7a57902c4d643e3dc5",
+            "size": 67828898
+          },
+          {
+            "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+            "digest": "sha256:16056e91725bf7828e21a7367a2a52e87aacbab28f7efdfa78b4334e590296f4",
+            "size": 420
+          }
+        ]
+      },
+      "config": {
+        "architecture": "amd64",
+        "config": {
+          "User": "agent",
+          "Env": [
+            "PATH=/home/agent/.local/bin:/usr/local/share/npm-global/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+            "NPM_CONFIG_PREFIX=/usr/local/share/npm-global",
+            "NO_PROXY=localhost,127.0.0.1,::1,172.17.0.0/16",
+            "no_proxy=localhost,127.0.0.1,::1,172.17.0.0/16",
+            "BASH_ENV=/etc/sandbox-persistent.sh"
+          ],
+          "Entrypoint": [
+            "tini",
+            "--"
+          ],
+          "Cmd": [
+            "bash"
+          ],
+          "WorkingDir": "/home/agent/workspace",
+          "Labels": {
+            "com.docker.sandboxes": "templates",
+            "com.docker.sandboxes.base": "ubuntu:questing",
+            "com.docker.sandboxes.flavor": "shell-docker",
+            "com.docker.sandboxes.start-docker": "true",
+            "org.opencontainers.image.created": "2026-09-12T10:25:59.825539+00:00",
+            "org.opencontainers.image.description": "The Ubuntu container image maintained by Canonical\n\nUbuntu is a Debian-based Linux operating system that runs from the desktop to the cloud, to all your internet connected things.\nIt is the world's most popular operating system across public clouds and OpenStack clouds.\nIt is the number one platform for containers; from Docker to Kubernetes to LXD, Ubuntu can run your containers at scale.\nFast, secure and simple, Ubuntu powers millions of PCs worldwide.\n",
+            "org.opencontainers.image.title": "ubuntu",
+            "org.opencontainers.image.version": "26.04"
+          },
+          "ArgsEscaped": true
+        },
+        "created": "2026-09-23T17:58:49.770067633Z",
+        "history": [
+          {
+            "created": "2026-09-12T10:25:59.422093142Z",
+            "created_by": "umoci raw add-layer --image /home/buildd/rockcraft-ubuntu-64c38dcc01e7a4a6a4edc23c9f41a2cf/images/ubuntu:rockcraft-base /home/buildd/rockcraft-ubuntu-64c38dcc01e7a4a6a4edc23c9f41a2cf/images/.temp_layer.9520.tar --tag 26.04"
+          },
+          {
+            "created": "2026-09-12T10:25:59.802509433Z",
+            "created_by": "umoci config --image /home/buildd/rockcraft-ubuntu-64c38dcc01e7a4a6a4edc23c9f41a2cf/images/ubuntu:26.04 --clear=config.entrypoint --clear=config.cmd",
+            "comment": "Set entrypoint",
+            "empty_layer": true
+          },
+          {
+            "created": "2026-09-12T10:25:59.811302525Z",
+            "created_by": "umoci config --image /home/buildd/rockcraft-ubuntu-64c38dcc01e7a4a6a4edc23c9f41a2cf/images/ubuntu:26.04 --clear=config.cmd --config.cmd /bin/bash",
+            "comment": "Set default commands",
+            "empty_layer": true
+          },
+          {
+            "created": "2026-09-12T10:25:59.821416137Z",
+            "created_by": "umoci config --image /home/buildd/rockcraft-ubuntu-64c38dcc01e7a4a6a4edc23c9f41a2cf/images/ubuntu:26.04 --config.env PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+            "comment": "Set default PATH for bare-based rock",
+            "empty_layer": true
+          },
+          {
+            "created": "2026-09-12T10:25:59.830065909Z",
+            "created_by": "umoci config --image /home/buildd/rockcraft-ubuntu-64c38dcc01e7a4a6a4edc23c9f41a2cf/images/ubuntu:26.04 --clear=config.labels --config.label org.opencontainers.image.version=26.04 --config.label org.opencontainers.image.title=ubuntu --config.label org.opencontainers.image.created=2026-09-12T10:25:59.825539+00:00 --config.label org.opencontainers.image.description=The Ubuntu container image maintained by Canonical\n\nUbuntu is a Debian-based Linux operating system that runs from the desktop to the cloud, to all your internet connected things.\nIt is the world's most popular operating system across public clouds and OpenStack clouds.\nIt is the number one platform for containers; from Docker to Kubernetes to LXD, Ubuntu can run your containers at scale.\nFast, secure and simple, Ubuntu powers millions of PCs worldwide.\n",
+            "comment": "Set labels",
+            "empty_layer": true
+          },
+          {
+            "created": "2026-09-12T10:25:59.839603346Z",
+            "created_by": "umoci config --image /home/buildd/rockcraft-ubuntu-64c38dcc01e7a4a6a4edc23c9f41a2cf/images/ubuntu:26.04 --clear=manifest.annotations --manifest.annotation org.opencontainers.image.version=26.04 --manifest.annotation org.opencontainers.image.title=ubuntu --manifest.annotation org.opencontainers.image.created=2026-09-12T10:25:59.825539+00:00 --manifest.annotation org.opencontainers.image.description=The Ubuntu container image maintained by Canonical\n\nUbuntu is a Debian-based Linux operating system that runs from the desktop to the cloud, to all your internet connected things.\nIt is the world's most popular operating system across public clouds and OpenStack clouds.\nIt is the number one platform for containers; from Docker to Kubernetes to LXD, Ubuntu can run your containers at scale.\nFast, secure and simple, Ubuntu powers millions of PCs worldwide.\n",
+            "comment": "Set annotations",
+            "empty_layer": true
+          },
+          {
+            "created": "2026-09-12T10:25:59.850443703Z",
+            "created_by": "umoci raw add-layer --image /home/buildd/rockcraft-ubuntu-64c38dcc01e7a4a6a4edc23c9f41a2cf/images/ubuntu:26.04 /home/buildd/rockcraft-ubuntu-64c38dcc01e7a4a6a4edc23c9f41a2cf/images/.temp_layer.control_data.9520.tar",
+            "comment": "Add rock control metadata"
+          },
+          {
+            "created": "2026-09-23T17:53:11.994720694Z",
+            "created_by": "ARG TARGETPLATFORM=linux/amd64",
+            "comment": "buildkit.dockerfile.v0",
+            "empty_layer": true
+          },
+          {
+            "created": "2026-09-23T17:53:11.994720694Z",
+            "created_by": "ENV NPM_CONFIG_PREFIX=/usr/local/share/npm-global",
+            "comment": "buildkit.dockerfile.v0",
+            "empty_layer": true
+          },
+          {
+            "created": "2026-09-23T17:53:11.994720694Z",
+            "created_by": "ENV PATH=/home/agent/.local/bin:/usr/local/share/npm-global/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+            "comment": "buildkit.dockerfile.v0",
+            "empty_layer": true
+          },
+          {
+            "created": "2026-09-23T17:53:11.994720694Z",
+            "created_by": "ENV NO_PROXY=localhost,127.0.0.1,::1,172.17.0.0/16",
+            "comment": "buildkit.dockerfile.v0",
+            "empty_layer": true
+          },
+          {
+            "created": "2026-09-23T17:53:11.994720694Z",
+            "created_by": "ENV no_proxy=localhost,127.0.0.1,::1,172.17.0.0/16",
+            "comment": "buildkit.dockerfile.v0",
+            "empty_layer": true
+          },
+          {
+            "created": "2026-09-23T17:53:11.994720694Z",
+            "created_by": "WORKDIR /home/agent/workspace",
+            "comment": "buildkit.dockerfile.v0"
+          },
+          {
+            "created": "2026-09-23T17:53:23.5005482Z",
+            "created_by": "RUN |1 TARGETPLATFORM=linux/amd64 /bin/sh -c set -euxo pipefail\n# Add Docker repos\napt-get update\napt-get install -yy --no-install-recommends \\\n    ca-certificates \\\n    curl \\\n    gnupg\ninstall -m 0755 -d /etc/apt/keyrings\ncurl -fsSL https://download.docker.com/linux/ubuntu/gpg | \\\n    gpg --dearmor -o /etc/apt/keyrings/docker.gpg\nchmod a+r /etc/apt/keyrings/docker.gpg\necho \\\n    \"deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \\\n    $(. /etc/os-release && echo \"${UBUNTU_CODENAME:-$VERSION_CODENAME}\") stable\" | \\\n    tee /etc/apt/sources.list.d/docker.list > /dev/null\n # buildkit",
+            "comment": "buildkit.dockerfile.v0"
+          },
+          {
+            "created": "2026-09-23T17:53:23.644073583Z",
+            "created_by": "RUN |1 TARGETPLATFORM=linux/amd64 /bin/sh -c set -ex\n# Remove base image user\nuserdel ubuntu || true\n\n# Create non-root user\nuseradd --create-home --uid 1000 --shell /bin/bash agent\ngroupadd -f docker\nusermod -aG sudo agent\nusermod -aG docker agent\n\n# Configure sudoers\nmkdir /etc/sudoers.d\nchmod 0755 /etc/sudoers.d\necho \"agent ALL=(ALL) NOPASSWD:ALL\" > /etc/sudoers.d/agent\necho \"Defaults:%sudo env_keep += \\\"http_proxy https_proxy no_proxy HTTP_PROXY HTTPS_PROXY NO_PROXY SSL_CERT_FILE NODE_EXTRA_CA_CERTS REQUESTS_CA_BUNDLE JAVA_TOOL_OPTIONS\\\"\" > /etc/sudoers.d/proxyconfig\n\n# Create sandbox config\nmkdir -p /home/agent/.docker/sandbox/locks\n\n# Pre-create .local directories with correct ownership to prevent OCI runtime\n# from creating them as root when mounting volumes at deep paths like\n# /home/agent/.local/share/opencode (see docker/dash#914).\nmkdir -p /home/agent/.local/share /home/agent/.local/state\n\nchown -R agent:agent /home/agent\n\n# Set up npm global package folder under /usr/local/share\nmkdir -p /usr/local/share/npm-global\nchown -R agent:agent /usr/local/share/npm-global\n # buildkit",
+            "comment": "buildkit.dockerfile.v0"
+          },
+          {
+            "created": "2026-09-23T17:53:23.707855532Z",
+            "created_by": "RUN |1 TARGETPLATFORM=linux/amd64 /bin/sh -c touch /etc/sandbox-persistent.sh &&     chmod 644 /etc/sandbox-persistent.sh &&     chown agent:agent /etc/sandbox-persistent.sh # buildkit",
+            "comment": "buildkit.dockerfile.v0"
+          },
+          {
+            "created": "2026-09-23T17:53:23.707855532Z",
+            "created_by": "ENV BASH_ENV=/etc/sandbox-persistent.sh",
+            "comment": "buildkit.dockerfile.v0",
+            "empty_layer": true
+          },
+          {
+            "created": "2026-09-23T17:53:23.772364097Z",
+            "created_by": "RUN |1 TARGETPLATFORM=linux/amd64 /bin/sh -c set -ex\ncat > /etc/profile.d/sandbox-persistent.sh << 'PROFILEEOF'\n# Source the sandbox persistent environment file\nif [ -f /etc/sandbox-persistent.sh ]; then\n    . /etc/sandbox-persistent.sh\nfi\n\n# Export BASH_ENV so non-interactive child shells also source the persistent env\nexport BASH_ENV=/etc/sandbox-persistent.sh\nPROFILEEOF\nchmod 644 /etc/profile.d/sandbox-persistent.sh\n # buildkit",
+            "comment": "buildkit.dockerfile.v0"
+          },
+          {
+            "created": "2026-09-23T17:53:23.842442419Z",
+            "created_by": "RUN |1 TARGETPLATFORM=linux/amd64 /bin/sh -c set -ex\n# Create our prepend content\ncat > /tmp/sandbox-bashrc-prepend << 'PREPEND'\n# Docker Sandbox: Source persistent environment for interactive shells\nif [ -f /etc/sandbox-persistent.sh ]; then\n    . /etc/sandbox-persistent.sh\nfi\n\n# Export BASH_ENV so non-interactive child shells also source the persistent env\nexport BASH_ENV=/etc/sandbox-persistent.sh\n\nPREPEND\n\n# Prepend our content to existing bashrc\ncat /tmp/sandbox-bashrc-prepend /etc/bash.bashrc > /tmp/new-bashrc\nmv /tmp/new-bashrc /etc/bash.bashrc\nchmod 644 /etc/bash.bashrc\nrm /tmp/sandbox-bashrc-prepend\n # buildkit",
+            "comment": "buildkit.dockerfile.v0"
+          },
+          {
+            "created": "2026-09-23T17:53:23.909778347Z",
+            "created_by": "RUN |1 TARGETPLATFORM=linux/amd64 /bin/sh -c set -ex\ncat > /home/agent/.bashrc << 'BASHRCEOF'\n# Source the sandbox persistent environment file\nif [ -f /etc/sandbox-persistent.sh ]; then\n    . /etc/sandbox-persistent.sh\nfi\n\n# Export BASH_ENV for child non-interactive shells\nexport BASH_ENV=/etc/sandbox-persistent.sh\n\n# Enable colorized ls output by default\nalias ls='ls --color=auto'\nBASHRCEOF\nchmod 644 /home/agent/.bashrc\nchown agent:agent /home/agent/.bashrc\n # buildkit",
+            "comment": "buildkit.dockerfile.v0"
+          },
+          {
+            "created": "2026-09-23T17:53:09.603645379Z",
+            "created_by": "COPY /uv /usr/local/bin/uv # buildkit",
+            "comment": "buildkit.dockerfile.v0"
+          },
+          {
+            "created": "2026-09-23T17:53:09.603645379Z",
+            "created_by": "ARG TARGETARCH=amd64",
+            "comment": "buildkit.dockerfile.v0",
+            "empty_layer": true
+          },
+          {
+            "created": "2026-09-23T17:53:09.603645379Z",
+            "created_by": "ARG CLIPBOARD_BRIDGE_VERSION=v0.1.0",
+            "comment": "buildkit.dockerfile.v0",
+            "empty_layer": true
+          },
+          {
+            "created": "2026-09-23T17:53:24.994699121Z",
+            "created_by": "RUN |3 TARGETPLATFORM=linux/amd64 TARGETARCH=amd64 CLIPBOARD_BRIDGE_VERSION=v0.1.0 /bin/sh -c set -euxo pipefail\nbase=\"https://github.com/dvdksn/clipboardbridge/releases/download/${CLIPBOARD_BRIDGE_VERSION}\"\nasset=\"clipboard-bridge-linux-${TARGETARCH}\"\ntmp=$(mktemp -d)\ncurl -fsSL \"${base}/${asset}\"     -o \"${tmp}/${asset}\"\ncurl -fsSL \"${base}/SHA256SUMS\"   -o \"${tmp}/SHA256SUMS\"\n(cd \"${tmp}\" && grep \" ${asset}\\$\" SHA256SUMS | sha256sum -c -)\ninstall -m 0755 \"${tmp}/${asset}\" /usr/local/bin/clipboard-bridge\nrm -rf \"${tmp}\"\n # buildkit",
+            "comment": "buildkit.dockerfile.v0"
+          },
+          {
+            "created": "2026-09-23T17:53:24.994699121Z",
+            "created_by": "USER root",
+            "comment": "buildkit.dockerfile.v0",
+            "empty_layer": true
+          },
+          {
+            "created": "2026-09-23T17:53:37.058636055Z",
+            "created_by": "RUN |3 TARGETPLATFORM=linux/amd64 TARGETARCH=amd64 CLIPBOARD_BRIDGE_VERSION=v0.1.0 /bin/sh -c set -euxo pipefail\napt-get update\napt-get install -yy --no-install-recommends \\\n    bubblewrap \\\n    dnsutils \\\n    docker-buildx-plugin \\\n    docker-ce-cli \\\n    docker-compose-plugin \\\n    git \\\n    gh \\\n    jq \\\n    less \\\n    lsof \\\n    make \\\n    openssh-client \\\n    procps \\\n    psmisc \\\n    ripgrep \\\n    rsync \\\n    socat \\\n    sudo \\\n    tini \\\n    unzip\n\napt-get clean\nrm -rf /var/lib/apt/lists/*\n\n # buildkit",
+            "comment": "buildkit.dockerfile.v0"
+          },
+          {
+            "created": "2026-09-23T17:53:37.058636055Z",
+            "created_by": "USER agent",
+            "comment": "buildkit.dockerfile.v0",
+            "empty_layer": true
+          },
+          {
+            "created": "2026-09-23T17:53:37.058636055Z",
+            "created_by": "ENTRYPOINT [\"tini\" \"--\"]",
+            "comment": "buildkit.dockerfile.v0",
+            "empty_layer": true
+          },
+          {
+            "created": "2026-09-23T17:53:37.058636055Z",
+            "created_by": "USER root",
+            "comment": "buildkit.dockerfile.v0",
+            "empty_layer": true
+          },
+          {
+            "created": "2026-09-23T17:55:46.411008386Z",
+            "created_by": "RUN |3 TARGETPLATFORM=linux/amd64 TARGETARCH=amd64 CLIPBOARD_BRIDGE_VERSION=v0.1.0 /bin/sh -c set -euxo pipefail\napt-get update\napt-get install -yy --no-install-recommends \\\n    bc \\\n    default-jdk-headless \\\n    golang \\\n    man-db \\\n    nodejs \\\n    npm \\\n    python3 \\\n    python3-pip\n\napt-get clean\nrm -rf /var/lib/apt/lists/*\n\n # buildkit",
+            "comment": "buildkit.dockerfile.v0"
+          },
+          {
+            "created": "2026-09-23T17:55:46.411008386Z",
+            "created_by": "USER agent",
+            "comment": "buildkit.dockerfile.v0",
+            "empty_layer": true
+          },
+          {
+            "created": "2026-09-23T17:55:46.411008386Z",
+            "created_by": "USER root",
+            "comment": "buildkit.dockerfile.v0",
+            "empty_layer": true
+          },
+          {
+            "created": "2026-09-23T17:56:46.266087273Z",
+            "created_by": "RUN |3 TARGETPLATFORM=linux/amd64 TARGETARCH=amd64 CLIPBOARD_BRIDGE_VERSION=v0.1.0 /bin/sh -c set -euxo pipefail\napt-get update\napt-get install -yy --no-install-recommends \\\n    containerd.io \\\n    docker-ce\n\napt-get clean\nrm -rf /var/lib/apt/lists/*\n # buildkit",
+            "comment": "buildkit.dockerfile.v0"
+          },
+          {
+            "created": "2026-09-23T17:56:46.266087273Z",
+            "created_by": "USER agent",
+            "comment": "buildkit.dockerfile.v0",
+            "empty_layer": true
+          },
+          {
+            "created": "2026-09-23T17:58:49.770067633Z",
+            "created_by": "RUN |3 TARGETPLATFORM=linux/amd64 TARGETARCH=amd64 CLIPBOARD_BRIDGE_VERSION=v0.1.0 /bin/sh -c set -ex\necho 'PS1='\"'\"'\\u@\\h:\\W\\$ '\"'\" >> /home/agent/.bashrc\nprintf '\\n# Source .bashrc for login shells\\nif [ -f ~/.bashrc ]; then . ~/.bashrc; fi\\n' >> /home/agent/.bash_profile\nchown agent:agent /home/agent/.bashrc /home/agent/.bash_profile\n # buildkit",
+            "comment": "buildkit.dockerfile.v0"
+          },
+          {
+            "created": "2026-09-23T17:58:49.770067633Z",
+            "created_by": "LABEL com.docker.sandboxes.start-docker=true",
+            "comment": "buildkit.dockerfile.v0",
+            "empty_layer": true
+          },
+          {
+            "created": "2026-09-23T17:58:49.770067633Z",
+            "created_by": "CMD [\"bash\"]",
+            "comment": "buildkit.dockerfile.v0",
+            "empty_layer": true
+          }
+        ],
+        "os": "linux",
+        "rootfs": {
+          "type": "layers",
+          "diff_ids": [
+            "sha256:485d137fd3bfb545f1b417ea708e2281594be7a334e8a85ab75c5332db6089e9",
+            "sha256:598e8330e2e633ea6b06bbf1e8b80c275553b7c1de53899af154d1f480a7eefa",
+            "sha256:6b02af538300ae54f63002c0c75af9f280f6bd69f6e14c24a89c842c87e97186",
+            "sha256:8a979f13ecb52b36d5114caebcd5c1c1a845440d958565076750e4560c931b93",
+            "sha256:3a6f431b5792a2f3175fb88055b09853cd276aff74c6f43de75197684856541b",
+            "sha256:416129fad241237840a7e1b049d8d71de72d5e9b49435c88a4aa55d1fce70d0a",
+            "sha256:7c78f81f6db87a5b92525b6b35bfc82a8dbfcb0860e19298acf6f832f44817de",
+            "sha256:f4b6da7dabf6b60c5c9624eb0473ca767db5a1ccafd09a40bc2bab17238069b6",
+            "sha256:fec6960aee8fe7e228bbdc8ad722e4d39c0e8f9146a3f7bdf511ee0f531e6e3f",
+            "sha256:fa4af301f86f374317d4e2d1e5ca52a5244548c7c8e77c62c6c534096ea4e280",
+            "sha256:4e55e2df8984506d0e871841931ef8527c66e9b08e712bf8590872114726f0b0",
+            "sha256:8d6791b7e1d6e300e0df752b7ad8525b732e91a06090b6e3633dd3f9a3c91066",
+            "sha256:7d768187b46f36d9f3db7a1b31d4f1f0e6049ec99f8d9e2397e28886c19e5e3d",
+            "sha256:21c792fc454d6f4c88fa4e916ed01f02e4598cf4c77a66aefb3bc8e7c0fc5514",
+            "sha256:9e12003aa7600bcdc93ab0a606b2d389072b405b3dffe6b892d6c2b54e0a6a2b"
+          ]
+        }
+      },
+      "compressed_layer_bytes": 599154238,
+      "scope": "anonymous official registry metadata only; layers not downloaded; no runtime executed",
+      "execution_allowed": false
+    }
+  ]
+}

@@ -2,6 +2,13 @@
 
 Versions follow semantic versioning. Remote branch publication is distinct from a package-registry release; no registry release has occurred.
 
+## 0.8.5 — 2026-10-03
+
+- Reverify the newly supplied disposable host with two source-bound KVM HLT runs and fresh memory/disk/cgroup observations; retain the host under the owner's explicit instruction.
+- Prepare exact SBX amd64 bytes and verify fresh version/help twice; resolve immutable candidate template metadata and verify all Codex layer digests/diff IDs without running template/native code.
+- Freeze a reviewable network-denied daemon/settings diagnostic proposal; it awaits the owner decision required by the full operational freeze gate and has not run.
+- Independently inspect final preparation units/processes/KVM handles; retain verified artifacts for continuation. Reproduce 78 network-denied offline tests. Inner/whole-runtime qualification remains blocked.
+
 ## 0.8.4 — 2026-10-02
 
 - Record direct owner approval of the exact operational resource envelope in a separate digest-bound record; preserve historical proposal, readiness bindings and original grants unchanged.

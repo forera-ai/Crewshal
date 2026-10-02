@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "id": "crewshal-phase-2c-current-host-v1",
+  "date": "2026-10-02",
+  "scope": "read-only host diagnostics and two trusted KVM HLT executions; no SBX/worker creation",
+  "base_revision": "72f9132a7f4f04a9cd7a23749cbb3511944955a6",
+  "source_path": "docs/qualification/phase-2c-current-host-v1-probe.txt",
+  "source_sha256": "50ce390ece825d61f18e0a48b1a5400c7cf7b5f998228803429e0d935b5408a0",
+  "hlt_source_sha256": "cfce2653fe58d2a53c7ebc5a541b3067737c2e788ac662183a014807b30b4a2f",
+  "runs": 2,
+  "process_seconds": 10,
+  "aggregate_seconds": 30,
+  "output_bytes_per_stream": 65536,
+  "owner_host_retention": "Keep current droplet until all required host work is finished; do not recommend deletion at an intermediate checkpoint.",
+  "resource_approval_sha256": "872c244d2a28488a1379cb5e61f56567a2aa86cf3a2d954e019f06bd40105df1",
+  "execution_allowed": false,
+  "native_start_allowed": false
+}

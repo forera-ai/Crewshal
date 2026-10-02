@@ -1,0 +1,478 @@
+{
+  "compressed_bytes": 862859638,
+  "elapsed_seconds": 58.047,
+  "execution_allowed": false,
+  "layers": [
+    {
+      "bytes": 41569203,
+      "diff_id": "sha256:b577adbc0b589bb7c1d3be98cc4b703e8228ab4413156754445e8b20a001c5d3",
+      "digest": "sha256:06e9d71331fb2b620a4f6c8064e0f84b284bb69a42c7c57b1c962bd4a4cdee76"
+    },
+    {
+      "bytes": 393,
+      "diff_id": "sha256:168f4b64baaa0d1f3b8a1a27acfa9cd0f29527ebda716df024dfa0e9e8f24ef9",
+      "digest": "sha256:f3db1cd940786339b09d8a60e47c66fea9502d788e6fab5bec91a4a77d4ced1c"
+    },
+    {
+      "bytes": 138,
+      "diff_id": "sha256:0a62eae7d7e430dda7e688fc3f9c3acfcb810db2a856359bb960032b6745a470",
+      "digest": "sha256:c36379b5d5c19dcd3a3359efaedff15c411894a7c4de51553fc24f0fee32a77d"
+    },
+    {
+      "bytes": 42665145,
+      "diff_id": "sha256:2a7381a7c6077df63e11a27936a39bdac059985c6492e76b136f3c74d67fe3da",
+      "digest": "sha256:6709a1dc5a64e4cfa1598637d876b3269fb5bc423f7edd52be2c987ff63bf31f"
+    },
+    {
+      "bytes": 1687,
+      "diff_id": "sha256:d548c103dbba0be242ea8cb3c18b9f473a4eff27d7e02a91833c0256dcc33d2c",
+      "digest": "sha256:6003c6d695281f7e72d25db8c27b0e82838a540efbf8a860a912d3ff27867d61"
+    },
+    {
+      "bytes": 144,
+      "diff_id": "sha256:a7ae327729423bdfe62779e22fff8054d5f290b79afee955e44ad1acea30f87c",
+      "digest": "sha256:31625719247da59a6d0cd214e511f7767ab8fe6bf53bf984c0809196c90c9ca6"
+    },
+    {
+      "bytes": 291,
+      "diff_id": "sha256:4877c6c42ba04207898ab6476946892803fdc8ecc801455b393cfa814ac0f4fa",
+      "digest": "sha256:c60defa4a0607da49916ca2b693afee17ad8009ecad36c81a1d2e0a9128ff7e0"
+    },
+    {
+      "bytes": 1356,
+      "diff_id": "sha256:d1dc4c5a8bd12499776fb76a82b7159460d9a18d08109750a19f61557958509d",
+      "digest": "sha256:169b2e9fa16aca7b0aa8b7dfa1573410e8b1aa2f849311ca7d6876984f4527e4"
+    },
+    {
+      "bytes": 337,
+      "diff_id": "sha256:9c73d6d68e8fa81b678747b7d2d4351718a97a815f67e620fbbd15d37a1dab3f",
+      "digest": "sha256:5a382e934c278b7c8f3a1bd323103344c44ee8748aee60c2140aa243d90350f5"
+    },
+    {
+      "bytes": 22127319,
+      "diff_id": "sha256:c5e7a88713181c899f61881eada750a95c7c0198df555798942b6fa2e38fadb5",
+      "digest": "sha256:0871e1e82fcfcb64fae542f608be26d608f5aa5ef9a53e745300f1ecec7c7f35"
+    },
+    {
+      "bytes": 2670749,
+      "diff_id": "sha256:994bf72c668982a4917c573607ae1a978eb9e42dcc539fe2081666543b05a579",
+      "digest": "sha256:fb3ee508e0092049f614e374ae9165f098a9b8fa028d67f9e1a49bc1b1abd81b"
+    },
+    {
+      "bytes": 103340854,
+      "diff_id": "sha256:217d52263ea00c559336fd7d6eb87c7b7f72f60f9d5c707e79017cf7e5ab073a",
+      "digest": "sha256:39bd9db62421bc7329680e0e9be9b091690d0e4e8d55545522b026f4a4944449"
+    },
+    {
+      "bytes": 324988005,
+      "diff_id": "sha256:957129a5fa7194c3ef2ffaf84344e15999fbe8fa60da618f7a55c59b01f7f5a7",
+      "digest": "sha256:f18bfb52e75957e75f4cb929717da2a2be1ad233dce852aaaaba73d5a3370164"
+    },
+    {
+      "bytes": 67780120,
+      "diff_id": "sha256:c548ab62da687b1d874c7fbcd1effa3dfd84c9e6338805ed586e86dfd9a10d27",
+      "digest": "sha256:f52a4da35110af07f4c25a7c550aed5685cec33f77c3f598222b32463744accf"
+    },
+    {
+      "bytes": 144,
+      "diff_id": "sha256:d41a0aa431e2a8cf220704353ed85b29c162da39061870cd9f74a5382aab373e",
+      "digest": "sha256:28359e5acef30f0300cf5f5bfc5ba1a6938c6b486da290288b209272eb11949d"
+    },
+    {
+      "bytes": 257713753,
+      "diff_id": "sha256:1f92d7648a501bc8891d0f952fd72579a63edf4b6c53c8192d5a62dd8d3d94f6",
+      "digest": "sha256:cf26e89fc947eca6526e5461691bdc5863d16ce21ccedcfa4f54b610a8bdfa94"
+    }
+  ],
+  "native_start_allowed": false,
+  "overlay_limitation": "Selected entries are layer-level observations, not independently observed effective runtime or complete final-overlay reconstruction.",
+  "scope": "official immutable template layers prepared and statically inspected; no template load or native code execution",
+  "selected_layer_entries": [
+    {
+      "bytes": 45570321,
+      "layer_index": 11,
+      "linkname": "",
+      "mode": "0o755",
+      "path": "usr/bin/docker",
+      "regular_file": true,
+      "sha256": "dbf7fd0c0ae54d208314ee5c19a97a12d966dab039b7d94872ca91cbe490373c"
+    },
+    {
+      "bytes": 4547768,
+      "layer_index": 11,
+      "linkname": "",
+      "mode": "0o755",
+      "path": "usr/bin/git",
+      "regular_file": true,
+      "sha256": "5516c9f362c29376ab9a499a33082f9f611941d8c75930c880e30ad109e39c9a"
+    },
+    {
+      "bytes": 4547768,
+      "layer_index": 11,
+      "linkname": "",
+      "mode": "0o755",
+      "path": "usr/lib/git-core/git",
+      "regular_file": true,
+      "sha256": "5516c9f362c29376ab9a499a33082f9f611941d8c75930c880e30ad109e39c9a"
+    },
+    {
+      "bytes": 0,
+      "layer_index": 11,
+      "linkname": "",
+      "mode": "0o755",
+      "path": "usr/libexec/docker",
+      "regular_file": false
+    },
+    {
+      "bytes": 16153,
+      "layer_index": 11,
+      "linkname": "",
+      "mode": "0o644",
+      "path": "usr/share/bash-completion/completions/docker",
+      "regular_file": true,
+      "sha256": "26584d7fabf631262d40016f2a29d1f13ee5a5247f992ecd9e901f162a086c3b"
+    },
+    {
+      "bytes": 94695,
+      "layer_index": 11,
+      "linkname": "",
+      "mode": "0o644",
+      "path": "usr/share/bash-completion/completions/git",
+      "regular_file": true,
+      "sha256": "8a9645b600726af2ad5b85bf4b5c9e715a4bf1cde6138548300d73b3c3887b8f"
+    },
+    {
+      "bytes": 0,
+      "layer_index": 11,
+      "linkname": "",
+      "mode": "0o755",
+      "path": "usr/share/doc/git",
+      "regular_file": false
+    },
+    {
+      "bytes": 604,
+      "layer_index": 11,
+      "linkname": "",
+      "mode": "0o644",
+      "path": "usr/share/lintian/overrides/git",
+      "regular_file": true,
+      "sha256": "98377bb05d5240d1b1949c86508f87174cdaca0938e5d924892a0401cb5a8f59"
+    },
+    {
+      "bytes": 0,
+      "layer_index": 11,
+      "linkname": "",
+      "mode": "0o755",
+      "path": "var/lib/git",
+      "regular_file": false
+    },
+    {
+      "bytes": 0,
+      "layer_index": 12,
+      "linkname": "",
+      "mode": "0o755",
+      "path": "etc/python3",
+      "regular_file": false
+    },
+    {
+      "bytes": 0,
+      "layer_index": 12,
+      "linkname": "",
+      "mode": "0o755",
+      "path": "etc/python3.14",
+      "regular_file": false
+    },
+    {
+      "bytes": 0,
+      "layer_index": 12,
+      "linkname": "python3.14",
+      "mode": "0o777",
+      "path": "usr/bin/python3",
+      "regular_file": false
+    },
+    {
+      "bytes": 7481192,
+      "layer_index": 12,
+      "linkname": "",
+      "mode": "0o755",
+      "path": "usr/bin/python3.14",
+      "regular_file": true,
+      "sha256": "b8d8288faefdd300201f43fcf00f6f539a27218eeed3a3dff5ab10b9c4c99700"
+    },
+    {
+      "bytes": 0,
+      "layer_index": 12,
+      "linkname": "",
+      "mode": "0o755",
+      "path": "usr/lib/python3",
+      "regular_file": false
+    },
+    {
+      "bytes": 0,
+      "layer_index": 12,
+      "linkname": "",
+      "mode": "0o755",
+      "path": "usr/lib/python3.14",
+      "regular_file": false
+    },
+    {
+      "bytes": 0,
+      "layer_index": 12,
+      "linkname": "",
+      "mode": "0o755",
+      "path": "usr/local/lib/python3.14",
+      "regular_file": false
+    },
+    {
+      "bytes": 74,
+      "layer_index": 12,
+      "linkname": "",
+      "mode": "0o644",
+      "path": "usr/share/binfmts/python3.14",
+      "regular_file": true,
+      "sha256": "95783e4ccceefd1c03fe06e592580d5599c32c5db18e1725b556590bce2e36f2"
+    },
+    {
+      "bytes": 0,
+      "layer_index": 12,
+      "linkname": "",
+      "mode": "0o755",
+      "path": "usr/share/doc/python3",
+      "regular_file": false
+    },
+    {
+      "bytes": 0,
+      "layer_index": 12,
+      "linkname": "",
+      "mode": "0o755",
+      "path": "usr/share/doc/python3.14",
+      "regular_file": false
+    },
+    {
+      "bytes": 0,
+      "layer_index": 12,
+      "linkname": "",
+      "mode": "0o755",
+      "path": "usr/share/go-1.26/src/cmd/go/testdata/vcstest/git",
+      "regular_file": false
+    },
+    {
+      "bytes": 91,
+      "layer_index": 12,
+      "linkname": "",
+      "mode": "0o644",
+      "path": "usr/share/lintian/overrides/python3",
+      "regular_file": true,
+      "sha256": "17391c6b1531d52e4eed2e4a3a3b753c9b49ea4f383567e7ab13701c2a1ba419"
+    },
+    {
+      "bytes": 461,
+      "layer_index": 12,
+      "linkname": "",
+      "mode": "0o644",
+      "path": "usr/share/lintian/overrides/python3.14",
+      "regular_file": true,
+      "sha256": "71ca7674759d6dbe55c35a42bf7b7c2a3743616c5041f33805187b0ec6fda200"
+    },
+    {
+      "bytes": 0,
+      "layer_index": 12,
+      "linkname": "",
+      "mode": "0o755",
+      "path": "usr/share/nodejs/@npmcli/git",
+      "regular_file": false
+    },
+    {
+      "bytes": 0,
+      "layer_index": 12,
+      "linkname": "",
+      "mode": "0o755",
+      "path": "usr/share/python3",
+      "regular_file": false
+    },
+    {
+      "bytes": 0,
+      "layer_index": 13,
+      "linkname": "",
+      "mode": "0o755",
+      "path": "etc/containerd",
+      "regular_file": false
+    },
+    {
+      "bytes": 642,
+      "layer_index": 13,
+      "linkname": "",
+      "mode": "0o644",
+      "path": "etc/default/docker",
+      "regular_file": true,
+      "sha256": "3177ea62729e9f63474e41b5a740aeacd5c73eecd9c7b6cc499266adbc09d21b"
+    },
+    {
+      "bytes": 0,
+      "layer_index": 13,
+      "linkname": "",
+      "mode": "0o755",
+      "path": "etc/docker",
+      "regular_file": false
+    },
+    {
+      "bytes": 2946,
+      "layer_index": 13,
+      "linkname": "",
+      "mode": "0o755",
+      "path": "etc/init.d/docker",
+      "regular_file": true,
+      "sha256": "4a23b31d8f74bb420b0fb16684c54c3c8785c2f92c36f902b82d2ef24baeed95"
+    },
+    {
+      "bytes": 43147704,
+      "layer_index": 13,
+      "linkname": "",
+      "mode": "0o755",
+      "path": "usr/bin/containerd",
+      "regular_file": true,
+      "sha256": "414cdc03913ed80f949c794e4d76d127a82a73ab7720596f7b52f53ccd107a08"
+    },
+    {
+      "bytes": 108779480,
+      "layer_index": 13,
+      "linkname": "",
+      "mode": "0o755",
+      "path": "usr/bin/dockerd",
+      "regular_file": true,
+      "sha256": "e7c7bedd8e4449f699c99ed47be0d1911a65252894e3b12fb6c98f8cc70caeb8"
+    },
+    {
+      "bytes": 11364024,
+      "layer_index": 13,
+      "linkname": "",
+      "mode": "0o755",
+      "path": "usr/bin/runc",
+      "regular_file": true,
+      "sha256": "d48beb548847ca3df12fa2224a7fbeee90dabc54fe572f14a77f24b54ddbe8a3"
+    },
+    {
+      "bytes": 0,
+      "layer_index": 13,
+      "linkname": "",
+      "mode": "0o755",
+      "path": "usr/libexec/docker",
+      "regular_file": false
+    },
+    {
+      "bytes": 0,
+      "layer_index": 15,
+      "linkname": "",
+      "mode": "0o755",
+      "path": "home/agent/.cache/node/corepack/npm/12.0.2/node_modules/@npmcli/git",
+      "regular_file": false
+    },
+    {
+      "bytes": 0,
+      "layer_index": 15,
+      "linkname": "../lib/node_modules/@openai/codex/bin/codex.js",
+      "mode": "0o777",
+      "path": "usr/local/share/npm-global/bin/codex",
+      "regular_file": false
+    },
+    {
+      "bytes": 0,
+      "layer_index": 15,
+      "linkname": "",
+      "mode": "0o755",
+      "path": "usr/local/share/npm-global/lib/node_modules/@openai/codex",
+      "regular_file": false
+    },
+    {
+      "bytes": 7236,
+      "layer_index": 15,
+      "linkname": "",
+      "mode": "0o755",
+      "path": "usr/local/share/npm-global/lib/node_modules/@openai/codex/bin/codex.js",
+      "regular_file": true,
+      "sha256": "134063e133f0b4244fa3b251acf973d4fe4b4aeeacbdc135211bf480f59f1477"
+    },
+    {
+      "bytes": 511,
+      "layer_index": 15,
+      "linkname": "",
+      "mode": "0o644",
+      "package_json": {
+        "cpu": [
+          "x64"
+        ],
+        "engines": {
+          "node": ">=16"
+        },
+        "files": [
+          "vendor"
+        ],
+        "license": "Apache-2.0",
+        "name": "@openai/codex",
+        "os": [
+          "linux"
+        ],
+        "packageManager": "pnpm@10.33.0+sha512.10568bb4a6afb58c9eb3630da90cc9516417abebd3fabbe6739f0ae795728da1491e9db5a544c76ad8eb7570f5c4bb3d6c637b2cb41bfdcdb47fa823c8649319",
+        "repository": {
+          "directory": "codex-cli",
+          "type": "git",
+          "url": "git+https://github.com/openai/codex.git"
+        },
+        "version": "0.149.1-linux-x64"
+      },
+      "path": "usr/local/share/npm-global/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/package.json",
+      "regular_file": true,
+      "sha256": "798fb4a2b5c64f41d6dd778b1d296b6cc3d41be06a5213bd9532bffdb8c30dbc"
+    },
+    {
+      "bytes": 258227840,
+      "layer_index": 15,
+      "linkname": "",
+      "mode": "0o755",
+      "path": "usr/local/share/npm-global/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/bin/codex",
+      "regular_file": true,
+      "sha256": "73dc5888888f411c1f0fa7b81d866e721dcc86b527ce8e3b2cf4708661e823ba"
+    },
+    {
+      "bytes": 1082,
+      "layer_index": 15,
+      "linkname": "",
+      "mode": "0o644",
+      "package_json": {
+        "bin": {
+          "codex": "bin/codex.js"
+        },
+        "description": "Codex CLI is a coding agent from OpenAI that runs locally on your computer.",
+        "engines": {
+          "node": ">=16"
+        },
+        "files": [
+          "bin/codex.js"
+        ],
+        "license": "Apache-2.0",
+        "name": "@openai/codex",
+        "optionalDependencies": {
+          "@openai/codex-darwin-arm64": "npm:@openai/codex@0.149.1-darwin-arm64",
+          "@openai/codex-darwin-x64": "npm:@openai/codex@0.149.1-darwin-x64",
+          "@openai/codex-linux-arm64": "npm:@openai/codex@0.149.1-linux-arm64",
+          "@openai/codex-linux-x64": "npm:@openai/codex@0.149.1-linux-x64",
+          "@openai/codex-win32-arm64": "npm:@openai/codex@0.149.1-win32-arm64",
+          "@openai/codex-win32-x64": "npm:@openai/codex@0.149.1-win32-x64"
+        },
+        "packageManager": "pnpm@10.33.0+sha512.10568bb4a6afb58c9eb3630da90cc9516417abebd3fabbe6739f0ae795728da1491e9db5a544c76ad8eb7570f5c4bb3d6c637b2cb41bfdcdb47fa823c8649319",
+        "repository": {
+          "directory": "codex-cli",
+          "type": "git",
+          "url": "git+https://github.com/openai/codex.git"
+        },
+        "type": "module",
+        "version": "0.149.1"
+      },
+      "path": "usr/local/share/npm-global/lib/node_modules/@openai/codex/package.json",
+      "regular_file": true,
+      "sha256": "4aa95175f28bc38085c880398057afa1428257835c868403391c23099513b28e"
+    }
+  ],
+  "template_manifest": "sha256:4478aac4b542421404a5a5c860164f88c42c201e8730c1f3174c8d749f781703",
+  "uncompressed_tar_bytes": 2131570176
+}

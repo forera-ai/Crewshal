@@ -18,6 +18,10 @@ Read [docs/HANDOFF.md](docs/HANDOFF.md) first, then [docs/DEVELOPMENT-PLAN.md](d
 - At session closure, provide a brief explanation of the next milestone, its initial prompt and the exact files to feed into the next session.
 - Once the active milestone's goals and acceptance gates pass, conclude development immediately. The publishing ceremony (README, changelog, handoff, next prompt, version bump, commit and push) ends the session; do not begin the next milestone.
 
+## Temporary host retention — owner declaration, 2026-10-02
+
+The owner deleted the earlier droplet after premature deletion guidance and supplied another host. Keep the current disposable host until all required host work is actually finished and no further droplet is needed for that work. Do not recommend or request droplet deletion at an intermediate preparation, blocked, publishing or session boundary. Scoped removal of owned experimental resources is separate from deleting the host. Future sessions must reverify current access and host state without inferring deletion or survival. Do not commit connection addresses, passwords or authentication material.
+
 ## Engineering boundaries
 
 Clean independent implementation; no copying private Forge code, prompts, schemas, paths or artifacts. Preserve unknown capabilities, provenance and authority separation. Discovery executes no repository instructions. Agent writes stay disabled until execution qualification passes. Original dirty files must remain intact. No paid model calls, benchmark spend, credential-store access, deployment or automatic publication is implied by a test plan.

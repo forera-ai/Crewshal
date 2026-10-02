@@ -1,0 +1,8 @@
+{
+  "scope": "read-only final owned unit/process/KVM/prepared-file inventory",
+  "source_path": "docs/qualification/phase-2c-current-inventory-v1-probe.txt",
+  "source_sha256": "165ecd2be3a6eb3c93821858ff442b6671fc5880dd7df5419c8e66cddec3ab10",
+  "command_seconds": 10,
+  "execution_allowed": false,
+  "droplet_deletion_allowed": false
+}

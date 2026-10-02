@@ -8,6 +8,8 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+Local package version: **0.1.1**. See [CHANGELOG.md](CHANGELOG.md) for version history.
+
 **Phases 0, 1 and 2A complete; Phase 2B is next.** An installable Python package now exposes passive manifest discovery, explicit human correction/confirmation, versioned validated models and external coordinator state. Synthetic offline acceptance tests cover its bounded behavior. Runtime execution, agent writes, trusted evidence gates and comparative evaluation remain future work. Numerical evaluation thresholds are not demonstrated results.
 
 The proposal uses a local Python coordinator with Codex and Claude Code adapters, subject to capability and isolation qualification. Implementation proceeds in bounded sessions. Agent writes require execution qualification; paid evaluation requires a confirmed protocol and spending ceiling.
@@ -26,6 +28,8 @@ Steps 1–3 are implemented for the bounded Python/TypeScript formats documented
 ## Development sessions
 
 Work proceeds one phase or major milestone per session. Read the [rolling handoff](docs/HANDOFF.md) for current state and the next-session prompt, and the [development plan](docs/DEVELOPMENT-PLAN.md) for standalone acceptance gates. [AGENTS.md](AGENTS.md) records the persistent session contract. The next session is Phase 2B: durable state, pure gates and trusted evidence contracts.
+
+Each completed milestone ends with version, README, changelog and handoff updates, followed by a commit and remote branch push. See [the standing publishing rules](AGENTS.md). Development stops at the milestone boundary.
 
 ## Try passive initialization
 

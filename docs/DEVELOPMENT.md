@@ -22,7 +22,7 @@ rtk proxy uv build --offline
 
 Dependency preparation may use the package index; tests need no network, provider credentials or earlier artifacts. The hash-locked file pins all development/runtime dependencies; the isolated build backend is separately pinned in pyproject.toml. `uv build --offline` needs its pinned build dependency already cached, as with the preceding editable installation. To prepare another machine for disconnected installation, first obtain its required wheels and build dependency. An empty cache is not an offline install source.
 
-For artifact verification, create a second external environment, install requirements-dev.lock with `--offline --require-hashes`, then install `dist/crewshal-0.1.0-py3-none-any.whl` with `--offline --no-deps`. Run the same two unittest commands with that interpreter from the checkout. Tests live in the checkout; application imports must resolve to the external environment's site-packages, not src. Tests create all repository/state/interaction fixtures themselves.
+For artifact verification, create a second external environment, install requirements-dev.lock with `--offline --require-hashes`, then install `dist/crewshal-0.1.1-py3-none-any.whl` with `--offline --no-deps`. Run the same two unittest commands with that interpreter from the checkout. Tests live in the checkout; application imports must resolve to the external environment's site-packages, not src. Tests create all repository/state/interaction fixtures themselves.
 
 On the verified macOS host, tests additionally passed under the following process-level network denial with an empty inherited environment and a temporary HOME. This test wrapper does not qualify a future worker execution environment:
 

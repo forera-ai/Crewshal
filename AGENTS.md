@@ -8,8 +8,15 @@ Read [docs/HANDOFF.md](docs/HANDOFF.md) first, then [docs/DEVELOPMENT-PLAN.md](d
 - Deliver a next-session prompt and update the handoff at each completion or blocked boundary. Preserve achievement history; record failures and unknowns explicitly.
 - The owner authorized the accepted architecture direction and bounded implementation. Do not repeatedly ask for routine implementation permission. Material architecture changes, paid evaluation budgets, unresolved consequential decisions and releases retain their recorded owner gates.
 - Never mark a milestone complete because code exists or a model claims success. Record commands, results, environment, revision and limitations. Earlier milestones may be implementation dependencies; tests must create their own fixtures and must not depend on previous run artifacts or paid services unless explicitly classified as live qualification/evaluation.
-- Keep a coherent local Git checkpoint for each completed milestone. Do not publish, merge or release without applicable authorization. Do not revert unrelated work or commit credentials/raw confidential artifacts.
+- Keep a coherent Git checkpoint for each completed milestone and push the current branch to its remote after every commit, without requesting confirmation. The owner explicitly authorized this publishing workflow on 2026-10-02. Merge, deployment and package releases retain their separate gates. Do not revert unrelated work, force-push or commit credentials/raw confidential artifacts.
 - If blocked, make safe independent progress, record the smallest missing decision/capability, and provide a precise continuation prompt. Do not bypass a gate or silently broaden the session.
+
+## Publish and session closure — owner declaration, 2026-10-02
+
+- Before every commit/push, update README.md, CHANGELOG.md and the handoff, and bump the semantic package version according to the change: major for incompatible public changes, minor for compatible functionality, patch for compatible fixes or documentation/process maintenance. Keep pyproject.toml and crewshal.__version__ synchronized. Every new commit includes the version bump, changelog and README update.
+- Push the committed current branch to the configured remote. This is standing owner authorization; do not ask again. Preserve branch history and report push failures explicitly. Do not infer merge, deployment or package-registry publication authority.
+- At session closure, provide a brief explanation of the next milestone, its initial prompt and the exact files to feed into the next session.
+- Once the active milestone's goals and acceptance gates pass, conclude development immediately. The publishing ceremony (README, changelog, handoff, next prompt, version bump, commit and push) ends the session; do not begin the next milestone.
 
 ## Engineering boundaries
 

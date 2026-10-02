@@ -2,6 +2,14 @@
 
 Versions follow semantic versioning. Remote branch publication is distinct from a package-registry release; no registry release has occurred.
 
+## 0.8.3 — 2026-10-02
+
+- Reverify two owner-supplied replacements with prospectively frozen trusted KVM HLT runs. Preserve the first memory-admission refusal; the second host passes sampled memory/disk headroom. No host is purchased or resized.
+- Bind known preparation/protocol identities in a non-executable readiness snapshot, explicitly preserving unresolved operational identities and execution denial.
+- Reverify the full amd64 bundle and observe Linux SBX version/help twice in a prospectively source-bound profile. Preserve the earlier missing-wrapper-binding limitation; remove only owned diagnostic files/services. No daemon or native runtime starts.
+- Specify independent inner resource/authority/deadline/cleanup acceptance before native startup. Operational approval, identities and controls remain unresolved; no inner or whole-runtime criterion passes.
+- Reproduce 78 offline tests; preserve all historical manifests and original grants. Phase 2C remains blocked.
+
 ## 0.8.2 — 2026-10-02
 
 - Prepare and digest-pin the official SBX 0.46.0 Linux amd64 archive and all extracted regular files; no bundled executable, installer, daemon or native runtime was run.

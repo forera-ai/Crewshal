@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "id": "crewshal-phase-2c-kvm-replacement-v2",
+  "scope": "second current owner-supplied replacement host diagnostics only; no SBX or worker",
+  "protocol_path": "docs/qualification/phase-2c-kvm-host-v1.json",
+  "protocol_sha256": "63a3fd96173bc10cac1b128666d5b57515a7e2d7a64499c5ff672860de035314",
+  "probe_path": "docs/qualification/phase-2c-kvm-host-v1-probe.txt",
+  "probe_sha256": "cfce2653fe58d2a53c7ebc5a541b3067737c2e788ac662183a014807b30b4a2f",
+  "runs": 2,
+  "guest_memory_bytes": 1048576,
+  "deadline_seconds": 5,
+  "outer_command_timeout_seconds": 10,
+  "expected_api_version": 12,
+  "expected_exit_reason": 5,
+  "remote_execution": "existing Python3 compile/exec of verified source via base64 argument; no remote file",
+  "postcondition": "independent final KVM FD/process inventory; repeat available-memory and disk observation",
+  "execution_allowed": false,
+  "resource_approval": "operational proposal pending; diagnostic allocation only"
+}

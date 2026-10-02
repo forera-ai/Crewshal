@@ -1,0 +1,176 @@
+{
+  "schema_version": 1,
+  "id": "crewshal-phase-2c-readiness-v1",
+  "scope": "final non-executable readiness snapshot; not a pre-probe or operational protocol or qualification",
+  "date": "2026-10-02",
+  "base_revision": "f56e97a87d9cfb4db258ca7cec72198355af96ea",
+  "execution_allowed": false,
+  "native_start_allowed": false,
+  "host_status": "second replacement KVM HLT passes twice; sampled memory/disk headroom passes; source-bound matching CLI/help succeeds twice; operational controls unresolved",
+  "resource_approval": "unresolved; no answer recorded",
+  "grant": {
+    "read": [
+      "/input",
+      "/candidate/owned"
+    ],
+    "write": [
+      "/candidate/owned"
+    ],
+    "scratch": [
+      "/scratch"
+    ],
+    "network": [],
+    "credentials": [],
+    "configuration": "empty synthetic HOME; explicit config only; no inherited hooks/MCP/plugins/instructions",
+    "excluded": [
+      "original checkout",
+      "coordinator state",
+      "host home",
+      "credential stores",
+      "SSH agent",
+      "Docker socket"
+    ]
+  },
+  "limits": {
+    "deadline_seconds": 5,
+    "probe_seconds": 10,
+    "output_bytes": 65536,
+    "pids": 32,
+    "memory_bytes": 134217728,
+    "cpus": 1,
+    "image_pull": false
+  },
+  "mandatory_case_ids": [
+    "allowed-grant",
+    "external-read",
+    "external-write",
+    "original-checkout",
+    "coordinator-state",
+    "symlink-escape",
+    "new-file-escape",
+    "metadata-escape",
+    "network-egress",
+    "environment-credentials",
+    "repository-hooks",
+    "global-hooks",
+    "mcp-plugins-instructions",
+    "descendant-escape",
+    "cancellation",
+    "deadline",
+    "credential-mediation",
+    "credential-free-validation",
+    "configuration-binding",
+    "qualification-refusal"
+  ],
+  "bound_inputs": {
+    "docs/qualification/phase-2c-v1.json": "fed4dde5e3fe459110a5fb0b2d4f6c75b16214c91aa823d3df640a7415e41563",
+    "docs/qualification/phase-2c-sbx-protocol-v1.json": "976d7ad7b6fe4ef8b2c2dbea981851d03fb2b713942e8dcecab3f6ec24b13f79",
+    "docs/qualification/phase-2c-broker-environment-v3.json": "27107761f400de9454f855b5ffe319b264dba44b1385aca67d2b4bfe263d9daf",
+    "docs/qualification/phase-2c-amd64-preparation.json": "7b625ea170ba707619da6f2a5ea624b0e801dc21b6942d57acde11b26a32e7cb",
+    "docs/qualification/phase-2c-kvm-host-v1.json": "63a3fd96173bc10cac1b128666d5b57515a7e2d7a64499c5ff672860de035314",
+    "docs/qualification/phase-2c-kvm-host-v1-probe.txt": "cfce2653fe58d2a53c7ebc5a541b3067737c2e788ac662183a014807b30b4a2f",
+    "docs/SBX-OPERATIONAL-PROPOSAL.md": "adf3eb56f438d3a375f1f44fc9db3b9699d37e52f57c53aa8c5f5134699d01ab",
+    "docs/PHASE-2C-READINESS.md": "783a398f45c09e7aeafd08ba0e94a7da12dceec2e180767b8fe32911de258380",
+    "docs/REPLACEMENT-HOST-ASSESSMENT.md": "ddb2c7f8e3bd3afb41b5fed9d36858347a6408604f0ff118a2420ffaa24e125f",
+    "docs/qualification/phase-2c-kvm-replacement-v1.json": "887fbe0fdb968817c23be501fd5bbcf03c522d10fe61250757b1fe8361ba4d69",
+    "docs/qualification/phase-2c-kvm-replacement-v1-observed.json": "f7a98fdd0e85ad22f56c0d1ad9f7a152a521db80a65c5e5ba53803c0a7de5b87",
+    "docs/AMD64-HOST-PREFLIGHT.md": "57b93113abd1723b1d6d9a08e1ffb35c1f295efd9e8017a02500326ab87dbc72",
+    "docs/qualification/phase-2c-kvm-replacement-v2.json": "44f064d78945415e9af163c15a97f4f01fc9a270e2c8717cd9b1cf82e5df25cd",
+    "docs/qualification/phase-2c-kvm-replacement-v2-observed.json": "fb919aa9f8921a3e0c093230866d7ae385c996b69e4da7b38623bf68b393a272",
+    "docs/qualification/phase-2c-linux-amd64-help-v1.json": "efecca009b7897292838b9aaeadfab9aa7e745bf404b022a797fddf51faf6844",
+    "docs/qualification/phase-2c-linux-amd64-help-v1-observed.json": "bf080b9ee8e32b5eb077e52a299f3d9241dbb62a9f619ffbffaf6c1b9356bd53",
+    "docs/qualification/phase-2c-linux-amd64-help-v2.json": "29dbd263e0ba4c10d6f58ccc752510f983172d39676d5c078bf42e19e8fa5d6a",
+    "docs/qualification/phase-2c-linux-amd64-help-v2-runner.txt": "2146991b4aa60cff3576fea74d8e90bc70ffef7b295d7635752f156b5c36dc70",
+    "docs/qualification/phase-2c-linux-amd64-help-v2-observed.json": "860516455c5b13e466afbe008ce12bba81ff10b1a36de35aaf5d647f81944237",
+    "docs/qualification/phase-2c-linux-amd64-cleanup-v1.json": "a7aafb2ed20832af7b2c71d53abdfb1b5e6eeda5793b1c98f837444eabf889ff"
+  },
+  "recorded_artifacts": {
+    "status": "archive/all files reverified this session locally/remotely; matching SBX version/help only executed; no native program or installer",
+    "archive_sha256": "edd86e2f21559e190723fd884c3a1dced161a555afdff85c5921ed45e7d6d56e",
+    "archive_bytes": 82815215,
+    "bundle_file_identities_source": "docs/qualification/phase-2c-amd64-preparation.json",
+    "architecture": "linux-amd64"
+  },
+  "unresolved_operational_items": [
+    {
+      "id": "host",
+      "status": "unresolved",
+      "required_evidence": "Fresh current authorized access and headroom bound to operational environment; second-host hardware/headroom observations currently pass."
+    },
+    {
+      "id": "resource_approval",
+      "status": "unresolved",
+      "required_evidence": "Owner decision on exact outer/aggregate/disk/deadline proposal."
+    },
+    {
+      "id": "host_enforcement",
+      "status": "unresolved",
+      "required_evidence": "Available headroom, cgroup v2 controllers, quota filesystem and effective aggregate controls."
+    },
+    {
+      "id": "daemon",
+      "status": "unresolved",
+      "required_evidence": "Exact launch command, binary/library identities, empty environment, state paths and dynamic-download behavior."
+    },
+    {
+      "id": "template",
+      "status": "unresolved",
+      "required_evidence": "Architecture-matching immutable template digest and configuration."
+    },
+    {
+      "id": "inner_image",
+      "status": "unresolved",
+      "required_evidence": "Immutable worker and separate validator image identities."
+    },
+    {
+      "id": "native_runtime",
+      "status": "unresolved",
+      "required_evidence": "Exact native CLI bytes/version and provider-free dispatch path."
+    },
+    {
+      "id": "toolchain",
+      "status": "unresolved",
+      "required_evidence": "Exact engine, Git, interpreters and probe-tool identities."
+    },
+    {
+      "id": "effective_configuration",
+      "status": "unresolved",
+      "required_evidence": "Explicit effective hooks, MCP, plugins, instructions, skills, SSH, clipboard, proxy, resolver and download settings."
+    },
+    {
+      "id": "broker_dispatch",
+      "status": "unresolved",
+      "required_evidence": "Supported existing trusted local provider-shaped dispatch separated from worker authority; no custom gateway."
+    },
+    {
+      "id": "inner_enforcement",
+      "status": "unresolved",
+      "required_evidence": "Exact supported launch/cancellation/deadline commands; observed descendant controls before native start."
+    },
+    {
+      "id": "observers",
+      "status": "unresolved",
+      "required_evidence": "Exact frozen synthetic payloads, independent observer sources, thresholds and terminal/output capture bounds."
+    },
+    {
+      "id": "sinks",
+      "status": "unresolved",
+      "required_evidence": "Two independently monitored local sink identities and provider-free positive controls."
+    },
+    {
+      "id": "cleanup_handles",
+      "status": "unresolved",
+      "required_evidence": "Fresh uniquely owned processes, cgroups, VM, images/disks/state and independently observed bounded removal."
+    }
+  ],
+  "observations": {
+    "host_reverified": "second replacement trusted KVM diagnostic passes twice; sampled memory/disk headroom passes",
+    "operational_manifest_frozen": "unavailable",
+    "inner_enforcement": "unavailable",
+    "native_runtime": "not_run",
+    "provider_requests": "not_run",
+    "replacement_provisioning": "not_run",
+    "linux_matching_help": "six version/help commands succeed twice; no operational/inner qualification"
+  },
+  "decision": "Denied. No snapshot field authorizes execution. Resolve missing prerequisites and freeze a separate prospective operational manifest."
+}

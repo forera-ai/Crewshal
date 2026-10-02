@@ -2,6 +2,13 @@
 
 Versions follow semantic versioning. Remote branch publication is distinct from a package-registry release; no registry release has occurred.
 
+## 0.3.0 — 2026-10-02
+
+- Add closed qualification identity/result records with mandatory-case refusal and invalidation on substrate, runtime, configuration, grant, toolchain, harness, protocol and credential-design changes. Even passing synthetic records never grant execution.
+- Freeze 20 mandatory Phase 2C synthetic criteria and add a bounded preflight/denial utility. The explicit Linux Docker endpoint is unavailable; every whole-boundary probe remains unavailable and agent writes disabled.
+- Assess pinned public Orchestrate/Orka seams without provider calls or copying implementation. Orka's 20 fake-backend checks pass; native helpers retain synthetic ambient secrets, SSH agent variables and hook settings, preventing as-is adoption.
+- Add 11 offline refusal acceptance methods; verify all 44 tests and fresh wheel/static/CLI checks. Record blocked Phase 2C evidence and exact resumption inputs. Phase 2C is incomplete; no Phase 2D work, adapter or malicious-worker runner is delivered.
+
 ## 0.2.0 — 2026-10-02
 
 - Complete Phase 2B: private SQLite coordinator records, atomic ordered events, optimistic version conflicts, run leases and inert launch-intent reconciliation without replay.

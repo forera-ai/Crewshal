@@ -8,9 +8,9 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
-Local package version: **0.2.0**. See [CHANGELOG.md](CHANGELOG.md) for version history.
+Local package version: **0.3.0**. See [CHANGELOG.md](CHANGELOG.md) for version history.
 
-**Phases 0, 1, 2A and 2B complete; Phase 2C is next.** The Python package delivers passive discovery, explicit human decisions, private SQLite state with transactional version checks, supported migration with backup, inert launch-intent recovery contracts and deterministic gates over coordinator-captured evidence. The offline suite has 33 synthetic cases, including 21 Phase 2B cases. Runtime execution, containment qualification, agent writes and comparative evaluation remain future work. Numerical evaluation thresholds are not demonstrated results.
+**Phases 0, 1, 2A and 2B complete; Phase 2C is blocked.** The Python package delivers passive discovery, explicit human decisions, private SQLite state with transactional version checks, supported migration with backup, inert launch-intent recovery contracts and deterministic gates over coordinator-captured evidence. The offline suite has 44 synthetic cases, including 11 Phase 2C refusal cases. The frozen qualification preflight found the explicit Linux engine endpoint unavailable; no containment probe passed. Public Orka helper probes retained synthetic ambient credentials and hook settings. Runtime execution, agent writes and comparative evaluation remain gated. See [qualification evidence and resumption conditions](docs/EXECUTION-QUALIFICATION.md). Numerical evaluation thresholds are not demonstrated results.
 
 The proposal uses a local Python coordinator with Codex and Claude Code adapters, subject to capability and isolation qualification. Implementation proceeds in bounded sessions. Agent writes require execution qualification; paid evaluation requires a confirmed protocol and spending ceiling.
 
@@ -27,7 +27,7 @@ Steps 1–3 are implemented for the bounded Python/TypeScript formats documented
 
 ## Development sessions
 
-Work proceeds one phase or major milestone per session. Read the [rolling handoff](docs/HANDOFF.md) for current state and the next-session prompt, and the [development plan](docs/DEVELOPMENT-PLAN.md) for standalone acceptance gates. [AGENTS.md](AGENTS.md) records the persistent session contract. The next session is Phase 2C: assess existing execution seams and qualify an execution environment using frozen synthetic containment cases.
+Work proceeds one phase or major milestone per session. Read the [rolling handoff](docs/HANDOFF.md) for current state and the next-session prompt, and the [development plan](docs/DEVELOPMENT-PLAN.md) for standalone acceptance gates. [AGENTS.md](AGENTS.md) records the persistent session contract. The next session resumes Phase 2C: establish its missing Linux substrate and accepted credential mediation design, then run the frozen synthetic containment cases. Use [the resumption prompt and exact inputs](docs/PHASE-2C-RESUME-PROMPT.md).
 
 Each completed milestone ends with version, README, changelog and handoff updates, followed by a commit and remote branch push. See [the standing publishing rules](AGENTS.md). Development stops at the milestone boundary.
 
@@ -43,11 +43,12 @@ rtk proxy .venv/bin/crewshal --help
 rtk proxy .venv/bin/crewshal init /path/to/repository --interactive
 rtk proxy .venv/bin/python -m unittest tests.acceptance.test_phase_2a
 rtk proxy .venv/bin/python -m unittest tests.acceptance.test_phase_2b
+rtk proxy .venv/bin/python -m unittest tests.acceptance.test_phase_2c
 ```
 
 Without `--interactive` or an explicit decision batch, facts remain pending. No discovered command runs. State stays outside the target repository; exports require `--export` and never become execution approvals. See [setup, limits and verification](docs/DEVELOPMENT.md).
 
-Existing Phase 2A JSON state requires explicit `--migrate-state` on `init` or `show`; the original private JSON remains unchanged as a backup. New writes use SQLite. Unknown database/record versions are refused. No verdict grants execution; Phase 2C remains the write gate.
+Existing Phase 2A JSON state requires explicit `--migrate-state` on `init` or `show`; the original private JSON remains unchanged as a backup. New writes use SQLite. Unknown database/record versions are refused. No verdict or qualification record grants execution; Phase 2C remains the write gate.
 
 ## Research and decisions
 

@@ -14,16 +14,17 @@ rtk proxy uv pip install --python .venv/bin/python --require-hashes -r requireme
 rtk proxy uv pip install --python .venv/bin/python --no-deps -e .
 rtk proxy .venv/bin/python -m unittest tests.acceptance.test_phase_2a
 rtk proxy .venv/bin/python -m unittest tests.acceptance.test_phase_2b
+rtk proxy .venv/bin/python -m unittest tests.acceptance.test_phase_2c
 rtk proxy .venv/bin/python -m unittest discover -s tests -t .
-rtk proxy .venv/bin/ruff check src tests
-rtk proxy .venv/bin/ruff format --check src tests
+rtk proxy .venv/bin/ruff check src tests scripts
+rtk proxy .venv/bin/ruff format --check src tests scripts
 rtk proxy .venv/bin/mypy
 rtk proxy uv build --offline
 ```
 
 Dependency preparation may use the package index; tests need no network, provider credentials or earlier artifacts. The hash-locked file pins all development/runtime dependencies; the isolated build backend is separately pinned in pyproject.toml. `uv build --offline` needs its pinned build dependency already cached, as with the preceding editable installation. To prepare another machine for disconnected installation, first obtain its required wheels and build dependency. An empty cache is not an offline install source.
 
-For artifact verification, create a second external environment, install requirements-dev.lock with `--offline --require-hashes`, then install `dist/crewshal-0.2.0-py3-none-any.whl` with `--offline --no-deps`. Run both acceptance modules and the complete unittest suite with that interpreter from the checkout. Tests live in the checkout; application imports must resolve to the external environment's site-packages, not src. Tests create all repository/state/interaction/database/artifact fixtures themselves.
+For artifact verification, create a second external environment, install requirements-dev.lock with `--offline --require-hashes`, then install `dist/crewshal-0.3.0-py3-none-any.whl` with `--offline --no-deps`. Run all three acceptance modules and the complete unittest suite with that interpreter from the checkout. Tests live in the checkout; application imports must resolve to the external environment's site-packages, not src. Tests create all repository/state/interaction/database/artifact fixtures themselves.
 
 On the verified macOS host, tests additionally passed under the following process-level network denial with an empty inherited environment and a temporary HOME. This test wrapper does not qualify a future worker execution environment:
 
@@ -85,3 +86,15 @@ Initialization does not modify the discovered repository. `--export RELATIVE_FIL
 - All symlinks, special files, known private/generated/vendor trees and `.env*` paths are excluded. This is a bounded supported-format scan, not comprehensive secret detection or execution isolation. No hooks, imports from the target, dependency installation, models, containers or target scripts run during discovery.
 
 See [the handoff](HANDOFF.md) for recorded evidence and the next milestone.
+
+## Phase 2C blocked preflight
+
+Package 0.3.0 includes qualification records and refusal fixtures, not a worker launcher or completed containment harness. See [execution qualification](EXECUTION-QUALIFICATION.md). Reproduce the preflight with a fresh, nonexistent external report path:
+
+```sh
+rtk proxy .venv/bin/python scripts/qualify_phase_2c.py \
+  --manifest docs/qualification/phase-2c-v1.json \
+  --output /private/tmp/crewshal-2c-new-observation.json
+```
+
+Exit 2 means denied; the utility never grants execution. It uses an empty synthetic HOME/Docker configuration and only the explicit local endpoint. It does not inspect host credential stores or start a container. Its fixed manifest digest refuses retrospective changes. All worker boundary cases remain unavailable until an actual bounded probe runner and accepted synthetic-tested credential mediation exist. Fresh Linux execution is not demonstrated by the macOS network-denied package tests.

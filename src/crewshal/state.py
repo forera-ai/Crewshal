@@ -1,8 +1,9 @@
-"""Minimal external model storage. Durable orchestration belongs to Phase 2B."""
+"""External model facade with explicit legacy import and durable CAS writes."""
 
 import os
 from pathlib import Path
-import tempfile
+
+from crewshal.durable import CoordinatorStore, private_path
 
 from crewshal.model import ProjectModel, digest
 
@@ -15,44 +16,45 @@ def default_state() -> Path:
 
 
 class ModelStore:
-    def __init__(self, repository: Path, directory: Path):
-        if directory.is_symlink():
-            raise ValueError("state directory cannot be a symlink")
+    def __init__(self, repository: Path, directory: Path, *, migrate: bool = False):
+        private_path(directory)
         repository = repository.resolve(strict=True)
         self.directory = directory.resolve()
         if self.directory.is_relative_to(repository):
             raise ValueError("coordinator state must be outside the repository")
         self.path = self.directory / f"{digest(os.fsencode(repository))}.json"
+        self.project_id = digest(os.fsencode(repository))
+        self.version = 0
+        self.migrate = migrate
 
     def load(self) -> ProjectModel | None:
-        if self.path.is_symlink():
-            raise ValueError("state record cannot be a symlink")
-        if not self.path.exists():
+        private_path(self.path)
+        if not self.directory.exists():
             return None
-        return load_model(self.path)
+        store = CoordinatorStore(self.directory, migrate=self.migrate)
+        try:
+            model, self.version = store.get("project", self.project_id, ProjectModel)
+            if model is None and self.path.exists():
+                if not self.migrate:
+                    raise ValueError("legacy JSON state requires explicit --migrate-state")
+                model = load_model(self.path)
+                if model.project_id != self.project_id:
+                    raise ValueError("legacy model belongs to another project")
+                # Preserve the original private JSON byte-for-byte as the import backup.
+                self.version = store.save_project(model, 0)
+            return model
+        finally:
+            store.close()
 
     def save(self, model: ProjectModel) -> None:
-        # Validate again before crossing the serialization boundary.
-        ProjectModel.model_validate(model.model_dump())
-        if self.directory.is_symlink() or self.path.is_symlink():
-            raise ValueError("state path changed to a symlink")
-        self.directory.mkdir(parents=True, exist_ok=True, mode=0o700)
-        if self.directory.stat().st_uid != os.getuid():
-            raise ValueError("state directory must belong to the coordinator user")
-        if self.directory.stat().st_mode & 0o077:
-            raise ValueError("state directory must be private (chmod 700)")
-        payload = model.public_json().encode()
-        if len(payload) > MAX_RECORD_BYTES:
-            raise ValueError("model exceeds state size limit")
-        descriptor, temporary = tempfile.mkstemp(prefix=".model-", dir=self.directory)
+        private_path(self.path)
+        if model.project_id != self.project_id:
+            raise ValueError("model belongs to another project")
+        store = CoordinatorStore(self.directory, migrate=self.migrate)
         try:
-            with os.fdopen(descriptor, "wb") as stream:
-                stream.write(payload)
-                stream.flush()
-                os.fsync(stream.fileno())
-            os.replace(temporary, self.path)
+            self.version = store.save_project(model, self.version)
         finally:
-            Path(temporary).unlink(missing_ok=True)
+            store.close()
 
 
 def load_model(path: Path) -> ProjectModel:

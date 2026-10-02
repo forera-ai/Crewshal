@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "crewshal"
-version = "0.1.1"
-description = "Passive repository discovery and human-confirmed project models"
+version = "0.2.0"
+description = "Passive project models, durable coordinator state and deterministic evidence gates"
 readme = "README.md"
 requires-python = ">=3.12"
 license = "Apache-2.0"

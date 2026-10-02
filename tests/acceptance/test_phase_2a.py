@@ -3,6 +3,7 @@
 import json
 import hashlib
 import io
+import sqlite3
 from pathlib import Path
 import subprocess
 import sys
@@ -205,12 +206,12 @@ class Phase2A(unittest.TestCase):
         self.assertEqual(
             json.loads(self.cli("show", self.repo, "--state-dir", self.state).stdout), model
         )
-        state_before = next(self.state.glob("*.json")).read_bytes()
+        state_before = self.stored_payloads()
         self.write("package.json", '{"name":"changed"}')
         self.cli(
             "init", self.repo, "--state-dir", self.state, "--interactive", input="", success=False
         )
-        self.assertEqual(next(self.state.glob("*.json")).read_bytes(), state_before)
+        self.assertEqual(self.stored_payloads(), state_before)
 
     def test_replay_explicit_decisions_narrow_invalidation_and_stale_replay(self):
         self.write(
@@ -278,7 +279,7 @@ class Phase2A(unittest.TestCase):
         }
         self.assertEqual(before, after)
         self.assertEqual(self.state.stat().st_mode & 0o777, 0o700)
-        record = next(self.state.glob("*.json"))
+        record = self.state / "coordinator.sqlite3"
         self.assertEqual(record.stat().st_mode & 0o777, 0o600)
         self.cli("init", self.repo, "--state-dir", self.repo / "state", success=False)
         self.initialize("--export", "model.json")
@@ -307,21 +308,20 @@ class Phase2A(unittest.TestCase):
     def test_malformed_decision_batches_never_change_state(self):
         self.write("package.json", '{"name":"root"}')
         self.initialize()
-        record = next(self.state.glob("*.json"))
-        before = record.read_bytes()
+        before = self.stored_payloads()
         batch = self.batch([{"fact_id": "missing", "action": "confirm", "reason": "human"}])
         self.cli("init", self.repo, "--state-dir", self.state, "--decisions", batch, success=False)
-        self.assertEqual(record.read_bytes(), before)
+        self.assertEqual(self.stored_payloads(), before)
         data = json.loads(batch.read_text())
         data["schema_version"] = 2
         batch.write_text(json.dumps(data))
         self.cli("init", self.repo, "--state-dir", self.state, "--decisions", batch, success=False)
-        self.assertEqual(record.read_bytes(), before)
+        self.assertEqual(self.stored_payloads(), before)
 
     def test_changed_inputs_during_interaction_refuse_materialization(self):
         self.write("package.json", '{"name":"root"}')
         self.initialize()
-        before = next(self.state.glob("*.json")).read_bytes()
+        before = self.stored_payloads()
         outer = self
 
         class ChangingInput(io.StringIO):
@@ -334,7 +334,12 @@ class Phase2A(unittest.TestCase):
             result = main(["init", str(self.repo), "--state-dir", str(self.state), "--interactive"])
         self.assertEqual(result, 2)
         self.assertIn("changed during interaction", error.getvalue())
-        self.assertEqual(next(self.state.glob("*.json")).read_bytes(), before)
+        self.assertEqual(self.stored_payloads(), before)
+
+    def stored_payloads(self):
+        # Phase 2A's observable refusal guarantee survives the SQLite migration.
+        with sqlite3.connect(self.state / "coordinator.sqlite3") as database:
+            return database.execute("SELECT id,version,payload FROM records ORDER BY id").fetchall()
 
 
 if __name__ == "__main__":

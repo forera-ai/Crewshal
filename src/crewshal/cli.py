@@ -3,6 +3,7 @@
 import argparse
 from pathlib import Path
 import sys
+import sqlite3
 from typing import TextIO
 
 from crewshal.discovery import Limits, discover
@@ -84,6 +85,11 @@ def parser() -> argparse.ArgumentParser:
     )
     initialize.add_argument("repository", type=Path)
     initialize.add_argument("--state-dir", type=Path, default=default_state())
+    initialize.add_argument(
+        "--migrate-state",
+        action="store_true",
+        help="explicit supported state migration with backup",
+    )
     choices = initialize.add_mutually_exclusive_group()
     choices.add_argument("--interactive", action="store_true", help="read explicit human decisions")
     choices.add_argument(
@@ -101,6 +107,11 @@ def parser() -> argparse.ArgumentParser:
     )
     show.add_argument("repository", type=Path)
     show.add_argument("--state-dir", type=Path, default=default_state())
+    show.add_argument(
+        "--migrate-state",
+        action="store_true",
+        help="explicit supported state migration with backup",
+    )
     show.add_argument("--digest", action="store_true", help="digest for explicit decision replay")
     validate = commands.add_parser("validate", help="refuse malformed or unsupported model records")
     validate.add_argument("model", type=Path)
@@ -114,7 +125,7 @@ def main(argv: list[str] | None = None) -> int:
             print(load_model(args.model).public_json(), end="")
             return 0
         root = args.repository.resolve(strict=True)
-        store = ModelStore(root, args.state_dir)
+        store = ModelStore(root, args.state_dir, migrate=args.migrate_state)
         previous = store.load()
         if args.command == "show":
             if previous is None:
@@ -155,6 +166,6 @@ def main(argv: list[str] | None = None) -> int:
             file=sys.stderr,
         )
         return 0
-    except (OSError, ValueError, RecursionError) as error:
+    except (OSError, ValueError, RecursionError, sqlite3.Error) as error:
         print(f"crewshal: {error}", file=sys.stderr)
         return 2

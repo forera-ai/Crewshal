@@ -1,6 +1,6 @@
 # Offline development and project initialization
 
-Phase 2A delivers passive discovery and human decisions only. It has no runtime launcher, check executor or execution grant. Confirmation records describe a project; they cannot authorize agent writes or command execution. Durable orchestration and evidence gates belong to Phase 2B and later milestones.
+Phases 2A and 2B deliver passive discovery, human decisions, durable SQLite coordinator state and deterministic trusted-evidence contracts. There is no runtime launcher, check executor or execution grant. Confirmation records describe a project; they cannot authorize agent writes or command execution. See [state, migration and gates](STATE-AND-GATES.md).
 
 ## Reproducible setup
 
@@ -13,6 +13,7 @@ rtk proxy uv venv --python python3.12 .venv
 rtk proxy uv pip install --python .venv/bin/python --require-hashes -r requirements-dev.lock
 rtk proxy uv pip install --python .venv/bin/python --no-deps -e .
 rtk proxy .venv/bin/python -m unittest tests.acceptance.test_phase_2a
+rtk proxy .venv/bin/python -m unittest tests.acceptance.test_phase_2b
 rtk proxy .venv/bin/python -m unittest discover -s tests -t .
 rtk proxy .venv/bin/ruff check src tests
 rtk proxy .venv/bin/ruff format --check src tests
@@ -22,7 +23,7 @@ rtk proxy uv build --offline
 
 Dependency preparation may use the package index; tests need no network, provider credentials or earlier artifacts. The hash-locked file pins all development/runtime dependencies; the isolated build backend is separately pinned in pyproject.toml. `uv build --offline` needs its pinned build dependency already cached, as with the preceding editable installation. To prepare another machine for disconnected installation, first obtain its required wheels and build dependency. An empty cache is not an offline install source.
 
-For artifact verification, create a second external environment, install requirements-dev.lock with `--offline --require-hashes`, then install `dist/crewshal-0.1.1-py3-none-any.whl` with `--offline --no-deps`. Run the same two unittest commands with that interpreter from the checkout. Tests live in the checkout; application imports must resolve to the external environment's site-packages, not src. Tests create all repository/state/interaction fixtures themselves.
+For artifact verification, create a second external environment, install requirements-dev.lock with `--offline --require-hashes`, then install `dist/crewshal-0.2.0-py3-none-any.whl` with `--offline --no-deps`. Run both acceptance modules and the complete unittest suite with that interpreter from the checkout. Tests live in the checkout; application imports must resolve to the external environment's site-packages, not src. Tests create all repository/state/interaction/database/artifact fixtures themselves.
 
 On the verified macOS host, tests additionally passed under the following process-level network denial with an empty inherited environment and a temporary HOME. This test wrapper does not qualify a future worker execution environment:
 
@@ -32,6 +33,10 @@ rtk proxy env -i PATH="$crewshal_verify_dir/fresh/bin:/usr/bin:/bin" \
   HOME="$crewshal_verify_dir/home" PYTHONDONTWRITEBYTECODE=1 \
   /usr/bin/sandbox-exec -p '(version 1)(allow default)(deny network*)' \
   "$crewshal_verify_dir/fresh/bin/python" -m unittest tests.acceptance.test_phase_2a
+rtk proxy env -i PATH="$crewshal_verify_dir/fresh/bin:/usr/bin:/bin" \
+  HOME="$crewshal_verify_dir/home" PYTHONDONTWRITEBYTECODE=1 \
+  /usr/bin/sandbox-exec -p '(version 1)(allow default)(deny network*)' \
+  "$crewshal_verify_dir/fresh/bin/python" -m unittest tests.acceptance.test_phase_2b
 rtk proxy env -i PATH="$crewshal_verify_dir/fresh/bin:/usr/bin:/bin" \
   HOME="$crewshal_verify_dir/home" PYTHONDONTWRITEBYTECODE=1 \
   /usr/bin/sandbox-exec -p '(version 1)(allow default)(deny network*)' \
@@ -64,7 +69,7 @@ Alternatively replay an explicit, operator-selected decision file with `--decisi
 
 Stale batches, unknown IDs, unsupported versions and malformed records are refused. This is explicit local operator input, not cryptographic authentication or a worker approval channel. Exported models cannot be imported as approvals. `show` displays stored state without refreshing it; rerun `init` to rediscover and invalidate changed dependencies. `validate FILE` checks the closed model contract, not authority or truth.
 
-State defaults to `$XDG_STATE_HOME/crewshal` or `~/.local/state/crewshal`. It must resolve outside the discovered repository, belong to the coordinator user and have mode 0700. Records are atomically replaced with mode 0600. Symlink state directories/records are rejected. The current store contains only project-model JSON; concurrent writer detection, database migration, crash reconciliation and evidence durability are explicitly deferred to 2B. A trusted local host/user is assumed; this does not defend against same-user malicious processes.
+State defaults to `$XDG_STATE_HOME/crewshal` or `~/.local/state/crewshal`. It must resolve outside the discovered repository, belong to the coordinator user and have mode 0700. The SQLite database and capture files use mode 0600; symlink state directories/records are rejected. Writes atomically compare the loaded version and append an ordered event. Conflicting writers must reload and reconsider their decisions. Existing external JSON state requires explicit `init --migrate-state` or `show --migrate-state`; the original remains unchanged as a backup. Unsupported database versions are refused. See [the durable-state guide](STATE-AND-GATES.md) for supported database migration and inert crash reconciliation. A trusted local host/user is assumed; this does not defend against same-user malicious processes.
 
 Initialization does not modify the discovered repository. `--export RELATIVE_FILE` explicitly creates a new model file there; parents must exist, path escapes/symlinks and existing files are refused. Exports contain relative source paths and no coordinator state path or repository root metadata. Literal repository values and human corrections remain visible; inspect them before sharing. Exported files are informational copies and never replace external state. An export and a state write are separate operations; an export may remain if state saving subsequently fails.
 

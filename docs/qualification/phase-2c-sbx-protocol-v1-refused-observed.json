@@ -1,0 +1,5 @@
+{
+  "status": "refused",
+  "reason": "pinned SBX binary mismatch",
+  "execution_allowed": false
+}

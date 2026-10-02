@@ -1,13 +1,13 @@
 # Phase 2C resumption prompt
 
-Phase 2C is incomplete. The 0.6.0 checkpoint records a responding Docker Desktop endpoint, nine filesystem/environment passes, four separate bounded lifecycle/validator passes and a separate synthetic network subset passed twice. These profiles are not combined qualification; full native runtime, network and credential boundaries remain unproved. Full Phase 2C remains denied.
+Phase 2C is incomplete. The 0.7.0 checkpoint freezes a resource/configuration protocol and two help-only SBX assessments, preserving denial. Earlier 0.6.0 records a responding Docker Desktop endpoint, nine filesystem/environment passes, four separate bounded lifecycle/validator passes and a separate synthetic network subset passed twice. These profiles are not combined qualification; full native runtime, network and credential boundaries remain unproved. Full Phase 2C remains denied.
 
 ## Initial prompt
 
 ```text
-Continue Crewshal in /Volumes/X10Pro/Crewshal. Resume Phase 2C only; do not start 2D. Read AGENTS.md, HANDOFF.md, DEVELOPMENT-PLAN.md, LINUX-SUBSTRATE-PROBES.md, EXECUTION-QUALIFICATION.md, NETWORK-SUBSTRATE-PROBES.md and original PHASE-2C-PROMPT.md. Verify HEAD/status, graph generation/coverage, preserve unrelated changes and reproduce six acceptance modules, full offline suite, static checks and fresh wheel/CLI checks with requirements-dev.lock.
+Continue Crewshal in /Volumes/X10Pro/Crewshal. Resume Phase 2C only; do not start 2D. Read AGENTS.md, HANDOFF.md, DEVELOPMENT-PLAN.md, LINUX-SUBSTRATE-PROBES.md, EXECUTION-QUALIFICATION.md, NETWORK-SUBSTRATE-PROBES.md, SBX-RESOURCE-CONFIGURATION-PROTOCOL.md, SBX-PROTOCOL-ASSESSMENT.md and original PHASE-2C-PROMPT.md. Verify HEAD/status, graph generation/coverage, preserve unrelated changes and reproduce seven acceptance modules, full offline suite, static checks and fresh wheel/CLI checks with requirements-dev.lock.
 
-Package 0.6.0 is a partial Linux checkpoint. Owner-supplied Docker Desktop responds at unix:///Users/hamedprooshani/.docker/run/docker.sock. Observed engine/client 29.8.1, Desktop 4.93.0, Linux 7.0.14-linuxkit arm64. Cached Alpine image sha256:5b10f432ef3da1b8d4c7eb6c487f2f5a8f096bc91145e68878dd4a5019afde11 was used without pulls, downloads or model calls. Two fresh-fixture runs passed nine filesystem/environment cases; two separate runs passed four bounded lifecycle/validator cases. Full qualification remains denied and credential design null.
+Package 0.7.0 is a protocol/refusal checkpoint; no new operational criterion passed. Preserve the frozen SBX protocol v1 SHA-256 976d7ad7b6fe4ef8b2c2dbea981851d03fb2b713942e8dcecab3f6ec24b13f79 and its source/document/binary identities. The assessor permits only six help/version commands, returns 2 and cannot start a daemon, login, secret-store operation or worker. Two complete assessments pass help inspection; initial symlinked release-path invocations refused before subprocesses and remain recorded. Direct SBX worker sizing conflicts with its advertised 512 MiB minimum. The prospective 512 MiB/one-CPU outer allocation is pending, not an approved replacement for the unchanged 128 MiB/one-CPU/32-PID worker. Nested enforcement must be observed for the entire native runtime and descendants, with no engine socket, sudo or writable cgroup authority in the worker. Synthetic HOME does not isolate macOS Keychain. First supply/approve a separate disposable broker credential domain or an existing supported mechanism avoiding the real store; do not run daemon/settings/create/secret operations in the ordinary macOS credential domain. Fill and freeze missing operational image/runtime/toolchain/configuration/disk/deadline identities and exact grant before tests. Positive native hook controls must actually reach the relevant startup/tool path without model calls; absent provider-free dispatch remains unavailable. Test authenticated descendant/sentinel replay and redirects at independent local sinks, not merely token hiding. Existing outer/login/configuration preparation approval is not design acceptance. If prerequisites remain unavailable, preserve denial and record the smallest capability/owner decision; do not start 2D. Earlier package 0.6.0 is a partial Linux checkpoint. Owner-supplied Docker Desktop responds at unix:///Users/hamedprooshani/.docker/run/docker.sock. Observed engine/client 29.8.1, Desktop 4.93.0, Linux 7.0.14-linuxkit arm64. Cached Alpine image sha256:5b10f432ef3da1b8d4c7eb6c487f2f5a8f096bc91145e68878dd4a5019afde11 was used without pulls, downloads or model calls. Two fresh-fixture runs passed nine filesystem/environment cases; two separate runs passed four bounded lifecycle/validator cases. Full qualification remains denied and credential design null.
 
 Preserve v1 SHA-256 fed4dde5e3fe459110a5fb0b2d4f6c75b16214c91aa823d3df640a7415e41563 and all 20 criteria. Active substrate v4 SHA-256 is 6f4c5a568f89ad16fa6b5754247938bb816ae6c8cb71fd2b12746f95b0af4db1; runner SHA-256 b53230625b6b8a5ce82f47f696edfd9632588ef3d4d75c36fdf6c798d6e786d9. Retain v2 failed parent oracle and v3 relative-variant limitation. V4 tests actual absolute/relative denied targets and parent new-file escapes. Do not reinterpret these partial shell observations as qualified Codex/Claude behavior.
 
@@ -90,3 +90,15 @@ Additional 0.6.0 inputs:
 - `scripts/network_client.py`
 - `scripts/network_sink.py`
 - `tests/acceptance/test_phase_2c_network.py`
+
+Additional 0.7.0 inputs:
+
+- `docs/SBX-RESOURCE-CONFIGURATION-PROTOCOL.md`
+- `docs/SBX-PROTOCOL-ASSESSMENT.md`
+- `docs/qualification/phase-2c-sbx-protocol-v1.json`
+- `docs/qualification/phase-2c-sbx-protocol-v1-observed.json`
+- `docs/qualification/phase-2c-sbx-protocol-v1-repeat.json`
+- `docs/qualification/phase-2c-sbx-protocol-v1-refused-observed.json`
+- `docs/qualification/phase-2c-sbx-protocol-v1-refused-repeat.json`
+- `scripts/assess_sbx_protocol.py`
+- `tests/acceptance/test_phase_2c_protocol.py`

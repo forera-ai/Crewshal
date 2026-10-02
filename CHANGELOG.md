@@ -2,6 +2,13 @@
 
 Versions follow semantic versioning. Remote branch publication is distinct from a package-registry release; no registry release has occurred.
 
+## 0.7.0 — 2026-10-02
+
+- Freeze the prospective SBX resource/configuration protocol, preserving every original criterion and the 128 MiB worker ceiling. Separate the pending 512 MiB outer proposal and explicit isolated credential-store prerequisite.
+- Add a pinned help-only SBX assessor with operational-command refusal, source/protocol/binary binding and exclusive private reports. Record two successful help assessments and preserve the earlier symlink-path refusals; no operational boundary is promoted.
+- Add seven offline refusal methods; verify 70 total tests and fresh installed-wheel/static checks. Preserve all earlier pinned profiles and failures.
+- Keep Phase 2C blocked: nested native-runtime enforcement, separate broker credential domain, caller-specific request authority and full native configuration/network evidence remain unavailable. No daemon, login, store operation, worker or provider was invoked.
+
 ## 0.6.0 — 2026-10-02
 
 - Add a prospectively frozen, separate synthetic network subset using an immutable official Python image, two internal dual-stack sinks and twelve worker TCP/UDP/DNS-wire attempts. Positive controls before and after establish sink reachability; independent receipts establish zero denied traffic.

@@ -2,6 +2,13 @@
 
 Versions follow semantic versioning. Remote branch publication is distinct from a package-registry release; no registry release has occurred.
 
+## 0.8.8 — 2026-10-03
+
+- Record direct owner approval of bounded trusted guest discovery against the exact proposal digest; preserve all historical profiles and unchanged limits.
+- Freeze two admission variants and transports. Preserve initial KVM device-policy denial; observe aggregate controls and two HLT executions in each corrected fresh service.
+- Reproduce actual mountless SBX create authentication refusal twice. Stop under the no-login discovery scope; complete operational manifest and inner enforcement remain unavailable.
+- Retain host/artifacts, document the exact authentication prerequisite and continuation inputs, and reproduce 78 network-denied offline tests. No SBX guest/native/provider/login or Phase 2D work.
+
 ## 0.8.7 — 2026-10-03
 
 - Reproduce private configuration overrides twice: forwarding and shared skills off, Docker-volume default 1g, empty kit-source admission and no diagnostics consent. No guest disk is created.

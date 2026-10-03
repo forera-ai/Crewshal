@@ -1,15 +1,17 @@
 # Phase 2C resumption prompt
 
-Phase 2C is incomplete. Package 0.8.7 records [private configuration and host quota controls](CONTROL-RESOLUTION-ASSESSMENT.md): settings reproduce twice; physical quotas alone fail sparse logical-byte enforcement; a separate stricter host logical regular-file prototype passes in two fresh fixtures. These are not inner qualification. The [trusted infrastructure-discovery ordering amendment](PHASE-2C-INFRASTRUCTURE-DISCOVERY-DECISION.md) is proposed, not authorized. The exact resource envelope and current host access are already authorized. Keep the droplet and prepared artifacts. Full operational manifest, inner enforcement and caller/request authority remain unavailable; all execution/native-start flags remain false. Preserve historical failures and immutable profiles.
+Phase 2C is incomplete. Package 0.8.8 records [approved discovery and actual supported-create refusal](GUEST-DISCOVERY-ASSESSMENT.md). Resource and bounded discovery ordering authority are resolved. Both fresh mountless SBX create attempts return Docker authentication-required `401 Unauthorized`; the approved scope excludes login and requires stopping. No SBX guest, complete operational manifest or inner run exists. Keep the droplet and preparation artifacts. All execution/native-start flags stay false. Prior host prototype passes and failures remain separate immutable evidence.
 
 ## Initial prompt
 
 ```text
 Continue Crewshal in /Volumes/X10Pro/Crewshal. Resume Phase 2C only; no 2D. Use caveman ultra, Jev decision support and codebase-memory graph/coverage access after checking live availability. Read AGENTS.md, HANDOFF.md, DEVELOPMENT-PLAN.md, ARCHITECTURE.md, accepted ADR 0002 and all relevant exact inputs below. Verify HEAD/status and graph freshness; preserve unrelated work.
 
-Baseline 0.8.7 adds private configuration readback twice and host quota prototypes. Read CONTROL-RESOLUTION-ASSESSMENT.md and all prospective sources/profiles/observations first. Preserve failed cleanup parsing, strict project-quota errno oracle and incomplete initial logical-prototype capture. The combined host prototype uses a stricter 524288-byte hard per-file limit, 64/32 inode quotas and hardlink-only denial; native compatibility, complete runtime policy and descendant inheritance are unproved. Do not rerun recorded prototypes merely to restate their results or substitute them for inner enforcement.
+Baseline 0.8.8 adds GUEST-DISCOVERY-ASSESSMENT.md, exact discovery authorization, v1/v2 source/profile/transport/observations, final inventory and freeze status. Read these first. Preserve v1 KVM device-policy denial; v2 prospectively adds KVM/TUN DeviceAllow and passes HLT twice per fresh service. V2 supported mountless create refuses Docker authentication twice. Do not retry unchanged unauthenticated creation. No SBX guest or inner qualification exists, despite successful host controller/HLT observations. Conservative per-file/inode bounds, outside transport accounting, missing explicit ProtectControlGroups/ProtectKernelTunables/descendant-migration evidence and no daemon restart after the forwarding setter remain disclosed limitations. Resolve those before future guest startup.
 
-The smallest pending owner decision is PHASE-2C-INFRASTRUCTURE-DISCOVERY-DECISION.md: a bounded prospectively pinned trusted guest-inspection exception before full operational freeze. No answer is recorded at this checkpoint. If trusted continuing chat provides approval, record it separately against the exact proposal bytes; do not ask again. Otherwise obtain that exact decision before guest creation. Approval changes only ordering, not resource ceilings or agent/login authority. Establish independent aggregate memory/CPU/tasks/swap and disk bounds before discovery; refuse if unavailable. Then freeze each inspection executable/source/image before invocation, inspect only through supported pinned paths, deny external downloads, and stop on required Docker sign-in without login or bypass. Complete operational freeze still precedes synthetic inner/native runs. If the owner keeps the original ordering gate, preserve unavailable rather than create a VM.
+The owner directly approved PHASE-2C-INFRASTRUCTURE-DISCOVERY-DECISION.md, bound to SHA-256 46aa89646ebf5a3d51d2af425cb3f43b36833c68d1adec4708da040a685b69cb in phase-2c-discovery-authorization-v1.json. Do not ask again for that decision. Its no-login/no-bypass/external-network-denial boundaries remain. Smallest missing capability: separately authorized and prospectively specified isolated Docker-account authentication/network/credential handling, or an officially supported unauthenticated dispatch path. No such authority is supplied at this checkpoint. Do not access existing credential stores, import a user session, patch around authentication or build a custom gateway. If new explicit authority arrives in the continuing chat, scope and bind that concrete operation before invoking it. No new droplet or limit increase resolves authentication.
+
+After that prerequisite is legitimately resolved, use the approved ordering exception to freeze each infrastructure executable/source/image before its own invocation, establish independent aggregate/disk enforcement, inspect actual guest/inner state and downloads, and freeze the complete operational manifest before synthetic inner/native probes. Retain the original 128 MiB worker/validator, five-second deadline and all grants. Qualify exact inner controls twice before any native startup. Preserve all 0.8.7 host quota parser/oracle/capture failures and strict 512 KiB prototype limits; no native compatibility or inherited full policy is proved.
 
 Resource envelope approval is already recorded in qualification/phase-2c-resource-approval-v1.json, bound to proposal SHA-256 adf3eb56f438d3a375f1f44fc9db3b9699d37e52f57c53aa8c5f5134699d01ab. Do not request unchanged envelope or prior daemon diagnostic approval again. Retain the host and verified preparation artifacts until all required host work finishes; no deletion recommendation at a blocked/session/publishing boundary. All 78 offline tests pass; no operational VM, inner or native probe ran at this checkpoint.
 
@@ -213,3 +215,18 @@ Additional 0.8.7 inputs:
 - `docs/qualification/phase-2c-logical-quota-v1-observed.json`
 - `docs/qualification/phase-2c-logical-quota-v1-runner.txt`
 - `docs/qualification/phase-2c-logical-quota-v1.json`
+
+Additional 0.8.8 inputs:
+
+- `docs/GUEST-DISCOVERY-ASSESSMENT.md`
+- `docs/qualification/phase-2c-discovery-admission-v1-observed.json`
+- `docs/qualification/phase-2c-discovery-admission-v1-runner.txt`
+- `docs/qualification/phase-2c-discovery-admission-v1-transport.txt`
+- `docs/qualification/phase-2c-discovery-admission-v1.json`
+- `docs/qualification/phase-2c-discovery-admission-v2-observed.json`
+- `docs/qualification/phase-2c-discovery-admission-v2-runner.txt`
+- `docs/qualification/phase-2c-discovery-admission-v2-transport.txt`
+- `docs/qualification/phase-2c-discovery-admission-v2.json`
+- `docs/qualification/phase-2c-discovery-authorization-v1.json`
+- `docs/qualification/phase-2c-discovery-final-inventory-v1.json`
+- `docs/qualification/phase-2c-discovery-freeze-status-v1.json`

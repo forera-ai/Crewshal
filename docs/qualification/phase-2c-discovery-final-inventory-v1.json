@@ -1,0 +1,14 @@
+{
+  "available_memory_bytes": 1709228032,
+  "execution_allowed": false,
+  "free_disk_bytes": 47641702400,
+  "host_synthetic_path_exists": false,
+  "kvm_handles": [],
+  "named_sbx_pids": [],
+  "native_start_allowed": false,
+  "owned_unit_query_exit": 0,
+  "owned_units": "",
+  "prepared_root_retained": true,
+  "scope": "supplementary final read-only scoped inventory, not prospectively source-bound qualification",
+  "unreadable_process_entries": []
+}

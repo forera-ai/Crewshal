@@ -2,6 +2,13 @@
 
 Versions follow semantic versioning. Remote branch publication is distinct from a package-registry release; no registry release has occurred.
 
+## 0.8.7 — 2026-10-03
+
+- Reproduce private configuration overrides twice: forwarding and shared skills off, Docker-volume default 1g, empty kit-source admission and no diagnostics consent. No guest disk is created.
+- Preserve quota parser/oracle failures and sparse-file escape. Reproduce a combined host logical regular-file prototype in two fresh XFS fixtures, with independent observations and strict native-compatibility limitations.
+- Prepare a bounded trusted guest-discovery ordering proposal for owner review. Complete operational manifest, inner enforcement and caller/request authority stay unavailable; retain the droplet and artifacts.
+- Reproduce 78 network-denied offline tests; no VM, native runtime, provider/login or Phase 2D work.
+
 ## 0.8.6 — 2026-10-03
 
 - Record the owner's droplet continuation for the frozen bounded daemon/settings diagnostic; reproduce it twice in fresh private systemd fixtures with effective host-service controller/namespace observations and clean scoped cleanup.

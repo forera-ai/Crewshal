@@ -1,0 +1,76 @@
+import errno,hashlib,json,os,pathlib,shutil,signal,subprocess,time
+FILES={"/lib/x86_64-linux-gnu/libblkid.so.1":"9c3860ffab5422410ff9e073d3e82267f00bc68ff1248cbb191640ee2ff045bc","/lib/x86_64-linux-gnu/libbsd.so.0":"e86cd4f0019f42c2ba5e60602e0edc8694d2948377d98c3654d0f6bddb5254bb","/lib/x86_64-linux-gnu/libc.so.6":"3a15d66867d83762c7f2f1e37359cb8f6c5743edb369c65285cb0b1c4f7498bf","/lib/x86_64-linux-gnu/libedit.so.2":"195c607216f8581dbf516346ed38f4c73500cac4b84e18eb0a4fd49931e4cd56","/lib/x86_64-linux-gnu/libexpat.so.1":"286682ecbc5e59a638963b1a4e6351e65eb32fcf4bdcb9cb7569b6a61fe06a8d","/lib/x86_64-linux-gnu/libinih.so.1":"cba15bc5d7a9570a5e0adfa3b5c5a48184038b0b84cedb9a804df63aafda8c89","/lib/x86_64-linux-gnu/libm.so.6":"fce00b6f25f459cf4ae0b7fae4257909a1a8a86f9149e7c029a5d617baf1ccd0","/lib/x86_64-linux-gnu/libmd.so.0":"423e18586b6ea740f4465afd64f7a9a4cb7264ed979c8e7256f9085af5345fef","/lib/x86_64-linux-gnu/libmount.so.1":"7472255ae5799059b37ddd544788f5665dbd3e1cb78259f52180293039efc2a5","/lib/x86_64-linux-gnu/libpcre2-8.so.0":"e00576d71d81d3ba0cfa4903c835a44a8723aac96f72f79ff75200b4cff9071b","/lib/x86_64-linux-gnu/libselinux.so.1":"0ec0843463f90e227b0e138e1f379774f50b5514bd7f5dbd4c8a87aca0aa6670","/lib/x86_64-linux-gnu/libsmartcols.so.1":"0560fded774642441657d3cf3125ac62234545dbe30725ed97cc6a79ba45791b","/lib/x86_64-linux-gnu/libtinfo.so.6":"e6089d7bb95eee5b545f3770dd69095b0bca47d26701cad145af429561d16306","/lib/x86_64-linux-gnu/liburcu.so.8":"1309db809cb21cc67d12f748cb2eb1d5bd24a3df8187f8977bda1435873e71ad","/lib/x86_64-linux-gnu/libuuid.so.1":"78d7f4d6f27b7dffc1c84dfe2f83e84aefa6f6ceeffc6ac4bc41f9fbc61cb84e","/lib/x86_64-linux-gnu/libz.so.1":"86200da370f20476a2507e9097a789b5ef97269b4ca8d5e164ad82dab9d99892","/lib64/ld-linux-x86-64.so.2":"c20a2dc8917c755f02b94049356320fe1f62ac7d9f8994731f807d9df39302da","/usr/bin/mount":"fde2b1540ca79ea42df942653bdfd09b9b3e3ff1d4713602bd280f754033957a","/usr/bin/python3":"e50d468e8b0adfb05733f5b87b3cff34829c4a8c1aea50c865aa8bdfe4bb150f","/usr/bin/umount":"186774a008ad69cf60bce6af35a850608d1c6ba410d3eca4113ea55b3a8b54d6","/usr/sbin/losetup":"44ccbcc5573aee3bd40fd3171ec368d62ba373f45263ac1d026c612ed86f0f02","/usr/sbin/mkfs.xfs":"d9bb1a7c94ec07bc815f25c535d061fbecfb32c05b46dceaab303bf72435659e","/usr/sbin/xfs_quota":"bfd4c6cdbce0582c62b39a0752763e39111f48154173342ca5c2b0aec22fd364"}
+ROOT="/srv/crewshal-2c-quota-prerequisite-20261003-v1"
+def command(args):
+    p=subprocess.run(args,capture_output=True,text=True,timeout=10,env={"PATH":"/usr/bin:/usr/sbin:/bin","LC_ALL":"C"})
+    assert len(p.stdout.encode())<=65536 and len(p.stderr.encode())<=65536
+    record={"argv":args,"exit_code":p.returncode,"stdout":p.stdout,"stderr":p.stderr}
+    assert p.returncode==0,record
+    return record
+def alarm(signum,frame): raise TimeoutError("quota prerequisite deadline")
+signal.signal(signal.SIGALRM,alarm)
+signal.alarm(90)
+start=time.monotonic()
+for path,digest in FILES.items():
+    assert hashlib.sha256(pathlib.Path(path).read_bytes()).hexdigest()==digest,path
+assert not pathlib.Path(ROOT).exists()
+assert int(next(line.split()[1] for line in pathlib.Path("/proc/meminfo").read_text().splitlines() if line.startswith("MemAvailable:")))*1024>=939524096
+assert shutil.disk_usage("/srv").free>=10737418240
+pathlib.Path(ROOT).mkdir(mode=0o755)
+observations=[]
+try:
+ for index in range(2):
+    fixture=pathlib.Path(ROOT,str(index));fixture.mkdir(mode=0o755)
+    image=fixture/"disk.img";mount=fixture/"mount";mount.mkdir(mode=0o755)
+    with image.open("xb") as f:f.truncate(536870912)
+    loop=None;mounted=False;record={"fixture_index":index,"commands":[]}
+    try:
+        record["commands"].append(command(["/usr/sbin/mkfs.xfs","-f",str(image)]))
+        r=command(["/usr/sbin/losetup","--find","--show","--nooverlap",str(image)])
+        record["commands"].append(r);loop=r["stdout"].strip()
+        assert loop.startswith("/dev/loop") and loop[9:].isdigit(),loop
+        record["commands"].append(command(["/usr/sbin/losetup","--json","--output","NAME,BACK-FILE",loop]))
+        assert json.loads(record["commands"][-1]["stdout"])["loopdevices"][0]["back-file"]==str(image)
+        record["commands"].append(command(["/usr/bin/mount","-t","xfs","-o","prjquota,nodev,nosuid,noexec",loop,str(mount)]));mounted=True
+        tests=[]
+        for name,project,limit in [("scratch",121,33554432),("candidate",122,16777216)]:
+            directory=mount/name;directory.mkdir(mode=0o777);directory.chmod(0o777)
+            record["commands"].append(command(["/usr/sbin/xfs_quota","-x","-c","project -s -p "+str(directory)+" "+str(project),str(mount)]))
+            record["commands"].append(command(["/usr/sbin/xfs_quota","-x","-c","limit -p bhard="+str(limit)+" "+str(project),str(mount)]))
+            record["commands"].append(command(["/usr/sbin/xfs_quota","-x","-c","project -c -p "+str(directory)+" "+str(project),str(mount)]))
+            payload='import errno,json,os,sys; os.setgroups([]); os.setgid(65534); os.setuid(65534); p=sys.argv[1]; limit=int(sys.argv[2]); f=open(p+"/allocated","xb"); count=0; failure=None\ntry:\n for i in range(80):\n  count+=f.write(b"x"*1048576); f.flush(); os.fsync(f.fileno())\nexcept OSError as e: failure=e.errno\nfinally: f.close()\nprint(json.dumps({"written_bytes":count,"errno":failure,"uid":os.getuid(),"limit":limit}))'
+            r=command(["/usr/bin/python3","-c",payload,str(directory),str(limit)])
+            allocated=json.loads(r["stdout"]);st=(directory/"allocated").stat()
+            allocated["observed_logical_bytes"]=st.st_size;allocated["observed_allocated_bytes"]=st.st_blocks*512
+            allocated["physical_quota_pass"]=allocated["errno"]==errno.EDQUOT and 0<st.st_size<=limit and st.st_blocks*512<=limit
+            (directory/"allocated").unlink()
+            sparse='import json,os,sys; os.setgroups([]); os.setgid(65534); os.setuid(65534); f=open(sys.argv[1]+"/sparse","xb"); failure=None\ntry:f.truncate(67108864)\nexcept OSError as e:failure=e.errno\nfinally:f.close()\nprint(json.dumps({"errno":failure,"uid":os.getuid()}))'
+            r2=command(["/usr/bin/python3","-c",sparse,str(directory)])
+            sparse_result=json.loads(r2["stdout"]);st=(directory/"sparse").stat()
+            sparse_result.update({"observed_logical_bytes":st.st_size,"observed_allocated_bytes":st.st_blocks*512,"logical_quota_pass":st.st_size<=limit})
+            tests.append({"name":name,"project_id":project,"ceiling_bytes":limit,"allocated_write":allocated,"sparse_truncate":sparse_result})
+            (directory/"sparse").unlink()
+            record["commands"].append(command(["/usr/sbin/xfs_quota","-x","-c","quota -p -b -n "+str(project),str(mount)]))
+        record["tests"]=tests
+        record["commands"].append(command(["/usr/sbin/xfs_quota","-x","-c","state -p",str(mount)]))
+        record["mountinfo"]=[line for line in pathlib.Path("/proc/self/mountinfo").read_text().splitlines() if str(mount) in line]
+        record["image_logical_bytes"]=image.stat().st_size;record["image_allocated_bytes"]=image.stat().st_blocks*512
+    except Exception as e:
+        record["error"]=repr(e)
+    finally:
+        cleanup=[]
+        if mounted:
+            r=command(["/usr/bin/umount",str(mount)]);cleanup.append(r);mounted=False
+        if loop:
+            r=command(["/usr/sbin/losetup","--detach",loop]);cleanup.append(r)
+            remaining=command(["/usr/sbin/losetup","--json","--associated",str(image)])
+            cleanup.append(remaining);assert not json.loads(remaining["stdout"]).get("loopdevices",[])
+        assert not any(str(mount) in line for line in pathlib.Path("/proc/self/mountinfo").read_text().splitlines())
+        record["cleanup"]=cleanup
+        shutil.rmtree(fixture);record["fixture_removed"]=not fixture.exists()
+    observations.append(record)
+finally:
+ signal.alarm(0)
+ if pathlib.Path(ROOT).exists() and not any(pathlib.Path(ROOT).iterdir()):pathlib.Path(ROOT).rmdir()
+result={"scope":"host XFS prerequisite only; not SBX inner enforcement","observations":observations,"owned_root_removed":not pathlib.Path(ROOT).exists(),"elapsed_seconds":round(time.monotonic()-start,3),"execution_allowed":False,"native_start_allowed":False,"operational_manifest_frozen":False}
+print(json.dumps(result,sort_keys=True))

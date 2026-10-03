@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "scope": "Host logical regular-file quota prerequisite in two fresh 512 MiB XFS fixtures; not inner qualification",
+  "root": "/srv/crewshal-2c-logical-quota-20261003-v1",
+  "source_sha256": "61cf44f20aa3bebbbc704e65e18c29cf745a2214e91e76e3cb9c66e3afe4cd03",
+  "hard_file_size_bytes": 524288,
+  "scratch": {
+    "byte_quota": 33554432,
+    "inode_quota": 64
+  },
+  "candidate": {
+    "byte_quota": 16777216,
+    "inode_quota": 32
+  },
+  "hardlinks": "Existing libseccomp denies link/linkat before payload privilege drop; policy tests only hardlink denial, not full default runtime seccomp",
+  "payload_uid_gid": 65534,
+  "commands_seconds": 10,
+  "outer_deadline_seconds": 90,
+  "output_bytes_per_stream": 65536,
+  "oracles": "Hard limit cannot be raised after privilege drop; 64 MiB truncate must fail EFBIG; owned hardlink must fail EPERM; inode exhaustion must deny creation while filesystem has over 128 MiB free; outside observer agrees on distinct regular-file count/size and total stays below original byte ceiling; exact quota state and scoped cleanup recorded.",
+  "limitations": "At most 512 KiB per writable file and 31/63 regular files when root project directory counts as one inode. This is a stricter candidate configuration, not an unchanged native-runtime capability guarantee. Directory/symlink metadata, final artifact hardlink handling, exact inner engine placement and payload setup still need independent qualification. No complete OS/stdlib attestation; trusted post-capture output checking.",
+  "execution_allowed": false,
+  "native_start_allowed": false,
+  "operational_manifest_frozen": false
+}

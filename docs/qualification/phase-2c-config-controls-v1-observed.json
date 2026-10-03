@@ -1,0 +1,333 @@
+{
+  "schema_version": 1,
+  "source_sha256": "47e6be9fbf05a03befd229163ca8b242029129d0d3dd1ec02043959c77c8c34d",
+  "observation": {
+    "elapsed_seconds": 4.278,
+    "execution_allowed": false,
+    "exit_code": 0,
+    "native_start_allowed": false,
+    "output_within_cap": true,
+    "remaining_kvm_handles": [],
+    "remaining_owned_pids": [],
+    "remaining_owned_unit": "",
+    "samples": [
+      {
+        "controllers": {
+          "cgroup.events": "populated 1\nfrozen 0\n",
+          "cgroup.procs": "11571\n11573\n11574\n",
+          "cpu.max": "100000 100000\n",
+          "memory.max": "268435456\n",
+          "memory.swap.max": "0\n",
+          "pids.max": "128\n"
+        },
+        "network_namespace": "net:[4026532337]",
+        "observer_network_namespace": "net:[4026531840]",
+        "process_status": "Name:\tsh\nUmask:\t0022\nState:\tS (sleeping)\nTgid:\t11571\nNgid:\t0\nPid:\t11571\nPPid:\t1\nTracerPid:\t0\nUid:\t65534\t65534\t65534\t65534\nGid:\t65534\t65534\t65534\t65534\nFDSize:\t256\nGroups:\t65534 \nNStgid:\t11571\nNSpid:\t11571\nNSpgid:\t11571\nNSsid:\t11571\nKthread:\t0\nVmPeak:\t    2804 kB\nVmSize:\t    2804 kB\nVmLck:\t       0 kB\nVmPin:\t       0 kB\nVmHWM:\t    1980 kB\nVmRSS:\t    1980 kB\nRssAnon:\t     108 kB\nRssFile:\t    1872 kB\nRssShmem:\t       0 kB\nVmData:\t     232 kB\nVmStk:\t     132 kB\nVmExe:\t      84 kB\nVmLib:\t    1752 kB\nVmPTE:\t      44 kB\nVmSwap:\t       0 kB\nHugetlbPages:\t       0 kB\nCoreDumping:\t0\nTHP_enabled:\t1\nuntag_mask:\t0xffffffffffffffff\nThreads:\t1\nSigQ:\t0/7719\nSigPnd:\t0000000000000000\nShdPnd:\t0000000000000000\nSigBlk:\t0000000000000000\nSigIgn:\t0000000000001000\nSigCgt:\t0000000000010002\nCapInh:\t0000000000000000\nCapPrm:\t0000000000000000\nCapEff:\t0000000000000000\nCapBnd:\t0000000000000000\nCapAmb:\t0000000000000000\nNoNewPrivs:\t1\nSeccomp:\t2\nSeccomp_filters:\t3\nSpeculation_Store_Bypass:\tthread vulnerable\nSpeculationIndirectBranch:\tconditional enabled\nCpus_allowed:\t1\nCpus_allowed_list:\t0\nMems_allowed:\t00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000001\nMems_allowed_list:\t0\nvoluntary_ctxt_switches:\t8\nnonvoluntary_ctxt_switches:\t49\nx86_Thread_features:\t\nx86_Thread_features_locked:\t\n",
+        "properties": {
+          "CPUQuotaPerSecUSec": "1s",
+          "ControlGroup": "/system.slice/crewshal-config-controls-v1.service",
+          "KillMode": "control-group",
+          "MainPID": "11571",
+          "MemoryMax": "268435456",
+          "MemorySwapMax": "0",
+          "NoNewPrivileges": "yes",
+          "PrivateDevices": "yes",
+          "PrivateNetwork": "yes",
+          "RuntimeMaxUSec": "10s",
+          "TasksMax": "128"
+        },
+        "seconds": 0.988
+      },
+      {
+        "controllers": {
+          "cgroup.events": "populated 1\nfrozen 0\n",
+          "cgroup.procs": "11571\n11573\n11574\n",
+          "cpu.max": "100000 100000\n",
+          "memory.max": "268435456\n",
+          "memory.swap.max": "0\n",
+          "pids.max": "128\n"
+        },
+        "network_namespace": "net:[4026532337]",
+        "observer_network_namespace": "net:[4026531840]",
+        "process_status": "Name:\tsh\nUmask:\t0022\nState:\tS (sleeping)\nTgid:\t11571\nNgid:\t0\nPid:\t11571\nPPid:\t1\nTracerPid:\t0\nUid:\t65534\t65534\t65534\t65534\nGid:\t65534\t65534\t65534\t65534\nFDSize:\t256\nGroups:\t65534 \nNStgid:\t11571\nNSpid:\t11571\nNSpgid:\t11571\nNSsid:\t11571\nKthread:\t0\nVmPeak:\t    2804 kB\nVmSize:\t    2804 kB\nVmLck:\t       0 kB\nVmPin:\t       0 kB\nVmHWM:\t    1980 kB\nVmRSS:\t    1980 kB\nRssAnon:\t     108 kB\nRssFile:\t    1872 kB\nRssShmem:\t       0 kB\nVmData:\t     232 kB\nVmStk:\t     132 kB\nVmExe:\t      84 kB\nVmLib:\t    1752 kB\nVmPTE:\t      44 kB\nVmSwap:\t       0 kB\nHugetlbPages:\t       0 kB\nCoreDumping:\t0\nTHP_enabled:\t1\nuntag_mask:\t0xffffffffffffffff\nThreads:\t1\nSigQ:\t0/7719\nSigPnd:\t0000000000000000\nShdPnd:\t0000000000000000\nSigBlk:\t0000000000000000\nSigIgn:\t0000000000001000\nSigCgt:\t0000000000010002\nCapInh:\t0000000000000000\nCapPrm:\t0000000000000000\nCapEff:\t0000000000000000\nCapBnd:\t0000000000000000\nCapAmb:\t0000000000000000\nNoNewPrivs:\t1\nSeccomp:\t2\nSeccomp_filters:\t3\nSpeculation_Store_Bypass:\tthread vulnerable\nSpeculationIndirectBranch:\tconditional enabled\nCpus_allowed:\t1\nCpus_allowed_list:\t0\nMems_allowed:\t00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000001\nMems_allowed_list:\t0\nvoluntary_ctxt_switches:\t8\nnonvoluntary_ctxt_switches:\t49\nx86_Thread_features:\t\nx86_Thread_features_locked:\t\n",
+        "properties": {
+          "CPUQuotaPerSecUSec": "1s",
+          "ControlGroup": "/system.slice/crewshal-config-controls-v1.service",
+          "KillMode": "control-group",
+          "MainPID": "11571",
+          "MemoryMax": "268435456",
+          "MemorySwapMax": "0",
+          "NoNewPrivileges": "yes",
+          "PrivateDevices": "yes",
+          "PrivateNetwork": "yes",
+          "RuntimeMaxUSec": "10s",
+          "TasksMax": "128"
+        },
+        "seconds": 1.255
+      },
+      {
+        "controllers": {
+          "cgroup.events": "populated 1\nfrozen 0\n",
+          "cgroup.procs": "11571\n11573\n11574\n",
+          "cpu.max": "100000 100000\n",
+          "memory.max": "268435456\n",
+          "memory.swap.max": "0\n",
+          "pids.max": "128\n"
+        },
+        "network_namespace": "net:[4026532337]",
+        "observer_network_namespace": "net:[4026531840]",
+        "process_status": "Name:\tsh\nUmask:\t0022\nState:\tS (sleeping)\nTgid:\t11571\nNgid:\t0\nPid:\t11571\nPPid:\t1\nTracerPid:\t0\nUid:\t65534\t65534\t65534\t65534\nGid:\t65534\t65534\t65534\t65534\nFDSize:\t256\nGroups:\t65534 \nNStgid:\t11571\nNSpid:\t11571\nNSpgid:\t11571\nNSsid:\t11571\nKthread:\t0\nVmPeak:\t    2804 kB\nVmSize:\t    2804 kB\nVmLck:\t       0 kB\nVmPin:\t       0 kB\nVmHWM:\t    1980 kB\nVmRSS:\t    1980 kB\nRssAnon:\t     108 kB\nRssFile:\t    1872 kB\nRssShmem:\t       0 kB\nVmData:\t     232 kB\nVmStk:\t     132 kB\nVmExe:\t      84 kB\nVmLib:\t    1752 kB\nVmPTE:\t      44 kB\nVmSwap:\t       0 kB\nHugetlbPages:\t       0 kB\nCoreDumping:\t0\nTHP_enabled:\t1\nuntag_mask:\t0xffffffffffffffff\nThreads:\t1\nSigQ:\t0/7719\nSigPnd:\t0000000000000000\nShdPnd:\t0000000000000000\nSigBlk:\t0000000000000000\nSigIgn:\t0000000000001000\nSigCgt:\t0000000000010002\nCapInh:\t0000000000000000\nCapPrm:\t0000000000000000\nCapEff:\t0000000000000000\nCapBnd:\t0000000000000000\nCapAmb:\t0000000000000000\nNoNewPrivs:\t1\nSeccomp:\t2\nSeccomp_filters:\t3\nSpeculation_Store_Bypass:\tthread vulnerable\nSpeculationIndirectBranch:\tconditional enabled\nCpus_allowed:\t1\nCpus_allowed_list:\t0\nMems_allowed:\t00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000001\nMems_allowed_list:\t0\nvoluntary_ctxt_switches:\t8\nnonvoluntary_ctxt_switches:\t49\nx86_Thread_features:\t\nx86_Thread_features_locked:\t\n",
+        "properties": {
+          "CPUQuotaPerSecUSec": "1s",
+          "ControlGroup": "/system.slice/crewshal-config-controls-v1.service",
+          "KillMode": "control-group",
+          "MainPID": "11571",
+          "MemoryMax": "268435456",
+          "MemorySwapMax": "0",
+          "NoNewPrivileges": "yes",
+          "PrivateDevices": "yes",
+          "PrivateNetwork": "yes",
+          "RuntimeMaxUSec": "10s",
+          "TasksMax": "128"
+        },
+        "seconds": 1.521
+      },
+      {
+        "controllers": {
+          "cgroup.events": "populated 1\nfrozen 0\n",
+          "cgroup.procs": "11571\n11573\n11588\n",
+          "cpu.max": "100000 100000\n",
+          "memory.max": "268435456\n",
+          "memory.swap.max": "0\n",
+          "pids.max": "128\n"
+        },
+        "network_namespace": "net:[4026532337]",
+        "observer_network_namespace": "net:[4026531840]",
+        "process_status": "Name:\tsh\nUmask:\t0022\nState:\tS (sleeping)\nTgid:\t11571\nNgid:\t0\nPid:\t11571\nPPid:\t1\nTracerPid:\t0\nUid:\t65534\t65534\t65534\t65534\nGid:\t65534\t65534\t65534\t65534\nFDSize:\t256\nGroups:\t65534 \nNStgid:\t11571\nNSpid:\t11571\nNSpgid:\t11571\nNSsid:\t11571\nKthread:\t0\nVmPeak:\t    2804 kB\nVmSize:\t    2804 kB\nVmLck:\t       0 kB\nVmPin:\t       0 kB\nVmHWM:\t    1980 kB\nVmRSS:\t    1980 kB\nRssAnon:\t     108 kB\nRssFile:\t    1872 kB\nRssShmem:\t       0 kB\nVmData:\t     232 kB\nVmStk:\t     132 kB\nVmExe:\t      84 kB\nVmLib:\t    1752 kB\nVmPTE:\t      44 kB\nVmSwap:\t       0 kB\nHugetlbPages:\t       0 kB\nCoreDumping:\t0\nTHP_enabled:\t1\nuntag_mask:\t0xffffffffffffffff\nThreads:\t1\nSigQ:\t0/7719\nSigPnd:\t0000000000000000\nShdPnd:\t0000000000000000\nSigBlk:\t0000000000000000\nSigIgn:\t0000000000001000\nSigCgt:\t0000000000010002\nCapInh:\t0000000000000000\nCapPrm:\t0000000000000000\nCapEff:\t0000000000000000\nCapBnd:\t0000000000000000\nCapAmb:\t0000000000000000\nNoNewPrivs:\t1\nSeccomp:\t2\nSeccomp_filters:\t3\nSpeculation_Store_Bypass:\tthread vulnerable\nSpeculationIndirectBranch:\tconditional enabled\nCpus_allowed:\t1\nCpus_allowed_list:\t0\nMems_allowed:\t00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000001\nMems_allowed_list:\t0\nvoluntary_ctxt_switches:\t10\nnonvoluntary_ctxt_switches:\t49\nx86_Thread_features:\t\nx86_Thread_features_locked:\t\n",
+        "properties": {
+          "CPUQuotaPerSecUSec": "1s",
+          "ControlGroup": "/system.slice/crewshal-config-controls-v1.service",
+          "KillMode": "control-group",
+          "MainPID": "11571",
+          "MemoryMax": "268435456",
+          "MemorySwapMax": "0",
+          "NoNewPrivileges": "yes",
+          "PrivateDevices": "yes",
+          "PrivateNetwork": "yes",
+          "RuntimeMaxUSec": "10s",
+          "TasksMax": "128"
+        },
+        "seconds": 1.789
+      },
+      {
+        "controllers": {
+          "cgroup.events": "populated 1\nfrozen 0\n",
+          "cgroup.procs": "11571\n11573\n11596\n",
+          "cpu.max": "100000 100000\n",
+          "memory.max": "268435456\n",
+          "memory.swap.max": "0\n",
+          "pids.max": "128\n"
+        },
+        "network_namespace": "net:[4026532337]",
+        "observer_network_namespace": "net:[4026531840]",
+        "process_status": "Name:\tsh\nUmask:\t0022\nState:\tS (sleeping)\nTgid:\t11571\nNgid:\t0\nPid:\t11571\nPPid:\t1\nTracerPid:\t0\nUid:\t65534\t65534\t65534\t65534\nGid:\t65534\t65534\t65534\t65534\nFDSize:\t256\nGroups:\t65534 \nNStgid:\t11571\nNSpid:\t11571\nNSpgid:\t11571\nNSsid:\t11571\nKthread:\t0\nVmPeak:\t    2804 kB\nVmSize:\t    2804 kB\nVmLck:\t       0 kB\nVmPin:\t       0 kB\nVmHWM:\t    1980 kB\nVmRSS:\t    1980 kB\nRssAnon:\t     108 kB\nRssFile:\t    1872 kB\nRssShmem:\t       0 kB\nVmData:\t     232 kB\nVmStk:\t     132 kB\nVmExe:\t      84 kB\nVmLib:\t    1752 kB\nVmPTE:\t      44 kB\nVmSwap:\t       0 kB\nHugetlbPages:\t       0 kB\nCoreDumping:\t0\nTHP_enabled:\t1\nuntag_mask:\t0xffffffffffffffff\nThreads:\t1\nSigQ:\t0/7719\nSigPnd:\t0000000000000000\nShdPnd:\t0000000000000000\nSigBlk:\t0000000000000000\nSigIgn:\t0000000000001000\nSigCgt:\t0000000000010002\nCapInh:\t0000000000000000\nCapPrm:\t0000000000000000\nCapEff:\t0000000000000000\nCapBnd:\t0000000000000000\nCapAmb:\t0000000000000000\nNoNewPrivs:\t1\nSeccomp:\t2\nSeccomp_filters:\t3\nSpeculation_Store_Bypass:\tthread vulnerable\nSpeculationIndirectBranch:\tconditional enabled\nCpus_allowed:\t1\nCpus_allowed_list:\t0\nMems_allowed:\t00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000001\nMems_allowed_list:\t0\nvoluntary_ctxt_switches:\t12\nnonvoluntary_ctxt_switches:\t49\nx86_Thread_features:\t\nx86_Thread_features_locked:\t\n",
+        "properties": {
+          "CPUQuotaPerSecUSec": "1s",
+          "ControlGroup": "/system.slice/crewshal-config-controls-v1.service",
+          "KillMode": "control-group",
+          "MainPID": "11571",
+          "MemoryMax": "268435456",
+          "MemorySwapMax": "0",
+          "NoNewPrivileges": "yes",
+          "PrivateDevices": "yes",
+          "PrivateNetwork": "yes",
+          "RuntimeMaxUSec": "10s",
+          "TasksMax": "128"
+        },
+        "seconds": 2.065
+      },
+      {
+        "controllers": {
+          "cgroup.events": "populated 1\nfrozen 0\n",
+          "cgroup.procs": "11571\n11573\n11605\n",
+          "cpu.max": "100000 100000\n",
+          "memory.max": "268435456\n",
+          "memory.swap.max": "0\n",
+          "pids.max": "128\n"
+        },
+        "network_namespace": "net:[4026532337]",
+        "observer_network_namespace": "net:[4026531840]",
+        "process_status": "Name:\tsh\nUmask:\t0022\nState:\tS (sleeping)\nTgid:\t11571\nNgid:\t0\nPid:\t11571\nPPid:\t1\nTracerPid:\t0\nUid:\t65534\t65534\t65534\t65534\nGid:\t65534\t65534\t65534\t65534\nFDSize:\t256\nGroups:\t65534 \nNStgid:\t11571\nNSpid:\t11571\nNSpgid:\t11571\nNSsid:\t11571\nKthread:\t0\nVmPeak:\t    2804 kB\nVmSize:\t    2804 kB\nVmLck:\t       0 kB\nVmPin:\t       0 kB\nVmHWM:\t    1980 kB\nVmRSS:\t    1980 kB\nRssAnon:\t     108 kB\nRssFile:\t    1872 kB\nRssShmem:\t       0 kB\nVmData:\t     232 kB\nVmStk:\t     132 kB\nVmExe:\t      84 kB\nVmLib:\t    1752 kB\nVmPTE:\t      44 kB\nVmSwap:\t       0 kB\nHugetlbPages:\t       0 kB\nCoreDumping:\t0\nTHP_enabled:\t1\nuntag_mask:\t0xffffffffffffffff\nThreads:\t1\nSigQ:\t0/7719\nSigPnd:\t0000000000000000\nShdPnd:\t0000000000000000\nSigBlk:\t0000000000000000\nSigIgn:\t0000000000001000\nSigCgt:\t0000000000010002\nCapInh:\t0000000000000000\nCapPrm:\t0000000000000000\nCapEff:\t0000000000000000\nCapBnd:\t0000000000000000\nCapAmb:\t0000000000000000\nNoNewPrivs:\t1\nSeccomp:\t2\nSeccomp_filters:\t3\nSpeculation_Store_Bypass:\tthread vulnerable\nSpeculationIndirectBranch:\tconditional enabled\nCpus_allowed:\t1\nCpus_allowed_list:\t0\nMems_allowed:\t00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000001\nMems_allowed_list:\t0\nvoluntary_ctxt_switches:\t14\nnonvoluntary_ctxt_switches:\t49\nx86_Thread_features:\t\nx86_Thread_features_locked:\t\n",
+        "properties": {
+          "CPUQuotaPerSecUSec": "1s",
+          "ControlGroup": "/system.slice/crewshal-config-controls-v1.service",
+          "KillMode": "control-group",
+          "MainPID": "11571",
+          "MemoryMax": "268435456",
+          "MemorySwapMax": "0",
+          "NoNewPrivileges": "yes",
+          "PrivateDevices": "yes",
+          "PrivateNetwork": "yes",
+          "RuntimeMaxUSec": "10s",
+          "TasksMax": "128"
+        },
+        "seconds": 2.344
+      },
+      {
+        "controllers": {
+          "cgroup.events": "populated 1\nfrozen 0\n",
+          "cgroup.procs": "11571\n11573\n11615\n",
+          "cpu.max": "100000 100000\n",
+          "memory.max": "268435456\n",
+          "memory.swap.max": "0\n",
+          "pids.max": "128\n"
+        },
+        "network_namespace": "net:[4026532337]",
+        "observer_network_namespace": "net:[4026531840]",
+        "process_status": "Name:\tsh\nUmask:\t0022\nState:\tS (sleeping)\nTgid:\t11571\nNgid:\t0\nPid:\t11571\nPPid:\t1\nTracerPid:\t0\nUid:\t65534\t65534\t65534\t65534\nGid:\t65534\t65534\t65534\t65534\nFDSize:\t256\nGroups:\t65534 \nNStgid:\t11571\nNSpid:\t11571\nNSpgid:\t11571\nNSsid:\t11571\nKthread:\t0\nVmPeak:\t    2804 kB\nVmSize:\t    2804 kB\nVmLck:\t       0 kB\nVmPin:\t       0 kB\nVmHWM:\t    1980 kB\nVmRSS:\t    1980 kB\nRssAnon:\t     108 kB\nRssFile:\t    1872 kB\nRssShmem:\t       0 kB\nVmData:\t     232 kB\nVmStk:\t     132 kB\nVmExe:\t      84 kB\nVmLib:\t    1752 kB\nVmPTE:\t      44 kB\nVmSwap:\t       0 kB\nHugetlbPages:\t       0 kB\nCoreDumping:\t0\nTHP_enabled:\t1\nuntag_mask:\t0xffffffffffffffff\nThreads:\t1\nSigQ:\t0/7719\nSigPnd:\t0000000000000000\nShdPnd:\t0000000000000000\nSigBlk:\t0000000000000000\nSigIgn:\t0000000000001000\nSigCgt:\t0000000000010002\nCapInh:\t0000000000000000\nCapPrm:\t0000000000000000\nCapEff:\t0000000000000000\nCapBnd:\t0000000000000000\nCapAmb:\t0000000000000000\nNoNewPrivs:\t1\nSeccomp:\t2\nSeccomp_filters:\t3\nSpeculation_Store_Bypass:\tthread vulnerable\nSpeculationIndirectBranch:\tconditional enabled\nCpus_allowed:\t1\nCpus_allowed_list:\t0\nMems_allowed:\t00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000001\nMems_allowed_list:\t0\nvoluntary_ctxt_switches:\t16\nnonvoluntary_ctxt_switches:\t49\nx86_Thread_features:\t\nx86_Thread_features_locked:\t\n",
+        "properties": {
+          "CPUQuotaPerSecUSec": "1s",
+          "ControlGroup": "/system.slice/crewshal-config-controls-v1.service",
+          "KillMode": "control-group",
+          "MainPID": "11571",
+          "MemoryMax": "268435456",
+          "MemorySwapMax": "0",
+          "NoNewPrivileges": "yes",
+          "PrivateDevices": "yes",
+          "PrivateNetwork": "yes",
+          "RuntimeMaxUSec": "10s",
+          "TasksMax": "128"
+        },
+        "seconds": 2.626
+      },
+      {
+        "controllers": {
+          "cgroup.events": "populated 1\nfrozen 0\n",
+          "cgroup.procs": "11571\n11625\n11626\n",
+          "cpu.max": "100000 100000\n",
+          "memory.max": "268435456\n",
+          "memory.swap.max": "0\n",
+          "pids.max": "128\n"
+        },
+        "network_namespace": "net:[4026532337]",
+        "observer_network_namespace": "net:[4026531840]",
+        "process_status": "Name:\tsh\nUmask:\t0022\nState:\tS (sleeping)\nTgid:\t11571\nNgid:\t0\nPid:\t11571\nPPid:\t1\nTracerPid:\t0\nUid:\t65534\t65534\t65534\t65534\nGid:\t65534\t65534\t65534\t65534\nFDSize:\t256\nGroups:\t65534 \nNStgid:\t11571\nNSpid:\t11571\nNSpgid:\t11571\nNSsid:\t11571\nKthread:\t0\nVmPeak:\t    2804 kB\nVmSize:\t    2804 kB\nVmLck:\t       0 kB\nVmPin:\t       0 kB\nVmHWM:\t    1980 kB\nVmRSS:\t    1980 kB\nRssAnon:\t     108 kB\nRssFile:\t    1872 kB\nRssShmem:\t       0 kB\nVmData:\t     232 kB\nVmStk:\t     132 kB\nVmExe:\t      84 kB\nVmLib:\t    1752 kB\nVmPTE:\t      44 kB\nVmSwap:\t       0 kB\nHugetlbPages:\t       0 kB\nCoreDumping:\t0\nTHP_enabled:\t1\nuntag_mask:\t0xffffffffffffffff\nThreads:\t1\nSigQ:\t0/7719\nSigPnd:\t0000000000000000\nShdPnd:\t0000000000000000\nSigBlk:\t0000000000000000\nSigIgn:\t0000000000001000\nSigCgt:\t0000000000010002\nCapInh:\t0000000000000000\nCapPrm:\t0000000000000000\nCapEff:\t0000000000000000\nCapBnd:\t0000000000000000\nCapAmb:\t0000000000000000\nNoNewPrivs:\t1\nSeccomp:\t2\nSeccomp_filters:\t3\nSpeculation_Store_Bypass:\tthread vulnerable\nSpeculationIndirectBranch:\tconditional enabled\nCpus_allowed:\t1\nCpus_allowed_list:\t0\nMems_allowed:\t00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000001\nMems_allowed_list:\t0\nvoluntary_ctxt_switches:\t19\nnonvoluntary_ctxt_switches:\t49\nx86_Thread_features:\t\nx86_Thread_features_locked:\t\n",
+        "properties": {
+          "CPUQuotaPerSecUSec": "1s",
+          "ControlGroup": "/system.slice/crewshal-config-controls-v1.service",
+          "KillMode": "control-group",
+          "MainPID": "11571",
+          "MemoryMax": "268435456",
+          "MemorySwapMax": "0",
+          "NoNewPrivileges": "yes",
+          "PrivateDevices": "yes",
+          "PrivateNetwork": "yes",
+          "RuntimeMaxUSec": "10s",
+          "TasksMax": "128"
+        },
+        "seconds": 2.906
+      },
+      {
+        "controllers": {
+          "cgroup.events": "populated 1\nfrozen 0\n",
+          "cgroup.procs": "11571\n11625\n11626\n",
+          "cpu.max": "100000 100000\n",
+          "memory.max": "268435456\n",
+          "memory.swap.max": "0\n",
+          "pids.max": "128\n"
+        },
+        "network_namespace": "net:[4026532337]",
+        "observer_network_namespace": "net:[4026531840]",
+        "process_status": "Name:\tsh\nUmask:\t0022\nState:\tS (sleeping)\nTgid:\t11571\nNgid:\t0\nPid:\t11571\nPPid:\t1\nTracerPid:\t0\nUid:\t65534\t65534\t65534\t65534\nGid:\t65534\t65534\t65534\t65534\nFDSize:\t256\nGroups:\t65534 \nNStgid:\t11571\nNSpid:\t11571\nNSpgid:\t11571\nNSsid:\t11571\nKthread:\t0\nVmPeak:\t    2804 kB\nVmSize:\t    2804 kB\nVmLck:\t       0 kB\nVmPin:\t       0 kB\nVmHWM:\t    1980 kB\nVmRSS:\t    1980 kB\nRssAnon:\t     108 kB\nRssFile:\t    1872 kB\nRssShmem:\t       0 kB\nVmData:\t     232 kB\nVmStk:\t     132 kB\nVmExe:\t      84 kB\nVmLib:\t    1752 kB\nVmPTE:\t      44 kB\nVmSwap:\t       0 kB\nHugetlbPages:\t       0 kB\nCoreDumping:\t0\nTHP_enabled:\t1\nuntag_mask:\t0xffffffffffffffff\nThreads:\t1\nSigQ:\t0/7719\nSigPnd:\t0000000000000000\nShdPnd:\t0000000000000000\nSigBlk:\t0000000000000000\nSigIgn:\t0000000000001000\nSigCgt:\t0000000000010002\nCapInh:\t0000000000000000\nCapPrm:\t0000000000000000\nCapEff:\t0000000000000000\nCapBnd:\t0000000000000000\nCapAmb:\t0000000000000000\nNoNewPrivs:\t1\nSeccomp:\t2\nSeccomp_filters:\t3\nSpeculation_Store_Bypass:\tthread vulnerable\nSpeculationIndirectBranch:\tconditional enabled\nCpus_allowed:\t1\nCpus_allowed_list:\t0\nMems_allowed:\t00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000001\nMems_allowed_list:\t0\nvoluntary_ctxt_switches:\t19\nnonvoluntary_ctxt_switches:\t49\nx86_Thread_features:\t\nx86_Thread_features_locked:\t\n",
+        "properties": {
+          "CPUQuotaPerSecUSec": "1s",
+          "ControlGroup": "/system.slice/crewshal-config-controls-v1.service",
+          "KillMode": "control-group",
+          "MainPID": "11571",
+          "MemoryMax": "268435456",
+          "MemorySwapMax": "0",
+          "NoNewPrivileges": "yes",
+          "PrivateDevices": "yes",
+          "PrivateNetwork": "yes",
+          "RuntimeMaxUSec": "10s",
+          "TasksMax": "128"
+        },
+        "seconds": 3.172
+      },
+      {
+        "controllers": {
+          "cgroup.events": "populated 1\nfrozen 0\n",
+          "cgroup.procs": "11571\n11625\n11626\n",
+          "cpu.max": "100000 100000\n",
+          "memory.max": "268435456\n",
+          "memory.swap.max": "0\n",
+          "pids.max": "128\n"
+        },
+        "network_namespace": "net:[4026532337]",
+        "observer_network_namespace": "net:[4026531840]",
+        "process_status": "Name:\tsh\nUmask:\t0022\nState:\tS (sleeping)\nTgid:\t11571\nNgid:\t0\nPid:\t11571\nPPid:\t1\nTracerPid:\t0\nUid:\t65534\t65534\t65534\t65534\nGid:\t65534\t65534\t65534\t65534\nFDSize:\t256\nGroups:\t65534 \nNStgid:\t11571\nNSpid:\t11571\nNSpgid:\t11571\nNSsid:\t11571\nKthread:\t0\nVmPeak:\t    2804 kB\nVmSize:\t    2804 kB\nVmLck:\t       0 kB\nVmPin:\t       0 kB\nVmHWM:\t    1980 kB\nVmRSS:\t    1980 kB\nRssAnon:\t     108 kB\nRssFile:\t    1872 kB\nRssShmem:\t       0 kB\nVmData:\t     232 kB\nVmStk:\t     132 kB\nVmExe:\t      84 kB\nVmLib:\t    1752 kB\nVmPTE:\t      44 kB\nVmSwap:\t       0 kB\nHugetlbPages:\t       0 kB\nCoreDumping:\t0\nTHP_enabled:\t1\nuntag_mask:\t0xffffffffffffffff\nThreads:\t1\nSigQ:\t0/7719\nSigPnd:\t0000000000000000\nShdPnd:\t0000000000000000\nSigBlk:\t0000000000000000\nSigIgn:\t0000000000001000\nSigCgt:\t0000000000010002\nCapInh:\t0000000000000000\nCapPrm:\t0000000000000000\nCapEff:\t0000000000000000\nCapBnd:\t0000000000000000\nCapAmb:\t0000000000000000\nNoNewPrivs:\t1\nSeccomp:\t2\nSeccomp_filters:\t3\nSpeculation_Store_Bypass:\tthread vulnerable\nSpeculationIndirectBranch:\tconditional enabled\nCpus_allowed:\t1\nCpus_allowed_list:\t0\nMems_allowed:\t00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000001\nMems_allowed_list:\t0\nvoluntary_ctxt_switches:\t19\nnonvoluntary_ctxt_switches:\t49\nx86_Thread_features:\t\nx86_Thread_features_locked:\t\n",
+        "properties": {
+          "CPUQuotaPerSecUSec": "1s",
+          "ControlGroup": "/system.slice/crewshal-config-controls-v1.service",
+          "KillMode": "control-group",
+          "MainPID": "11571",
+          "MemoryMax": "268435456",
+          "MemorySwapMax": "0",
+          "NoNewPrivileges": "yes",
+          "PrivateDevices": "yes",
+          "PrivateNetwork": "yes",
+          "RuntimeMaxUSec": "10s",
+          "TasksMax": "128"
+        },
+        "seconds": 3.434
+      },
+      {
+        "controllers": {
+          "cgroup.events": "populated 1\nfrozen 0\n",
+          "cgroup.procs": "11571\n11625\n11639\n11640\n",
+          "cpu.max": "100000 100000\n",
+          "memory.max": "268435456\n",
+          "memory.swap.max": "0\n",
+          "pids.max": "128\n"
+        },
+        "network_namespace": "net:[4026532337]",
+        "observer_network_namespace": "net:[4026531840]",
+        "process_status": "Name:\tsh\nUmask:\t0022\nState:\tS (sleeping)\nTgid:\t11571\nNgid:\t0\nPid:\t11571\nPPid:\t1\nTracerPid:\t0\nUid:\t65534\t65534\t65534\t65534\nGid:\t65534\t65534\t65534\t65534\nFDSize:\t256\nGroups:\t65534 \nNStgid:\t11571\nNSpid:\t11571\nNSpgid:\t11571\nNSsid:\t11571\nKthread:\t0\nVmPeak:\t    2804 kB\nVmSize:\t    2804 kB\nVmLck:\t       0 kB\nVmPin:\t       0 kB\nVmHWM:\t    1980 kB\nVmRSS:\t    1980 kB\nRssAnon:\t     108 kB\nRssFile:\t    1872 kB\nRssShmem:\t       0 kB\nVmData:\t     232 kB\nVmStk:\t     132 kB\nVmExe:\t      84 kB\nVmLib:\t    1752 kB\nVmPTE:\t      44 kB\nVmSwap:\t       0 kB\nHugetlbPages:\t       0 kB\nCoreDumping:\t0\nTHP_enabled:\t1\nuntag_mask:\t0xffffffffffffffff\nThreads:\t1\nSigQ:\t1/7719\nSigPnd:\t0000000000000000\nShdPnd:\t0000000000000000\nSigBlk:\t0000000000000000\nSigIgn:\t0000000000001000\nSigCgt:\t0000000000010002\nCapInh:\t0000000000000000\nCapPrm:\t0000000000000000\nCapEff:\t0000000000000000\nCapBnd:\t0000000000000000\nCapAmb:\t0000000000000000\nNoNewPrivs:\t1\nSeccomp:\t2\nSeccomp_filters:\t3\nSpeculation_Store_Bypass:\tthread vulnerable\nSpeculationIndirectBranch:\tconditional enabled\nCpus_allowed:\t1\nCpus_allowed_list:\t0\nMems_allowed:\t00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000001\nMems_allowed_list:\t0\nvoluntary_ctxt_switches:\t21\nnonvoluntary_ctxt_switches:\t49\nx86_Thread_features:\t\nx86_Thread_features_locked:\t\n",
+        "properties": {
+          "CPUQuotaPerSecUSec": "1s",
+          "ControlGroup": "/system.slice/crewshal-config-controls-v1.service",
+          "KillMode": "control-group",
+          "MainPID": "11571",
+          "MemoryMax": "268435456",
+          "MemorySwapMax": "0",
+          "NoNewPrivileges": "yes",
+          "PrivateDevices": "yes",
+          "PrivateNetwork": "yes",
+          "RuntimeMaxUSec": "10s",
+          "TasksMax": "128"
+        },
+        "seconds": 3.705
+      },
+      {
+        "properties": {
+          "CPUQuotaPerSecUSec": "1s",
+          "ControlGroup": "/system.slice/crewshal-config-controls-v1.service",
+          "KillMode": "control-group",
+          "MainPID": "11571",
+          "MemoryMax": "268435456",
+          "MemorySwapMax": "0",
+          "NoNewPrivileges": "yes",
+          "PrivateDevices": "yes",
+          "PrivateNetwork": "yes",
+          "RuntimeMaxUSec": "10s",
+          "TasksMax": "128"
+        },
+        "sampling_limitation": "service exited during sample",
+        "seconds": 3.987
+      }
+    ],
+    "scope": "trusted network-denied daemon/settings diagnostic only",
+    "stderr": "Running as unit: crewshal-config-controls-v1.service\nThis setting takes effect only after a daemon restart: run `sbx daemon restart`.\nFinished with result: success\nMain processes terminated with: code=exited/status=0\nService runtime: 3.259s\nCPU time consumed: 1.603s\nMemory peak: 67.2M\nMemory swap peak: 0B\n",
+    "stdout": "Setting \"ssh.agentForwardingEnabled\" updated: value=false source=override\nSetting \"skills.defaultMode\" updated: value=off source=override\nSetting \"sandbox.disk.dockerVolume\" updated: value=1g source=override\nSetting \"diagnostics.autoUpload\" updated: value=no source=override\n[\n  {\n    \"default\": false,\n    \"description\": \"Allow Claude Code's /remote-control channel to authenticate with its own session token instead of the host credential.\",\n    \"env_var\": \"DOCKER_SANDBOXES_CLAUDE_REMOTE_CONTROL\",\n    \"key\": \"claude.remoteControl\",\n    \"source\": \"default\",\n    \"type\": \"bool\",\n    \"value\": false\n  },\n  {\n    \"default\": false,\n    \"description\": \"Allow sandboxed agents to read the host clipboard for image paste (Ctrl+V).\",\n    \"env_var\": \"DOCKER_SANDBOXES_CLIPBOARD_IMAGE_PASTE\",\n    \"key\": \"clipboard.imagePaste\",\n    \"source\": \"default\",\n    \"type\": \"bool\",\n    \"value\": false\n  },\n  {\n    \"default\": \"\",\n    \"description\": \"Tri-state consent for automatic diagnostics bundle upload on error: \\\"\\\" (never asked; prompts and uploads nothing), \\\"yes\\\" (accepted; upload), \\\"no\\\" (declined; never prompt again).\",\n    \"key\": \"diagnostics.autoUpload\",\n    \"source\": \"override\",\n    \"type\": \"string\",\n    \"value\": \"no\"\n  },\n  {\n    \"default\": 1,\n    \"description\": \"Minimum days between automatic diagnostics uploads. The cooldown is global: the first eligible error uploads one bundle, then no further upload happens until this many days have passed.\",\n    \"key\": \"diagnostics.autoUploadErrorCooldownInDays\",\n    \"source\": \"default\",\n    \"type\": \"int\",\n    \"value\": 1\n  },\n  {\n    \"default\": false,\n    \"description\": \"Let an approval of an environment's host commands cover later runs of the same commands, instead of asking each time.\",\n    \"key\": \"env.rememberHostCommands\",\n    \"source\": \"default\",\n    \"type\": \"bool\",\n    \"value\": false\n  },\n  {\n    \"default\": true,\n    \"description\": \"Admit the pinned kit references that replace formerly built-in agents even when kit.allowedSources does not list them, and exempt those references from kit.requireSignature. Credential trust for the fetched content is decided separately, by comparing it against the engine's compiled-in digest. Set to false to require an explicit allowlist entry.\",\n    \"env_var\": \"DOCKER_SANDBOXES_KIT_ALLOW_EXTRACTED_AGENTS\",\n    \"key\": \"kit.allowExtractedAgents\",\n    \"source\": \"envvar\",\n    \"type\": \"bool\",\n    \"value\": false\n  },\n  {\n    \"default\": true,\n    \"description\": \"Allow installing kits from local directories or ZIP files. Set to false to require a remote source.\",\n    \"env_var\": \"DOCKER_SANDBOXES_KIT_ALLOW_LOCAL\",\n    \"key\": \"kit.allowLocalKits\",\n    \"source\": \"envvar\",\n    \"type\": \"bool\",\n    \"value\": false\n  },\n  {\n    \"default\": [\n      \"docker.io/\"\n    ],\n    \"description\": \"JSON array of allowed kit source prefixes (e.g. [\\\"docker.io/\\\", \\\"ghcr.io/docker/\\\"]). Use [\\\"*\\\"] to allow any remote source.\",\n    \"env_var\": \"DOCKER_SANDBOXES_KIT_ALLOWED_SOURCES\",\n    \"key\": \"kit.allowedSources\",\n    \"source\": \"envvar\",\n    \"type\": \"json\",\n    \"value\": []\n  },\n  {\n    \"default\": false,\n    \"description\": \"Verify keyless kit signatures without requiring a Rekor transparency-log entry (for private kits signed with --tlog-upload=false).\",\n    \"env_var\": \"DOCKER_SANDBOXES_KIT_IGNORE_TLOG\",\n    \"key\": \"kit.ignoreTransparencyLog\",\n    \"source\": \"default\",\n    \"type\": \"bool\",\n    \"value\": false\n  },\n  {\n    \"default\": false,\n    \"description\": \"Require a valid signature from a trusted signer (kit.trustedSigners) before installing a kit. The pinned kit references that replace formerly built-in agents are exempt while kit.allowExtractedAgents is true.\",\n    \"env_var\": \"DOCKER_SANDBOXES_KIT_REQUIRE_SIGNATURE\",\n    \"key\": \"kit.requireSignature\",\n    \"source\": \"default\",\n    \"type\": \"bool\",\n    \"value\": false\n  },\n  {\n    \"default\": [\n      {\n        \"identityRegexp\": \"^.*@docker\\\\.com$\",\n        \"issuer\": \"https://accounts.google.com\"\n      }\n    ],\n    \"description\": \"JSON array of trusted signer policies (key-based {\\\"key\\\":path} or keyless {\\\"issuer\\\":...,\\\"identity\\\":...}). Defaults to Docker employee identities (*@docker.com via https://accounts.google.com).\",\n    \"env_var\": \"DOCKER_SANDBOXES_KIT_TRUSTED_SIGNERS\",\n    \"key\": \"kit.trustedSigners\",\n    \"source\": \"default\",\n    \"type\": \"json\",\n    \"value\": [\n      {\n        \"identityRegexp\": \"^.*@docker\\\\.com$\",\n        \"issuer\": \"https://accounts.google.com\"\n      }\n    ]\n  },\n  {\n    \"default\": false,\n    \"description\": \"Force the local MCP gateway even when entitled to the SaaS gateway.\",\n    \"key\": \"mcp.forceLocalGateway\",\n    \"requires_restart\": true,\n    \"source\": \"default\",\n    \"type\": \"bool\",\n    \"value\": false\n  },\n  {\n    \"default\": {},\n    \"description\": \"JSON object of inference endpoints for `sbx run --model <model> --provider <id>`, keyed by id, e.g. {\\\"gpubox\\\": {\\\"url\\\": \\\"http://gpubox:8000/v1\\\"}}. Fields: url (required, absolute http(s)), wire (\\\"openai\\\" default or \\\"anthropic\\\"), apiKeyEnv (variable llmman serve reads the API key from), name.\",\n    \"env_var\": \"DOCKER_SANDBOXES_MODEL_PROVIDERS\",\n    \"key\": \"model.providers\",\n    \"source\": \"default\",\n    \"type\": \"json\",\n    \"value\": {}\n  },\n  {\n    \"default\": \"\",\n    \"description\": \"No-proxy exception list for sandbox, daemon, and supported CLI host egress (comma-separated hosts, domain suffixes, and CIDRs).\",\n    \"key\": \"no_proxy\",\n    \"requires_restart\": true,\n    \"source\": \"default\",\n    \"type\": \"string\",\n    \"value\": \"\"\n  },\n  {\n    \"default\": \"\",\n    \"description\": \"No-proxy exception list for daemon and supported CLI host egress (overrides no_proxy).\",\n    \"key\": \"no_proxy.daemon\",\n    \"requires_restart\": true,\n    \"source\": \"default\",\n    \"type\": \"string\",\n    \"value\": \"\"\n  },\n  {\n    \"default\": \"\",\n    \"description\": \"No-proxy exception list for sandbox egress only (overrides no_proxy).\",\n    \"env_var\": \"DOCKER_SANDBOXES_NO_PROXY\",\n    \"key\": \"no_proxy.sandbox\",\n    \"requires_restart\": true,\n    \"source\": \"default\",\n    \"type\": \"string\",\n    \"value\": \"\"\n  },\n  {\n    \"default\": true,\n    \"description\": \"Allow experimental features.\",\n    \"env_var\": \"DOCKER_SANDBOXES_ALLOW_EXPERIMENTAL_FEATURES\",\n    \"key\": \"platform.allowExperimentalFeatures\",\n    \"source\": \"envvar\",\n    \"type\": \"bool\",\n    \"value\": false\n  },\n  {\n    \"default\": \"\",\n    \"description\": \"Registry mirror host for Docker Hub-resolving template and kit images (e.g. \\\"artifactory.corp/docker-remote\\\"). A bare host that is not a loopback or wildcard address also mirrors Docker Hub pulls made inside the sandbox, provided the sandbox trusts its certificate. Empty disables mirroring.\",\n    \"key\": \"platform.images.registryMirror\",\n    \"source\": \"default\",\n    \"type\": \"string\",\n    \"value\": \"\"\n  },\n  {\n    \"default\": false,\n    \"description\": \"Use Docker Hardened Image (DHI) equivalents (dhi/sbx-templates) for agent template images.\",\n    \"env_var\": \"DOCKER_SANDBOXES_USE_DHI\",\n    \"key\": \"platform.images.useDHI\",\n    \"source\": \"default\",\n    \"type\": \"bool\",\n    \"value\": false\n  },\n  {\n    \"default\": \"\",\n    \"description\": \"Upstream proxy for sandbox, daemon, and supported CLI host egress (URL, PAC source, \\\"system\\\", or \\\"direct\\\"; empty = automatic: HTTP(S)_PROXY if set, otherwise the host OS proxy).\",\n    \"key\": \"proxy\",\n    \"requires_restart\": true,\n    \"source\": \"default\",\n    \"type\": \"string\",\n    \"value\": \"\"\n  },\n  {\n    \"default\": \"\",\n    \"description\": \"Upstream proxy for daemon and supported CLI host egress (overrides proxy).\",\n    \"key\": \"proxy.daemon\",\n    \"requires_restart\": true,\n    \"source\": \"default\",\n    \"type\": \"string\",\n    \"value\": \"\"\n  },\n  {\n    \"default\": false,\n    \"description\": \"Enable integrated NTLM/Kerberos authentication (Windows SSPI) for sandbox, daemon, and supported CLI host egress.\",\n    \"key\": \"proxy.integratedAuth\",\n    \"requires_restart\": true,\n    \"source\": \"default\",\n    \"type\": \"bool\",\n    \"value\": false\n  },\n  {\n    \"default\": \"\",\n    \"description\": \"Upstream proxy for sandbox egress only (overrides proxy).\",\n    \"env_var\": \"DOCKER_SANDBOXES_PROXY\",\n    \"key\": \"proxy.sandbox\",\n    \"requires_restart\": true,\n    \"source\": \"default\",\n    \"type\": \"string\",\n    \"value\": \"\"\n  },\n  {\n    \"default\": \"10g\",\n    \"description\": \"Size of a sandbox's /var/lib/docker volume (minimum 512 MiB; e.g. \\\"10g\\\"). Applies to sandboxes created after the change; existing volumes are never resized. Set DOCKER_SANDBOXES_DOCKER_SIZE to override one sandbox.\",\n    \"key\": \"sandbox.disk.dockerVolume\",\n    \"source\": \"override\",\n    \"type\": \"string\",\n    \"value\": \"1g\"\n  },\n  {\n    \"default\": \"readonly\",\n    \"description\": \"Default for an omitted --skills flag or sbx.yaml `skills:` key: \\\"off\\\", \\\"readonly\\\", or \\\"readwrite\\\". Applies to sandboxes created after the change; existing sandboxes' mounts are never retroactively changed.\",\n    \"key\": \"skills.defaultMode\",\n    \"source\": \"override\",\n    \"type\": \"string\",\n    \"value\": \"off\"\n  },\n  {\n    \"default\": true,\n    \"description\": \"Allow clients to forward an SSH agent into sandboxes. Existing forwarders require a daemon restart after changes.\",\n    \"key\": \"ssh.agentForwardingEnabled\",\n    \"requires_restart\": true,\n    \"source\": \"override\",\n    \"type\": \"bool\",\n    \"value\": false\n  },\n  {\n    \"default\": \"\",\n    \"description\": \"Optional fixed host SSH agent socket path. Empty uses each client's current SSH_AUTH_SOCK. Existing forwarders require a daemon restart after changes.\",\n    \"key\": \"ssh.agentSocketPath\",\n    \"requires_restart\": true,\n    \"source\": \"default\",\n    \"type\": \"string\",\n    \"value\": \"\"\n  },\n  {\n    \"default\": false,\n    \"description\": \"Create a sandbox on SSH connect when it does not exist.\",\n    \"env_var\": \"DOCKER_SANDBOXES_SSH_AUTO_CREATE\",\n    \"key\": \"ssh.autoCreate\",\n    \"requires_restart\": true,\n    \"source\": \"default\",\n    \"type\": \"bool\",\n    \"value\": false\n  },\n  {\n    \"default\": \"shell\",\n    \"description\": \"Built-in agent used for SSH auto-created sandboxes.\",\n    \"env_var\": \"DOCKER_SANDBOXES_SSH_DEFAULT_AGENT\",\n    \"key\": \"ssh.defaultAgent\",\n    \"requires_restart\": true,\n    \"source\": \"default\",\n    \"type\": \"string\",\n    \"value\": \"shell\"\n  },\n  {\n    \"default\": \"\",\n    \"description\": \"Template image override for SSH auto-created sandboxes (agent default if empty).\",\n    \"env_var\": \"DOCKER_SANDBOXES_SSH_DEFAULT_TEMPLATE\",\n    \"key\": \"ssh.defaultTemplate\",\n    \"requires_restart\": true,\n    \"source\": \"default\",\n    \"type\": \"string\",\n    \"value\": \"\"\n  },\n  {\n    \"default\": \"\",\n    \"description\": \"Host directory holding SSH auto-created sandbox workspaces (empty = mount-less, container-internal).\",\n    \"env_var\": \"DOCKER_SANDBOXES_SSH_WORKSPACE_ROOT\",\n    \"key\": \"ssh.workspaceRoot\",\n    \"requires_restart\": true,\n    \"source\": \"default\",\n    \"type\": \"string\",\n    \"value\": \"\"\n  },\n  {\n    \"default\": false,\n    \"description\": \"Accept server certificates with a negative serial number (needed by some TLS-inspecting proxies).\",\n    \"env_var\": \"DOCKER_SANDBOXES_TLS_ALLOW_NEGATIVE_SERIAL\",\n    \"key\": \"tls.allowNegativeSerial\",\n    \"requires_restart\": true,\n    \"source\": \"default\",\n    \"type\": \"bool\",\n    \"value\": false\n  }\n]\nStarting daemon at /tmp/crewshal-daemon-config/.local/state/sandboxes/sandboxes/sandboxd/sandboxd.sock (Ctrl+C to stop)...\nStarting daemon at /tmp/crewshal-daemon-config/.local/state/sandboxes/sandboxes/sandboxd/sandboxd.sock (Ctrl+C to stop)...\n"
+  }
+}

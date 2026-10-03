@@ -1,0 +1,552 @@
+{
+  "schema_version": 1,
+  "source_sha256": "ba289f694b36163bda5321e397b179f63b8ae4b2227af3bcb5d1fd2a3e463a40",
+  "observation": {
+    "elapsed_seconds": 1.794,
+    "execution_allowed": false,
+    "native_start_allowed": false,
+    "observations": [
+      {
+        "cleanup": [
+          {
+            "argv": [
+              "/usr/bin/umount",
+              "/srv/crewshal-2c-quota-prerequisite-20261003-v3/0/mount"
+            ],
+            "exit_code": 0,
+            "stderr": "",
+            "stdout": ""
+          },
+          {
+            "argv": [
+              "/usr/sbin/losetup",
+              "--detach",
+              "/dev/loop0"
+            ],
+            "exit_code": 0,
+            "stderr": "",
+            "stdout": ""
+          },
+          {
+            "argv": [
+              "/usr/sbin/losetup",
+              "--json",
+              "--associated",
+              "/srv/crewshal-2c-quota-prerequisite-20261003-v3/0/disk.img"
+            ],
+            "exit_code": 0,
+            "stderr": "",
+            "stdout": ""
+          }
+        ],
+        "commands": [
+          {
+            "argv": [
+              "/usr/sbin/mkfs.xfs",
+              "-f",
+              "/srv/crewshal-2c-quota-prerequisite-20261003-v3/0/disk.img"
+            ],
+            "exit_code": 0,
+            "stderr": "",
+            "stdout": "meta-data=/srv/crewshal-2c-quota-prerequisite-20261003-v3/0/disk.img isize=512    agcount=4, agsize=32768 blks\n         =                       sectsz=512   attr=2, projid32bit=1\n         =                       crc=1        finobt=1, sparse=1, rmapbt=1\n         =                       reflink=1    bigtime=1 inobtcount=1 nrext64=0\ndata     =                       bsize=4096   blocks=131072, imaxpct=25\n         =                       sunit=0      swidth=0 blks\nnaming   =version 2              bsize=4096   ascii-ci=0, ftype=1\nlog      =internal log           bsize=4096   blocks=16384, version=2\n         =                       sectsz=512   sunit=0 blks, lazy-count=1\nrealtime =none                   extsz=4096   blocks=0, rtextents=0\n"
+          },
+          {
+            "argv": [
+              "/usr/sbin/losetup",
+              "--find",
+              "--show",
+              "--nooverlap",
+              "/srv/crewshal-2c-quota-prerequisite-20261003-v3/0/disk.img"
+            ],
+            "exit_code": 0,
+            "stderr": "",
+            "stdout": "/dev/loop0\n"
+          },
+          {
+            "argv": [
+              "/usr/sbin/losetup",
+              "--json",
+              "--output",
+              "NAME,BACK-FILE",
+              "/dev/loop0"
+            ],
+            "exit_code": 0,
+            "stderr": "",
+            "stdout": "{\n   \"loopdevices\": [\n      {\n         \"name\": \"/dev/loop0\",\n         \"back-file\": \"/srv/crewshal-2c-quota-prerequisite-20261003-v3/0/disk.img\"\n      }\n   ]\n}\n"
+          },
+          {
+            "argv": [
+              "/usr/bin/mount",
+              "-t",
+              "xfs",
+              "-o",
+              "prjquota,nodev,nosuid,noexec",
+              "/dev/loop0",
+              "/srv/crewshal-2c-quota-prerequisite-20261003-v3/0/mount"
+            ],
+            "exit_code": 0,
+            "stderr": "",
+            "stdout": ""
+          },
+          {
+            "argv": [
+              "/usr/sbin/xfs_quota",
+              "-x",
+              "-c",
+              "project -s -p /srv/crewshal-2c-quota-prerequisite-20261003-v3/0/mount/scratch 121",
+              "/srv/crewshal-2c-quota-prerequisite-20261003-v3/0/mount"
+            ],
+            "exit_code": 0,
+            "stderr": "",
+            "stdout": "Setting up project 121 (path /srv/crewshal-2c-quota-prerequisite-20261003-v3/0/mount/scratch)...\nProcessed 1 (/etc/projects and cmdline) paths for project 121 with recursion depth infinite (-1).\n"
+          },
+          {
+            "argv": [
+              "/usr/sbin/xfs_quota",
+              "-x",
+              "-c",
+              "limit -p bhard=33554432 121",
+              "/srv/crewshal-2c-quota-prerequisite-20261003-v3/0/mount"
+            ],
+            "exit_code": 0,
+            "stderr": "",
+            "stdout": ""
+          },
+          {
+            "argv": [
+              "/usr/sbin/xfs_quota",
+              "-x",
+              "-c",
+              "project -c -p /srv/crewshal-2c-quota-prerequisite-20261003-v3/0/mount/scratch 121",
+              "/srv/crewshal-2c-quota-prerequisite-20261003-v3/0/mount"
+            ],
+            "exit_code": 0,
+            "stderr": "",
+            "stdout": "Checking project 121 (path /srv/crewshal-2c-quota-prerequisite-20261003-v3/0/mount/scratch)...\nProcessed 1 (/etc/projects and cmdline) paths for project 121 with recursion depth infinite (-1).\n"
+          },
+          {
+            "argv": [
+              "/usr/sbin/xfs_quota",
+              "-x",
+              "-c",
+              "report -p -b -n",
+              "/srv/crewshal-2c-quota-prerequisite-20261003-v3/0/mount"
+            ],
+            "exit_code": 0,
+            "stderr": "",
+            "stdout": "Project quota on /srv/crewshal-2c-quota-prerequisite-20261003-v3/0/mount (/dev/loop0)\n                               Blocks                     \nProject ID       Used       Soft       Hard    Warn/Grace     \n---------- -------------------------------------------------- \n#0                   0          0          0     00 [--------]\n#121             32768          0      32768     00 [--------]\n\n"
+          },
+          {
+            "argv": [
+              "/usr/sbin/xfs_quota",
+              "-x",
+              "-c",
+              "quota -p -b -n 121",
+              "/srv/crewshal-2c-quota-prerequisite-20261003-v3/0/mount"
+            ],
+            "exit_code": 0,
+            "stderr": "",
+            "stdout": ""
+          },
+          {
+            "argv": [
+              "/usr/sbin/xfs_quota",
+              "-x",
+              "-c",
+              "project -s -p /srv/crewshal-2c-quota-prerequisite-20261003-v3/0/mount/candidate 122",
+              "/srv/crewshal-2c-quota-prerequisite-20261003-v3/0/mount"
+            ],
+            "exit_code": 0,
+            "stderr": "",
+            "stdout": "Setting up project 122 (path /srv/crewshal-2c-quota-prerequisite-20261003-v3/0/mount/candidate)...\nProcessed 1 (/etc/projects and cmdline) paths for project 122 with recursion depth infinite (-1).\n"
+          },
+          {
+            "argv": [
+              "/usr/sbin/xfs_quota",
+              "-x",
+              "-c",
+              "limit -p bhard=16777216 122",
+              "/srv/crewshal-2c-quota-prerequisite-20261003-v3/0/mount"
+            ],
+            "exit_code": 0,
+            "stderr": "",
+            "stdout": ""
+          },
+          {
+            "argv": [
+              "/usr/sbin/xfs_quota",
+              "-x",
+              "-c",
+              "project -c -p /srv/crewshal-2c-quota-prerequisite-20261003-v3/0/mount/candidate 122",
+              "/srv/crewshal-2c-quota-prerequisite-20261003-v3/0/mount"
+            ],
+            "exit_code": 0,
+            "stderr": "",
+            "stdout": "Checking project 122 (path /srv/crewshal-2c-quota-prerequisite-20261003-v3/0/mount/candidate)...\nProcessed 1 (/etc/projects and cmdline) paths for project 122 with recursion depth infinite (-1).\n"
+          },
+          {
+            "argv": [
+              "/usr/sbin/xfs_quota",
+              "-x",
+              "-c",
+              "report -p -b -n",
+              "/srv/crewshal-2c-quota-prerequisite-20261003-v3/0/mount"
+            ],
+            "exit_code": 0,
+            "stderr": "",
+            "stdout": "Project quota on /srv/crewshal-2c-quota-prerequisite-20261003-v3/0/mount (/dev/loop0)\n                               Blocks                     \nProject ID       Used       Soft       Hard    Warn/Grace     \n---------- -------------------------------------------------- \n#0                   0          0          0     00 [--------]\n#121                 0          0      32768     00 [--------]\n#122             16384          0      16384     00 [--------]\n\n"
+          },
+          {
+            "argv": [
+              "/usr/sbin/xfs_quota",
+              "-x",
+              "-c",
+              "quota -p -b -n 122",
+              "/srv/crewshal-2c-quota-prerequisite-20261003-v3/0/mount"
+            ],
+            "exit_code": 0,
+            "stderr": "",
+            "stdout": ""
+          },
+          {
+            "argv": [
+              "/usr/sbin/xfs_quota",
+              "-x",
+              "-c",
+              "state -p",
+              "/srv/crewshal-2c-quota-prerequisite-20261003-v3/0/mount"
+            ],
+            "exit_code": 0,
+            "stderr": "",
+            "stdout": "Project quota state on /srv/crewshal-2c-quota-prerequisite-20261003-v3/0/mount (/dev/loop0)\n  Accounting: ON\n  Enforcement: ON\n  Inode: #131 (2 blocks, 2 extents)\nBlocks grace time: [7 days]\nBlocks max warnings: 0\nInodes grace time: [7 days]\nInodes max warnings: 0\nRealtime Blocks grace time: [7 days]\n"
+          }
+        ],
+        "fixture_index": 0,
+        "fixture_removed": true,
+        "image_allocated_bytes": 117764096,
+        "image_logical_bytes": 536870912,
+        "mountinfo": [
+          "62 29 7:0 / /srv/crewshal-2c-quota-prerequisite-20261003-v3/0/mount rw,nosuid,nodev,noexec,relatime shared:292 - xfs /dev/loop0 rw,attr2,inode64,logbufs=8,logbsize=32k,prjquota"
+        ],
+        "tests": [
+          {
+            "allocated_write": {
+              "errno": 28,
+              "filesystem_free_bytes": 400039936,
+              "limit": 33554432,
+              "observed_allocated_bytes": 33554432,
+              "observed_logical_bytes": 33554432,
+              "physical_quota_pass": true,
+              "uid": 65534,
+              "written_bytes": 33554432
+            },
+            "ceiling_bytes": 33554432,
+            "name": "scratch",
+            "project_id": 121,
+            "sparse_truncate": {
+              "errno": null,
+              "logical_quota_pass": false,
+              "observed_allocated_bytes": 0,
+              "observed_logical_bytes": 67108864,
+              "uid": 65534
+            }
+          },
+          {
+            "allocated_write": {
+              "errno": 28,
+              "filesystem_free_bytes": 416784384,
+              "limit": 16777216,
+              "observed_allocated_bytes": 16777216,
+              "observed_logical_bytes": 16777216,
+              "physical_quota_pass": true,
+              "uid": 65534,
+              "written_bytes": 16777216
+            },
+            "ceiling_bytes": 16777216,
+            "name": "candidate",
+            "project_id": 122,
+            "sparse_truncate": {
+              "errno": null,
+              "logical_quota_pass": false,
+              "observed_allocated_bytes": 0,
+              "observed_logical_bytes": 67108864,
+              "uid": 65534
+            }
+          }
+        ]
+      },
+      {
+        "cleanup": [
+          {
+            "argv": [
+              "/usr/bin/umount",
+              "/srv/crewshal-2c-quota-prerequisite-20261003-v3/1/mount"
+            ],
+            "exit_code": 0,
+            "stderr": "",
+            "stdout": ""
+          },
+          {
+            "argv": [
+              "/usr/sbin/losetup",
+              "--detach",
+              "/dev/loop0"
+            ],
+            "exit_code": 0,
+            "stderr": "",
+            "stdout": ""
+          },
+          {
+            "argv": [
+              "/usr/sbin/losetup",
+              "--json",
+              "--associated",
+              "/srv/crewshal-2c-quota-prerequisite-20261003-v3/1/disk.img"
+            ],
+            "exit_code": 0,
+            "stderr": "",
+            "stdout": ""
+          }
+        ],
+        "commands": [
+          {
+            "argv": [
+              "/usr/sbin/mkfs.xfs",
+              "-f",
+              "/srv/crewshal-2c-quota-prerequisite-20261003-v3/1/disk.img"
+            ],
+            "exit_code": 0,
+            "stderr": "",
+            "stdout": "meta-data=/srv/crewshal-2c-quota-prerequisite-20261003-v3/1/disk.img isize=512    agcount=4, agsize=32768 blks\n         =                       sectsz=512   attr=2, projid32bit=1\n         =                       crc=1        finobt=1, sparse=1, rmapbt=1\n         =                       reflink=1    bigtime=1 inobtcount=1 nrext64=0\ndata     =                       bsize=4096   blocks=131072, imaxpct=25\n         =                       sunit=0      swidth=0 blks\nnaming   =version 2              bsize=4096   ascii-ci=0, ftype=1\nlog      =internal log           bsize=4096   blocks=16384, version=2\n         =                       sectsz=512   sunit=0 blks, lazy-count=1\nrealtime =none                   extsz=4096   blocks=0, rtextents=0\n"
+          },
+          {
+            "argv": [
+              "/usr/sbin/losetup",
+              "--find",
+              "--show",
+              "--nooverlap",
+              "/srv/crewshal-2c-quota-prerequisite-20261003-v3/1/disk.img"
+            ],
+            "exit_code": 0,
+            "stderr": "",
+            "stdout": "/dev/loop0\n"
+          },
+          {
+            "argv": [
+              "/usr/sbin/losetup",
+              "--json",
+              "--output",
+              "NAME,BACK-FILE",
+              "/dev/loop0"
+            ],
+            "exit_code": 0,
+            "stderr": "",
+            "stdout": "{\n   \"loopdevices\": [\n      {\n         \"name\": \"/dev/loop0\",\n         \"back-file\": \"/srv/crewshal-2c-quota-prerequisite-20261003-v3/1/disk.img\"\n      }\n   ]\n}\n"
+          },
+          {
+            "argv": [
+              "/usr/bin/mount",
+              "-t",
+              "xfs",
+              "-o",
+              "prjquota,nodev,nosuid,noexec",
+              "/dev/loop0",
+              "/srv/crewshal-2c-quota-prerequisite-20261003-v3/1/mount"
+            ],
+            "exit_code": 0,
+            "stderr": "",
+            "stdout": ""
+          },
+          {
+            "argv": [
+              "/usr/sbin/xfs_quota",
+              "-x",
+              "-c",
+              "project -s -p /srv/crewshal-2c-quota-prerequisite-20261003-v3/1/mount/scratch 121",
+              "/srv/crewshal-2c-quota-prerequisite-20261003-v3/1/mount"
+            ],
+            "exit_code": 0,
+            "stderr": "",
+            "stdout": "Setting up project 121 (path /srv/crewshal-2c-quota-prerequisite-20261003-v3/1/mount/scratch)...\nProcessed 1 (/etc/projects and cmdline) paths for project 121 with recursion depth infinite (-1).\n"
+          },
+          {
+            "argv": [
+              "/usr/sbin/xfs_quota",
+              "-x",
+              "-c",
+              "limit -p bhard=33554432 121",
+              "/srv/crewshal-2c-quota-prerequisite-20261003-v3/1/mount"
+            ],
+            "exit_code": 0,
+            "stderr": "",
+            "stdout": ""
+          },
+          {
+            "argv": [
+              "/usr/sbin/xfs_quota",
+              "-x",
+              "-c",
+              "project -c -p /srv/crewshal-2c-quota-prerequisite-20261003-v3/1/mount/scratch 121",
+              "/srv/crewshal-2c-quota-prerequisite-20261003-v3/1/mount"
+            ],
+            "exit_code": 0,
+            "stderr": "",
+            "stdout": "Checking project 121 (path /srv/crewshal-2c-quota-prerequisite-20261003-v3/1/mount/scratch)...\nProcessed 1 (/etc/projects and cmdline) paths for project 121 with recursion depth infinite (-1).\n"
+          },
+          {
+            "argv": [
+              "/usr/sbin/xfs_quota",
+              "-x",
+              "-c",
+              "report -p -b -n",
+              "/srv/crewshal-2c-quota-prerequisite-20261003-v3/1/mount"
+            ],
+            "exit_code": 0,
+            "stderr": "",
+            "stdout": "Project quota on /srv/crewshal-2c-quota-prerequisite-20261003-v3/1/mount (/dev/loop0)\n                               Blocks                     \nProject ID       Used       Soft       Hard    Warn/Grace     \n---------- -------------------------------------------------- \n#0                   0          0          0     00 [--------]\n#121             32768          0      32768     00 [--------]\n\n"
+          },
+          {
+            "argv": [
+              "/usr/sbin/xfs_quota",
+              "-x",
+              "-c",
+              "quota -p -b -n 121",
+              "/srv/crewshal-2c-quota-prerequisite-20261003-v3/1/mount"
+            ],
+            "exit_code": 0,
+            "stderr": "",
+            "stdout": ""
+          },
+          {
+            "argv": [
+              "/usr/sbin/xfs_quota",
+              "-x",
+              "-c",
+              "project -s -p /srv/crewshal-2c-quota-prerequisite-20261003-v3/1/mount/candidate 122",
+              "/srv/crewshal-2c-quota-prerequisite-20261003-v3/1/mount"
+            ],
+            "exit_code": 0,
+            "stderr": "",
+            "stdout": "Setting up project 122 (path /srv/crewshal-2c-quota-prerequisite-20261003-v3/1/mount/candidate)...\nProcessed 1 (/etc/projects and cmdline) paths for project 122 with recursion depth infinite (-1).\n"
+          },
+          {
+            "argv": [
+              "/usr/sbin/xfs_quota",
+              "-x",
+              "-c",
+              "limit -p bhard=16777216 122",
+              "/srv/crewshal-2c-quota-prerequisite-20261003-v3/1/mount"
+            ],
+            "exit_code": 0,
+            "stderr": "",
+            "stdout": ""
+          },
+          {
+            "argv": [
+              "/usr/sbin/xfs_quota",
+              "-x",
+              "-c",
+              "project -c -p /srv/crewshal-2c-quota-prerequisite-20261003-v3/1/mount/candidate 122",
+              "/srv/crewshal-2c-quota-prerequisite-20261003-v3/1/mount"
+            ],
+            "exit_code": 0,
+            "stderr": "",
+            "stdout": "Checking project 122 (path /srv/crewshal-2c-quota-prerequisite-20261003-v3/1/mount/candidate)...\nProcessed 1 (/etc/projects and cmdline) paths for project 122 with recursion depth infinite (-1).\n"
+          },
+          {
+            "argv": [
+              "/usr/sbin/xfs_quota",
+              "-x",
+              "-c",
+              "report -p -b -n",
+              "/srv/crewshal-2c-quota-prerequisite-20261003-v3/1/mount"
+            ],
+            "exit_code": 0,
+            "stderr": "",
+            "stdout": "Project quota on /srv/crewshal-2c-quota-prerequisite-20261003-v3/1/mount (/dev/loop0)\n                               Blocks                     \nProject ID       Used       Soft       Hard    Warn/Grace     \n---------- -------------------------------------------------- \n#0                   0          0          0     00 [--------]\n#121                 0          0      32768     00 [--------]\n#122             16384          0      16384     00 [--------]\n\n"
+          },
+          {
+            "argv": [
+              "/usr/sbin/xfs_quota",
+              "-x",
+              "-c",
+              "quota -p -b -n 122",
+              "/srv/crewshal-2c-quota-prerequisite-20261003-v3/1/mount"
+            ],
+            "exit_code": 0,
+            "stderr": "",
+            "stdout": ""
+          },
+          {
+            "argv": [
+              "/usr/sbin/xfs_quota",
+              "-x",
+              "-c",
+              "state -p",
+              "/srv/crewshal-2c-quota-prerequisite-20261003-v3/1/mount"
+            ],
+            "exit_code": 0,
+            "stderr": "",
+            "stdout": "Project quota state on /srv/crewshal-2c-quota-prerequisite-20261003-v3/1/mount (/dev/loop0)\n  Accounting: ON\n  Enforcement: ON\n  Inode: #131 (2 blocks, 2 extents)\nBlocks grace time: [7 days]\nBlocks max warnings: 0\nInodes grace time: [7 days]\nInodes max warnings: 0\nRealtime Blocks grace time: [7 days]\n"
+          }
+        ],
+        "fixture_index": 1,
+        "fixture_removed": true,
+        "image_allocated_bytes": 117764096,
+        "image_logical_bytes": 536870912,
+        "mountinfo": [
+          "62 29 7:0 / /srv/crewshal-2c-quota-prerequisite-20261003-v3/1/mount rw,nosuid,nodev,noexec,relatime shared:292 - xfs /dev/loop0 rw,attr2,inode64,logbufs=8,logbsize=32k,prjquota"
+        ],
+        "tests": [
+          {
+            "allocated_write": {
+              "errno": 28,
+              "filesystem_free_bytes": 400039936,
+              "limit": 33554432,
+              "observed_allocated_bytes": 33554432,
+              "observed_logical_bytes": 33554432,
+              "physical_quota_pass": true,
+              "uid": 65534,
+              "written_bytes": 33554432
+            },
+            "ceiling_bytes": 33554432,
+            "name": "scratch",
+            "project_id": 121,
+            "sparse_truncate": {
+              "errno": null,
+              "logical_quota_pass": false,
+              "observed_allocated_bytes": 0,
+              "observed_logical_bytes": 67108864,
+              "uid": 65534
+            }
+          },
+          {
+            "allocated_write": {
+              "errno": 28,
+              "filesystem_free_bytes": 416784384,
+              "limit": 16777216,
+              "observed_allocated_bytes": 16777216,
+              "observed_logical_bytes": 16777216,
+              "physical_quota_pass": true,
+              "uid": 65534,
+              "written_bytes": 16777216
+            },
+            "ceiling_bytes": 16777216,
+            "name": "candidate",
+            "project_id": 122,
+            "sparse_truncate": {
+              "errno": null,
+              "logical_quota_pass": false,
+              "observed_allocated_bytes": 0,
+              "observed_logical_bytes": 67108864,
+              "uid": 65534
+            }
+          }
+        ]
+      }
+    ],
+    "operational_manifest_frozen": false,
+    "owned_root_removed": true,
+    "scope": "host XFS prerequisite only; not SBX inner enforcement"
+  }
+}

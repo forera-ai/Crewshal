@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "scope": "Trusted host XFS prerequisite; two fresh fixtures; no SBX VM/inner/native qualification",
+  "source_sha256": "ba289f694b36163bda5321e397b179f63b8ae4b2227af3bcb5d1fd2a3e463a40",
+  "root": "/srv/crewshal-2c-quota-prerequisite-20261003-v3",
+  "fixture_indices": [
+    0,
+    1
+  ],
+  "image_bytes": 536870912,
+  "scratch_quota_bytes": 33554432,
+  "candidate_quota_bytes": 16777216,
+  "allocated_write_attempt_max_bytes": 83886080,
+  "sparse_truncate_attempt_bytes": 67108864,
+  "payload_uid_gid": 65534,
+  "command_seconds": 10,
+  "output_bytes_per_stream": 65536,
+  "outer_deadline_seconds": 90,
+  "quota_oracles": "Physical project-quota denial is ENOSPC at exact allocated/logical ceiling, with over 128 MiB filesystem free and independent project report. Sparse size remains at/below quota or fails logical oracle.",
+  "cleanup": "Only exact exclusively created root, verified owned loop handles and mountpoints. Unmount/detach before deleting owned files. Retain droplet and preparation artifacts.",
+  "limitations": "Host-only prerequisite; no inner placement/cgroup/privilege/cancellation qualification. ldd binary map in source is not complete OS or Python standard-library attestation. Trusted command outputs checked after capture.",
+  "execution_allowed": false,
+  "native_start_allowed": false,
+  "operational_manifest_frozen": false,
+  "prospective_amendment": "Linux v6.8 XFS returns ENOSPC for project quota, EDQUOT for user/group. v2 strict errno failure preserved; no historical result promoted. Add independent quota report and filesystem headroom to exclude full-filesystem ENOSPC.",
+  "kernel_reference": "https://github.com/torvalds/linux/blob/v6.8/fs/xfs/xfs_trans_dquot.c#L661"
+}

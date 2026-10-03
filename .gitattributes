@@ -1,0 +1,5 @@
+# Frozen diagnostic sources retain exact executed bytes, including final blank lines.
+docs/qualification/phase-2c-discovery-admission-v1-runner.txt whitespace=-blank-at-eof
+docs/qualification/phase-2c-discovery-admission-v1-transport.txt whitespace=-blank-at-eof
+docs/qualification/phase-2c-discovery-admission-v2-runner.txt whitespace=-blank-at-eof
+docs/qualification/phase-2c-discovery-admission-v2-transport.txt whitespace=-blank-at-eof

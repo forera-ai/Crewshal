@@ -1,6 +1,6 @@
 # Phase 2C resumption prompt
 
-Phase 2C is incomplete. Package 0.8.8 records [approved discovery and actual supported-create refusal](GUEST-DISCOVERY-ASSESSMENT.md). Resource and bounded discovery ordering authority are resolved. Both fresh mountless SBX create attempts return Docker authentication-required `401 Unauthorized`; the approved scope excludes login and requires stopping. No SBX guest, complete operational manifest or inner run exists. Keep the droplet and preparation artifacts. All execution/native-start flags stay false. Prior host prototype passes and failures remain separate immutable evidence.
+Phase 2C is incomplete. Package 0.8.9 preserves the 0.8.8 record of [approved discovery and actual supported-create refusal](GUEST-DISCOVERY-ASSESSMENT.md). Resource and bounded discovery ordering authority are resolved. Both fresh mountless SBX create attempts return Docker authentication-required `401 Unauthorized`; the approved scope excludes login and requires stopping. No SBX guest, complete operational manifest or inner run exists. Keep the droplet and preparation artifacts. All execution/native-start flags stay false. Prior host prototype passes and failures remain separate immutable evidence.
 
 ## Initial prompt
 
@@ -230,3 +230,7 @@ Additional 0.8.8 inputs:
 - `docs/qualification/phase-2c-discovery-authorization-v1.json`
 - `docs/qualification/phase-2c-discovery-final-inventory-v1.json`
 - `docs/qualification/phase-2c-discovery-freeze-status-v1.json`
+
+Additional 0.8.9 maintenance input:
+
+- `.gitattributes` (exact-path whitespace treatment preserves executed source bytes; no qualification change)

@@ -2,6 +2,11 @@
 
 Versions follow semantic versioning. Remote branch publication is distinct from a package-registry release; no registry release has occurred.
 
+## 0.8.9 — 2026-10-03
+
+- Record the failed final blank-line whitespace check at the 0.8.8 publishing boundary. Preserve exact executed source bytes and add whitespace attributes only for the four frozen discovery source/transport files.
+- Correct the verification checkpoint without new host runs or qualification claims; Docker authentication still blocks complete freeze and inner enforcement.
+
 ## 0.8.8 — 2026-10-03
 
 - Record direct owner approval of bounded trusted guest discovery against the exact proposal digest; preserve all historical profiles and unchanged limits.

@@ -2,6 +2,12 @@
 
 Versions follow semantic versioning. Remote branch publication is distinct from a package-registry release; no registry release has occurred.
 
+## 0.8.6 — 2026-10-03
+
+- Record the owner's droplet continuation for the frozen bounded daemon/settings diagnostic; reproduce it twice in fresh private systemd fixtures with effective host-service controller/namespace observations and clean scoped cleanup.
+- Capture identical effective settings, including the oversized default Docker volume, and preserve helper-binding, sampling and output-supervision limitations explicitly.
+- Keep complete operational freeze, inner enforcement and caller/request authority unavailable. Retain the droplet and prepared artifacts; no VM/native/store/provider invocation or Phase 2D work.
+
 ## 0.8.5 — 2026-10-03
 
 - Reverify the newly supplied disposable host with two source-bound KVM HLT runs and fresh memory/disk/cgroup observations; retain the host under the owner's explicit instruction.

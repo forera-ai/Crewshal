@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "id": "crewshal-phase-2c-daemon-config-authorization-v1",
+  "date": "2026-10-03",
+  "base_revision": "0534d2e8fb9f033b1bc8ac93f4ef1b0bd13d15e6",
+  "scope": "Continue only proposed bounded daemon/settings diagnostic on supplied droplet; no operational/native grant",
+  "owner_instruction": "Continue on droplet",
+  "context": "Direct owner instruction to continue Phase 2C after the concrete diagnostic proposal and its narrow exception were presented; owner selected droplet for continued probes.",
+  "authorized_profile_sha256": "64903802b09d72cc0e42b39564cfc1eb88e5065cf9bf1e479773c144587827fe",
+  "authorized_source_sha256": "cb82c3456c1dcfe04154000ae2f1a49fe35ab9c2c5c2882b40a5b9fac31a3bce",
+  "boundaries": "All exact proposed private-network/devices/state, resource/time/output and cleanup bounds apply. No VM/template load/native/store/provider or downloaded program execution. Retain host.",
+  "execution_allowed": false,
+  "native_start_allowed": false
+}

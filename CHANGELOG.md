@@ -2,6 +2,12 @@
 
 Versions follow semantic versioning. Remote branch publication is distinct from a package-registry release; no registry release has occurred.
 
+## 0.8.10 — 2026-10-03
+
+- Resolve owner-authorized isolated Docker device authentication; preserve expired and failed variants, successful private state and kernel controller/filter observations.
+- Verify exact OCI metadata and all 16 layers, prepare a deterministic local archive, and reproduce authenticated listings in fresh denied-network fixtures.
+- Preserve repeated template-load 500/ENOSPC, permission and diagnostic-capture failures. Full operational freeze and inner enforcement remain unavailable; retain host/account/artifacts and update continuation inputs.
+
 ## 0.8.9 — 2026-10-03
 
 - Record the failed final blank-line whitespace check at the 0.8.8 publishing boundary. Preserve exact executed source bytes and add whitespace attributes only for the four frozen discovery source/transport files.

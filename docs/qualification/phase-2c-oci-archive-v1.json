@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "scope": "prospective local exact OCI archive preparation, not operational manifest",
+  "source_path": "docs/qualification/phase-2c-oci-archive-v1-runner.txt",
+  "source_sha256": "0ab41c45a02e601d526d849581d661d6660d4092e20f32d13e85f941981f2a6d",
+  "maximum_seconds": 120,
+  "execution_allowed": false,
+  "native_start_allowed": false
+}

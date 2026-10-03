@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "status": "blocked_runtime_compatible_logical_and_allocated_fixture_storage",
+  "authentication_resolved": true,
+  "authentication_observation_path": "docs/qualification/phase-2c-isolated-auth-v3-observed.json",
+  "discovery_observation_path": "docs/qualification/phase-2c-authenticated-discovery-v4-observed.json",
+  "template_loaded": false,
+  "sbx_guest_created": false,
+  "complete_operational_manifest_frozen": false,
+  "inner_enforcement_runs": 0,
+  "execution_allowed": false,
+  "native_start_allowed": false,
+  "next_capability": "A prospectively frozen runtime-compatible cache/guest disk layout enforcing both approved aggregate logical and allocated bytes independently. Conservative 128 MiB/96-inode/64 MiB-per-file admission refuses local import with containerd ENOSPC. Do not raise approved ceilings, retry unchanged layout, or import ambient credentials. Retain current isolated account state and host."
+}

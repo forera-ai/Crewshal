@@ -1,0 +1,22 @@
+import hashlib,json,pathlib,time,urllib.request
+root=pathlib.Path('/srv/crewshal-2c-preparation-current-20261002-v1/oci-metadata-v1')
+assert not root.exists()
+repo='docker/sandbox-templates'
+expected={'manifest':('sha256:4478aac4b542421404a5a5c860164f88c42c201e8730c1f3174c8d749f781703',None),'config':('sha256:69eddaf8acd5e85915b47686e332af8f376f6fbf1a67d5640e91340a6daf74fd',15774)}
+def fetch(url,headers={}):
+ with urllib.request.urlopen(urllib.request.Request(url,headers=headers),timeout=10) as r:
+  b=r.read(131073);assert len(b)<=131072;return b
+start=time.monotonic()
+token=json.loads(fetch('https://auth.docker.io/token?service=registry.docker.io&scope=repository:docker/sandbox-templates:pull'))['token']
+headers={'Authorization':'Bearer '+token,'Accept':'application/vnd.oci.image.manifest.v1+json'}
+data={}
+for kind,(digest,size) in expected.items():
+ path='manifests/' if kind=='manifest' else 'blobs/'
+ b=fetch('https://registry-1.docker.io/v2/'+repo+'/'+path+digest,headers)
+ assert 'sha256:'+hashlib.sha256(b).hexdigest()==digest
+ if size:assert len(b)==size
+ data[kind]=b
+assert time.monotonic()-start<30
+root.mkdir(mode=0o755)
+for k,b in data.items():(root/(k+'.json')).write_bytes(b)
+print(json.dumps({'scope':'anonymous exact OCI metadata preparation only; no image load or code execution','files':{k:{'bytes':len(b),'sha256':hashlib.sha256(b).hexdigest()} for k,b in data.items()},'elapsed_seconds':round(time.monotonic()-start,3),'execution_allowed':False,'native_start_allowed':False},sort_keys=True))

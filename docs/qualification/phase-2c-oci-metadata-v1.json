@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "scope": "exact digest-verified public metadata only; no installed code, no authentication session import",
+  "source_path": "docs/qualification/phase-2c-oci-metadata-v1-runner.txt",
+  "source_sha256": "3714f0753c35c37b8d312865719bc35821a349e67c08d11c7cc6f648113eae7b",
+  "maximum_response_bytes": 131072,
+  "maximum_seconds": 30,
+  "execution_allowed": false,
+  "native_start_allowed": false
+}

@@ -1,0 +1,33 @@
+{
+  "source_path": "docs/qualification/phase-2c-isolated-auth-v3-runner.txt",
+  "source_sha256": "05aa6a5161701267bb7fc919b64d4bdeb07a44ea36224e29a04b762d91502484",
+  "transport_path": "docs/qualification/phase-2c-isolated-auth-v3-transport.txt",
+  "transport_sha256": "c92d3a9569897f2375428968138019d99dc7312100ab393ae711da46318c8cbf",
+  "kernel_bpf_queries": [
+    {
+      "attach_type": 0,
+      "errno": 0,
+      "return_code": 0,
+      "program_count": 1
+    },
+    {
+      "attach_type": 1,
+      "errno": 0,
+      "return_code": 0,
+      "program_count": 1
+    }
+  ],
+  "ready": {
+    "pid": 20492,
+    "cgroup": "/system.slice/crewshal-isolated-auth-v3.service",
+    "controls": {
+      "cpu.max": "100000 100000",
+      "memory.max": "268435456",
+      "memory.swap.max": "0",
+      "pids.max": "32"
+    }
+  },
+  "login_initiated": true,
+  "execution_allowed": false,
+  "native_start_allowed": false
+}

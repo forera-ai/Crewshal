@@ -1,17 +1,21 @@
 # Phase 2C resumption prompt
 
-Phase 2C is incomplete. Package 0.8.9 preserves the 0.8.8 record of [approved discovery and actual supported-create refusal](GUEST-DISCOVERY-ASSESSMENT.md). Resource and bounded discovery ordering authority are resolved. Both fresh mountless SBX create attempts return Docker authentication-required `401 Unauthorized`; the approved scope excludes login and requires stopping. No SBX guest, complete operational manifest or inner run exists. Keep the droplet and preparation artifacts. All execution/native-start flags stay false. Prior host prototype passes and failures remain separate immutable evidence.
+Phase 2C remains incomplete. Package 0.8.10 resolves [isolated Docker authentication](ISOLATED-DOCKER-AUTHENTICATION.md). Retained new private account state works in two fresh denied-network fixtures; no additional login approval or new droplet is needed. Exact OCI metadata and deterministic archive are prepared. Supported local template import fails with 500/ENOSPC under conservative storage controls. Complete operational manifest and inner enforcement remain unavailable; all execution/native-start flags stay false.
 
 ## Initial prompt
 
 ```text
 Continue Crewshal in /Volumes/X10Pro/Crewshal. Resume Phase 2C only; no 2D. Use caveman ultra, Jev decision support and codebase-memory graph/coverage access after checking live availability. Read AGENTS.md, HANDOFF.md, DEVELOPMENT-PLAN.md, ARCHITECTURE.md, accepted ADR 0002 and all relevant exact inputs below. Verify HEAD/status and graph freshness; preserve unrelated work.
 
-Baseline 0.8.8 adds GUEST-DISCOVERY-ASSESSMENT.md, exact discovery authorization, v1/v2 source/profile/transport/observations, final inventory and freeze status. Read these first. Preserve v1 KVM device-policy denial; v2 prospectively adds KVM/TUN DeviceAllow and passes HLT twice per fresh service. V2 supported mountless create refuses Docker authentication twice. Do not retry unchanged unauthenticated creation. No SBX guest or inner qualification exists, despite successful host controller/HLT observations. Conservative per-file/inode bounds, outside transport accounting, missing explicit ProtectControlGroups/ProtectKernelTunables/descendant-migration evidence and no daemon restart after the forwarding setter remain disclosed limitations. Resolve those before future guest startup.
+Baseline 0.8.10 adds ISOLATED-DOCKER-AUTHENTICATION.md and the new exact inputs below. Read it before historical discovery evidence. Direct owner authorization for isolated Docker login is recorded in phase-2c-isolated-auth-authorization-v1.json; do not ask again. V1 device window expired, v2 embedded JSON booleans failed before login, corrected v3 login exited zero after 116.561 seconds. Private new account state remains on the same retained host. Never access ambient credential stores or publish tokens/account metadata; this retained explicitly created state is the permitted prerequisite. Resource and bounded discovery authority remain resolved.
 
-The owner directly approved PHASE-2C-INFRASTRUCTURE-DISCOVERY-DECISION.md, bound to SHA-256 46aa89646ebf5a3d51d2af425cb3f43b36833c68d1adec4708da040a685b69cb in phase-2c-discovery-authorization-v1.json. Do not ask again for that decision. Its no-login/no-bypass/external-network-denial boundaries remain. Smallest missing capability: separately authorized and prospectively specified isolated Docker-account authentication/network/credential handling, or an officially supported unauthenticated dispatch path. No such authority is supplied at this checkpoint. Do not access existing credential stores, import a user session, patch around authentication or build a custom gateway. If new explicit authority arrives in the continuing chat, scope and bind that concrete operation before invoking it. No new droplet or limit increase resolves authentication.
+Authenticated discovery v1 failed to read UID 65534 private state from capability-restricted root. V2 prospectively copied only that new state into a root-owned private prerequisite and two fresh service-private fixtures: authenticated ls exited zero, template load returned exit one/500 twice. V3 debug capture exceeded 65536 bytes and its truncated JSON parser failed; private capture indicates containerd ingest ENOSPC. V4 bounded category/readback captures reproduce ENOSPC and authenticated list in two fresh fixtures. Post-stop readback has 23 free of 96 inodes and 237568 allocated bytes; do not infer the precise transient inode/byte cause. No guest or inner/native startup occurred. Preserve every failed variant and private original state. Do not retry unchanged template loading or reauthenticate unnecessarily.
 
-After that prerequisite is legitimately resolved, use the approved ordering exception to freeze each infrastructure executable/source/image before its own invocation, establish independent aggregate/disk enforcement, inspect actual guest/inner state and downloads, and freeze the complete operational manifest before synthetic inner/native probes. Retain the original 128 MiB worker/validator, five-second deadline and all grants. Qualify exact inner controls twice before any native startup. Preserve all 0.8.7 host quota parser/oracle/capture failures and strict 512 KiB prototype limits; no native compatibility or inherited full policy is proved.
+Smallest missing capability is a supported runtime-compatible cache/guest disk layout independently bounding both logical and allocated aggregate bytes within 8589934592, including prepared images, private state, metadata and logs. Current 128 MiB tmpfs/96 inodes/64 MiB hard per-file limit is not runtime compatible. Physical quota alone allows sparse logical escape; increasing inode/file limits can invalidate the conservative logical bound. Resolve this control without raising approved ceilings, custom runtime/gateway, cloud provisioning or importing ambient credentials. Also resolve all-host-process placement, descendant migration denial and daemon restart after settings before guest startup. ProtectControlGroups/ProtectKernelTunables are now explicit in authenticated diagnostic profiles, but no inner escape qualification is supplied.
+
+Metadata source verifies exact original manifest/config bytes; deterministic codex-oci-v1.tar SHA-256 26b27211f7244b76ba2556db29b76a2b1c9c9ba9efe7c192f9afed4bba8b47c0 contains all 16 digest-checked layers and the exact amd64 manifest. Preparation is 2053107620 logical bytes. Archive construction is trusted preparation outside the enforced qualification aggregate and supplies no operational hard-deadline proof. Image-loading compatibility remains unknown because bounded import fails. Full freeze must still precede inner/native probes.
+
+After runtime-compatible independent storage enforcement is resolved, use the approved ordering exception to freeze each infrastructure executable/source/image before its own invocation, establish independent aggregate/disk enforcement, inspect actual guest/inner state and downloads, and freeze the complete operational manifest before synthetic inner/native probes. Retain the original 128 MiB worker/validator, five-second deadline and all grants. Qualify exact inner controls twice before any native startup. Preserve all 0.8.7 host quota parser/oracle/capture failures and strict 512 KiB prototype limits; no native compatibility or inherited full policy is proved.
 
 Resource envelope approval is already recorded in qualification/phase-2c-resource-approval-v1.json, bound to proposal SHA-256 adf3eb56f438d3a375f1f44fc9db3b9699d37e52f57c53aa8c5f5134699d01ab. Do not request unchanged envelope or prior daemon diagnostic approval again. Retain the host and verified preparation artifacts until all required host work finishes; no deletion recommendation at a blocked/session/publishing boundary. All 78 offline tests pass; no operational VM, inner or native probe ran at this checkpoint.
 
@@ -234,3 +238,49 @@ Additional 0.8.8 inputs:
 Additional 0.8.9 maintenance input:
 
 - `.gitattributes` (exact-path whitespace treatment preserves executed source bytes; no qualification change)
+
+Additional 0.8.10 inputs:
+
+- `docs/ISOLATED-DOCKER-AUTHENTICATION.md`
+- `docs/qualification/phase-2c-auth-help-v1-observed.json`
+- `docs/qualification/phase-2c-auth-help-v1.json`
+- `docs/qualification/phase-2c-authenticated-discovery-v1-observed.json`
+- `docs/qualification/phase-2c-authenticated-discovery-v1.json`
+- `docs/qualification/phase-2c-authenticated-discovery-v2-observed.json`
+- `docs/qualification/phase-2c-authenticated-discovery-v2.json`
+- `docs/qualification/phase-2c-authenticated-discovery-v3-observed.json`
+- `docs/qualification/phase-2c-authenticated-discovery-v3.json`
+- `docs/qualification/phase-2c-authenticated-discovery-v4-observed.json`
+- `docs/qualification/phase-2c-authenticated-discovery-v4.json`
+- `docs/qualification/phase-2c-authenticated-freeze-status-v1.json`
+- `docs/qualification/phase-2c-isolated-auth-authorization-v1.json`
+- `docs/qualification/phase-2c-isolated-auth-final-inventory-v1.json`
+- `docs/qualification/phase-2c-isolated-auth-v1-init-observed.json`
+- `docs/qualification/phase-2c-isolated-auth-v1-observed.json`
+- `docs/qualification/phase-2c-isolated-auth-v1.json`
+- `docs/qualification/phase-2c-isolated-auth-v2-observed.json`
+- `docs/qualification/phase-2c-isolated-auth-v2.json`
+- `docs/qualification/phase-2c-isolated-auth-v3-init-observed.json`
+- `docs/qualification/phase-2c-isolated-auth-v3-observed.json`
+- `docs/qualification/phase-2c-isolated-auth-v3.json`
+- `docs/qualification/phase-2c-oci-archive-v1-observed.json`
+- `docs/qualification/phase-2c-oci-archive-v1.json`
+- `docs/qualification/phase-2c-oci-metadata-v1-observed.json`
+- `docs/qualification/phase-2c-oci-metadata-v1.json`
+- `docs/qualification/phase-2c-auth-help-v1-runner.txt`
+- `docs/qualification/phase-2c-authenticated-discovery-v1-runner.txt`
+- `docs/qualification/phase-2c-authenticated-discovery-v1-transport.txt`
+- `docs/qualification/phase-2c-authenticated-discovery-v2-runner.txt`
+- `docs/qualification/phase-2c-authenticated-discovery-v2-transport.txt`
+- `docs/qualification/phase-2c-authenticated-discovery-v3-runner.txt`
+- `docs/qualification/phase-2c-authenticated-discovery-v3-transport.txt`
+- `docs/qualification/phase-2c-authenticated-discovery-v4-runner.txt`
+- `docs/qualification/phase-2c-authenticated-discovery-v4-transport.txt`
+- `docs/qualification/phase-2c-isolated-auth-v1-runner.txt`
+- `docs/qualification/phase-2c-isolated-auth-v1-transport.txt`
+- `docs/qualification/phase-2c-isolated-auth-v2-runner.txt`
+- `docs/qualification/phase-2c-isolated-auth-v2-transport.txt`
+- `docs/qualification/phase-2c-isolated-auth-v3-runner.txt`
+- `docs/qualification/phase-2c-isolated-auth-v3-transport.txt`
+- `docs/qualification/phase-2c-oci-archive-v1-runner.txt`
+- `docs/qualification/phase-2c-oci-metadata-v1-runner.txt`

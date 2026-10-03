@@ -1,0 +1,18 @@
+{
+  "elapsed_seconds": 0.337,
+  "execution_allowed": false,
+  "files": {
+    "config": {
+      "bytes": 15774,
+      "sha256": "69eddaf8acd5e85915b47686e332af8f376f6fbf1a67d5640e91340a6daf74fd"
+    },
+    "manifest": {
+      "bytes": 3342,
+      "sha256": "4478aac4b542421404a5a5c860164f88c42c201e8730c1f3174c8d749f781703"
+    }
+  },
+  "native_start_allowed": false,
+  "scope": "anonymous exact OCI metadata preparation only; no image load or code execution",
+  "source_path": "docs/qualification/phase-2c-oci-metadata-v1-runner.txt",
+  "source_sha256": "3714f0753c35c37b8d312865719bc35821a349e67c08d11c7cc6f648113eae7b"
+}

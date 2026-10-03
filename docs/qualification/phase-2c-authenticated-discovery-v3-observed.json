@@ -1,0 +1,13 @@
+{
+  "source_sha256": "3e7f48aa19c7db71c8be084a47ff226dc5915cbd20d50ee6ee0aba3a26ecbdfe",
+  "capture_bytes": 65536,
+  "fixture_count": 1,
+  "transport_reason": "output_limit",
+  "public_summary_error": "JSONDecodeError: Unterminated string",
+  "trusted_diagnostic_contains_containerd_ingest_ENOSPC": true,
+  "structured_whole_run_pass": false,
+  "private_raw_retained": true,
+  "execution_allowed": false,
+  "native_start_allowed": false,
+  "operational_manifest_frozen": false
+}

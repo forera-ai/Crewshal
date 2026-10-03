@@ -1,0 +1,13 @@
+{
+  "source_path": "docs/qualification/phase-2c-isolated-auth-v2-runner.txt",
+  "source_sha256": "079a7b59564c19c7eb532ae064006d5a17602835a1b83a15a8c90e21cae166c1",
+  "transport_path": "docs/qualification/phase-2c-isolated-auth-v2-transport.txt",
+  "transport_sha256": "e87070fe67dda950aacae904afc90e7571cbb5f7e086c183eaeba85f44b452f1",
+  "transport_result": "ready assertion timed out",
+  "service_state": "failed/exit-code",
+  "failure": "Embedded profile used JSON false rather than Python False; source fails before ready/login. Corrected prospectively in v3; v2 bytes preserved.",
+  "login_initiated": false,
+  "authenticated_success": false,
+  "execution_allowed": false,
+  "native_start_allowed": false
+}

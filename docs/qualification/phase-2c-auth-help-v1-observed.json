@@ -1,0 +1,7 @@
+{
+  "exit_code": 0,
+  "stdout": "Sign in to Docker\n\nUsage:\n  sbx login [flags]\n\nFlags:\n  -h, --help              help for login\n      --password-stdin    Read password or access token from stdin\n      --username string   Docker username for non-interactive login\n\nGlobal Flags:\n      --cloud   Dispatch to Docker Cloud Sandboxes API instead of local sandboxd (supported by a growing set of verbs — run 'sbx --cloud --help' for the current list)\n  -D, --debug   Enable debug logging\n",
+  "stderr": "Running as unit: crewshal-auth-help-v1.service\nFinished with result: success\nMain processes terminated with: code=exited/status=0\nService runtime: 263ms\nCPU time consumed: 211ms\nMemory peak: 4.2M\nMemory swap peak: 0B\n",
+  "scope": "login help only; no authentication attempted",
+  "execution_allowed": false
+}

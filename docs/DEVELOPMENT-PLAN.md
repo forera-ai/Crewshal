@@ -125,3 +125,7 @@ Owner-authorized new isolated Docker sign-in succeeds, and retained state authen
 ### Phase 2C storage investigation/access checkpoint — 2026-10-05
 
 Version 0.8.11 records [bounded source investigation](STORAGE-CONTROL-INVESTIGATION.md), unqualified existing-filesystem/layout candidates and the required independent compatibility/exhaustion checks. Current retained-host connection context is absent and was requested. No remote operation, operational freeze or qualification run occurred. All 78 network-denied offline tests pass; storage and full 2C remain unresolved. Keep the host/account/artifacts and unchanged ceilings. Resume only 2C with current access and [the exact inputs](PHASE-2C-RESUME-PROMPT.md).
+
+### Linux test cost policy — owner correction, 2026-10-05
+
+Version 0.8.12 updates AGENTS.md and continuation policy. No routine VPS test per session or required droplet retention. Complete substantive changes first, use local checks/VMware Ubuntu when sufficient, and seek approval for a necessary droplet batch only when local acceptance is insufficient. Owner intends host removal; deletion and host-only state survival are unverified. Qualification gates/ceilings remain unchanged; absence of platform evidence stays unresolved. No runtime check occurred for this documentation-only correction.

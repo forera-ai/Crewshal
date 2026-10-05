@@ -4,6 +4,10 @@ Date: 2026-10-05. Status: **unresolved; current host access is missing from this
 
 Baseline revision: `622f9bb1ac54c5727c9e5dd8b390cc157f505217`, initially clean `codex/phase1-architecture`. The retained host, account state and preparation artifacts must remain. Their current existence, access, available resources and identities have not been reverified. The session requested current connection details; it did not inspect SSH configuration, authentication files, ambient credential stores or prior private chat history to recover them.
 
+## Superseding owner cost policy — 2026-10-05
+
+The owner subsequently revoked mandatory droplet retention and intends to remove it. Earlier retained-host/access requirements below describe the original investigation checkpoint and are superseded by AGENTS.md. Do not require current host access for continued local work. Complete substantive storage/control changes first; use local checks or VMware Ubuntu when necessary and sufficient. Request a concrete droplet batch only if a necessary acceptance check cannot be satisfied locally. No candidate is qualified by this policy change. Host-only account/preparation survival is unknown; re-establish exact prerequisites only on a suitable approved test substrate.
+
 ## Established constraint
 
 The authenticated v4 source/profile and freeze status were read directly. Existing independent physical-quota observations accept oversized sparse logical files. The 128 MiB/96-inode/64 MiB-per-file tmpfs layout fails supported template loading with ENOSPC. Neither increasing those bounds without a new aggregate proof nor replacing them with ordinary physical quota resolves the logical requirement. The approved aggregate ceiling remains 8,589,934,592 bytes for each of logical and allocated storage, including preparation, guest disks, private state, logs and fixtures. Every original resource limit and grant remains unchanged.

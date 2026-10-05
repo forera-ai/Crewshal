@@ -18,9 +18,13 @@ Read [docs/HANDOFF.md](docs/HANDOFF.md) first, then [docs/DEVELOPMENT-PLAN.md](d
 - At session closure, provide a brief explanation of the next milestone, its initial prompt and the exact files to feed into the next session.
 - Once the active milestone's goals and acceptance gates pass, conclude development immediately. The publishing ceremony (README, changelog, handoff, next prompt, version bump, commit and push) ends the session; do not begin the next milestone.
 
-## Temporary host retention — owner declaration, 2026-10-02
+## Linux test cost and host lifecycle — owner declaration, 2026-10-05
 
-The owner deleted the earlier droplet after premature deletion guidance and supplied another host. Keep the current disposable host until all required host work is actually finished and no further droplet is needed for that work. Do not recommend or request droplet deletion at an intermediate preparation, blocked, publishing or session boundary. Scoped removal of owned experimental resources is separate from deleting the host. Future sessions must reverify current access and host state without inferring deletion or survival. Do not commit connection addresses, passwords or authentication material.
+This declaration supersedes the 2026-10-02 temporary-host retention rule. The owner intends to remove the current droplet; do not require its retention or assume its continued availability. Do not delete a host on the owner's behalf without an explicit action request. Host-only private authentication state and preparation artifacts may be lost; preserve public evidence and reproducible pinned inputs, never credentials in Git.
+
+Do not run or request VPS tests at every session boundary. Complete a substantial, coherent round of changes first. Use local checks and, when necessary and available, the owner's local VMware Ubuntu installation. Do not assume local VMware supplies KVM/nested virtualization or represents another platform without observing it. Missing target-specific evidence remains unresolved.
+
+Only when a necessary Linux/multiplatform acceptance check cannot be satisfied locally, prepare a concrete test batch explaining why a droplet is necessary, exact commands, resource ceilings, expected duration/cost exposure and cleanup. Ask the owner before any droplet test; the owner will prepare a host if approved. Prior host access or resource-envelope approval does not authorize a new paid-host test batch. Do not provision, resize or purchase infrastructure. Reverify host access, identities and admission only when an approved batch is about to use that host, not automatically every session. Do not commit addresses, passwords or authentication material.
 
 ## Engineering boundaries
 

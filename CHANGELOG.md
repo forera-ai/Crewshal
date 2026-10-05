@@ -2,6 +2,12 @@
 
 Versions follow semantic versioning. Remote branch publication is distinct from a package-registry release; no registry release has occurred.
 
+## 0.8.12 — 2026-10-05
+
+- Replace mandatory droplet retention/per-session host checks with owner-approved necessary test batches after substantive changes; prefer local checks and VMware Ubuntu when sufficient.
+- Record owner intent to remove the current droplet without assuming deletion occurred or private host state survives.
+- Update continuation instructions; preserve all qualification gates and historical observations. Documentation-only change; no runtime tests or remote operations.
+
 ## 0.8.11 — 2026-10-05
 
 - Record a bounded storage-control source investigation and required compatibility/exhaustion oracles under unchanged approved ceilings; no candidate is selected or qualified.

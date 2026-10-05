@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "ceiling": {
+    "logical_bytes": 8589934592,
+    "allocated_bytes": 8589934592
+  },
+  "execution_allowed": false,
+  "native_start_allowed": false,
+  "id": "crewshal-phase-2c-storage-refused-layout-v1",
+  "scope": "conservative lower-bound counterexample, not a complete operational inventory",
+  "objects": [
+    {
+      "id": "historical-preparation",
+      "logical_bytes": 2053107620,
+      "allocated_bytes": 2053181440
+    },
+    {
+      "id": "expected-upper-disks",
+      "logical_bytes": 4294967296,
+      "allocated_bytes": null
+    },
+    {
+      "id": "expected-lower-disks",
+      "logical_bytes": 4294967296,
+      "allocated_bytes": null
+    }
+  ],
+  "limitations": [
+    "historical disk sizes not effective observations",
+    "backing files, guest contents, logs and metadata still need explicit entries",
+    "upper and lower charged separately conservatively"
+  ]
+}

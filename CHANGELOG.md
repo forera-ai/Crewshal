@@ -2,6 +2,13 @@
 
 Versions follow semantic versioning. Remote branch publication is distinct from a package-registry release; no registry release has occurred.
 
+## 0.8.14 — 2026-10-05
+
+- Add offline conservative storage accounting and bounded trusted file-operation diagnostics; refuse overflow, unknown counts and existing fixture paths while preserving actual errno/partial file state.
+- Record two macOS synthetic fixtures and twelve new offline acceptance methods (90 total); retain the initial missing-xattr-API failure and prospective ENOSYS correction.
+- Prepare a staged local-first Linux batch and source-bound conditional eCryptfs design. Private key setup, lower-path/bypass controls, independent observation and pinned SBX compatibility remain unresolved; no Linux/SBX, key or mount operation ran.
+- Preserve unchanged limits, immutable historical qualification inputs and execution denial; no paid host request or Phase 2D work.
+
 ## 0.8.13 — 2026-10-05
 
 - Record owner confirmation that the droplet was removed and prepare the next standalone Phase 2C prompt under the local-first test cost policy.

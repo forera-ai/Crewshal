@@ -2,6 +2,12 @@
 
 Versions follow semantic versioning. Remote branch publication is distinct from a package-registry release; no registry release has occurred.
 
+## 0.8.17 — 2026-10-05
+
+- Pin release-era Docker storage documentation and byte-bound excerpts; distinguish documented root controls, XDG roots and creation overrides from effective runtime disk evidence.
+- Record seven exact unanswered private-fork/VMM/storage/enforcement contract fields and a necessary independent accounting inequality. A smaller unvalidated disk hypothesis still refuses admission despite a lower known subtotal.
+- Update the blocked continuation and preserve all earlier qualification bytes, limits and denial flags. No product behavior, runtime/VM operation, vendor message, paid-host test or Phase 2D work.
+
 ## 0.8.16 — 2026-10-05
 
 - Bind freshly verified SBX 0.46.0 archive/bundle data, public release statements and nine upstream source files; distinguish dirty/private replacements and declared EROFS patches from exact executable source.

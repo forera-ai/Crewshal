@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "ceiling": {
+    "logical_bytes": 8589934592,
+    "allocated_bytes": 8589934592
+  },
+  "execution_allowed": false,
+  "native_start_allowed": false,
+  "operational_manifest_frozen": false,
+  "supported_layout_selected": false,
+  "id": "crewshal-phase-2c-sbx-storage-small-hypothesis-v1",
+  "scope": "Conditional arithmetic screen only; 1 GiB root is not validated/supported/effective. Backing is an optimistic minimum, not a sized filesystem. No runnable layout.",
+  "objects": [
+    {
+      "id": "pruned-archive-plus-bundle-expectation",
+      "logical_bytes": 1107398941,
+      "allocated_bytes": null
+    },
+    {
+      "id": "hypothetical-upper-root-plus-docker",
+      "logical_bytes": 1610612736,
+      "allocated_bytes": null
+    },
+    {
+      "id": "hypothetical-lower-root-plus-docker",
+      "logical_bytes": 1610612736,
+      "allocated_bytes": null
+    },
+    {
+      "id": "hypothetical-backing-file-minimum",
+      "logical_bytes": 1610612736,
+      "allocated_bytes": null
+    },
+    {
+      "id": "encryption-and-ext4-overhead",
+      "logical_bytes": null,
+      "allocated_bytes": null
+    },
+    {
+      "id": "content-cache-and-image-layers",
+      "logical_bytes": null,
+      "allocated_bytes": null
+    },
+    {
+      "id": "conversion-temporary-and-merged-metadata",
+      "logical_bytes": null,
+      "allocated_bytes": null
+    },
+    {
+      "id": "guest-apparent-contents",
+      "logical_bytes": null,
+      "allocated_bytes": null
+    },
+    {
+      "id": "account-config-metadata-and-runtime-state",
+      "logical_bytes": null,
+      "allocated_bytes": null
+    },
+    {
+      "id": "diagnostic-vendor-inputs",
+      "logical_bytes": null,
+      "allocated_bytes": null
+    },
+    {
+      "id": "logs-output-and-deleted-open",
+      "logical_bytes": null,
+      "allocated_bytes": null
+    }
+  ],
+  "limits": {
+    "docker_documented_minimum_bytes": 536870912,
+    "root_hypothesis_bytes": 1073741824
+  },
+  "limitations": [
+    "No inference of supported minimum root size from ROOT_SIZE documentation.",
+    "Three disk representations are separately charged under this hypothesis. Lower encryption/header and ext4 overhead remain unknown.",
+    "Guest logical bytes are independent; virtual disk capacity is not a guest apparent-file bound.",
+    "No compression, sharing, immutable-cache or hardlink discount. Known subtotal is not inventory completeness or enforcement."
+  ]
+}

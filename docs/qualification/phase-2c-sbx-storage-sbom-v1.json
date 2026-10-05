@@ -1,0 +1,47 @@
+{
+  "_type": "https://in-toto.io/Statement/v1",
+  "predicateType": "https://spdx.dev/Document",
+  "subject": [
+    {
+      "name": "static/linux/amd64/docker-sbx_0.46.0.tgz",
+      "digest": {
+        "sha256": "edd86e2f21559e190723fd884c3a1dced161a555afdff85c5921ed45e7d6d56e"
+      }
+    }
+  ],
+  "predicate": {
+    "SPDXID": "SPDXRef-DOCUMENT",
+    "creationInfo": {
+      "created": "2026-09-28T16:05:44Z",
+      "creators": [
+        "Organization: Anchore, Inc",
+        "Tool: syft-v1.51.0"
+      ],
+      "licenseListVersion": "3.28"
+    },
+    "dataLicense": "CC0-1.0",
+    "documentNamespace": "https://anchore.com/syft/dir/sbom-c3f7811b-983a-44f8-bf0e-08666633755c",
+    "name": "sbom",
+    "packages": [
+      {
+        "SPDXID": "SPDXRef-DocumentRoot-Directory-sbom",
+        "copyrightText": "NOASSERTION",
+        "downloadLocation": "NOASSERTION",
+        "filesAnalyzed": false,
+        "licenseConcluded": "NOASSERTION",
+        "licenseDeclared": "NOASSERTION",
+        "name": "sbom",
+        "primaryPackagePurpose": "FILE",
+        "supplier": "NOASSERTION"
+      }
+    ],
+    "relationships": [
+      {
+        "relatedSpdxElement": "SPDXRef-DocumentRoot-Directory-sbom",
+        "relationshipType": "DESCRIBES",
+        "spdxElementId": "SPDXRef-DOCUMENT"
+      }
+    ],
+    "spdxVersion": "SPDX-2.3"
+  }
+}

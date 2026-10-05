@@ -2,6 +2,12 @@
 
 Versions follow semantic versioning. Remote branch publication is distinct from a package-registry release; no registry release has occurred.
 
+## 0.8.16 — 2026-10-05
+
+- Bind freshly verified SBX 0.46.0 archive/bundle data, public release statements and nine upstream source files; distinguish dirty/private replacements and declared EROFS patches from exact executable source.
+- Record operation-specific fallback requirements, unresolved immutable-cache/root-disk behavior and conservative pruned-layout overflow. Both new ledgers refuse; no layout or runtime qualification is promoted.
+- Add offline source/statement readback with optional fresh archive verification, update the blocked boundary and next exact inputs. Preserve all prior qualification bytes and unchanged limits; no runtime, VM, provider or paid-host operation.
+
 ## 0.8.15 — 2026-10-05
 
 - Resolve supported private eCryptfs key/mount setup on the owner's test Ubuntu arm64 guest; fix diagnostic mount-view binding with existing bubblewrap/libseccomp/setpriv, preserving every failed profile.

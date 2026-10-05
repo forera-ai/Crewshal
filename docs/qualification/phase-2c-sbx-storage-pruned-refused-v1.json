@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "ceiling": {
+    "logical_bytes": 8589934592,
+    "allocated_bytes": 8589934592
+  },
+  "execution_allowed": false,
+  "native_start_allowed": false,
+  "id": "crewshal-phase-2c-sbx-storage-pruned-refused-v1",
+  "scope": "counterexample for historical requested sizes; not an observed or supported layout",
+  "objects": [
+    {
+      "id": "pruned-archive-plus-bundle-expectation",
+      "logical_bytes": 1107398941,
+      "allocated_bytes": null
+    },
+    {
+      "id": "requested-upper-root-plus-docker",
+      "logical_bytes": 4294967296,
+      "allocated_bytes": null
+    },
+    {
+      "id": "requested-lower-root-plus-docker",
+      "logical_bytes": 4294967296,
+      "allocated_bytes": null
+    }
+  ],
+  "limitations": [
+    "Requested 3g+1g sizes are not effective observations.",
+    "Backing, cache, conversion temporary files, guest contents, deleted-open files, metadata and outputs omitted from lower-bound counterexample.",
+    "Even this incomplete hypothetical logical subtotal exceeds ceiling; no silent layer discount."
+  ]
+}

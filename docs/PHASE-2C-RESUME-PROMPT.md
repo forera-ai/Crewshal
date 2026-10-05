@@ -10,12 +10,18 @@ Prior 0.8.14 checkpoint: [storage design and accounting](PHASE-2C-STORAGE-DESIGN
 
 Current 0.8.15 checkpoint: [two observed Linux storage fixtures](PHASE-2C-LOCAL-STORAGE-ASSESSMENT.md) resolve supported private key/mount setup and record 44 independent FD/PID/inode matches, with effective aggregate controls and scoped cleanup. Required native filesystem compatibility, complete runtime identities/layout and guest inner enforcement remain unresolved. Unsupported operations are not passes. The existing test Ubuntu VM is aarch64, was left running and is not an amd64/KVM qualification substrate. No credential is part of these inputs.
 
+Current 0.8.16 checkpoint: [pinned SBX storage requirements](PINNED-SBX-STORAGE-REQUIREMENTS.md) bind fresh release bytes and eleven members, nine public source files, two statements and private replacement/patch limitations. EROFS base zero-write fallback is conditional; continuity copy-range EINVAL has no later plain-copy fallback. No supported cache/disk layout or guest apparent-size enforcement is established. Both new conservative ledgers refuse. No runtime, VM or paid-host operation ran.
+
 ## Initial prompt
 
 ```text
-Continue Crewshal in /Volumes/X10Pro/Crewshal from package 0.8.15, Phase 2C only; no 2D. Keep caveman ultra, Jev decision support and codebase-memory Verify after live availability checks. Read AGENTS.md, HANDOFF.md, DEVELOPMENT-PLAN.md, ARCHITECTURE.md, decisions/0002-minimal-architecture.md, PHASE-2C-LOCAL-STORAGE-ASSESSMENT.md, PHASE-2C-LOCAL-STORAGE-PROFILE.md, PHASE-2C-STORAGE-DESIGN.md, PHASE-2C-STORAGE-BATCH.md and exact inputs below. Verify branch/HEAD/status and graph generation/coverage; preserve unrelated work and every immutable historical qualification input.
+Continue Crewshal in /Volumes/X10Pro/Crewshal from package 0.8.16, Phase 2C only; no 2D. Keep caveman ultra, Jev decision support and codebase-memory Verify after live availability checks. Read AGENTS.md, HANDOFF.md, DEVELOPMENT-PLAN.md, ARCHITECTURE.md, decisions/0002-minimal-architecture.md, PINNED-SBX-STORAGE-REQUIREMENTS.md, PHASE-2C-LOCAL-STORAGE-ASSESSMENT.md, PHASE-2C-LOCAL-STORAGE-PROFILE.md, PHASE-2C-STORAGE-DESIGN.md, PHASE-2C-STORAGE-BATCH.md and exact inputs below. Verify branch/HEAD/status and graph generation/coverage; preserve unrelated work and every immutable historical qualification input.
 
-Milestone: resolve pinned SBX's actual filesystem operation/cache/disk requirements and an admissible supported storage layout, then prepare or run only its necessary matching-platform compatibility checks. Stop at this independently reproducible milestone or the smallest concrete blocked boundary. Do not begin Phase 2D or repeat scaled fixtures as native qualification. Package 0.8.15 observes two fresh 32 MiB eCryptfs/ext4 fixtures on owner-confirmed test Ubuntu 24.04.5 aarch64/Linux 7.0.0-38-generic: 44 independent FD/PID/inode matches, private new key/mount setup, effective aggregate controls and cleanup. Offline suite 93 tests. The exact raw report, profile, bindings and readback source are supplied below.
+Milestone: resolve the exact pinned private-fork/VMM storage contract and an admissible supported cache/disk layout, then prepare only necessary matching-platform compatibility checks once layout/admission and bound commands are concrete. Stop at this independently reproducible milestone or the smallest concrete blocked boundary. Do not begin Phase 2D or repeat scaled fixtures as native qualification. Package 0.8.15 observes two fresh 32 MiB eCryptfs/ext4 fixtures on owner-confirmed test Ubuntu 24.04.5 aarch64/Linux 7.0.0-38-generic: 44 independent FD/PID/inode matches, private new key/mount setup, effective aggregate controls and cleanup. Offline suite 93 tests. The exact raw report, profile, bindings and readback source are supplied below.
+
+Package 0.8.16 verifies SBX 0.46.0 archive/all eleven bundle members as data. Main Go module is v0.46.0+dirty, vcs.modified=true; containerd/v2 v2.3.5 is replaced by docker-next-containerd/v2 v2.3.5-internal.2 and diskfs by a private replacement. Engine v0.43.1 and Sailor v0.136.0 source are unavailable anonymously; EROFS base commit b96836c051cbdbc0e21f0f8e8396bd239b56c4a5 has declared private Docker-next patches. Do not substitute upstream comparison source for exact executable behavior or recover credentials for private repository access. Archived public sources/statements and readback reproduce without old temporary directories. Symbol/string presence is not selected-path or supported-layout evidence.
+
+The EROFS base ordinary-file hole-punch path falls back to zero pwrite; bundled patches/build options remain unknown. Continuity v0.5.0 initial SEEK_DATA EINVAL falls back to plain copy, but later copy_file_range fallback accepts only EXDEV/ENOSYS/EOPNOTSUPP, not observed EINVAL. Do not claim runtime route selection or add a vendor/custom fallback. bbolt needs actual advisory-lock/read-map/grow/sync/transaction/exhaustion evidence; earlier generic mmap is insufficient. Historical dockerVolume=1g is only a setting; ROOT_SIZE literal/requested 3g is not effective disk evidence. No immutable entire-cache or compatible split interface is established. Pruned hypothetical requested 3g+1g upper/lower layout totals 9697333533 logical bytes, already 1107398941 over ceiling before other layers. Unknown inventory also refuses. Host encrypted allocation cannot bound guest ext4 sparse apparent files. Smallest missing capability is the exact supported storage contract/layout, not a paid host or unchanged import retry. No runnable paid batch yet; resolve layout, peak ledger, identities and observation/supervision first.
 
 At 8 MiB, truncate/seek-write/pwrite/mmap/hardlink/deleted-open and metadata work; 40 MiB growth returns ENOSPC with partial lower/FD state preserved. Preallocate/reflink/hole-punch return ENOTSUP, copy-range EINVAL. Large copy/clone/hole cases fail during source/write preparation before those syscalls. Determine which operations pinned SBX/containerd/EROFS/VMM actually requires and whether supported fallbacks/layouts exist. Do not call unsupported operations compatible or count them as exhaustion passes. Same-identity chown/socket works; privileged chown and actual image/cache semantics remain untested. Scaled no-hole growth is not a universal logical ceiling or guest apparent-size proof.
 
@@ -344,3 +350,28 @@ Additional 0.8.15 local Linux storage inputs:
 - `scripts/prepare_linux_storage.py`
 - `scripts/probe_storage_boundary.py`
 - `tests/acceptance/test_phase_2c_storage_observer.py`
+
+Additional 0.8.16 pinned storage requirements inputs:
+
+- `docs/PINNED-SBX-STORAGE-REQUIREMENTS.md`
+- `docs/qualification/phase-2c-sbx-storage-research-v1.json`
+- `docs/qualification/phase-2c-sbx-storage-provenance-v1.json`
+- `docs/qualification/phase-2c-sbx-storage-sbom-v1.json`
+- `docs/qualification/phase-2c-sbx-storage-pruned-refused-v1.json`
+- `docs/qualification/phase-2c-sbx-storage-inventory-v1.json`
+- `docs/qualification/phase-2c-sbx-storage-readback-v1.py`
+- `docs/qualification/sbx-storage-source-v1/bbolt-db.go.txt`
+- `docs/qualification/sbx-storage-source-v1/bbolt-unix.go.txt`
+- `docs/qualification/sbx-storage-source-v1/containerd-erofs-mount.go.txt`
+- `docs/qualification/sbx-storage-source-v1/containerd-erofs.go.txt`
+- `docs/qualification/sbx-storage-source-v1/containerd-store.go.txt`
+- `docs/qualification/sbx-storage-source-v1/containerd-writer.go.txt`
+- `docs/qualification/sbx-storage-source-v1/continuity-copy-linux.go.txt`
+- `docs/qualification/sbx-storage-source-v1/continuity-copy.go.txt`
+- `docs/qualification/sbx-storage-source-v1/erofs-io.c.txt`
+- `docs/qualification/phase-2c-sbx-storage-verification-v1.json`
+- `docs/qualification/sbx-storage-source-v1/LICENSE-bbolt-MIT.txt`
+- `docs/qualification/sbx-storage-source-v1/LICENSE-containerd-Apache-2.0.txt`
+- `docs/qualification/sbx-storage-source-v1/LICENSE-erofs-MIT.txt`
+- `docs/qualification/sbx-storage-source-v1/COPYING-erofs.txt`
+- `docs/qualification/sbx-storage-source-v1/README.md`

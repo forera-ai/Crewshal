@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "ceiling": {
+    "logical_bytes": 8589934592,
+    "allocated_bytes": 8589934592
+  },
+  "execution_allowed": false,
+  "native_start_allowed": false,
+  "id": "crewshal-phase-2c-sbx-storage-inventory-v1",
+  "scope": "required representation checklist; no runtime layout selected",
+  "objects": [
+    {
+      "id": "pruned-archive-plus-bundle-expectation",
+      "logical_bytes": 1107398941,
+      "allocated_bytes": null
+    },
+    {
+      "id": "account-state-copy",
+      "logical_bytes": null,
+      "allocated_bytes": null
+    },
+    {
+      "id": "compressed-content-cache",
+      "logical_bytes": null,
+      "allocated_bytes": null
+    },
+    {
+      "id": "expanded-or-temporary-layer-data",
+      "logical_bytes": null,
+      "allocated_bytes": null
+    },
+    {
+      "id": "erofs-data-and-metadata-images",
+      "logical_bytes": null,
+      "allocated_bytes": null
+    },
+    {
+      "id": "host-root-writable-image-upper",
+      "logical_bytes": null,
+      "allocated_bytes": null
+    },
+    {
+      "id": "host-docker-volume-upper",
+      "logical_bytes": null,
+      "allocated_bytes": null
+    },
+    {
+      "id": "encrypted-lower-files",
+      "logical_bytes": null,
+      "allocated_bytes": null
+    },
+    {
+      "id": "fixture-backing-file",
+      "logical_bytes": null,
+      "allocated_bytes": null
+    },
+    {
+      "id": "guest-apparent-root-and-docker-content",
+      "logical_bytes": null,
+      "allocated_bytes": null
+    },
+    {
+      "id": "guest-and-inner-scratch-candidate",
+      "logical_bytes": null,
+      "allocated_bytes": null
+    },
+    {
+      "id": "deleted-open-inodes",
+      "logical_bytes": null,
+      "allocated_bytes": null
+    },
+    {
+      "id": "logs-reports-sockets-and-metadata",
+      "logical_bytes": null,
+      "allocated_bytes": null
+    },
+    {
+      "id": "research-inputs-if-retained-at-runtime",
+      "logical_bytes": null,
+      "allocated_bytes": null
+    }
+  ],
+  "limitations": [
+    "Only preparation logical expectation is supplied; every allocation and all runtime counts unresolved.",
+    "Include peak coexisting conversion representations and both host/guest apparent contents.",
+    "Hardlink aliases retain device/inode identity; no inferred compression/reflink discount.",
+    "Inventory plus arithmetic is not enforcement or authority."
+  ]
+}

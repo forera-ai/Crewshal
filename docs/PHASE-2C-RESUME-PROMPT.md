@@ -2,10 +2,14 @@
 
 Phase 2C remains incomplete. Package 0.8.10 resolves [isolated Docker authentication](ISOLATED-DOCKER-AUTHENTICATION.md). Retained new private account state works in two fresh denied-network fixtures; no additional login approval or new droplet is needed. Exact OCI metadata and deterministic archive are prepared. Supported local template import fails with 500/ENOSPC under conservative storage controls. Complete operational manifest and inner enforcement remain unavailable; all execution/native-start flags stay false.
 
+Latest continuation checkpoint: package 0.8.11 adds [storage control investigation](STORAGE-CONTROL-INVESTIGATION.md). No runtime-compatible control is selected or qualified. Current retained-host connection context was absent from the 2026-10-05 session and requested; no remote operation or new freeze/qualification occurred. Supply current connection details before host work. Prior grants, retained authentication and preparation remain the intended prerequisites; their current state must be reverified.
+
 ## Initial prompt
 
 ```text
 Continue Crewshal in /Volumes/X10Pro/Crewshal. Resume Phase 2C only; no 2D. Use caveman ultra, Jev decision support and codebase-memory graph/coverage access after checking live availability. Read AGENTS.md, HANDOFF.md, DEVELOPMENT-PLAN.md, ARCHITECTURE.md, accepted ADR 0002 and all relevant exact inputs below. Verify HEAD/status and graph freshness; preserve unrelated work.
+
+Latest baseline 0.8.11 adds STORAGE-CONTROL-INVESTIGATION.md. Read its unqualified candidate/compatibility checklist. The 2026-10-05 chat lacked current retained-host address/user/authentication context; supply it if this continuation still lacks it. Do not recover connection context from ambient credential stores, SSH configuration or private prior history. No remote work, storage resolution, complete freeze or qualification was performed at that checkpoint. Reverify retained host/preparation/account after connection. Source-inferred FAT/eCryptfs or immutable-cache layouts are candidates only; no host support or SBX compatibility is established. Resolve accounting layers, bypass denial and independent exhaustion/compatibility before promotion.
 
 Baseline 0.8.10 adds ISOLATED-DOCKER-AUTHENTICATION.md and the new exact inputs below. Read it before historical discovery evidence. Direct owner authorization for isolated Docker login is recorded in phase-2c-isolated-auth-authorization-v1.json; do not ask again. V1 device window expired, v2 embedded JSON booleans failed before login, corrected v3 login exited zero after 116.561 seconds. Private new account state remains on the same retained host. Never access ambient credential stores or publish tokens/account metadata; this retained explicitly created state is the permitted prerequisite. Resource and bounded discovery authority remain resolved.
 
@@ -284,3 +288,7 @@ Additional 0.8.10 inputs:
 - `docs/qualification/phase-2c-isolated-auth-v3-transport.txt`
 - `docs/qualification/phase-2c-oci-archive-v1-runner.txt`
 - `docs/qualification/phase-2c-oci-metadata-v1-runner.txt`
+
+Additional 0.8.11 input:
+
+- `docs/STORAGE-CONTROL-INVESTIGATION.md`

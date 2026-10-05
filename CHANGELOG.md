@@ -2,6 +2,12 @@
 
 Versions follow semantic versioning. Remote branch publication is distinct from a package-registry release; no registry release has occurred.
 
+## 0.8.11 — 2026-10-05
+
+- Record a bounded storage-control source investigation and required compatibility/exhaustion oracles under unchanged approved ceilings; no candidate is selected or qualified.
+- Record missing current retained-host connection context, preserve host/account/artifacts and correct the current handoff version.
+- Reproduce 78 network-denied offline tests. No remote operation, operational freeze, inner/native probe or Phase 2D work occurred.
+
 ## 0.8.10 — 2026-10-03
 
 - Resolve owner-authorized isolated Docker device authentication; preserve expired and failed variants, successful private state and kernel controller/filter observations.

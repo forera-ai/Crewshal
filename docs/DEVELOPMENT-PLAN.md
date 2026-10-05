@@ -121,3 +121,7 @@ Version 0.8.8 records direct discovery ordering approval and source-bound admiss
 ### Phase 2C authenticated admission checkpoint — 0.8.10
 
 Owner-authorized new isolated Docker sign-in succeeds, and retained state authenticates fresh offline listings twice. Local template import remains denied by conservative storage, with bounded containerd ENOSPC diagnostics; complete freeze and inner enforcement remain incomplete. Resolve supported cache/guest storage with independent logical and allocated aggregate ceilings before starting a guest. Preserve all failures, host and private account state. See [assessment](ISOLATED-DOCKER-AUTHENTICATION.md) and [continuation inputs](PHASE-2C-RESUME-PROMPT.md). Do not re-request resolved login/resource/discovery authority or start Phase 2D.
+
+### Phase 2C storage investigation/access checkpoint — 2026-10-05
+
+Version 0.8.11 records [bounded source investigation](STORAGE-CONTROL-INVESTIGATION.md), unqualified existing-filesystem/layout candidates and the required independent compatibility/exhaustion checks. Current retained-host connection context is absent and was requested. No remote operation, operational freeze or qualification run occurred. All 78 network-denied offline tests pass; storage and full 2C remain unresolved. Keep the host/account/artifacts and unchanged ceilings. Resume only 2C with current access and [the exact inputs](PHASE-2C-RESUME-PROMPT.md).

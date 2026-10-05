@@ -2,6 +2,11 @@
 
 Versions follow semantic versioning. Remote branch publication is distinct from a package-registry release; no registry release has occurred.
 
+## 0.8.13 — 2026-10-05
+
+- Record owner confirmation that the droplet was removed and prepare the next standalone Phase 2C prompt under the local-first test cost policy.
+- Preserve unknown private artifact survival and all qualification gates; no remote operation or runtime test.
+
 ## 0.8.12 — 2026-10-05
 
 - Replace mandatory droplet retention/per-session host checks with owner-approved necessary test batches after substantive changes; prefer local checks and VMware Ubuntu when sufficient.

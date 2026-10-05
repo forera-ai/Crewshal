@@ -1,0 +1,14 @@
+{
+  "corrected_preparation": "/tmp/crewshal-storage-source-20261005-v1/prepare_linux_storage.py: OK\n{\"input_logical_bytes\": 45694608, \"input_allocated_bytes\": 47144960, \"bound_files\": 1338}\n",
+  "credentials_in_artifacts": false,
+  "execution_allowed": false,
+  "initial_refusal": "/tmp/crewshal-storage-source-20261005-v1/prepare_linux_storage.py: OK\n/tmp/crewshal-storage-source-20261005-v1/observe_linux_storage.py: OK\n/tmp/crewshal-storage-source-20261005-v1/probe_storage_boundary.py: OK\n/tmp/crewshal-storage-source-20261005-v1/probe_storage_operations.py: OK\nTraceback (most recent call last):\n  File \"/tmp/crewshal-storage-source-20261005-v1/prepare_linux_storage.py\", line 128, in <module>\n    main()\n  File \"/tmp/crewshal-storage-source-20261005-v1/prepare_linux_storage.py\", line 105, in main\n    for dependency in dependencies(Path(tool)):\n                      ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/crewshal-storage-source-20261005-v1/prepare_linux_storage.py\", line 34, in dependencies\n    raise RuntimeError(\"vendor dependency inventory unavailable\")\nRuntimeError: vendor dependency inventory unavailable\n",
+  "initial_source_reconstructed_and_digest_matched": true,
+  "initial_source_sha256": "98d11373784c245f2cf6c71bbd3272478a1e094c22a6969f00372357041b5499",
+  "native_start_allowed": false,
+  "schema_version": 1,
+  "transport_limitations": [
+    "A long external cleanup JSON request exceeded PTY input capacity and was cancelled before execution; short requests worked.",
+    "VMware argument processing expanded shell loop variable before the inner shell; incorrect external status request is not treated as evidence."
+  ]
+}

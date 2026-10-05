@@ -1,5 +1,7 @@
 # Phase 2C necessary storage qualification batch
 
+Historical 0.8.14 checkpoint. Current local setup/observations and remaining compatibility gaps are in [the 0.8.15 assessment](PHASE-2C-LOCAL-STORAGE-ASSESSMENT.md); use its final bound profile, not unbound historical argv.
+
 Date: 2026-10-05. **Prepared, not executed or authorized for a paid host.** This is a reviewable dependency-ordered command/test specification. The file-operation payload is executable; mount/key/observer and operational profiles are not yet completely bound. Do not mistake this document for the complete operational manifest. See [design and blockers](PHASE-2C-STORAGE-DESIGN.md).
 
 ## Stage 0: offline reproduction, no Linux host needed

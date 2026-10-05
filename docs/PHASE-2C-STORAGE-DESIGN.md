@@ -1,5 +1,7 @@
 # Phase 2C storage design and accounting checkpoint
 
+Historical 0.8.14 checkpoint. Current local setup/observations and remaining compatibility gaps are in [the 0.8.15 assessment](PHASE-2C-LOCAL-STORAGE-ASSESSMENT.md); use its final bound profile, not unbound historical argv.
+
 Date: 2026-10-05. Base: `d656f4f95c07eee2529e55220ef614863b4132ed`, clean `codex/phase1-architecture`, package 0.8.13. Delivery: 0.8.14. **Blocked: no runtime-compatible storage design is qualified.** This checkpoint adds reproducible accounting and file-operation diagnostics, rather than another unchanged template-load attempt. All historical qualification inputs remain immutable.
 
 ## Requirements and accounting layers

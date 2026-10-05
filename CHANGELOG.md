@@ -2,6 +2,12 @@
 
 Versions follow semantic versioning. Remote branch publication is distinct from a package-registry release; no registry release has occurred.
 
+## 0.8.15 — 2026-10-05
+
+- Resolve supported private eCryptfs key/mount setup on the owner's test Ubuntu arm64 guest; fix diagnostic mount-view binding with existing bubblewrap/libseccomp/setpriv, preserving every failed profile.
+- Observe two fresh 32 MiB Linux fixtures: 44 independently matched FD/PID/inode results, effective aggregate limits and scoped cleanup. Record unsupported filesystem operations as runtime compatibility gaps.
+- Add three fresh identity/refusal/inventory methods (93 offline tests), reproducible public readback, exact helper bindings and the next Phase 2C compatibility prompt. Runtime/native execution and Phase 2D remain gated.
+
 ## 0.8.14 — 2026-10-05
 
 - Add offline conservative storage accounting and bounded trusted file-operation diagnostics; refuse overflow, unknown counts and existing fixture paths while preserving actual errno/partial file state.

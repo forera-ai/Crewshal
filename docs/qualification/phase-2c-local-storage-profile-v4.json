@@ -1,0 +1,58 @@
+{
+  "backing_bytes_per_fixture": 33554432,
+  "base_revision": "c30c8eb270520d6fc5296f1864d0d1ee3a26e411",
+  "bindings_sha256": "5551914aac5f6a57ae82e3c989a58884a494a435b81a1f70d2dc34325a8b0f5f",
+  "cases": 11,
+  "cleanup_reserve_seconds": 30,
+  "command_seconds": 10,
+  "execution_allowed": false,
+  "native_start_allowed": false,
+  "observer_argv": [
+    "/usr/bin/python3",
+    "-I",
+    "-S",
+    "-B",
+    "/srv/crewshal-storage-inputs-20261005-v6/observe_linux_storage.py",
+    "--inputs",
+    "/srv/crewshal-storage-inputs-20261005-v6",
+    "--slice",
+    "crewshal-storage-local-v1.slice",
+    "--report",
+    "/tmp/crewshal-storage-observed-20261005-v4.json"
+  ],
+  "observer_properties": {
+    "KillMode": "control-group",
+    "PrivateMounts": "yes",
+    "PrivateNetwork": "yes",
+    "ProtectHome": "yes",
+    "RuntimeMaxSec": "570s",
+    "TimeoutStopSec": "30s"
+  },
+  "observer_unit": "crewshal-storage-observer-20261005-v4.service",
+  "operational_manifest_frozen": false,
+  "output_metadata_reserve_bytes": 16777216,
+  "schema_version": 1,
+  "scope": "two fresh local synthetic eCryptfs fixtures; no SBX",
+  "sizes_bytes": [
+    8388608,
+    41943040
+  ],
+  "slice": "crewshal-storage-local-v1.slice",
+  "slice_properties": {
+    "CPUQuota": "100%",
+    "MemoryMax": 805306368,
+    "MemorySwapMax": 0,
+    "TasksMax": 128
+  },
+  "source_helper_reserve_bytes": 268435456,
+  "sources": {
+    "scripts/observe_linux_storage.py": "bee28890cbc7a4efa8f2f483a1d0d14975fcf6a32534e670e03c834397f3c5eb",
+    "scripts/prepare_linux_storage.py": "efeb1ad656f2434baa85cffc34199ffd5db2d7e3c4609c12f79f943352dd42b6",
+    "scripts/probe_storage_boundary.py": "2aaefb14aafaeefbefe848cce98c584e05d0e4b36c96eb7cadc35da91f3bb7de",
+    "scripts/probe_storage_operations.py": "b5072ac70ee5eceb40f885a7c045dc420548cff8e4432977eb80fb25d83b49a0"
+  },
+  "startup_seconds_per_fixture": 120,
+  "stream_bytes": 65536,
+  "vendor_copy_reserve_bytes": 268435456,
+  "whole_seconds": 600
+}

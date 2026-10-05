@@ -1,0 +1,21 @@
+{
+  "crewshal-storage-observer-20261005-v1.service": "MainPID=0\nLoadState=loaded\nActiveState=failed",
+  "crewshal-storage-observer-20261005-v2.service": "MainPID=0\nLoadState=loaded\nActiveState=failed",
+  "crewshal-storage-observer-20261005-v3.service": "MainPID=0\nLoadState=loaded\nActiveState=failed",
+  "crewshal-storage-observer-20261005-v4.service": "MainPID=0\nLoadState=loaded\nActiveState=failed",
+  "crewshal-storage-observer-20261005-v5.service": "MainPID=0\nLoadState=loaded\nActiveState=failed",
+  "crewshal-storage-observer-20261005-v6.service": "MainPID=0\nLoadState=not-found\nActiveState=inactive",
+  "execution_allowed": false,
+  "failed_transient_units_reset": "confirmed: representative v1 LoadState=not-found; all five reset command exited zero",
+  "final_cleanup_report_removed": true,
+  "guest_state": "left running; existing test guest not deleted; installed keyutils retained",
+  "input_removal_readback": "/srv/crewshal-storage-inputs-20261005-v5 False\n/srv/crewshal-storage-inputs-20261005-v6 False\n/srv/crewshal-storage-inputs-20261005-v7 False\n/srv/crewshal-storage-inputs-20261005-v8 False\n/tmp/crewshal-storage-source-20261005-v1 False\nControlGroup=\nActiveState=inactive\n",
+  "known_new_report_paths_removed": 60,
+  "last_readback": "{\"owned_report_paths_absent\": true, \"known_paths\": 60}\nMainPID=0\nLoadState=not-found\nControlGroup=\nActiveState=inactive\n",
+  "native_start_allowed": false,
+  "owned_cgroup_populated_after_run": 0,
+  "owned_loop_unattached_after_run": true,
+  "owned_mounts": [],
+  "owned_prepared_inputs_absent": true,
+  "slice_file_absent": true
+}

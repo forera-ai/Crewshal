@@ -2,6 +2,12 @@
 
 Versions follow semantic versioning. Remote branch publication is distinct from a package-registry release; no registry release has occurred.
 
+## 0.8.18 — 2026-10-06
+
+- Conclude the current SBX pilot investigation with an evidence-bounded NO-GO; propose direct Linux qualification without a nested guest/private image conversion dependency.
+- Map every original mandatory case to the proposed replacement observation boundary; retain all criteria, grants, ceilings and execution denial. The owner topology decision remains pending.
+- Prepare a pinned read-only local Linux admission batch and demonstrate explicit Darwin refusal. Stop repeated storage-documentation/import trials; native, broker, paid-host and Phase 2D authority remain gated.
+
 ## 0.8.17 — 2026-10-05
 
 - Pin release-era Docker storage documentation and byte-bound excerpts; distinguish documented root controls, XDG roots and creation overrides from effective runtime disk evidence.

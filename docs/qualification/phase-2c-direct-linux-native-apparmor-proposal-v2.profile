@@ -1,0 +1,38 @@
+# Proposed fixture-only policy. Not loaded; requires the pending owner decision.
+# Exact new vendor attachment only. No global userns setting changes.
+abi <abi/4.0>,
+
+profile crewshal-native-bwrap-v1 /{opt/codex/codex-resources/bwrap,var/tmp/crewshal-native-discovery-v1/root/opt/codex/codex-resources/bwrap} {
+  userns,
+  capability,
+  network,
+  mount,
+  umount,
+  pivot_root,
+  signal,
+  ptrace,
+  /** rwklm,
+  /** Px -> crewshal-native-tool-v1,
+}
+
+# Only the trusted new bubblewrap profile enters this payload domain.
+# Every subsequent exec inherits it; calling bubblewrap cannot regain setup rights.
+profile crewshal-native-tool-v1 {
+  deny userns,
+  deny capability,
+  deny mount,
+  deny umount,
+  deny pivot_root,
+  /** rm,
+  /candidate/owned/ rwkm,
+  /candidate/owned/** rwkm,
+  /scratch/ rwkm,
+  /scratch/** rwkm,
+  /dev/null rw,
+  /** ix,
+  network unix,
+  signal (send, receive) peer=crewshal-native-tool-v1,
+  signal (receive) peer=unconfined,
+  signal (receive) peer=crewshal-native-bwrap-v1,
+  ptrace (readby) peer=unconfined,
+}

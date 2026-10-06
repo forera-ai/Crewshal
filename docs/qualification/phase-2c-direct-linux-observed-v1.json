@@ -1,0 +1,30 @@
+{
+  "manifest_sha256": "53a34540e5319915020b6522ecb17b54a249ac1af729164a46f81d42da1720bd",
+  "fixtures": [
+    {
+      "fixture": 1,
+      "aggregate": {
+        "memory.max": "805306368",
+        "memory.swap.max": "0",
+        "cpu.max": "100000 100000",
+        "pids.max": "128",
+        "cgroup.events": "populated 1\nfrozen 0"
+      },
+      "worker": {
+        "memory.max": "134217728",
+        "memory.swap.max": "0",
+        "cpu.max": "100000 100000",
+        "pids.max": "32",
+        "cgroup.events": "populated 0\nfrozen 0"
+      },
+      "cleanup": {
+        "owned_mounts_removed": true,
+        "worker": "populated 0\nfrozen 0"
+      },
+      "seconds": 0.0031907310003589373
+    }
+  ],
+  "execution_allowed": false,
+  "native_start_allowed": false,
+  "scope": "mechanism subset only; not native/broker qualification"
+}

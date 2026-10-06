@@ -1,0 +1,37 @@
+{
+  "status": "proposed; not kernel-loaded; owner answer pending",
+  "profile": "phase-2c-direct-linux-native-apparmor-proposal-v2.profile",
+  "profile_sha256": "ea9b2af6c65280a7a852563366a18d5fba8fcd64faabdcea18f9e4317454294d",
+  "parser_sha256": "2230696ee1f043f6a38c9c72ac8ba240942791fc86aa5ba85992789b2b13b318",
+  "abi_4_sha256": "e510bb8f6788b45e48de2f859a6f94a7b8416cbac5a1051814cfce925fa911bd",
+  "parse_exit": 0,
+  "parse_seconds": 0.011,
+  "parse_flags": [
+    "--config-file",
+    "/dev/null",
+    "--skip-cache",
+    "--skip-kernel-load",
+    "--jobs",
+    "1",
+    "--max-jobs",
+    "1"
+  ],
+  "global_userns_restriction": 1,
+  "kernel_audit_observed": [
+    {
+      "profile": "unprivileged_userns",
+      "operation": "capable",
+      "capname": "net_admin",
+      "denied": true
+    },
+    {
+      "profile": "unprivileged_userns",
+      "operation": "capable",
+      "capname": "setpcap",
+      "denied": true
+    }
+  ],
+  "execution_allowed": false,
+  "native_start_allowed": false,
+  "prior_proposal": "v1 proposed generic payload write permission; v2 narrows writes to candidate/scratch and /dev/null"
+}

@@ -2,6 +2,13 @@
 
 Versions follow semantic versioning. Remote branch publication is distinct from a package-registry release; no registry release has occurred.
 
+## 0.8.19 — 2026-10-06
+
+- Record direct owner approval of ADR 0003 separately, preserving historical proposal and qualification bytes; observe actual local aarch64 Linux admission through owner-supplied SSH authentication.
+- Freeze installed-source/helper/library/kernel bytes and observe two fresh credential-free tmpfs/cgroup fixtures, including hard file/inode/capacity limits, alias/shared-memory exclusions, independently matched deleted-open state, detached deadlines and cleanup. Preserve all failed variants and artifact-transport limitations.
+- Acquire and bind official matching-platform Codex/proxy archives; observe eight isolated version/help passes and preserve actual AppArmor sandbox-startup refusal. Prepare a fixture-only role-policy resolver without kernel loading and a bounded unexecuted next probe. Preserve global protections and unchanged limits.
+- Add reproducible public mechanism/native readback and concrete pinned native/proxy acquisition prerequisites. Native, broker and the complete original twenty-case profile remain unqualified; artifact acquisition is authorized within bounded fixture preparation. Agent execution and Phase 2D remain denied.
+
 ## 0.8.18 — 2026-10-06
 
 - Conclude the current SBX pilot investigation with an evidence-bounded NO-GO; propose direct Linux qualification without a nested guest/private image conversion dependency.

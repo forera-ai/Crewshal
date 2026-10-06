@@ -1,0 +1,9 @@
+{
+  "scope": "prospective provider-free version/help discovery only; not hostile/native qualification",
+  "profile": "phase-2c-direct-linux-native-discovery-profile-v4.json",
+  "profile_sha256": "4dd6bc3e7817fc8d8da53e26b2d1b615deae978d8b9e75ddb358b98fce782403",
+  "manifest": "phase-2c-direct-linux-native-discovery-bindings-v4.json",
+  "manifest_sha256": "bb5ca7af90a272e6c3b18fefe1442aa276ec37a35edc63bd44769a65cc2bca77",
+  "native_start_allowed": false,
+  "execution_allowed": false
+}

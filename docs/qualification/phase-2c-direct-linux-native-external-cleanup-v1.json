@@ -1,0 +1,18 @@
+{
+  "owned_base_absent": true,
+  "owned_input_absent": true,
+  "aggregate_cgroup_absent": true,
+  "temporary_profiles_loaded": [],
+  "global_userns_restriction": "1",
+  "owned_runtime_files": [],
+  "owned_mounts": [],
+  "execution_allowed": false,
+  "native_start_allowed": false,
+  "root_ssh_exit": 0,
+  "ssh_master_exit": 255,
+  "ssh_master_exit_request_status": 0,
+  "ssh_master_limitation": "control master closed after successful exit request but returned 255; no clean-zero master termination claimed",
+  "private_host_preparation_removed": true,
+  "existing_vm_left_running": true,
+  "process_inventory_scope": "owned service cgroup absence only; no exhaustive host PID scan claimed"
+}

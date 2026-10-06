@@ -1,0 +1,216 @@
+{
+  "manifest_sha256": "4459c9c6b60503902e3ee66b722470d03a8736c65c8a11dfb1a23fa98da0ebbf",
+  "fixtures": [
+    {
+      "fixture": 1,
+      "aggregate": {
+        "memory.max": "805306368",
+        "memory.swap.max": "0",
+        "cpu.max": "100000 100000",
+        "pids.max": "128",
+        "cgroup.events": "populated 1\nfrozen 0"
+      },
+      "worker": {
+        "memory.max": "134217728",
+        "memory.swap.max": "0",
+        "cpu.max": "100000 100000",
+        "pids.max": "32",
+        "cgroup.events": "populated 0\nfrozen 0"
+      },
+      "bounds": {
+        "exit": 0,
+        "killed": false,
+        "deleted_open": [],
+        "stdout": "{\"input\": \"read-only synthetic input\", \"uid\": 65534, \"fsize\": [65536, 65536], \"denials\": {\"readonly\": true, \"outside\": true, \"coordinator\": true}, \"/candidate/owned\": {\"created_before_inode_exhaustion\": 127}, \"/scratch\": {\"created_before_inode_exhaustion\": 255}}\n",
+        "stderr": "",
+        "candidate": {
+          "logical": 40,
+          "allocated": 0,
+          "inodes": 1
+        },
+        "scratch": {
+          "logical": 40,
+          "allocated": 0,
+          "inodes": 1
+        },
+        "terminal": "populated 0\nfrozen 0"
+      },
+      "hold": {
+        "exit": -9,
+        "killed": true,
+        "deleted_open": [
+          {
+            "inode": 131,
+            "device": 60,
+            "logical": 12,
+            "allocated": 4096,
+            "links": 0,
+            "cgroup": "0::/crewshaldirectv1.slice/crewshaldirectv4-run.service/worker"
+          }
+        ],
+        "stdout": "{\"pid\": 2, \"fd\": 3, \"inode\": 131, \"device\": 60, \"logical\": 12}\n",
+        "stderr": "",
+        "candidate": {
+          "logical": 40,
+          "allocated": 0,
+          "inodes": 1
+        },
+        "scratch": {
+          "logical": 40,
+          "allocated": 0,
+          "inodes": 1
+        },
+        "terminal": "populated 0\nfrozen 0"
+      },
+      "deadline": {
+        "exit": -9,
+        "killed": true,
+        "deleted_open": [],
+        "stdout": "",
+        "stderr": "",
+        "candidate": {
+          "logical": 40,
+          "allocated": 0,
+          "inodes": 1
+        },
+        "scratch": {
+          "logical": 158,
+          "allocated": 4096,
+          "inodes": 2
+        },
+        "terminal": "populated 0\nfrozen 0"
+      },
+      "heartbeat_stopped": true,
+      "allocation": {
+        "exit": -9,
+        "killed": true,
+        "deleted_open": [],
+        "stdout": "{\"/candidate/owned\": 64, \"/scratch\": 127}\n",
+        "stderr": "",
+        "candidate": {
+          "logical": 4195644,
+          "allocated": 4194304,
+          "inodes": 66
+        },
+        "scratch": {
+          "logical": 8387230,
+          "allocated": 8388608,
+          "inodes": 130
+        },
+        "terminal": "populated 0\nfrozen 0"
+      },
+      "cleanup": {
+        "owned_mounts_removed": true,
+        "worker": "populated 0\nfrozen 0"
+      },
+      "seconds": 5.360497785000916
+    },
+    {
+      "fixture": 2,
+      "aggregate": {
+        "memory.max": "805306368",
+        "memory.swap.max": "0",
+        "cpu.max": "100000 100000",
+        "pids.max": "128",
+        "cgroup.events": "populated 1\nfrozen 0"
+      },
+      "worker": {
+        "memory.max": "134217728",
+        "memory.swap.max": "0",
+        "cpu.max": "100000 100000",
+        "pids.max": "32",
+        "cgroup.events": "populated 0\nfrozen 0"
+      },
+      "bounds": {
+        "exit": 0,
+        "killed": false,
+        "deleted_open": [],
+        "stdout": "{\"input\": \"read-only synthetic input\", \"uid\": 65534, \"fsize\": [65536, 65536], \"denials\": {\"readonly\": true, \"outside\": true, \"coordinator\": true}, \"/candidate/owned\": {\"created_before_inode_exhaustion\": 127}, \"/scratch\": {\"created_before_inode_exhaustion\": 255}}\n",
+        "stderr": "",
+        "candidate": {
+          "logical": 40,
+          "allocated": 0,
+          "inodes": 1
+        },
+        "scratch": {
+          "logical": 40,
+          "allocated": 0,
+          "inodes": 1
+        },
+        "terminal": "populated 0\nfrozen 0"
+      },
+      "hold": {
+        "exit": -9,
+        "killed": true,
+        "deleted_open": [
+          {
+            "inode": 131,
+            "device": 60,
+            "logical": 12,
+            "allocated": 4096,
+            "links": 0,
+            "cgroup": "0::/crewshaldirectv1.slice/crewshaldirectv4-run.service/worker"
+          }
+        ],
+        "stdout": "{\"pid\": 2, \"fd\": 3, \"inode\": 131, \"device\": 60, \"logical\": 12}\n",
+        "stderr": "",
+        "candidate": {
+          "logical": 40,
+          "allocated": 0,
+          "inodes": 1
+        },
+        "scratch": {
+          "logical": 40,
+          "allocated": 0,
+          "inodes": 1
+        },
+        "terminal": "populated 0\nfrozen 0"
+      },
+      "deadline": {
+        "exit": -9,
+        "killed": true,
+        "deleted_open": [],
+        "stdout": "",
+        "stderr": "",
+        "candidate": {
+          "logical": 40,
+          "allocated": 0,
+          "inodes": 1
+        },
+        "scratch": {
+          "logical": 159,
+          "allocated": 4096,
+          "inodes": 2
+        },
+        "terminal": "populated 0\nfrozen 0"
+      },
+      "heartbeat_stopped": true,
+      "allocation": {
+        "exit": -9,
+        "killed": true,
+        "deleted_open": [],
+        "stdout": "{\"/candidate/owned\": 64, \"/scratch\": 127}\n",
+        "stderr": "",
+        "candidate": {
+          "logical": 4195644,
+          "allocated": 4194304,
+          "inodes": 66
+        },
+        "scratch": {
+          "logical": 8387231,
+          "allocated": 8388608,
+          "inodes": 130
+        },
+        "terminal": "populated 0\nfrozen 0"
+      },
+      "cleanup": {
+        "owned_mounts_removed": true,
+        "worker": "populated 0\nfrozen 0"
+      },
+      "seconds": 5.353361307999876
+    }
+  ],
+  "execution_allowed": false,
+  "native_start_allowed": false,
+  "scope": "mechanism subset only; not native/broker qualification"
+}

@@ -14,28 +14,34 @@ Current 0.8.16 checkpoint: [pinned SBX storage requirements](PINNED-SBX-STORAGE-
 
 Current 0.8.17 checkpoint: [release-era storage contract boundary](PHASE-2C-STORAGE-CONTRACT.md) pins ROOT_SIZE documentation, three Linux XDG roots and creation-command Docker size semantics. A command override is not reflected in settings-get and needs independent disk readback. Seven exact unanswered fields remain in the contract record. The smaller 1 GiB root/512 MiB Docker hypothesis is unvalidated and refuses; its 5,939,237,149-byte known subtotal is not admission. No runtime or host operation occurred.
 
-Current 0.8.18 checkpoint: [finite exit decision](decisions/0003-direct-linux-qualification.md) concludes the current SBX investigation is NO-GO for this pilot under available evidence. Direct Linux replacement topology is proposed, not approved. [Pinned read-only admission batch](PHASE-2C-DIRECT-LINUX-ADMISSION.md) is prepared; no Linux/native/broker test ran. Original twenty cases, resource ceilings and denial flags are unchanged. The current prompt below supersedes the prior instruction to keep reconstructing private SBX storage contracts. Do not repeat research-only closures or unchanged import attempts.
+Prior 0.8.18 checkpoint: [finite exit decision](decisions/0003-direct-linux-qualification.md) concludes the current SBX investigation is NO-GO for this pilot under available evidence. Direct Linux replacement topology is proposed, not approved. [Pinned read-only admission batch](PHASE-2C-DIRECT-LINUX-ADMISSION.md) is prepared; no Linux/native/broker test ran. Original twenty cases, resource ceilings and denial flags are unchanged. The current prompt below supersedes the prior instruction to keep reconstructing private SBX storage contracts. Do not repeat research-only closures or unchanged import attempts.
+
+Current 0.8.19 checkpoint: [actual direct Linux admission and final kernel fixtures](PHASE-2C-DIRECT-LINUX-ASSESSMENT.md) pass on the owner-accessible aarch64 test guest. ADR 0003 is owner-approved through a separate bound record. Kernel mechanism v5 passes twice with scoped cleanup; all native/broker and complete twenty-case gates remain unavailable. [Pinned native/proxy preparation](PHASE-2C-DIRECT-LINUX-NATIVE-PREREQUISITES.md) is covered by the existing bounded feasibility authority; official matching-platform archives were acquired and verified; isolated version/help passes twice. Actual native sandbox startup refuses under host AppArmor. Fixture-only AppArmor decision remains pending; no profile was loaded. Preserve failures, transport limitations and denial.
 
 ## Initial prompt
 
 ```text
-Continue Crewshal in /Volumes/X10Pro/Crewshal from 0.8.18, Phase 2C only. Keep caveman ultra, Jev advice and codebase-memory Verify available. Read AGENTS.md, docs/HANDOFF.md, docs/DEVELOPMENT-PLAN.md, docs/ARCHITECTURE.md, ADR 0002, proposed ADR 0003, PHASE-2C-DIRECT-LINUX-ADMISSION.md and phase-2c-exit-decision-v1.json first. Verify Git state and graph generation/coverage; preserve unrelated work and every historical qualification byte.
+Continue Crewshal in /Volumes/X10Pro/Crewshal from 0.8.19, Phase 2C only. Keep caveman ultra, Jev advice and codebase-memory Verify active. Read AGENTS.md, HANDOFF.md, DEVELOPMENT-PLAN.md, ARCHITECTURE.md, ADRs 0002/0003, PHASE-2C-DIRECT-LINUX-ASSESSMENT.md, PHASE-2C-DIRECT-LINUX-NATIVE-PREREQUISITES.md, the separate owner approval, final mechanism profile/bindings/freeze/observed v5 and external cleanup first. Confirm Git state and graph generation/coverage; preserve every historical qualification byte and unrelated work.
 
-Active action is a finite topology decision, not more SBX storage research. Current SBX route is NO-GO for the pilot under existing evidence; this is not a general vendor security claim. Direct Linux using existing bubblewrap/setpriv/systemd/kernel limits, native/tool authority separation and only an existing supported external proxy is proposed for owner approval. ADR 0003 is not an executable manifest. Confirm direct human approval before adopting it; do not infer that "continue/get rid of 2C" removed the retained material-architecture gate. Do not build a custom gateway, model loop or substitute runtime. If approval is missing, present this concrete proposal once; no repeated source-only milestone/version churn.
+ADR 0003 is already owner-approved. Do not ask for that approval again or resume SBX storage research. Actual Linux admission and the final credential-free kernel mechanism subset passed twice. Readback command: rtk proxy .venv/bin/python -I -B docs/qualification/phase-2c-direct-linux-readback-v1.py. This verifies recorded evidence only. Existing VMware Ubuntu was left running, aarch64 Linux 7.0.0-38-generic/Python 3.12.3. SSH/root roles were observed with owner-supplied authentication; no credential is in public inputs. Do not recover authentication from files or assume current host state.
 
-After approval, use only an owner-accessible existing disposable Linux shell for the exact read-only admission batch. Do not assume the earlier VM/access/password survives, recover credentials, boot a new guest, or request a paid host merely to explore. Admission source eaf4f37bf1655d9754f1a12421f53673a62558c532ed46fdc0aabebb0b7e936d is 2061 bytes. Exact batch/copy/output/timeout/cleanup instructions are in PHASE-2C-DIRECT-LINUX-ADMISSION.md. Exit zero is inventory only, not admission or qualification. Darwin returns expected unavailable/exit 2. Match observed architecture; aarch64 evidence does not qualify amd64.
+Next concrete capability: supported native/tool separation and startup under the original envelope. Native discovery v4 passes eight version/help commands; compatibility v1 fails before payload with AppArmor net_admin/setpcap denials. Read native-readback-v1.py, native-external-cleanup-v1.json, native-apparmor-proposal-v2.json/.profile and native-compatibility-proposal-v2.json. Current owner question asks for a temporary exception only on the exact copied fixture bubblewrap; global restrictions and original grants remain unchanged. Check the direct owner answer before loading policy; do not treat the unanswered question as approval. This is a host policy/role change, not another artifact-download gate. The earlier acquisition question was too broad: ADR 0003 forbids runtime automatic downloads, while deliberate pinned fixture preparation is already authorized. Its unanswered optional preference is not a new gate or approval. No paid host, provider call, global daemon, sign-in, automatic installer or custom credential gateway is authorized.
 
-Then freeze a concrete installed-source/helper/library/kernel/interpreter/native/configuration/observer-bound mechanism profile before mutation. Test read-only vendor/input root; candidate/scratch logical and allocated limits; sparse files, inode/cardinality/metadata, hardlinks and deleted-open state; syscall/native compatibility; complete cgroup placement; five-second deadline/cancellation; independent FD/data/PID/controller/sink observation and scoped cleanup. No physical-size-only logical inference or silent layer discount. No unsupported operation becomes an exhaustion pass.
+The proposed compatibility_v2 source has NOT run. If the fixture policy is authorized, create fresh source-bound v1 archive preparation, then use its v2 prepare mode to copy existing system bwrap/dependencies and bind parser/ABI/policy. Freeze source/configuration/installed identities and loaded policy readback before v2 run. Only the copied native bwrap may set up namespaces; its payload transition must deny userns/mounts and preserve that denial across every exec. The outer existing root bwrap/setpriv drops native UID/caps first. Parent SystemCallFilter blocks anonymous shared storage/hardlinks/xattrs. Test that these proposed mechanisms work; parse success proves syntax only. Preserve any failure with a new profile, never amend an executed source. All temporary policy identities must be removed after the batch.
 
-Preserve all twenty original criteria and empty code-tool worker/validator network and credential grants. Native transport is a separately constrained trusted request role, not a resource/filesystem bypass. Native process plus all code-tool descendants share original 134217728 memory bytes, zero swap, one CPU, 32 tasks, five seconds. Separate sequential validator has the same limits and readonly frozen copy. Aggregate processes remain 805306368 memory bytes, one CPU, 128 tasks, zero swap; aggregate logical/allocated disk each 8589934592 bytes. Candidate 16777216; scratch 33554432; no new guest or repurposed guest memory. Commands ten seconds/65536 bytes per stream; startup 120 seconds per fixture; two fixtures/cleanup 600 seconds with final 30 reserved. No automatic limit increase.
+Then prepare a supported complete native/tool boundary, pinning native/helper/library/kernel/configuration/proxy/observer identities before hostile tests. Kernel v5 is a TOOL/VALIDATOR mechanism, not a native-parent policy: its namespace-creation denial would prevent the documented native sandbox setup. Do not remove that denial blindly or treat past subset passes as composition. Native file tools must remain inside the outer grant; code-tool descendants cannot create uncharged writable storage or reach native/proxy authenticated authority. If existing supported mechanisms cannot establish it, report the exact failed capability for owner resolution; do not build another runtime/tool loop.
 
-Before adopting credential mediation, prove through existing supported interfaces that one permitted provider-shaped native request reaches only the allowed local sink with exact synthetic token, while worker/child/detached-grandchild/credential-free validator cannot read/replay token or use authenticated authority. Test header substitution, cross-destination/redirects and direct broker/parent FD access at both monitored sinks, with positive controls. Domain-only injection is insufficient. No real provider/model call, stored credentials or paid evaluation. Fixed provider-shaped response fixtures may exercise native tools; no new model/tool loop. Missing caller separation is terminal NO-GO, not authority to build a custom gateway.
+Original protocol SHA-256 fed4dde5e3fe459110a5fb0b2d4f6c75b16214c91aa823d3df640a7415e41563, all twenty criteria, empty worker/validator credentials/network and exclusions remain unchanged. Shared native/tool process tree and sequential independent validator each retain 134217728 memory bytes, zero swap, one CPU, 32 tasks and five seconds. Aggregate 805306368 memory bytes, one CPU, 128 tasks, zero swap; logical/allocated disk each 8589934592. Candidate 16777216, scratch 33554432. Commands ten seconds/65536 bytes per stream; startup 120 seconds; two fixtures/cleanup 600 seconds with final 30 reserved. No extra native allowance or automatic limit increase.
 
-Full operational identity/configuration freeze still precedes hostile native/tool cases. All twenty original cases must pass on the same complete profile twice before qualification for later authorization; complementary historical subsets do not compose. Every unavailable/failed/stale/malformed case retains denial. Native startup remains disabled until its mandatory admission/mechanism gates pass. Existing qualification/refusal APIs must remain unchanged. The original protocol SHA-256 is fed4dde5e3fe459110a5fb0b2d4f6c75b16214c91aa823d3df640a7415e41563; retained source/profile/failed variants are immutable.
+Current kernel pilot uses 65536 hard per-file length, 128/256 tmpfs inode limits, 4MiB/8MiB allocation, no writable hardlink aliases/xattrs/device creation/anonymous shared memory and readonly /dev/shm. Native compatibility with these stricter choices is unproved. Preserve independent logical/allocated/inode/deleted-open accounting for every owned representation, including metadata and backing. No physical-only logical inference, unsupported-operation pass or omitted artifact layer.
 
-Each mechanism/broker/native stage produces concrete GO/NO-GO. If current limits or interfaces cannot support the intended native workflow, record that exact contradiction and return it for owner decision; do not restart SBX research. Request a new paid-host batch only if a necessary concrete test cannot run locally, with exact commands, unchanged limits, preparation/experiment durations, cost exposure and cleanup; prior host/resource approval does not authorize paid use. No infrastructure purchase/resize/deletion.
+Use an existing file-transfer interface for artifact data, with bounded command/status streams. Earlier 179823-byte manifests used SSH cat beyond the diagnostic stream ceiling; preserve that limitation rather than claiming a whole-profile pass. V1-v4 freezes reuse the original initial shared-slice sample; V5 has its own fresh parent admission sample. Preparation wrappers, legacy mknod refusal, root traversal failure and asynchronous terminal-event failure remain explicit.
 
-Stop at the independently reproducible milestone or the smallest real owner/access gate. Update README/changelog/handoff/plan/prompt and synchronized semantic version for any new coherent checkpoint; commit and push current branch under standing authority. Report actual evidence, environment/revision and unknowns. Do not claim Phase 2C complete without required passes, enable agent writes, begin Phase 2D, merge/deploy/release or expose hold-outs.
+Before adopting credential mediation, prove one exact synthetic token reaches only the permitted sink through the constrained native transport. Worker/child/detached-grandchild/validator token read, replay, broker/parent-FD access, header substitution, cross-destination and redirects must fail at two independently monitored sinks with positive controls. Domain-only injection is insufficient. Existing official Responses proxy or nginx interfaces are candidates, not accepted credential designs until actual actor separation passes. Fixed provider-shaped response fixtures may exercise the existing native CLI; no real model call or new model loop.
+
+Freeze the complete profile before hostile native/tool cases. Native startup/tiny work must fit original limits; every original criterion must pass twice on that SAME profile. Every missing/stale/failed/unavailable/malformed case still denies. Existing qualification/refusal APIs remain unchanged, execution remains false until its separate owner gate, and Phase 2D remains unstarted.
+
+Produce finite GO/NO-GO per admission/broker/native stage. Return concrete blockers promptly so the owner can supply their resolvers. Never restart research-only SBX closures, bypass authority or request a paid host merely to explore. A necessary unavailable-local target test needs a concrete approved batch; no provisioning/purchase/resize/deletion. At completed or real blocked boundary, update README/changelog/handoff/plan/this prompt and synchronized semantic version, verify, commit and push current branch under standing authorization. No merge, deployment or registry release.
 
 ```
 
@@ -388,3 +394,75 @@ Additional 0.8.18 finite exit decision inputs:
 - `docs/PHASE-2C-DIRECT-LINUX-ADMISSION.md`
 - `docs/qualification/phase-2c-exit-decision-v1.json`
 - `docs/qualification/phase-2c-direct-linux-admission-v1.py`
+
+Additional 0.8.19 direct Linux observation inputs:
+
+- `docs/PHASE-2C-DIRECT-LINUX-ASSESSMENT.md`
+- `docs/PHASE-2C-DIRECT-LINUX-NATIVE-PREREQUISITES.md`
+- `docs/qualification/phase-2c-direct-linux-admission-observed-v1.json`
+- `docs/qualification/phase-2c-direct-linux-bindings-v1.json`
+- `docs/qualification/phase-2c-direct-linux-bindings-v2.json`
+- `docs/qualification/phase-2c-direct-linux-bindings-v3.json`
+- `docs/qualification/phase-2c-direct-linux-bindings-v4.json`
+- `docs/qualification/phase-2c-direct-linux-bindings-v5.json`
+- `docs/qualification/phase-2c-direct-linux-external-cleanup-v1.json`
+- `docs/qualification/phase-2c-direct-linux-freeze-v1.json`
+- `docs/qualification/phase-2c-direct-linux-freeze-v2.json`
+- `docs/qualification/phase-2c-direct-linux-freeze-v3.json`
+- `docs/qualification/phase-2c-direct-linux-freeze-v4.json`
+- `docs/qualification/phase-2c-direct-linux-freeze-v5.json`
+- `docs/qualification/phase-2c-direct-linux-mechanism-profile-v1.json`
+- `docs/qualification/phase-2c-direct-linux-mechanism-profile-v2.json`
+- `docs/qualification/phase-2c-direct-linux-mechanism-profile-v3.json`
+- `docs/qualification/phase-2c-direct-linux-mechanism-profile-v4.json`
+- `docs/qualification/phase-2c-direct-linux-mechanism-profile-v5.json`
+- `docs/qualification/phase-2c-direct-linux-observed-v1.json`
+- `docs/qualification/phase-2c-direct-linux-observed-v2.json`
+- `docs/qualification/phase-2c-direct-linux-observed-v3.json`
+- `docs/qualification/phase-2c-direct-linux-observed-v4.json`
+- `docs/qualification/phase-2c-direct-linux-observed-v5.json`
+- `docs/qualification/phase-2c-direct-linux-owner-approval-v1.json`
+- `docs/qualification/phase-2c-direct-linux-readback-v1.py`
+- `scripts/probe_direct_linux_mechanism.py`
+- `scripts/probe_direct_linux_mechanism_v2.py`
+- `scripts/probe_direct_linux_mechanism_v3.py`
+- `scripts/probe_direct_linux_mechanism_v4.py`
+- `scripts/probe_direct_linux_mechanism_v5.py`
+
+Additional 0.8.19 native discovery, failed startup and proposed resolver inputs:
+
+- `docs/qualification/phase-2c-direct-linux-native-apparmor-proposal-v1.json`
+- `docs/qualification/phase-2c-direct-linux-native-apparmor-proposal-v1.profile`
+- `docs/qualification/phase-2c-direct-linux-native-apparmor-proposal-v2.json`
+- `docs/qualification/phase-2c-direct-linux-native-apparmor-proposal-v2.profile`
+- `docs/qualification/phase-2c-direct-linux-native-artifacts-v1.json`
+- `docs/qualification/phase-2c-direct-linux-native-compatibility-bindings-v1.json`
+- `docs/qualification/phase-2c-direct-linux-native-compatibility-freeze-v1.json`
+- `docs/qualification/phase-2c-direct-linux-native-compatibility-observed-v1.json`
+- `docs/qualification/phase-2c-direct-linux-native-compatibility-profile-v1.json`
+- `docs/qualification/phase-2c-direct-linux-native-compatibility-proposal-v2.json`
+- `docs/qualification/phase-2c-direct-linux-native-discovery-bindings-v1.json`
+- `docs/qualification/phase-2c-direct-linux-native-discovery-bindings-v2.json`
+- `docs/qualification/phase-2c-direct-linux-native-discovery-bindings-v3.json`
+- `docs/qualification/phase-2c-direct-linux-native-discovery-bindings-v4.json`
+- `docs/qualification/phase-2c-direct-linux-native-discovery-freeze-v1.json`
+- `docs/qualification/phase-2c-direct-linux-native-discovery-freeze-v2.json`
+- `docs/qualification/phase-2c-direct-linux-native-discovery-freeze-v3.json`
+- `docs/qualification/phase-2c-direct-linux-native-discovery-freeze-v4.json`
+- `docs/qualification/phase-2c-direct-linux-native-discovery-observed-v1.json`
+- `docs/qualification/phase-2c-direct-linux-native-discovery-observed-v2.json`
+- `docs/qualification/phase-2c-direct-linux-native-discovery-observed-v3.json`
+- `docs/qualification/phase-2c-direct-linux-native-discovery-observed-v4.json`
+- `docs/qualification/phase-2c-direct-linux-native-discovery-profile-v1.json`
+- `docs/qualification/phase-2c-direct-linux-native-discovery-profile-v2.json`
+- `docs/qualification/phase-2c-direct-linux-native-discovery-profile-v3.json`
+- `docs/qualification/phase-2c-direct-linux-native-discovery-profile-v4.json`
+- `docs/qualification/phase-2c-direct-linux-native-external-cleanup-v1.json`
+- `docs/qualification/phase-2c-direct-linux-native-observation-integrity-v1.json`
+- `docs/qualification/phase-2c-direct-linux-native-readback-v1.py`
+- `scripts/probe_direct_linux_native_compatibility_v1.py`
+- `scripts/probe_direct_linux_native_compatibility_v2.py`
+- `scripts/probe_direct_linux_native_discovery.py`
+- `scripts/probe_direct_linux_native_discovery_v2.py`
+- `scripts/probe_direct_linux_native_discovery_v3.py`
+- `scripts/probe_direct_linux_native_discovery_v4.py`

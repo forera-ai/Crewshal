@@ -1,0 +1,48 @@
+{
+  "manifest_sha256": "273f9807c9876082b38af04f08cbfc574ab837c852f895a953106fd76d442825",
+  "fixtures": [
+    {
+      "fixture": 1,
+      "aggregate": {
+        "memory.max": "805306368",
+        "memory.swap.max": "0",
+        "cpu.max": "100000 100000",
+        "pids.max": "128",
+        "cgroup.events": "populated 1\nfrozen 0"
+      },
+      "worker": {
+        "memory.max": "134217728",
+        "memory.swap.max": "0",
+        "cpu.max": "100000 100000",
+        "pids.max": "32",
+        "cgroup.events": "populated 0\nfrozen 0"
+      },
+      "bounds": {
+        "exit": 1,
+        "killed": false,
+        "deleted_open": [],
+        "stdout": "",
+        "stderr": "bwrap: Can't chdir to /candidate/owned: Permission denied\n",
+        "candidate": {
+          "logical": 40,
+          "allocated": 0,
+          "inodes": 1
+        },
+        "scratch": {
+          "logical": 40,
+          "allocated": 0,
+          "inodes": 1
+        },
+        "terminal": "populated 0\nfrozen 0"
+      },
+      "cleanup": {
+        "owned_mounts_removed": true,
+        "worker": "populated 0\nfrozen 0"
+      },
+      "seconds": 0.009058358002221212
+    }
+  ],
+  "execution_allowed": false,
+  "native_start_allowed": false,
+  "scope": "mechanism subset only; not native/broker qualification"
+}

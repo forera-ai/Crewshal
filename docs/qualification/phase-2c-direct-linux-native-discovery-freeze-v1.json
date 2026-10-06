@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "scope": "trusted isolated native version/help only",
+  "profile": "phase-2c-direct-linux-native-discovery-profile-v1.json",
+  "profile_sha256": "5a27ccfd07f9e961334d00b83fdc31051cf54c0262e763d22600fd3ebdcbad11",
+  "manifest": "phase-2c-direct-linux-native-discovery-bindings-v1.json",
+  "manifest_sha256": "5d630b6aaf06198d4587463dd3069e91789e276012d084e2676d762157a60bd6",
+  "aggregate_observed": {
+    "memory.max": "805306368",
+    "memory.swap.max": "0",
+    "cpu.max": "100000 100000",
+    "pids.max": "128",
+    "memory.current": "473886720"
+  },
+  "preparation_exit": 0,
+  "preparation_seconds": 2.719,
+  "prepared_inventory": {
+    "allocated": 460111872,
+    "inodes": 771,
+    "logical": 458550591
+  },
+  "additional_archive_logical_bytes": 155955897,
+  "artifact_transport": "existing SCP file copy; no manifest emitted through diagnostic stdout",
+  "run_unit": "crewshalnativediscoveryv1-run.service",
+  "runtime_max_seconds": 570,
+  "network": "PrivateNetwork=yes",
+  "native_start_allowed": false,
+  "execution_allowed": false
+}

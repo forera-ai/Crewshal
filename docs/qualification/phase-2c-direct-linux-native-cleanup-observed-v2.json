@@ -1,0 +1,1 @@
+{"scope": "owned native diagnostic fixture cleanup only", "before_process_fd_references": [], "after_process_fd_references": [], "owned_fixture_paths_remaining": [], "owned_loaded_profiles_remaining": [], "global_userns_restriction": "1", "execution_allowed": false, "native_start_allowed": false}

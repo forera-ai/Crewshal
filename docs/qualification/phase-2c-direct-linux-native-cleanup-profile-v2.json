@@ -1,0 +1,15 @@
+{
+  "scope": "prospective bounded owned native diagnostic cleanup",
+  "source": "scripts/cleanup_direct_linux_native_v2.py",
+  "source_sha256": "dc10e939b2299e06985e7e366d9a262886e718b1d8803d66345ce0750f181ee1",
+  "worker_seconds": 30,
+  "aggregate_memory": 805306368,
+  "swap": 0,
+  "cpu": "100000 100000",
+  "pids": 128,
+  "command_seconds": 10,
+  "output_bytes_per_stream": 65536,
+  "remove_policy": "exact currently loaded v3 only; v4 was parser-only",
+  "execution_allowed": false,
+  "native_start_allowed": false
+}

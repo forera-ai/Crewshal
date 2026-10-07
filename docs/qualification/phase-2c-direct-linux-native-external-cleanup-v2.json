@@ -1,0 +1,13 @@
+{
+  "scope": "external post-cleanup readback",
+  "cgroup_present": false,
+  "aggregate_unit_present": false,
+  "run_artifacts": [],
+  "tmp_artifacts": [],
+  "fixture_present": false,
+  "profiles": [],
+  "owned_units": [],
+  "global_userns_restriction": "1",
+  "execution_allowed": false,
+  "native_start_allowed": false
+}

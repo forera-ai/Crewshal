@@ -1,0 +1,49 @@
+{
+  "scope": "prospective unexecuted next trusted tiny native sandbox probe; not a complete profile",
+  "source": "scripts/probe_direct_linux_native_compatibility_v6.py",
+  "source_sha256": "9b4e81f0dac2b511b998e6d1ee93cd47ae8c3f2f7b35619f3ab6721a3f165c23",
+  "policy": "phase-2c-direct-linux-native-apparmor-proposal-v2.profile",
+  "policy_sha256": "ea9b2af6c65280a7a852563366a18d5fba8fcd64faabdcea18f9e4317454294d",
+  "status": "prospective approved bounded two-fixture tiny sandbox capability probe",
+  "prerequisites": [
+    "direct owner fixture-only AppArmor decision",
+    "create a fresh v1 data preparation from its exact source and official verified archives; no historical temporary fixture is needed",
+    "bind installed new source, copied system bwrap/library bytes, parser/ABI, loaded policy identities and effective aggregate controls before execution"
+  ],
+  "controls": {
+    "worker_memory": 134217728,
+    "worker_swap": 0,
+    "worker_cpu": "100000 100000",
+    "worker_pids": 32,
+    "worker_seconds": 5,
+    "aggregate_memory": 805306368,
+    "aggregate_swap": 0,
+    "aggregate_cpu": "100000 100000",
+    "aggregate_pids": 128,
+    "output_bytes_per_stream": 65536,
+    "command_seconds": 10,
+    "startup_seconds": 120,
+    "two_fixture_cleanup_seconds": 600,
+    "final_cleanup_reserve_seconds": 30,
+    "disk_logical_and_allocated": 8589934592
+  },
+  "roles": "existing root bwrap/setpriv establishes outer view then drops native UID/caps; only exact copied native bwrap gets namespace setup; every tool exec inherits denying payload profile; parent SystemCallFilter denies anonymous storage/hardlinks/xattrs",
+  "execution_allowed": false,
+  "native_start_allowed": false,
+  "authority": "phase-2c-direct-linux-native-apparmor-approval-v1.json",
+  "authority_sha256": "20b71ef030a1612d08fa985716ebeb987a169342afecb13f62e13c9ead914697",
+  "aggregate_unit": "crewshalnativediscoveryv1.slice",
+  "aggregate_unit_contents": "[Unit]\nDescription=Crewshal trusted native discovery aggregate\n[Slice]\nMemoryMax=805306368\nMemorySwapMax=0\nCPUQuota=100%\nTasksMax=128\n",
+  "aggregate_unit_sha256": "13bf36a0dd7a2f707d7ab76b0adc0a88aca6be1547a355aeb989fe37638c75fe",
+  "fixture_base": "/var/tmp/crewshal-native-discovery-v1",
+  "preparation_source": "scripts/probe_direct_linux_native_discovery.py",
+  "preparation_source_sha256": "a8d9b0d5bb204b7cb67570c37b9c49fcfc7fa46a0c2384979b3bb8a364de1a7a",
+  "preparation_bound_seconds": 120,
+  "policy_load": "apparmor_parser --config-file /dev/null --skip-cache --add --jobs 1 --max-jobs 1 /run/crewshal-native-apparmor-proposal-v2.profile",
+  "policy_remove": "apparmor_parser --config-file /dev/null --skip-cache --remove --jobs 1 --max-jobs 1 /run/crewshal-native-apparmor-proposal-v2.profile",
+  "change": "trusted outer bwrap creates its user namespace, supported UID/GID mapping and drops all capabilities before native exec",
+  "prior_results": {
+    "v2": "outer bwrap tmpfs mount ENOENT before payload",
+    "v3": "preparation refuses mistaken prior manifest name before mutation"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "scope": "compatible fixture policy correction within owner-approved temporary policy scope",
+  "authority": "phase-2c-direct-linux-native-apparmor-approval-v1.json",
+  "change": "chroot-relative filename mediation only; no new grants or global sysctl change",
+  "profile": "phase-2c-direct-linux-native-apparmor-proposal-v3.profile",
+  "profile_sha256": "e20e454cbcf45fc26e8641707a4d2db751a9f86d9b6af81b33e2be605bb994fb",
+  "status": "prospective parser-only verification first",
+  "reason": "v9 kernel denies proc uid_map as disconnected path under RootDirectory",
+  "source": "https://www.apparmor.net/man/4.0/apparmor.d/",
+  "attach_disconnected": false,
+  "execution_allowed": false,
+  "native_start_allowed": false
+}

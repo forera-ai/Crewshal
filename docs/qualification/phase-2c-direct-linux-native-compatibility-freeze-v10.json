@@ -1,0 +1,35 @@
+{
+  "scope": "trusted literal tiny workflow and one-byte capability discovery only; not agent/native full qualification",
+  "profile": "phase-2c-direct-linux-native-compatibility-profile-v10.json",
+  "profile_sha256": "1035cfd31b3ccc44e51661c956c40e5ca75d8ef26bb08f19ab2715f4666a1e52",
+  "manifest": "phase-2c-direct-linux-native-compatibility-bindings-v10.json",
+  "manifest_sha256": "5684bc6c5779103ab1dc10010a3b5ab86196fdc535725089eaa74dd7446ed096",
+  "aggregate_observed": {
+    "memory.max": "805306368",
+    "memory.swap.max": "0",
+    "cpu.max": "100000 100000",
+    "pids.max": "128",
+    "memory.current": "528330752"
+  },
+  "loaded_profiles": [
+    "crewshal-native-tool-v1 (enforce)",
+    "crewshal-native-bwrap-v1 (enforce)"
+  ],
+  "global_userns_restriction": 1,
+  "prepared_inventory": {
+    "logical": 460882479,
+    "allocated": 462479360,
+    "inodes": 793
+  },
+  "additional_archive_logical": 155955897,
+  "base_preparation_seconds": 2.974,
+  "extension_preparation_seconds": 0.327,
+  "policy_load_seconds": 0.02,
+  "execution_allowed": false,
+  "native_start_allowed": false,
+  "loaded_policy_sha256": {
+    "crewshal-native-bwrap-v1": "7c9bb1831ed79c3b6d8ec117ae1d0156b2e670b1b7185ff8ffa451e4f1b7eba6",
+    "crewshal-native-tool-v1": "de739b03eec825f9997229675c98f8aae801389baeeb847b6dfc6597fb67646f"
+  },
+  "interruption": "VM resumed; source, enforcing profiles, same boot and aggregate present; source bindings rechecked by runner"
+}

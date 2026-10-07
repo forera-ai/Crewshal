@@ -2,6 +2,12 @@
 
 Versions follow semantic versioning. Remote branch publication is distinct from a package-registry release; no registry release has occurred.
 
+## 0.8.20 — 2026-10-07
+
+- Record the direct fixture-only AppArmor approval and eight immutable native setup failures under unchanged limits; isolate actual disconnected `/proc` UID-map denial after correcting mount, UID, CLI and proc-view setup issues.
+- Prepare a parser-verified setup-only `attach_disconnected` proposal and a fresh-fixture tiny workflow with explicit payload-role/capability oracles. The consequential alias interpretation decision remains pending; the proposal has never been loaded.
+- Preserve kernel audit, identity/admission limitations and independently observed owned cleanup. Add public failure readback and exact continuation inputs. No native payload, broker or full twenty-case profile passes; Phase 2C and agent execution remain denied.
+
 ## 0.8.19 — 2026-10-06
 
 - Record direct owner approval of ADR 0003 separately, preserving historical proposal and qualification bytes; observe actual local aarch64 Linux admission through owner-supplied SSH authentication.

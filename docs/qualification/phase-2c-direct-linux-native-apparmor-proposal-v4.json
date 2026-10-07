@@ -1,0 +1,13 @@
+{
+  "scope": "proposed temporary native bubblewrap setup profile only",
+  "profile": "phase-2c-direct-linux-native-apparmor-proposal-v4.profile",
+  "profile_sha256": "fcf5efa39ef08c3afe95766f9f9c6db9e82e129055f36e83133bb05aa3cde883",
+  "status": "owner decision pending; not loaded",
+  "change": "attach_disconnected only on trusted native bwrap setup; payload profile does not receive it and keeps userns/capability/mount denial",
+  "reason": "v9 and v10 kernel deny disconnected proc uid_map before payload; chroot_relative alone insufficient",
+  "security_note": "AppArmor upstream explicitly warns attach_disconnected can alias objects; prospective tests must independently check inherited handles, deleted objects, outside canaries and exec role transition before qualification",
+  "source": "https://www.apparmor.net/man/4.0/apparmor.d/",
+  "global_userns_restriction_unchanged": true,
+  "execution_allowed": false,
+  "native_start_allowed": false
+}

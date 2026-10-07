@@ -1,0 +1,10 @@
+{
+  "scope": "bounded existing parser verification and owned profile replacement",
+  "v3_parse": {"exit": 0, "seconds": 0.017, "kernel_load": false},
+  "v3_replace": {"exit": 0, "seconds": 0.020, "kernel_load": true},
+  "v4_parse": {"exit": 0, "seconds": 0.018, "kernel_load": false},
+  "v4_owner_decision": "pending; never loaded",
+  "global_userns_restriction": 1,
+  "execution_allowed": false,
+  "native_start_allowed": false
+}

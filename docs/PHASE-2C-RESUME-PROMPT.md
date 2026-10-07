@@ -16,33 +16,32 @@ Current 0.8.17 checkpoint: [release-era storage contract boundary](PHASE-2C-STOR
 
 Prior 0.8.18 checkpoint: [finite exit decision](decisions/0003-direct-linux-qualification.md) concludes the current SBX investigation is NO-GO for this pilot under available evidence. Direct Linux replacement topology is proposed, not approved. [Pinned read-only admission batch](PHASE-2C-DIRECT-LINUX-ADMISSION.md) is prepared; no Linux/native/broker test ran. Original twenty cases, resource ceilings and denial flags are unchanged. The current prompt below supersedes the prior instruction to keep reconstructing private SBX storage contracts. Do not repeat research-only closures or unchanged import attempts.
 
-Current 0.8.19 checkpoint: [actual direct Linux admission and final kernel fixtures](PHASE-2C-DIRECT-LINUX-ASSESSMENT.md) pass on the owner-accessible aarch64 test guest. ADR 0003 is owner-approved through a separate bound record. Kernel mechanism v5 passes twice with scoped cleanup; all native/broker and complete twenty-case gates remain unavailable. [Pinned native/proxy preparation](PHASE-2C-DIRECT-LINUX-NATIVE-PREREQUISITES.md) is covered by the existing bounded feasibility authority; official matching-platform archives were acquired and verified; isolated version/help passes twice. Actual native sandbox startup refuses under host AppArmor. Fixture-only AppArmor decision remains pending; no profile was loaded. Preserve failures, transport limitations and denial.
+Prior 0.8.19 checkpoint: [actual direct Linux admission and final kernel fixtures](PHASE-2C-DIRECT-LINUX-ASSESSMENT.md) pass on the owner-accessible aarch64 test guest. ADR 0003 is owner-approved through a separate bound record. Kernel mechanism v5 passes twice with scoped cleanup; all native/broker and complete twenty-case gates remain unavailable. [Pinned native/proxy preparation](PHASE-2C-DIRECT-LINUX-NATIVE-PREREQUISITES.md) is covered by the existing bounded feasibility authority; official matching-platform archives were acquired and verified; isolated version/help passes twice. Actual native sandbox startup refuses under host AppArmor. Fixture-only AppArmor decision remains pending; no profile was loaded. Preserve failures, transport limitations and denial.
+
+Current 0.8.20 checkpoint: [actual approved-policy setup failures](PHASE-2C-NATIVE-POLICY-ASSESSMENT.md) resolve the original fixture policy decision and isolate AppArmor disconnected `/proc` UID-map denial. Eight trusted setup attempts fail before payload. Scoped v4 setup-only `attach_disconnected` parses successfully but has never been loaded; its documented alias risk needs the directly requested consequential owner decision. Owned profiles, data, runtime files, units and aggregate cgroup were removed; global protection remains enabled. No native payload or complete qualification case passes.
 
 ## Initial prompt
 
 ```text
-Continue Crewshal in /Volumes/X10Pro/Crewshal from 0.8.19, Phase 2C only. Keep caveman ultra, Jev advice and codebase-memory Verify active. Read AGENTS.md, HANDOFF.md, DEVELOPMENT-PLAN.md, ARCHITECTURE.md, ADRs 0002/0003, PHASE-2C-DIRECT-LINUX-ASSESSMENT.md, PHASE-2C-DIRECT-LINUX-NATIVE-PREREQUISITES.md, the separate owner approval, final mechanism profile/bindings/freeze/observed v5 and external cleanup first. Confirm Git state and graph generation/coverage; preserve every historical qualification byte and unrelated work.
+Continue Crewshal in /Volumes/X10Pro/Crewshal from 0.8.20, Phase 2C only. Keep caveman ultra, Jev advice and codebase-memory Verify active. Read AGENTS.md, HANDOFF.md, DEVELOPMENT-PLAN.md, ARCHITECTURE.md, ADRs 0002/0003 and PHASE-2C-NATIVE-POLICY-ASSESSMENT.md first. Confirm branch/state and graph generation/coverage. Preserve all historical qualification/source/profile bytes and unrelated dirty work.
 
-ADR 0003 is already owner-approved. Do not ask for that approval again or resume SBX storage research. Actual Linux admission and the final credential-free kernel mechanism subset passed twice. Readback command: rtk proxy .venv/bin/python -I -B docs/qualification/phase-2c-direct-linux-readback-v1.py. This verifies recorded evidence only. Existing VMware Ubuntu was left running, aarch64 Linux 7.0.0-38-generic/Python 3.12.3. SSH/root roles were observed with owner-supplied authentication; no credential is in public inputs. Do not recover authentication from files or assume current host state.
+ADR 0003 and the fixture-only v2 AppArmor policy are already approved. Do not ask again. Read native-apparmor-approval-v1.json and native-policy-readback-v1.py. Native setup v9/v10 fails before payload: kernel audit identifies a disconnected /proc UID-map path. chroot_relative alone does not fix it. Exact pending resolver is native-apparmor-proposal-v4.json/.profile: attach_disconnected only on trusted copied native bwrap setup, never payload. AppArmor's official manual warns of aliasing; the direct owner answer must authorize this consequential interpretation change before loading it. V4 has only parsed, never loaded. No global sysctl or payload denial may be weakened. If owner rejects it, investigate a supported reduced-root topology instead of bypassing protections.
 
-Next concrete capability: supported native/tool separation and startup under the original envelope. Native discovery v4 passes eight version/help commands; compatibility v1 fails before payload with AppArmor net_admin/setpcap denials. Read native-readback-v1.py, native-external-cleanup-v1.json, native-apparmor-proposal-v2.json/.profile and native-compatibility-proposal-v2.json. Current owner question asks for a temporary exception only on the exact copied fixture bubblewrap; global restrictions and original grants remain unchanged. Check the direct owner answer before loading policy; do not treat the unanswered question as approval. This is a host policy/role change, not another artifact-download gate. The earlier acquisition question was too broad: ADR 0003 forbids runtime automatic downloads, while deliberate pinned fixture preparation is already authorized. Its unanswered optional preference is not a new gate or approval. No paid host, provider call, global daemon, sign-in, automatic installer or custom credential gateway is authorized.
+Existing VMware Ubuntu is aarch64 kernel 7.0.0-38-generic. It was left running; do not infer current availability or recover ambient authentication. Use directly supplied guest authentication only, without persisting it in public files. Local VMware access is authorized; no new VM, paid host, provider, sign-in or credential-store access. Pinned deliberate archive preparation is already authorized; no new download approval is needed. Runtime automatic downloads remain forbidden.
 
-The proposed compatibility_v2 source has NOT run. If the fixture policy is authorized, create fresh source-bound v1 archive preparation, then use its v2 prepare mode to copy existing system bwrap/dependencies and bind parser/ABI/policy. Freeze source/configuration/installed identities and loaded policy readback before v2 run. Only the copied native bwrap may set up namespaces; its payload transition must deny userns/mounts and preserve that denial across every exec. The outer existing root bwrap/setpriv drops native UID/caps first. Parent SystemCallFilter blocks anonymous shared storage/hardlinks/xattrs. Test that these proposed mechanisms work; parse success proves syntax only. Preserve any failure with a new profile, never amend an executed source. All temporary policy identities must be removed after the batch.
+If scoped v4 is approved, create fresh preparation from scripts/probe_direct_linux_native_discovery.py with the exact archives in native-artifacts-v1.json. Install/bind scripts/probe_direct_linux_mechanism_v5.py as its named preparation helper. Then unexecuted native_compatibility_v11.py prepares directly from the fresh original manifest.json: it does NOT need earlier compatibility runs/manifests. Its /var/tmp fixture path must match the exact policy attachment. Create a fresh owned aggregate slice, bind all installed sources/helpers/libraries/kernel/parser/ABI bytes, source/policy configuration and loaded policy hashes. Freeze effective parent controls before the v11 run. Use existing file-transfer APIs for manifest data, bounded 10-second/65536-byte command/status streams.
 
-Then prepare a supported complete native/tool boundary, pinning native/helper/library/kernel/configuration/proxy/observer identities before hostile tests. Kernel v5 is a TOOL/VALIDATOR mechanism, not a native-parent policy: its namespace-creation denial would prevent the documented native sandbox setup. Do not remove that denial blindly or treat past subset passes as composition. Native file tools must remain inside the outer grant; code-tool descendants cannot create uncharged writable storage or reach native/proxy authenticated authority. If existing supported mechanisms cannot establish it, report the exact failed capability for owner resolution; do not build another runtime/tool loop.
+The supported direct tiny invocation is codex sandbox --permission-profile :workspace -C /scratch -- <literal command>. Native executes as host UID/GID 65534 inside systemd's reduced readonly RootDirectory, ProtectProc=invisible and inaccessible sys/shm. No outer user map or ProcSubset=pid: prior variants break scratch ownership or required readonly overflow UID metadata. Only exact native bwrap may establish tool namespaces; payload exec must enter crewshal-native-tool-v1 and retain userns/capability/mount denial across every exec. V11 checks four-byte scratch success, actual role, zero capabilities, NNP and one-byte memfd/userns refusal. Its success would be a capability subset, not full qualification. Preserve failures using new sources/profiles; never rewrite an executed variant.
 
-Original protocol SHA-256 fed4dde5e3fe459110a5fb0b2d4f6c75b16214c91aa823d3df640a7415e41563, all twenty criteria, empty worker/validator credentials/network and exclusions remain unchanged. Shared native/tool process tree and sequential independent validator each retain 134217728 memory bytes, zero swap, one CPU, 32 tasks and five seconds. Aggregate 805306368 memory bytes, one CPU, 128 tasks, zero swap; logical/allocated disk each 8589934592. Candidate 16777216, scratch 33554432. Commands ten seconds/65536 bytes per stream; startup 120 seconds; two fixtures/cleanup 600 seconds with final 30 reserved. No extra native allowance or automatic limit increase.
+Before full qualification, independently test actual alias/deleted-open/inherited-handle behavior and existing excluded canaries. The setup flag is never granted to payload. No unsafe pathname-only or physical-only accounting inference. Candidate/scratch/logical/allocated/inode/backing/deleted-open inventory must include every owned representation. Historical kernel/help/startup subsets cannot compose into a pass. Earlier copied prose and v5 admission-sample limitations are explicit in native-policy-limitations-v1.json and freeze-v5-limitation.json.
 
-Current kernel pilot uses 65536 hard per-file length, 128/256 tmpfs inode limits, 4MiB/8MiB allocation, no writable hardlink aliases/xattrs/device creation/anonymous shared memory and readonly /dev/shm. Native compatibility with these stricter choices is unproved. Preserve independent logical/allocated/inode/deleted-open accounting for every owned representation, including metadata and backing. No physical-only logical inference, unsupported-operation pass or omitted artifact layer.
+Original protocol SHA-256 fed4dde5e3fe459110a5fb0b2d4f6c75b16214c91aa823d3df640a7415e41563; all twenty cases, grants, exclusions and empty worker/validator credentials/network remain unchanged. Shared native/tool tree and sequential validator each retain 134217728 memory bytes, zero swap, one CPU, 32 tasks, five seconds. Aggregate retains 805306368 bytes, zero swap, one CPU, 128 tasks. Logical and allocated disk each <=8589934592; candidate <=16777216; scratch <=33554432. Startup <=120 seconds/fixture; two fixtures plus cleanup <=600 seconds, final 30 reserved. Do not add native allowances or silently increase limits.
 
-Use an existing file-transfer interface for artifact data, with bounded command/status streams. Earlier 179823-byte manifests used SSH cat beyond the diagnostic stream ceiling; preserve that limitation rather than claiming a whole-profile pass. V1-v4 freezes reuse the original initial shared-slice sample; V5 has its own fresh parent admission sample. Preparation wrappers, legacy mknod refusal, root traversal failure and asynchronous terminal-event failure remain explicit.
+Prove supported native/proxy transport separation with the pinned existing official Responses proxy and fixed synthetic provider-shaped responses. No custom executor, broker/gateway or new model/tool loop. Native must reach only the permitted authenticated sink; code workers, children, detached grandchildren and validator must not read/replay token, reach proxy/native FDs, substitute headers, cross destinations or follow unauthorized redirects. Use two independently monitored sinks with positive controls. Domain-only injection cannot qualify authority. Native file-edit tools remain inside the outer grant.
 
-Before adopting credential mediation, prove one exact synthetic token reaches only the permitted sink through the constrained native transport. Worker/child/detached-grandchild/validator token read, replay, broker/parent-FD access, header substitution, cross-destination and redirects must fail at two independently monitored sinks with positive controls. Domain-only injection is insufficient. Existing official Responses proxy or nginx interfaces are candidates, not accepted credential designs until actual actor separation passes. Fixed provider-shaped response fixtures may exercise the existing native CLI; no real model call or new model loop.
+Freeze the complete native/broker/configuration/observer profile before hostile cases. Tiny agent startup/work must fit the original shared envelope; every original mandatory case must pass twice on that SAME complete profile. Missing/stale/failed/unavailable/malformed evidence still denies execution. Existing refusal APIs remain unchanged; agent execution and Phase 2D stay gated even after qualification until the separate owner execution decision.
 
-Freeze the complete profile before hostile native/tool cases. Native startup/tiny work must fit original limits; every original criterion must pass twice on that SAME profile. Every missing/stale/failed/unavailable/malformed case still denies. Existing qualification/refusal APIs remain unchanged, execution remains false until its separate owner gate, and Phase 2D remains unstarted.
-
-Produce finite GO/NO-GO per admission/broker/native stage. Return concrete blockers promptly so the owner can supply their resolvers. Never restart research-only SBX closures, bypass authority or request a paid host merely to explore. A necessary unavailable-local target test needs a concrete approved batch; no provisioning/purchase/resize/deletion. At completed or real blocked boundary, update README/changelog/handoff/plan/this prompt and synchronized semantic version, verify, commit and push current branch under standing authorization. No merge, deployment or registry release.
-
+Return concrete GO/NO-GO per capability stage, and ask for the smallest actual blocker resolver promptly. No SBX research-only closure, unchanged import retry or paid-host request merely to explore. At completed or real blocked boundary, remove only owned fixtures/profiles, verify cleanup without weakening global protection, update README/changelog/handoff/plan/this prompt and semantic version, commit and push the current branch under standing authorization. No merge, deployment or registry release.
 ```
 
 ## Exact input files
@@ -466,3 +465,64 @@ Additional 0.8.19 native discovery, failed startup and proposed resolver inputs:
 - `scripts/probe_direct_linux_native_discovery_v2.py`
 - `scripts/probe_direct_linux_native_discovery_v3.py`
 - `scripts/probe_direct_linux_native_discovery_v4.py`
+
+Additional 0.8.20 native policy/actual failure inputs:
+
+- `docs/PHASE-2C-NATIVE-POLICY-ASSESSMENT.md`
+- `docs/qualification/phase-2c-direct-linux-native-apparmor-approval-v1.json`
+- `docs/qualification/phase-2c-direct-linux-native-apparmor-audit-v9-v10.txt`
+- `docs/qualification/phase-2c-direct-linux-native-apparmor-parser-observed-v3-v4.json`
+- `docs/qualification/phase-2c-direct-linux-native-apparmor-proposal-v3.json`
+- `docs/qualification/phase-2c-direct-linux-native-apparmor-proposal-v3.profile`
+- `docs/qualification/phase-2c-direct-linux-native-apparmor-proposal-v4.json`
+- `docs/qualification/phase-2c-direct-linux-native-apparmor-proposal-v4.profile`
+- `docs/qualification/phase-2c-direct-linux-native-cleanup-observed-v2.json`
+- `docs/qualification/phase-2c-direct-linux-native-cleanup-profile-v2.json`
+- `docs/qualification/phase-2c-direct-linux-native-compatibility-bindings-v10.json`
+- `docs/qualification/phase-2c-direct-linux-native-compatibility-bindings-v2.json`
+- `docs/qualification/phase-2c-direct-linux-native-compatibility-bindings-v4.json`
+- `docs/qualification/phase-2c-direct-linux-native-compatibility-bindings-v5.json`
+- `docs/qualification/phase-2c-direct-linux-native-compatibility-bindings-v6.json`
+- `docs/qualification/phase-2c-direct-linux-native-compatibility-bindings-v7.json`
+- `docs/qualification/phase-2c-direct-linux-native-compatibility-bindings-v8.json`
+- `docs/qualification/phase-2c-direct-linux-native-compatibility-bindings-v9.json`
+- `docs/qualification/phase-2c-direct-linux-native-compatibility-freeze-v10.json`
+- `docs/qualification/phase-2c-direct-linux-native-compatibility-freeze-v2.json`
+- `docs/qualification/phase-2c-direct-linux-native-compatibility-freeze-v4.json`
+- `docs/qualification/phase-2c-direct-linux-native-compatibility-freeze-v5-limitation.json`
+- `docs/qualification/phase-2c-direct-linux-native-compatibility-freeze-v5.json`
+- `docs/qualification/phase-2c-direct-linux-native-compatibility-freeze-v6.json`
+- `docs/qualification/phase-2c-direct-linux-native-compatibility-freeze-v7.json`
+- `docs/qualification/phase-2c-direct-linux-native-compatibility-freeze-v8.json`
+- `docs/qualification/phase-2c-direct-linux-native-compatibility-freeze-v9.json`
+- `docs/qualification/phase-2c-direct-linux-native-compatibility-observed-v10.json`
+- `docs/qualification/phase-2c-direct-linux-native-compatibility-observed-v2.json`
+- `docs/qualification/phase-2c-direct-linux-native-compatibility-observed-v4.json`
+- `docs/qualification/phase-2c-direct-linux-native-compatibility-observed-v5.json`
+- `docs/qualification/phase-2c-direct-linux-native-compatibility-observed-v6.json`
+- `docs/qualification/phase-2c-direct-linux-native-compatibility-observed-v7.json`
+- `docs/qualification/phase-2c-direct-linux-native-compatibility-observed-v8.json`
+- `docs/qualification/phase-2c-direct-linux-native-compatibility-observed-v9.json`
+- `docs/qualification/phase-2c-direct-linux-native-compatibility-preparation-refused-v3.json`
+- `docs/qualification/phase-2c-direct-linux-native-compatibility-profile-v10.json`
+- `docs/qualification/phase-2c-direct-linux-native-compatibility-profile-v11.json`
+- `docs/qualification/phase-2c-direct-linux-native-compatibility-profile-v2.json`
+- `docs/qualification/phase-2c-direct-linux-native-compatibility-profile-v4.json`
+- `docs/qualification/phase-2c-direct-linux-native-compatibility-profile-v5.json`
+- `docs/qualification/phase-2c-direct-linux-native-compatibility-profile-v6.json`
+- `docs/qualification/phase-2c-direct-linux-native-compatibility-profile-v7.json`
+- `docs/qualification/phase-2c-direct-linux-native-compatibility-profile-v8.json`
+- `docs/qualification/phase-2c-direct-linux-native-compatibility-profile-v9.json`
+- `docs/qualification/phase-2c-direct-linux-native-external-cleanup-v2.json`
+- `docs/qualification/phase-2c-direct-linux-native-policy-limitations-v1.json`
+- `docs/qualification/phase-2c-direct-linux-native-policy-readback-v1.py`
+- `scripts/cleanup_direct_linux_native_v2.py`
+- `scripts/probe_direct_linux_native_compatibility_v10.py`
+- `scripts/probe_direct_linux_native_compatibility_v11.py`
+- `scripts/probe_direct_linux_native_compatibility_v3.py`
+- `scripts/probe_direct_linux_native_compatibility_v4.py`
+- `scripts/probe_direct_linux_native_compatibility_v5.py`
+- `scripts/probe_direct_linux_native_compatibility_v6.py`
+- `scripts/probe_direct_linux_native_compatibility_v7.py`
+- `scripts/probe_direct_linux_native_compatibility_v8.py`
+- `scripts/probe_direct_linux_native_compatibility_v9.py`

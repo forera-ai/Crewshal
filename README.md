@@ -1,5 +1,7 @@
 # Crewshal
 
+Owned and maintained by [forera-ai](https://github.com/forera-ai). Canonical repository: [forera-ai/Crewshal](https://github.com/forera-ai/Crewshal).
+
 **Coordinate coding agents. Verify their work.**
 
 Crewshal (pronounced like **crucial**) is an early open-source project exploring repository-aware coordination and verifiable engineering controls for AI-assisted software development.
@@ -8,7 +10,7 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
-Local package version: **0.9.0**. See [CHANGELOG.md](CHANGELOG.md) for version history.
+Local package version: **0.9.1**. See [CHANGELOG.md](CHANGELOG.md) for version history.
 
 **Phases 0, 1, 2A, 2B and 2C complete.** Passive discovery, confirmed project models, private SQLite state, recovery contracts and deterministic evidence gates are implemented. The local offline suite has **141 tests**, verified on macOS with network denied.
 
@@ -34,6 +36,8 @@ Steps 1–3 are implemented for the bounded Python/TypeScript formats documented
 Historical SBX investigation: the owner [approved the exact operational resource envelope](docs/RESOURCE-APPROVAL-AND-FREEZE-STATUS.md). A [new current host and immutable candidate artifacts](docs/CURRENT-HOST-IDENTITY-PREPARATION.md) are verified. Package **0.8.8** records [approved bounded discovery and actual supported-create refusal](docs/GUEST-DISCOVERY-ASSESSMENT.md). Prospective aggregate/controller/device bounds are observed in fresh private services; KVM HLT passes twice per service after an initial device-policy failure. Both mountless SBX create attempts return `401 Unauthorized` requiring Docker sign-in. Login is excluded by the approved discovery scope, so no SBX guest, complete operational freeze or inner qualification is delivered. Historical discovery/resource approval is resolved; current host retention is superseded by the 2026-10-05 cost policy. Historical profiles remain immutable. Version 0.8.10 preserves exact executed-source trailing bytes through narrowly scoped whitespace attributes; no host rerun or qualification change.
 
 ## Development sessions
+
+The October 8 ownership transfer is recorded in [the transfer checkpoint](docs/REPOSITORY-TRANSFER-2026-10-08.md). Version 0.9.1 changes repository ownership metadata only; it does not complete or publish pending Phase 2D implementation.
 
 Work proceeds one phase or major milestone per session. Read the [rolling handoff](docs/HANDOFF.md), [development plan](docs/DEVELOPMENT-PLAN.md), [next Phase 2D prompt and exact inputs](docs/PHASE-2D-NEXT-SESSION-2026-10-08.md), and [preserved Phase 2C input index](docs/PHASE-2C-ACTIVE-CONTINUATION.md). [AGENTS.md](AGENTS.md) records the persistent session contract. The owner's October 8 local VMware resumption superseded the earlier test stop. That qualification batch is complete; this session stops at 2C.
 
@@ -79,7 +83,7 @@ The current recommendation is to narrow the product to confirmed repository adap
 ## Get the repository
 
 ```sh
-git clone https://github.com/prooshani/Crewshal.git
+git clone https://github.com/forera-ai/Crewshal.git
 cd Crewshal
 ```
 

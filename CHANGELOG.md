@@ -2,6 +2,11 @@
 
 Versions follow semantic versioning. Remote branch publication is distinct from a package-registry release; no registry release has occurred.
 
+## 0.9.1 — 2026-10-08
+
+- Adopt `forera-ai/Crewshal` as the canonical repository and `forera-ai` as the project owner and maintainer after the owner-reported GitHub transfer. Update clone instructions, package metadata and persistent session memory.
+- Preserve repository history, existing copyright attribution and unrelated unpublished Phase 2D work. Publish only this ownership-maintenance checkpoint; runtime qualification, execution and release gates are unchanged.
+
 ## 0.9.0 — 2026-10-08
 
 - Complete Phase 2C on one fresh Linux aarch64 native/proxy v18 profile: all twenty original cases independently pass twice, including actual native `exec_command` and `write_stdin`, unchanged grants/limits, credential mediation, readonly validator, cancellation and deadline cleanup.

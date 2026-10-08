@@ -4,12 +4,18 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "crewshal"
-version = "0.9.0"
+version = "0.9.1"
 description = "Passive project models, durable coordinator state and deterministic evidence gates"
 readme = "README.md"
 requires-python = ">=3.12"
 license = "Apache-2.0"
 dependencies = ["pydantic==2.12.5"]
+maintainers = [{name = "forera-ai"}]
+
+[project.urls]
+Repository = "https://github.com/forera-ai/Crewshal"
+Issues = "https://github.com/forera-ai/Crewshal/issues"
+Organization = "https://github.com/forera-ai"
 
 [project.scripts]
 crewshal = "crewshal.cli:main"

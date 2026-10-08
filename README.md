@@ -10,7 +10,7 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
-Local package version: **0.9.1**. See [CHANGELOG.md](CHANGELOG.md) for version history.
+Local package version: **0.9.2**. See [CHANGELOG.md](CHANGELOG.md) for version history.
 
 **Phases 0, 1, 2A, 2B and 2C complete.** Passive discovery, confirmed project models, private SQLite state, recovery contracts and deterministic evidence gates are implemented. The local offline suite has **141 tests**, verified on macOS with network denied.
 
@@ -95,4 +95,4 @@ Contributions should follow the active milestone and its acceptance gates. Open 
 
 ## License
 
-[Apache License 2.0](LICENSE). Copyright 2026 Hamed Prooshani and Crewshal contributors.
+[Apache License 2.0](LICENSE). Copyright 2026 forera.ai and contributors.

@@ -2,6 +2,10 @@
 
 Versions follow semantic versioning. Remote branch publication is distinct from a package-registry release; no registry release has occurred.
 
+## 0.9.2 — 2026-10-08
+
+- Update the project copyright notice to “Copyright 2026 forera.ai and contributors.” in README and LICENSE following the explicit owner correction. Preserve the Apache-2.0 license body and unrelated unpublished Phase 2D work; record the current notice in persistent project memory.
+
 ## 0.9.1 — 2026-10-08
 
 - Adopt `forera-ai/Crewshal` as the canonical repository and `forera-ai` as the project owner and maintainer after the owner-reported GitHub transfer. Update clone instructions, package metadata and persistent session memory.

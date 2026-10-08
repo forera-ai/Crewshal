@@ -2,7 +2,7 @@
 
 ## Repository identity — owner update, 2026-10-08
 
-Crewshal is owned and maintained by [forera-ai](https://github.com/forera-ai). The canonical repository is [forera-ai/Crewshal](https://github.com/forera-ai/Crewshal); this checkout uses `origin` at `https://github.com/forera-ai/Crewshal.git` for fetch and push. Use this identity for future repository links and publishing. Earlier `prooshani/Crewshal` references in dated records describe historical ownership and are not current remote instructions. The transfer changes neither execution/spend authority nor the existing contributor copyright notices.
+Crewshal is owned and maintained by [forera-ai](https://github.com/forera-ai). The canonical repository is [forera-ai/Crewshal](https://github.com/forera-ai/Crewshal); this checkout uses `origin` at `https://github.com/forera-ai/Crewshal.git` for fetch and push. Use this identity for future repository links and publishing. Earlier `prooshani/Crewshal` references in dated records describe historical ownership and are not current remote instructions. The transfer does not change execution/spend authority. Following the owner’s October 8 copyright correction, the current project notice is `Copyright 2026 forera.ai and contributors.` This supersedes the earlier preservation instruction for the current notice; dated records remain historical.
 
 Read [docs/HANDOFF.md](docs/HANDOFF.md) first, then [docs/DEVELOPMENT-PLAN.md](docs/DEVELOPMENT-PLAN.md) and the accepted architecture/ADRs. These files are persistent project memory. The handoff is authoritative for the active milestone and last verified state; the plan is authoritative for scope and acceptance gates. Do not substitute chat recollection for recorded evidence.
 

@@ -4,6 +4,8 @@ Last updated: 2026-10-08. Consumer: the next session and owner. This is the cont
 
 ## Current state
 
+- **Copyright maintenance complete, October 8; package 0.9.2.** The owner explicitly requested `forera.ai and contributors`. README and LICENSE now state `Copyright 2026 forera.ai and contributors.`; AGENTS.md records this notice. Apache-2.0 terms and unrelated pending Phase 2D work remain intact. See the copyright maintenance closure below for base/delivery, checks and next prompt. Repository identity remains `forera-ai/Crewshal`.
+
 - **Repository ownership maintenance complete, October 8; package 0.9.1.** Canonical repository: [forera-ai/Crewshal](https://github.com/forera-ai/Crewshal), owned and maintained by [forera-ai](https://github.com/forera-ai). Local `origin` fetch/push is `https://github.com/forera-ai/Crewshal.git`. GitHub API identity and remote branch readback match. Only ownership documentation/metadata and the synchronized patch version are included in this checkpoint; pre-existing unpublished Phase 2D changes remain local and retain their acceptance gates. Base `211538c86b13edf8971b6fc0de7e121d47fc3cf9`; delivery is the commit adding [the transfer record](REPOSITORY-TRANSFER-2026-10-08.md). That record gives exact checks, limitations and next-session inputs. This maintenance boundary does not supersede the latest local Phase 2D continuation below. Historical repository URLs/version statements describe their original checkpoints.
 
 - **Current: Phase 2C complete; version 0.9.0.** One fresh v18 Linux aarch64 native/proxy profile passes all twenty original cases independently twice and exercises both actual native file tools. Original protocol, limits, grants and historical bytes are preserved. See [completion assessment](PHASE-2C-COMPLETION-ASSESSMENT.md), [independent readback](qualification/phase-2c-direct-linux-native-full-readback-v18.json) and [false-permission decisions](qualification/phase-2c-direct-linux-native-full-decision-v18.json). Current cleanup is independently verified, 60 source files/configurations preserved outside `/run`, roles/slice/helpers removed, prepared roots retained, SSH disconnected and VM left running. Lost v5 cause/original cleanup remain unknown. Windows/macOS runtime compatibility remains unknown. Offline suite: 141 passed. No paid call or Phase 2D work. Next: [separately gated 2D prompt and exact inputs](PHASE-2D-NEXT-SESSION-2026-10-08.md). Earlier bullets below describe historical checkpoints; they do not override this state.
@@ -703,3 +705,29 @@ Final verification on macOS 27.2 arm64, CPython 3.12.15:
 - Codebase-memory Verify initially provided targeted current-generation snippets/traces/coverage. Later MCP transport closed; final index_status/check_index_coverage failed with Transport closed, so current source claims use exact file fallback. No exhaustive graph coverage claimed. Caveman and RTK remained active; Jev made no paid call.
 
 Publication uses the standing owner authorization only after this gate. Git credential helpers/askpass are disabled for the push because credential-store access remains forbidden. Any authentication failure must be reported explicitly; do not recover credentials or force-push. No merge, deployment or registry release. Next session: [2D prompt and exact files](PHASE-2D-NEXT-SESSION-2026-10-08.md), plus every preserved input in the active index. Windows/macOS runtime compatibility stays unknown.
+
+## Copyright maintenance closure — 2026-10-08
+
+- **Scope and authority:** the owner explicitly requested “change the copyright to forera.ai and contributers.” The displayed notice uses the standard spelling: `Copyright 2026 forera.ai and contributors.` This supersedes the earlier preservation instruction for the current notice; the October 8 repository-transfer record remains historical.
+- **Delivery:** README notice replaced, project notice prepended to LICENSE, and AGENTS.md updated for future sessions. The Apache-2.0 license body remains byte-identical. Version is synchronized at 0.9.2 for this documentation maintenance checkpoint. Base `35c34fa8afa5876eb9f61191338f8f41935e2b65`; delivery is the commit containing this closure entry (`rtk proxy git log -1 --format=%H -- LICENSE`). Push the current `codex/phase1-architecture` branch to `origin` at `https://github.com/forera-ai/Crewshal.git` under standing authorization and compare local HEAD with remote readback.
+- **Acceptance:** on macOS arm64, Python 3.14.8 and development Python 3.12.15, copyright/version assertions and staged whitespace checks pass. All 783 pre-existing tracked/non-ignored files were hashed before editing; only exact authorized transformations change. Only seven maintenance files are staged from HEAD; unrelated Phase 2D work remains uncommitted. LICENSE after removing the prepended notice is byte-identical to the base revision. No runtime code, live qualification, model/Jev or paid-host check ran; the full acceptance suite was not rerun for notice/version maintenance.
+
+Reproduce notice/version checks from the checkout:
+
+```sh
+rtk proxy .venv/bin/python - <<'PY'
+from pathlib import Path
+import runpy
+import tomllib
+notice = "Copyright 2026 forera.ai and contributors."
+assert notice in Path("README.md").read_text()
+assert Path("LICENSE").read_text().startswith(notice + "\n\n")
+project = tomllib.loads(Path("pyproject.toml").read_text())["project"]
+assert project["version"] == runpy.run_path("src/crewshal/__init__.py")["__version__"] == "0.9.2"
+print("Copyright and version checks passed")
+PY
+rtk proxy git diff --cached --check
+rtk proxy git ls-remote origin refs/heads/codex/phase1-architecture
+```
+
+**Next milestone:** resume only Phase 2D preparation from the existing local retained-native-admission boundary. Initial prompt: “Read AGENTS.md, HANDOFF.md, DEVELOPMENT-PLAN.md and the local PHASE-2D-CONTINUATION-2026-10-08.md with every exact input it names. Use forera-ai/Crewshal, copyright forera.ai and contributors, and maintenance version 0.9.2. Preserve pending dirty work and original gates; finish the next bounded Phase 2D preparation milestone, with no Phase 2E or unapproved live execution/spend.” Exact next-session file set is preserved in [the repository-transfer checkpoint](REPOSITORY-TRANSFER-2026-10-08.md#next-session); its 0.9.1 wording is historical and this 0.9.2 notice update controls current metadata.

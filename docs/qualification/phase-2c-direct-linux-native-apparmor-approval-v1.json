@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-07",
+  "authority": "direct owner message in current chat",
+  "owner_message": "yes, fixture-only-policy confirmed and approved. Then: tiny native workflow, then complete qualification.",
+  "policy": "docs/qualification/phase-2c-direct-linux-native-apparmor-proposal-v2.profile",
+  "policy_sha256": "ea9b2af6c65280a7a852563366a18d5fba8fcd64faabdcea18f9e4317454294d",
+  "scope": "temporary fixture-only AppArmor policy and bounded synthetic direct Linux qualification under unchanged limits",
+  "global_protection_changes_allowed": false,
+  "paid_host_or_provider_allowed": false,
+  "execution_allowed": false,
+  "native_start_allowed": false
+}

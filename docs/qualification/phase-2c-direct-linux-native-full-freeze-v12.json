@@ -1,0 +1,26 @@
+{
+  "manifest_sha256": "16e55988b8d3377a51536e2fd966f2e586f74d06dae145ae11a977465db8c3c8",
+  "profile_sha256": "0bb59e53a547d514034c0949d4da1dddda67454f662b871130df1c1c023e938c",
+  "loaded_policy_sha256": {
+    "crewshal-native-tool-v1": "f96fb67936fcab509534ab180b512a8fd6a2eba0d59dc7fa92a2c50282e8e2ca",
+    "crewshal-native-bwrap-v1": "0712da1298b44d54de8d9a6184ecd528c72cef5402ef57d6bc7f92578f092061"
+  },
+  "aggregate_observed": {
+    "memory.max": "805306368",
+    "memory.swap.max": "0",
+    "cpu.max": "100000 100000",
+    "pids.max": "128"
+  },
+  "kernel": "7.0.0-38-generic",
+  "architecture": "aarch64",
+  "observer_sha256": "bade0f5e3794e09a7c163bed1c4ba1a8dcb7aa5df8568d2a3a83820bf9d32dbd",
+  "original_protocol_sha256": "fed4dde5e3fe459110a5fb0b2d4f6c75b16214c91aa823d3df640a7415e41563",
+  "global_userns_restriction": 1,
+  "execution_allowed": false,
+  "native_start_allowed": false,
+  "stale_manifest_refusal": {
+    "exit": 1,
+    "owned_inventory_unchanged": true,
+    "stderr": "Traceback (most recent call last):\n  File \"/run/crewshal-native-full-v12.py\", line 1283, in <module>\n    run(a.manifest_sha256, a.fixture)\n  File \"/run/crewshal-native-full-v12.py\", line 209, in run\n    raise RuntimeError(\"manifest changed\")\nRuntimeError: manifest changed\n"
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "backing_bytes_per_fixture": 33554432,
+  "base_revision": "c30c8eb270520d6fc5296f1864d0d1ee3a26e411",
+  "bindings_sha256": "0a1a6e56c636b3c0ea197b267206ad441a9d0a78f679a8ec50c67e41ec3f1d10",
+  "cases": 11,
+  "cleanup_reserve_seconds": 30,
+  "command_seconds": 10,
+  "execution_allowed": false,
+  "native_start_allowed": false,
+  "observer_argv": [
+    "/usr/bin/python3",
+    "-I",
+    "-S",
+    "-B",
+    "/srv/crewshal-storage-inputs-20261005-v8/observe_linux_storage.py",
+    "--inputs",
+    "/srv/crewshal-storage-inputs-20261005-v8",
+    "--slice",
+    "crewshal-storage-local-v1.slice",
+    "--report",
+    "/tmp/crewshal-storage-observed-20261005-v6.json"
+  ],
+  "observer_properties": {
+    "KillMode": "control-group",
+    "PrivateMounts": "yes",
+    "PrivateNetwork": "yes",
+    "ProtectHome": "yes",
+    "RuntimeMaxSec": "570s",
+    "TimeoutStopSec": "30s"
+  },
+  "observer_unit": "crewshal-storage-observer-20261005-v6.service",
+  "operational_manifest_frozen": false,
+  "output_metadata_reserve_bytes": 16777216,
+  "payload_containment": "existing bubblewrap 0.9.0 with exact libseccomp filter and existing setpriv identity/capability drop; direct inherited private mount view",
+  "schema_version": 1,
+  "scope": "two fresh local synthetic eCryptfs fixtures; no SBX",
+  "sizes_bytes": [
+    8388608,
+    41943040
+  ],
+  "slice": "crewshal-storage-local-v1.slice",
+  "slice_properties": {
+    "CPUQuota": "100%",
+    "MemoryMax": 805306368,
+    "MemorySwapMax": 0,
+    "TasksMax": 128
+  },
+  "source_helper_reserve_bytes": 268435456,
+  "sources": {
+    "scripts/observe_linux_storage.py": "5f8804cf8b25d03714d2564483c1f4d0554d59cbde6e46829cd2d298484f86cd",
+    "scripts/prepare_linux_storage.py": "cd29eaf9048c8c6416628f8e7128865d8c9b98d3fd18bd251b6b14dbb6c81445",
+    "scripts/probe_storage_boundary.py": "2aaefb14aafaeefbefe848cce98c584e05d0e4b36c96eb7cadc35da91f3bb7de",
+    "scripts/probe_storage_operations.py": "b5072ac70ee5eceb40f885a7c045dc420548cff8e4432977eb80fb25d83b49a0"
+  },
+  "startup_seconds_per_fixture": 120,
+  "stream_bytes": 65536,
+  "vendor_copy_reserve_bytes": 268435456,
+  "whole_seconds": 600
+}

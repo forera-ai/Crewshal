@@ -1,0 +1,13 @@
+{
+  "scope": "Phase 2C disposable host capability only; not SBX or worker qualification",
+  "deadline_seconds": 5,
+  "guest_memory_bytes": 1048576,
+  "payload": "one x86 HLT instruction at physical address 4096",
+  "expected_api_version": 12,
+  "expected_exit_reason": 5,
+  "runs": 2,
+  "network": "none used by probe; administrative SSH only",
+  "probe_sha256": "cfce2653fe58d2a53c7ebc5a541b3067737c2e788ac662183a014807b30b4a2f",
+  "execution_allowed": false,
+  "preliminary_observation": "API 12, VM/vCPU create passed before this protocol was frozen; not counted as these two runs"
+}

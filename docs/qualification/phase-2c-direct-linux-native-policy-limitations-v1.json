@@ -1,0 +1,12 @@
+{
+  "scope": "retrospective limitations; executed snapshots remain unchanged",
+  "complete_profile": false,
+  "limitations": [
+    "v5 freeze copied v4 memory.current; exact fresh v5 value preserved separately",
+    "v9/v10 copied profile role prose retains ProcSubset=pid although actual argv and sources remove it",
+    "v10 copied policy-load/remove prose names v2 although exact source, policy field/hash, loaded hashes and actual parser observation identify v3",
+    "prepared roots are shared immutable diagnostic data; each attempted worker has fresh transient cgroup/scratch, but no full twenty-case fresh-fixture run occurred",
+    "v2 cleanup source was copied by existing transfer interface; no independently recorded installed-source digest or full host PID inventory is claimed",
+    "Only trusted tiny sandbox setup was attempted, not native agent dispatch/broker/validator conformance"
+  ]
+}

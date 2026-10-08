@@ -1,0 +1,252 @@
+{
+  "schema_version": 1,
+  "qualification": {
+    "schema_version": 1,
+    "id": "phase-2c-substrate-subset",
+    "identity": {
+      "host_os": "macOS-27.2-arm64-arm-64bit",
+      "host_kernel": "27.2.0",
+      "architecture": "arm64",
+      "substrate": "docker-desktop-linux-substrate-subset",
+      "substrate_version": "e202f155a1bea0e06fbf124f1030cffb8db96a4271bd693eff00381128ac8f45",
+      "image": "5b10f432ef3da1b8d4c7eb6c487f2f5a8f096bc91145e68878dd4a5019afde11",
+      "runtime": "synthetic-shell:unavailable",
+      "toolchain": "d1bb21963ba2128b41e929ae23f3a4a1a006a9b8f2914b354c86b97c3fb87ffa",
+      "configuration": "d0a1907091565fa43a16d2a15214414b1898e770ebf9d5053527311b91518f39",
+      "grant": "876537c31117c22ca6772a1e206ab603eaaa12e22f922d37acdd19ed0691470f",
+      "harness": "36a1c561439475f6e4b09111c8649cbfb5e86d3d9df164eb5b5550dc60c180d8",
+      "manifest": "d53787e7ac27177b541d2980c8853f5cf72fa1a128c8f669f40fe90c90923127",
+      "credential_design": null
+    },
+    "results": [
+      {
+        "case": "allowed-grant",
+        "status": "failed",
+        "observation": "Synthetic probe or independent fixture verification did not pass"
+      },
+      {
+        "case": "external-read",
+        "status": "failed",
+        "observation": "Synthetic probe or independent fixture verification did not pass"
+      },
+      {
+        "case": "external-write",
+        "status": "failed",
+        "observation": "Synthetic probe or independent fixture verification did not pass"
+      },
+      {
+        "case": "original-checkout",
+        "status": "failed",
+        "observation": "Synthetic probe or independent fixture verification did not pass"
+      },
+      {
+        "case": "coordinator-state",
+        "status": "failed",
+        "observation": "Synthetic probe or independent fixture verification did not pass"
+      },
+      {
+        "case": "symlink-escape",
+        "status": "failed",
+        "observation": "Synthetic probe or independent fixture verification did not pass"
+      },
+      {
+        "case": "new-file-escape",
+        "status": "failed",
+        "observation": "Synthetic probe or independent fixture verification did not pass"
+      },
+      {
+        "case": "metadata-escape",
+        "status": "failed",
+        "observation": "Synthetic probe or independent fixture verification did not pass"
+      },
+      {
+        "case": "network-egress",
+        "status": "unavailable",
+        "observation": "Not exercised by filesystem/environment subset; full runtime/broker qualification remains required"
+      },
+      {
+        "case": "environment-credentials",
+        "status": "failed",
+        "observation": "Synthetic probe or independent fixture verification did not pass"
+      },
+      {
+        "case": "repository-hooks",
+        "status": "unavailable",
+        "observation": "Not exercised by filesystem/environment subset; full runtime/broker qualification remains required"
+      },
+      {
+        "case": "global-hooks",
+        "status": "unavailable",
+        "observation": "Not exercised by filesystem/environment subset; full runtime/broker qualification remains required"
+      },
+      {
+        "case": "mcp-plugins-instructions",
+        "status": "unavailable",
+        "observation": "Not exercised by filesystem/environment subset; full runtime/broker qualification remains required"
+      },
+      {
+        "case": "descendant-escape",
+        "status": "unavailable",
+        "observation": "Not exercised by filesystem/environment subset; full runtime/broker qualification remains required"
+      },
+      {
+        "case": "cancellation",
+        "status": "unavailable",
+        "observation": "Not exercised by filesystem/environment subset; full runtime/broker qualification remains required"
+      },
+      {
+        "case": "deadline",
+        "status": "unavailable",
+        "observation": "Not exercised by filesystem/environment subset; full runtime/broker qualification remains required"
+      },
+      {
+        "case": "credential-mediation",
+        "status": "unavailable",
+        "observation": "Not exercised by filesystem/environment subset; full runtime/broker qualification remains required"
+      },
+      {
+        "case": "credential-free-validation",
+        "status": "unavailable",
+        "observation": "Not exercised by filesystem/environment subset; full runtime/broker qualification remains required"
+      },
+      {
+        "case": "configuration-binding",
+        "status": "unavailable",
+        "observation": "Not exercised by filesystem/environment subset; full runtime/broker qualification remains required"
+      },
+      {
+        "case": "qualification-refusal",
+        "status": "unavailable",
+        "observation": "Not exercised by filesystem/environment subset; full runtime/broker qualification remains required"
+      }
+    ],
+    "execution_allowed": false
+  },
+  "decision": {
+    "status": "denied",
+    "reasons": [
+      "unresolved substrate/runtime/credential design",
+      "allowed-grant: failed",
+      "external-read: failed",
+      "external-write: failed",
+      "original-checkout: failed",
+      "coordinator-state: failed",
+      "symlink-escape: failed",
+      "new-file-escape: failed",
+      "metadata-escape: failed",
+      "network-egress: unavailable",
+      "environment-credentials: failed",
+      "repository-hooks: unavailable",
+      "global-hooks: unavailable",
+      "mcp-plugins-instructions: unavailable",
+      "descendant-escape: unavailable",
+      "cancellation: unavailable",
+      "deadline: unavailable",
+      "credential-mediation: unavailable",
+      "credential-free-validation: unavailable",
+      "configuration-binding: unavailable",
+      "qualification-refusal: unavailable"
+    ],
+    "execution_allowed": false
+  },
+  "commands": [
+    {
+      "argv": [
+        "/opt/homebrew/bin/docker",
+        "version",
+        "--format",
+        "{{json .Server}}"
+      ],
+      "exit": 0,
+      "stderr": "",
+      "stdout": "{\"Platform\":{\"Name\":\"Docker Desktop 4.93.0 (240920)\"},\"Version\":\"29.8.1\",\"ApiVersion\":\"1.56\",\"MinAPIVersion\":\"1.40\",\"Os\":\"linux\",\"Arch\":\"arm64\",\"Components\":[{\"Name\":\"Engine\",\"Version\":\"29.8.1\",\"Details\":{\"ApiVersion\":\"1.56\",\"Arch\":\"arm64\",\"BuildTime\":\"Tue Sep 15 16:25:04 2026\",\"Experimental\":\"false\",\"GitCommit\":\"464cd50\",\"GoVersion\":\"go1.26.8\",\"KernelVersion\":\"7.0.14-linuxkit\",\"MinAPIVersion\":\"1.40\",\"Module\":\"github.com/moby/moby/v2\",\"ModuleVersion\":\"v2.0.0+unknown\",\"Os\":\"linux\"}},{\"Name\":\"containerd\",\"Version\":\"v2.3.5\",\"Details\":{\"GitCommit\":\"1294c24a7da8e5a793ed378161673abe94118892\"}},{\"Name\":\"runc\",\"Version\":\"1.5.1\",\"Details\":{\"GitCommit\":\"v1.5.1-0-g8f2685a4\"}},{\"Name\":\"docker-init\",\"Version\":\"0.19.0\",\"Details\":{\"GitCommit\":\"de40ad0\"}}],\"GitCommit\":\"464cd50\",\"GoVersion\":\"go1.26.8\",\"KernelVersion\":\"7.0.14-linuxkit\",\"BuildTime\":\"2026-09-15T16:25:04.000000000+00:00\"}\n"
+    },
+    {
+      "argv": [
+        "/opt/homebrew/bin/docker",
+        "create",
+        "--pull=never",
+        "--name",
+        "crewshal-2c-fa1b1176d12b43d58254c8665aedc500",
+        "--label",
+        "crewshal.qualification=2c",
+        "--network=none",
+        "--read-only",
+        "--user=65532:65532",
+        "--cap-drop=ALL",
+        "--security-opt=no-new-privileges",
+        "--pids-limit=32",
+        "--memory=128m",
+        "--cpus=1",
+        "--log-driver=none",
+        "--entrypoint=/bin/sh",
+        "--mount",
+        "type=bind,src=<synthetic-root>/input,dst=/input,readonly",
+        "--mount",
+        "type=bind,src=<synthetic-root>/owned,dst=/candidate/owned",
+        "--tmpfs",
+        "/scratch:rw,noexec,nosuid,nodev,size=16777216,mode=1777",
+        "--env",
+        "HOME=/scratch/home",
+        "--env",
+        "HOST_FIXTURE=<synthetic-root>",
+        "sha256:5b10f432ef3da1b8d4c7eb6c487f2f5a8f096bc91145e68878dd4a5019afde11",
+        "/input/probe.sh"
+      ],
+      "exit": 0,
+      "stderr": "",
+      "stdout": "80ed6ccb2cd5e51312e0ae17bc063b840359a05c3931a431a221b8d9dda6e7f1\n"
+    },
+    {
+      "argv": [
+        "/opt/homebrew/bin/docker",
+        "inspect",
+        "crewshal-2c-fa1b1176d12b43d58254c8665aedc500"
+      ],
+      "exit": 0,
+      "stderr": "",
+      "stdout": "[\n    {\n        \"Id\": \"80ed6ccb2cd5e51312e0ae17bc063b840359a05c3931a431a221b8d9dda6e7f1\",\n        \"Created\": \"2026-10-02T11:50:53.450871423Z\",\n        \"Path\": \"/bin/sh\",\n        \"Args\": [\n            \"/input/probe.sh\"\n        ],\n        \"State\": {\n            \"Status\": \"created\",\n            \"Running\": false,\n            \"Paused\": false,\n            \"Restarting\": false,\n            \"OOMKilled\": false,\n            \"Dead\": false,\n            \"Pid\": 0,\n            \"ExitCode\": 0,\n            \"Error\": \"\",\n            \"StartedAt\": \"0001-01-01T00:00:00Z\",\n            \"FinishedAt\": \"0001-01-01T00:00:00Z\"\n        },\n        \"Image\": \"sha256:5b10f432ef3da1b8d4c7eb6c487f2f5a8f096bc91145e68878dd4a5019afde11\",\n        \"ResolvConfPath\": \"\",\n        \"HostnamePath\": \"\",\n        \"HostsPath\": \"\",\n        \"LogPath\": \"\",\n        \"Name\": \"/crewshal-2c-fa1b1176d12b43d58254c8665aedc500\",\n        \"RestartCount\": 0,\n        \"Driver\": \"overlayfs\",\n        \"Platform\": \"linux\",\n        \"MountLabel\": \"\",\n        \"ProcessLabel\": \"\",\n        \"AppArmorProfile\": \"\",\n        \"ExecIDs\": null,\n        \"HostConfig\": {\n            \"Binds\": null,\n            \"ContainerIDFile\": \"\",\n            \"LogConfig\": {\n                \"Type\": \"none\",\n                \"Config\": {}\n            },\n            \"NetworkMode\": \"none\",\n            \"PortBindings\": {},\n            \"RestartPolicy\": {\n                \"Name\": \"no\",\n                \"MaximumRetryCount\": 0\n            },\n            \"AutoRemove\": false,\n            \"VolumeDriver\": \"\",\n            \"VolumesFrom\": null,\n            \"ConsoleSize\": [\n                0,\n                0\n            ],\n            \"CapAdd\": null,\n            \"CapDrop\": [\n                \"ALL\"\n            ],\n            \"CgroupnsMode\": \"private\",\n            \"Dns\": null,\n            \"DnsOptions\": [],\n            \"DnsSearch\": [],\n            \"ExtraHosts\": null,\n            \"GroupAdd\": null,\n            \"IpcMode\": \"private\",\n            \"Cgroup\": \"\",\n            \"Links\": null,\n            \"OomScoreAdj\": 0,\n            \"PidMode\": \"\",\n            \"Privileged\": false,\n            \"PublishAllPorts\": false,\n            \"ReadonlyRootfs\": true,\n            \"SecurityOpt\": [\n                \"no-new-privileges\"\n            ],\n            \"Tmpfs\": {\n                \"/scratch\": \"rw,noexec,nosuid,nodev,size=16777216,mode=1777\"\n            },\n            \"UTSMode\": \"\",\n            \"UsernsMode\": \"\",\n            \"ShmSize\": 67108864,\n            \"Runtime\": \"runc\",\n            \"Isolation\": \"\",\n            \"CpuShares\": 0,\n            \"Memory\": 134217728,\n            \"NanoCpus\": 1000000000,\n            \"CgroupParent\": \"\",\n            \"BlkioWeight\": 0,\n            \"BlkioWeightDevice\": [],\n            \"BlkioDeviceReadBps\": [],\n            \"BlkioDeviceWriteBps\": [],\n            \"BlkioDeviceReadIOps\": [],\n            \"BlkioDeviceWriteIOps\": [],\n            \"CpuPeriod\": 0,\n            \"CpuQuota\": 0,\n            \"CpuRealtimePeriod\": 0,\n            \"CpuRealtimeRuntime\": 0,\n            \"CpusetCpus\": \"\",\n            \"CpusetMems\": \"\",\n            \"Devices\": [],\n            \"DeviceCgroupRules\": null,\n            \"DeviceRequests\": null,\n            \"MemoryReservation\": 0,\n            \"MemorySwap\": 268435456,\n            \"MemorySwappiness\": null,\n            \"OomKillDisable\": false,\n            \"PidsLimit\": 32,\n            \"Ulimits\": null,\n            \"CpuCount\": 0,\n            \"CpuPercent\": 0,\n            \"IOMaximumIOps\": 0,\n            \"IOMaximumBandwidth\": 0,\n            \"Mounts\": [\n                {\n                    \"Type\": \"bind\",\n                    \"Source\": \"<synthetic-root>/input\",\n                    \"Target\": \"/input\",\n                    \"ReadOnly\": true\n                },\n                {\n                    \"Type\": \"bind\",\n                    \"Source\": \"<synthetic-root>/owned\",\n                    \"Target\": \"/candidate/owned\"\n                }\n            ],\n            \"MaskedPaths\": [\n                \"/proc/acpi\",\n                \"/proc/asound\",\n                \"/proc/interrupts\",\n                \"/proc/kcore\",\n                \"/proc/keys\",\n                \"/proc/latency_stats\",\n                \"/proc/sched_debug\",\n                \"/proc/scsi\",\n                \"/proc/timer_list\",\n                \"/proc/timer_stats\",\n                \"/sys/devices/virtual/powercap\",\n                \"/sys/firmware\"\n            ],\n            \"ReadonlyPaths\": [\n                \"/proc/bus\",\n                \"/proc/fs\",\n                \"/proc/irq\",\n                \"/proc/sys\",\n                \"/proc/sysrq-trigger\"\n            ]\n        },\n        \"Storage\": {\n            \"RootFS\": {\n                \"Snapshot\": {\n                    \"Name\": \"overlayfs\"\n                }\n            }\n        },\n        \"Mounts\": [\n            {\n                \"Type\": \"bind\",\n                \"Source\": \"<synthetic-root>/input\",\n                \"Destination\": \"/input\",\n                \"Mode\": \"\",\n                \"RW\": false,\n                \"Propagation\": \"rprivate\"\n            },\n            {\n                \"Type\": \"bind\",\n                \"Source\": \"<synthetic-root>/owned\",\n                \"Destination\": \"/candidate/owned\",\n                \"Mode\": \"\",\n                \"RW\": true,\n                \"Propagation\": \"rprivate\"\n            }\n        ],\n        \"Config\": {\n            \"Hostname\": \"80ed6ccb2cd5\",\n            \"Domainname\": \"\",\n            \"User\": \"65532:65532\",\n            \"AttachStdin\": false,\n            \"AttachStdout\": true,\n            \"AttachStderr\": true,\n            \"Tty\": false,\n            \"OpenStdin\": false,\n            \"StdinOnce\": false,\n            \"Env\": [\n                \"HOST_FIXTURE=<synthetic-root>\",\n                \"HOME=/scratch/home\",\n                \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\"\n            ],\n            \"Cmd\": [\n                \"/input/probe.sh\"\n            ],\n            \"Image\": \"sha256:5b10f432ef3da1b8d4c7eb6c487f2f5a8f096bc91145e68878dd4a5019afde11\",\n            \"Volumes\": null,\n            \"WorkingDir\": \"/\",\n            \"Entrypoint\": [\n                \"/bin/sh\"\n            ],\n            \"Labels\": {\n                \"crewshal.qualification\": \"2c\"\n            }\n        },\n        \"NetworkSettings\": {\n            \"SandboxID\": \"\",\n            \"SandboxKey\": \"\",\n            \"Ports\": {},\n            \"Networks\": {\n                \"none\": {\n                    \"IPAMConfig\": null,\n                    \"Links\": null,\n                    \"Aliases\": null,\n                    \"DriverOpts\": null,\n                    \"GwPriority\": 0,\n                    \"NetworkID\": \"\",\n                    \"EndpointID\": \"\",\n                    \"Gateway\": \"\",\n                    \"IPAddress\": \"\",\n                    \"MacAddress\": \"\",\n                    \"IPPrefixLen\": 0,\n                    \"IPv6Gateway\": \"\",\n                    \"GlobalIPv6Address\": \"\",\n                    \"GlobalIPv6PrefixLen\": 0,\n                    \"DNSNames\": null\n                }\n            }\n        },\n        \"ImageManifestDescriptor\": {\n            \"mediaType\": \"application/vnd.oci.image.manifest.v1+json\",\n            \"digest\": \"sha256:378c4c5418f7493bd500ad21ffb43818d0689daaad43e3261859fb417d1481a0\",\n            \"size\": 1025,\n            \"annotations\": {\n                \"com.docker.official-images.bashbrew.arch\": \"arm64v8\",\n                \"org.opencontainers.image.base.name\": \"scratch\",\n                \"org.opencontainers.image.created\": \"2026-04-15T20:01:01Z\",\n                \"org.opencontainers.image.revision\": \"c68e08480b8fb053591ade7dbaffa2ea67db2f56\",\n                \"org.opencontainers.image.source\": \"https://github.com/alpinelinux/docker-alpine.git#c68e08480b8fb053591ade7dbaffa2ea67db2f56:aarch64\",\n                \"org.opencontainers.image.url\": \"https://hub.docker.com/_/alpine\",\n                \"org.opencontainers.image.version\": \"3.23.4\"\n            },\n            \"platform\": {\n                \"architecture\": \"arm64\",\n                \"os\": \"linux\",\n                \"variant\": \"v8\"\n            }\n        }\n    }\n]\n"
+    },
+    {
+      "argv": [
+        "/opt/homebrew/bin/docker",
+        "start",
+        "--attach",
+        "crewshal-2c-fa1b1176d12b43d58254c8665aedc500"
+      ],
+      "exit": 0,
+      "stderr": "/input/probe.sh: line 7: can't create /input/read.txt: Read-only file system\n/input/probe.sh: line 11: can't create /outside/canary: nonexistent directory\n/input/probe.sh: line 11: can't create /original/canary: nonexistent directory\n/input/probe.sh: line 11: can't create /coordinator/canary: nonexistent directory\n/input/probe.sh: line 15: can't create <synthetic-root>/outside/canary: nonexistent directory\n/input/probe.sh: line 15: can't create <synthetic-root>/original/canary: nonexistent directory\n/input/probe.sh: line 15: can't create <synthetic-root>/coordinator/canary: nonexistent directory\n/input/probe.sh: line 19: can't create /candidate/owned/absolute-link: nonexistent directory\n/input/probe.sh: line 20: can't create /candidate/owned/relative-link/read.txt: Read-only file system\n/input/probe.sh: line 22: can't create /candidate/owned/relative-link/new.txt: Read-only file system\n/input/probe.sh: line 23: can't create /candidate/owned/../../input/new.txt: Read-only file system\n",
+      "stdout": "allowed-grant\nexternal-read\nexternal-write\noriginal-checkout\ncoordinator-state\nsymlink-escape\nnew-file-escape\nmetadata-escape\nenvironment-credentials\n"
+    },
+    {
+      "argv": [
+        "/opt/homebrew/bin/docker",
+        "inspect",
+        "--format",
+        "{{json .State}}",
+        "crewshal-2c-fa1b1176d12b43d58254c8665aedc500"
+      ],
+      "exit": 0,
+      "stderr": "",
+      "stdout": "{\"Status\":\"exited\",\"Running\":false,\"Paused\":false,\"Restarting\":false,\"OOMKilled\":false,\"Dead\":false,\"Pid\":0,\"ExitCode\":0,\"Error\":\"\",\"StartedAt\":\"2026-10-02T11:50:53.677360048Z\",\"FinishedAt\":\"2026-10-02T11:50:53.777720631Z\"}\n"
+    },
+    {
+      "argv": [
+        "/opt/homebrew/bin/docker",
+        "rm",
+        "--force",
+        "crewshal-2c-fa1b1176d12b43d58254c8665aedc500"
+      ],
+      "exit": 0,
+      "stderr": "",
+      "stdout": "crewshal-2c-fa1b1176d12b43d58254c8665aedc500\n"
+    }
+  ],
+  "kernel": "unavailable",
+  "toolchain": "unavailable",
+  "effective_grant_verified": true,
+  "protected_fixtures_unchanged": true,
+  "approved_writes_observed": false,
+  "fixture_container_removed": true,
+  "scope": "9 filesystem/environment cases only; no product runtime or credential broker"
+}

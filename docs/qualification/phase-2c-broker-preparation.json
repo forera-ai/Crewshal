@@ -1,0 +1,11 @@
+{
+  "archive_url": "https://github.com/docker/sbx-releases/releases/download/v0.46.0/DockerSandboxes-linux-arm64.tar.gz",
+  "archive_bytes": 72270041,
+  "archive_sha256": "b20da2e5e2ba7a67151a19821960c657c08d8fa8dcfdf5e9751f284d6e55ffa8",
+  "image": "sha256:a853f94d226358a79c740cfc7bce0c289748f3fe3488d921d038ccd752c61b60",
+  "repo_digests": [
+    "ubuntu@sha256:a853f94d226358a79c740cfc7bce0c289748f3fe3488d921d038ccd752c61b60"
+  ],
+  "image_size": 139378930,
+  "elapsed_seconds": 15.17
+}

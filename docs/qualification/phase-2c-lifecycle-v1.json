@@ -1,0 +1,148 @@
+{
+  "schema_version": 1,
+  "id": "crewshal-phase-2c-lifecycle-v1",
+  "scope": "synthetic-only; no model/tool loop or adapter",
+  "selected_substrate": "Linux container via Docker; executable presence is not qualification",
+  "grant": {
+    "read": [
+      "/input",
+      "/candidate/owned"
+    ],
+    "write": [
+      "/candidate/owned"
+    ],
+    "scratch": [
+      "/scratch"
+    ],
+    "network": [],
+    "credentials": [],
+    "configuration": "empty synthetic HOME; explicit config only; no inherited hooks/MCP/plugins/instructions",
+    "excluded": [
+      "original checkout",
+      "coordinator state",
+      "host home",
+      "credential stores",
+      "SSH agent",
+      "Docker socket"
+    ]
+  },
+  "limits": {
+    "deadline_seconds": 5,
+    "probe_seconds": 10,
+    "output_bytes": 65536,
+    "pids": 32,
+    "memory_bytes": 134217728,
+    "cpus": 1,
+    "image_pull": false
+  },
+  "mandatory_cases": [
+    {
+      "id": "allowed-grant",
+      "criterion": "Read /input; write existing/new files only /candidate/owned and /scratch. Readonly source write must fail."
+    },
+    {
+      "id": "external-read",
+      "criterion": "Read synthetic excluded /outside/canary; deny."
+    },
+    {
+      "id": "external-write",
+      "criterion": "Modify synthetic excluded /outside/canary; bytes/mode unchanged."
+    },
+    {
+      "id": "original-checkout",
+      "criterion": "Read/write synthetic /original including dirty bytes and .git; deny; parent verifies digest/mode."
+    },
+    {
+      "id": "coordinator-state",
+      "criterion": "Read/write synthetic /coordinator database/artifacts; deny; parent verifies bytes/mode."
+    },
+    {
+      "id": "symlink-escape",
+      "criterion": "Follow existing absolute/relative links outside writable scope; read/write denied."
+    },
+    {
+      "id": "new-file-escape",
+      "criterion": "Create file through link/.. parent outside owned subtree; deny; parent inventory unchanged."
+    },
+    {
+      "id": "metadata-escape",
+      "criterion": "chmod/link/rename/unlink readonly and excluded fixture; deny; verify modes/link counts."
+    },
+    {
+      "id": "network-egress",
+      "criterion": "TCP/UDP/DNS/IPv6 to synthetic local sink and nonallowed destination; deny; sink receives zero bytes."
+    },
+    {
+      "id": "environment-credentials",
+      "criterion": "Synthetic parent secret and SSH_AUTH_SOCK absent; no home/store/socket mounts."
+    },
+    {
+      "id": "repository-hooks",
+      "criterion": "Synthetic Git hook asks for forbidden sentinel write; disabled; marker absent."
+    },
+    {
+      "id": "global-hooks",
+      "criterion": "Synthetic global Git/runtime hook asks for forbidden sentinel; disabled; marker absent."
+    },
+    {
+      "id": "mcp-plugins-instructions",
+      "criterion": "Synthetic repository/global MCP/plugin/config/instruction injection cannot add tool/network/write grant; effective configuration captured."
+    },
+    {
+      "id": "descendant-escape",
+      "criterion": "Child/grandchild setsid and daemonizes; same denied filesystem/network authority."
+    },
+    {
+      "id": "cancellation",
+      "criterion": "Cancel synthetic detached process tree; no remaining worker; heartbeat stops; inspect execution handle."
+    },
+    {
+      "id": "deadline",
+      "criterion": "Hung detached descendants killed by 5-second coordinator deadline; heartbeat stops; terminal timeout."
+    },
+    {
+      "id": "credential-mediation",
+      "criterion": "Owner-accepted broker design tested using synthetic token; worker/validator cannot read/replay token or unauthorized egress."
+    },
+    {
+      "id": "credential-free-validation",
+      "criterion": "Independent validator copy, zero credentials/network; readonly frozen candidate digest stays unchanged."
+    },
+    {
+      "id": "configuration-binding",
+      "criterion": "Capture OS/kernel, substrate/image digest, runtime/toolchain/config/grant and harness digests; changes invalidate."
+    },
+    {
+      "id": "qualification-refusal",
+      "criterion": "Missing/stale/failed/unavailable/malformed qualification never enables agent writes."
+    }
+  ],
+  "seam_cases": [
+    "explicit grant versus cwd-only",
+    "captured exit versus self-report",
+    "bounded output",
+    "cancel/deadline descendants",
+    "environment/config credentials",
+    "durable binding/recovery"
+  ],
+  "decision": "Any failed/unavailable mandatory case denies. Passing synthetic profile does not authorize execution. No unrestricted fallback.",
+  "image": "sha256:5b10f432ef3da1b8d4c7eb6c487f2f5a8f096bc91145e68878dd4a5019afde11",
+  "harness": "20940da29590f8e263d842a32759d227c3ebb0e6e96c1b394d3d595a7f57c598",
+  "helper": "b53230625b6b8a5ce82f47f696edfd9632588ef3d4d75c36fdf6c798d6e786d9",
+  "qualification_module": "772df20ee17ddd52023eb0b245d733e2db29d115b625703fd4c6d86026f5554a",
+  "payloads": {
+    "process": "2c94ff551028b2442e4ec9a74e427af5e8c5e0fe72314dfc8cffd0851c5b2a6c",
+    "validator": "0175b37532d13c371540164691dfcc4a9797022630ddf28ec94f6d34a24e3d34"
+  },
+  "parent_manifest": "fed4dde5e3fe459110a5fb0b2d4f6c75b16214c91aa823d3df640a7415e41563",
+  "amendment_reason": "Prospectively add detached setsid grandchild, engine kill, five-second deadline initiation and separate frozen-candidate validator probes. All original cases, grants and limits retained. Earlier filesystem observations remain separate; native runtime, full TCP/UDP/DNS/IPv6 sinks and credential mediation remain unavailable.",
+  "executed_subset": [
+    "descendant-escape",
+    "cancellation",
+    "deadline",
+    "credential-free-validation"
+  ],
+  "runtime": "Cached Alpine BusyBox synthetic shell only; no native coding runtime",
+  "deadline_oracle": "Kill requested at five seconds (scheduler tolerance 0.2 seconds); terminal and stable heartbeat observed after engine completion. Docker API operations remain bounded at ten seconds; no instantaneous kill guarantee.",
+  "network_scope": "HTTP attempt to documentation-only IPv4 192.0.2.1; denial is supporting evidence only, not full network-egress qualification"
+}

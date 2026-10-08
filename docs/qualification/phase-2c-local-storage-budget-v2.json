@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "ceiling": {
+    "logical_bytes": 8589934592,
+    "allocated_bytes": 8589934592
+  },
+  "execution_allowed": false,
+  "native_start_allowed": false,
+  "id": "crewshal-phase-2c-local-storage-lab-budget-v2",
+  "scope": "local synthetic fixtures, conservative reservations; no operational guest",
+  "objects": [
+    {
+      "id": "ext4-loop-image",
+      "logical_bytes": 33554432,
+      "allocated_bytes": 33554432
+    },
+    {
+      "id": "lower-content-capacity",
+      "logical_bytes": 33554432,
+      "allocated_bytes": 33554432
+    },
+    {
+      "id": "upper-content-expectation",
+      "logical_bytes": 33554432,
+      "allocated_bytes": 33554432
+    },
+    {
+      "id": "pinned-input-reserve",
+      "logical_bytes": 268435456,
+      "allocated_bytes": 268435456
+    },
+    {
+      "id": "vendor-original-and-helper-representations",
+      "logical_bytes": 268435456,
+      "allocated_bytes": 268435456
+    },
+    {
+      "id": "observer-output-metadata-reserve",
+      "logical_bytes": 16777216,
+      "allocated_bytes": 16777216
+    }
+  ],
+  "limitations": [
+    "upper regular growth observed at two scales only; not a universal upper logical bound",
+    "vendor copied inputs and prior diagnostic preparations share the 256 MiB reservation",
+    "source/kernel/module/metadata inventory is not full operational identity qualification",
+    "backing and content charged separately; aliases retain inode evidence",
+    "actual pinned runtime operations and guest apparent contents are absent"
+  ]
+}

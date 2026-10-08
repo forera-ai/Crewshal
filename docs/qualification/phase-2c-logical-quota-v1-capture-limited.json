@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "source_sha256": "61cf44f20aa3bebbbc704e65e18c29cf745a2214e91e76e3cb9c66e3afe4cd03",
+  "status": "initial_observation_capture_incomplete",
+  "reason": "The first host invocation emitted structured results, but the client output budget truncated the captured first chunk. Its remaining tail was read later. No complete JSON observation is retained for that invocation, so no qualification pass is assigned to it.",
+  "remediation": "Repeat the same immutable source in fresh fixtures with sufficient client capture budget. The complete separately recorded observation contains two fresh fixtures; do not reconstruct or promote the missing initial record.",
+  "qualification_pass": false,
+  "execution_allowed": false,
+  "native_start_allowed": false
+}

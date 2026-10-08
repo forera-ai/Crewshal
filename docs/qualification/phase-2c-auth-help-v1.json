@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "scope": "prospective pinned private network-denied login help only",
+  "source_path": "docs/qualification/phase-2c-auth-help-v1-runner.txt",
+  "source_sha256": "9069b09dccb95bb8a1631a9a20adb25f3bc876a363e6663c707529ee2919c54e",
+  "login_attempted": false,
+  "execution_allowed": false,
+  "native_start_allowed": false
+}

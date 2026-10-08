@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "scope": "prospective provider-free version/help discovery only; not hostile/native qualification",
+  "source": "scripts/probe_direct_linux_native_discovery.py",
+  "source_sha256": "a8d9b0d5bb204b7cb67570c37b9c49fcfc7fa46a0c2384979b3bb8a364de1a7a",
+  "helper": "scripts/probe_direct_linux_mechanism_v5.py",
+  "helper_sha256": "175c7c76fac548c0cfe9fa6d6e1b7d0eff0539ccca2c4a64c68e9d2a1a635860",
+  "aggregate_unit": "crewshalnativediscoveryv1.slice",
+  "aggregate_unit_contents": "[Unit]\nDescription=Crewshal trusted native discovery aggregate\n[Slice]\nMemoryMax=805306368\nMemorySwapMax=0\nCPUQuota=100%\nTasksMax=128\n",
+  "aggregate_unit_sha256": "13bf36a0dd7a2f707d7ab76b0adc0a88aca6be1547a355aeb989fe37638c75fe",
+  "base": "/var/tmp/crewshal-native-discovery-v1",
+  "aggregate_memory": 805306368,
+  "aggregate_cpu": "100000 100000",
+  "aggregate_pids": 128,
+  "swap": 0,
+  "worker_memory": 134217728,
+  "worker_cpu": "100000 100000",
+  "worker_pids": 32,
+  "worker_seconds": 5,
+  "command_seconds": 10,
+  "output_bytes_per_stream": 65536,
+  "startup_seconds": 120,
+  "disk_logical_and_allocated_ceiling": 8589934592,
+  "vendor_extracted_ceiling": 1073741824,
+  "commands": [
+    [
+      "/opt/codex/bin/codex",
+      "--version"
+    ],
+    [
+      "/opt/codex/bin/codex",
+      "--help"
+    ],
+    [
+      "/opt/codex/bin/codex",
+      "sandbox",
+      "linux",
+      "--help"
+    ],
+    [
+      "/opt/codex/codex-responses-api-proxy-aarch64-unknown-linux-musl",
+      "--help"
+    ]
+  ],
+  "fixtures": 2,
+  "network": "systemd PrivateNetwork=yes; no provider",
+  "native_start_allowed": false,
+  "execution_allowed": false,
+  "credential_mediation_qualified": false
+}

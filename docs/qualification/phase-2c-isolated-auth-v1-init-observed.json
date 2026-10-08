@@ -1,0 +1,33 @@
+{
+  "execution_allowed": false,
+  "kernel_bpf_queries": [
+    {
+      "attach_type": 0,
+      "errno": 0,
+      "program_count": 1,
+      "return_code": 0
+    },
+    {
+      "attach_type": 1,
+      "errno": 0,
+      "program_count": 1,
+      "return_code": 0
+    }
+  ],
+  "login_initiated": true,
+  "native_start_allowed": false,
+  "ready": {
+    "cgroup": "/system.slice/crewshal-isolated-auth-v1.service",
+    "controls": {
+      "cpu.max": "100000 100000",
+      "memory.max": "268435456",
+      "memory.swap.max": "0",
+      "pids.max": "32"
+    },
+    "pid": 20407
+  },
+  "root": "/srv/crewshal-2c-isolated-auth-20261003-v1",
+  "scope": "authentication initiation only",
+  "source_sha256": "9d1bd7674abff69db0a6ee85f9f5fbf044020590f4381fe4f248aba9d201839e",
+  "unit": "crewshal-isolated-auth-v1"
+}

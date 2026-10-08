@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "scope": "sanitized direct Linux read-only inventory; no enforcement qualification",
+  "date": "2026-10-06",
+  "source_sha256": "eaf4f37bf1655d9754f1a12421f53673a62558c532ed46fdc0aabebb0b7e936d",
+  "platform": "linux",
+  "kernel": "7.0.0-38-generic",
+  "architecture": "aarch64",
+  "python_version": "3.12.3",
+  "effective_uid_role": "owner-supplied unprivileged test shell",
+  "kernel_interfaces": {
+    "controllers": "cpuset cpu io memory hugetlb pids rdma misc dmem\n",
+    "filesystems": "nodev\tsysfs\nnodev\ttmpfs\nnodev\tproc\nnodev\tcgroup\nnodev\tcgroup2\nnodev\tcpuset\nnodev\tdevtmpfs\nnodev\tconfigfs\nnodev\tdebugfs\nnodev\ttracefs\nnodev\tsecurityfs\nnodev\tsockfs\nnodev\tbpf\nnodev\tpipefs\nnodev\tramfs\nnodev\thugetlbfs\nnodev\tdevpts\n\text3\n\text2\n\text4\n\tsquashfs\n\tvfat\nnodev\tecryptfs\n\tfuseblk\nnodev\tfuse\nnodev\tfusectl\nnodev\tefivarfs\nnodev\tmqueue\nnodev\tpstore\nnodev\tautofs\nnodev\tbinfmt_misc\n"
+  },
+  "helpers": {
+    "bwrap": {
+      "path": "/usr/bin/bwrap",
+      "sha256": "cd6b143283b464baf078ab09ca19dadc5bcc2423b833c4f9dd7e83f9ba1b640b"
+    },
+    "setpriv": {
+      "path": "/usr/bin/setpriv",
+      "sha256": "9922bc8da40cd9f1024beae714aee76c2b7d2abac563391235f32e30141d35da"
+    },
+    "systemd-run": {
+      "path": "/usr/bin/systemd-run",
+      "sha256": "0253595d482ea0aa9c4bf2e58080e9615bc59a51e29dbe1cebd14145b92bd8fc"
+    },
+    "timeout": {
+      "path": "/usr/bin/timeout",
+      "sha256": "e9019c0a2fc634096cc1237f68b015fa8eb72f80cfc7d3fe69a1a4e2d9a24980"
+    },
+    "mount": {
+      "path": "/usr/bin/mount",
+      "sha256": "a4e2960330ff237a185306d9d92df1fc69ee77d8abe9d3282f662f54e13f01f4"
+    },
+    "umount": {
+      "path": "/usr/bin/umount",
+      "sha256": "2a7315235424943e447398eff16f5fd36755f52a9b694dfe6b562d8f2f91d2a6"
+    }
+  },
+  "exit": 0,
+  "stderr_bytes": 0,
+  "stdout_bytes": 2047,
+  "source_removed": true,
+  "private_capture_sha256": "197e05004ad5f281591dc588c74fb8a68b803eccdef87c95442fbf7ef277e4ff",
+  "execution_allowed": false,
+  "native_start_allowed": false,
+  "operational_manifest_frozen": false,
+  "phase_2c_complete": false
+}

@@ -1,0 +1,19 @@
+{
+  "aggregate_observed": {
+    "memory.max": "805306368",
+    "memory.swap.max": "0",
+    "cpu.max": "100000 100000",
+    "pids.max": "128",
+    "memory.current": "481132544"
+  },
+  "loaded_policy_sha256": {
+    "crewshal-native-tool-v1": "f96fb67936fcab509534ab180b512a8fd6a2eba0d59dc7fa92a2c50282e8e2ca",
+    "crewshal-native-bwrap-v1": "0712da1298b44d54de8d9a6184ecd528c72cef5402ef57d6bc7f92578f092061"
+  },
+  "global_userns_restriction": 1,
+  "profile": "phase-2c-direct-linux-native-proxy-profile-v1.json",
+  "profile_sha256": "3de15b89e2b5baf836be0656957af9f71be89974d72f0cbfaa221ac7c165d503",
+  "manifest": "phase-2c-direct-linux-native-proxy-bindings-v1.json",
+  "manifest_sha256": "f704fc6448a00380ece0e5f778b714b7f0808f62b8514fcf401c02ef74679afa",
+  "scope": "Trusted native/proxy positive control only; no hostile cases or complete qualification"
+}

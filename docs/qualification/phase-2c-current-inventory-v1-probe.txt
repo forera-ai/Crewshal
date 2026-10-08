@@ -1,0 +1,27 @@
+import json,os,pathlib,shutil,subprocess
+root=pathlib.Path("/srv/crewshal-2c-preparation-current-20261002-v1")
+result={"scope":"independent final trusted preparation inventory; host and verified artifacts retained","execution_allowed":False,"native_start_allowed":False}
+logical=allocated=0
+for path in root.rglob("*"):
+    if path.is_file() and not path.is_symlink():
+        st=path.stat();logical+=st.st_size;allocated+=st.st_blocks*512
+result["retained_preparation_logical_bytes"]=logical
+result["retained_preparation_allocated_bytes"]=allocated
+result["units"]=subprocess.run(["/usr/bin/systemctl","list-units","--all","--no-legend","--plain","crewshal-current-help-v1-*.service","crewshal-daemon-config-current-v1.service"],capture_output=True,text=True,timeout=3).stdout
+handles=[];owned=[];unreadable=[]
+for proc in pathlib.Path("/proc").iterdir():
+    if not proc.name.isdigit():continue
+    try:
+        line=(proc/"cmdline").read_bytes()
+        if (str(root)+"/bundle/docker-sbx/").encode() in line:owned.append(int(proc.name))
+        for fd in (proc/"fd").iterdir():
+            try:target=os.readlink(fd)
+            except FileNotFoundError:continue
+            if "kvm-vm" in target or "kvm-vcpu" in target:handles.append({"pid":int(proc.name),"target":target})
+    except FileNotFoundError:pass
+    except PermissionError:unreadable.append(int(proc.name))
+result["owned_sbx_processes"]=owned;result["kvm_handles"]=handles;result["unreadable_proc_entries"]=unreadable
+mem=dict(line.split(":",1) for line in pathlib.Path("/proc/meminfo").read_text().splitlines())
+result["available_memory_bytes"]=int(mem["MemAvailable"].split()[0])*1024
+result["free_disk_bytes"]=shutil.disk_usage(root).free
+print(json.dumps(result,sort_keys=True))

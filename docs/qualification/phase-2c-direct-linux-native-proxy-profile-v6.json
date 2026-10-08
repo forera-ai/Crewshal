@@ -1,0 +1,64 @@
+{
+  "scope": "Native/proxy finite caller and destination separation diagnostic; no complete qualification",
+  "source": "scripts/probe_native_proxy_v6.py",
+  "source_sha256": "d888ff047b7f2c3d734f8802d63f707c79bade73da7a6c54caea27e02115fc93",
+  "authority": "phase-2c-direct-linux-native-apparmor-approval-v2.json",
+  "policy": "phase-2c-direct-linux-native-apparmor-proposal-v7.profile",
+  "policy_sha256": "6a6d743ab2a1d51db801ff944aa74c2fedd5316f34ee1965bc345b4917dc3039",
+  "mechanism": "Existing private anonymous keyctl session, new 32 MiB ext4 file/owned loop and eCryptfs upper; root setup uses existing nsenter/bwrap/setpriv, native UID/GID 65534; no ambient rings or host block device formatting",
+  "scope_limitations": [
+    "Not same profile as prior tmpfs sandbox subset",
+    "No inference of full credential mediation",
+    "Original logical/allocated and deleted-open bounds need same-profile hostile re-observation",
+    "Sequential validator and all original twenty cases still absent"
+  ],
+  "worker_limits": {
+    "memory": 134217728,
+    "swap": 0,
+    "cpu": "100000 100000",
+    "pids": 32,
+    "seconds": 5
+  },
+  "aggregate_limits": {
+    "memory": 805306368,
+    "swap": 0,
+    "cpu": "100000 100000",
+    "pids": 128
+  },
+  "timing": {
+    "startup": 120,
+    "command": 10,
+    "streams": 65536,
+    "batch_and_cleanup": 600,
+    "cleanup_reserve": 30
+  },
+  "disk_reservations": {
+    "prepared": 1073741824,
+    "scratch_each_representation": 33554432,
+    "scratch_representations": 3,
+    "output": 16777216
+  },
+  "execution_allowed": false,
+  "native_start_allowed": false,
+  "fixture_source": "scripts/native_authenticated_response_fixture_v4.py",
+  "fixture_source_sha256": "faf92c8371205b1e2b131aafcd907c8a75a754cb5ea29fbb421eee8eae6b8b71",
+  "change": "Supported plugins/remote/recommended/plugin-hooks/apps/bundled-skills/instructions disabled; host skill discovery skipped; login shells disabled; original limits unchanged; v5 native namespace task failure preserved",
+  "worker_cpu_affinity": 0,
+  "termination_contract": {
+    "task_success": "Actual command exit zero plus independent exact four-byte artifact, before stop",
+    "native_process": "Supervisor requested stop; actual systemd captured termination retained, not relabelled as native exit zero",
+    "maximum_worker_seconds": 5
+  },
+  "network_policy": "table inet crewshal_proxy_v6 {\n counter native_allowed {}\n counter proxy_allowed {}\n counter proxy_reply {}\n counter denied {}\n chain output {\n  type filter hook output priority 0; policy accept;\n  meta skuid 65534 ip daddr 127.0.0.1 tcp dport 8080 counter name native_allowed accept\n  meta skuid 65533 ip daddr 127.0.0.1 tcp dport 8081 counter name proxy_allowed accept\n  meta skuid 65533 ip daddr 127.0.0.1 tcp sport 8080 ct state established counter name proxy_reply accept\n  meta skuid { 65531, 65533, 65534 } counter name denied reject with icmpx type admin-prohibited\n }\n}\n",
+  "network_policy_sha256": "627c6b24982721c1f1c78f16e48db38be3c306a4876080acc5667123b39e7740",
+  "broker_limits": {
+    "memory": 67108864,
+    "swap": 0,
+    "cpu": "100000 100000",
+    "pids": 16,
+    "maximum_seconds": 570
+  },
+  "credential_mediation_qualified": false,
+  "payload_source": "scripts/native_credential_negative_v2.py",
+  "payload_source_sha256": "6b012953364c6265b47059654998a7fc4c6e74c87edc98d93d7ce61776d4f2d2"
+}

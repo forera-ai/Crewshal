@@ -1,0 +1,24 @@
+import hashlib,io,json,pathlib,tarfile,time,shutil
+root=pathlib.Path('/srv/crewshal-2c-preparation-current-20261002-v1');output=root/'codex-oci-v1.tar'
+assert not output.exists();assert shutil.disk_usage(root).free>=10737418240
+manifest=(root/'oci-metadata-v1/manifest.json').read_bytes();config=(root/'oci-metadata-v1/config.json').read_bytes()
+assert hashlib.sha256(manifest).hexdigest()=='4478aac4b542421404a5a5c860164f88c42c201e8730c1f3174c8d749f781703'
+assert hashlib.sha256(config).hexdigest()=='69eddaf8acd5e85915b47686e332af8f376f6fbf1a67d5640e91340a6daf74fd'
+m=json.loads(manifest);start=time.monotonic()
+def digest(path):
+ h=hashlib.sha256()
+ with path.open('rb') as f:
+  for b in iter(lambda:f.read(1048576),b''):h.update(b)
+ return h.hexdigest()
+for layer in m['layers']:
+ p=root/'image-blobs'/layer['digest'].split(':')[1];assert p.stat().st_size==layer['size'];assert 'sha256:'+digest(p)==layer['digest']
+index={'schemaVersion':2,'manifests':[{'mediaType':m['mediaType'],'digest':'sha256:4478aac4b542421404a5a5c860164f88c42c201e8730c1f3174c8d749f781703','size':len(manifest),'platform':{'architecture':'amd64','os':'linux'},'annotations':{'org.opencontainers.image.ref.name':'crewshal-codex-2c:0.149.1'}}]}
+with output.open('xb') as out:
+ with tarfile.open(fileobj=out,mode='w',format=tarfile.USTAR_FORMAT) as tar:
+  for name,b in [('oci-layout',b'{"imageLayoutVersion":"1.0.0"}'),('index.json',json.dumps(index,separators=(',',':'),sort_keys=True).encode()),('blobs/sha256/'+hashlib.sha256(manifest).hexdigest(),manifest),('blobs/sha256/'+hashlib.sha256(config).hexdigest(),config)]:
+   t=tarfile.TarInfo(name);t.size=len(b);t.mode=0o644;tar.addfile(t,io.BytesIO(b))
+  for layer in m['layers']:
+   path=root/'image-blobs'/layer['digest'].split(':')[1];t=tarfile.TarInfo('blobs/sha256/'+path.name);t.size=path.stat().st_size;t.mode=0o644
+   with path.open('rb') as f:tar.addfile(t,f)
+assert time.monotonic()-start<120
+print(json.dumps({'scope':'deterministic OCI archive preparation; no image load or code executed','archive_name':output.name,'archive_bytes':output.stat().st_size,'archive_allocated_bytes':output.stat().st_blocks*512,'archive_sha256':digest(output),'manifest_digest':'sha256:4478aac4b542421404a5a5c860164f88c42c201e8730c1f3174c8d749f781703','layers_verified':len(m['layers']),'elapsed_seconds':round(time.monotonic()-start,3),'execution_allowed':False,'native_start_allowed':False},sort_keys=True))

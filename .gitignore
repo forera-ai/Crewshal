@@ -9,3 +9,12 @@
 # Private evaluation/run artifacts; sanitized fixtures may be added explicitly.
 /.crewshal/
 /artifacts/
+
+# Local Python development and build outputs
+.venv/
+__pycache__/
+*.egg-info/
+build/
+dist/
+.mypy_cache/
+.ruff_cache/

@@ -1,0 +1,39 @@
+{
+  "fixture": 1,
+  "scope": "Trusted native compatibility only",
+  "execution_allowed": false,
+  "native_start_allowed": false,
+  "manifest_sha256": "f704fc6448a00380ece0e5f778b714b7f0808f62b8514fcf401c02ef74679afa",
+  "cleanup": {
+    "unmounts": [
+      {
+        "view": "upper",
+        "unmounted": true
+      },
+      {
+        "view": "lower",
+        "unmounted": true
+      }
+    ],
+    "loop_detached": true,
+    "anonymous_ring_empty": true,
+    "owned_files_absent": true
+  },
+  "errors": [
+    {
+      "type": "TypeError",
+      "message": "Path.open() got an unexpected keyword argument 'opener'"
+    }
+  ],
+  "mounts": [
+    "99 931 7:22 / /var/tmp/crewshal-native-discovery-v1/proxy-v1-f1/lower rw,nosuid,nodev,noexec,relatime shared:785 - ext4 /dev/loop22 rw",
+    "100 931 0:62 / /var/tmp/crewshal-native-discovery-v1/proxy-v1-f1/upper rw,nosuid,nodev,noexec,relatime shared:822 - ecryptfs /var/tmp/crewshal-native-discovery-v1/proxy-v1-f1/lower rw,ecryptfs_sig=52588c1d0e837c57,ecryptfs_cipher=aes,ecryptfs_key_bytes=32,ecryptfs_mount_auth_tok_only"
+  ],
+  "aggregate_controls": {
+    "memory.max": "805306368",
+    "memory.swap.max": "0",
+    "cpu.max": "100000 100000",
+    "pids.max": "128"
+  },
+  "seconds": 0.323
+}

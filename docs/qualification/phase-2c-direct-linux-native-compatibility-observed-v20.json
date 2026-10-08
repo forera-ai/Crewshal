@@ -1,0 +1,69 @@
+{
+  "manifest_sha256": "1455bc1a71b0cdffbf24c3b77882f8f3c2b21d81eacc9a98bb88132e996e4375",
+  "records": [
+    {
+      "fixture": 1,
+      "command": [
+        "/bin/python3",
+        "-I",
+        "-B",
+        "/input/native_fixed_response_fixture_v3.py"
+      ],
+      "argv": [
+        "/usr/bin/systemd-run",
+        "--unit=crewshalnativecompatv20-f1-c0.service",
+        "--slice=crewshalnativediscoveryv1.slice",
+        "--wait",
+        "--pipe",
+        "--collect",
+        "--property=User=65534",
+        "--property=Group=65534",
+        "--property=RootDirectory=/var/tmp/crewshal-native-discovery-v1/root",
+        "--property=WorkingDirectory=/input",
+        "--property=ProtectSystem=strict",
+        "--property=ProtectHome=yes",
+        "--property=PrivateNetwork=yes",
+        "--property=PrivateDevices=yes",
+        "--property=MountAPIVFS=yes",
+        "--property=ProtectProc=invisible",
+        "--property=InaccessiblePaths=/sys /dev/shm",
+        "--property=NoNewPrivileges=yes",
+        "--property=RestrictNamespaces=user mnt pid net ipc uts",
+        "--property=MemoryMax=134217728",
+        "--property=MemorySwapMax=0",
+        "--property=CPUQuota=100%",
+        "--property=TasksMax=32",
+        "--property=RuntimeMaxSec=5s",
+        "--property=TimeoutStopSec=1s",
+        "--property=KillMode=control-group",
+        "--property=LimitFSIZE=2097152",
+        "--property=SystemCallFilter=~memfd_create shmget shmat linkat setxattr lsetxattr fsetxattr mknodat keyctl add_key request_key",
+        "--property=SystemCallErrorNumber=EPERM",
+        "--property=TemporaryFileSystem=/scratch:size=8388608,nr_inodes=16,nodev,nosuid,noexec,mode=0755,uid=65534,gid=65534",
+        "--setenv=HOME=/scratch",
+        "--setenv=CODEX_HOME=/scratch",
+        "--setenv=PATH=/opt/codex/codex-path:/bin:/usr/bin",
+        "/bin/python3",
+        "-I",
+        "-B",
+        "/input/native_fixed_response_fixture_v3.py"
+      ],
+      "exit": 1,
+      "seconds": 4.1847829929997715,
+      "controls": [
+        {
+          "memory.max": "134217728",
+          "memory.swap.max": "0",
+          "cpu.max": "100000 100000",
+          "pids.max": "32"
+        }
+      ],
+      "stdout": "",
+      "stderr": "Running as unit: crewshalnativecompatv20-f1-c0.service; invocation ID: 4e2a3c9e0fb44a14b187c23de5be460f\nTraceback (most recent call last):\n  File \"/input/native_fixed_response_fixture_v3.py\", line 32, in <module>\n    result=subprocess.run(command, stdin=subprocess.DEVNULL, capture_output=True, timeout=4)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/subprocess.py\", line 550, in run\n    stdout, stderr = process.communicate(input, timeout=timeout)\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/subprocess.py\", line 1209, in communicate\n    stdout, stderr = self._communicate(input, endtime, timeout)\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/subprocess.py\", line 2116, in _communicate\n    self._check_timeout(endtime, orig_timeout, stdout, stderr)\n  File \"/usr/lib/python3.12/subprocess.py\", line 1253, in _check_timeout\n    raise TimeoutExpired(\nsubprocess.TimeoutExpired: Command '['/opt/codex/bin/codex', 'exec', '--ephemeral', '--ignore-user-config', '--ignore-rules', '--skip-git-repo-check', '--color', 'never', '--json', '-C', '/scratch', '-s', 'workspace-write', '-m', 'synthetic', '-c', 'approval_policy=\"never\"', '-c', 'model_provider=\"fixture\"', '-c', 'model_providers.fixture.name=\"fixture\"', '-c', 'model_providers.fixture.base_url=\"http://127.0.0.1:36589/v1\"', '-c', 'model_providers.fixture.wire_api=\"responses\"', '-c', 'model_providers.fixture.requires_openai_auth=false', '-c', 'model_providers.fixture.request_max_retries=0', '-c', 'model_providers.fixture.stream_max_retries=0', '-c', 'features.shell_snapshot=false', '-c', 'features.sqlite=false', 'Write tiny into /scratch/native-tiny using command tool. Then finish.']' timed out after 4 seconds\nFinished with result: exit-code\nMain processes terminated with: code=exited/status=1\nService runtime: 4.165s\nCPU time consumed: 211ms\nMemory peak: 256.0K\nMemory swap peak: 0B\n"
+    }
+  ],
+  "scope": "trusted actual native tiny workflow with fixed synthetic Responses only; no hostile exhaustion, agent dispatch or broker qualification",
+  "execution_allowed": false,
+  "native_start_allowed": false,
+  "credential_mediation_qualified": false
+}

@@ -1,0 +1,793 @@
+{
+  "schema_version": 1,
+  "scope": "offline static evidence/refusal checks, not runtime qualification",
+  "base_revision": "d163c4752fcbfddd35f01b695831208a18db90ad",
+  "readback_sha256": "0abb2d51ccd2fb5ef2798f0567c9d693440fe433517932ad04473a837550cf6e",
+  "readback_refusals": [
+    {
+      "case": "execution-flag",
+      "status": "refused",
+      "exit_code": 1,
+      "required_reason": "research cannot grant"
+    },
+    {
+      "case": "source-bytes",
+      "status": "refused",
+      "exit_code": 1,
+      "required_reason": "source bytes changed"
+    },
+    {
+      "case": "escaping-source",
+      "status": "refused",
+      "exit_code": 1,
+      "required_reason": "binding escaped"
+    },
+    {
+      "case": "wrong-private-fork",
+      "status": "refused",
+      "exit_code": 1,
+      "required_reason": "upstream containerd cannot"
+    },
+    {
+      "case": "substitute-archive",
+      "status": "refused",
+      "exit_code": 1,
+      "required_reason": "unapproved archive bytes"
+    }
+  ],
+  "historical_qualification_files_byte_identical": [
+    {
+      "path": "docs/qualification/phase-2c-amd64-preparation.json",
+      "sha256": "7b625ea170ba707619da6f2a5ea624b0e801dc21b6942d57acde11b26a32e7cb"
+    },
+    {
+      "path": "docs/qualification/phase-2c-auth-help-v1-observed.json",
+      "sha256": "4c0ef5b7fc781d00c30caab39f03a61b9d0552b19a39bb30c978aed35a4a1efd"
+    },
+    {
+      "path": "docs/qualification/phase-2c-auth-help-v1-runner.txt",
+      "sha256": "9069b09dccb95bb8a1631a9a20adb25f3bc876a363e6663c707529ee2919c54e"
+    },
+    {
+      "path": "docs/qualification/phase-2c-auth-help-v1.json",
+      "sha256": "046252f99850530a133841d0b0ff3b61dcc848919f5b62a658755d565cf586d3"
+    },
+    {
+      "path": "docs/qualification/phase-2c-authenticated-discovery-v1-observed.json",
+      "sha256": "1952789312ec3d621f6af5f9cb067957debcb6bfa71db569ca3b3b4b5381d0e6"
+    },
+    {
+      "path": "docs/qualification/phase-2c-authenticated-discovery-v1-runner.txt",
+      "sha256": "a807abe3ece7d42cc29bc478a896b0a2f6102de6e587c45ccfcab9bbfcbc64b9"
+    },
+    {
+      "path": "docs/qualification/phase-2c-authenticated-discovery-v1-transport.txt",
+      "sha256": "902271b09013baf6797006bc084d9eb055494a29757730e561525bbe66d46a02"
+    },
+    {
+      "path": "docs/qualification/phase-2c-authenticated-discovery-v1.json",
+      "sha256": "5d77ec2c0930b2cbc77807b7ef64dfb7b4b4d897d6ee657fecdb992c68ee5146"
+    },
+    {
+      "path": "docs/qualification/phase-2c-authenticated-discovery-v2-observed.json",
+      "sha256": "220fea7cc53ed1c2ae06123a66631649d1bddee0d6641874e7a2bcb20fea2f24"
+    },
+    {
+      "path": "docs/qualification/phase-2c-authenticated-discovery-v2-runner.txt",
+      "sha256": "046b2470ae2b10cb9d5b49df40ed5360ec1d97f059925d4b8874346c53181b16"
+    },
+    {
+      "path": "docs/qualification/phase-2c-authenticated-discovery-v2-transport.txt",
+      "sha256": "81318edecec1a5122476c82551028d35df897bbfe3c7e0f236cb8924d4fb4417"
+    },
+    {
+      "path": "docs/qualification/phase-2c-authenticated-discovery-v2.json",
+      "sha256": "91297e5d23b00b40498bc32696b5e79a23d86f262bd417d1e9c6adcc75212e48"
+    },
+    {
+      "path": "docs/qualification/phase-2c-authenticated-discovery-v3-observed.json",
+      "sha256": "176a72f4c746215ef410318455ee2cc8d270fc6fceb8551c56f5549b0af8c06c"
+    },
+    {
+      "path": "docs/qualification/phase-2c-authenticated-discovery-v3-runner.txt",
+      "sha256": "3e7f48aa19c7db71c8be084a47ff226dc5915cbd20d50ee6ee0aba3a26ecbdfe"
+    },
+    {
+      "path": "docs/qualification/phase-2c-authenticated-discovery-v3-transport.txt",
+      "sha256": "bd8f239ed1ee8ebe89fe5e744c23fad6d28762b0e8eeef81abc20a83e48b3b72"
+    },
+    {
+      "path": "docs/qualification/phase-2c-authenticated-discovery-v3.json",
+      "sha256": "beb7731d5bac797e0c7567ea412288b9ce777b9288035a0246433b0ec58be532"
+    },
+    {
+      "path": "docs/qualification/phase-2c-authenticated-discovery-v4-observed.json",
+      "sha256": "a5635c8f7fa3342afb5d41f1ab7059cb1330e6cce92854765148de6ce29dfc5f"
+    },
+    {
+      "path": "docs/qualification/phase-2c-authenticated-discovery-v4-runner.txt",
+      "sha256": "80f5b2ca6a61ea75635b81f08b347920a38017579a54f237f4fe079514a231c0"
+    },
+    {
+      "path": "docs/qualification/phase-2c-authenticated-discovery-v4-transport.txt",
+      "sha256": "91741438c1078b8f4615b6b3b1a31eb9e1f8a6eb05a5c68b060e97e233c90c0f"
+    },
+    {
+      "path": "docs/qualification/phase-2c-authenticated-discovery-v4.json",
+      "sha256": "f74cb0b21b73d5d3e7fe2bba78ae6ed3f8ef534a0413964fac96291d2873f50f"
+    },
+    {
+      "path": "docs/qualification/phase-2c-authenticated-freeze-status-v1.json",
+      "sha256": "74e8869f000c3ec93cfa853f0fe0af7a67da61d9538c2806f2e4bf11cb47aba4"
+    },
+    {
+      "path": "docs/qualification/phase-2c-broker-environment-v1-observed.json",
+      "sha256": "4a459cfc6f9815ee6005dbd1d40245aafb3f8c98b214edc7b3ff05fdd968ae09"
+    },
+    {
+      "path": "docs/qualification/phase-2c-broker-environment-v1-runner.txt",
+      "sha256": "5187598bc28a7e73bd093f5249c7bbe786009d27ade552ff9724db4b2314bf22"
+    },
+    {
+      "path": "docs/qualification/phase-2c-broker-environment-v1.json",
+      "sha256": "bff179a21f3234da884fc9fb80677877a3adf6c6c7f9a1ef3a828a22ad05c805"
+    },
+    {
+      "path": "docs/qualification/phase-2c-broker-environment-v2-observed.json",
+      "sha256": "16a9cd55cff2c7d0ac779a56df3c24c26d367e3b7cd878cfb74297dc69870d8f"
+    },
+    {
+      "path": "docs/qualification/phase-2c-broker-environment-v2-runner.txt",
+      "sha256": "3abff4c75075d7528f899b3e8375ab569aace3b65804d014859b64481021a457"
+    },
+    {
+      "path": "docs/qualification/phase-2c-broker-environment-v2.json",
+      "sha256": "18326de5c00c948db10d0afdb0e1ba79bdbe78b0e69041e3de291c9f85d9feb8"
+    },
+    {
+      "path": "docs/qualification/phase-2c-broker-environment-v3-observed.json",
+      "sha256": "d27a2d70dba1dfcd1af4fefa2d2fdcb9ee270afc1da675c1ae908f9e0afab89a"
+    },
+    {
+      "path": "docs/qualification/phase-2c-broker-environment-v3-repeat.json",
+      "sha256": "150bde3a2112bc65983a67bad265e83dbda5403fa856b6a539e024bc444dce7b"
+    },
+    {
+      "path": "docs/qualification/phase-2c-broker-environment-v3.json",
+      "sha256": "27107761f400de9454f855b5ffe319b264dba44b1385aca67d2b4bfe263d9daf"
+    },
+    {
+      "path": "docs/qualification/phase-2c-broker-preparation.json",
+      "sha256": "9fc7e33994e129b75183673c950a2676fd1888789a91d271b030832a1b085baa"
+    },
+    {
+      "path": "docs/qualification/phase-2c-config-controls-v1-observed.json",
+      "sha256": "aeb01dee7ddfb29813a8893219af4ddf90503ac6db3e648c1a85ce7191c76007"
+    },
+    {
+      "path": "docs/qualification/phase-2c-config-controls-v1-repeat.json",
+      "sha256": "eabbe39372d68efe3bbaf67a21001a5c2c99bc0ba5871c7364dba5b3186749ad"
+    },
+    {
+      "path": "docs/qualification/phase-2c-config-controls-v1-runner.txt",
+      "sha256": "47e6be9fbf05a03befd229163ca8b242029129d0d3dd1ec02043959c77c8c34d"
+    },
+    {
+      "path": "docs/qualification/phase-2c-config-controls-v1.json",
+      "sha256": "3003540d720fd0c3d09035fed9fba841f63274d05d6a32d262766ce2b1460ddb"
+    },
+    {
+      "path": "docs/qualification/phase-2c-current-help-v1-observed.json",
+      "sha256": "60ac89d6192ddbc16a5cb7e727460a3705a584f8001d39606bb755ea7cf4b8ff"
+    },
+    {
+      "path": "docs/qualification/phase-2c-current-help-v1-runner.txt",
+      "sha256": "f2ae4499a493273a80236303b9e34abcc3294c4c04da6e7969691a82dfcf8b33"
+    },
+    {
+      "path": "docs/qualification/phase-2c-current-help-v1.json",
+      "sha256": "23d2134c748e88f00a6868f5e614a1df1536be86df9c7e3f1dcf25a52a8d0812"
+    },
+    {
+      "path": "docs/qualification/phase-2c-current-host-toolchain-v1.json",
+      "sha256": "36d840bb0f2129871de2a12d2478e872ae9e16ad36183dc8f70e05f7b88a839c"
+    },
+    {
+      "path": "docs/qualification/phase-2c-current-host-v1-observed.json",
+      "sha256": "e45a32287b428311da3aad0105efaed645b47b762fcd9e9f62cf91f7b2e89e9b"
+    },
+    {
+      "path": "docs/qualification/phase-2c-current-host-v1-probe.txt",
+      "sha256": "50ce390ece825d61f18e0a48b1a5400c7cf7b5f998228803429e0d935b5408a0"
+    },
+    {
+      "path": "docs/qualification/phase-2c-current-host-v1.json",
+      "sha256": "8e2f712245ef3ebbe389669b9389ccf1bfc575843e0dbee7249b8134fe26c6ba"
+    },
+    {
+      "path": "docs/qualification/phase-2c-current-inventory-v1-observed.json",
+      "sha256": "21bc807db39806b672204699c218c1ae829a2e3311c9fdcf5ad94173d1534b14"
+    },
+    {
+      "path": "docs/qualification/phase-2c-current-inventory-v1-probe.txt",
+      "sha256": "165ecd2be3a6eb3c93821858ff442b6671fc5880dd7df5419c8e66cddec3ab10"
+    },
+    {
+      "path": "docs/qualification/phase-2c-current-inventory-v1.json",
+      "sha256": "2b2d67a8e268e44b0dacad077ee577f3c791d9ad231091a7777c9a5263bfc4db"
+    },
+    {
+      "path": "docs/qualification/phase-2c-current-preparation-v1-observed.json",
+      "sha256": "4e8403e068bb59b62ec8043df6f006f0d1a23ce2ac5c8247fe0bbe8ab1b857e1"
+    },
+    {
+      "path": "docs/qualification/phase-2c-current-preparation-v1-runner.txt",
+      "sha256": "d04e774f3efe773af6af035c2b72551196458901f4b881fc14f6bd34f22c58f1"
+    },
+    {
+      "path": "docs/qualification/phase-2c-current-preparation-v1.json",
+      "sha256": "b89a9cb0a0409d4fa46689f062a55186afd66ca52ca6d705d653531b5a05f421"
+    },
+    {
+      "path": "docs/qualification/phase-2c-daemon-config-authorization-v1.json",
+      "sha256": "ee7f679b7ab8f34607933bd5d65b2280c968162df0905a3b5fe5f7cfc7afbc16"
+    },
+    {
+      "path": "docs/qualification/phase-2c-daemon-config-diagnostic-v1-observed.json",
+      "sha256": "9ecb6247924f492c9fd73b18b20f97125928c15e8c5c7cf26ef5406143788cdd"
+    },
+    {
+      "path": "docs/qualification/phase-2c-daemon-config-diagnostic-v1-repeat.json",
+      "sha256": "ff530186e9ece82302c422bc9b5c4179009ebc23a2277cca5e5f817051d0cd16"
+    },
+    {
+      "path": "docs/qualification/phase-2c-daemon-config-diagnostic-v1-runner.txt",
+      "sha256": "cb82c3456c1dcfe04154000ae2f1a49fe35ab9c2c5c2882b40a5b9fac31a3bce"
+    },
+    {
+      "path": "docs/qualification/phase-2c-daemon-config-diagnostic-v1.json",
+      "sha256": "64903802b09d72cc0e42b39564cfc1eb88e5065cf9bf1e479773c144587827fe"
+    },
+    {
+      "path": "docs/qualification/phase-2c-discovery-admission-v1-observed.json",
+      "sha256": "1d5be5fd63cb27f82db9d98f845752cff59a2c05f7435fd746fdafd1fdf62f12"
+    },
+    {
+      "path": "docs/qualification/phase-2c-discovery-admission-v1-runner.txt",
+      "sha256": "a95c381cf3ded49856b11d2306c9ab93ebc4e91f0e3a7516984f45b1f2340f97"
+    },
+    {
+      "path": "docs/qualification/phase-2c-discovery-admission-v1-transport.txt",
+      "sha256": "0d42ec4d5e23b5897283d0ad2e7b7fd1622e3480f834d581c5adb07d6fc3e776"
+    },
+    {
+      "path": "docs/qualification/phase-2c-discovery-admission-v1.json",
+      "sha256": "b6c658e51d51e48af3a149f8bf24d8ee3d2b8ef6c56d664e95e3e4fa13c95c4e"
+    },
+    {
+      "path": "docs/qualification/phase-2c-discovery-admission-v2-observed.json",
+      "sha256": "1e993ee830fd6da290868626bd77592730cf5cf4997c2e80d10f3009d4ec919f"
+    },
+    {
+      "path": "docs/qualification/phase-2c-discovery-admission-v2-runner.txt",
+      "sha256": "c28de9c0122ef02fd70807608335611a5e2ba389252d84ec62f8697fa72aab31"
+    },
+    {
+      "path": "docs/qualification/phase-2c-discovery-admission-v2-transport.txt",
+      "sha256": "691257ecdb62b274fd99e42a780e33182ec1f914c0041f5d6e906ace9a68f0a9"
+    },
+    {
+      "path": "docs/qualification/phase-2c-discovery-admission-v2.json",
+      "sha256": "35047ec10f5a0adae28252c968a5532b5f3e38e153da919ce75a3a575b85fd3b"
+    },
+    {
+      "path": "docs/qualification/phase-2c-discovery-authorization-v1.json",
+      "sha256": "92f3f4259586a303e072060d723b4f79636aedf12dbd7350096aa66516e8ffe9"
+    },
+    {
+      "path": "docs/qualification/phase-2c-discovery-final-inventory-v1.json",
+      "sha256": "060ef02c22494a75e0830297e9a42464cb13a58ee3baf751453073a0c07d8f64"
+    },
+    {
+      "path": "docs/qualification/phase-2c-discovery-freeze-status-v1.json",
+      "sha256": "3d5e26ff4854321ea9713e93f8fd29cc3462b1bdd4f0d94b5dcf2c16b531bf6e"
+    },
+    {
+      "path": "docs/qualification/phase-2c-isolated-auth-authorization-v1.json",
+      "sha256": "ed9f9d75c9a8aff219f9dea87ac5391bc83bfefca1348ff67cabb93b92ff53c0"
+    },
+    {
+      "path": "docs/qualification/phase-2c-isolated-auth-final-inventory-v1.json",
+      "sha256": "c3af9508bae6795ee9d79468a5b377d17265fb8c9b8321711d84073b3e3f87c7"
+    },
+    {
+      "path": "docs/qualification/phase-2c-isolated-auth-v1-init-observed.json",
+      "sha256": "4886cfa4707c54e097f573835cffb8a266e6afc9ac18b6d7c6d9f1dbdc380eb0"
+    },
+    {
+      "path": "docs/qualification/phase-2c-isolated-auth-v1-observed.json",
+      "sha256": "a9b2c3eac78f6464118b2e8c4b33c129593e7340f7ad9f5af9f9f989795fcc2b"
+    },
+    {
+      "path": "docs/qualification/phase-2c-isolated-auth-v1-runner.txt",
+      "sha256": "9d1bd7674abff69db0a6ee85f9f5fbf044020590f4381fe4f248aba9d201839e"
+    },
+    {
+      "path": "docs/qualification/phase-2c-isolated-auth-v1-transport.txt",
+      "sha256": "94b9fbe8f9c90ea0de0eaf21dfd2e9e5b318576e070e4573fd9735fe3cdc0bfc"
+    },
+    {
+      "path": "docs/qualification/phase-2c-isolated-auth-v1.json",
+      "sha256": "c3c4a96b83144c35deb9b3a50759467d12a83cebefc9fa5a3bb4f09d7683fa9d"
+    },
+    {
+      "path": "docs/qualification/phase-2c-isolated-auth-v2-observed.json",
+      "sha256": "bbd3c18c6a2280dcac92c1a6cd1f6ec5a5a161bc2cc08dac24fe050b89a5249e"
+    },
+    {
+      "path": "docs/qualification/phase-2c-isolated-auth-v2-runner.txt",
+      "sha256": "079a7b59564c19c7eb532ae064006d5a17602835a1b83a15a8c90e21cae166c1"
+    },
+    {
+      "path": "docs/qualification/phase-2c-isolated-auth-v2-transport.txt",
+      "sha256": "e87070fe67dda950aacae904afc90e7571cbb5f7e086c183eaeba85f44b452f1"
+    },
+    {
+      "path": "docs/qualification/phase-2c-isolated-auth-v2.json",
+      "sha256": "d12e329dcd0cb5d0131a9da80734dce44fb61fd74f277918b84f2278194dd706"
+    },
+    {
+      "path": "docs/qualification/phase-2c-isolated-auth-v3-init-observed.json",
+      "sha256": "387c5f157075724ad3d3765d18fa8b6dc5f7263865e3d5f22d70412af1d7d692"
+    },
+    {
+      "path": "docs/qualification/phase-2c-isolated-auth-v3-observed.json",
+      "sha256": "e3d8e26688f737b4a04263329a2d2cb1136680cc0a3f0b6104bd911fb253e66e"
+    },
+    {
+      "path": "docs/qualification/phase-2c-isolated-auth-v3-runner.txt",
+      "sha256": "05aa6a5161701267bb7fc919b64d4bdeb07a44ea36224e29a04b762d91502484"
+    },
+    {
+      "path": "docs/qualification/phase-2c-isolated-auth-v3-transport.txt",
+      "sha256": "c92d3a9569897f2375428968138019d99dc7312100ab393ae711da46318c8cbf"
+    },
+    {
+      "path": "docs/qualification/phase-2c-isolated-auth-v3.json",
+      "sha256": "3f64c0de7700edf875f3f2628ce057f5cbba85abc6ea47c3d5dc5fec3f2650e1"
+    },
+    {
+      "path": "docs/qualification/phase-2c-kvm-host-v1-observed.json",
+      "sha256": "bbbe7f30f0997794d3153059aa762c6cdaa3506371a5bba3bfe818b925347492"
+    },
+    {
+      "path": "docs/qualification/phase-2c-kvm-host-v1-probe.txt",
+      "sha256": "cfce2653fe58d2a53c7ebc5a541b3067737c2e788ac662183a014807b30b4a2f"
+    },
+    {
+      "path": "docs/qualification/phase-2c-kvm-host-v1.json",
+      "sha256": "63a3fd96173bc10cac1b128666d5b57515a7e2d7a64499c5ff672860de035314"
+    },
+    {
+      "path": "docs/qualification/phase-2c-kvm-replacement-v1-observed.json",
+      "sha256": "f7a98fdd0e85ad22f56c0d1ad9f7a152a521db80a65c5e5ba53803c0a7de5b87"
+    },
+    {
+      "path": "docs/qualification/phase-2c-kvm-replacement-v1.json",
+      "sha256": "887fbe0fdb968817c23be501fd5bbcf03c522d10fe61250757b1fe8361ba4d69"
+    },
+    {
+      "path": "docs/qualification/phase-2c-kvm-replacement-v2-observed.json",
+      "sha256": "fb919aa9f8921a3e0c093230866d7ae385c996b69e4da7b38623bf68b393a272"
+    },
+    {
+      "path": "docs/qualification/phase-2c-kvm-replacement-v2.json",
+      "sha256": "44f064d78945415e9af163c15a97f4f01fc9a270e2c8717cd9b1cf82e5df25cd"
+    },
+    {
+      "path": "docs/qualification/phase-2c-lifecycle-v1-observed.json",
+      "sha256": "b5f8f2140ee61c6e42024546b2afd482df2e56567ff7d5ec6e7c9a0431c56b5a"
+    },
+    {
+      "path": "docs/qualification/phase-2c-lifecycle-v1-repeat.json",
+      "sha256": "fb51e55c785b764ee80b08cc9ff27910774648107659c16f47d5ba0d42606c20"
+    },
+    {
+      "path": "docs/qualification/phase-2c-lifecycle-v1.json",
+      "sha256": "930e601021f95e01488f10582feb5adadc4bdd76c566edbd34486d0feb93b2ef"
+    },
+    {
+      "path": "docs/qualification/phase-2c-linux-amd64-cleanup-v1.json",
+      "sha256": "a7aafb2ed20832af7b2c71d53abdfb1b5e6eeda5793b1c98f837444eabf889ff"
+    },
+    {
+      "path": "docs/qualification/phase-2c-linux-amd64-help-v1-observed.json",
+      "sha256": "bf080b9ee8e32b5eb077e52a299f3d9241dbb62a9f619ffbffaf6c1b9356bd53"
+    },
+    {
+      "path": "docs/qualification/phase-2c-linux-amd64-help-v1.json",
+      "sha256": "efecca009b7897292838b9aaeadfab9aa7e745bf404b022a797fddf51faf6844"
+    },
+    {
+      "path": "docs/qualification/phase-2c-linux-amd64-help-v2-observed.json",
+      "sha256": "860516455c5b13e466afbe008ce12bba81ff10b1a36de35aaf5d647f81944237"
+    },
+    {
+      "path": "docs/qualification/phase-2c-linux-amd64-help-v2-runner.txt",
+      "sha256": "2146991b4aa60cff3576fea74d8e90bc70ffef7b295d7635752f156b5c36dc70"
+    },
+    {
+      "path": "docs/qualification/phase-2c-linux-amd64-help-v2.json",
+      "sha256": "29dbd263e0ba4c10d6f58ccc752510f983172d39676d5c078bf42e19e8fa5d6a"
+    },
+    {
+      "path": "docs/qualification/phase-2c-local-storage-bindings-v1.json",
+      "sha256": "d397ba05e1b9ca46c3f101571c8b25da85b48bac2f4cf348b3b390c7a7ec2fac"
+    },
+    {
+      "path": "docs/qualification/phase-2c-local-storage-bindings-v2.json",
+      "sha256": "85235ea2eb31a4f91f295427dd9c0a1835d0a6de71833186b7e4f23bf1002163"
+    },
+    {
+      "path": "docs/qualification/phase-2c-local-storage-bindings-v3.json",
+      "sha256": "94fbb249e436e760b87fc8ccfc55ad2cb74e9022624650386f5f73fe268b6202"
+    },
+    {
+      "path": "docs/qualification/phase-2c-local-storage-bindings-v4.json",
+      "sha256": "5551914aac5f6a57ae82e3c989a58884a494a435b81a1f70d2dc34325a8b0f5f"
+    },
+    {
+      "path": "docs/qualification/phase-2c-local-storage-bindings-v5.json",
+      "sha256": "221892ca54ced2f00b97374f84e23ba71a330062fd6ab513e5e78adda77866df"
+    },
+    {
+      "path": "docs/qualification/phase-2c-local-storage-bindings-v6.json",
+      "sha256": "0a1a6e56c636b3c0ea197b267206ad441a9d0a78f679a8ec50c67e41ec3f1d10"
+    },
+    {
+      "path": "docs/qualification/phase-2c-local-storage-boundary-v1.py",
+      "sha256": "7796c6ecc661509dad1179175853974a33fc27b5630a509bdc9e6839bb572456"
+    },
+    {
+      "path": "docs/qualification/phase-2c-local-storage-budget-v2.json",
+      "sha256": "db3cae5fdebe96385c2603bf6041782069df1b8284b0ebbfb799bf16f5177fec"
+    },
+    {
+      "path": "docs/qualification/phase-2c-local-storage-external-cleanup-v1.json",
+      "sha256": "9179a9b49b57ab7ac9cea8f37d7a78d50799999e6baf629453a5df43b435075f"
+    },
+    {
+      "path": "docs/qualification/phase-2c-local-storage-observed-v6.json",
+      "sha256": "9ed71c46226508d5a8aa7fff663f03aba54c06c95a5d47f916d7736ef1aeaaa3"
+    },
+    {
+      "path": "docs/qualification/phase-2c-local-storage-observer-v1.py",
+      "sha256": "c6cb9608e3d041ce130b3f0736a9941eae10fbbd7c615ebaa422e9ccd60535ab"
+    },
+    {
+      "path": "docs/qualification/phase-2c-local-storage-observer-v2.py",
+      "sha256": "f71279a8449eb208063693c63e00e56c9181f9182f43b1094222f3f0af39e0d7"
+    },
+    {
+      "path": "docs/qualification/phase-2c-local-storage-observer-v3.py",
+      "sha256": "dceb2a949c8847ec54d4b5a09df63e629f38cb744240f0e6989aac36dea43e52"
+    },
+    {
+      "path": "docs/qualification/phase-2c-local-storage-observer-v4.py",
+      "sha256": "bee28890cbc7a4efa8f2f483a1d0d14975fcf6a32534e670e03c834397f3c5eb"
+    },
+    {
+      "path": "docs/qualification/phase-2c-local-storage-observer-v5.py",
+      "sha256": "4b1467984b9659ddf212c85626c212839bffe04b2283ac4f3caef7b21eb86561"
+    },
+    {
+      "path": "docs/qualification/phase-2c-local-storage-preparation-v1.json",
+      "sha256": "45abd0d19d352a47c44a0e790130b6e02e82930458a25a29a169dfb26dbaca8b"
+    },
+    {
+      "path": "docs/qualification/phase-2c-local-storage-prepare-v1.py",
+      "sha256": "98d11373784c245f2cf6c71bbd3272478a1e094c22a6969f00372357041b5499"
+    },
+    {
+      "path": "docs/qualification/phase-2c-local-storage-prepare-v2.py",
+      "sha256": "efeb1ad656f2434baa85cffc34199ffd5db2d7e3c4609c12f79f943352dd42b6"
+    },
+    {
+      "path": "docs/qualification/phase-2c-local-storage-profile-v1.json",
+      "sha256": "83f896bebc8e9ec49a75602ee4f6f0017fcce333d509e999e506a1acafb66575"
+    },
+    {
+      "path": "docs/qualification/phase-2c-local-storage-profile-v2.json",
+      "sha256": "2ff7b27c2ca16a239d5f0c70180aa4f1cc4fb266713a0a0431f5871532eeff6a"
+    },
+    {
+      "path": "docs/qualification/phase-2c-local-storage-profile-v3.json",
+      "sha256": "9bc06a49257e2c82ef12fd9a4c9edcd3cc5b18f815015fc587a921f81a8c2393"
+    },
+    {
+      "path": "docs/qualification/phase-2c-local-storage-profile-v4.json",
+      "sha256": "a81afe6f152848d74eaef3a21f9fd0f089c0a9a160cc0b8f9d6a9e2848589f6a"
+    },
+    {
+      "path": "docs/qualification/phase-2c-local-storage-profile-v5.json",
+      "sha256": "27f2daf826c004b16194b01f75d2b8c40c67d66b0e92f92f3cbe6838f05ae70e"
+    },
+    {
+      "path": "docs/qualification/phase-2c-local-storage-profile-v6.json",
+      "sha256": "8eb399d686fdc3eb1b77e7fda3d9b7fb8634c59c5dbb86b137e8c338854fa8ac"
+    },
+    {
+      "path": "docs/qualification/phase-2c-local-storage-readback-v1.py",
+      "sha256": "7d8aa18a5e54795231556c49d83fc822377718f2175a459fb09477d1e474482f"
+    },
+    {
+      "path": "docs/qualification/phase-2c-local-storage-refusal-v1.json",
+      "sha256": "de3f9d2011a3f8a2d415d3e59f39ec6636750b445d7a871a87d77a32fa28e105"
+    },
+    {
+      "path": "docs/qualification/phase-2c-local-storage-refusal-v2.json",
+      "sha256": "b9365bda19c0d7f66161f6e81e6337d34eb24fed8b5e6747881f966665c81dac"
+    },
+    {
+      "path": "docs/qualification/phase-2c-local-storage-refusal-v3.json",
+      "sha256": "3756d41efcc4d9fd6d1f4135aff025863a20d381aa86ae0e31b52f378175f87b"
+    },
+    {
+      "path": "docs/qualification/phase-2c-local-storage-refusal-v4.json",
+      "sha256": "84593bd3f546cbe778d3b90ce9eb093103955fd9dcc7d2ac746f5323b685a921"
+    },
+    {
+      "path": "docs/qualification/phase-2c-local-storage-refusal-v5.json",
+      "sha256": "ef7e0b85f36cfd1f4bd8c400168fcfbb6fd54bab68736ef98b679f2ffd251295"
+    },
+    {
+      "path": "docs/qualification/phase-2c-local-storage-summary-v1.json",
+      "sha256": "c14681403e56e19f2716c18ca59ce15b5e0c360a75393d50040e939f5ebb4502"
+    },
+    {
+      "path": "docs/qualification/phase-2c-logical-quota-v1-capture-limited.json",
+      "sha256": "4bf35544a410e9d8b2df8d1ce05f2057bf390ab5b39cbc1de2606afb72e93a5e"
+    },
+    {
+      "path": "docs/qualification/phase-2c-logical-quota-v1-observed.json",
+      "sha256": "3bcbd3a4fc0f8e100a28234999134a6e49768256de81299aa2d2d27987734aaa"
+    },
+    {
+      "path": "docs/qualification/phase-2c-logical-quota-v1-runner.txt",
+      "sha256": "61cf44f20aa3bebbbc704e65e18c29cf745a2214e91e76e3cb9c66e3afe4cd03"
+    },
+    {
+      "path": "docs/qualification/phase-2c-logical-quota-v1.json",
+      "sha256": "be678fd354f9e45d27c3ca6e24200c7bd3d6471a013122ba3617bf3c9bd9b2d6"
+    },
+    {
+      "path": "docs/qualification/phase-2c-network-v1-observed.json",
+      "sha256": "9b1cf6c81305bed7d2666e7acdd9b720734c7fffe84a33610d49439b1f048d71"
+    },
+    {
+      "path": "docs/qualification/phase-2c-network-v1-runner.txt",
+      "sha256": "e1b82957201430fe0b312194964aaeb62b2e26e67b46227eaf4dd2809ea17de9"
+    },
+    {
+      "path": "docs/qualification/phase-2c-network-v1.json",
+      "sha256": "96caec99125796c68c427067938b9739ebc0443166ed9d9113b3d24ecbd84149"
+    },
+    {
+      "path": "docs/qualification/phase-2c-network-v2-observed.json",
+      "sha256": "84cd80fd0210a84292968e28fe7edc0086e4d46c1a50aea3f5f9a43b083d5ae4"
+    },
+    {
+      "path": "docs/qualification/phase-2c-network-v2-runner.txt",
+      "sha256": "d1ded9bcf72ff6cd9a63589c196802fa480cf7824cc32537c54176689ff1351f"
+    },
+    {
+      "path": "docs/qualification/phase-2c-network-v2.json",
+      "sha256": "0c13bfb5d6bb6eedb1a8dcfd3dc35a329fa08565014de4a33baf87832fe0b365"
+    },
+    {
+      "path": "docs/qualification/phase-2c-network-v3-observed.json",
+      "sha256": "2f78c490901b2e6f6aaaf53f6d040687ce4ee239159f0519ce6c255bf82f6f15"
+    },
+    {
+      "path": "docs/qualification/phase-2c-network-v3-repeat.json",
+      "sha256": "e6d67f1ec94aaba584aef534d54ba054c6cf69b685d8711a80a4446e43409e35"
+    },
+    {
+      "path": "docs/qualification/phase-2c-network-v3.json",
+      "sha256": "82df51dd5acd305602b2cb826bbd56d305e5669c15e0d71c06c9f007bdf36eef"
+    },
+    {
+      "path": "docs/qualification/phase-2c-observed.json",
+      "sha256": "52fc39780b28fd7cb24d1b43eebc810a84e07723544388bb7c1f29ea0614380a"
+    },
+    {
+      "path": "docs/qualification/phase-2c-oci-archive-v1-observed.json",
+      "sha256": "b8ac92b4bc8d011719412544c30860ff4ae6ef0ecdcac168954639457ab18013"
+    },
+    {
+      "path": "docs/qualification/phase-2c-oci-archive-v1-runner.txt",
+      "sha256": "0ab41c45a02e601d526d849581d661d6660d4092e20f32d13e85f941981f2a6d"
+    },
+    {
+      "path": "docs/qualification/phase-2c-oci-archive-v1.json",
+      "sha256": "3d6ca9f8856901a80671b6a2fa7ed09234526a3dde1508cfa0799f1f7ea5d9eb"
+    },
+    {
+      "path": "docs/qualification/phase-2c-oci-metadata-v1-observed.json",
+      "sha256": "da9df1ec0943d2fa09b236f771bde43c6d9ef30d0b9ad6ceb2a988a5bbb92cb6"
+    },
+    {
+      "path": "docs/qualification/phase-2c-oci-metadata-v1-runner.txt",
+      "sha256": "3714f0753c35c37b8d312865719bc35821a349e67c08d11c7cc6f648113eae7b"
+    },
+    {
+      "path": "docs/qualification/phase-2c-oci-metadata-v1.json",
+      "sha256": "a551c05a991451c31d95b3c3d0568afac3e039eab8a6df5b1159a29f5ac90620"
+    },
+    {
+      "path": "docs/qualification/phase-2c-quota-prerequisite-v1-observed.json",
+      "sha256": "2b033606072af5022b5726f195359fdad1bba79450ad0a184422bce03ecb7bb5"
+    },
+    {
+      "path": "docs/qualification/phase-2c-quota-prerequisite-v1-runner.txt",
+      "sha256": "472f6c379e2a42e695376245141210284e021661465ecabec65d57b6298157b4"
+    },
+    {
+      "path": "docs/qualification/phase-2c-quota-prerequisite-v1.json",
+      "sha256": "d91a763b6b4c0db3a9974e2b3f4fee7d4c4e15961de2b6880c7532adfb3edc57"
+    },
+    {
+      "path": "docs/qualification/phase-2c-quota-prerequisite-v2-observed.json",
+      "sha256": "ec12f6e089ffb75a7515adf26a088f85bddcf2733798b142571fb0b004f1f35a"
+    },
+    {
+      "path": "docs/qualification/phase-2c-quota-prerequisite-v2-runner.txt",
+      "sha256": "0778aea87956ac1f7214be8643d61c40bcafb4c904df91274fb0644d3203c849"
+    },
+    {
+      "path": "docs/qualification/phase-2c-quota-prerequisite-v2.json",
+      "sha256": "785b3cd25cc4f4679471f609fe0ca2232c336db2a5649fc98bb84914dbbde8e1"
+    },
+    {
+      "path": "docs/qualification/phase-2c-quota-prerequisite-v3-observed.json",
+      "sha256": "4143a5c92983bdbacbce43681315d95373cde61978b4c1e159730e5f9a112307"
+    },
+    {
+      "path": "docs/qualification/phase-2c-quota-prerequisite-v3-runner.txt",
+      "sha256": "ba289f694b36163bda5321e397b179f63b8ae4b2227af3bcb5d1fd2a3e463a40"
+    },
+    {
+      "path": "docs/qualification/phase-2c-quota-prerequisite-v3.json",
+      "sha256": "ad98366c03cbb632df20e4ffc9ac53503554ac507bd551fa9ea773b6dd7670b4"
+    },
+    {
+      "path": "docs/qualification/phase-2c-readiness-v1.json",
+      "sha256": "f9a01b9665132707dd0e43d90a84749ad404047dc161435fc03102de3db60a54"
+    },
+    {
+      "path": "docs/qualification/phase-2c-resource-approval-v1.json",
+      "sha256": "872c244d2a28488a1379cb5e61f56567a2aa86cf3a2d954e019f06bd40105df1"
+    },
+    {
+      "path": "docs/qualification/phase-2c-sbx-preparation.json",
+      "sha256": "e2fe61c5d71bfeb6600379e7e3855ff5887fe24b2c37c0dc2162499b488ab4b2"
+    },
+    {
+      "path": "docs/qualification/phase-2c-sbx-protocol-v1-observed.json",
+      "sha256": "e4fbd0a58f280d722defdffb6c2ff7f0a746b9410b035612254106cb7cef6758"
+    },
+    {
+      "path": "docs/qualification/phase-2c-sbx-protocol-v1-refused-observed.json",
+      "sha256": "871f9ef25f99a7bea2ccf79710a418b1713c4ab748d2b73f40f384672ef1015e"
+    },
+    {
+      "path": "docs/qualification/phase-2c-sbx-protocol-v1-refused-repeat.json",
+      "sha256": "871f9ef25f99a7bea2ccf79710a418b1713c4ab748d2b73f40f384672ef1015e"
+    },
+    {
+      "path": "docs/qualification/phase-2c-sbx-protocol-v1-repeat.json",
+      "sha256": "e4fbd0a58f280d722defdffb6c2ff7f0a746b9410b035612254106cb7cef6758"
+    },
+    {
+      "path": "docs/qualification/phase-2c-sbx-protocol-v1.json",
+      "sha256": "976d7ad7b6fe4ef8b2c2dbea981851d03fb2b713942e8dcecab3f6ec24b13f79"
+    },
+    {
+      "path": "docs/qualification/phase-2c-storage-lab-budget-v1.json",
+      "sha256": "1766375d59156f4306ac054965d4ce0d728d9f762cc39fa927b64c60b61feaa5"
+    },
+    {
+      "path": "docs/qualification/phase-2c-storage-local-observed-v1.json",
+      "sha256": "4a7eb18df9dcef2558e03ba54ab5cc783c1053578a149b22ccee3c30cf25f05d"
+    },
+    {
+      "path": "docs/qualification/phase-2c-storage-preparation-v1.json",
+      "sha256": "daab924da3047d5d651afacc4f90ca22fd520f0ed4e009041b9bb87c4cf774d1"
+    },
+    {
+      "path": "docs/qualification/phase-2c-storage-refused-layout-v1.json",
+      "sha256": "70d1a5d08c09ddfc72db966dd9769ca5679e995b8351e2cad8d136286a5692b3"
+    },
+    {
+      "path": "docs/qualification/phase-2c-substrate-v2-observed.json",
+      "sha256": "44e3590d706f9a99567cbf69268ddee64cfebe2fc237465ebb59f099656f3324"
+    },
+    {
+      "path": "docs/qualification/phase-2c-substrate-v2.json",
+      "sha256": "d53787e7ac27177b541d2980c8853f5cf72fa1a128c8f669f40fe90c90923127"
+    },
+    {
+      "path": "docs/qualification/phase-2c-substrate-v3-observed.json",
+      "sha256": "1fbea6954d29eb70ba41d853bc2383509baa3894b103a9942a1c34d88fa3fc0a"
+    },
+    {
+      "path": "docs/qualification/phase-2c-substrate-v3.json",
+      "sha256": "2ea3feb1e8ec7b437bf31a21c0aa6ad45859148c5bff5aa1a36c0f3ab368a56e"
+    },
+    {
+      "path": "docs/qualification/phase-2c-substrate-v4-observed.json",
+      "sha256": "8ad99016210fcd484dfd12de4b4761f67fa3f95037a76ceeefcde401b81e8f28"
+    },
+    {
+      "path": "docs/qualification/phase-2c-substrate-v4-repeat.json",
+      "sha256": "0bf62b8d2d1ece891eac3c96083b06f46e45cc70cabd3b679468d6fd35552c5d"
+    },
+    {
+      "path": "docs/qualification/phase-2c-substrate-v4.json",
+      "sha256": "6f4c5a568f89ad16fa6b5754247938bb816ae6c8cb71fd2b12746f95b0af4db1"
+    },
+    {
+      "path": "docs/qualification/phase-2c-template-metadata-v1.json",
+      "sha256": "b54f5c9f6b02456a6dd4337ceb774eb2436db64b0b3233dd8f730d086b92e05c"
+    },
+    {
+      "path": "docs/qualification/phase-2c-template-preparation-v1-observed.json",
+      "sha256": "e5a173bfe2ffd943972a56d0420f67cf45667e9e0802ac72dda057fe3529c262"
+    },
+    {
+      "path": "docs/qualification/phase-2c-template-preparation-v1-runner.txt",
+      "sha256": "4a564f44f91065e6c08d0cb2430f89325d700ee228a36ea8ef99d8fe52628770"
+    },
+    {
+      "path": "docs/qualification/phase-2c-template-preparation-v1.json",
+      "sha256": "2f2b1ccdbd52322d72088cd853621e21fe22ac54441c968d2b7f678954df748a"
+    },
+    {
+      "path": "docs/qualification/phase-2c-v1.json",
+      "sha256": "fed4dde5e3fe459110a5fb0b2d4f6c75b16214c91aa823d3df640a7415e41563"
+    }
+  ],
+  "execution_allowed": false,
+  "native_start_allowed": false,
+  "operational_manifest_frozen": false,
+  "environment": {
+    "system": "Darwin",
+    "machine": "arm64",
+    "platform": "macOS-27.2-arm64-arm-64bit-Mach-O",
+    "research_python": "3.14.7",
+    "suite_python": "Python 3.12.14"
+  },
+  "checks": {
+    "offline_suite": "93 passed in 5.495 seconds; empty environment and OS-level network denial",
+    "ruff_check": "passed; src/tests/scripts and new readback",
+    "ruff_format": "37 files already formatted",
+    "mypy": "passed; 10 product source files",
+    "build": "0.8.16 sdist and wheel built offline; no fresh installed-wheel run",
+    "source_readback": "passed offline with 11 source/statement bindings",
+    "fresh_archive_readback": "passed all eleven member digests and positive identity/fork/symbol signals without execution",
+    "pruned_budget": "exit 2 arithmetic_refused; logical total 9697333533 exceeds ceiling by 1107398941; allocation unknown",
+    "unknown_inventory": "exit 2 arithmetic_refused; all runtime representations and all allocation counts unknown"
+  },
+  "owned_research_cleanup": {
+    "files_removed": 1778,
+    "logical_bytes_before_cleanup": 337967339,
+    "allocated_bytes_before_cleanup": 344174592,
+    "external_directory_removed": true,
+    "vm_accessed": false,
+    "runtime_executed": false,
+    "paid_host_used": false
+  },
+  "refusal_reproduction": "For each recorded case, copy the research record, checker and its eleven source/statement paths into a new temporary checkout-shaped tree. Mutate only that copied case: execution_allowed=true; flip one source byte without changing length/hash; replace a binding path with README.md; change the recorded private containerd replacement version; or provide a new archive file containing unapproved bytes. Run the copied checker with empty environment and OS-level network denial, using --archive only for the archive case. Require nonzero exit, the recorded reason and no stdout. Remove only the new temporary tree. This does not execute vendor code or mutate original evidence.",
+  "exact_continuation_inputs": 269,
+  "license_bindings_verified": 4
+}

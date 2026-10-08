@@ -1,0 +1,37 @@
+import hashlib, json, os, platform, shutil, subprocess
+from pathlib import Path
+hlt = 'import ctypes, fcntl, json, mmap, os, signal, struct\nsignal.alarm(5)\nfds = []\nmaps = []\nresult = {"probe": "trusted x86 HLT only", "guest_memory_bytes": 1048576, "deadline_seconds": 5}\ntry:\n    device = os.open("/dev/kvm", os.O_RDWR | os.O_CLOEXEC); fds.append(device)\n    result["api_version"] = fcntl.ioctl(device, 0xAE00, 0)\n    assert result["api_version"] == 12\n    vm = fcntl.ioctl(device, 0xAE01, 0); fds.append(vm)\n    memory = mmap.mmap(-1, 1048576); maps.append(memory)\n    memory[4096] = 0xF4\n    address = ctypes.addressof(ctypes.c_char.from_buffer(memory))\n    fcntl.ioctl(vm, 0x4020AE46, struct.pack("IIQQQ", 0, 0, 0, 1048576, address))\n    cpu = fcntl.ioctl(vm, 0xAE41, 0); fds.append(cpu)\n    size = fcntl.ioctl(device, 0xAE04, 0)\n    run = mmap.mmap(cpu, size); maps.append(run)\n    special = bytearray(312)\n    fcntl.ioctl(cpu, 0x8138AE83, special, True)\n    struct.pack_into("Q", special, 0, 0)\n    struct.pack_into("H", special, 12, 0)\n    fcntl.ioctl(cpu, 0x4138AE84, special)\n    registers = bytearray(144)\n    struct.pack_into("QQ", registers, 128, 4096, 2)\n    fcntl.ioctl(cpu, 0x4090AE82, registers)\n    fcntl.ioctl(cpu, 0xAE80, 0)\n    result["exit_reason"] = struct.unpack_from("I", run, 8)[0]\n    assert result["exit_reason"] == 5, result\n    result["kvm_run_hlt"] = "pass"\nfinally:\n    for item in reversed(maps): item.close()\n    for item in reversed(fds): os.close(item)\n    signal.alarm(0)\nresult["process_owned_handles_closed"] = True\nresult["execution_allowed"] = False\nprint(json.dumps(result, sort_keys=True))\n'
+assert hashlib.sha256(hlt.encode()).hexdigest() == "cfce2653fe58d2a53c7ebc5a541b3067737c2e788ac662183a014807b30b4a2f"
+def sample():
+    mem = dict(line.split(":", 1) for line in Path("/proc/meminfo").read_text().splitlines())
+    disk = shutil.disk_usage("/srv")
+    return {"available_memory_bytes": int(mem["MemAvailable"].split()[0])*1024,
+            "total_memory_bytes": int(mem["MemTotal"].split()[0])*1024,
+            "swap_total_bytes": int(mem["SwapTotal"].split()[0])*1024,
+            "free_disk_bytes": disk.free}
+result = {"scope":"trusted current-host diagnostic only", "execution_allowed":False,
+          "os_release":Path("/etc/os-release").read_text(), "kernel":platform.release(),
+          "architecture":platform.machine(), "initial_resources":sample()}
+result["cgroup"] = {name:Path("/sys/fs/cgroup",name).read_text() for name in ("cgroup.controllers","cgroup.subtree_control")}
+result["mounts"] = subprocess.run(["findmnt","--json","-T","/srv","-o","FSTYPE,OPTIONS"],capture_output=True,text=True,timeout=5).stdout
+result["tools"] = {name:shutil.which(name) for name in ("python3","systemd-run","timeout","xfs_quota","mkfs.xfs","mkfs.ext4","mount","losetup","docker","sbx")}
+result["hlt_runs"] = []
+for i in range(2):
+    proc = subprocess.run(["python3","-c",hlt],capture_output=True,text=True,timeout=10,env={"PATH":"/usr/bin:/bin"})
+    assert len(proc.stdout.encode())<=65536 and len(proc.stderr.encode())<=65536
+    result["hlt_runs"].append({"exit_code":proc.returncode,"stdout":proc.stdout,"stderr":proc.stderr})
+result["final_resources"] = sample()
+handles=[]
+unreadable=[]
+for proc in Path("/proc").iterdir():
+    if not proc.name.isdigit(): continue
+    try:
+        for fd in (proc/"fd").iterdir():
+            try: target=os.readlink(fd)
+            except FileNotFoundError: continue
+            if "kvm-vm" in target or "kvm-vcpu" in target: handles.append({"pid":int(proc.name),"target":target})
+    except FileNotFoundError: pass
+    except PermissionError: unreadable.append(int(proc.name))
+result["final_kvm_handles"]=handles
+result["unreadable_proc_entries"]=unreadable
+print(json.dumps(result,sort_keys=True))

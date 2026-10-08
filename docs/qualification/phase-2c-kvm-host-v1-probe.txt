@@ -1,0 +1,36 @@
+import ctypes, fcntl, json, mmap, os, signal, struct
+signal.alarm(5)
+fds = []
+maps = []
+result = {"probe": "trusted x86 HLT only", "guest_memory_bytes": 1048576, "deadline_seconds": 5}
+try:
+    device = os.open("/dev/kvm", os.O_RDWR | os.O_CLOEXEC); fds.append(device)
+    result["api_version"] = fcntl.ioctl(device, 0xAE00, 0)
+    assert result["api_version"] == 12
+    vm = fcntl.ioctl(device, 0xAE01, 0); fds.append(vm)
+    memory = mmap.mmap(-1, 1048576); maps.append(memory)
+    memory[4096] = 0xF4
+    address = ctypes.addressof(ctypes.c_char.from_buffer(memory))
+    fcntl.ioctl(vm, 0x4020AE46, struct.pack("IIQQQ", 0, 0, 0, 1048576, address))
+    cpu = fcntl.ioctl(vm, 0xAE41, 0); fds.append(cpu)
+    size = fcntl.ioctl(device, 0xAE04, 0)
+    run = mmap.mmap(cpu, size); maps.append(run)
+    special = bytearray(312)
+    fcntl.ioctl(cpu, 0x8138AE83, special, True)
+    struct.pack_into("Q", special, 0, 0)
+    struct.pack_into("H", special, 12, 0)
+    fcntl.ioctl(cpu, 0x4138AE84, special)
+    registers = bytearray(144)
+    struct.pack_into("QQ", registers, 128, 4096, 2)
+    fcntl.ioctl(cpu, 0x4090AE82, registers)
+    fcntl.ioctl(cpu, 0xAE80, 0)
+    result["exit_reason"] = struct.unpack_from("I", run, 8)[0]
+    assert result["exit_reason"] == 5, result
+    result["kvm_run_hlt"] = "pass"
+finally:
+    for item in reversed(maps): item.close()
+    for item in reversed(fds): os.close(item)
+    signal.alarm(0)
+result["process_owned_handles_closed"] = True
+result["execution_allowed"] = False
+print(json.dumps(result, sort_keys=True))

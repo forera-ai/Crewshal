@@ -1,0 +1,171 @@
+{
+  "schema_version": 1,
+  "manifest_sha256": "976d7ad7b6fe4ef8b2c2dbea981851d03fb2b713942e8dcecab3f6ec24b13f79",
+  "binary_sha256": "cca2b8379897afa957f6f0fbe98ff45724ddb10e135f1b575232581fdc3caad3",
+  "sources": {
+    "docs/SBX-RESOURCE-CONFIGURATION-PROTOCOL.md": "4f04e74174a0436af1bb4b88d6bf5ad133e553658faa29cd1b5b0c8c392fb7d4",
+    "scripts/assess_sbx_protocol.py": "712dc55e811430d08872c78df0845bae563d9aa5ff38bd025ca119d81e2e46c6",
+    "scripts/probe_linux_profile.py": "b53230625b6b8a5ce82f47f696edfd9632588ef3d4d75c36fdf6c798d6e786d9"
+  },
+  "environment": "empty inherited environment; synthetic HOME/XDG_CONFIG_HOME; network denied",
+  "host": {
+    "os": "macOS-27.2-arm64-arm-64bit",
+    "kernel": "27.2.0",
+    "architecture": "arm64"
+  },
+  "commands": [
+    {
+      "arguments": [
+        "version"
+      ],
+      "exit": 0,
+      "stdout": "sbx version: v0.46.0 991967dc90ce0d9a440cd1df1bdf3e395c5a2693\n",
+      "stderr": ""
+    },
+    {
+      "arguments": [
+        "create",
+        "--help"
+      ],
+      "exit": 0,
+      "stdout": "Create a sandbox with access to a host workspace for an agent.\n\nThe first positional argument may be a built-in agent name or a sandbox kit\nreference. Sandbox kit references may be local directories, ZIP files, git\nrepositories, or OCI references. Relative local references must be explicit\npaths such as ./my-kit or ../my-kit.zip.\n\nOmit the path to create a sandbox without a workspace bind mount: the agent\nthen works in the container's own filesystem instead of on your files.\n\nUse \"sbx run --name SANDBOX\" to attach to the agent after creation.\n\nAvailable agents: claude, codex, copilot, cursor, devin, docker-agent, droid, gemini, kiro, opencode, shell\n\nWith --cloud:\nCreate a cloud sandbox for an agent.\n\nCloud sandboxes have no host workspace, so no path follows the agent. Sizing\ncomes from --cpus and --memory and must land on a billable shape; without them\na cloud sandbox gets 2 CPUs and 4 GiB. A template named with -t / --template\nmust already exist in the cloud registry.\n\nCloud sandboxes use cloud network policies. Host network and HTTP policies\ndo not apply. Set cloud account defaults with\n\"sbx --cloud policy init <allow-all|balanced|deny-all>\".\n\nUse \"sbx --cloud run --name SANDBOX\" to attach to the agent after creation.\n\nUsage:\n  sbx create [flags] AGENT|SANDBOX_KIT [PATH...]\n  sbx create COMMAND\n\nExamples:\n  # Create a sandbox for Claude in the current directory\n  sbx create claude .\n\n  # Create a sandbox with a custom name\n  sbx create --name my-project claude /path/to/project\n\n  # Create with additional read-only workspaces\n  sbx create claude . /path/to/docs:ro\n\n  # Create without a workspace bind mount\n  sbx create claude\n\n  # Create from a local sandbox kit\n  sbx create ../path/to/my-agent/\n\n  # Add a mixin to a built-in agent\n  sbx create claude --kit ./my-mixin/\n\n  # Run the agent on an in-container clone of the host repo, wired back via a git-daemon\n  sbx create --clone claude .\n\n  # Create a cloud sandbox for claude\n  sbx --cloud create claude\n\n  # Create a named cloud sandbox with a mixin baked in\n  sbx --cloud create --name my-project claude --kit ./my-mixin/\n\n  # Create from a template that already exists in the cloud registry\n  sbx --cloud create -t TEMPLATE\n\nAvailable Commands:\n  claude         Create a sandbox for claude\n  codex          Create a sandbox for codex\n  cursor         Create a sandbox for cursor\n  devin          Create a sandbox for devin\n  docker-agent   Create a sandbox for docker-agent\n  gemini         Create a sandbox for gemini\n  opencode       Create a sandbox for opencode\n  shell          Create a sandbox for shell\n\nFlags:\n      --allow-network strings       Network pattern to allow for cloud sandbox egress (cloud only; can be specified multiple times)\n      --clone                       Run the agent on a private in-container clone of the host Git repository (mounted read-only) instead of bind-mounting the workspace; the agent's commits are accessible via the sandbox-<name> git remote on the host\n      --cpus int                    Number of CPUs to allocate to the sandbox (0 = auto: all host CPUs, at most 16 on Linux arm64)\n      --deny-network strings        Add a per-sandbox network deny rule at creation time. Can be specified multiple times. The rule applies only to the new sandbox and can be listed or removed later with 'sbx policy ls <NAME>' or 'sbx policy rm network --sandbox <NAME> --resource <HOST>'. Safe under centralized governance because a local deny can only narrow, never widen, egress.\n  -e, --env stringArray             Set an environment variable in the sandbox (can be repeated): KEY=VALUE, or a bare KEY to take the value from the current environment\n      --env-file stringArray        Read environment variables from a file (can be repeated). --env wins over any file; a later file wins over an earlier one\n  -h, --help                        help for create\n      --image-ref string            OCI image reference for inline-mode cloud create (mutually exclusive with --template; requires --cpus and --memory)\n      --kit strings                 (Experimental) Additional kit reference (must be a mixin; directory, ZIP, git, or OCI). Can be specified multiple times\n      --kit-arg stringArray         (Experimental) Value for an argument the kit declares, as name=value for every kit or kit.name=value for one (can be repeated)\n      --kit-args-file stringArray   (Experimental) File of name=value kit arguments, one per line (can be repeated); --kit-arg overrides\n  -m, --memory string               Memory limit in binary units (e.g., 512m, 8g). Minimum: 512 MiB. Default: 50% of host memory, clamped to 512 MiB\u201332 GiB. Maximum: max(75% of host memory, 512 MiB)\n      --name string                 Name for the sandbox (defaults to <agent>-<workdir>; at least two characters, starting with a letter or number, containing only letters, numbers, hyphens and periods (periods are rejected with --cloud); 'default' is reserved)\n      --on-timeout string           What happens when --ttl lapses: 'stop' stops the sandbox in place so it can be started again later, 'restart' keeps it running by stopping and immediately starting it, or 'delete' removes it. Omit the flag and the server stops the sandbox when it can be started again later, and deletes it otherwise. With 'restart' a supplied --ttl must be at least 1h (cloud only).\n      --platform string             Target platform: linux/amd64 or linux/arm64 (cloud only). With --image-ref, omitting it lets the server resolve the platform from the image and the CLI sends the local CPU as a hint for multi-platform images. With --template, omitting it inherits the template platform.\n      --profile string              Governance profile to assign to the sandbox\n  -p, --publish stringArray         Publish a sandbox port to the host (can be repeated): [[HOST_IP:]HOST_PORT:]SANDBOX_PORT[/PROTOCOL]\n      --pull string                 Image pull policy (always|missing|never) (default \"always\")\n  -q, --quiet                       Suppress verbose output\n      --skills string               Shared skills store mode for the agent's skills directory (e.g. ~/.claude/skills): off, readonly (store linked in read-only, directory stays writable), or readwrite (store mounted over it, writes are shared). Default: readonly, or the configured skills.defaultMode setting.\n      --static-mcp strings          MCP server names that form the sandbox's fixed (static) MCP set. Accepts a comma-separated list (--static-mcp notion,atlassian), repeated flags (--static-mcp notion --static-mcp atlassian), or a mix; all forms accumulate into the same set. The set is chosen once at creation time. Local sandboxes take names registered with 'sbx mcp add'. Cloud sandboxes resolve names on the cloud MCP gateway.\n  -t, --template string             Container image to use for the sandbox (default: agent-specific image)\n      --ttl duration                Cloud sandbox time-to-live before it times out (e.g. 30m, 2h, 1h30m; units are case-insensitive; cloud only; default: server-side)\n  -v, --volume stringArray          (Experimental) Attach an existing persistent volume, NAME:MOUNTPATH (cloud only, experimental; repeatable)\n\nGlobal Flags:\n      --cloud   Dispatch to Docker Cloud Sandboxes API instead of local sandboxd (supported by a growing set of verbs \u2014 run 'sbx --cloud --help' for the current list)\n  -D, --debug   Enable debug logging\n\nUse \"sbx create COMMAND --help\" for more information about a command.\n",
+      "stderr": ""
+    },
+    {
+      "arguments": [
+        "daemon",
+        "start",
+        "--help"
+      ],
+      "exit": 0,
+      "stdout": "Start the sandboxd daemon\n\nUsage:\n  sbx daemon start [flags]\n\nFlags:\n  -d, --detach          Run daemon in background\n  -h, --help            help for start\n      --policy string   Initialize the global network policy: \"allow-all\", \"balanced\", or \"deny-all\"\n\nGlobal Flags:\n      --cloud   Dispatch to Docker Cloud Sandboxes API instead of local sandboxd (supported by a growing set of verbs \u2014 run 'sbx --cloud --help' for the current list)\n  -D, --debug   Enable debug logging\n",
+      "stderr": ""
+    },
+    {
+      "arguments": [
+        "exec",
+        "--help"
+      ],
+      "exit": 0,
+      "stdout": "Execute a command in a sandbox. If the sandbox is stopped, it is started first. Or \u2014 with --cloud \u2014 the cloud sandbox\nID (sbx_*) or name from \"sbx --cloud ls\".\n\nFlags match the behavior of \"docker exec\", except detached exec (-d/--detach)\nis not supported. Some flags (-d, --user, --privileged)\nare not supported with --cloud and are rejected rather than silently ignored.\n--detach-keys applies only to an interactive (-i/-t) cloud exec.\n\nUsage:\n  sbx exec [flags] SANDBOX COMMAND [ARG...]\n\nExamples:\n  # Open a shell inside a sandbox\n  sbx exec -it my-sandbox bash\n\n  # Run as root\n  sbx exec -u root my-sandbox apt-get update\n\n  # Cloud: run a command in a cloud sandbox by ID or name\n  sbx --cloud exec -it sbx_abc123 bash\n  sbx --cloud exec -it claude/my-sandbox bash\n\nFlags:\n  -d, --detach                 Detached mode (not supported)\n      --detach-keys string     Override the key sequence for detaching a container\n  -e, --env stringArray        Set environment variables\n      --env-file stringArray   Read in a file of environment variables\n  -h, --help                   help for exec\n  -i, --interactive            Keep STDIN open even if not attached\n      --privileged             Give extended privileges to the command\n  -t, --tty                    Allocate a pseudo-TTY\n  -u, --user string            Username or UID (format: <name|uid>[:<group|gid>])\n  -w, --workdir string         Working directory inside the container\n\nGlobal Flags:\n      --cloud   Dispatch to Docker Cloud Sandboxes API instead of local sandboxd (supported by a growing set of verbs \u2014 run 'sbx --cloud --help' for the current list)\n  -D, --debug   Enable debug logging\n",
+      "stderr": ""
+    },
+    {
+      "arguments": [
+        "secret",
+        "set-custom",
+        "--help"
+      ],
+      "exit": 0,
+      "stdout": "EXPERIMENTAL: this command may change or be removed in future releases.\n\nCreate or update a custom secret for a service not built into sbx.\n\nCustom secrets work via a placeholder: the sandbox sees the placeholder value\ninstead of the real secret. When the sandbox makes an outbound request to the\ntarget host, the proxy replaces the placeholder with the real secret in the\nrequest headers \u2014 the secret never enters the sandbox directly.\n\n--host accepts an exact host, IP address, or wildcard pattern. Repeat --host\nto cover multiple unrelated domains with one secret. \"*\" matches a single label\nand \"**\" matches any number of labels. For example \"*.example.com\" covers\n\"cli.example.com\" and \"ide.example.com\" with one entry.\n\nCustom secrets apply globally by default. Use --sandbox to scope one to a\nspecific sandbox.\n\nCommand secrets run from a fresh temporary directory on the host during\nverification and refresh. The host temporary directory must be absolute and must\nremain outside writable sandbox mounts. Relative references such as ./helper or\ncat token no longer resolve against the project or daemon working directory. Use an absolute\nhelper path outside shared workspaces. sbx does not copy helpers, inspect their\ndependencies, or confine their execution. Helpers and any code or configuration\nthey load must remain outside writable sandbox mounts. Explicit paths into shared\nworkspaces and broad mounts exposing host configuration or the host temporary\ndirectory remain unsafe, including mounts added later with sbx mount.\n\nWith --cloud, --host takes exact DNS names only (no IP addresses or wildcards)\nand the proxy sets --header on requests to those hosts instead of substituting\nthe placeholder.\n\nUsage:\n  sbx secret set-custom [flags]\n\nExamples:\n  # Create a global custom secret. A unique placeholder is generated automatically.\n  # The sandbox env var API_KEY is set to the placeholder value; outbound requests\n  # to the host have the placeholder replaced with the real secret.\n  sbx secret set-custom --host api.example.com --env API_KEY --value secret123\n\n  # Use a wildcard host to cover multiple subdomains that share one key.\n  sbx secret set-custom --host '*.coderabbit.ai' --env CODERABBIT_API_KEY --value secret123\n\n  # Use multiple --host flags to cover unrelated domains with the same key.\n  sbx secret set-custom --host api.example.com --host api.other.io --env API_KEY --value secret123\n\n  # Scope to a specific sandbox instead of globally.\n  sbx secret set-custom --sandbox my-sandbox --host api.example.com --env API_KEY --value secret123\n\n  # Custom placeholder with {rand} suffix; the CLI prints the generated value.\n  sbx secret set-custom --host api.example.com --placeholder sk-{rand} --value secret123\n\nFlags:\n      --command string       Use a command's standard output as the secret value\n      --env string           Set this env var in the sandbox to the placeholder value\n      --format string        How the value fills the header, with one %s; default \"Bearer %s\" when --header is omitted (with --cloud)\n      --header string        HTTP header the proxy sets to the secret on requests to --host; default Authorization (with --cloud)\n  -h, --help                 help for set-custom\n      --host stringArray     Host, IP, or wildcard pattern (e.g. *.example.com); repeatable; with --cloud, exact DNS names only\n      --name string          Secret name; default derived from the first --host (with --cloud)\n      --no-verify            Skip checking the --ref or --command source when storing it\n      --placeholder string   Placeholder value; use {rand} for a random suffix (e.g. sk-{rand})\n      --ref string           Use a 1Password op:// reference or AWS Secrets Manager ARN as the secret source\n      --refresh string       Secret refresh policy: on-demand (default) or after a duration\n      --sandbox string       Scope the secret to one sandbox (default: all sandboxes)\n      --show-error           Show resolver standard error if the initial check fails (may contain secrets)\n  -t, --token string         Secret value (less secure: visible in shell history)\n      --value string         Secret value (less secure: visible in shell history)\n\nGlobal Flags:\n      --cloud   Dispatch to Docker Cloud Sandboxes API instead of local sandboxd (supported by a growing set of verbs \u2014 run 'sbx --cloud --help' for the current list)\n  -D, --debug   Enable debug logging\n",
+      "stderr": ""
+    },
+    {
+      "arguments": [
+        "settings",
+        "--help"
+      ],
+      "exit": 0,
+      "stdout": "View and manage settings for Docker Sandboxes.\n\nSettings can come from defaults, environment variables, or user overrides.\nThese commands use the local daemon to read evaluated values and manage\noverrides, starting it if necessary.\n\nMost changes take effect within about five seconds. Some require a daemon\nrestart.\n\nUsage:\n  sbx settings COMMAND\n\nAvailable Commands:\n  get         Get the value of a setting\n  list        List settings\n  set         Set a setting override\n  unset       Remove a setting override\n\nFlags:\n  -h, --help   help for settings\n\nGlobal Flags:\n      --cloud   Dispatch to Docker Cloud Sandboxes API instead of local sandboxd (supported by a growing set of verbs \u2014 run 'sbx --cloud --help' for the current list)\n  -D, --debug   Enable debug logging\n\nUse \"sbx settings COMMAND --help\" for more information about a command.\n",
+      "stderr": ""
+    }
+  ],
+  "decision": {
+    "help_complete": true,
+    "advertised_outer_minimum_bytes": 536870912,
+    "frozen_worker_memory_bytes": 134217728,
+    "direct_worker_mapping": "incompatible advertised minimum",
+    "nested_worker_mapping": "unavailable; no independently enforced inner worker observed",
+    "credential_store_isolation": "unavailable; synthetic HOME does not isolate macOS Keychain",
+    "request_authority": "unavailable; sentinel masking is not caller authorization evidence",
+    "operational_launch_allowed": false,
+    "execution_allowed": false,
+    "status": "denied"
+  },
+  "daemon_started": false,
+  "login_attempted": false,
+  "secret_commands_executed": false,
+  "worker_launched": false,
+  "mandatory_results": [
+    {
+      "case": "allowed-grant",
+      "status": "unavailable"
+    },
+    {
+      "case": "external-read",
+      "status": "unavailable"
+    },
+    {
+      "case": "external-write",
+      "status": "unavailable"
+    },
+    {
+      "case": "original-checkout",
+      "status": "unavailable"
+    },
+    {
+      "case": "coordinator-state",
+      "status": "unavailable"
+    },
+    {
+      "case": "symlink-escape",
+      "status": "unavailable"
+    },
+    {
+      "case": "new-file-escape",
+      "status": "unavailable"
+    },
+    {
+      "case": "metadata-escape",
+      "status": "unavailable"
+    },
+    {
+      "case": "network-egress",
+      "status": "unavailable"
+    },
+    {
+      "case": "environment-credentials",
+      "status": "unavailable"
+    },
+    {
+      "case": "repository-hooks",
+      "status": "unavailable"
+    },
+    {
+      "case": "global-hooks",
+      "status": "unavailable"
+    },
+    {
+      "case": "mcp-plugins-instructions",
+      "status": "unavailable"
+    },
+    {
+      "case": "descendant-escape",
+      "status": "unavailable"
+    },
+    {
+      "case": "cancellation",
+      "status": "unavailable"
+    },
+    {
+      "case": "deadline",
+      "status": "unavailable"
+    },
+    {
+      "case": "credential-mediation",
+      "status": "unavailable"
+    },
+    {
+      "case": "credential-free-validation",
+      "status": "unavailable"
+    },
+    {
+      "case": "configuration-binding",
+      "status": "unavailable"
+    },
+    {
+      "case": "qualification-refusal",
+      "status": "unavailable"
+    }
+  ]
+}

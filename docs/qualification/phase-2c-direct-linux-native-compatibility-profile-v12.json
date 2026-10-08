@@ -1,0 +1,50 @@
+{
+  "scope": "prospective unexecuted next trusted tiny native sandbox probe; not a complete profile",
+  "source": "scripts/probe_direct_linux_native_compatibility_v12.py",
+  "source_sha256": "54819e547a13b495adbef3b87b8755083b7dee61f58f09765f6790e778356865",
+  "policy": "phase-2c-direct-linux-native-apparmor-proposal-v5.profile",
+  "policy_sha256": "51883b04f98badc11893b306c7143b7f5e85fec906d2197f766829eb31a61d3e",
+  "status": "prospective owner-approved bounded tiny native sandbox probe",
+  "prerequisites": [
+    "Direct owner decision on scoped v4 setup-only attach_disconnected proposal",
+    "Fresh original data preparation with verified official archives and no prior compatibility artifacts",
+    "Bind installed v11/parser/ABI/helpers, loaded v4 profile hashes and fresh aggregate controls before run"
+  ],
+  "controls": {
+    "worker_memory": 134217728,
+    "worker_swap": 0,
+    "worker_cpu": "100000 100000",
+    "worker_pids": 32,
+    "worker_seconds": 5,
+    "aggregate_memory": 805306368,
+    "aggregate_swap": 0,
+    "aggregate_cpu": "100000 100000",
+    "aggregate_pids": 128,
+    "output_bytes_per_stream": 65536,
+    "command_seconds": 10,
+    "startup_seconds": 120,
+    "two_fixture_cleanup_seconds": 600,
+    "final_cleanup_reserve_seconds": 30,
+    "disk_logical_and_allocated": 8589934592
+  },
+  "roles": "systemd drops native to host UID/GID 65534; ProtectProc=invisible and reduced readonly root; exact native bwrap creates payload namespaces; every payload exec inherits denial profile",
+  "execution_allowed": false,
+  "native_start_allowed": false,
+  "authority": "phase-2c-direct-linux-native-apparmor-approval-v2.json",
+  "authority_sha256": "94e0b0ee140ff664fb7cac9f99011764d374c249053e14bc85d91703e560af45",
+  "aggregate_unit": "crewshalnativediscoveryv1.slice",
+  "aggregate_unit_contents": "[Unit]\nDescription=Crewshal trusted native discovery aggregate\n[Slice]\nMemoryMax=805306368\nMemorySwapMax=0\nCPUQuota=100%\nTasksMax=128\n",
+  "aggregate_unit_sha256": "13bf36a0dd7a2f707d7ab76b0adc0a88aca6be1547a355aeb989fe37638c75fe",
+  "fixture_base": "/var/tmp/crewshal-native-discovery-v1",
+  "preparation_source": "scripts/probe_direct_linux_native_discovery.py",
+  "preparation_source_sha256": "a8d9b0d5bb204b7cb67570c37b9c49fcfc7fa46a0c2384979b3bb8a364de1a7a",
+  "preparation_bound_seconds": 120,
+  "policy_load": "apparmor_parser --config-file /dev/null --skip-cache --add --jobs 1 --max-jobs 1 /run/crewshal-native-apparmor-proposal-v4.profile",
+  "policy_remove": "apparmor_parser --config-file /dev/null --skip-cache --remove --jobs 1 --max-jobs 1 /run/crewshal-native-apparmor-proposal-v4.profile",
+  "change": "explicit root-directory read in both policy roles; no payload write or namespace grant change",
+  "prior_results": {
+    "v2": "outer bwrap tmpfs mount ENOENT before payload",
+    "v3": "preparation refuses mistaken prior manifest name before mutation"
+  },
+  "fresh_preparation": "v12 extends immutable fresh v11 preparation; fresh transient worker scratch/cgroups"
+}

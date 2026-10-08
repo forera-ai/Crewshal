@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "id": "crewshal-phase-2c-storage-preparation-v1",
+  "scope": "local diagnostic/source and batch preparation; not a Linux executable profile",
+  "base_revision": "d656f4f95c07eee2529e55220ef614863b4132ed",
+  "package_version": "0.8.14",
+  "sources": {
+    "scripts/assess_storage_budget.py": "75c156579621c9afd7579fd24e68ec1f60d1cb63bcea5460d2d904c2f563fb13",
+    "scripts/probe_storage_operations.py": "b5072ac70ee5eceb40f885a7c045dc420548cff8e4432977eb80fb25d83b49a0",
+    "tests/acceptance/test_phase_2c_storage.py": "85bd90041a86ec5143bbc79b1e7a54636508c59c2edb669fd371fc55cd1010e4",
+    "docs/PHASE-2C-STORAGE-DESIGN.md": "fac8889b97b4f35781259711ec4fbbf083596bc30bff64a26a085fcacae96971",
+    "docs/PHASE-2C-STORAGE-BATCH.md": "bc065e4cd4da52d88b88ce4ad2ff83423d00df2656a3a03c9d03e1a273eee946",
+    "docs/qualification/phase-2c-storage-refused-layout-v1.json": "70d1a5d08c09ddfc72db966dd9769ca5679e995b8351e2cad8d136286a5692b3",
+    "docs/qualification/phase-2c-storage-lab-budget-v1.json": "1766375d59156f4306ac054965d4ce0d728d9f762cc39fa927b64c60b61feaa5",
+    "docs/qualification/phase-2c-storage-local-observed-v1.json": "4a7eb18df9dcef2558e03ba54ab5cc783c1053578a149b22ccee3c30cf25f05d"
+  },
+  "authority_records": [
+    "docs/qualification/phase-2c-resource-approval-v1.json",
+    "docs/qualification/phase-2c-discovery-authorization-v1.json"
+  ],
+  "original_protocol_sha256": "fed4dde5e3fe459110a5fb0b2d4f6c75b16214c91aa823d3df640a7415e41563",
+  "local_verification": {
+    "focused_methods": 12,
+    "complete_tests": 90,
+    "network_denied": true,
+    "complete_seconds": 5.515,
+    "ruff_check": "passed",
+    "ruff_format": "passed",
+    "mypy": "passed; 10 product source files",
+    "offline_build": "0.8.14 sdist and wheel built; no installed-wheel claim"
+  },
+  "unresolved_linux_bindings": [
+    "installed kernel/module/helper/library/interpreter/stdlib identities",
+    "supported exclusively new key setup and exact owned cleanup",
+    "upper/lower namespace and bypass payload/profile",
+    "independent FD/lower/capacity observer and stream supervision",
+    "effective SBX disk/cache/aggregate placement and full manifest"
+  ],
+  "paid_host_batch_authorized": false,
+  "linux_runs": 0,
+  "execution_allowed": false,
+  "native_start_allowed": false,
+  "operational_manifest_frozen": false
+}

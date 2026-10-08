@@ -1,0 +1,11 @@
+{
+  "running_owned_units": "",
+  "remaining_kvm_pids": [],
+  "private_auth_preserved": true,
+  "prepared_archive_preserved": true,
+  "memory_available_bytes": 1695133696,
+  "disk_free_bytes": 46763958272,
+  "observation_scope": "Supplementary final read-only inventory, not prospectively source-bound stress or peak evidence. Failed isolated-auth-v2 unit is inactive and retained as failure history.",
+  "execution_allowed": false,
+  "native_start_allowed": false
+}

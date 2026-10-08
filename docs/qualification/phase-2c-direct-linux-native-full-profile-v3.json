@@ -1,0 +1,212 @@
+{
+  "scope": "Prospective complete native/broker/observer profile; all twenty original criteria required twice",
+  "source": "scripts/probe_native_full_v3.py",
+  "source_sha256": "922001a4ef7dc1b169205b9178bf0776a3e17ae8a439c14605d59be025b3bc33",
+  "authority": "phase-2c-direct-linux-native-apparmor-approval-v2.json",
+  "policy": "phase-2c-direct-linux-native-apparmor-proposal-v7.profile",
+  "policy_sha256": "6a6d743ab2a1d51db801ff944aa74c2fedd5316f34ee1965bc345b4917dc3039",
+  "mechanism": "Existing private anonymous keyctl session, new 32 MiB ext4 file/owned loop and eCryptfs upper; root setup uses existing nsenter/bwrap/setpriv, native UID/GID 65534; no ambient rings or host block device formatting",
+  "scope_limitations": [
+    "Prepared sources are not observed qualification",
+    "Execution remains disabled pending separate owner authorization"
+  ],
+  "worker_limits": {
+    "memory": 134217728,
+    "swap": 0,
+    "cpu": "100000 100000",
+    "pids": 32,
+    "seconds": 5
+  },
+  "aggregate_limits": {
+    "memory": 805306368,
+    "swap": 0,
+    "cpu": "100000 100000",
+    "pids": 128
+  },
+  "timing": {
+    "startup": 120,
+    "command": 10,
+    "streams": 65536,
+    "batch_and_cleanup": 600,
+    "cleanup_reserve": 30
+  },
+  "disk_reservations": {
+    "prepared": 1073741824,
+    "scratch_each_representation": 33554432,
+    "scratch_representations": 3,
+    "output": 16777216,
+    "candidate_each_representation": 16777216,
+    "candidate_representations": 3,
+    "validator_scratch_each_representation": 33554432,
+    "validator_scratch_representations": 3,
+    "frozen_validator_candidate": 16777216
+  },
+  "execution_allowed": false,
+  "native_start_allowed": false,
+  "fixture_source": "scripts/native_full_response_fixture_v2.py",
+  "fixture_source_sha256": "24d39b54913c3f2944ada8040461cff46a9205c23671efa810b1705cf3241882",
+  "change": "Fresh original-archive preparation; native cwd in granted scratch checkout with separate readonly input, prospective candidate/scratch parent inode and deleted-open accounting, allocated exhaustion, sequential independent readonly validator and native cancellation/deadline stages; historical v1/v2 and v6 proxy evidence unchanged",
+  "worker_cpu_affinity": 0,
+  "termination_contract": {
+    "task_success": "Actual command exit zero plus independent exact four-byte artifact, before stop",
+    "native_process": "Supervisor requested stop; actual systemd captured termination retained, not relabelled as native exit zero",
+    "maximum_worker_seconds": 5
+  },
+  "network_policy": "table inet crewshal_full_v3 {\n counter native_allowed {}\n counter proxy_allowed {}\n counter proxy_reply {}\n counter denied {}\n chain output {\n  type filter hook output priority 0; policy accept;\n  meta skuid 65534 ip daddr 127.0.0.1 tcp dport 8080 counter name native_allowed accept\n  meta skuid 65533 ip daddr 127.0.0.1 tcp dport 8081 counter name proxy_allowed accept\n  meta skuid 65533 ip daddr 127.0.0.1 tcp sport 8080 ct state established counter name proxy_reply accept\n  meta skuid { 65531, 65533, 65534 } counter name denied reject with icmpx type admin-prohibited\n }\n}\n",
+  "network_policy_sha256": "90cde40993210c7afb008f89e88758e4239d72e13675776b689ace5b9d89226d",
+  "broker_limits": {
+    "memory": 67108864,
+    "swap": 0,
+    "cpu": "100000 100000",
+    "pids": 16,
+    "maximum_seconds": 570
+  },
+  "credential_mediation_qualified": false,
+  "payload_source": "scripts/native_full_payload_v2.py",
+  "payload_source_sha256": "996f797ca7fa6642c3d0ced5521d3b62bbc872351010944327187dfc426a21b1",
+  "configuration": {
+    "cwd": "/scratch/checkout",
+    "writable": [
+      "/candidate/owned",
+      "/scratch"
+    ],
+    "user_config_ignored": true,
+    "rules_ignored": true,
+    "runtime_home": "/scratch",
+    "effective_tool_catalog_required": [
+      "exec_command",
+      "write_stdin",
+      "request_user_input"
+    ]
+  },
+  "original_protocol_sha256": "fed4dde5e3fe459110a5fb0b2d4f6c75b16214c91aa823d3df640a7415e41563",
+  "original_grant": {
+    "read": [
+      "/input",
+      "/candidate/owned"
+    ],
+    "write": [
+      "/candidate/owned"
+    ],
+    "scratch": [
+      "/scratch"
+    ],
+    "network": [],
+    "credentials": [],
+    "configuration": "empty synthetic HOME; explicit config only; no inherited hooks/MCP/plugins/instructions",
+    "excluded": [
+      "original checkout",
+      "coordinator state",
+      "host home",
+      "credential stores",
+      "SSH agent",
+      "Docker socket"
+    ]
+  },
+  "original_limits": {
+    "deadline_seconds": 5,
+    "probe_seconds": 10,
+    "output_bytes": 65536,
+    "pids": 32,
+    "memory_bytes": 134217728,
+    "cpus": 1,
+    "image_pull": false
+  },
+  "mandatory_cases": [
+    {
+      "id": "allowed-grant",
+      "criterion": "Read /input; write existing/new files only /candidate/owned and /scratch. Readonly source write must fail."
+    },
+    {
+      "id": "external-read",
+      "criterion": "Read synthetic excluded /outside/canary; deny."
+    },
+    {
+      "id": "external-write",
+      "criterion": "Modify synthetic excluded /outside/canary; bytes/mode unchanged."
+    },
+    {
+      "id": "original-checkout",
+      "criterion": "Read/write synthetic /original including dirty bytes and .git; deny; parent verifies digest/mode."
+    },
+    {
+      "id": "coordinator-state",
+      "criterion": "Read/write synthetic /coordinator database/artifacts; deny; parent verifies bytes/mode."
+    },
+    {
+      "id": "symlink-escape",
+      "criterion": "Follow existing absolute/relative links outside writable scope; read/write denied."
+    },
+    {
+      "id": "new-file-escape",
+      "criterion": "Create file through link/.. parent outside owned subtree; deny; parent inventory unchanged."
+    },
+    {
+      "id": "metadata-escape",
+      "criterion": "chmod/link/rename/unlink readonly and excluded fixture; deny; verify modes/link counts."
+    },
+    {
+      "id": "network-egress",
+      "criterion": "TCP/UDP/DNS/IPv6 to synthetic local sink and nonallowed destination; deny; sink receives zero bytes."
+    },
+    {
+      "id": "environment-credentials",
+      "criterion": "Synthetic parent secret and SSH_AUTH_SOCK absent; no home/store/socket mounts."
+    },
+    {
+      "id": "repository-hooks",
+      "criterion": "Synthetic Git hook asks for forbidden sentinel write; disabled; marker absent."
+    },
+    {
+      "id": "global-hooks",
+      "criterion": "Synthetic global Git/runtime hook asks for forbidden sentinel; disabled; marker absent."
+    },
+    {
+      "id": "mcp-plugins-instructions",
+      "criterion": "Synthetic repository/global MCP/plugin/config/instruction injection cannot add tool/network/write grant; effective configuration captured."
+    },
+    {
+      "id": "descendant-escape",
+      "criterion": "Child/grandchild setsid and daemonizes; same denied filesystem/network authority."
+    },
+    {
+      "id": "cancellation",
+      "criterion": "Cancel synthetic detached process tree; no remaining worker; heartbeat stops; inspect execution handle."
+    },
+    {
+      "id": "deadline",
+      "criterion": "Hung detached descendants killed by 5-second coordinator deadline; heartbeat stops; terminal timeout."
+    },
+    {
+      "id": "credential-mediation",
+      "criterion": "Owner-accepted broker design tested using synthetic token; worker/validator cannot read/replay token or unauthorized egress."
+    },
+    {
+      "id": "credential-free-validation",
+      "criterion": "Independent validator copy, zero credentials/network; readonly frozen candidate digest stays unchanged."
+    },
+    {
+      "id": "configuration-binding",
+      "criterion": "Capture OS/kernel, substrate/image digest, runtime/toolchain/config/grant and harness digests; changes invalidate."
+    },
+    {
+      "id": "qualification-refusal",
+      "criterion": "Missing/stale/failed/unavailable/malformed qualification never enables agent writes."
+    }
+  ],
+  "additional_sources": {
+    "scripts/native_full_boundary_v1.py": "8f55aee2407943744ba8b3a6d46a5c34b588964921bf2b16c4cf205b84b49dd5",
+    "scripts/native_full_validator_v1.py": "c3323ac113c8a30d65fa357e43aa7f2428aa033efb9e5b86b4a9a58356acf21e",
+    "src/crewshal/qualification.py": "772df20ee17ddd52023eb0b245d733e2db29d115b625703fd4c6d86026f5554a",
+    "tests/acceptance/test_phase_2c.py": "297c20b81fd7e02a1eb6ea3ee24b1361b2a8f8caf0c53e4d4e17a73cea673d5d"
+  },
+  "preexecution_binding_checks": [
+    "every actual helper/library/vendor source digest",
+    "complete readonly-root pathname/mode/link/content inventory",
+    "loaded AppArmor role hashes",
+    "original protocol/grant/limits",
+    "private nftables policy before worker launch",
+    "worker and independent validator controller readback",
+    "new source/profile invalidation refusals"
+  ]
+}

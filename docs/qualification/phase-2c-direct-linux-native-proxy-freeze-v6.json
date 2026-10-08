@@ -1,0 +1,19 @@
+{
+  "aggregate_observed": {
+    "memory.max": "805306368",
+    "memory.swap.max": "0",
+    "cpu.max": "100000 100000",
+    "pids.max": "128",
+    "memory.current": "482725888"
+  },
+  "loaded_policy_sha256": {
+    "crewshal-native-tool-v1": "f96fb67936fcab509534ab180b512a8fd6a2eba0d59dc7fa92a2c50282e8e2ca",
+    "crewshal-native-bwrap-v1": "0712da1298b44d54de8d9a6184ecd528c72cef5402ef57d6bc7f92578f092061"
+  },
+  "global_userns_restriction": 1,
+  "profile": "phase-2c-direct-linux-native-proxy-profile-v6.json",
+  "profile_sha256": "bd9ea0f1370ead12818dee0f7f1af6fd499c1cec5469eb2128bd85439dd87867",
+  "manifest": "phase-2c-direct-linux-native-proxy-bindings-v6.json",
+  "manifest_sha256": "a89a2dead1cca587da3281ae9933ec258bc4f579478076216dc63281c9796673",
+  "scope": "Native/proxy finite caller and destination separation diagnostic; no complete qualification"
+}

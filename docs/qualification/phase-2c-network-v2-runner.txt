@@ -1,0 +1,423 @@
+"""Frozen local-sink network subset. Always denies full Phase 2C execution."""
+
+import argparse
+import json
+import os
+from pathlib import Path
+import platform
+import tempfile
+import time
+import uuid
+
+from crewshal.qualification import (
+    MANDATORY_CASES,
+    ProbeResult,
+    Qualification,
+    QualificationIdentity,
+    assess_qualification,
+)
+from scripts.network_client import packet
+from scripts.probe_linux_profile import digest, docker_capture, snapshot
+
+IMAGE = "sha256:4c47124a8391cb7a9f571164147d154777cf012a4ece5f86097130d7a4478111"
+BASE_ENV = {
+    "PATH=/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+    "LANG=C.UTF-8",
+    "GPG_KEY=7169605F62C751356D054A26A821E680E5FA6305",
+    "PYTHON_VERSION=3.12.14",
+    "PYTHON_SHA256=5c8462af5790baf43a321a1559dbe0db06d1be4300fb85fb53c40060668e548a",
+    "HOME=/scratch/home",
+    "PYTHONDONTWRITEBYTECODE=1",
+}
+TARGETS = ("primary", "nonallowed")
+FAMILIES = ("ipv4", "ipv6")
+PROTOCOLS = ("tcp", "udp", "dns")
+LABEL = "crewshal.qualification=2c-network"
+SOURCES = {
+    "scripts/probe_linux_network.py",
+    "scripts/network_client.py",
+    "scripts/network_sink.py",
+    "scripts/probe_linux_profile.py",
+    "src/crewshal/qualification.py",
+}
+
+
+def load_manifest(path: Path, expected: str) -> dict:
+    if digest(path.read_bytes()) != expected:
+        raise ValueError("prospectively frozen manifest digest mismatch")
+    manifest = json.loads(path.read_text())
+    root = Path(__file__).resolve().parents[1]
+    original_path = root / "docs/qualification/phase-2c-v1.json"
+    original = json.loads(original_path.read_text())
+    if (
+        digest(original_path.read_bytes()) != manifest["parent_manifest"]
+        or any(manifest[key] != original[key] for key in ("mandatory_cases", "grant", "limits"))
+        or manifest["image"] != IMAGE
+        or manifest["image_environment"] != sorted(BASE_ENV)
+        or set(manifest["sources"]) != SOURCES
+        or manifest["sources"]
+        != {str(p): digest((root / p).read_bytes()) for p in manifest["sources"]}
+        or manifest["executed_subset"] != ["network-egress"]
+        or [case["id"] for case in manifest["mandatory_cases"]] != list(MANDATORY_CASES)
+    ):
+        raise ValueError("frozen protocol/source/image mismatch")
+    return manifest
+
+
+def create_argv(root: Path, handle: str, network: str, mode: str) -> list[str]:
+    script = "network_sink.py" if mode == "sink" else "network_client.py"
+    return [
+        "create",
+        "--pull=never",
+        "--name",
+        handle,
+        "--label",
+        LABEL,
+        "--network",
+        network,
+        "--read-only",
+        "--user=65532:65532",
+        "--cap-drop=ALL",
+        "--security-opt=no-new-privileges",
+        "--pids-limit=32",
+        "--memory=128m",
+        "--cpus=1",
+        "--log-driver=none",
+        "--entrypoint=/usr/local/bin/python",
+        "--mount",
+        f"type=bind,src={root / 'input'},dst=/input,readonly",
+        "--mount",
+        f"type=bind,src={root / 'owned'},dst=/candidate/owned",
+        "--tmpfs",
+        "/scratch:rw,noexec,nosuid,nodev,size=16777216,mode=1777",
+        "--env",
+        "HOME=/scratch/home",
+        "--env",
+        "PYTHONDONTWRITEBYTECODE=1",
+        IMAGE,
+        f"/input/{script}",
+        *([] if mode == "sink" else [mode]),
+    ]
+
+
+def verify_grant(info: dict, root: Path, network: str, mode: str) -> bool:
+    host, config = info.get("HostConfig", {}), info.get("Config", {})
+    binds = [m for m in info.get("Mounts", []) if m.get("Type") == "bind"]
+    other = [m for m in info.get("Mounts", []) if m.get("Type") != "bind"]
+    script = "network_sink.py" if mode == "sink" else "network_client.py"
+    return (
+        host.get("NetworkMode") == network
+        and info.get("Image") == IMAGE
+        and host.get("ReadonlyRootfs") is True
+        and host.get("Privileged") is False
+        and host.get("CapDrop") == ["ALL"]
+        and host.get("PidsLimit") == 32
+        and host.get("Memory") == 134217728
+        and host.get("NanoCpus") == 1000000000
+        and host.get("SecurityOpt") in (["no-new-privileges"], ["no-new-privileges:true"])
+        and not host.get("PidMode")
+        and host.get("IpcMode") == "private"
+        and not host.get("PortBindings")
+        and not host.get("Devices")
+        and len(binds) == 2
+        and {(m.get("Source"), m.get("Destination"), m.get("RW")) for m in binds}
+        == {(str(root / "input"), "/input", False), (str(root / "owned"), "/candidate/owned", True)}
+        and all(m.get("Type") == "tmpfs" and m.get("Destination") == "/scratch" for m in other)
+        and host.get("Tmpfs") == {"/scratch": "rw,noexec,nosuid,nodev,size=16777216,mode=1777"}
+        and config.get("User") == "65532:65532"
+        and config.get("Entrypoint") == ["/usr/local/bin/python"]
+        and config.get("Cmd") == [f"/input/{script}", *([] if mode == "sink" else [mode])]
+        and set(config.get("Env", [])) == BASE_ENV
+    )
+
+
+def client_passes(observation: dict, label: str) -> bool:
+    terminal = observation.get("terminal", {})
+    outcomes = observation.get("result", {}).get("outcomes", [])
+    expected = {
+        (t, f, p): packet(label, t, f, p).hex()
+        for t in TARGETS
+        for f in FAMILIES
+        for p in PROTOCOLS
+    }
+    actual = {
+        (o.get("target"), o.get("family"), o.get("protocol")): o.get("payload_hex")
+        for o in outcomes
+    }
+    return (
+        observation.get("grant_verified") is True
+        and observation.get("protected_unchanged") is True
+        and observation.get("deadline_exceeded") is False
+        and terminal.get("Running") is False
+        and terminal.get("ExitCode") == 0
+        and terminal.get("OOMKilled") is False
+        and terminal.get("Pid") == 0
+        and observation.get("result", {}).get("label") == label
+        and len(outcomes) == 12
+        and actual == expected
+        and all(
+            o.get("sent") is False and o.get("connected") is False
+            if label == "denied"
+            else o.get("echo") is True
+            for o in outcomes
+        )
+    )
+
+
+def network_passes(report: dict) -> bool:
+    clients = report.get("clients", {})
+    expected_events = {
+        packet(label, t, f, p).hex()
+        for label in ("before", "after")
+        for t in TARGETS
+        for f in FAMILIES
+        for p in PROTOCOLS
+    }
+    events = report.get("sink_events", [])
+    return (
+        all(client_passes(clients.get(label, {}), label) for label in ("before", "denied", "after"))
+        and report.get("sink_grants_verified") is True
+        and report.get("sink_heartbeat_advanced") is True
+        and report.get("sink_inputs_unchanged") is True
+        and report.get("network_verified") is True
+        and report.get("cleanup_ok") is True
+        and report.get("events_before_denial") == report.get("events_after_denial") == 12
+        and len(events) == 24
+        and {event.get("payload_hex") for event in events} == expected_events
+    )
+
+
+def run_probe(parent: Path, environment: dict[str, str]) -> dict:
+    commands, handles = [], []
+    network = "crewshal-2c-network-" + uuid.uuid4().hex
+    report = {"commands": commands, "clients": {}, "cleanup_ok": False}
+    source = Path(__file__).parent
+
+    def command(argv: list[str]) -> dict:
+        result = docker_capture(argv, environment)
+        commands.append(result)
+        return result
+
+    def checked(argv: list[str]) -> str:
+        result = command(argv)
+        if result.get("exit") != 0:
+            raise ValueError(
+                f"Docker {argv[0]} failed: {result.get('stderr', result.get('error'))}"
+            )
+        return str(result["stdout"])
+
+    def prepare(mode: str, targets: dict | None = None) -> Path:
+        root = parent / mode
+        root.mkdir()
+        for part in ("input", "owned", "original", "coordinator"):
+            (root / part).mkdir(mode=0o755)
+        (root / "owned").chmod(0o777)
+        for script in ("network_client.py", "network_sink.py"):
+            (root / "input" / script).write_bytes((source / script).read_bytes())
+        (root / "input/targets.json").write_text(json.dumps(targets or {}))
+        for part in ("original", "coordinator"):
+            (root / part / "canary").write_text("synthetic-excluded")
+        return root
+
+    def create(root: Path, mode: str, attached: str) -> tuple[str, dict]:
+        handle = "crewshal-2c-network-" + uuid.uuid4().hex
+        handles.append(handle)
+        checked(create_argv(root, handle, attached, mode))
+        info = json.loads(checked(["inspect", handle]))[0]
+        if not verify_grant(info, root, attached, mode):
+            raise ValueError("effective engine grant mismatch; refused before start")
+        checked(["start", handle])
+        return handle, info
+
+    def events(sinks: dict) -> list:
+        result = []
+        for root, _ in sinks.values():
+            path = root / "owned/events.jsonl"
+            if path.exists():
+                result.extend(json.loads(line) for line in path.read_text().splitlines())
+        return result
+
+    try:
+        checked(
+            [
+                "network",
+                "create",
+                "--internal",
+                "--ipv6",
+                "--subnet",
+                "10.243." + str(int(uuid.uuid4().hex[:2], 16)) + ".0/24",
+                "--subnet",
+                "fd2c:" + uuid.uuid4().hex[:4] + ":" + uuid.uuid4().hex[:4] + "::/64",
+                "--label",
+                LABEL,
+                network,
+            ]
+        )
+        network_info = json.loads(checked(["network", "inspect", network]))[0]
+        report["network_inspection"] = network_info
+        report["network_verified"] = (
+            network_info.get("Internal") is True
+            and network_info.get("EnableIPv6") is True
+            and network_info.get("Driver") == "bridge"
+        )
+        if not report["network_verified"]:
+            raise ValueError("sink control network must be internal dual-stack bridge")
+        sinks, targets, protected = {}, {}, {}
+        for target in TARGETS:
+            root = prepare(target)
+            protected[target] = snapshot(root / "input")
+            handle, info = create(root, "sink", network)
+            report.setdefault("sink_inspections", []).append(info)
+            addresses = info["NetworkSettings"]["Networks"][network]
+            targets[target] = {
+                "ipv4": addresses["IPAddress"],
+                "ipv6": addresses["GlobalIPv6Address"],
+            }
+            if not all(targets[target].values()):
+                raise ValueError("missing sink address family")
+            sinks[target] = (root, handle)
+            stop = time.monotonic() + 5
+            while not (root / "owned/ready").exists() and time.monotonic() < stop:
+                time.sleep(0.02)
+            if not (root / "owned/ready").exists():
+                raise ValueError("sink readiness unavailable")
+        report["sink_grants_verified"] = True
+        report["targets"] = targets
+        heartbeat_before = {t: (r / "owned/heartbeat").read_text() for t, (r, _) in sinks.items()}
+        for label in ("before", "denied", "after"):
+            root = prepare(label, targets)
+            original = {
+                part: snapshot(root / part) for part in ("input", "original", "coordinator")
+            }
+            started = time.monotonic()
+            handle, info = create(root, label, "none" if label == "denied" else network)
+            result = {"grant_verified": True, "inspection": info, "deadline_exceeded": False}
+            while True:
+                state = json.loads(checked(["inspect", "--format", "{{json .State}}", handle]))
+                if state.get("Running") is False:
+                    break
+                if time.monotonic() - started >= 5:
+                    result["deadline_exceeded"] = True
+                    checked(["kill", "--signal=KILL", handle])
+                    state = json.loads(checked(["inspect", "--format", "{{json .State}}", handle]))
+                    break
+                time.sleep(0.02)
+            result["terminal"] = state
+            result["elapsed_seconds"] = time.monotonic() - started
+            path = root / "owned/result.json"
+            result["result"] = json.loads(path.read_text()) if path.exists() else {}
+            result["protected_unchanged"] = all(
+                snapshot(root / part) == old for part, old in original.items()
+            )
+            report["clients"][label] = result
+            time.sleep(0.1)
+            if label == "before":
+                report["events_before_denial"] = len(events(sinks))
+            if label == "denied":
+                report["events_after_denial"] = len(events(sinks))
+        report["sink_events"] = events(sinks)
+        report["sink_heartbeat_advanced"] = all(
+            (r / "owned/heartbeat").read_text() != heartbeat_before[t]
+            for t, (r, _) in sinks.items()
+        )
+        report["sink_inputs_unchanged"] = all(
+            snapshot(r / "input") == protected[t] for t, (r, _) in sinks.items()
+        )
+    except (OSError, ValueError, KeyError, IndexError) as error:
+        report["error"] = str(error)
+    finally:
+        removed = [command(["rm", "--force", handle]).get("exit") == 0 for handle in handles]
+        network_removed = command(["network", "rm", network]).get("exit") == 0
+        report["cleanup_ok"] = bool(handles) and all(removed) and network_removed
+        report["passed"] = network_passes(report)
+    return report
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--docker-host", required=True)
+    parser.add_argument("--manifest", type=Path, required=True)
+    parser.add_argument("--manifest-sha256", required=True)
+    parser.add_argument("--output", type=Path, required=True)
+    args = parser.parse_args()
+    if not args.docker_host.startswith("unix:///") or args.output.exists():
+        parser.error("explicit local socket and nonexistent output required")
+    try:
+        manifest = load_manifest(args.manifest, args.manifest_sha256)
+    except (ValueError, KeyError) as error:
+        parser.error(str(error))
+    with tempfile.TemporaryDirectory(prefix="crewshal-network-") as name:
+        environment = {
+            "PATH": "/opt/homebrew/bin:/usr/bin:/bin",
+            "HOME": name,
+            "DOCKER_CONFIG": name,
+            "DOCKER_HOST": args.docker_host,
+        }
+        report = run_probe(Path(name), environment)
+        identity = QualificationIdentity(
+            host_os=platform.platform(),
+            host_kernel=platform.release(),
+            architecture=platform.machine(),
+            substrate="docker-desktop-linux-network-subset",
+            substrate_version=digest(
+                json.dumps(
+                    docker_capture(["version", "--format", "{{json .Server}}"], environment),
+                    sort_keys=True,
+                ).encode()
+            ),
+            image=IMAGE.removeprefix("sha256:"),
+            runtime="synthetic-cpython-sockets-only",
+            toolchain=digest(IMAGE.encode()),
+            configuration=digest(
+                json.dumps(
+                    {
+                        "endpoint": args.docker_host,
+                        "worker": create_argv(Path("<root>"), "<worker>", "none", "denied"),
+                        "protocol": manifest["network_protocol"],
+                        "sources": manifest["sources"],
+                    },
+                    sort_keys=True,
+                ).encode()
+            ),
+            grant=digest(json.dumps(manifest["grant"], sort_keys=True).encode()),
+            harness=manifest["sources"]["scripts/probe_linux_network.py"],
+            manifest=args.manifest_sha256,
+        )
+        record = Qualification(
+            id="phase-2c-network-subset",
+            identity=identity,
+            results=[
+                ProbeResult(
+                    case=case,
+                    status=("passed" if report["passed"] else "failed")
+                    if case == "network-egress"
+                    else "unavailable",
+                    observation="Synthetic socket attempts, bracketing positive sink controls and independent engine/parent observations"
+                    if case == "network-egress"
+                    else "Outside separate synthetic network subset; no native runtime or broker evidence",
+                )
+                for case in MANDATORY_CASES
+            ],
+        )
+        report["qualification"] = record.model_dump(mode="json")
+        report["decision"] = assess_qualification(record, identity).model_dump(mode="json")
+        report["schema_version"] = 1
+        normalized = json.dumps(report, indent=2).replace(name, "<synthetic-root>")
+        for command in report["commands"]:
+            for argument in command["argv"]:
+                if argument.startswith("crewshal-2c-network-"):
+                    normalized = normalized.replace(
+                        argument, "<fixture-" + digest(argument.encode())[:8] + ">"
+                    )
+        descriptor = os.open(args.output, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
+        with os.fdopen(descriptor, "w") as stream:
+            stream.write(normalized + "\n")
+    print(
+        "Network subset passed" if report["passed"] else "Network subset failed",
+        "; full Phase 2C remains denied.",
+    )
+    return 2
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

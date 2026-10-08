@@ -1,0 +1,99 @@
+{
+  "scope": "Exact raw export, not qualification",
+  "files": {
+    "phase-2c-direct-linux-native-full-bindings-v6.json": {
+      "bytes": 348276,
+      "sha256": "3dadb86ad46049d33971c740bce2a7c235ad5163ed8c48e0ee28d4bbb4e4ebf6"
+    },
+    "phase-2c-direct-linux-native-full-freeze-v6.json": {
+      "bytes": 1288,
+      "sha256": "8cd95e89edc2d415b597ceb4b2e74d17ce4cd984d1a844473d96d96f595f0092"
+    },
+    "phase-2c-direct-linux-native-full-bindings-v7.json": {
+      "bytes": 348276,
+      "sha256": "ef84907a6df7fd5449120ac29ff588e0ac7438060827591e96b58064df424853"
+    },
+    "phase-2c-direct-linux-native-full-v8-f1.json": {
+      "bytes": 65799,
+      "sha256": "773a14b722de1177a209eaeb2db1643c818d845fa5d83fb55c6a7c1c382b273f"
+    },
+    "phase-2c-direct-linux-native-full-bindings-v8.json": {
+      "bytes": 348276,
+      "sha256": "6a9c9116fb8eee83a71bac95a35f4d313aaa368c40ff818181ca4510591af4a1"
+    },
+    "phase-2c-direct-linux-native-full-v8-f1-before-cleanup.json": {
+      "bytes": 46436,
+      "sha256": "5893003acb917f6ef14a733cb68ae65bab5454547d9da67cfef00eb81d4e1cc2"
+    },
+    "phase-2c-direct-linux-native-full-freeze-v8.json": {
+      "bytes": 1288,
+      "sha256": "2e6fec8893be4739a527457ddb819854d3b130b69a767258d0be373e236ed927"
+    },
+    "phase-2c-direct-linux-native-full-v9-f1-before-cleanup.json": {
+      "bytes": 103538,
+      "sha256": "5d66da99a21ed9ea0b9db3cf1122a4ec77963c157dcec70312b422bbcb786339"
+    },
+    "phase-2c-direct-linux-native-full-bindings-v9.json": {
+      "bytes": 348276,
+      "sha256": "dad32b52dac4cfe100e2075d545097dbe557cee9fddcaab60b46403f27e77829"
+    },
+    "phase-2c-direct-linux-native-full-v9-f1.json": {
+      "bytes": 120344,
+      "sha256": "5e49dba6a0b8a0f8a892586cc5c69641823a9ca55141514aa2449bae0b5bd3f6"
+    },
+    "phase-2c-direct-linux-native-full-v9-f2.json": {
+      "bytes": 119816,
+      "sha256": "045dd0421ad709ae0348696a3ea384e3deee3d28962dfdf34e58b073ad639050"
+    },
+    "phase-2c-direct-linux-native-full-v9-f2-before-cleanup.json": {
+      "bytes": 103490,
+      "sha256": "3f18f476a921c2ca3fd41189109415a7fe20d0b7a5e0d26e368182acf070fec1"
+    },
+    "phase-2c-direct-linux-native-full-freeze-v9.json": {
+      "bytes": 1288,
+      "sha256": "c4ad4d2e30882ed41376be159eea8aa38abeed0e4788d0d6f12ac0c254f0ea12"
+    },
+    "phase-2c-direct-linux-native-full-v10-f1.json": {
+      "bytes": 53079,
+      "sha256": "99a842144f57ddba51add2f6622b33cb87a1594a3cf14474be067a69c7d9609f"
+    },
+    "phase-2c-direct-linux-native-full-v10-f1-before-cleanup.json": {
+      "bytes": 44063,
+      "sha256": "2919341d32a5745e1d1400ca98e4cd09cf6a68338c8a680d738c70a9df1c8dc8"
+    },
+    "phase-2c-direct-linux-native-full-bindings-v10.json": {
+      "bytes": 350696,
+      "sha256": "3e5287290c6630e7610422dd73315dcb43159b3341504d23ca379895a01dab1a"
+    },
+    "phase-2c-direct-linux-native-full-freeze-v10.json": {
+      "bytes": 1290,
+      "sha256": "6d2e1c08ede0f9a3b0034ff0a4d950ed4f85b3a53cd92995e61e80b3f4cd1587"
+    },
+    "phase-2c-direct-linux-native-full-bindings-v11.json": {
+      "bytes": 351140,
+      "sha256": "3b8a3076bf32ed6a2b867ca808e65315a711d19d0fc9152b762abe6cd87980b4"
+    },
+    "phase-2c-direct-linux-native-full-v11-f1.json": {
+      "bytes": 123546,
+      "sha256": "e5192a6908766539eb3fb320f06020980529ebfb3e234ddb63506a755392e2db"
+    },
+    "phase-2c-direct-linux-native-full-v11-f2.json": {
+      "bytes": 121793,
+      "sha256": "18d647296212516227cf24c5d0342c809d6b8ff1c7da4c7a7e5995da04a338fc"
+    },
+    "phase-2c-direct-linux-native-full-v11-f2-before-cleanup.json": {
+      "bytes": 108790,
+      "sha256": "648628339e0c327ce5a307d722ea3392c32a6c26a339926104426c36a820c4ec"
+    },
+    "phase-2c-direct-linux-native-full-v11-f1-before-cleanup.json": {
+      "bytes": 108849,
+      "sha256": "4aecb42ddcfd5ff04fd1ac985763cdbcdcccc068f08cda2f8cdb3ee198e216e3"
+    },
+    "phase-2c-direct-linux-native-full-freeze-v11.json": {
+      "bytes": 1290,
+      "sha256": "b07843526530c2e5a0e188bb52597380640a92d335f9a85e3247a88fd624133a"
+    }
+  },
+  "runtime_verified": false,
+  "execution_allowed": false
+}

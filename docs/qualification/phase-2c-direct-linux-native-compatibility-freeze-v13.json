@@ -1,0 +1,24 @@
+{
+  "scope": "trusted tiny sandbox discovery only, not complete qualification",
+  "profile": "phase-2c-direct-linux-native-compatibility-profile-v13.json",
+  "profile_sha256": "42b84b4a90e4c37ae86d117b10a83afcb62c44ee17e094fbaaa7bec0bc354739",
+  "manifest": "phase-2c-direct-linux-native-compatibility-bindings-v13.json",
+  "manifest_sha256": "ef7e86434d0aeb12d7c13b68ed683c609e548968b7442962341ab1ef222fb0c5",
+  "aggregate_observed": {
+    "memory.max": "805306368",
+    "memory.swap.max": "0",
+    "cpu.max": "100000 100000",
+    "pids.max": "128",
+    "memory.current": "474808320"
+  },
+  "loaded_policy_sha256": {
+    "crewshal-native-bwrap-v1": "829290f95fa915d6c7000036148f1bab3ca9897210f2c2e068ccb84e42a1ed87",
+    "crewshal-native-tool-v1": "f96fb67936fcab509534ab180b512a8fd6a2eba0d59dc7fa92a2c50282e8e2ca"
+  },
+  "global_userns_restriction": 1,
+  "base_preparation_seconds": 4.143,
+  "extension_preparation_seconds": 0.306,
+  "policy_load_seconds": 0.015,
+  "execution_allowed": false,
+  "native_start_allowed": false
+}

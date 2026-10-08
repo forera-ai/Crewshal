@@ -1,0 +1,46 @@
+{
+  "scope": "Trusted native tiny workflow only; no hostile/broker/full qualification",
+  "source": "scripts/probe_native_ecryptfs_v6.py",
+  "source_sha256": "e79ec1970096e6522e5414d7c3284431898065851164a4d176ac8a8729cefadb",
+  "authority": "phase-2c-direct-linux-native-apparmor-approval-v2.json",
+  "policy": "phase-2c-direct-linux-native-apparmor-proposal-v7.profile",
+  "policy_sha256": "6a6d743ab2a1d51db801ff944aa74c2fedd5316f34ee1965bc345b4917dc3039",
+  "mechanism": "Existing private anonymous keyctl session, new 32 MiB ext4 file/owned loop and eCryptfs upper; root setup uses existing nsenter/bwrap/setpriv, native UID/GID 65534; no ambient rings or host block device formatting",
+  "scope_limitations": [
+    "Not same profile as prior tmpfs sandbox subset",
+    "No inference of full credential mediation",
+    "Original logical/allocated and deleted-open bounds need same-profile hostile re-observation"
+  ],
+  "worker_limits": {
+    "memory": 134217728,
+    "swap": 0,
+    "cpu": "100000 100000",
+    "pids": 32,
+    "seconds": 5
+  },
+  "aggregate_limits": {
+    "memory": 805306368,
+    "swap": 0,
+    "cpu": "100000 100000",
+    "pids": 128
+  },
+  "timing": {
+    "startup": 120,
+    "command": 10,
+    "streams": 65536,
+    "batch_and_cleanup": 600,
+    "cleanup_reserve": 30
+  },
+  "disk_reservations": {
+    "prepared": 1073741824,
+    "scratch_each_representation": 33554432,
+    "scratch_representations": 3,
+    "output": 16777216
+  },
+  "execution_allowed": false,
+  "native_start_allowed": false,
+  "fixture_source": "scripts/native_fixed_response_fixture_v7.py",
+  "fixture_source_sha256": "3ec323f4b38d76c324343009cdd9392911fd2546d0a8a7eebeead391b913fe0b",
+  "change": "Disable supported analytics/feedback/OTel exporters/update checks; remove deprecated aliases and capture actual function_call_output from synthetic fixture requests before checking exit. Original ceilings unchanged.",
+  "worker_cpu_affinity": 0
+}

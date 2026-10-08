@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "id": "crewshal-phase-2c-template-preparation-v1",
+  "scope": "official pinned amd64 Codex template artifact preparation only; no code execution",
+  "source_path": "docs/qualification/phase-2c-template-preparation-v1-runner.txt",
+  "source_sha256": "4a564f44f91065e6c08d0cb2430f89325d700ee228a36ea8ef99d8fe52628770",
+  "template_manifest": "sha256:4478aac4b542421404a5a5c860164f88c42c201e8730c1f3174c8d749f781703",
+  "metadata_sha256": "b54f5c9f6b02456a6dd4337ceb774eb2436db64b0b3233dd8f730d086b92e05c",
+  "root": "/srv/crewshal-2c-preparation-current-20261002-v1/image-blobs",
+  "maximum_download_bytes": 862859638,
+  "maximum_uncompressed_tar_bytes": 4294967296,
+  "maximum_seconds": 900,
+  "execution_allowed": false,
+  "native_start_allowed": false
+}

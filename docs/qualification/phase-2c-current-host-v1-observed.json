@@ -1,0 +1,54 @@
+{
+  "architecture": "x86_64",
+  "cgroup": {
+    "cgroup.controllers": "cpuset cpu io memory hugetlb pids rdma misc\n",
+    "cgroup.subtree_control": "cpu memory pids\n"
+  },
+  "execution_allowed": false,
+  "final_kvm_handles": [],
+  "final_resources": {
+    "available_memory_bytes": 1731448832,
+    "free_disk_bytes": 48877834240,
+    "swap_total_bytes": 0,
+    "total_memory_bytes": 2063577088
+  },
+  "hlt_runs": [
+    {
+      "exit_code": 0,
+      "stderr": "",
+      "stdout": "{\"api_version\": 12, \"deadline_seconds\": 5, \"execution_allowed\": false, \"exit_reason\": 5, \"guest_memory_bytes\": 1048576, \"kvm_run_hlt\": \"pass\", \"probe\": \"trusted x86 HLT only\", \"process_owned_handles_closed\": true}\n"
+    },
+    {
+      "exit_code": 0,
+      "stderr": "",
+      "stdout": "{\"api_version\": 12, \"deadline_seconds\": 5, \"execution_allowed\": false, \"exit_reason\": 5, \"guest_memory_bytes\": 1048576, \"kvm_run_hlt\": \"pass\", \"probe\": \"trusted x86 HLT only\", \"process_owned_handles_closed\": true}\n"
+    }
+  ],
+  "initial_resources": {
+    "available_memory_bytes": 1731289088,
+    "free_disk_bytes": 48877834240,
+    "swap_total_bytes": 0,
+    "total_memory_bytes": 2063577088
+  },
+  "kernel": "6.8.0-142-generic",
+  "mounts": "{\n   \"filesystems\": [\n      {\n         \"fstype\": \"ext4\",\n         \"options\": \"rw,relatime,discard,errors=remount-ro,commit=30\"\n      }\n   ]\n}\n",
+  "os_release": "PRETTY_NAME=\"Ubuntu 24.04.5 LTS\"\nNAME=\"Ubuntu\"\nVERSION_ID=\"24.04\"\nVERSION=\"24.04.5 LTS (Noble Numbat)\"\nVERSION_CODENAME=noble\nID=ubuntu\nID_LIKE=debian\nHOME_URL=\"https://www.ubuntu.com/\"\nSUPPORT_URL=\"https://help.ubuntu.com/\"\nBUG_REPORT_URL=\"https://bugs.launchpad.net/ubuntu/\"\nPRIVACY_POLICY_URL=\"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\"\nUBUNTU_CODENAME=noble\nLOGO=ubuntu-logo\n",
+  "scope": "trusted current-host diagnostic only",
+  "tools": {
+    "docker": null,
+    "losetup": "/usr/sbin/losetup",
+    "mkfs.ext4": "/usr/sbin/mkfs.ext4",
+    "mkfs.xfs": "/usr/sbin/mkfs.xfs",
+    "mount": "/usr/bin/mount",
+    "python3": "/usr/bin/python3",
+    "sbx": null,
+    "systemd-run": "/usr/bin/systemd-run",
+    "timeout": "/usr/bin/timeout",
+    "xfs_quota": "/usr/sbin/xfs_quota"
+  },
+  "unreadable_proc_entries": [],
+  "protocol": "docs/qualification/phase-2c-current-host-v1.json",
+  "source_sha256": "50ce390ece825d61f18e0a48b1a5400c7cf7b5f998228803429e0d935b5408a0",
+  "host_key_verification": "first-use key pinned in private session directory; no independent fingerprint supplied",
+  "native_start_allowed": false
+}

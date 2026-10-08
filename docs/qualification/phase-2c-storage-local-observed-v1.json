@@ -1,0 +1,791 @@
+{
+  "schema_version": 1,
+  "scope": "local macOS synthetic diagnostic smoke only; no Linux enforcement or SBX compatibility",
+  "base_revision": "d656f4f95c07eee2529e55220ef614863b4132ed",
+  "environment": {
+    "system": "Darwin",
+    "release": "27.2.0",
+    "machine": "arm64",
+    "python": "3.12.14"
+  },
+  "budget_results": {
+    "refused": {
+      "schema_version": 1,
+      "status": "arithmetic_refused",
+      "totals": {
+        "logical_bytes": 10643042212,
+        "allocated_bytes": 2053181440
+      },
+      "reasons": [
+        "expected-upper-disks: unresolved allocated_bytes",
+        "expected-lower-disks: unresolved allocated_bytes",
+        "logical_bytes: exceeds original ceiling by 2053107620"
+      ],
+      "execution_allowed": false,
+      "native_start_allowed": false,
+      "qualification_status": "denied; inventory completeness and enforcement unproved"
+    },
+    "lab": {
+      "schema_version": 1,
+      "status": "arithmetic_within_ceiling_only",
+      "totals": {
+        "logical_bytes": 134217728,
+        "allocated_bytes": 134217728
+      },
+      "reasons": [],
+      "execution_allowed": false,
+      "native_start_allowed": false,
+      "qualification_status": "denied; inventory completeness and enforcement unproved"
+    }
+  },
+  "fixtures": [
+    {
+      "fixture_index": 0,
+      "cases": [
+        {
+          "schema_version": 1,
+          "case": "truncate",
+          "requested_bytes": 1048576,
+          "platform": "Darwin",
+          "architecture": "arm64",
+          "pid": 74366,
+          "hold_seconds": 0,
+          "status": "operation_completed",
+          "errno": null,
+          "files": {
+            "target": {
+              "device": 16777233,
+              "inode": 5593999963,
+              "logical_bytes": 1048576,
+              "allocated_bytes": 0,
+              "links": 1,
+              "mode": 384
+            }
+          },
+          "execution_allowed": false,
+          "native_start_allowed": false,
+          "qualification_status": "denied; diagnostic only",
+          "remaining_entries": [
+            "target"
+          ],
+          "observer_required": "Independent lower-filesystem/quota/FD/namespace/controller readback and cleanup; successful or denied operation alone does not establish enforcement."
+        },
+        {
+          "schema_version": 1,
+          "case": "seek-write",
+          "requested_bytes": 1048576,
+          "platform": "Darwin",
+          "architecture": "arm64",
+          "pid": 74366,
+          "hold_seconds": 0,
+          "status": "operation_completed",
+          "errno": null,
+          "files": {
+            "target": {
+              "device": 16777233,
+              "inode": 5593999965,
+              "logical_bytes": 1048576,
+              "allocated_bytes": 1048576,
+              "links": 1,
+              "mode": 384
+            }
+          },
+          "execution_allowed": false,
+          "native_start_allowed": false,
+          "qualification_status": "denied; diagnostic only",
+          "remaining_entries": [
+            "target"
+          ],
+          "observer_required": "Independent lower-filesystem/quota/FD/namespace/controller readback and cleanup; successful or denied operation alone does not establish enforcement."
+        },
+        {
+          "schema_version": 1,
+          "case": "pwrite",
+          "requested_bytes": 1048576,
+          "platform": "Darwin",
+          "architecture": "arm64",
+          "pid": 74366,
+          "hold_seconds": 0,
+          "status": "operation_completed",
+          "errno": null,
+          "files": {
+            "target": {
+              "device": 16777233,
+              "inode": 5593999967,
+              "logical_bytes": 1048576,
+              "allocated_bytes": 1048576,
+              "links": 1,
+              "mode": 384
+            }
+          },
+          "execution_allowed": false,
+          "native_start_allowed": false,
+          "qualification_status": "denied; diagnostic only",
+          "remaining_entries": [
+            "target"
+          ],
+          "observer_required": "Independent lower-filesystem/quota/FD/namespace/controller readback and cleanup; successful or denied operation alone does not establish enforcement."
+        },
+        {
+          "schema_version": 1,
+          "case": "mmap",
+          "requested_bytes": 1048576,
+          "platform": "Darwin",
+          "architecture": "arm64",
+          "pid": 74366,
+          "hold_seconds": 0,
+          "status": "operation_completed",
+          "errno": null,
+          "files": {
+            "target": {
+              "device": 16777233,
+              "inode": 5593999969,
+              "logical_bytes": 1048576,
+              "allocated_bytes": 1048576,
+              "links": 1,
+              "mode": 384
+            }
+          },
+          "execution_allowed": false,
+          "native_start_allowed": false,
+          "qualification_status": "denied; diagnostic only",
+          "remaining_entries": [
+            "target"
+          ],
+          "observer_required": "Independent lower-filesystem/quota/FD/namespace/controller readback and cleanup; successful or denied operation alone does not establish enforcement."
+        },
+        {
+          "schema_version": 1,
+          "case": "preallocate",
+          "requested_bytes": 1048576,
+          "platform": "Darwin",
+          "architecture": "arm64",
+          "pid": 74366,
+          "hold_seconds": 0,
+          "status": "operation_error",
+          "errno": 78,
+          "files": {
+            "target": {
+              "device": 16777233,
+              "inode": 5593999971,
+              "logical_bytes": 0,
+              "allocated_bytes": 0,
+              "links": 1,
+              "mode": 384
+            }
+          },
+          "execution_allowed": false,
+          "native_start_allowed": false,
+          "qualification_status": "denied; diagnostic only",
+          "errno_name": "ENOSYS",
+          "remaining_entries": [
+            "target"
+          ],
+          "observer_required": "Independent lower-filesystem/quota/FD/namespace/controller readback and cleanup; successful or denied operation alone does not establish enforcement."
+        },
+        {
+          "schema_version": 1,
+          "case": "copy-range",
+          "requested_bytes": 1048576,
+          "platform": "Darwin",
+          "architecture": "arm64",
+          "pid": 74366,
+          "hold_seconds": 0,
+          "status": "operation_error",
+          "errno": 78,
+          "files": {
+            "target": {
+              "device": 16777233,
+              "inode": 5593999973,
+              "logical_bytes": 0,
+              "allocated_bytes": 0,
+              "links": 1,
+              "mode": 384
+            },
+            "source": {
+              "device": 16777233,
+              "inode": 5593999974,
+              "logical_bytes": 1048576,
+              "allocated_bytes": 4096,
+              "links": 1,
+              "mode": 384
+            }
+          },
+          "execution_allowed": false,
+          "native_start_allowed": false,
+          "qualification_status": "denied; diagnostic only",
+          "errno_name": "ENOSYS",
+          "remaining_entries": [
+            "source",
+            "target"
+          ],
+          "observer_required": "Independent lower-filesystem/quota/FD/namespace/controller readback and cleanup; successful or denied operation alone does not establish enforcement."
+        },
+        {
+          "schema_version": 1,
+          "case": "reflink",
+          "requested_bytes": 1048576,
+          "platform": "Darwin",
+          "architecture": "arm64",
+          "pid": 74366,
+          "hold_seconds": 0,
+          "status": "operation_error",
+          "errno": 78,
+          "files": {
+            "target": {
+              "device": 16777233,
+              "inode": 5593999976,
+              "logical_bytes": 0,
+              "allocated_bytes": 0,
+              "links": 1,
+              "mode": 384
+            },
+            "source": {
+              "device": 16777233,
+              "inode": 5593999977,
+              "logical_bytes": 1048576,
+              "allocated_bytes": 4096,
+              "links": 1,
+              "mode": 384
+            }
+          },
+          "execution_allowed": false,
+          "native_start_allowed": false,
+          "qualification_status": "denied; diagnostic only",
+          "errno_name": "ENOSYS",
+          "remaining_entries": [
+            "source",
+            "target"
+          ],
+          "observer_required": "Independent lower-filesystem/quota/FD/namespace/controller readback and cleanup; successful or denied operation alone does not establish enforcement."
+        },
+        {
+          "schema_version": 1,
+          "case": "hole-punch",
+          "requested_bytes": 1048576,
+          "platform": "Darwin",
+          "architecture": "arm64",
+          "pid": 74366,
+          "hold_seconds": 0,
+          "status": "operation_error",
+          "errno": 78,
+          "files": {
+            "target": {
+              "device": 16777233,
+              "inode": 5593999979,
+              "logical_bytes": 1048576,
+              "allocated_bytes": 1048576,
+              "links": 1,
+              "mode": 384
+            }
+          },
+          "execution_allowed": false,
+          "native_start_allowed": false,
+          "qualification_status": "denied; diagnostic only",
+          "before": {
+            "device": 16777233,
+            "inode": 5593999979,
+            "logical_bytes": 1048576,
+            "allocated_bytes": 1048576,
+            "links": 1,
+            "mode": 384
+          },
+          "errno_name": "ENOSYS",
+          "remaining_entries": [
+            "target"
+          ],
+          "observer_required": "Independent lower-filesystem/quota/FD/namespace/controller readback and cleanup; successful or denied operation alone does not establish enforcement."
+        },
+        {
+          "schema_version": 1,
+          "case": "hardlink",
+          "requested_bytes": 1048576,
+          "platform": "Darwin",
+          "architecture": "arm64",
+          "pid": 74366,
+          "hold_seconds": 0,
+          "status": "operation_completed",
+          "errno": null,
+          "files": {
+            "target": {
+              "device": 16777233,
+              "inode": 5593999981,
+              "logical_bytes": 1048576,
+              "allocated_bytes": 0,
+              "links": 2,
+              "mode": 384
+            }
+          },
+          "execution_allowed": false,
+          "native_start_allowed": false,
+          "qualification_status": "denied; diagnostic only",
+          "alias_same_inode": true,
+          "remaining_entries": [
+            "alias",
+            "target"
+          ],
+          "observer_required": "Independent lower-filesystem/quota/FD/namespace/controller readback and cleanup; successful or denied operation alone does not establish enforcement."
+        },
+        {
+          "schema_version": 1,
+          "case": "deleted-open",
+          "requested_bytes": 1048576,
+          "platform": "Darwin",
+          "architecture": "arm64",
+          "pid": 74366,
+          "hold_seconds": 0,
+          "status": "operation_completed",
+          "errno": null,
+          "files": {
+            "target": {
+              "device": 16777233,
+              "inode": 5593999985,
+              "logical_bytes": 1048576,
+              "allocated_bytes": 1048576,
+              "links": 0,
+              "mode": 384
+            }
+          },
+          "execution_allowed": false,
+          "native_start_allowed": false,
+          "qualification_status": "denied; diagnostic only",
+          "before": {
+            "device": 16777233,
+            "inode": 5593999985,
+            "logical_bytes": 1048576,
+            "allocated_bytes": 1048576,
+            "links": 1,
+            "mode": 384
+          },
+          "unlinked_open_file": {
+            "device": 16777233,
+            "inode": 5593999985,
+            "logical_bytes": 1048576,
+            "allocated_bytes": 1048576,
+            "links": 0,
+            "mode": 384
+          },
+          "directory_entry_absent_while_open": true,
+          "remaining_entries": [],
+          "observer_required": "Independent lower-filesystem/quota/FD/namespace/controller readback and cleanup; successful or denied operation alone does not establish enforcement."
+        },
+        {
+          "schema_version": 1,
+          "case": "metadata",
+          "requested_bytes": 1048576,
+          "platform": "Darwin",
+          "architecture": "arm64",
+          "pid": 74366,
+          "hold_seconds": 0,
+          "status": "operation_error",
+          "errno": 78,
+          "files": {
+            "target": {
+              "device": 16777233,
+              "inode": 5593999987,
+              "logical_bytes": 0,
+              "allocated_bytes": 0,
+              "links": 1,
+              "mode": 384
+            }
+          },
+          "execution_allowed": false,
+          "native_start_allowed": false,
+          "qualification_status": "denied; diagnostic only",
+          "errno_name": "ENOSYS",
+          "remaining_entries": [
+            "renamed",
+            "symbolic"
+          ],
+          "observer_required": "Independent lower-filesystem/quota/FD/namespace/controller readback and cleanup; successful or denied operation alone does not establish enforcement."
+        }
+      ],
+      "cleanup": "temporary fixture removed after FD close; no Linux mount/loop/key existed"
+    },
+    {
+      "fixture_index": 1,
+      "cases": [
+        {
+          "schema_version": 1,
+          "case": "truncate",
+          "requested_bytes": 1048576,
+          "platform": "Darwin",
+          "architecture": "arm64",
+          "pid": 74366,
+          "hold_seconds": 0,
+          "status": "operation_completed",
+          "errno": null,
+          "files": {
+            "target": {
+              "device": 16777233,
+              "inode": 5593999991,
+              "logical_bytes": 1048576,
+              "allocated_bytes": 0,
+              "links": 1,
+              "mode": 384
+            }
+          },
+          "execution_allowed": false,
+          "native_start_allowed": false,
+          "qualification_status": "denied; diagnostic only",
+          "remaining_entries": [
+            "target"
+          ],
+          "observer_required": "Independent lower-filesystem/quota/FD/namespace/controller readback and cleanup; successful or denied operation alone does not establish enforcement."
+        },
+        {
+          "schema_version": 1,
+          "case": "seek-write",
+          "requested_bytes": 1048576,
+          "platform": "Darwin",
+          "architecture": "arm64",
+          "pid": 74366,
+          "hold_seconds": 0,
+          "status": "operation_completed",
+          "errno": null,
+          "files": {
+            "target": {
+              "device": 16777233,
+              "inode": 5593999993,
+              "logical_bytes": 1048576,
+              "allocated_bytes": 1048576,
+              "links": 1,
+              "mode": 384
+            }
+          },
+          "execution_allowed": false,
+          "native_start_allowed": false,
+          "qualification_status": "denied; diagnostic only",
+          "remaining_entries": [
+            "target"
+          ],
+          "observer_required": "Independent lower-filesystem/quota/FD/namespace/controller readback and cleanup; successful or denied operation alone does not establish enforcement."
+        },
+        {
+          "schema_version": 1,
+          "case": "pwrite",
+          "requested_bytes": 1048576,
+          "platform": "Darwin",
+          "architecture": "arm64",
+          "pid": 74366,
+          "hold_seconds": 0,
+          "status": "operation_completed",
+          "errno": null,
+          "files": {
+            "target": {
+              "device": 16777233,
+              "inode": 5593999995,
+              "logical_bytes": 1048576,
+              "allocated_bytes": 1048576,
+              "links": 1,
+              "mode": 384
+            }
+          },
+          "execution_allowed": false,
+          "native_start_allowed": false,
+          "qualification_status": "denied; diagnostic only",
+          "remaining_entries": [
+            "target"
+          ],
+          "observer_required": "Independent lower-filesystem/quota/FD/namespace/controller readback and cleanup; successful or denied operation alone does not establish enforcement."
+        },
+        {
+          "schema_version": 1,
+          "case": "mmap",
+          "requested_bytes": 1048576,
+          "platform": "Darwin",
+          "architecture": "arm64",
+          "pid": 74366,
+          "hold_seconds": 0,
+          "status": "operation_completed",
+          "errno": null,
+          "files": {
+            "target": {
+              "device": 16777233,
+              "inode": 5593999997,
+              "logical_bytes": 1048576,
+              "allocated_bytes": 1048576,
+              "links": 1,
+              "mode": 384
+            }
+          },
+          "execution_allowed": false,
+          "native_start_allowed": false,
+          "qualification_status": "denied; diagnostic only",
+          "remaining_entries": [
+            "target"
+          ],
+          "observer_required": "Independent lower-filesystem/quota/FD/namespace/controller readback and cleanup; successful or denied operation alone does not establish enforcement."
+        },
+        {
+          "schema_version": 1,
+          "case": "preallocate",
+          "requested_bytes": 1048576,
+          "platform": "Darwin",
+          "architecture": "arm64",
+          "pid": 74366,
+          "hold_seconds": 0,
+          "status": "operation_error",
+          "errno": 78,
+          "files": {
+            "target": {
+              "device": 16777233,
+              "inode": 5593999999,
+              "logical_bytes": 0,
+              "allocated_bytes": 0,
+              "links": 1,
+              "mode": 384
+            }
+          },
+          "execution_allowed": false,
+          "native_start_allowed": false,
+          "qualification_status": "denied; diagnostic only",
+          "errno_name": "ENOSYS",
+          "remaining_entries": [
+            "target"
+          ],
+          "observer_required": "Independent lower-filesystem/quota/FD/namespace/controller readback and cleanup; successful or denied operation alone does not establish enforcement."
+        },
+        {
+          "schema_version": 1,
+          "case": "copy-range",
+          "requested_bytes": 1048576,
+          "platform": "Darwin",
+          "architecture": "arm64",
+          "pid": 74366,
+          "hold_seconds": 0,
+          "status": "operation_error",
+          "errno": 78,
+          "files": {
+            "target": {
+              "device": 16777233,
+              "inode": 5594000001,
+              "logical_bytes": 0,
+              "allocated_bytes": 0,
+              "links": 1,
+              "mode": 384
+            },
+            "source": {
+              "device": 16777233,
+              "inode": 5594000002,
+              "logical_bytes": 1048576,
+              "allocated_bytes": 4096,
+              "links": 1,
+              "mode": 384
+            }
+          },
+          "execution_allowed": false,
+          "native_start_allowed": false,
+          "qualification_status": "denied; diagnostic only",
+          "errno_name": "ENOSYS",
+          "remaining_entries": [
+            "source",
+            "target"
+          ],
+          "observer_required": "Independent lower-filesystem/quota/FD/namespace/controller readback and cleanup; successful or denied operation alone does not establish enforcement."
+        },
+        {
+          "schema_version": 1,
+          "case": "reflink",
+          "requested_bytes": 1048576,
+          "platform": "Darwin",
+          "architecture": "arm64",
+          "pid": 74366,
+          "hold_seconds": 0,
+          "status": "operation_error",
+          "errno": 78,
+          "files": {
+            "target": {
+              "device": 16777233,
+              "inode": 5594000004,
+              "logical_bytes": 0,
+              "allocated_bytes": 0,
+              "links": 1,
+              "mode": 384
+            },
+            "source": {
+              "device": 16777233,
+              "inode": 5594000005,
+              "logical_bytes": 1048576,
+              "allocated_bytes": 4096,
+              "links": 1,
+              "mode": 384
+            }
+          },
+          "execution_allowed": false,
+          "native_start_allowed": false,
+          "qualification_status": "denied; diagnostic only",
+          "errno_name": "ENOSYS",
+          "remaining_entries": [
+            "source",
+            "target"
+          ],
+          "observer_required": "Independent lower-filesystem/quota/FD/namespace/controller readback and cleanup; successful or denied operation alone does not establish enforcement."
+        },
+        {
+          "schema_version": 1,
+          "case": "hole-punch",
+          "requested_bytes": 1048576,
+          "platform": "Darwin",
+          "architecture": "arm64",
+          "pid": 74366,
+          "hold_seconds": 0,
+          "status": "operation_error",
+          "errno": 78,
+          "files": {
+            "target": {
+              "device": 16777233,
+              "inode": 5594000007,
+              "logical_bytes": 1048576,
+              "allocated_bytes": 1048576,
+              "links": 1,
+              "mode": 384
+            }
+          },
+          "execution_allowed": false,
+          "native_start_allowed": false,
+          "qualification_status": "denied; diagnostic only",
+          "before": {
+            "device": 16777233,
+            "inode": 5594000007,
+            "logical_bytes": 1048576,
+            "allocated_bytes": 1048576,
+            "links": 1,
+            "mode": 384
+          },
+          "errno_name": "ENOSYS",
+          "remaining_entries": [
+            "target"
+          ],
+          "observer_required": "Independent lower-filesystem/quota/FD/namespace/controller readback and cleanup; successful or denied operation alone does not establish enforcement."
+        },
+        {
+          "schema_version": 1,
+          "case": "hardlink",
+          "requested_bytes": 1048576,
+          "platform": "Darwin",
+          "architecture": "arm64",
+          "pid": 74366,
+          "hold_seconds": 0,
+          "status": "operation_completed",
+          "errno": null,
+          "files": {
+            "target": {
+              "device": 16777233,
+              "inode": 5594000009,
+              "logical_bytes": 1048576,
+              "allocated_bytes": 0,
+              "links": 2,
+              "mode": 384
+            }
+          },
+          "execution_allowed": false,
+          "native_start_allowed": false,
+          "qualification_status": "denied; diagnostic only",
+          "alias_same_inode": true,
+          "remaining_entries": [
+            "alias",
+            "target"
+          ],
+          "observer_required": "Independent lower-filesystem/quota/FD/namespace/controller readback and cleanup; successful or denied operation alone does not establish enforcement."
+        },
+        {
+          "schema_version": 1,
+          "case": "deleted-open",
+          "requested_bytes": 1048576,
+          "platform": "Darwin",
+          "architecture": "arm64",
+          "pid": 74366,
+          "hold_seconds": 0,
+          "status": "operation_completed",
+          "errno": null,
+          "files": {
+            "target": {
+              "device": 16777233,
+              "inode": 5594000013,
+              "logical_bytes": 1048576,
+              "allocated_bytes": 1048576,
+              "links": 0,
+              "mode": 384
+            }
+          },
+          "execution_allowed": false,
+          "native_start_allowed": false,
+          "qualification_status": "denied; diagnostic only",
+          "before": {
+            "device": 16777233,
+            "inode": 5594000013,
+            "logical_bytes": 1048576,
+            "allocated_bytes": 1048576,
+            "links": 1,
+            "mode": 384
+          },
+          "unlinked_open_file": {
+            "device": 16777233,
+            "inode": 5594000013,
+            "logical_bytes": 1048576,
+            "allocated_bytes": 1048576,
+            "links": 0,
+            "mode": 384
+          },
+          "directory_entry_absent_while_open": true,
+          "remaining_entries": [],
+          "observer_required": "Independent lower-filesystem/quota/FD/namespace/controller readback and cleanup; successful or denied operation alone does not establish enforcement."
+        },
+        {
+          "schema_version": 1,
+          "case": "metadata",
+          "requested_bytes": 1048576,
+          "platform": "Darwin",
+          "architecture": "arm64",
+          "pid": 74366,
+          "hold_seconds": 0,
+          "status": "operation_error",
+          "errno": 78,
+          "files": {
+            "target": {
+              "device": 16777233,
+              "inode": 5594000015,
+              "logical_bytes": 0,
+              "allocated_bytes": 0,
+              "links": 1,
+              "mode": 384
+            }
+          },
+          "execution_allowed": false,
+          "native_start_allowed": false,
+          "qualification_status": "denied; diagnostic only",
+          "errno_name": "ENOSYS",
+          "remaining_entries": [
+            "renamed",
+            "symbolic"
+          ],
+          "observer_required": "Independent lower-filesystem/quota/FD/namespace/controller readback and cleanup; successful or denied operation alone does not establish enforcement."
+        }
+      ],
+      "cleanup": "temporary fixture removed after FD close; no Linux mount/loop/key existed"
+    }
+  ],
+  "linux_runs": 0,
+  "sbx_runs": 0,
+  "execution_allowed": false,
+  "native_start_allowed": false,
+  "operational_manifest_frozen": false,
+  "independent_linux_observer": "unavailable",
+  "limitations": [
+    "file facts captured by trusted diagnostic; no independent Linux observer",
+    "no external Linux controller/deadline/stream qualification",
+    "mmap success does not prove no-hole enforcement",
+    "unsupported optional operations remain errors, not passes"
+  ],
+  "failed_attempts": [
+    {
+      "scope": "initial six-method offline diagnostic regression",
+      "command": "rtk proxy .venv/bin/python -m unittest tests.acceptance.test_phase_2c_storage",
+      "result": "FAILED (errors=1)",
+      "test": "test_optional_operations_preserve_unavailable_or_real_error",
+      "error": "AttributeError: module 'os' has no attribute 'setxattr'",
+      "correction": "prospectively return ENOSYS when Python xattr APIs are absent; no failed result promoted"
+    }
+  ]
+}

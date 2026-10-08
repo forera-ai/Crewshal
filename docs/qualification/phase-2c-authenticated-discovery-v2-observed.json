@@ -1,0 +1,118 @@
+{
+  "elapsed_seconds": 16.712,
+  "execution_allowed": false,
+  "native_start_allowed": false,
+  "observations": [
+    {
+      "admission": {
+        "controls": {
+          "cgroup.procs": "20548",
+          "cpu.max": "100000 100000",
+          "memory.max": "805306368",
+          "memory.swap.max": "0",
+          "pids.max": "128"
+        },
+        "file_size_limit": [
+          67108864,
+          67108864
+        ],
+        "free_disk_bytes": 46764224512,
+        "memory_available_bytes": 1651265536,
+        "mountinfo": [
+          "395 354 0:49 / /tmp rw,nosuid,nodev shared:334 - tmpfs tmpfs rw,size=131072k,nr_inodes=96,inode64"
+        ],
+        "network_namespace": "net:[4026532337]",
+        "prepared_allocated_bytes": 2053181440,
+        "prepared_logical_bytes": 2053107620,
+        "status": "Name:\tpython3\nUmask:\t0022\nState:\tR (running)\nTgid:\t20548\nNgid:\t0\nPid:\t20548\nPPid:\t1\nTracerPid:\t0\nUid:\t0\t0\t0\t0\nGid:\t0\t0\t0\t0\nFDSize:\t256\nGroups:\t \nNStgid:\t20548\nNSpid:\t20548\nNSpgid:\t20548\nNSsid:\t20548\nKthread:\t0\nVmPeak:\t  188684 kB\nVmSize:\t   41284 kB\nVmLck:\t       0 kB\nVmPin:\t       0 kB\nVmHWM:\t  178808 kB\nVmRSS:\t   31532 kB\nRssAnon:\t   21116 kB\nRssFile:\t   10416 kB\nRssShmem:\t       0 kB\nVmData:\t   22288 kB\nVmStk:\t     132 kB\nVmExe:\t    2956 kB\nVmLib:\t    6016 kB\nVmPTE:\t     116 kB\nVmSwap:\t       0 kB\nHugetlbPages:\t       0 kB\nCoreDumping:\t0\nTHP_enabled:\t1\nuntag_mask:\t0xffffffffffffffff\nThreads:\t1\nSigQ:\t1/7719\nSigPnd:\t0000000000000000\nShdPnd:\t0000000000000000\nSigBlk:\t0000000000000000\nSigIgn:\t0000000001001000\nSigCgt:\t0000000000000002\nCapInh:\t0000000000000000\nCapPrm:\t0000000000003040\nCapEff:\t0000000000003040\nCapBnd:\t00000000000030c0\nCapAmb:\t0000000000000000\nNoNewPrivs:\t1\nSeccomp:\t2\nSeccomp_filters:\t5\nSpeculation_Store_Bypass:\tthread vulnerable\nSpeculationIndirectBranch:\tconditional enabled\nCpus_allowed:\t1\nCpus_allowed_list:\t0\nMems_allowed:\t00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000001\nMems_allowed_list:\t0\nvoluntary_ctxt_switches:\t298\nnonvoluntary_ctxt_switches:\t140\nx86_Thread_features:\t\nx86_Thread_features_locked:\t\n",
+        "tmpfs_inodes": 96
+      },
+      "diagnostic_error_sha256": null,
+      "exit_code": 0,
+      "fixture_index": 0,
+      "hlt_exit_codes": [
+        0,
+        0
+      ],
+      "owned_unit_remaining": "",
+      "reason": null,
+      "remaining_kvm_handles": [],
+      "sandbox_list": {
+        "authentication_required": false,
+        "exit_code": 0,
+        "no_space": false,
+        "reason": null,
+        "stderr_bytes": 0,
+        "stdout_bytes": 22,
+        "unsupported_format": false
+      },
+      "template_load": {
+        "authentication_required": false,
+        "exit_code": 1,
+        "no_space": false,
+        "reason": null,
+        "stderr_bytes": 186,
+        "stdout_bytes": 0,
+        "unsupported_format": false
+      },
+      "unit": "crewshal-authenticated-discovery-v2-0"
+    },
+    {
+      "admission": {
+        "controls": {
+          "cgroup.procs": "20626",
+          "cpu.max": "100000 100000",
+          "memory.max": "805306368",
+          "memory.swap.max": "0",
+          "pids.max": "128"
+        },
+        "file_size_limit": [
+          67108864,
+          67108864
+        ],
+        "free_disk_bytes": 46764224512,
+        "memory_available_bytes": 1632296960,
+        "mountinfo": [
+          "395 354 0:49 / /tmp rw,nosuid,nodev shared:334 - tmpfs tmpfs rw,size=131072k,nr_inodes=96,inode64"
+        ],
+        "network_namespace": "net:[4026532337]",
+        "prepared_allocated_bytes": 2053181440,
+        "prepared_logical_bytes": 2053107620,
+        "status": "Name:\tpython3\nUmask:\t0022\nState:\tR (running)\nTgid:\t20626\nNgid:\t0\nPid:\t20626\nPPid:\t1\nTracerPid:\t0\nUid:\t0\t0\t0\t0\nGid:\t0\t0\t0\t0\nFDSize:\t256\nGroups:\t \nNStgid:\t20626\nNSpid:\t20626\nNSpgid:\t20626\nNSsid:\t20626\nKthread:\t0\nVmPeak:\t  188684 kB\nVmSize:\t   41284 kB\nVmLck:\t       0 kB\nVmPin:\t       0 kB\nVmHWM:\t  178816 kB\nVmRSS:\t   31576 kB\nRssAnon:\t   21124 kB\nRssFile:\t   10452 kB\nRssShmem:\t       0 kB\nVmData:\t   22288 kB\nVmStk:\t     132 kB\nVmExe:\t    2956 kB\nVmLib:\t    6016 kB\nVmPTE:\t     116 kB\nVmSwap:\t       0 kB\nHugetlbPages:\t       0 kB\nCoreDumping:\t0\nTHP_enabled:\t1\nuntag_mask:\t0xffffffffffffffff\nThreads:\t1\nSigQ:\t1/7719\nSigPnd:\t0000000000000000\nShdPnd:\t0000000000000000\nSigBlk:\t0000000000000000\nSigIgn:\t0000000001001000\nSigCgt:\t0000000000000002\nCapInh:\t0000000000000000\nCapPrm:\t0000000000003040\nCapEff:\t0000000000003040\nCapBnd:\t00000000000030c0\nCapAmb:\t0000000000000000\nNoNewPrivs:\t1\nSeccomp:\t2\nSeccomp_filters:\t5\nSpeculation_Store_Bypass:\tthread vulnerable\nSpeculationIndirectBranch:\tconditional enabled\nCpus_allowed:\t1\nCpus_allowed_list:\t0\nMems_allowed:\t00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000001\nMems_allowed_list:\t0\nvoluntary_ctxt_switches:\t534\nnonvoluntary_ctxt_switches:\t156\nx86_Thread_features:\t\nx86_Thread_features_locked:\t\n",
+        "tmpfs_inodes": 96
+      },
+      "diagnostic_error_sha256": null,
+      "exit_code": 0,
+      "fixture_index": 1,
+      "hlt_exit_codes": [
+        0,
+        0
+      ],
+      "owned_unit_remaining": "",
+      "reason": null,
+      "remaining_kvm_handles": [],
+      "sandbox_list": {
+        "authentication_required": false,
+        "exit_code": 0,
+        "no_space": false,
+        "reason": null,
+        "stderr_bytes": 0,
+        "stdout_bytes": 22,
+        "unsupported_format": false
+      },
+      "template_load": {
+        "authentication_required": false,
+        "exit_code": 1,
+        "no_space": false,
+        "reason": null,
+        "stderr_bytes": 186,
+        "stdout_bytes": 0,
+        "unsupported_format": false
+      },
+      "unit": "crewshal-authenticated-discovery-v2-1"
+    }
+  ],
+  "operational_manifest_frozen": false,
+  "private_raw_retained": true,
+  "source_sha256": "046b2470ae2b10cb9d5b49df40ed5360ec1d97f059925d4b8874346c53181b16"
+}

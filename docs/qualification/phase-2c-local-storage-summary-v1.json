@@ -1,0 +1,49 @@
+{
+  "aggregate_peak_memory_bytes": 105021440,
+  "bound_paths": 1342,
+  "boundary_denials_per_fixture": 8,
+  "execution_allowed": false,
+  "failures": [
+    "preparation v1 refused ldd on shell script",
+    "fixture profile v1 empty-keyring output parser refusal before key/mount",
+    "v2 copied-root noexec refusal",
+    "v3 wrong mounted view through /proc/PID/root",
+    "v4 observer lower-path forwarding NameError",
+    "v5 O_PATH source still flattened to tmpfs",
+    "first local readback assertion incorrectly applied regular-file allocation rule to inline symlink; corrected only oracle filtering, not evidence"
+  ],
+  "fixture_seconds": [
+    47.298,
+    47.495
+  ],
+  "independent_final_fd_matches": 44,
+  "input_allocated_bytes": 47284224,
+  "input_logical_bytes": 45834159,
+  "limitations": [
+    "large copy/reflink failures occur during source growth, before those operations",
+    "no exact pinned amd64 runtime execution on observed aarch64 guest",
+    "full kernel-module identity, privileged chown, every escape and guest apparent-size control remain unqualified",
+    "lower free-capacity was not independently sampled during deleted-open hold; independent upper FD allocation was",
+    "root diagnostic used global sync between cases; this is recorded test-host behavior, not a production policy",
+    "early external cleanup shell loop was expanded by VMware argument handling and checked the wrong unit names; not evidence of those units stopping"
+  ],
+  "limited_results": {
+    "deleted_open": "independent FD shows links 0 and retained allocation at small size",
+    "metadata": "mode/rename/symlink/xattr and separate same-identity chown/Unix socket observed",
+    "oversized_regular_growth": "ENOSPC at 41943040 bytes; partial FD/lower bytes retained",
+    "small_regular_growth": "truncate, seek-write, pwrite, mmap and hardlink complete at 8388608 bytes",
+    "unsupported_small_cases": {
+      "copy-range": "EINVAL",
+      "hole-punch": "ENOTSUP",
+      "preallocate": "ENOTSUP",
+      "reflink": "ENOTSUP"
+    }
+  },
+  "native_start_allowed": false,
+  "observation_sha256": "9ed71c46226508d5a8aa7fff663f03aba54c06c95a5d47f916d7736ef1aeaaa3",
+  "operational_manifest_frozen": false,
+  "output_bytes": 435812,
+  "owned_input_trees_logical_bytes": 183668187,
+  "qualification_status": "diagnostic only; complete runtime compatibility and qualification unavailable",
+  "schema_version": 1
+}

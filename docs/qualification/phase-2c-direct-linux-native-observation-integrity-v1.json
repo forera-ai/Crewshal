@@ -1,0 +1,26 @@
+{
+  "scope": "recorded bounded observations; no complete qualification",
+  "observed": [
+    {
+      "path": "phase-2c-direct-linux-native-discovery-observed-v1.json",
+      "sha256": "ab03213255c5931343bc537aa9479e8e2be3aa7bdced863e381c5b4623d534e8"
+    },
+    {
+      "path": "phase-2c-direct-linux-native-discovery-observed-v2.json",
+      "sha256": "09354fc048bff6a9002de25a2fccefdfd803ea84ca3ef0d56269d3adcffd8824"
+    },
+    {
+      "path": "phase-2c-direct-linux-native-discovery-observed-v3.json",
+      "sha256": "9d734a811ecf9020f22fa51d7023b095eda816a706297e79e0e0c3ce280a053a"
+    },
+    {
+      "path": "phase-2c-direct-linux-native-discovery-observed-v4.json",
+      "sha256": "d575685826e06e8f512a3a7e0d2c289cc84feb057c8e119735ab891aae630298"
+    },
+    {
+      "path": "phase-2c-direct-linux-native-compatibility-observed-v1.json",
+      "sha256": "ee2f6d701ce45852cc042e3a36b1b6ca630d64da07ae1cfb0767e78180408020"
+    }
+  ],
+  "execution_allowed": false
+}

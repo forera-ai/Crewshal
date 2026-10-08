@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "ceiling": {
+    "logical_bytes": 8589934592,
+    "allocated_bytes": 8589934592
+  },
+  "execution_allowed": false,
+  "native_start_allowed": false,
+  "id": "crewshal-phase-2c-storage-lab-budget-v1",
+  "scope": "scaled diagnostic reservations only, no operational guest",
+  "objects": [
+    {
+      "id": "ext4-loop-image",
+      "logical_bytes": 33554432,
+      "allocated_bytes": 33554432
+    },
+    {
+      "id": "lower-content-capacity",
+      "logical_bytes": 33554432,
+      "allocated_bytes": 33554432
+    },
+    {
+      "id": "upper-content-expectation",
+      "logical_bytes": 33554432,
+      "allocated_bytes": 33554432
+    },
+    {
+      "id": "pinned-input-reserve",
+      "logical_bytes": 16777216,
+      "allocated_bytes": 16777216
+    },
+    {
+      "id": "observer-output-metadata-reserve",
+      "logical_bytes": 16777216,
+      "allocated_bytes": 16777216
+    }
+  ],
+  "limitations": [
+    "upper no-hole property is unobserved; not presently enforced",
+    "actual input, output and metadata inventory must fit its reservations",
+    "backing/content physical bytes charged conservatively twice",
+    "serial cases and fixtures require cleanup before reuse"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "scope": "Trusted preparation failure before storage mutation or native launch",
+  "source": "scripts/probe_native_ecryptfs_v1.py",
+  "source_sha256": "a2e388f7ea80393d61b42cd07fd1c705fffaadaf2cd9cb01128455b5f932ddb9",
+  "exit": 1,
+  "seconds": 0.494,
+  "error": "ldd not a dynamic executable: preparation attempted dependency lookup on its Python source",
+  "execution_allowed": false,
+  "native_start_allowed": false
+}

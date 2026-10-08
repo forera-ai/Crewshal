@@ -1,0 +1,14 @@
+{
+  "archive_allocated_bytes": 862908416,
+  "archive_bytes": 862904320,
+  "archive_name": "codex-oci-v1.tar",
+  "archive_sha256": "26b27211f7244b76ba2556db29b76a2b1c9c9ba9efe7c192f9afed4bba8b47c0",
+  "elapsed_seconds": 9.54,
+  "execution_allowed": false,
+  "layers_verified": 16,
+  "manifest_digest": "sha256:4478aac4b542421404a5a5c860164f88c42c201e8730c1f3174c8d749f781703",
+  "native_start_allowed": false,
+  "scope": "deterministic OCI archive preparation; no image load or code executed",
+  "source_path": "docs/qualification/phase-2c-oci-archive-v1-runner.txt",
+  "source_sha256": "0ab41c45a02e601d526d849581d661d6660d4092e20f32d13e85f941981f2a6d"
+}

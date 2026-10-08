@@ -1,0 +1,29 @@
+{
+  "scope": "Actual native tiny command tool workflow with fixed synthetic local Responses; no broker qualification",
+  "source": "scripts/probe_direct_linux_native_compatibility_v17.py",
+  "source_sha256": "9ff02eb330a4e9eba605d949a0651e1b3015507efca94edc5f127026ca843b91",
+  "policy": "phase-2c-direct-linux-native-apparmor-proposal-v7.profile",
+  "policy_sha256": "6a6d743ab2a1d51db801ff944aa74c2fedd5316f34ee1965bc345b4917dc3039",
+  "authority": "phase-2c-direct-linux-native-apparmor-approval-v2.json",
+  "controls": {
+    "worker_memory": 134217728,
+    "worker_swap": 0,
+    "worker_cpu": "100000 100000",
+    "worker_pids": 32,
+    "worker_seconds": 5,
+    "aggregate_memory": 805306368,
+    "aggregate_swap": 0,
+    "aggregate_cpu": "100000 100000",
+    "aggregate_pids": 128,
+    "output_bytes_per_stream": 65536,
+    "command_seconds": 10,
+    "startup_seconds": 120,
+    "two_fixture_cleanup_seconds": 600,
+    "final_cleanup_reserve_seconds": 30,
+    "disk_logical_and_allocated": 8589934592
+  },
+  "execution_allowed": false,
+  "native_start_allowed": false,
+  "fixture_source": "scripts/native_fixed_response_fixture_v1.py",
+  "fixture_source_sha256": "4f755b385ba0db02bb29fad9d27aa4f625585ae3350095579a517174cb29d945"
+}

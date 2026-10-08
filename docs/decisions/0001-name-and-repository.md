@@ -49,3 +49,7 @@ Web-indexed exact-name queries targeting USPTO, EUIPO and WIPO domains did not s
 ## Outcome
 
 The bounded screen supports **initial open-source repository use**: no direct AI engineering name collision was found, and the known compiler project and personal/music uses are distinct in purpose. The owner authorized this rename conditional on an acceptable screen. Proceed with repository initialization under Crewshal; retain the screening limitations in the public record. No packages or domains are reserved by this decision.
+
+## Repository ownership update — 2026-10-08
+
+The owner reported transfer of the existing repository to [forera-ai/Crewshal](https://github.com/forera-ai/Crewshal), owned and maintained by [forera-ai](https://github.com/forera-ai). This supersedes only the original owner/location for future operations. The original rename evidence, naming decision, license and contributor attribution remain historical records. See [the transfer checkpoint](../REPOSITORY-TRANSFER-2026-10-08.md).

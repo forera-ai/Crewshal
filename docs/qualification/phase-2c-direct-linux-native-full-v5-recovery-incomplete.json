@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "kind": "post-restart-incomplete-evidence-recovery",
+  "date": "2026-10-08",
+  "owner_authority": "Direct owner instruction to retry local VMware Ubuntu SSH, followed by explicit authorization to reconnect and resume Phase 2C checks; no droplet authorization.",
+  "architecture": "aarch64",
+  "kernel": "7.0.0-38-generic",
+  "recovered_manifest": "phase-2c-direct-linux-native-full-bindings-v5-recovered.json",
+  "recovered_manifest_sha256": "7b2eb308ba050369413cec4bd64daccca99cdcd23aa5710c8d6d6a2f75d25cc0",
+  "recovered_manifest_bytes": 348276,
+  "observation_file_bytes": 0,
+  "observation_file_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "complete_observation_available": false,
+  "complete_freeze_available": false,
+  "historical_cleanup": "unknown before guest restart",
+  "post_restart_state": {
+    "run_helpers_present": false,
+    "aggregate_slice_present": false,
+    "owned_qualification_mounts_observed": [],
+    "fixture_apparmor_roles_present": false,
+    "global_userns_restriction": 1
+  },
+  "qualification": "incomplete",
+  "runtime_verified": false,
+  "execution_allowed": false,
+  "native_start_allowed": false,
+  "limitations": [
+    "Recovered manifest matches the earlier console digest but is not an independently verified current freeze.",
+    "The zero-byte observation cannot establish the v5 failure cause, controller values or qualification.",
+    "Post-restart kernel state does not verify the original attempt cleanup.",
+    "Authentication, transport addresses and screenshots are excluded."
+  ]
+}

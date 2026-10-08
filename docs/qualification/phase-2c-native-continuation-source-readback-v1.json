@@ -1,0 +1,15 @@
+{
+  "scope": "Pinned primary source review, not runtime evidence",
+  "sources": [
+    {
+      "url": "https://raw.githubusercontent.com/openai/codex/rust-v0.160.1/codex-rs/core/src/tools/handlers/unified_exec.rs",
+      "sha256": "8adbc4d775079d82065e37b74f26a37a770ab2cb0f02290a488580996fa5c33b"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/openai/codex/rust-v0.160.1/codex-rs/core/src/tools/handlers/unified_exec/write_stdin.rs",
+      "sha256": "1d4b701dc1b133bd99c6bcbce01f28ddc6bbfbc9f35644f25e8bcbf72819947e"
+    }
+  ],
+  "execution_allowed": false,
+  "runtime_verified": false
+}

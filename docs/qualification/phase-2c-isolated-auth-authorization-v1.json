@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "id": "crewshal-phase-2c-isolated-auth-authorization-v1",
+  "authority": "direct owner request, 2026-10-03",
+  "owner_instruction": "resolve isolated Docker authentication, then resume freeze and qualification",
+  "scope": "Supported new Docker-account sign-in in exclusively owned private state and narrowly scoped Docker-auth network access; no ambient credential/session import, provider login/call, cloud provisioning, purchase, or authentication bypass. User account device approval remains necessary. Retain successful private authentication state for authorized continuation, never export secrets to public evidence.",
+  "existing_discovery_authority": "docs/qualification/phase-2c-discovery-authorization-v1.json",
+  "execution_allowed": false,
+  "native_start_allowed": false,
+  "operational_manifest_frozen": false
+}

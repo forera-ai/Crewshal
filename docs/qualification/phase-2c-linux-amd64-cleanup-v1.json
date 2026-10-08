@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "scope": "independent final second-host post-help cleanup snapshot; observer not prospectively source-bound",
+  "fixture_root": "/srv/crewshal-2c-help-amd64-20261002-v1",
+  "fixture_path_absent": true,
+  "owned_units_listing": "",
+  "kvm_handles": [],
+  "named_sbx_qemu_processes": [],
+  "unreadable_proc_pids": [],
+  "memory_bytes": {
+    "MemAvailable": 1755480064,
+    "MemTotal": 2063577088,
+    "SwapTotal": 0
+  },
+  "disk_free_bytes": 48877772800,
+  "ssh_exit_status": 0,
+  "execution_allowed": false,
+  "limitation": "Final observations only; not exhaustive transient-process evidence or a whole-runtime cleanup pass."
+}

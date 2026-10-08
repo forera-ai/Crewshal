@@ -1,0 +1,504 @@
+{
+  "scope": "Independent outside-driver cleanup readback, after v14 fixtures",
+  "units": [
+    {
+      "unit": "crewshalnativeproxybroker-v1-f1.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativeproxybroker-v1-f2.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv6-f1.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv6-f1-validator.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv6-f1-cancel.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv6-f1-deadline.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv6-f1-transport.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv6-f2.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv6-f2-validator.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv6-f2-cancel.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv6-f2-deadline.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv6-f2-transport.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshal-full-v6-prepare-20261008.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshal-full-v6-driver-f1-20261008.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshal-full-v6-driver-f2-20261008.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv7-f1.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv7-f1-validator.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv7-f1-cancel.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv7-f1-deadline.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv7-f1-transport.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv7-f2.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv7-f2-validator.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv7-f2-cancel.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv7-f2-deadline.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv7-f2-transport.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshal-full-v7-prepare-20261008.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshal-full-v7-driver-f1-20261008.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshal-full-v7-driver-f2-20261008.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv8-f1.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv8-f1-validator.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv8-f1-cancel.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv8-f1-deadline.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv8-f1-transport.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv8-f2.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv8-f2-validator.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv8-f2-cancel.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv8-f2-deadline.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv8-f2-transport.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshal-full-v8-prepare-20261008.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshal-full-v8-driver-f1-20261008.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshal-full-v8-driver-f2-20261008.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv9-f1.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv9-f1-validator.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv9-f1-cancel.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv9-f1-deadline.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv9-f1-transport.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv9-f2.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv9-f2-validator.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv9-f2-cancel.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv9-f2-deadline.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv9-f2-transport.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshal-full-v9-prepare-20261008.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshal-full-v9-driver-f1-20261008.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshal-full-v9-driver-f2-20261008.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv10-f1.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv10-f1-validator.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv10-f1-cancel.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv10-f1-deadline.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv10-f1-transport.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv10-f2.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv10-f2-validator.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv10-f2-cancel.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv10-f2-deadline.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv10-f2-transport.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshal-full-v10-prepare-20261008.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshal-full-v10-driver-f1-20261008.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshal-full-v10-driver-f2-20261008.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv11-f1.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv11-f1-validator.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv11-f1-cancel.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv11-f1-deadline.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv11-f1-transport.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv11-f2.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv11-f2-validator.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv11-f2-cancel.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv11-f2-deadline.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv11-f2-transport.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshal-full-v11-prepare-20261008.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshal-full-v11-driver-f1-20261008.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshal-full-v11-driver-f2-20261008.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv12-f1.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv12-f1-validator.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv12-f1-cancel.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv12-f1-deadline.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv12-f1-transport.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv12-f2.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv12-f2-validator.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv12-f2-cancel.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv12-f2-deadline.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv12-f2-transport.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshal-full-v12-prepare-20261008.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshal-full-v12-driver-f1-20261008.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshal-full-v12-driver-f2-20261008.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv13-f1.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv13-f1-validator.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv13-f1-cancel.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv13-f1-deadline.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv13-f1-transport.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv13-f2.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv13-f2-validator.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv13-f2-cancel.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv13-f2-deadline.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv13-f2-transport.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshal-full-v13-prepare-20261008.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshal-full-v13-driver-f1-20261008.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshal-full-v13-driver-f2-20261008.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv14-f1.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv14-f1-validator.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv14-f1-cancel.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv14-f1-deadline.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv14-f1-transport.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv14-f2.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv14-f2-validator.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv14-f2-cancel.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv14-f2-deadline.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshalnativefullv14-f2-transport.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshal-full-v14-prepare-20261008.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshal-full-v14-driver-f1-20261008.service",
+      "group_exists": false
+    },
+    {
+      "unit": "crewshal-full-v14-driver-f2-20261008.service",
+      "group_exists": false
+    }
+  ],
+  "owned_loops": [],
+  "owned_mounts": [],
+  "loaded_roles_before_removal": {
+    "crewshal-native-tool-v1": "f96fb67936fcab509534ab180b512a8fd6a2eba0d59dc7fa92a2c50282e8e2ca",
+    "crewshal-native-bwrap-v1": "0712da1298b44d54de8d9a6184ecd528c72cef5402ef57d6bc7f92578f092061"
+  },
+  "global_userns_restriction": 1,
+  "historical_v5_cleanup_before_restart": "unknown",
+  "prepared_sources_preserved": [
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14
+  ],
+  "execution_allowed": false,
+  "runtime_verified": false
+}

@@ -1,0 +1,199 @@
+{
+  "schema_version": 1,
+  "qualification": {
+    "schema_version": 1,
+    "id": "phase-2c-preflight",
+    "identity": {
+      "host_os": "macOS-27.2-arm64-arm-64bit",
+      "host_kernel": "27.2.0",
+      "architecture": "arm64",
+      "substrate": "linux-container-docker",
+      "substrate_version": null,
+      "image": null,
+      "runtime": null,
+      "toolchain": "1aed165019b07a78382cbf0c982ef7f9d7c13169d0b34c197f55f366d7e5e84b",
+      "configuration": "07a87c65774fb105b8c6a73bc3aab977a294b0041323ccb05a2fd0a6dba22d31",
+      "grant": "876537c31117c22ca6772a1e206ab603eaaa12e22f922d37acdd19ed0691470f",
+      "harness": "a9f8590adfcff3c10ce893481fa50a1f29985c79db219909967e7e2b8e6a2f6a",
+      "manifest": "fed4dde5e3fe459110a5fb0b2d4f6c75b16214c91aa823d3df640a7415e41563",
+      "credential_design": null
+    },
+    "results": [
+      {
+        "case": "allowed-grant",
+        "status": "unavailable",
+        "observation": "Linux daemon unavailable at explicit local endpoint; no worker launched"
+      },
+      {
+        "case": "external-read",
+        "status": "unavailable",
+        "observation": "Linux daemon unavailable at explicit local endpoint; no worker launched"
+      },
+      {
+        "case": "external-write",
+        "status": "unavailable",
+        "observation": "Linux daemon unavailable at explicit local endpoint; no worker launched"
+      },
+      {
+        "case": "original-checkout",
+        "status": "unavailable",
+        "observation": "Linux daemon unavailable at explicit local endpoint; no worker launched"
+      },
+      {
+        "case": "coordinator-state",
+        "status": "unavailable",
+        "observation": "Linux daemon unavailable at explicit local endpoint; no worker launched"
+      },
+      {
+        "case": "symlink-escape",
+        "status": "unavailable",
+        "observation": "Linux daemon unavailable at explicit local endpoint; no worker launched"
+      },
+      {
+        "case": "new-file-escape",
+        "status": "unavailable",
+        "observation": "Linux daemon unavailable at explicit local endpoint; no worker launched"
+      },
+      {
+        "case": "metadata-escape",
+        "status": "unavailable",
+        "observation": "Linux daemon unavailable at explicit local endpoint; no worker launched"
+      },
+      {
+        "case": "network-egress",
+        "status": "unavailable",
+        "observation": "Linux daemon unavailable at explicit local endpoint; no worker launched"
+      },
+      {
+        "case": "environment-credentials",
+        "status": "unavailable",
+        "observation": "Linux daemon unavailable at explicit local endpoint; no worker launched"
+      },
+      {
+        "case": "repository-hooks",
+        "status": "unavailable",
+        "observation": "Linux daemon unavailable at explicit local endpoint; no worker launched"
+      },
+      {
+        "case": "global-hooks",
+        "status": "unavailable",
+        "observation": "Linux daemon unavailable at explicit local endpoint; no worker launched"
+      },
+      {
+        "case": "mcp-plugins-instructions",
+        "status": "unavailable",
+        "observation": "Linux daemon unavailable at explicit local endpoint; no worker launched"
+      },
+      {
+        "case": "descendant-escape",
+        "status": "unavailable",
+        "observation": "Linux daemon unavailable at explicit local endpoint; no worker launched"
+      },
+      {
+        "case": "cancellation",
+        "status": "unavailable",
+        "observation": "Linux daemon unavailable at explicit local endpoint; no worker launched"
+      },
+      {
+        "case": "deadline",
+        "status": "unavailable",
+        "observation": "Linux daemon unavailable at explicit local endpoint; no worker launched"
+      },
+      {
+        "case": "credential-mediation",
+        "status": "unavailable",
+        "observation": "Linux daemon unavailable at explicit local endpoint; no worker launched"
+      },
+      {
+        "case": "credential-free-validation",
+        "status": "unavailable",
+        "observation": "Linux daemon unavailable at explicit local endpoint; no worker launched"
+      },
+      {
+        "case": "configuration-binding",
+        "status": "unavailable",
+        "observation": "Linux daemon unavailable at explicit local endpoint; no worker launched"
+      },
+      {
+        "case": "qualification-refusal",
+        "status": "unavailable",
+        "observation": "Linux daemon unavailable at explicit local endpoint; no worker launched"
+      }
+    ],
+    "execution_allowed": false
+  },
+  "decision": {
+    "status": "denied",
+    "reasons": [
+      "unresolved substrate/runtime/credential design",
+      "allowed-grant: unavailable",
+      "external-read: unavailable",
+      "external-write: unavailable",
+      "original-checkout: unavailable",
+      "coordinator-state: unavailable",
+      "symlink-escape: unavailable",
+      "new-file-escape: unavailable",
+      "metadata-escape: unavailable",
+      "network-egress: unavailable",
+      "environment-credentials: unavailable",
+      "repository-hooks: unavailable",
+      "global-hooks: unavailable",
+      "mcp-plugins-instructions: unavailable",
+      "descendant-escape: unavailable",
+      "cancellation: unavailable",
+      "deadline: unavailable",
+      "credential-mediation: unavailable",
+      "credential-free-validation: unavailable",
+      "configuration-binding: unavailable",
+      "qualification-refusal: unavailable"
+    ],
+    "execution_allowed": false
+  },
+  "preflight": {
+    "os": {
+      "argv": [
+        "/usr/bin/sw_vers"
+      ],
+      "exit": 0,
+      "stdout": "ProductName:\t\tmacOS\nProductVersion:\t\t27.2\nBuildVersion:\t\t26B5091g\n",
+      "stderr": "",
+      "stdout_digest": "1bf0d69a74a02d03865f79cb73e5037230182427d19ac18352fc602678e3973b",
+      "stderr_digest": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "client": {
+      "argv": [
+        "/opt/homebrew/bin/docker",
+        "--version"
+      ],
+      "exit": 0,
+      "stdout": "Docker version 29.8.1, build 4a63305d74\n",
+      "stderr": "",
+      "stdout_digest": "cb6bc3345a104bec21f72c48885c03e7594e13794b6205b341831b06f11e8499",
+      "stderr_digest": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "server": {
+      "argv": [
+        "/opt/homebrew/bin/docker",
+        "version",
+        "--format",
+        "{{json .Server}}"
+      ],
+      "exit": 1,
+      "stdout": "null\n",
+      "stderr": "failed to connect to the docker API at unix:///var/run/docker.sock; check if the path is correct and if the daemon is running: dial unix /var/run/docker.sock: connect: no such file or directory\n",
+      "stdout_digest": "38e0b9de817f645c4bec37c0d4a3e58baecccb040f5718dc069a72c7385a0bed",
+      "stderr_digest": "7f82543b38da1e2daad7c74045136e02753ca9315fce32ce59da86bdda722d11"
+    }
+  },
+  "limits": {
+    "deadline_seconds": 5,
+    "probe_seconds": 10,
+    "output_bytes": 65536,
+    "pids": 32,
+    "memory_bytes": 134217728,
+    "cpus": 1,
+    "image_pull": false
+  },
+  "worker_launches": 0,
+  "containment_probes_run": 0
+}

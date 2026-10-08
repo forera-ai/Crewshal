@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "id": "crewshal-phase-2c-discovery-authorization-v1",
+  "proposal_path": "docs/PHASE-2C-INFRASTRUCTURE-DISCOVERY-DECISION.md",
+  "proposal_sha256": "46aa89646ebf5a3d51d2af425cb3f43b36833c68d1adec4708da040a685b69cb",
+  "authority": "direct owner instruction in continuing chat, 2026-10-03",
+  "owner_instruction": "approve bounded guest discovery, then complete freeze and qualify inner enforcement twice",
+  "authorized_scope": "exact trusted discovery ordering exception under unchanged resource ceilings; no agent/login/provider or authentication bypass",
+  "execution_allowed": false,
+  "native_start_allowed": false,
+  "operational_manifest_frozen": false
+}

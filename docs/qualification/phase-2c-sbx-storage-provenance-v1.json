@@ -1,0 +1,3683 @@
+{
+  "_type": "https://in-toto.io/Statement/v1",
+  "predicateType": "https://slsa.dev/provenance/v1",
+  "subject": [
+    {
+      "name": "static/linux/amd64/docker-sbx_0.46.0.tgz",
+      "digest": {
+        "sha256": "edd86e2f21559e190723fd884c3a1dced161a555afdff85c5921ed45e7d6d56e"
+      }
+    }
+  ],
+  "predicate": {
+    "buildDefinition": {
+      "buildType": "https://github.com/moby/buildkit/blob/master/docs/attestations/slsa-definitions.md",
+      "resolvedDependencies": [
+        {
+          "uri": "pkg:docker/crazymax/osxcross@14.5-alpine?digest=sha256:c1505c2bf3a2a1f0dc7ba45ce8d583b81fcc41389365236fe9ea255192322f07\u0026platform=linux%2Famd64",
+          "digest": {
+            "sha256": "c1505c2bf3a2a1f0dc7ba45ce8d583b81fcc41389365236fe9ea255192322f07"
+          }
+        },
+        {
+          "uri": "pkg:docker/docker/buildkit-syft-scanner@stable-1?platform=linux%2Famd64",
+          "digest": {
+            "sha256": "ae4f3b554449e7e25548e7d8ccc029d17357348e30c6e3df01b92bc93654d6a9"
+          }
+        },
+        {
+          "uri": "pkg:docker/docker/dockerfile@1",
+          "digest": {
+            "sha256": "ecfaec9ed6d810b56388c508f4121597bfbba70d41a6dfeee4d8cad5f295fc32"
+          }
+        },
+        {
+          "uri": "pkg:docker/almalinux@9?platform=linux%2Famd64",
+          "digest": {
+            "sha256": "3a3fa7f043b142bc8008c8b308d39b47d2c84008addcd52f9f9a7a82d2a90474"
+          }
+        },
+        {
+          "uri": "pkg:docker/alpine@3.23?digest=sha256:85fe1e81d6758c208f3e1eed4338a1997e19d4be002d4dd32d3100c9a8c010a0\u0026platform=linux%2Famd64",
+          "digest": {
+            "sha256": "85fe1e81d6758c208f3e1eed4338a1997e19d4be002d4dd32d3100c9a8c010a0"
+          }
+        },
+        {
+          "uri": "pkg:docker/debian@bookworm-slim?platform=linux%2Famd64",
+          "digest": {
+            "sha256": "3783cc01769c7b2b1b83a5c5ad96c815348e28ed7da68e2e3687004faa906251"
+          }
+        },
+        {
+          "uri": "pkg:docker/golang@1.27.0-alpine3.23?digest=sha256:3747dcba41c8b0db3211fda4db61638b980e17ac5bb3c94460a975a9cfe19395\u0026platform=linux%2Famd64",
+          "digest": {
+            "sha256": "3747dcba41c8b0db3211fda4db61638b980e17ac5bb3c94460a975a9cfe19395"
+          }
+        },
+        {
+          "uri": "pkg:docker/tonistiigi/xx@1.6.1?digest=sha256:923441d7c25f1e2eb5789f82d987693c47b8ed987c4ab3b075d6ed2b5d6779a3\u0026platform=linux%2Famd64",
+          "digest": {
+            "sha256": "923441d7c25f1e2eb5789f82d987693c47b8ed987c4ab3b075d6ed2b5d6779a3"
+          }
+        },
+        {
+          "uri": "pkg:docker/tonistiigi/xx@1.9.0?platform=linux%2Famd64",
+          "digest": {
+            "sha256": "c64defb9ed5a91eacb37f96ccc3d4cd72521c4bd18d5442905b95e2226b0e707"
+          }
+        }
+      ],
+      "externalParameters": {
+        "configSource": {
+          "path": "Dockerfile"
+        },
+        "request": {
+          "frontend": "gateway.v0",
+          "args": {
+            "build-arg:BUILDKIT_MULTI_PLATFORM": "1",
+            "build-arg:DISTRO_ID": "",
+            "build-arg:DISTRO_IMAGE": "debian:trixie",
+            "build-arg:DISTRO_NAME": "",
+            "build-arg:DISTRO_RELEASE": "static",
+            "build-arg:DISTRO_SUITE": "",
+            "build-arg:DISTRO_TYPE": "static",
+            "build-arg:DOCKER_NEXT_REPO": "https://github.com/docker/docker-next.git",
+            "build-arg:DOCKER_NEXT_VERSION": "v0.43.1",
+            "build-arg:EROFS_UTILS_REPO": "https://github.com/erofs/erofs-utils.git",
+            "build-arg:EROFS_UTILS_VERSION": "b96836c051cbdbc0e21f0f8e8396bd239b56c4a5",
+            "build-arg:GO_IMAGE": "golang",
+            "build-arg:GO_IMAGE_VARIANT": "bookworm",
+            "build-arg:NIGHTLY_BUILD": "",
+            "build-arg:PKG_DEB_BUILDFLAGS": "-b -uc",
+            "build-arg:PKG_DEB_EPOCH": "",
+            "build-arg:PKG_DEB_REVISION": "1",
+            "build-arg:PKG_NAME": "docker-sbx",
+            "build-arg:PKG_PACKAGER": "Docker \u003csupport@docker.com\u003e",
+            "build-arg:PKG_REF": "v0.46.0",
+            "build-arg:PKG_REPO": "https://github.com/docker/sandboxes.git",
+            "build-arg:PKG_RPM_BUILDFLAGS": "-bb",
+            "build-arg:PKG_VENDOR": "Docker",
+            "build-arg:SAILOR_REPO": "https://github.com/docker/sailor.git",
+            "build-arg:SAILOR_VERSION": "v0.136.0",
+            "build-arg:TEST_ONLY": "0",
+            "build-arg:VERSION": "0.46.0",
+            "cmdline": "docker/dockerfile:1",
+            "context:runtime-src": "local:runtime-src",
+            "context:sbx-src": "input:0-sbx-binaries",
+            "context:scripts": "local:scripts",
+            "frontend.caps": "moby.buildkit.frontend.contexts+forward",
+            "input-metadata:0-sbx-binaries": "{\"containerimage.config\":\"eyJhcmNoaXRlY3R1cmUiOiJhbWQ2NCIsIm9zIjoibGludXgiLCJyb290ZnMiOnsidHlwZSI6ImxheWVycyIsImRpZmZfaWRzIjpudWxsfSwiaGlzdG9yeSI6W3siY3JlYXRlZF9ieSI6IkNPUFkgL3RtcC9zYngtdmVyc2lvbi5qc29uIC8gIyBidWlsZGtpdCIsImNvbW1lbnQiOiJidWlsZGtpdC5kb2NrZXJmaWxlLnYwIn0seyJjcmVhdGVkX2J5IjoiQ09QWSAvdXNyL2xvY2FsL2Jpbi9zYnggLyAjIGJ1aWxka2l0IiwiY29tbWVudCI6ImJ1aWxka2l0LmRvY2tlcmZpbGUudjAifSx7ImNyZWF0ZWRfYnkiOiJDT1BZIC9vdXQvbGxtbWFuIC8gIyBidWlsZGtpdCIsImNvbW1lbnQiOiJidWlsZGtpdC5kb2NrZXJmaWxlLnYwIn0seyJjcmVhdGVkX2J5IjoiQVJHIEJVSUxES0lUX1NCT01fU0NBTl9TVEFHRT10cnVlIiwiY29tbWVudCI6ImJ1aWxka2l0LmRvY2tlcmZpbGUudjAiLCJlbXB0eV9sYXllciI6dHJ1ZX1dLCJjb25maWciOnsiRW52IjpbIlBBVEg9L3Vzci9sb2NhbC9zYmluOi91c3IvbG9jYWwvYmluOi91c3Ivc2JpbjovdXNyL2Jpbjovc2JpbjovYmluIl0sIldvcmtpbmdEaXIiOiIvIn19\"}",
+            "multi-platform": "1",
+            "sharedkey:localdir:runtime-src": "runtime-bin:69f885a69da4b0c6",
+            "sharedkey:localdir:scripts": "scripts:69f885a69da4b0c6",
+            "source": "docker/dockerfile:1"
+          },
+          "secrets": [
+            {
+              "id": "GITHUB_TOKEN",
+              "optional": true
+            }
+          ],
+          "locals": [
+            {
+              "name": "context"
+            },
+            {
+              "name": "dockerfile"
+            },
+            {
+              "name": "runtime-src"
+            },
+            {
+              "name": "scripts"
+            }
+          ],
+          "inputs": {
+            "0-sbx-binaries": {
+              "configSource": {
+                "path": "Dockerfile"
+              },
+              "request": {
+                "frontend": "gateway.v0",
+                "args": {
+                  "build-arg:BUILDTAGS": "cloud",
+                  "build-arg:COMMIT_DATE": "2026-09-25T12:43:51-07:00",
+                  "build-arg:PKG_REF": "v0.46.0",
+                  "build-arg:RELEASE": "true",
+                  "build-arg:REVISION": "991967dc90ce0d9a440cd1df1bdf3e395c5a2693",
+                  "build-arg:VERSION": "v0.46.0",
+                  "cmdline": "docker/dockerfile:1",
+                  "source": "docker/dockerfile:1",
+                  "target": "binaries",
+                  "vcs:localdir:context": ".",
+                  "vcs:localdir:dockerfile": ".",
+                  "vcs:revision": "991967dc90ce0d9a440cd1df1bdf3e395c5a2693",
+                  "vcs:source": "https://xxxxx:xxxxx@github.com/docker/sandboxes"
+                }
+              }
+            }
+          },
+          "root": {
+            "configSource": {
+              "path": "Dockerfile"
+            },
+            "request": {
+              "args": {
+                "build-arg:BUILDKIT_MULTI_PLATFORM": "1",
+                "build-arg:DISTRO_ID": "",
+                "build-arg:DISTRO_IMAGE": "debian:trixie",
+                "build-arg:DISTRO_NAME": "",
+                "build-arg:DISTRO_RELEASE": "static",
+                "build-arg:DISTRO_SUITE": "",
+                "build-arg:DISTRO_TYPE": "static",
+                "build-arg:DOCKER_NEXT_REPO": "https://github.com/docker/docker-next.git",
+                "build-arg:DOCKER_NEXT_VERSION": "v0.43.1",
+                "build-arg:EROFS_UTILS_REPO": "https://github.com/erofs/erofs-utils.git",
+                "build-arg:EROFS_UTILS_VERSION": "b96836c051cbdbc0e21f0f8e8396bd239b56c4a5",
+                "build-arg:GO_IMAGE": "golang",
+                "build-arg:GO_IMAGE_VARIANT": "bookworm",
+                "build-arg:NIGHTLY_BUILD": "",
+                "build-arg:PKG_DEB_BUILDFLAGS": "-b -uc",
+                "build-arg:PKG_DEB_EPOCH": "",
+                "build-arg:PKG_DEB_REVISION": "1",
+                "build-arg:PKG_NAME": "docker-sbx",
+                "build-arg:PKG_PACKAGER": "Docker \u003csupport@docker.com\u003e",
+                "build-arg:PKG_REF": "v0.46.0",
+                "build-arg:PKG_REPO": "https://github.com/docker/sandboxes.git",
+                "build-arg:PKG_RPM_BUILDFLAGS": "-bb",
+                "build-arg:PKG_VENDOR": "Docker",
+                "build-arg:SAILOR_REPO": "https://github.com/docker/sailor.git",
+                "build-arg:SAILOR_VERSION": "v0.136.0",
+                "build-arg:TEST_ONLY": "0",
+                "build-arg:VERSION": "0.46.0",
+                "context:runtime-src": "local:runtime-src",
+                "context:sbx-src": "input:0-sbx-binaries",
+                "context:scripts": "local:scripts",
+                "frontend.caps": "moby.buildkit.frontend.contexts+forward",
+                "input-metadata:0-sbx-binaries": "{\"containerimage.config\":\"eyJhcmNoaXRlY3R1cmUiOiJhbWQ2NCIsIm9zIjoibGludXgiLCJyb290ZnMiOnsidHlwZSI6ImxheWVycyIsImRpZmZfaWRzIjpudWxsfSwiaGlzdG9yeSI6W3siY3JlYXRlZF9ieSI6IkNPUFkgL3RtcC9zYngtdmVyc2lvbi5qc29uIC8gIyBidWlsZGtpdCIsImNvbW1lbnQiOiJidWlsZGtpdC5kb2NrZXJmaWxlLnYwIn0seyJjcmVhdGVkX2J5IjoiQ09QWSAvdXNyL2xvY2FsL2Jpbi9zYnggLyAjIGJ1aWxka2l0IiwiY29tbWVudCI6ImJ1aWxka2l0LmRvY2tlcmZpbGUudjAifSx7ImNyZWF0ZWRfYnkiOiJDT1BZIC9vdXQvbGxtbWFuIC8gIyBidWlsZGtpdCIsImNvbW1lbnQiOiJidWlsZGtpdC5kb2NrZXJmaWxlLnYwIn0seyJjcmVhdGVkX2J5IjoiQVJHIEJVSUxES0lUX1NCT01fU0NBTl9TVEFHRT10cnVlIiwiY29tbWVudCI6ImJ1aWxka2l0LmRvY2tlcmZpbGUudjAiLCJlbXB0eV9sYXllciI6dHJ1ZX1dLCJjb25maWciOnsiRW52IjpbIlBBVEg9L3Vzci9sb2NhbC9zYmluOi91c3IvbG9jYWwvYmluOi91c3Ivc2JpbjovdXNyL2Jpbjovc2JpbjovYmluIl0sIldvcmtpbmdEaXIiOiIvIn19\"}",
+                "multi-platform": "true",
+                "sharedkey:localdir:runtime-src": "runtime-bin:69f885a69da4b0c6",
+                "sharedkey:localdir:scripts": "scripts:69f885a69da4b0c6",
+                "vcs:localdir:context": "pkg/sbx",
+                "vcs:localdir:dockerfile": "pkg/sbx",
+                "vcs:localdir:runtime-src": "runtime-bin",
+                "vcs:localdir:scripts": "hack/scripts",
+                "vcs:revision": "bab7f4fd33035a0ded9c9e448c46d90fa32482a9",
+                "vcs:source": "https://xxxxx:xxxxx@github.com/docker/packaging"
+              }
+            }
+          },
+          "compatibilityVersion": 30
+        }
+      },
+      "internalParameters": {
+        "buildConfig": {
+          "digestMapping": {
+            "sha256:219d58943adecbedbd9dafd819367d6f21a34f2386fd9c0ad44c211dc5c0ae41": "step37",
+            "sha256:2529df971871e937e17612d912d563a78437f742824eecaa6cbd1d97ef4e9f0b": "step11",
+            "sha256:2b789e8855ce1475cd7794e3d906ff0668b8e4b4d2ac334917a4e022cb332593": "step6",
+            "sha256:2ecee8de6e6c12be3e5731a51d0f01d1024ce75dde8e0ead12d15dedccae9d86": "step28",
+            "sha256:2f256306c52f34066f0976978631803422d34175af90ea1c2fdcfa00e84bd7f4": "step7",
+            "sha256:30cd884da604e6c80552aa9f857998d71ba1d3fee21af1b0133b7cc48f61ced6": "step24",
+            "sha256:357a1e66193af645a43a65ad1193c0e9dadc2cbb29b46f866fdc003f550a3e51": "step16",
+            "sha256:375c4c36eed5040cf53e816c7b8360fc9eb726104d2d361e146ef78ba092e4d1": "step21",
+            "sha256:39dd6977d4ed72d122e648e86c4e24f4726cae0ee69f422df38e23f540f5c363": "step22",
+            "sha256:41a76c764502391741006858b3760c1358a75a5bc0efd210cd5ee45623dcf632": "step26",
+            "sha256:4555044538a1b35d7e4e26d1b4c985adf1d2cd1a8fcaa585acf5c513e1f7ae78": "step34",
+            "sha256:556b6b1a25e4d944828979ca84a6757c4e1e6e8418b7d9417773b37a15222400": "step23",
+            "sha256:56de58ee42e19db7d1a6f46b6947db8a6f00b88c6efbc699c6fc447cf3274d66": "step13",
+            "sha256:5ac4fe8c603687585e6d41d192ed576293a8ca342d4766b9d8d378bf547c367a": "step17",
+            "sha256:5f2072cb7bc8d111ff63dd810f7bbe41e029e27d81aeaf39a0abb54adfb26fa2": "step10",
+            "sha256:66d500f1d5e09fd785cb845420cfe9f252a854b4480421257f809584835adae9": "step12",
+            "sha256:6b87d58fe9b4a7178be50668787be872f23fb39284116b9aaa02d1f5ca9d7581": "step0",
+            "sha256:6cd920fa96b0b4531f1460fa49e3ba4d785f890ba5fcaf83338c5a80c9a9a4c0": "step19",
+            "sha256:73238b5ab282de13ea20194fa9c9d21fec534ef6e22c23a59af1c1c8aa2cb8d7": "step1",
+            "sha256:7449713ce8c8a2748ea1fede5c3708065f0efee8e04189e7a263c60c91610dcf": "step33",
+            "sha256:8757edf52b38b783f2d196402c9840116c92040dc8a55298824484c166b3274d": "step4",
+            "sha256:92a5d77591da6f2f734205221b2a49b820a6fde5fdc021f60ac04b6e81901f0e": "step2",
+            "sha256:a028e95f8fef73380387f2e7fc55eaeaa515442b8d7fac248595bd381619b716": "step5",
+            "sha256:a916717085e7a8a4176930cd4332083e34ed0ed34cdd4108d0c763a1efb50986": "step36",
+            "sha256:aae69ccfcaaa4366b59664484a8ff91dd4b3b195cd057d72357991843ad87296": "step8",
+            "sha256:ac7850c1273c0a813b3395da6c78f95a552694841e83fe695c95e1f0914f4de5": "step35",
+            "sha256:b472e324767d0d161831a24475e44328755848563bb99a6fc1354a0c07ced118": "step27",
+            "sha256:bef39f04af18c29fdb3fbbee757908d210a086547559cbb6c01b20b53b0a3e43": "step25",
+            "sha256:bf51ac332e794417af305f77c9ef70d9c06dfc7f3ab45b224e7c237bebd5dff1": "step29",
+            "sha256:c133a9897ecec2908ee318455762f0dde314a7bf00e1da75dda70a1da18ad524": "step9",
+            "sha256:c6f7937702eccf5456b3922f07cfa86161f7af2fdb73f40a66140b380f02e962": "step18",
+            "sha256:cd7004b9077674c1147217cb528834e79948351da38522767a1a4ac9aaa19507": "step32",
+            "sha256:d6c21a8ea51c9633afaf0aa6cce80836b3b56a493dc2c0655495b238be71935e": "step30",
+            "sha256:e8953d3eee51ecb8d5320226e7e985a844e796623aa9df1a0d78116d9e26ce06": "step31",
+            "sha256:f18676cf5cd27a98f59c53d3ba24df877508b61837074dd3d69af91d42af6801": "step15",
+            "sha256:f5e0d03747ed6b9437e6b8457c182cc404887c74939e39aaec6870092eba27cf": "step3",
+            "sha256:f88fc0bf6c422295a1b44ad1c8b87c95d9b71e2bfeb643e25d0236c8f75e87e3": "step14",
+            "sha256:fc94193a2b8f471e975ec3c47956c06d7298aa0bdf638cfcb5cc426edb660346": "step20"
+          },
+          "llbDefinition": [
+            {
+              "id": "step0",
+              "op": {
+                "Op": {
+                  "source": {
+                    "identifier": "docker-image://docker.io/library/almalinux:9@sha256:3a3fa7f043b142bc8008c8b308d39b47d2c84008addcd52f9f9a7a82d2a90474"
+                  }
+                },
+                "constraints": {},
+                "platform": {
+                  "Architecture": "amd64",
+                  "OS": "linux"
+                }
+              }
+            },
+            {
+              "id": "step1",
+              "op": {
+                "Op": {
+                  "source": {
+                    "identifier": "docker-image://docker.io/tonistiigi/xx:1.9.0@sha256:c64defb9ed5a91eacb37f96ccc3d4cd72521c4bd18d5442905b95e2226b0e707"
+                  }
+                },
+                "constraints": {},
+                "platform": {
+                  "Architecture": "amd64",
+                  "OS": "linux"
+                }
+              }
+            },
+            {
+              "id": "step2",
+              "inputs": [
+                "step0:0",
+                "step1:0"
+              ],
+              "op": {
+                "Op": {
+                  "file": {
+                    "actions": [
+                      {
+                        "Action": {
+                          "copy": {
+                            "allowEmptyWildcard": true,
+                            "allowWildcard": true,
+                            "createDestPath": true,
+                            "dest": "/",
+                            "dirCopyContents": true,
+                            "followSymlink": true,
+                            "mode": -1,
+                            "src": "/",
+                            "timestamp": -1
+                          }
+                        },
+                        "input": 0,
+                        "output": 0,
+                        "secondaryInput": 1
+                      }
+                    ]
+                  }
+                },
+                "constraints": {}
+              }
+            },
+            {
+              "id": "step3",
+              "inputs": [
+                "step2:0"
+              ],
+              "op": {
+                "Op": {
+                  "exec": {
+                    "meta": {
+                      "args": [
+                        "/bin/sh",
+                        "-c",
+                        "dnf install -y --allowerasing bash ca-certificates curl file zip tar gzip git gcc glibc-devel golang \u0026\u0026 dnf clean all"
+                      ],
+                      "cwd": "/",
+                      "env": [
+                        "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+                      ],
+                      "removeMountStubsRecursive": true
+                    },
+                    "mounts": [
+                      {
+                        "dest": "/"
+                      }
+                    ]
+                  }
+                },
+                "constraints": {},
+                "platform": {
+                  "Architecture": "amd64",
+                  "OS": "linux"
+                }
+              }
+            },
+            {
+              "id": "step4",
+              "inputs": [
+                "step3:0"
+              ],
+              "op": {
+                "Op": {
+                  "exec": {
+                    "meta": {
+                      "args": [
+                        "/bin/sh",
+                        "-c",
+                        "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --default-toolchain stable --profile minimal"
+                      ],
+                      "cwd": "/",
+                      "env": [
+                        "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                        "GOTOOLCHAIN=auto"
+                      ],
+                      "removeMountStubsRecursive": true
+                    },
+                    "mounts": [
+                      {
+                        "dest": "/"
+                      }
+                    ]
+                  }
+                },
+                "constraints": {},
+                "platform": {
+                  "Architecture": "amd64",
+                  "OS": "linux"
+                }
+              }
+            },
+            {
+              "id": "step5",
+              "inputs": [
+                "step4:0"
+              ],
+              "op": {
+                "Op": {
+                  "file": {
+                    "actions": [
+                      {
+                        "Action": {
+                          "mkdir": {
+                            "makeParents": true,
+                            "mode": 493,
+                            "path": "/build",
+                            "timestamp": -1
+                          }
+                        },
+                        "input": 0,
+                        "output": 0,
+                        "secondaryInput": -1
+                      }
+                    ]
+                  }
+                },
+                "constraints": {}
+              }
+            },
+            {
+              "id": "step6",
+              "op": {
+                "Op": {
+                  "source": {
+                    "attrs": {
+                      "local.followpaths": "[\"LICENSE\",\"THIRD-PARTY-NOTICES\",\"apparmor\",\"scripts/build-erofs.sh\",\"scripts/build-gpu-shim.sh\",\"scripts/build-nerdbox.sh\",\"scripts/build-sailor.sh\",\"scripts/install.sh\",\"scripts/pkg-static-build.sh\",\"scripts/setup-github-token.sh\"]",
+                      "local.sharedkeyhint": "context"
+                    },
+                    "identifier": "local://context"
+                  }
+                },
+                "constraints": {}
+              }
+            },
+            {
+              "id": "step7",
+              "op": {
+                "Op": {
+                  "source": {
+                    "identifier": "docker-image://docker.io/library/debian:bookworm-slim@sha256:3783cc01769c7b2b1b83a5c5ad96c815348e28ed7da68e2e3687004faa906251"
+                  }
+                },
+                "constraints": {},
+                "platform": {
+                  "Architecture": "amd64",
+                  "OS": "linux"
+                }
+              }
+            },
+            {
+              "id": "step8",
+              "inputs": [
+                "step7:0"
+              ],
+              "op": {
+                "Op": {
+                  "exec": {
+                    "meta": {
+                      "args": [
+                        "/bin/sh",
+                        "-c",
+                        "apt-get update \u0026\u0026 apt-get install -y --no-install-recommends ca-certificates git"
+                      ],
+                      "cwd": "/",
+                      "env": [
+                        "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+                      ],
+                      "removeMountStubsRecursive": true
+                    },
+                    "mounts": [
+                      {
+                        "dest": "/"
+                      }
+                    ]
+                  }
+                },
+                "constraints": {},
+                "platform": {
+                  "Architecture": "amd64",
+                  "OS": "linux"
+                }
+              }
+            },
+            {
+              "id": "step9",
+              "inputs": [
+                "step8:0",
+                "step6:0"
+              ],
+              "op": {
+                "Op": {
+                  "exec": {
+                    "meta": {
+                      "args": [
+                        "/bin/sh",
+                        "-c",
+                        "  set -e\n  setup-github-token\n  git init /src/docker-next\n  cd /src/docker-next\n  git remote add origin \"${DOCKER_NEXT_REPO}\"\n  git fetch --depth 1 origin \"${DOCKER_NEXT_VERSION}\"\n  git checkout FETCH_HEAD\n  rm -f \"$HOME/.gitconfig\"\n"
+                      ],
+                      "cwd": "/",
+                      "env": [
+                        "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                        "DOCKER_NEXT_REPO=https://github.com/docker/docker-next.git",
+                        "DOCKER_NEXT_VERSION=v0.43.1"
+                      ],
+                      "removeMountStubsRecursive": true
+                    },
+                    "mounts": [
+                      {
+                        "dest": "/"
+                      },
+                      {
+                        "dest": "/usr/local/bin/setup-github-token",
+                        "input": 1,
+                        "output": -1,
+                        "readonly": true,
+                        "selector": "/scripts/setup-github-token.sh"
+                      },
+                      {
+                        "dest": "/run/secrets/GITHUB_TOKEN",
+                        "input": -1,
+                        "mountType": 1,
+                        "secretOpt": {
+                          "ID": "GITHUB_TOKEN",
+                          "mode": 256,
+                          "optional": true
+                        }
+                      }
+                    ]
+                  }
+                },
+                "constraints": {},
+                "platform": {
+                  "Architecture": "amd64",
+                  "OS": "linux"
+                }
+              }
+            },
+            {
+              "id": "step10",
+              "inputs": [
+                "step8:0"
+              ],
+              "op": {
+                "Op": {
+                  "exec": {
+                    "meta": {
+                      "args": [
+                        "/bin/sh",
+                        "-c",
+                        "git init /src/erofs-utils     \u0026\u0026 cd /src/erofs-utils     \u0026\u0026 git remote add origin \"${EROFS_UTILS_REPO}\"     \u0026\u0026 git fetch --depth 1 origin \"${EROFS_UTILS_VERSION}\"     \u0026\u0026 git checkout FETCH_HEAD"
+                      ],
+                      "cwd": "/",
+                      "env": [
+                        "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                        "EROFS_UTILS_REPO=https://github.com/erofs/erofs-utils.git",
+                        "EROFS_UTILS_VERSION=b96836c051cbdbc0e21f0f8e8396bd239b56c4a5"
+                      ],
+                      "removeMountStubsRecursive": true
+                    },
+                    "mounts": [
+                      {
+                        "dest": "/"
+                      }
+                    ]
+                  }
+                },
+                "constraints": {},
+                "platform": {
+                  "Architecture": "amd64",
+                  "OS": "linux"
+                }
+              }
+            },
+            {
+              "id": "step11",
+              "op": {
+                "Op": {
+                  "source": {
+                    "attrs": {
+                      "local.sharedkeyhint": "context:runtime-src-runtime-bin:69f885a69da4b0c6"
+                    },
+                    "identifier": "local://runtime-src"
+                  }
+                },
+                "constraints": {}
+              }
+            },
+            {
+              "id": "step12",
+              "inputs": [
+                "step8:0",
+                "step6:0"
+              ],
+              "op": {
+                "Op": {
+                  "exec": {
+                    "meta": {
+                      "args": [
+                        "/bin/sh",
+                        "-c",
+                        "  set -e\n  setup-github-token\n  git init /src/sailor\n  cd /src/sailor\n  git remote add origin \"${SAILOR_REPO}\"\n  git fetch --depth 1 origin \"${SAILOR_VERSION}\"\n  git checkout FETCH_HEAD\n  rm -f \"$HOME/.gitconfig\"\n"
+                      ],
+                      "cwd": "/",
+                      "env": [
+                        "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                        "SAILOR_REPO=https://github.com/docker/sailor.git",
+                        "SAILOR_VERSION=v0.136.0"
+                      ],
+                      "removeMountStubsRecursive": true
+                    },
+                    "mounts": [
+                      {
+                        "dest": "/"
+                      },
+                      {
+                        "dest": "/usr/local/bin/setup-github-token",
+                        "input": 1,
+                        "output": -1,
+                        "readonly": true,
+                        "selector": "/scripts/setup-github-token.sh"
+                      },
+                      {
+                        "dest": "/run/secrets/GITHUB_TOKEN",
+                        "input": -1,
+                        "mountType": 1,
+                        "secretOpt": {
+                          "ID": "GITHUB_TOKEN",
+                          "mode": 256,
+                          "optional": true
+                        }
+                      }
+                    ]
+                  }
+                },
+                "constraints": {},
+                "platform": {
+                  "Architecture": "amd64",
+                  "OS": "linux"
+                }
+              }
+            },
+            {
+              "id": "step13",
+              "op": {
+                "Op": {
+                  "source": {
+                    "identifier": "docker-image://docker.io/library/golang:1.27.0-alpine3.23@sha256:3747dcba41c8b0db3211fda4db61638b980e17ac5bb3c94460a975a9cfe19395"
+                  }
+                },
+                "constraints": {},
+                "platform": {
+                  "Architecture": "amd64",
+                  "OS": "linux"
+                }
+              }
+            },
+            {
+              "id": "step14",
+              "op": {
+                "Op": {
+                  "source": {
+                    "identifier": "docker-image://docker.io/tonistiigi/xx:1.6.1@sha256:923441d7c25f1e2eb5789f82d987693c47b8ed987c4ab3b075d6ed2b5d6779a3"
+                  }
+                },
+                "constraints": {},
+                "platform": {
+                  "Architecture": "amd64",
+                  "OS": "linux"
+                }
+              }
+            },
+            {
+              "id": "step15",
+              "inputs": [
+                "step13:0",
+                "step14:0"
+              ],
+              "op": {
+                "Op": {
+                  "file": {
+                    "actions": [
+                      {
+                        "Action": {
+                          "copy": {
+                            "allowEmptyWildcard": true,
+                            "allowWildcard": true,
+                            "createDestPath": true,
+                            "dest": "/",
+                            "dirCopyContents": true,
+                            "followSymlink": true,
+                            "mode": -1,
+                            "src": "/",
+                            "timestamp": -1
+                          }
+                        },
+                        "input": 0,
+                        "output": 0,
+                        "secondaryInput": 1
+                      }
+                    ]
+                  }
+                },
+                "constraints": {}
+              }
+            },
+            {
+              "id": "step16",
+              "inputs": [
+                "step15:0"
+              ],
+              "op": {
+                "Op": {
+                  "exec": {
+                    "meta": {
+                      "args": [
+                        "/bin/sh",
+                        "-c",
+                        "apk add --no-cache   clang   file   git   openssh-client   openssl   rsync"
+                      ],
+                      "cwd": "/go",
+                      "env": [
+                        "PATH=/go/bin:/usr/local/go/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                        "GOLANG_VERSION=1.27.0",
+                        "GOTOOLCHAIN=local",
+                        "GOPATH=/go",
+                        "CGO_ENABLED=0",
+                        "MACOSX_VERSION_MIN=11.0",
+                        "GOPRIVATE=github.com/docker/*"
+                      ],
+                      "removeMountStubsRecursive": true
+                    },
+                    "mounts": [
+                      {
+                        "dest": "/"
+                      }
+                    ]
+                  }
+                },
+                "constraints": {},
+                "platform": {
+                  "Architecture": "amd64",
+                  "OS": "linux"
+                }
+              }
+            },
+            {
+              "id": "step17",
+              "inputs": [
+                "step16:0"
+              ],
+              "op": {
+                "Op": {
+                  "file": {
+                    "actions": [
+                      {
+                        "Action": {
+                          "mkdir": {
+                            "makeParents": true,
+                            "mode": 493,
+                            "path": "/src",
+                            "timestamp": -1
+                          }
+                        },
+                        "input": 0,
+                        "output": 0,
+                        "secondaryInput": -1
+                      }
+                    ]
+                  }
+                },
+                "constraints": {}
+              }
+            },
+            {
+              "id": "step18",
+              "op": {
+                "Op": {
+                  "source": {
+                    "attrs": {
+                      "local.excludepatterns": "[\"bin\",\"gui\",\".certs\",\".tmp\"]",
+                      "local.sharedkeyhint": "context"
+                    },
+                    "identifier": "local://context"
+                  }
+                },
+                "constraints": {}
+              }
+            },
+            {
+              "id": "step19",
+              "inputs": [
+                "step17:0",
+                "step18:0"
+              ],
+              "op": {
+                "Op": {
+                  "exec": {
+                    "meta": {
+                      "args": [
+                        "/bin/sh",
+                        "-c",
+                        "go build -tags filestore -o /versionfile ./tools/versionfile"
+                      ],
+                      "cwd": "/src",
+                      "env": [
+                        "PATH=/go/bin:/usr/local/go/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                        "GOLANG_VERSION=1.27.0",
+                        "GOTOOLCHAIN=local",
+                        "GOPATH=/go",
+                        "CGO_ENABLED=0",
+                        "MACOSX_VERSION_MIN=11.0",
+                        "GOPRIVATE=github.com/docker/*",
+                        "GOWORK=off",
+                        "GOFLAGS=-mod=vendor",
+                        "GOPROXY=off"
+                      ],
+                      "removeMountStubsRecursive": true
+                    },
+                    "mounts": [
+                      {
+                        "dest": "/"
+                      },
+                      {
+                        "cacheOpt": {
+                          "ID": "//root/.cache"
+                        },
+                        "dest": "/root/.cache",
+                        "input": -1,
+                        "mountType": 3,
+                        "output": -1
+                      },
+                      {
+                        "dest": "/src",
+                        "input": 1,
+                        "output": -1,
+                        "readonly": true
+                      }
+                    ]
+                  }
+                },
+                "constraints": {},
+                "platform": {
+                  "Architecture": "amd64",
+                  "OS": "linux"
+                }
+              }
+            },
+            {
+              "id": "step20",
+              "inputs": [
+                "step17:0",
+                "step19:0"
+              ],
+              "op": {
+                "Op": {
+                  "exec": {
+                    "meta": {
+                      "args": [
+                        "/bin/sh",
+                        "-c",
+                        "  set -ex\n\n  export SANDBOXD_PKG=github.com/docker/sandboxes/sandboxd\n\n  versionfile -version \"${VERSION}\" -revision \"${REVISION}\" -output /tmp/sbx-version.json\n  echo -n \"${VERSION}\" \u003e /tmp/.version\n  echo -n \"${REVISION}\" \u003e /tmp/.revision\n  echo -n \"${COMMIT_DATE}\" \u003e /tmp/.commit_date\n  echo -n \"${RELEASE}\" \u003e /tmp/.release\n  echo -n \"${DOCKER_NEXT_VERSION}\" \u003e /tmp/.docker_next_version\n  echo -n \"${DOCKER_NEXT_COMMIT}\" \u003e /tmp/.docker_next_commit\n  echo -n \"${NERDBOX_VERSION}\" \u003e /tmp/.nerdbox_version\n  echo -n \"${SAILOR_COMMIT}\" \u003e /tmp/.sailor_commit\n\n  echo \"-X ${SANDBOXD_PKG}/version.Version=${VERSION} -X ${SANDBOXD_PKG}/version.Revision=sbx-revision-v1:${REVISION}:sbx-revision-end -X ${SANDBOXD_PKG}/version.Package=${SANDBOXD_PKG} -X ${SANDBOXD_PKG}/version.BuildDate=${COMMIT_DATE} -X ${SANDBOXD_PKG}/version.Release=${RELEASE}\" \u003e /tmp/.ldflags-cli\n"
+                      ],
+                      "cwd": "/src",
+                      "env": [
+                        "PATH=/go/bin:/usr/local/go/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                        "GOLANG_VERSION=1.27.0",
+                        "GOTOOLCHAIN=local",
+                        "GOPATH=/go",
+                        "CGO_ENABLED=0",
+                        "MACOSX_VERSION_MIN=11.0",
+                        "GOPRIVATE=github.com/docker/*",
+                        "VERSION=v0.46.0",
+                        "REVISION=991967dc90ce0d9a440cd1df1bdf3e395c5a2693",
+                        "COMMIT_DATE=2026-09-25T12:43:51-07:00",
+                        "RELEASE=true",
+                        "DOCKER_NEXT_VERSION=",
+                        "DOCKER_NEXT_COMMIT=",
+                        "NERDBOX_VERSION=",
+                        "SAILOR_COMMIT="
+                      ],
+                      "removeMountStubsRecursive": true
+                    },
+                    "mounts": [
+                      {
+                        "dest": "/"
+                      },
+                      {
+                        "dest": "/usr/local/bin/versionfile",
+                        "input": 1,
+                        "output": -1,
+                        "readonly": true,
+                        "selector": "/versionfile"
+                      }
+                    ]
+                  }
+                },
+                "constraints": {},
+                "platform": {
+                  "Architecture": "amd64",
+                  "OS": "linux"
+                }
+              }
+            },
+            {
+              "id": "step21",
+              "inputs": [
+                "step20:0"
+              ],
+              "op": {
+                "Op": {
+                  "file": {
+                    "actions": [
+                      {
+                        "Action": {
+                          "copy": {
+                            "allowEmptyWildcard": true,
+                            "allowWildcard": true,
+                            "createDestPath": true,
+                            "dest": "/",
+                            "dirCopyContents": true,
+                            "followSymlink": true,
+                            "mode": -1,
+                            "src": "/tmp/sbx-version.json",
+                            "timestamp": -1
+                          }
+                        },
+                        "input": -1,
+                        "output": 0,
+                        "secondaryInput": 0
+                      }
+                    ]
+                  }
+                },
+                "constraints": {}
+              }
+            },
+            {
+              "id": "step22",
+              "op": {
+                "Op": {
+                  "source": {
+                    "identifier": "docker-image://docker.io/crazymax/osxcross:14.5-alpine@sha256:c1505c2bf3a2a1f0dc7ba45ce8d583b81fcc41389365236fe9ea255192322f07"
+                  }
+                },
+                "constraints": {},
+                "platform": {
+                  "Architecture": "amd64",
+                  "OS": "linux"
+                }
+              }
+            },
+            {
+              "id": "step23",
+              "inputs": [
+                "step17:0",
+                "step18:0",
+                "step22:0"
+              ],
+              "op": {
+                "Op": {
+                  "exec": {
+                    "meta": {
+                      "args": [
+                        "/bin/sh",
+                        "-c",
+                        "  set -e\n  xx-go --wrap\n"
+                      ],
+                      "cwd": "/src",
+                      "env": [
+                        "PATH=/go/bin:/usr/local/go/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                        "GOLANG_VERSION=1.27.0",
+                        "GOTOOLCHAIN=local",
+                        "GOPATH=/go",
+                        "MACOSX_VERSION_MIN=11.0",
+                        "GOPRIVATE=github.com/docker/*",
+                        "TARGETPLATFORM=linux/amd64",
+                        "CGO_ENABLED=1",
+                        "GOWORK=off",
+                        "GOFLAGS=-mod=vendor",
+                        "GOPROXY=off"
+                      ],
+                      "removeMountStubsRecursive": true
+                    },
+                    "mounts": [
+                      {
+                        "dest": "/"
+                      },
+                      {
+                        "cacheOpt": {
+                          "ID": "//root/.cache"
+                        },
+                        "dest": "/root/.cache",
+                        "input": -1,
+                        "mountType": 3,
+                        "output": -1
+                      },
+                      {
+                        "dest": "/src",
+                        "input": 1,
+                        "output": -1,
+                        "readonly": true
+                      },
+                      {
+                        "dest": "/xx-sdk",
+                        "input": 2,
+                        "output": -1,
+                        "readonly": true,
+                        "selector": "/osxsdk"
+                      }
+                    ]
+                  }
+                },
+                "constraints": {},
+                "platform": {
+                  "Architecture": "amd64",
+                  "OS": "linux"
+                }
+              }
+            },
+            {
+              "id": "step24",
+              "inputs": [
+                "step17:0",
+                "step18:0"
+              ],
+              "op": {
+                "Op": {
+                  "exec": {
+                    "meta": {
+                      "args": [
+                        "/bin/sh",
+                        "-c",
+                        "sh scripts/build-ssh-helper.sh /out"
+                      ],
+                      "cwd": "/src",
+                      "env": [
+                        "PATH=/go/bin:/usr/local/go/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                        "GOLANG_VERSION=1.27.0",
+                        "GOTOOLCHAIN=local",
+                        "GOPATH=/go",
+                        "CGO_ENABLED=0",
+                        "MACOSX_VERSION_MIN=11.0",
+                        "GOPRIVATE=github.com/docker/*",
+                        "GOWORK=off",
+                        "GOFLAGS=-mod=vendor",
+                        "GOPROXY=off"
+                      ],
+                      "removeMountStubsRecursive": true
+                    },
+                    "mounts": [
+                      {
+                        "dest": "/"
+                      },
+                      {
+                        "cacheOpt": {
+                          "ID": "//root/.cache"
+                        },
+                        "dest": "/root/.cache",
+                        "input": -1,
+                        "mountType": 3,
+                        "output": -1
+                      },
+                      {
+                        "dest": "/src",
+                        "input": 1,
+                        "output": -1,
+                        "readonly": true
+                      }
+                    ]
+                  }
+                },
+                "constraints": {},
+                "platform": {
+                  "Architecture": "amd64",
+                  "OS": "linux"
+                }
+              }
+            },
+            {
+              "id": "step25",
+              "inputs": [
+                "step20:0",
+                "step18:0"
+              ],
+              "op": {
+                "Op": {
+                  "exec": {
+                    "meta": {
+                      "args": [
+                        "/bin/sh",
+                        "-c",
+                        "  set -ex\n\n  export PKG=github.com/docker/sandboxes/sandboxd\n  export VERSION=$(cat /tmp/.version)\n  export REVISION=$(cat /tmp/.revision)\n  export RELEASE=$(cat /tmp/.release)\n  export COMMIT_DATE=$(cat /tmp/.commit_date)\n  export DOCKER_NEXT_VERSION=$(cat /tmp/.docker_next_version)\n  export DOCKER_NEXT_COMMIT=$(cat /tmp/.docker_next_commit)\n  export NERDBOX_VERSION=$(cat /tmp/.nerdbox_version)\n  export SAILOR_COMMIT=$(cat /tmp/.sailor_commit)\n  LDFLAGS=\"-X ${PKG}/version.Version=${VERSION} -X ${PKG}/version.Revision=sbx-revision-v1:${REVISION}:sbx-revision-end -X ${PKG}/version.Package=${PKG} -X ${PKG}/version.BuildDate=${COMMIT_DATE} -X ${PKG}/version.Release=${RELEASE}\"\n  LDFLAGS=\"${LDFLAGS} -X ${PKG}/version.DockerNextVersion=${DOCKER_NEXT_VERSION} -X ${PKG}/version.DockerNextCommit=${DOCKER_NEXT_COMMIT} -X ${PKG}/version.NerdboxVersion=${NERDBOX_VERSION} -X ${PKG}/version.SailorCommit=${SAILOR_COMMIT}\"\n\n  echo \"${LDFLAGS}\" \u003e /tmp/.ldflags\n"
+                      ],
+                      "cwd": "/src",
+                      "env": [
+                        "VERSION=v0.46.0",
+                        "REVISION=991967dc90ce0d9a440cd1df1bdf3e395c5a2693",
+                        "COMMIT_DATE=2026-09-25T12:43:51-07:00",
+                        "RELEASE=true",
+                        "DOCKER_NEXT_VERSION=",
+                        "DOCKER_NEXT_COMMIT=",
+                        "NERDBOX_VERSION=",
+                        "SAILOR_COMMIT=",
+                        "PATH=/go/bin:/usr/local/go/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                        "GOLANG_VERSION=1.27.0",
+                        "GOTOOLCHAIN=local",
+                        "GOPATH=/go",
+                        "CGO_ENABLED=0",
+                        "MACOSX_VERSION_MIN=11.0",
+                        "GOPRIVATE=github.com/docker/*"
+                      ],
+                      "removeMountStubsRecursive": true
+                    },
+                    "mounts": [
+                      {
+                        "dest": "/"
+                      },
+                      {
+                        "dest": "/src",
+                        "input": 1,
+                        "output": -1,
+                        "readonly": true
+                      }
+                    ]
+                  }
+                },
+                "constraints": {},
+                "platform": {
+                  "Architecture": "amd64",
+                  "OS": "linux"
+                }
+              }
+            },
+            {
+              "id": "step26",
+              "inputs": [
+                "step23:0",
+                "step18:0",
+                "step24:0",
+                "step25:0",
+                "step20:0",
+                "step19:0",
+                "step22:0"
+              ],
+              "op": {
+                "Op": {
+                  "exec": {
+                    "meta": {
+                      "args": [
+                        "/bin/sh",
+                        "-c",
+                        "  set -e\n  xx-apk add --no-cache \\\n    gcc \\\n    musl-dev\n  cd ./cli-plugin\n  LDFLAGS=\"$(cat /tmp/.ldflags) -s -w\"\n  case \"$(xx-info os)\" in\n    linux)\n      LDFLAGS=\"${LDFLAGS} -linkmode=external -extldflags=-static\"\n      ;;\n  esac\n  LDFLAGS=\"${LDFLAGS} -X github.com/docker/sandboxes/sandboxd/version.BuildTags=${BUILDTAGS}\"\n  xx-go build -trimpath -tags \"${BUILDTAGS}\" \\\n    -ldflags \"${LDFLAGS}\" \\\n    -o /usr/local/bin/sbx ./cmd/sandboxes\n  ../scripts/verify-release-build-tags.sh \"${RELEASE}\" \"${BUILDTAGS}\" /usr/local/bin/sbx \"${LDFLAGS}\"\n  versionfile -check /tmp/sbx-version.json -binary /usr/local/bin/sbx\n  xx-verify --static /usr/local/bin/sbx\n"
+                      ],
+                      "cwd": "/src",
+                      "env": [
+                        "PATH=/go/bin:/usr/local/go/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                        "GOLANG_VERSION=1.27.0",
+                        "GOTOOLCHAIN=local",
+                        "GOPATH=/go",
+                        "MACOSX_VERSION_MIN=11.0",
+                        "GOPRIVATE=github.com/docker/*",
+                        "GOWORK=off",
+                        "GOFLAGS=-mod=vendor",
+                        "GOPROXY=off",
+                        "TARGETPLATFORM=linux/amd64",
+                        "BUILDTAGS=cloud",
+                        "RELEASE=true",
+                        "CGO_ENABLED=1"
+                      ],
+                      "removeMountStubsRecursive": true
+                    },
+                    "mounts": [
+                      {
+                        "dest": "/"
+                      },
+                      {
+                        "cacheOpt": {
+                          "ID": "//root/.cache"
+                        },
+                        "dest": "/root/.cache",
+                        "input": -1,
+                        "mountType": 3,
+                        "output": -1
+                      },
+                      {
+                        "dest": "/src",
+                        "input": 1,
+                        "output": -1,
+                        "readonly": true
+                      },
+                      {
+                        "dest": "/src/sandboxd/internal/sshhelper/helpers",
+                        "input": 2,
+                        "output": -1,
+                        "readonly": true,
+                        "selector": "/out"
+                      },
+                      {
+                        "dest": "/tmp/.ldflags",
+                        "input": 3,
+                        "output": -1,
+                        "readonly": true,
+                        "selector": "/tmp/.ldflags"
+                      },
+                      {
+                        "dest": "/tmp/sbx-version.json",
+                        "input": 4,
+                        "output": -1,
+                        "readonly": true,
+                        "selector": "/tmp/sbx-version.json"
+                      },
+                      {
+                        "dest": "/usr/local/bin/versionfile",
+                        "input": 5,
+                        "output": -1,
+                        "readonly": true,
+                        "selector": "/versionfile"
+                      },
+                      {
+                        "dest": "/xx-sdk",
+                        "input": 6,
+                        "output": -1,
+                        "readonly": true,
+                        "selector": "/osxsdk"
+                      }
+                    ]
+                  }
+                },
+                "constraints": {},
+                "platform": {
+                  "Architecture": "amd64",
+                  "OS": "linux"
+                }
+              }
+            },
+            {
+              "id": "step27",
+              "inputs": [
+                "step26:0"
+              ],
+              "op": {
+                "Op": {
+                  "file": {
+                    "actions": [
+                      {
+                        "Action": {
+                          "copy": {
+                            "allowEmptyWildcard": true,
+                            "allowWildcard": true,
+                            "createDestPath": true,
+                            "dest": "/",
+                            "dirCopyContents": true,
+                            "followSymlink": true,
+                            "mode": -1,
+                            "src": "/usr/local/bin/sbx",
+                            "timestamp": -1
+                          }
+                        },
+                        "input": -1,
+                        "output": 0,
+                        "secondaryInput": 0
+                      }
+                    ]
+                  }
+                },
+                "constraints": {}
+              }
+            },
+            {
+              "id": "step28",
+              "inputs": [
+                "step21:0",
+                "step27:0"
+              ],
+              "op": {
+                "Op": {
+                  "merge": {
+                    "inputs": [
+                      {},
+                      {
+                        "input": 1
+                      }
+                    ]
+                  }
+                },
+                "constraints": {}
+              }
+            },
+            {
+              "id": "step29",
+              "op": {
+                "Op": {
+                  "source": {
+                    "identifier": "docker-image://docker.io/library/alpine:3.23@sha256:85fe1e81d6758c208f3e1eed4338a1997e19d4be002d4dd32d3100c9a8c010a0"
+                  }
+                },
+                "constraints": {},
+                "platform": {
+                  "Architecture": "amd64",
+                  "OS": "linux"
+                }
+              }
+            },
+            {
+              "id": "step30",
+              "inputs": [
+                "step29:0"
+              ],
+              "op": {
+                "Op": {
+                  "exec": {
+                    "meta": {
+                      "args": [
+                        "/bin/sh",
+                        "-c",
+                        "apk add --no-cache bash github-cli"
+                      ],
+                      "cwd": "/",
+                      "env": [
+                        "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+                      ],
+                      "removeMountStubsRecursive": true
+                    },
+                    "mounts": [
+                      {
+                        "dest": "/"
+                      }
+                    ]
+                  }
+                },
+                "constraints": {},
+                "platform": {
+                  "Architecture": "amd64",
+                  "OS": "linux"
+                }
+              }
+            },
+            {
+              "id": "step31",
+              "inputs": [
+                "step30:0",
+                "step18:0"
+              ],
+              "op": {
+                "Op": {
+                  "exec": {
+                    "meta": {
+                      "args": [
+                        "/bin/sh",
+                        "-c",
+                        "  set -e\n  export LLMMAN_REPO=\"${LLMMAN_REPO}\"\n  export LLMMAN_VERSION=\"${LLMMAN_VERSION}\"\n  export LLMMAN_OS=\"${TARGETOS}\"\n  export LLMMAN_ARCH=\"${TARGETARCH}\"\n  export LLMMAN_DEST_DIR=/out\n  # Higher authenticated rate limit than anonymous requests get.\n  export GITHUB_TOKEN=$(cat /run/secrets/GITHUB_TOKEN)\n  bash /scripts/download-llmman.sh\n"
+                      ],
+                      "cwd": "/",
+                      "env": [
+                        "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                        "TARGETOS=linux",
+                        "TARGETARCH=amd64",
+                        "LLMMAN_REPO=",
+                        "LLMMAN_VERSION="
+                      ],
+                      "removeMountStubsRecursive": true
+                    },
+                    "mounts": [
+                      {
+                        "dest": "/"
+                      },
+                      {
+                        "dest": "/scripts",
+                        "input": 1,
+                        "output": -1,
+                        "readonly": true,
+                        "selector": "/scripts"
+                      },
+                      {
+                        "dest": "/run/secrets/GITHUB_TOKEN",
+                        "input": -1,
+                        "mountType": 1,
+                        "secretOpt": {
+                          "ID": "GITHUB_TOKEN",
+                          "mode": 256,
+                          "optional": true
+                        }
+                      }
+                    ]
+                  }
+                },
+                "constraints": {},
+                "platform": {
+                  "Architecture": "amd64",
+                  "OS": "linux"
+                }
+              }
+            },
+            {
+              "id": "step32",
+              "inputs": [
+                "step31:0"
+              ],
+              "op": {
+                "Op": {
+                  "file": {
+                    "actions": [
+                      {
+                        "Action": {
+                          "copy": {
+                            "allowEmptyWildcard": true,
+                            "allowWildcard": true,
+                            "createDestPath": true,
+                            "dest": "/",
+                            "dirCopyContents": true,
+                            "followSymlink": true,
+                            "mode": -1,
+                            "src": "/out/llmman",
+                            "timestamp": -1
+                          }
+                        },
+                        "input": -1,
+                        "output": 0,
+                        "secondaryInput": 0
+                      }
+                    ]
+                  }
+                },
+                "constraints": {}
+              }
+            },
+            {
+              "id": "step33",
+              "inputs": [
+                "step28:0",
+                "step32:0"
+              ],
+              "op": {
+                "Op": {
+                  "merge": {
+                    "inputs": [
+                      {},
+                      {
+                        "input": 1
+                      }
+                    ]
+                  }
+                },
+                "constraints": {}
+              }
+            },
+            {
+              "id": "step34",
+              "op": {
+                "Op": {
+                  "source": {
+                    "attrs": {
+                      "local.followpaths": "[\"fix-cc.sh\"]",
+                      "local.sharedkeyhint": "context:scripts-scripts:69f885a69da4b0c6"
+                    },
+                    "identifier": "local://scripts"
+                  }
+                },
+                "constraints": {}
+              }
+            },
+            {
+              "id": "step35",
+              "inputs": [
+                "step5:0",
+                "step6:0",
+                "step9:0",
+                "step10:0",
+                "step11:0",
+                "step12:0",
+                "step33:0",
+                "step34:0"
+              ],
+              "op": {
+                "Op": {
+                  "exec": {
+                    "meta": {
+                      "args": [
+                        "/bin/sh",
+                        "-c",
+                        "  set -e\n  setup-github-token\n  OUTDIR=/out BUILDDIR=/build pkg-static-build\n  rm -f \"$HOME/.gitconfig\"\n"
+                      ],
+                      "cwd": "/build",
+                      "env": [
+                        "GOTOOLCHAIN=auto",
+                        "PATH=/root/.cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                        "CARGO_NET_RETRY=10",
+                        "CARGO_HTTP_MULTIPLEXING=false",
+                        "CARGO_NET_GIT_FETCH_WITH_CLI=true",
+                        "PKG_NAME=docker-sbx",
+                        "VERSION=0.46.0",
+                        "NIGHTLY_BUILD=",
+                        "TARGETPLATFORM=linux/amd64"
+                      ],
+                      "removeMountStubsRecursive": true
+                    },
+                    "mounts": [
+                      {
+                        "dest": "/"
+                      },
+                      {
+                        "dest": "/opt/LICENSE",
+                        "input": 1,
+                        "output": -1,
+                        "readonly": true,
+                        "selector": "/LICENSE"
+                      },
+                      {
+                        "dest": "/opt/apparmor",
+                        "input": 1,
+                        "output": -1,
+                        "readonly": true,
+                        "selector": "/apparmor"
+                      },
+                      {
+                        "dest": "/opt/docker-next-src",
+                        "input": 2,
+                        "output": -1,
+                        "readonly": true,
+                        "selector": "/src/docker-next"
+                      },
+                      {
+                        "dest": "/opt/erofs-src",
+                        "input": 3,
+                        "output": -1,
+                        "readonly": true,
+                        "selector": "/src/erofs-utils"
+                      },
+                      {
+                        "dest": "/opt/install-script/install.sh",
+                        "input": 1,
+                        "output": -1,
+                        "readonly": true,
+                        "selector": "/scripts/install.sh"
+                      },
+                      {
+                        "dest": "/opt/notices/THIRD-PARTY-NOTICES",
+                        "input": 1,
+                        "output": -1,
+                        "readonly": true,
+                        "selector": "/THIRD-PARTY-NOTICES"
+                      },
+                      {
+                        "dest": "/opt/runtime-bin",
+                        "input": 4,
+                        "output": -1,
+                        "readonly": true
+                      },
+                      {
+                        "dest": "/opt/sailor-src",
+                        "input": 5,
+                        "output": -1,
+                        "readonly": true,
+                        "selector": "/src/sailor"
+                      },
+                      {
+                        "dest": "/opt/sbx-bin",
+                        "input": 6,
+                        "output": -1,
+                        "readonly": true
+                      },
+                      {
+                        "dest": "/usr/local/bin/build-erofs",
+                        "input": 1,
+                        "output": -1,
+                        "readonly": true,
+                        "selector": "/scripts/build-erofs.sh"
+                      },
+                      {
+                        "dest": "/usr/local/bin/build-gpu-shim",
+                        "input": 1,
+                        "output": -1,
+                        "readonly": true,
+                        "selector": "/scripts/build-gpu-shim.sh"
+                      },
+                      {
+                        "dest": "/usr/local/bin/build-sailor",
+                        "input": 1,
+                        "output": -1,
+                        "readonly": true,
+                        "selector": "/scripts/build-sailor.sh"
+                      },
+                      {
+                        "dest": "/usr/local/bin/build-shim",
+                        "input": 1,
+                        "output": -1,
+                        "readonly": true,
+                        "selector": "/scripts/build-nerdbox.sh"
+                      },
+                      {
+                        "dest": "/usr/local/bin/fix-cc",
+                        "input": 7,
+                        "output": -1,
+                        "readonly": true,
+                        "selector": "/fix-cc.sh"
+                      },
+                      {
+                        "dest": "/usr/local/bin/pkg-static-build",
+                        "input": 1,
+                        "output": -1,
+                        "readonly": true,
+                        "selector": "/scripts/pkg-static-build.sh"
+                      },
+                      {
+                        "dest": "/usr/local/bin/setup-github-token",
+                        "input": 1,
+                        "output": -1,
+                        "readonly": true,
+                        "selector": "/scripts/setup-github-token.sh"
+                      },
+                      {
+                        "dest": "/run/secrets/GITHUB_TOKEN",
+                        "input": -1,
+                        "mountType": 1,
+                        "secretOpt": {
+                          "ID": "GITHUB_TOKEN",
+                          "mode": 256,
+                          "optional": true
+                        }
+                      }
+                    ]
+                  }
+                },
+                "constraints": {},
+                "platform": {
+                  "Architecture": "amd64",
+                  "OS": "linux"
+                }
+              }
+            },
+            {
+              "id": "step36",
+              "inputs": [
+                "step35:0"
+              ],
+              "op": {
+                "Op": {
+                  "file": {
+                    "actions": [
+                      {
+                        "Action": {
+                          "copy": {
+                            "allowEmptyWildcard": true,
+                            "allowWildcard": true,
+                            "createDestPath": true,
+                            "dest": "/",
+                            "dirCopyContents": true,
+                            "followSymlink": true,
+                            "mode": -1,
+                            "src": "/out",
+                            "timestamp": -1
+                          }
+                        },
+                        "input": -1,
+                        "output": 0,
+                        "secondaryInput": 0
+                      }
+                    ]
+                  }
+                },
+                "constraints": {}
+              }
+            },
+            {
+              "id": "step37",
+              "inputs": [
+                "step36:0"
+              ],
+              "op": {
+                "Op": {}
+              }
+            }
+          ]
+        },
+        "builderPlatform": "linux/amd64",
+        "github_actor": "github-actions[bot]",
+        "github_actor_id": "41898282",
+        "github_event_name": "workflow_dispatch",
+        "github_event_payload": {
+          "enterprise": {
+            "avatar_url": "https://avatars.githubusercontent.com/b/19176?v=4",
+            "created_at": "2022-12-30T23:53:17Z",
+            "description": null,
+            "html_url": "https://github.com/enterprises/docker",
+            "id": 19176,
+            "name": "Docker",
+            "node_id": "E_kgDNSug",
+            "slug": "docker",
+            "updated_at": "2026-08-05T13:20:15Z",
+            "website_url": null
+          },
+          "inputs": {
+            "release_request": "6448",
+            "releases-repo": "docker/sbx-releases",
+            "tag": "v0.46.0"
+          },
+          "organization": {
+            "avatar_url": "https://avatars.githubusercontent.com/u/5429470?v=4",
+            "description": "Docker helps developers bring their ideas to life by conquering the complexity of app development.",
+            "events_url": "https://api.github.com/orgs/docker/events",
+            "hooks_url": "https://api.github.com/orgs/docker/hooks",
+            "id": 5429470,
+            "issues_url": "https://api.github.com/orgs/docker/issues",
+            "login": "docker",
+            "members_url": "https://api.github.com/orgs/docker/members{/member}",
+            "node_id": "MDEyOk9yZ2FuaXphdGlvbjU0Mjk0NzA=",
+            "public_members_url": "https://api.github.com/orgs/docker/public_members{/member}",
+            "repos_url": "https://api.github.com/orgs/docker/repos",
+            "url": "https://api.github.com/orgs/docker"
+          },
+          "ref": "refs/tags/v0.46.0",
+          "repository": {
+            "allow_forking": true,
+            "archive_url": "https://api.github.com/repos/docker/sandboxes/{archive_format}{/ref}",
+            "archived": false,
+            "assignees_url": "https://api.github.com/repos/docker/sandboxes/assignees{/user}",
+            "blobs_url": "https://api.github.com/repos/docker/sandboxes/git/blobs{/sha}",
+            "branches_url": "https://api.github.com/repos/docker/sandboxes/branches{/branch}",
+            "clone_url": "https://github.com/docker/sandboxes.git",
+            "collaborators_url": "https://api.github.com/repos/docker/sandboxes/collaborators{/collaborator}",
+            "comments_url": "https://api.github.com/repos/docker/sandboxes/comments{/number}",
+            "commits_url": "https://api.github.com/repos/docker/sandboxes/commits{/sha}",
+            "compare_url": "https://api.github.com/repos/docker/sandboxes/compare/{base}...{head}",
+            "contents_url": "https://api.github.com/repos/docker/sandboxes/contents/{+path}",
+            "contributors_url": "https://api.github.com/repos/docker/sandboxes/contributors",
+            "created_at": "2025-09-04T19:14:20Z",
+            "custom_properties": {
+              "Tier1": "true"
+            },
+            "default_branch": "main",
+            "deployments_url": "https://api.github.com/repos/docker/sandboxes/deployments",
+            "description": "Sandboxes enable clients to create isolated environments using Docker (e.g., for use by AI agents and others)",
+            "disabled": false,
+            "downloads_url": "https://api.github.com/repos/docker/sandboxes/downloads",
+            "events_url": "https://api.github.com/repos/docker/sandboxes/events",
+            "fork": false,
+            "forks": 65,
+            "forks_count": 65,
+            "forks_url": "https://api.github.com/repos/docker/sandboxes/forks",
+            "full_name": "docker/sandboxes",
+            "git_commits_url": "https://api.github.com/repos/docker/sandboxes/git/commits{/sha}",
+            "git_refs_url": "https://api.github.com/repos/docker/sandboxes/git/refs{/sha}",
+            "git_tags_url": "https://api.github.com/repos/docker/sandboxes/git/tags{/sha}",
+            "git_url": "git://github.com/docker/sandboxes.git",
+            "has_discussions": false,
+            "has_downloads": false,
+            "has_issues": true,
+            "has_pages": true,
+            "has_projects": true,
+            "has_pull_requests": true,
+            "has_wiki": false,
+            "homepage": "",
+            "hooks_url": "https://api.github.com/repos/docker/sandboxes/hooks",
+            "html_url": "https://github.com/docker/sandboxes",
+            "id": 1050678784,
+            "is_template": false,
+            "issue_comment_url": "https://api.github.com/repos/docker/sandboxes/issues/comments{/number}",
+            "issue_events_url": "https://api.github.com/repos/docker/sandboxes/issues/events{/number}",
+            "issues_url": "https://api.github.com/repos/docker/sandboxes/issues{/number}",
+            "keys_url": "https://api.github.com/repos/docker/sandboxes/keys{/key_id}",
+            "labels_url": "https://api.github.com/repos/docker/sandboxes/labels{/name}",
+            "language": "Go",
+            "languages_url": "https://api.github.com/repos/docker/sandboxes/languages",
+            "license": {
+              "key": "other",
+              "name": "Other",
+              "node_id": "MDc6TGljZW5zZTA=",
+              "spdx_id": "NOASSERTION",
+              "url": null
+            },
+            "merges_url": "https://api.github.com/repos/docker/sandboxes/merges",
+            "milestones_url": "https://api.github.com/repos/docker/sandboxes/milestones{/number}",
+            "mirror_url": null,
+            "name": "sandboxes",
+            "node_id": "R_kgDOPqAWAA",
+            "notifications_url": "https://api.github.com/repos/docker/sandboxes/notifications{?since,all,participating}",
+            "open_issues": 721,
+            "open_issues_count": 721,
+            "owner": {
+              "avatar_url": "https://avatars.githubusercontent.com/u/5429470?v=4",
+              "events_url": "https://api.github.com/users/docker/events{/privacy}",
+              "followers_url": "https://api.github.com/users/docker/followers",
+              "following_url": "https://api.github.com/users/docker/following{/other_user}",
+              "gists_url": "https://api.github.com/users/docker/gists{/gist_id}",
+              "gravatar_id": "",
+              "html_url": "https://github.com/docker",
+              "id": 5429470,
+              "login": "docker",
+              "node_id": "MDEyOk9yZ2FuaXphdGlvbjU0Mjk0NzA=",
+              "organizations_url": "https://api.github.com/users/docker/orgs",
+              "received_events_url": "https://api.github.com/users/docker/received_events",
+              "repos_url": "https://api.github.com/users/docker/repos",
+              "site_admin": false,
+              "starred_url": "https://api.github.com/users/docker/starred{/owner}{/repo}",
+              "subscriptions_url": "https://api.github.com/users/docker/subscriptions",
+              "type": "Organization",
+              "url": "https://api.github.com/users/docker",
+              "user_view_type": "public"
+            },
+            "private": true,
+            "pull_request_creation_policy": "all",
+            "pulls_url": "https://api.github.com/repos/docker/sandboxes/pulls{/number}",
+            "pushed_at": "2026-09-28T15:39:51Z",
+            "releases_url": "https://api.github.com/repos/docker/sandboxes/releases{/id}",
+            "size": 213968,
+            "ssh_url": "git@github.com:docker/sandboxes.git",
+            "stargazers_count": 17,
+            "stargazers_url": "https://api.github.com/repos/docker/sandboxes/stargazers",
+            "statuses_url": "https://api.github.com/repos/docker/sandboxes/statuses/{sha}",
+            "subscribers_url": "https://api.github.com/repos/docker/sandboxes/subscribers",
+            "subscription_url": "https://api.github.com/repos/docker/sandboxes/subscription",
+            "svn_url": "https://github.com/docker/sandboxes",
+            "tags_url": "https://api.github.com/repos/docker/sandboxes/tags",
+            "teams_url": "https://api.github.com/repos/docker/sandboxes/teams",
+            "topics": [],
+            "trees_url": "https://api.github.com/repos/docker/sandboxes/git/trees{/sha}",
+            "updated_at": "2026-09-28T15:27:17Z",
+            "url": "https://api.github.com/repos/docker/sandboxes",
+            "visibility": "internal",
+            "watchers": 17,
+            "watchers_count": 17,
+            "web_commit_signoff_required": false
+          },
+          "sender": {
+            "avatar_url": "https://avatars.githubusercontent.com/in/15368?v=4",
+            "events_url": "https://api.github.com/users/github-actions%5Bbot%5D/events{/privacy}",
+            "followers_url": "https://api.github.com/users/github-actions%5Bbot%5D/followers",
+            "following_url": "https://api.github.com/users/github-actions%5Bbot%5D/following{/other_user}",
+            "gists_url": "https://api.github.com/users/github-actions%5Bbot%5D/gists{/gist_id}",
+            "gravatar_id": "",
+            "html_url": "https://github.com/apps/github-actions",
+            "id": 41898282,
+            "login": "github-actions[bot]",
+            "node_id": "MDM6Qm90NDE4OTgyODI=",
+            "organizations_url": "https://api.github.com/users/github-actions%5Bbot%5D/orgs",
+            "received_events_url": "https://api.github.com/users/github-actions%5Bbot%5D/received_events",
+            "repos_url": "https://api.github.com/users/github-actions%5Bbot%5D/repos",
+            "site_admin": false,
+            "starred_url": "https://api.github.com/users/github-actions%5Bbot%5D/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/github-actions%5Bbot%5D/subscriptions",
+            "type": "Bot",
+            "url": "https://api.github.com/users/github-actions%5Bbot%5D",
+            "user_view_type": "public"
+          },
+          "workflow": ".github/workflows/release.yml"
+        },
+        "github_job": "package",
+        "github_ref": "refs/tags/v0.46.0",
+        "github_ref_name": "v0.46.0",
+        "github_ref_protected": "false",
+        "github_ref_type": "tag",
+        "github_repository": "docker/sandboxes",
+        "github_repository_id": "1050678784",
+        "github_repository_owner": "docker",
+        "github_repository_owner_id": "5429470",
+        "github_run_attempt": "1",
+        "github_run_id": "36445733153",
+        "github_run_number": "147",
+        "github_runner_arch": "X64",
+        "github_runner_environment": "github-hosted",
+        "github_runner_image_os": "ubuntu24",
+        "github_runner_image_version": "20260920.314.1",
+        "github_runner_name": "GitHub Actions 1023313269",
+        "github_runner_os": "Linux",
+        "github_runner_tracking_id": "github_e26f301e-e65d-4c94-ac61-69c9737877dd",
+        "github_server_url": "https://github.com",
+        "github_triggering_actor": "github-actions[bot]",
+        "github_workflow": "Release",
+        "github_workflow_ref": "docker/sandboxes/.github/workflows/release.yml@refs/tags/v0.46.0",
+        "github_workflow_sha": "991967dc90ce0d9a440cd1df1bdf3e395c5a2693"
+      }
+    },
+    "runDetails": {
+      "builder": {
+        "id": ""
+      },
+      "metadata": {
+        "invocationId": "aefjcganve48y6xbtpvd51oka",
+        "startedOn": "2026-09-28T15:51:51.551242059Z",
+        "finishedOn": "2026-09-28T16:05:50.571209946Z",
+        "buildkit_metadata": {
+          "vcs": {
+            "localdir:context": "pkg/sbx",
+            "localdir:dockerfile": "pkg/sbx",
+            "localdir:runtime-src": "runtime-bin",
+            "localdir:scripts": "hack/scripts",
+            "revision": "bab7f4fd33035a0ded9c9e448c46d90fa32482a9",
+            "source": "https://xxxxx:xxxxx@github.com/docker/packaging"
+          },
+          "source": {
+            "locations": {
+              "step0": {
+                "locations": [
+                  {
+                    "ranges": [
+                      {
+                        "start": {
+                          "line": 210
+                        },
+                        "end": {
+                          "line": 210
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              "step1": {
+                "locations": [
+                  {
+                    "ranges": [
+                      {
+                        "start": {
+                          "line": 43
+                        },
+                        "end": {
+                          "line": 43
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              "step10": {
+                "locations": [
+                  {
+                    "ranges": [
+                      {
+                        "start": {
+                          "line": 59
+                        },
+                        "end": {
+                          "line": 59
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 60
+                        },
+                        "end": {
+                          "line": 60
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 61
+                        },
+                        "end": {
+                          "line": 61
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 62
+                        },
+                        "end": {
+                          "line": 62
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 63
+                        },
+                        "end": {
+                          "line": 63
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              "step11": {},
+              "step12": {
+                "locations": [
+                  {
+                    "ranges": [
+                      {
+                        "start": {
+                          "line": 89
+                        },
+                        "end": {
+                          "line": 89
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 90
+                        },
+                        "end": {
+                          "line": 90
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 91
+                        },
+                        "end": {
+                          "line": 91
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 92
+                        },
+                        "end": {
+                          "line": 92
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 93
+                        },
+                        "end": {
+                          "line": 93
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 94
+                        },
+                        "end": {
+                          "line": 94
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 95
+                        },
+                        "end": {
+                          "line": 95
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 96
+                        },
+                        "end": {
+                          "line": 96
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 97
+                        },
+                        "end": {
+                          "line": 97
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 98
+                        },
+                        "end": {
+                          "line": 98
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 99
+                        },
+                        "end": {
+                          "line": 99
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              "step13": {
+                "locations": [
+                  {
+                    "sourceIndex": 1,
+                    "ranges": [
+                      {
+                        "start": {
+                          "line": 26
+                        },
+                        "end": {
+                          "line": 26
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              "step14": {
+                "locations": [
+                  {
+                    "sourceIndex": 1,
+                    "ranges": [
+                      {
+                        "start": {
+                          "line": 23
+                        },
+                        "end": {
+                          "line": 23
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              "step15": {
+                "locations": [
+                  {
+                    "sourceIndex": 1,
+                    "ranges": [
+                      {
+                        "start": {
+                          "line": 27
+                        },
+                        "end": {
+                          "line": 27
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              "step16": {
+                "locations": [
+                  {
+                    "sourceIndex": 1,
+                    "ranges": [
+                      {
+                        "start": {
+                          "line": 38
+                        },
+                        "end": {
+                          "line": 38
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 39
+                        },
+                        "end": {
+                          "line": 39
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 40
+                        },
+                        "end": {
+                          "line": 40
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 41
+                        },
+                        "end": {
+                          "line": 41
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 42
+                        },
+                        "end": {
+                          "line": 42
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 43
+                        },
+                        "end": {
+                          "line": 43
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 44
+                        },
+                        "end": {
+                          "line": 44
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              "step17": {
+                "locations": [
+                  {
+                    "sourceIndex": 1,
+                    "ranges": [
+                      {
+                        "start": {
+                          "line": 45
+                        },
+                        "end": {
+                          "line": 45
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              "step18": {},
+              "step19": {
+                "locations": [
+                  {
+                    "sourceIndex": 1,
+                    "ranges": [
+                      {
+                        "start": {
+                          "line": 126
+                        },
+                        "end": {
+                          "line": 126
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 127
+                        },
+                        "end": {
+                          "line": 127
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 128
+                        },
+                        "end": {
+                          "line": 128
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              "step2": {
+                "locations": [
+                  {
+                    "ranges": [
+                      {
+                        "start": {
+                          "line": 211
+                        },
+                        "end": {
+                          "line": 211
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              "step20": {
+                "locations": [
+                  {
+                    "sourceIndex": 1,
+                    "ranges": [
+                      {
+                        "start": {
+                          "line": 140
+                        },
+                        "end": {
+                          "line": 140
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 141
+                        },
+                        "end": {
+                          "line": 141
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 142
+                        },
+                        "end": {
+                          "line": 142
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 143
+                        },
+                        "end": {
+                          "line": 143
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 144
+                        },
+                        "end": {
+                          "line": 144
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 145
+                        },
+                        "end": {
+                          "line": 145
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 146
+                        },
+                        "end": {
+                          "line": 146
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 147
+                        },
+                        "end": {
+                          "line": 147
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 148
+                        },
+                        "end": {
+                          "line": 148
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 149
+                        },
+                        "end": {
+                          "line": 149
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 150
+                        },
+                        "end": {
+                          "line": 150
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 151
+                        },
+                        "end": {
+                          "line": 151
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 152
+                        },
+                        "end": {
+                          "line": 152
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 153
+                        },
+                        "end": {
+                          "line": 153
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 154
+                        },
+                        "end": {
+                          "line": 154
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 155
+                        },
+                        "end": {
+                          "line": 155
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 156
+                        },
+                        "end": {
+                          "line": 156
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              "step21": {
+                "locations": [
+                  {
+                    "sourceIndex": 1,
+                    "ranges": [
+                      {
+                        "start": {
+                          "line": 289
+                        },
+                        "end": {
+                          "line": 289
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              "step22": {
+                "locations": [
+                  {
+                    "sourceIndex": 1,
+                    "ranges": [
+                      {
+                        "start": {
+                          "line": 24
+                        },
+                        "end": {
+                          "line": 24
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              "step23": {
+                "locations": [
+                  {
+                    "sourceIndex": 1,
+                    "ranges": [
+                      {
+                        "start": {
+                          "line": 53
+                        },
+                        "end": {
+                          "line": 53
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 54
+                        },
+                        "end": {
+                          "line": 54
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 55
+                        },
+                        "end": {
+                          "line": 55
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 56
+                        },
+                        "end": {
+                          "line": 56
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 57
+                        },
+                        "end": {
+                          "line": 57
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 58
+                        },
+                        "end": {
+                          "line": 58
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              "step24": {
+                "locations": [
+                  {
+                    "sourceIndex": 1,
+                    "ranges": [
+                      {
+                        "start": {
+                          "line": 187
+                        },
+                        "end": {
+                          "line": 187
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 188
+                        },
+                        "end": {
+                          "line": 188
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 189
+                        },
+                        "end": {
+                          "line": 189
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              "step25": {
+                "locations": [
+                  {
+                    "sourceIndex": 1,
+                    "ranges": [
+                      {
+                        "start": {
+                          "line": 159
+                        },
+                        "end": {
+                          "line": 159
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 160
+                        },
+                        "end": {
+                          "line": 160
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 161
+                        },
+                        "end": {
+                          "line": 161
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 162
+                        },
+                        "end": {
+                          "line": 162
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 163
+                        },
+                        "end": {
+                          "line": 163
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 164
+                        },
+                        "end": {
+                          "line": 164
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 165
+                        },
+                        "end": {
+                          "line": 165
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 166
+                        },
+                        "end": {
+                          "line": 166
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 167
+                        },
+                        "end": {
+                          "line": 167
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 168
+                        },
+                        "end": {
+                          "line": 168
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 169
+                        },
+                        "end": {
+                          "line": 169
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 170
+                        },
+                        "end": {
+                          "line": 170
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 171
+                        },
+                        "end": {
+                          "line": 171
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 172
+                        },
+                        "end": {
+                          "line": 172
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 173
+                        },
+                        "end": {
+                          "line": 173
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 174
+                        },
+                        "end": {
+                          "line": 174
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 175
+                        },
+                        "end": {
+                          "line": 175
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              "step26": {
+                "locations": [
+                  {
+                    "sourceIndex": 1,
+                    "ranges": [
+                      {
+                        "start": {
+                          "line": 219
+                        },
+                        "end": {
+                          "line": 219
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 220
+                        },
+                        "end": {
+                          "line": 220
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 221
+                        },
+                        "end": {
+                          "line": 221
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 222
+                        },
+                        "end": {
+                          "line": 222
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 223
+                        },
+                        "end": {
+                          "line": 223
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 224
+                        },
+                        "end": {
+                          "line": 224
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 225
+                        },
+                        "end": {
+                          "line": 225
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 226
+                        },
+                        "end": {
+                          "line": 226
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 227
+                        },
+                        "end": {
+                          "line": 227
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 228
+                        },
+                        "end": {
+                          "line": 228
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 229
+                        },
+                        "end": {
+                          "line": 229
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 230
+                        },
+                        "end": {
+                          "line": 230
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 231
+                        },
+                        "end": {
+                          "line": 231
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 232
+                        },
+                        "end": {
+                          "line": 232
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 233
+                        },
+                        "end": {
+                          "line": 233
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 234
+                        },
+                        "end": {
+                          "line": 234
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 235
+                        },
+                        "end": {
+                          "line": 235
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 236
+                        },
+                        "end": {
+                          "line": 236
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 237
+                        },
+                        "end": {
+                          "line": 237
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 238
+                        },
+                        "end": {
+                          "line": 238
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 239
+                        },
+                        "end": {
+                          "line": 239
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 240
+                        },
+                        "end": {
+                          "line": 240
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 241
+                        },
+                        "end": {
+                          "line": 241
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 242
+                        },
+                        "end": {
+                          "line": 242
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 243
+                        },
+                        "end": {
+                          "line": 243
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 244
+                        },
+                        "end": {
+                          "line": 244
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              "step27": {
+                "locations": [
+                  {
+                    "sourceIndex": 1,
+                    "ranges": [
+                      {
+                        "start": {
+                          "line": 290
+                        },
+                        "end": {
+                          "line": 290
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              "step28": {
+                "locations": [
+                  {
+                    "sourceIndex": 1,
+                    "ranges": [
+                      {
+                        "start": {
+                          "line": 290
+                        },
+                        "end": {
+                          "line": 290
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              "step29": {
+                "locations": [
+                  {
+                    "sourceIndex": 1,
+                    "ranges": [
+                      {
+                        "start": {
+                          "line": 195
+                        },
+                        "end": {
+                          "line": 195
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              "step3": {
+                "locations": [
+                  {
+                    "ranges": [
+                      {
+                        "start": {
+                          "line": 212
+                        },
+                        "end": {
+                          "line": 212
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              "step30": {
+                "locations": [
+                  {
+                    "sourceIndex": 1,
+                    "ranges": [
+                      {
+                        "start": {
+                          "line": 196
+                        },
+                        "end": {
+                          "line": 196
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              "step31": {
+                "locations": [
+                  {
+                    "sourceIndex": 1,
+                    "ranges": [
+                      {
+                        "start": {
+                          "line": 201
+                        },
+                        "end": {
+                          "line": 201
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 202
+                        },
+                        "end": {
+                          "line": 202
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 203
+                        },
+                        "end": {
+                          "line": 203
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 204
+                        },
+                        "end": {
+                          "line": 204
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 205
+                        },
+                        "end": {
+                          "line": 205
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 206
+                        },
+                        "end": {
+                          "line": 206
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 207
+                        },
+                        "end": {
+                          "line": 207
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 208
+                        },
+                        "end": {
+                          "line": 208
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 209
+                        },
+                        "end": {
+                          "line": 209
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 210
+                        },
+                        "end": {
+                          "line": 210
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 211
+                        },
+                        "end": {
+                          "line": 211
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 212
+                        },
+                        "end": {
+                          "line": 212
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              "step32": {
+                "locations": [
+                  {
+                    "sourceIndex": 1,
+                    "ranges": [
+                      {
+                        "start": {
+                          "line": 291
+                        },
+                        "end": {
+                          "line": 291
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              "step33": {
+                "locations": [
+                  {
+                    "sourceIndex": 1,
+                    "ranges": [
+                      {
+                        "start": {
+                          "line": 291
+                        },
+                        "end": {
+                          "line": 291
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              "step34": {},
+              "step35": {
+                "locations": [
+                  {
+                    "ranges": [
+                      {
+                        "start": {
+                          "line": 232
+                        },
+                        "end": {
+                          "line": 232
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 233
+                        },
+                        "end": {
+                          "line": 233
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 234
+                        },
+                        "end": {
+                          "line": 234
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 235
+                        },
+                        "end": {
+                          "line": 235
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 236
+                        },
+                        "end": {
+                          "line": 236
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 237
+                        },
+                        "end": {
+                          "line": 237
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 238
+                        },
+                        "end": {
+                          "line": 238
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 239
+                        },
+                        "end": {
+                          "line": 239
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 240
+                        },
+                        "end": {
+                          "line": 240
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 241
+                        },
+                        "end": {
+                          "line": 241
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 242
+                        },
+                        "end": {
+                          "line": 242
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 243
+                        },
+                        "end": {
+                          "line": 243
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 244
+                        },
+                        "end": {
+                          "line": 244
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 245
+                        },
+                        "end": {
+                          "line": 245
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 246
+                        },
+                        "end": {
+                          "line": 246
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 247
+                        },
+                        "end": {
+                          "line": 247
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 248
+                        },
+                        "end": {
+                          "line": 248
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 249
+                        },
+                        "end": {
+                          "line": 249
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 250
+                        },
+                        "end": {
+                          "line": 250
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 251
+                        },
+                        "end": {
+                          "line": 251
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 252
+                        },
+                        "end": {
+                          "line": 252
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 253
+                        },
+                        "end": {
+                          "line": 253
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              "step36": {
+                "locations": [
+                  {
+                    "ranges": [
+                      {
+                        "start": {
+                          "line": 259
+                        },
+                        "end": {
+                          "line": 259
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              "step4": {
+                "locations": [
+                  {
+                    "ranges": [
+                      {
+                        "start": {
+                          "line": 216
+                        },
+                        "end": {
+                          "line": 216
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              "step5": {
+                "locations": [
+                  {
+                    "ranges": [
+                      {
+                        "start": {
+                          "line": 230
+                        },
+                        "end": {
+                          "line": 230
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              "step6": {},
+              "step7": {
+                "locations": [
+                  {
+                    "ranges": [
+                      {
+                        "start": {
+                          "line": 67
+                        },
+                        "end": {
+                          "line": 67
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "ranges": [
+                      {
+                        "start": {
+                          "line": 55
+                        },
+                        "end": {
+                          "line": 55
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "ranges": [
+                      {
+                        "start": {
+                          "line": 85
+                        },
+                        "end": {
+                          "line": 85
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              "step8": {
+                "locations": [
+                  {
+                    "ranges": [
+                      {
+                        "start": {
+                          "line": 68
+                        },
+                        "end": {
+                          "line": 68
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "ranges": [
+                      {
+                        "start": {
+                          "line": 56
+                        },
+                        "end": {
+                          "line": 56
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "ranges": [
+                      {
+                        "start": {
+                          "line": 86
+                        },
+                        "end": {
+                          "line": 86
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              "step9": {
+                "locations": [
+                  {
+                    "ranges": [
+                      {
+                        "start": {
+                          "line": 71
+                        },
+                        "end": {
+                          "line": 71
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 72
+                        },
+                        "end": {
+                          "line": 72
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 73
+                        },
+                        "end": {
+                          "line": 73
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 74
+                        },
+                        "end": {
+                          "line": 74
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 75
+                        },
+                        "end": {
+                          "line": 75
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 76
+                        },
+                        "end": {
+                          "line": 76
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 77
+                        },
+                        "end": {
+                          "line": 77
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 78
+                        },
+                        "end": {
+                          "line": 78
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 79
+                        },
+                        "end": {
+                          "line": 79
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 80
+                        },
+                        "end": {
+                          "line": 80
+                        }
+                      },
+                      {
+                        "start": {
+                          "line": 81
+                        },
+                        "end": {
+                          "line": 81
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            "infos": [
+              {
+                "filename": "Dockerfile",
+                "language": "Dockerfile",
+                "data": "IyBzeW50YXg9ZG9ja2VyL2RvY2tlcmZpbGU6MQoKIyBDb3B5cmlnaHQgMjAyNiBEb2NrZXIgUGFja2FnaW5nIGF1dGhvcnMKIwojIExpY2Vuc2VkIHVuZGVyIHRoZSBBcGFjaGUgTGljZW5zZSwgVmVyc2lvbiAyLjAgKHRoZSAiTGljZW5zZSIpOwojIHlvdSBtYXkgbm90IHVzZSB0aGlzIGZpbGUgZXhjZXB0IGluIGNvbXBsaWFuY2Ugd2l0aCB0aGUgTGljZW5zZS4KIyBZb3UgbWF5IG9idGFpbiBhIGNvcHkgb2YgdGhlIExpY2Vuc2UgYXQKIwojICAgICAgaHR0cDovL3d3dy5hcGFjaGUub3JnL2xpY2Vuc2VzL0xJQ0VOU0UtMi4wCiMKIyBVbmxlc3MgcmVxdWlyZWQgYnkgYXBwbGljYWJsZSBsYXcgb3IgYWdyZWVkIHRvIGluIHdyaXRpbmcsIHNvZnR3YXJlCiMgZGlzdHJpYnV0ZWQgdW5kZXIgdGhlIExpY2Vuc2UgaXMgZGlzdHJpYnV0ZWQgb24gYW4gIkFTIElTIiBCQVNJUywKIyBXSVRIT1VUIFdBUlJBTlRJRVMgT1IgQ09ORElUSU9OUyBPRiBBTlkgS0lORCwgZWl0aGVyIGV4cHJlc3Mgb3IgaW1wbGllZC4KIyBTZWUgdGhlIExpY2Vuc2UgZm9yIHRoZSBzcGVjaWZpYyBsYW5ndWFnZSBnb3Zlcm5pbmcgcGVybWlzc2lvbnMgYW5kCiMgbGltaXRhdGlvbnMgdW5kZXIgdGhlIExpY2Vuc2UuCgpBUkcgWFhfVkVSU0lPTj0iMS45LjAiCgpBUkcgRElTVFJPX05BTUU9ImRlYmlhbjEyIgpBUkcgRElTVFJPX1RZUEU9ImRlYiIKQVJHIERJU1RST19SRUxFQVNFPSJkZWJpYW4iCkFSRyBESVNUUk9fU1VJVEU9ImJvb2t3b3JtIgpBUkcgRElTVFJPX0lEPSIxMiIKQVJHIERJU1RST19JTUFHRT0iZGViaWFuOmJvb2t3b3JtIgoKQVJHIFBLR19OQU1FPSJkb2NrZXItc2J4IgpBUkcgVkVSU0lPTgoKQVJHIEVST0ZTX1VUSUxTX1JFUE89Imh0dHBzOi8vZ2l0aHViLmNvbS9lcm9mcy9lcm9mcy11dGlscy5naXQiCkFSRyBFUk9GU19VVElMU19WRVJTSU9OPSJtYXN0ZXIiCgpBUkcgRE9DS0VSX05FWFRfUkVQTz0iaHR0cHM6Ly9naXRodWIuY29tL2RvY2tlci9kb2NrZXItbmV4dC5naXQiCkFSRyBET0NLRVJfTkVYVF9WRVJTSU9OPSJtYWluIgoKQVJHIFNBSUxPUl9SRVBPPSJodHRwczovL2dpdGh1Yi5jb20vZG9ja2VyL3NhaWxvciIKQVJHIFNBSUxPUl9WRVJTSU9OPSJtYWluIgoKIyBzdGFnZSB1c2VkIGFzIG5hbWVkIGNvbnRleHQgdGhhdCBtb3VudHMgaGFjay9zY3JpcHRzCiMgc2VlIHBrZyB0YXJnZXQgaW4gZG9ja2VyLWJha2UuaGNsCkZST00gc2NyYXRjaCBBUyBzY3JpcHRzCgojIGNyb3NzIGNvbXBpbGF0aW9uIGhlbHBlcgpGUk9NIC0tcGxhdGZvcm09JEJVSUxEUExBVEZPUk0gdG9uaXN0aWlnaS94eDoke1hYX1ZFUlNJT059IEFTIHh4CgojIFByZS1idWlsdCBiaW5hcnkgZnJvbSB0aGUgc2J4IHJlcG8ncyBvd24gRG9ja2VyZmlsZSAoYmluYXJpZXMgdGFyZ2V0KS4KIyBPdmVycmlkZGVuIHZpYSBuYW1lZCBjb250ZXh0IGluIGRvY2tlci1iYWtlLmhjbC4KRlJPTSBzY3JhdGNoIEFTIHNieC1zcmMKCiMgUHJlLWJ1aWx0IHJ1bnRpbWUgYmluYXJpZXMgZmV0Y2hlZCBieSBzY3JpcHRzL2ZldGNoLXJ1bnRpbWUtYmluYXJpZXMuc2guCiMgT3ZlcnJpZGRlbiB2aWEgbmFtZWQgY29udGV4dCBpbiBkb2NrZXItYmFrZS5oY2wuCkZST00gc2NyYXRjaCBBUyBydW50aW1lLXNyYwoKIyBDbG9uZSBlcm9mcy11dGlscyBzb3VyY2UgZm9yIGJ1aWxkaW5nIGluc2lkZSBlYWNoIGRpc3Ryby1zcGVjaWZpYyBidWlsZGVyLgojIFZlcnNpb25zIGNvbWUgZnJvbSBkb2NrZXItbmV4dCdzIGhhY2svdmVyc2lvbnMuc2ggYW5kIG1heSBiZSBhIHRhZyBvciBjb21taXQgU0hBLgpGUk9NIC0tcGxhdGZvcm09JEJVSUxEUExBVEZPUk0gZGViaWFuOmJvb2t3b3JtLXNsaW0gQVMgZXJvZnMtc3JjClJVTiBhcHQtZ2V0IHVwZGF0ZSAmJiBhcHQtZ2V0IGluc3RhbGwgLXkgLS1uby1pbnN0YWxsLXJlY29tbWVuZHMgY2EtY2VydGlmaWNhdGVzIGdpdApBUkcgRVJPRlNfVVRJTFNfUkVQTwpBUkcgRVJPRlNfVVRJTFNfVkVSU0lPTgpSVU4gZ2l0IGluaXQgL3NyYy9lcm9mcy11dGlscyBcCiAgICAmJiBjZCAvc3JjL2Vyb2ZzLXV0aWxzIFwKICAgICYmIGdpdCByZW1vdGUgYWRkIG9yaWdpbiAiJHtFUk9GU19VVElMU19SRVBPfSIgXAogICAgJiYgZ2l0IGZldGNoIC0tZGVwdGggMSBvcmlnaW4gIiR7RVJPRlNfVVRJTFNfVkVSU0lPTn0iIFwKICAgICYmIGdpdCBjaGVja291dCBGRVRDSF9IRUFECgojIENsb25lIGRvY2tlci1uZXh0IHNvdXJjZSBmb3IgYnVpbGRpbmcgY29udGFpbmVyZC1zaGltLW5lcmRib3gtdjEgZnJvbSBzb3VyY2UuCiMgVmVyc2lvbiBjb21lcyBmcm9tIHRoZSBkb2NrZXItbmV4dCByZWxlYXNlIHBpbm5lZCBpbiBnby5tb2QuCkZST00gLS1wbGF0Zm9ybT0kQlVJTERQTEFURk9STSBkZWJpYW46Ym9va3dvcm0tc2xpbSBBUyBkb2NrZXItbmV4dC1zcmMKUlVOIGFwdC1nZXQgdXBkYXRlICYmIGFwdC1nZXQgaW5zdGFsbCAteSAtLW5vLWluc3RhbGwtcmVjb21tZW5kcyBjYS1jZXJ0aWZpY2F0ZXMgZ2l0CkFSRyBET0NLRVJfTkVYVF9SRVBPCkFSRyBET0NLRVJfTkVYVF9WRVJTSU9OClJVTiAtLW1vdW50PXR5cGU9c2VjcmV0LGlkPUdJVEhVQl9UT0tFTiBcCiAgICAtLW1vdW50PXR5cGU9YmluZCxzb3VyY2U9c2NyaXB0cy9zZXR1cC1naXRodWItdG9rZW4uc2gsdGFyZ2V0PS91c3IvbG9jYWwvYmluL3NldHVwLWdpdGh1Yi10b2tlbiA8PEVPVAogIHNldCAtZQogIHNldHVwLWdpdGh1Yi10b2tlbgogIGdpdCBpbml0IC9zcmMvZG9ja2VyLW5leHQKICBjZCAvc3JjL2RvY2tlci1uZXh0CiAgZ2l0IHJlbW90ZSBhZGQgb3JpZ2luICIke0RPQ0tFUl9ORVhUX1JFUE99IgogIGdpdCBmZXRjaCAtLWRlcHRoIDEgb3JpZ2luICIke0RPQ0tFUl9ORVhUX1ZFUlNJT059IgogIGdpdCBjaGVja291dCBGRVRDSF9IRUFECiAgcm0gLWYgIiRIT01FLy5naXRjb25maWciCkVPVAoKIyBDbG9uZSBzYWlsb3Igc291cmNlIGZvciBidWlsZGluZyBsaWJzYWlsb3Iuc28gZnJvbSBzb3VyY2UuCiMgVmVyc2lvbnMgY29tZSBmcm9tIGRvY2tlci1uZXh0J3MgaGFjay92ZXJzaW9ucy5zaCBhbmQgbWF5IGJlIGEgdGFnIG9yIGNvbW1pdCBTSEEuCkZST00gLS1wbGF0Zm9ybT0kQlVJTERQTEFURk9STSBkZWJpYW46Ym9va3dvcm0tc2xpbSBBUyBzYWlsb3Itc3JjClJVTiBhcHQtZ2V0IHVwZGF0ZSAmJiBhcHQtZ2V0IGluc3RhbGwgLXkgLS1uby1pbnN0YWxsLXJlY29tbWVuZHMgY2EtY2VydGlmaWNhdGVzIGdpdApBUkcgU0FJTE9SX1JFUE8KQVJHIFNBSUxPUl9WRVJTSU9OClJVTiAtLW1vdW50PXR5cGU9c2VjcmV0LGlkPUdJVEhVQl9UT0tFTiBcCiAgICAtLW1vdW50PXR5cGU9YmluZCxzb3VyY2U9c2NyaXB0cy9zZXR1cC1naXRodWItdG9rZW4uc2gsdGFyZ2V0PS91c3IvbG9jYWwvYmluL3NldHVwLWdpdGh1Yi10b2tlbiA8PEVPVAogIHNldCAtZQogIHNldHVwLWdpdGh1Yi10b2tlbgogIGdpdCBpbml0IC9zcmMvc2FpbG9yCiAgY2QgL3NyYy9zYWlsb3IKICBnaXQgcmVtb3RlIGFkZCBvcmlnaW4gIiR7U0FJTE9SX1JFUE99IgogIGdpdCBmZXRjaCAtLWRlcHRoIDEgb3JpZ2luICIke1NBSUxPUl9WRVJTSU9OfSIKICBnaXQgY2hlY2tvdXQgRkVUQ0hfSEVBRAogIHJtIC1mICIkSE9NRS8uZ2l0Y29uZmlnIgpFT1QKCiMgZGViCkZST00gJHtESVNUUk9fSU1BR0V9IEFTIGJ1aWxkZXItZGViCkNPUFkgLS1mcm9tPXh4IC8gLwpBUkcgRElTVFJPX05BTUUKUlVOIGFwdC1nZXQgdXBkYXRlICYmIGFwdC1nZXQgaW5zdGFsbCAteSAtLW5vLWluc3RhbGwtcmVjb21tZW5kcyBhcHQtdXRpbHMgYmFzaCBjYS1jZXJ0aWZpY2F0ZXMgY3VybCBkZXZzY3JpcHRzIGVxdWl2cyBnaXQKQ09QWSBkZWIgL3Jvb3QvcGFja2FnZS9kZWJpYW4KQ09QWSBUSElSRC1QQVJUWS1OT1RJQ0VTIC9yb290L3BhY2thZ2UvVEhJUkQtUEFSVFktTk9USUNFUwpBUkcgVEFSR0VUUExBVEZPUk0KUlVOIG1rLWJ1aWxkLWRlcHMgLXQgInh4LWFwdC1nZXQgLW8gRGVidWc6OnBrZ1Byb2JsZW1SZXNvbHZlcj15ZXMgLS1uby1pbnN0YWxsLXJlY29tbWVuZHMgLXkiIC1pIC9yb290L3BhY2thZ2UvZGViaWFuL2NvbnRyb2wKUlVOIGN1cmwgLS1wcm90byAnPWh0dHBzJyAtLXRsc3YxLjIgLXNTZiBodHRwczovL3NoLnJ1c3R1cC5ycyB8IHNoIC1zIC0tIC15IC0tZGVmYXVsdC10b29sY2hhaW4gc3RhYmxlIC0tcHJvZmlsZSBtaW5pbWFsCkVOViBQQVRIPSIvcm9vdC8uY2FyZ28vYmluOiR7UEFUSH0iCiMgSGFyZGVuIENhcmdvIGRvd25sb2FkcyBhZ2FpbnN0IGZsYWt5IHByb3h5L0NETiBjb25uZWN0aW9uczogcmV0cnkgdHJhbnNpZW50CiMgZmFpbHVyZXMgKGRlZmF1bHQgMiksIGRpc2FibGUgSFRUUC8yIG11bHRpcGxleGluZywgd2hpY2ggdHJpZ2dlcnMKIyAiSFRUUDIgZnJhbWluZyBsYXllciIgLyBtaWQtdHJhbnNmZXIgRU9GIGVycm9ycyB0aHJvdWdoIHNvbWUgcHJveGllcywgYW5kCiMgZmV0Y2ggZ2l0IGRlcGVuZGVuY2llcyB2aWEgdGhlIGdpdCBDTEkgaW5zdGVhZCBvZiB0aGUgYnVuZGxlZCBsaWJnaXQyIOKAlAojIGxpYmdpdDIgaW50ZXJtaXR0ZW50bHkgZmFpbHMgdGhlIGNsb25lIHdpdGggInNwdXJpb3VzIG5ldHdvcmsgZXJyb3IgLi4uCiMgTm8gc3VjaCBmaWxlIG9yIGRpcmVjdG9yeSAob3MgZXJyb3IgMikiIG9uIHRoZSBDSSBydW5uZXJzLgpFTlYgQ0FSR09fTkVUX1JFVFJZPTEwCkVOViBDQVJHT19IVFRQX01VTFRJUExFWElORz1mYWxzZQpFTlYgQ0FSR09fTkVUX0dJVF9GRVRDSF9XSVRIX0NMST10cnVlCldPUktESVIgL3Jvb3QvcGFja2FnZQpBUkcgTklHSFRMWV9CVUlMRApBUkcgVkVSU0lPTgpBUkcgRElTVFJPX1JFTEVBU0UKQVJHIERJU1RST19JRApBUkcgRElTVFJPX1NVSVRFCkFSRyBQS0dfTkFNRQpBUkcgUEtHX1BBQ0tBR0VSCkFSRyBQS0dfREVCX0JVSUxERkxBR1MKQVJHIFBLR19ERUJfUkVWSVNJT04KQVJHIFBLR19ERUJfRVBPQ0gKQVJHIFNPVVJDRV9EQVRFX0VQT0NIClJVTiAtLW1vdW50PXR5cGU9c2VjcmV0LGlkPUdJVEhVQl9UT0tFTiBcCiAgICAtLW1vdW50PXR5cGU9YmluZCxzb3VyY2U9c2NyaXB0cy9zZXR1cC1naXRodWItdG9rZW4uc2gsdGFyZ2V0PS91c3IvbG9jYWwvYmluL3NldHVwLWdpdGh1Yi10b2tlbiBcCiAgICAtLW1vdW50PXR5cGU9YmluZCxzb3VyY2U9c2NyaXB0cy9wa2ctZGViLWJ1aWxkLnNoLHRhcmdldD0vdXNyL2xvY2FsL2Jpbi9wa2ctZGViLWJ1aWxkIFwKICAgIC0tbW91bnQ9dHlwZT1iaW5kLHNvdXJjZT1zY3JpcHRzL2J1aWxkLWVyb2ZzLnNoLHRhcmdldD0vdXNyL2xvY2FsL2Jpbi9idWlsZC1lcm9mcyBcCiAgICAtLW1vdW50PXR5cGU9YmluZCxzb3VyY2U9c2NyaXB0cy9idWlsZC1zYWlsb3Iuc2gsdGFyZ2V0PS91c3IvbG9jYWwvYmluL2J1aWxkLXNhaWxvciBcCiAgICAtLW1vdW50PXR5cGU9YmluZCxmcm9tPXNjcmlwdHMsc291cmNlPWdlbi1kZWItY2hhbmdlbG9nLnNoLHRhcmdldD0vdXNyL2xvY2FsL2Jpbi9nZW4tZGViLWNoYW5nZWxvZyBcCiAgICAtLW1vdW50PXR5cGU9YmluZCxmcm9tPXNjcmlwdHMsc291cmNlPWZpeC1jYy5zaCx0YXJnZXQ9L3Vzci9sb2NhbC9iaW4vZml4LWNjIFwKICAgIC0tbW91bnQ9dHlwZT1iaW5kLGZyb209c2J4LXNyYyx0YXJnZXQ9L29wdC9zYngtYmluIFwKICAgIC0tbW91bnQ9dHlwZT1iaW5kLGZyb209cnVudGltZS1zcmMsdGFyZ2V0PS9vcHQvcnVudGltZS1iaW4gXAogICAgLS1tb3VudD10eXBlPWJpbmQsZnJvbT1lcm9mcy1zcmMsc291cmNlPS9zcmMvZXJvZnMtdXRpbHMsdGFyZ2V0PS9vcHQvZXJvZnMtc3JjIFwKICAgIC0tbW91bnQ9dHlwZT1iaW5kLGZyb209ZG9ja2VyLW5leHQtc3JjLHNvdXJjZT0vc3JjL2RvY2tlci1uZXh0LHRhcmdldD0vb3B0L2RvY2tlci1uZXh0LXNyYyBcCiAgICAtLW1vdW50PXR5cGU9YmluZCxmcm9tPXNhaWxvci1zcmMsc291cmNlPS9zcmMvc2FpbG9yLHRhcmdldD0vb3B0L3NhaWxvci1zcmMgXAogICAgLS1tb3VudD10eXBlPWJpbmQsc291cmNlPWFwcGFybW9yLHRhcmdldD0vb3B0L2FwcGFybW9yIDw8RU9UCiAgc2V0IC1lCiAgc2V0dXAtZ2l0aHViLXRva2VuCiAgT1VURElSPS9vdXQgcGtnLWRlYi1idWlsZAogIHJtIC1mICIkSE9NRS8uZ2l0Y29uZmlnIgpFT1QKCiMgcnBtCkZST00gJHtESVNUUk9fSU1BR0V9IEFTIGJ1aWxkZXItcnBtCkNPUFkgLS1mcm9tPXh4IC8gLwpBUkcgRElTVFJPX05BTUUKUlVOIC0tbW91bnQ9dHlwZT1iaW5kLGZyb209c2NyaXB0cyxzb3VyY2U9cnBtLWluaXQuc2gsdGFyZ2V0PS91c3IvbG9jYWwvYmluL3JwbS1pbml0IFwKICBycG0taW5pdCAkRElTVFJPX05BTUUKQ09QWSBycG0gL3Jvb3QvcnBtYnVpbGQvU1BFQ1MKQVJHIFRBUkdFVFBMQVRGT1JNClJVTiAtLW1vdW50PXR5cGU9YmluZCxmcm9tPXNjcmlwdHMsc291cmNlPXJwbS1idWlsZGRlcC5zaCx0YXJnZXQ9L3Vzci9sb2NhbC9iaW4vcnBtLWJ1aWxkZGVwIFwKICBycG0tYnVpbGRkZXAgJCh4eC1pbmZvIHJoZWwtYXJjaCkgL3Jvb3QvcnBtYnVpbGQvU1BFQ1MKUlVOIGN1cmwgLS1wcm90byAnPWh0dHBzJyAtLXRsc3YxLjIgLXNTZiBodHRwczovL3NoLnJ1c3R1cC5ycyB8IHNoIC1zIC0tIC15IC0tZGVmYXVsdC10b29sY2hhaW4gc3RhYmxlIC0tcHJvZmlsZSBtaW5pbWFsCkVOViBQQVRIPSIvcm9vdC8uY2FyZ28vYmluOiR7UEFUSH0iCiMgSGFyZGVuIENhcmdvIGRvd25sb2FkcyBhZ2FpbnN0IGZsYWt5IHByb3h5L0NETiBjb25uZWN0aW9uczogcmV0cnkgdHJhbnNpZW50CiMgZmFpbHVyZXMgKGRlZmF1bHQgMiksIGRpc2FibGUgSFRUUC8yIG11bHRpcGxleGluZywgd2hpY2ggdHJpZ2dlcnMKIyAiSFRUUDIgZnJhbWluZyBsYXllciIgLyBtaWQtdHJhbnNmZXIgRU9GIGVycm9ycyB0aHJvdWdoIHNvbWUgcHJveGllcywgYW5kCiMgZmV0Y2ggZ2l0IGRlcGVuZGVuY2llcyB2aWEgdGhlIGdpdCBDTEkgaW5zdGVhZCBvZiB0aGUgYnVuZGxlZCBsaWJnaXQyIOKAlAojIGxpYmdpdDIgaW50ZXJtaXR0ZW50bHkgZmFpbHMgdGhlIGNsb25lIHdpdGggInNwdXJpb3VzIG5ldHdvcmsgZXJyb3IgLi4uCiMgTm8gc3VjaCBmaWxlIG9yIGRpcmVjdG9yeSAob3MgZXJyb3IgMikiIG9uIHRoZSBDSSBydW5uZXJzLgpFTlYgQ0FSR09fTkVUX1JFVFJZPTEwCkVOViBDQVJHT19IVFRQX01VTFRJUExFWElORz1mYWxzZQpFTlYgQ0FSR09fTkVUX0dJVF9GRVRDSF9XSVRIX0NMST10cnVlCldPUktESVIgL3Jvb3QvcnBtYnVpbGQKQVJHIE5JR0hUTFlfQlVJTEQKQVJHIFZFUlNJT04KQVJHIERJU1RST19SRUxFQVNFCkFSRyBESVNUUk9fSUQKQVJHIERJU1RST19TVUlURQpBUkcgUEtHX05BTUUKQVJHIFBLR19QQUNLQUdFUgpBUkcgUEtHX1JQTV9CVUlMREZMQUdTCkFSRyBQS0dfUlBNX1JFTEVBU0UKQVJHIFNPVVJDRV9EQVRFX0VQT0NIClJVTiAtLW1vdW50PXR5cGU9c2VjcmV0LGlkPUdJVEhVQl9UT0tFTiBcCiAgICAtLW1vdW50PXR5cGU9YmluZCxzb3VyY2U9c2NyaXB0cy9zZXR1cC1naXRodWItdG9rZW4uc2gsdGFyZ2V0PS91c3IvbG9jYWwvYmluL3NldHVwLWdpdGh1Yi10b2tlbiBcCiAgICAtLW1vdW50PXR5cGU9YmluZCxzb3VyY2U9c2NyaXB0cy9wa2ctcnBtLWJ1aWxkLnNoLHRhcmdldD0vdXNyL2xvY2FsL2Jpbi9wa2ctcnBtLWJ1aWxkIFwKICAgIC0tbW91bnQ9dHlwZT1iaW5kLHNvdXJjZT1zY3JpcHRzL2J1aWxkLWVyb2ZzLnNoLHRhcmdldD0vdXNyL2xvY2FsL2Jpbi9idWlsZC1lcm9mcyBcCiAgICAtLW1vdW50PXR5cGU9YmluZCxzb3VyY2U9c2NyaXB0cy9idWlsZC1zYWlsb3Iuc2gsdGFyZ2V0PS91c3IvbG9jYWwvYmluL2J1aWxkLXNhaWxvciBcCiAgICAtLW1vdW50PXR5cGU9YmluZCxmcm9tPXNjcmlwdHMsc291cmNlPWZpeC1jYy5zaCx0YXJnZXQ9L3Vzci9sb2NhbC9iaW4vZml4LWNjIFwKICAgIC0tbW91bnQ9dHlwZT1iaW5kLGZyb209c2J4LXNyYyx0YXJnZXQ9L29wdC9zYngtYmluIFwKICAgIC0tbW91bnQ9dHlwZT1iaW5kLGZyb209cnVudGltZS1zcmMsdGFyZ2V0PS9vcHQvcnVudGltZS1iaW4gXAogICAgLS1tb3VudD10eXBlPWJpbmQsZnJvbT1lcm9mcy1zcmMsc291cmNlPS9zcmMvZXJvZnMtdXRpbHMsdGFyZ2V0PS9vcHQvZXJvZnMtc3JjIFwKICAgIC0tbW91bnQ9dHlwZT1iaW5kLGZyb209ZG9ja2VyLW5leHQtc3JjLHNvdXJjZT0vc3JjL2RvY2tlci1uZXh0LHRhcmdldD0vb3B0L2RvY2tlci1uZXh0LXNyYyBcCiAgICAtLW1vdW50PXR5cGU9YmluZCxmcm9tPXNhaWxvci1zcmMsc291cmNlPS9zcmMvc2FpbG9yLHRhcmdldD0vb3B0L3NhaWxvci1zcmMgXAogICAgLS1tb3VudD10eXBlPWJpbmQsc291cmNlPWFwcGFybW9yLHRhcmdldD0vb3B0L2FwcGFybW9yIFwKICAgIC0tbW91bnQ9dHlwZT1iaW5kLHNvdXJjZT1USElSRC1QQVJUWS1OT1RJQ0VTLHRhcmdldD0vb3B0L25vdGljZXMvVEhJUkQtUEFSVFktTk9USUNFUyBcCiAgICAtLW1vdW50PXR5cGU9YmluZCxzb3VyY2U9TElDRU5TRSx0YXJnZXQ9L29wdC9MSUNFTlNFIDw8RU9UCiAgc2V0IC1lCiAgc2V0dXAtZ2l0aHViLXRva2VuCiAgT1VURElSPS9vdXQgcGtnLXJwbS1idWlsZAogIHJtIC1mICIkSE9NRS8uZ2l0Y29uZmlnIgpFT1QKCiMgc3RhdGljCiMgZ2xpYmMgZmxvb3IgZm9yIHRoZSBzdGF0aWMgdGFyYmFsbCdzIG5hdGl2ZSBhcnRpZmFjdHM6IHBpbiB0aGUgYmFzZSB0byB0aGUKIyBvbGRlc3QgaW4tc3VwcG9ydCBnbGliYyAoMi4zNCwgRUw5IC8gQW1hem9uIExpbnV4IDIwMjMpLiBnbGliYyBpcyBub3QKIyBmb3J3YXJkLWNvbXBhdGlibGUsIHNvIHRoaXMgYmFzZSBtdXN0IG5vdCBleGNlZWQgdGhlIGZsb29yLiBTZWUKIyBkb2NzL3J1bmJvb2tzL3N0YXRpYy10YXJiYWxsLWdsaWJjLWZsb29yLm1kIGZvciB0aGUgZGVyaXZhdGlvbiBhbmQgaG93IHRvCiMgY2hhbmdlIGl0LgpGUk9NIC0tcGxhdGZvcm09JEJVSUxEUExBVEZPUk0gYWxtYWxpbnV4OjkgQVMgYnVpbGRlci1zdGF0aWMKQ09QWSAtLWZyb209eHggLyAvClJVTiBkbmYgaW5zdGFsbCAteSAtLWFsbG93ZXJhc2luZyBiYXNoIGNhLWNlcnRpZmljYXRlcyBjdXJsIGZpbGUgemlwIHRhciBnemlwIGdpdCBnY2MgZ2xpYmMtZGV2ZWwgZ29sYW5nICYmIGRuZiBjbGVhbiBhbGwKIyBUaGUgZGlzdHJvIGdvbGFuZyBpcyBvbmx5IHRoZSBib290c3RyYXA7IEdPVE9PTENIQUlOPWF1dG8gaG9ub3VycyB0aGUgZXhhY3QKIyB0b29sY2hhaW4gZG9ja2VyLW5leHQncyBnby5tb2QgcGlucyAoZG93bmxvYWRpbmcgaXQgaWYgaXQgaXMgbmV3ZXIpLgpFTlYgR09UT09MQ0hBSU49YXV0bwpSVU4gY3VybCAtLXByb3RvICc9aHR0cHMnIC0tdGxzdjEuMiAtc1NmIGh0dHBzOi8vc2gucnVzdHVwLnJzIHwgc2ggLXMgLS0gLXkgLS1kZWZhdWx0LXRvb2xjaGFpbiBzdGFibGUgLS1wcm9maWxlIG1pbmltYWwKRU5WIFBBVEg9Ii9yb290Ly5jYXJnby9iaW46JHtQQVRIfSIKIyBIYXJkZW4gQ2FyZ28gZG93bmxvYWRzIGFnYWluc3QgZmxha3kgcHJveHkvQ0ROIGNvbm5lY3Rpb25zOiByZXRyeSB0cmFuc2llbnQKIyBmYWlsdXJlcyAoZGVmYXVsdCAyKSwgZGlzYWJsZSBIVFRQLzIgbXVsdGlwbGV4aW5nLCB3aGljaCB0cmlnZ2VycwojICJIVFRQMiBmcmFtaW5nIGxheWVyIiAvIG1pZC10cmFuc2ZlciBFT0YgZXJyb3JzIHRocm91Z2ggc29tZSBwcm94aWVzLCBhbmQKIyBmZXRjaCBnaXQgZGVwZW5kZW5jaWVzIHZpYSB0aGUgZ2l0IENMSSBpbnN0ZWFkIG9mIHRoZSBidW5kbGVkIGxpYmdpdDIg4oCUCiMgbGliZ2l0MiBpbnRlcm1pdHRlbnRseSBmYWlscyB0aGUgY2xvbmUgd2l0aCAic3B1cmlvdXMgbmV0d29yayBlcnJvciAuLi4KIyBObyBzdWNoIGZpbGUgb3IgZGlyZWN0b3J5IChvcyBlcnJvciAyKSIgb24gdGhlIENJIHJ1bm5lcnMuCkVOViBDQVJHT19ORVRfUkVUUlk9MTAKRU5WIENBUkdPX0hUVFBfTVVMVElQTEVYSU5HPWZhbHNlCkVOViBDQVJHT19ORVRfR0lUX0ZFVENIX1dJVEhfQ0xJPXRydWUKQVJHIFBLR19OQU1FCkFSRyBWRVJTSU9OCkFSRyBOSUdIVExZX0JVSUxECldPUktESVIgL2J1aWxkCkFSRyBUQVJHRVRQTEFURk9STQpSVU4gLS1tb3VudD10eXBlPXNlY3JldCxpZD1HSVRIVUJfVE9LRU4gXAogICAgLS1tb3VudD10eXBlPWJpbmQsc291cmNlPXNjcmlwdHMvc2V0dXAtZ2l0aHViLXRva2VuLnNoLHRhcmdldD0vdXNyL2xvY2FsL2Jpbi9zZXR1cC1naXRodWItdG9rZW4gXAogICAgLS1tb3VudD10eXBlPWJpbmQsc291cmNlPXNjcmlwdHMvcGtnLXN0YXRpYy1idWlsZC5zaCx0YXJnZXQ9L3Vzci9sb2NhbC9iaW4vcGtnLXN0YXRpYy1idWlsZCBcCiAgICAtLW1vdW50PXR5cGU9YmluZCxzb3VyY2U9c2NyaXB0cy9idWlsZC1lcm9mcy5zaCx0YXJnZXQ9L3Vzci9sb2NhbC9iaW4vYnVpbGQtZXJvZnMgXAogICAgLS1tb3VudD10eXBlPWJpbmQsc291cmNlPXNjcmlwdHMvYnVpbGQtbmVyZGJveC5zaCx0YXJnZXQ9L3Vzci9sb2NhbC9iaW4vYnVpbGQtc2hpbSBcCiAgICAtLW1vdW50PXR5cGU9YmluZCxzb3VyY2U9c2NyaXB0cy9idWlsZC1ncHUtc2hpbS5zaCx0YXJnZXQ9L3Vzci9sb2NhbC9iaW4vYnVpbGQtZ3B1LXNoaW0gXAogICAgLS1tb3VudD10eXBlPWJpbmQsc291cmNlPXNjcmlwdHMvYnVpbGQtc2FpbG9yLnNoLHRhcmdldD0vdXNyL2xvY2FsL2Jpbi9idWlsZC1zYWlsb3IgXAogICAgLS1tb3VudD10eXBlPWJpbmQsZnJvbT1zY3JpcHRzLHNvdXJjZT1maXgtY2Muc2gsdGFyZ2V0PS91c3IvbG9jYWwvYmluL2ZpeC1jYyBcCiAgICAtLW1vdW50PXR5cGU9YmluZCxmcm9tPXNieC1zcmMsdGFyZ2V0PS9vcHQvc2J4LWJpbiBcCiAgICAtLW1vdW50PXR5cGU9YmluZCxmcm9tPXJ1bnRpbWUtc3JjLHRhcmdldD0vb3B0L3J1bnRpbWUtYmluIFwKICAgIC0tbW91bnQ9dHlwZT1iaW5kLGZyb209ZXJvZnMtc3JjLHNvdXJjZT0vc3JjL2Vyb2ZzLXV0aWxzLHRhcmdldD0vb3B0L2Vyb2ZzLXNyYyBcCiAgICAtLW1vdW50PXR5cGU9YmluZCxmcm9tPWRvY2tlci1uZXh0LXNyYyxzb3VyY2U9L3NyYy9kb2NrZXItbmV4dCx0YXJnZXQ9L29wdC9kb2NrZXItbmV4dC1zcmMgXAogICAgLS1tb3VudD10eXBlPWJpbmQsZnJvbT1zYWlsb3Itc3JjLHNvdXJjZT0vc3JjL3NhaWxvcix0YXJnZXQ9L29wdC9zYWlsb3Itc3JjIFwKICAgIC0tbW91bnQ9dHlwZT1iaW5kLHNvdXJjZT1USElSRC1QQVJUWS1OT1RJQ0VTLHRhcmdldD0vb3B0L25vdGljZXMvVEhJUkQtUEFSVFktTk9USUNFUyBcCiAgICAtLW1vdW50PXR5cGU9YmluZCxzb3VyY2U9TElDRU5TRSx0YXJnZXQ9L29wdC9MSUNFTlNFIFwKICAgIC0tbW91bnQ9dHlwZT1iaW5kLHNvdXJjZT1hcHBhcm1vcix0YXJnZXQ9L29wdC9hcHBhcm1vciBcCiAgICAtLW1vdW50PXR5cGU9YmluZCxzb3VyY2U9c2NyaXB0cy9pbnN0YWxsLnNoLHRhcmdldD0vb3B0L2luc3RhbGwtc2NyaXB0L2luc3RhbGwuc2ggPDxFT1QKICBzZXQgLWUKICBzZXR1cC1naXRodWItdG9rZW4KICBPVVRESVI9L291dCBCVUlMRERJUj0vYnVpbGQgcGtnLXN0YXRpYy1idWlsZAogIHJtIC1mICIkSE9NRS8uZ2l0Y29uZmlnIgpFT1QKCkZST00gYnVpbGRlci0ke0RJU1RST19UWVBFfSBBUyBidWlsZC1wa2cKQVJHIEJVSUxES0lUX1NCT01fU0NBTl9TVEFHRT10cnVlCgpGUk9NIHNjcmF0Y2ggQVMgcGtnCkNPUFkgLS1mcm9tPWJ1aWxkLXBrZyAvb3V0IC8K",
+                "llbDefinition": [
+                  {
+                    "id": "step0",
+                    "op": {
+                      "Op": {
+                        "source": {
+                          "identifier": "local://dockerfile",
+                          "attrs": {
+                            "local.differ": "none",
+                            "local.followpaths": "[\"Dockerfile\",\"Dockerfile.dockerignore\",\"dockerfile\"]",
+                            "local.sharedkeyhint": "dockerfile"
+                          }
+                        }
+                      },
+                      "constraints": {}
+                    }
+                  },
+                  {
+                    "id": "step1",
+                    "op": {
+                      "Op": {}
+                    },
+                    "inputs": [
+                      "step0:0"
+                    ]
+                  }
+                ],
+                "digestMapping": {
+                  "sha256:0c8a9e846bc17666661169a0022a38c46f4210fb07488bf15e0e6bf359a57372": "step1",
+                  "sha256:73378b40cbcce2998d5e3242356f08f3d7defd11fcb99557b31b2e9bb9e181e5": "step0"
+                }
+              },
+              {
+                "filename": "Dockerfile",
+                "language": "Dockerfile",
+                "data": "IyBzeW50YXg9ZG9ja2VyL2RvY2tlcmZpbGU6MQoKQVJHIEdPX1ZFUlNJT049IjEuMjcuMCIKQVJHIEFMUElORV9WRVJTSU9OPSIzLjIzIgpBUkcgWFhfVkVSU0lPTj0iMS42LjEiCiMgUGlubmVkIHZlcnNpb24gb2Ygb2FwaS1jb2RlZ2VuIHVzZWQgdG8gcmVnZW5lcmF0ZSBzYW5kYm94YXBpLyouZ2VuLmdvLgojIEJ1bXAgdGhpcyB0b2dldGhlciB3aXRoIHRoZSB2ZXJzaW9uIGluIHRoZSBnZW5lcmF0ZWQgZmlsZSBoZWFkZXJzLgpBUkcgT0FQSV9DT0RFR0VOX1ZFUlNJT049InYyLjYuMCIKIyBTb3VyY2Ugb2YgdGhlIGxsbW1hbiBDTEk6IHZlbmRvcmVkIGFzIHVwc3RyZWFtJ3Mgb3duIHByZWJ1aWx0IHJlbGVhc2UKIyBiaW5hcnkgZm9yIGV2ZXJ5IHBsYXRmb3JtIChzZWUgc2NyaXB0cy9kb3dubG9hZC1sbG1tYW4uc2gsIGFuZAojIGxsbW1hbi1mZXRjaCBiZWxvdykgcmF0aGVyIHRoYW4gY3Jvc3MtY29tcGlsZWQg4oCUIGl0cyBvd24gQ0kgYWxyZWFkeQojIGJ1aWxkcyBhbmQgdGVzdHMgYSBuYXRpdmUgYmluYXJ5IHBlciBwbGF0Zm9ybSwgYW5kIGNyb3NzLWNvbXBpbGluZwojIGluc3RlYWQgbmVlZHMgYSBkaWZmZXJlbnQsIGZyYWdpbGUgdG9vbGNoYWluIHBlciB0YXJnZXQgKG1pbmd3LXc2NCwKIyBvc3hjcm9zcykuIGxsbW1hbiBmZXRjaGVzIHRoZSBpbmZlcmVuY2UgZW5naW5lIGl0IHJ1bnMgb24gZmlyc3QgdXNlLCBzbwojIG5vdGhpbmcgZWxzZSBpcyBidW5kbGVkIGZvciBsb2NhbCBtb2RlbHMuCiMgTGVmdCBlbXB0eSBieSBkZWZhdWx0IChyYXRoZXIgdGhhbiBiYWtpbmcgaW4gYSBkZWZhdWx0IHZhbHVlIGhlcmUpIHNvIHRoYXQKIyBiYWtlJ3Mgb3duIGVtcHR5LXN0cmluZyB2YXJpYWJsZSBkZWZhdWx0IGRvZXNuJ3Qgc2hhZG93IGEgcmVhbCBmYWxsYmFjazsKIyBzZWUgdGhlIHNoZWxsLWxldmVsICI6LSIgZmFsbGJhY2tzIGluIGRvd25sb2FkLWxsbW1hbi5zaC4KQVJHIExMTU1BTl9SRVBPPSIiCkFSRyBMTE1NQU5fVkVSU0lPTj0iIgoKIyB4eCBpcyBhIGhlbHBlciBmb3IgY3Jvc3MtY29tcGlsYXRpb24KRlJPTSAtLXBsYXRmb3JtPSRCVUlMRFBMQVRGT1JNIHRvbmlzdGlpZ2kveHg6JHtYWF9WRVJTSU9OfSBBUyB4eApGUk9NIGNyYXp5bWF4L29zeGNyb3NzOjE0LjUtYWxwaW5lIEFTIG9zeGNyb3NzCgpGUk9NIC0tcGxhdGZvcm09JEJVSUxEUExBVEZPUk0gZ29sYW5nOiR7R09fVkVSU0lPTn0tYWxwaW5lJHtBTFBJTkVfVkVSU0lPTn0gQVMgYmFzZQpDT1BZIC0tZnJvbT14eCAvIC8KRU5WIENHT19FTkFCTEVEPTAKIyBNQUNPU1hfVkVSU0lPTl9NSU4gaXMgdGhlIHZhcmlhYmxlIHh4IHJlYWRzIHRvIGJ1aWxkIHRoZSBkYXJ3aW4gLS10YXJnZXQKIyB0cmlwbGU7IGl0IG1ha2VzIHh4LWNsYW5nIGVtaXQgYXJtNjQtYXBwbGUtbWFjb3MxMS4wIGluc3RlYWQgb2YgdGhlIFNESwojIGRlZmF1bHQgKDEwLjE2KS4gKE1BQ09TWF9ERVBMT1lNRU5UX1RBUkdFVCBkb2VzIE5PVCBpbmZsdWVuY2UgeHgncyB0cmlwbGUuKQojIFdpdGhvdXQgdGhpcywgeHggb3ZlcnJpZGVzIHRoZSB0cmlwbGUncyAxMC4xNiB3aXRoIHRoZSBhcm02NCBtaW5pbXVtICgxMS4wKSwKIyBhbmQgdGhlIG5ld2VyIGNsYW5nIGluIGFscGluZSAzLjIzIGVzY2FsYXRlcyAtV292ZXJyaWRpbmctZGVwbG95bWVudC12ZXJzaW9uCiMgdG8gYSBmYXRhbCBlcnJvciB1bmRlciBjZ28ncyAtV2Vycm9yLiAxMS4wIChCaWcgU3VyKSBpcyB0aGUgZmxvb3IgZm9yIGFybTY0CiMgbWFjT1MgcmVnYXJkbGVzcy4gTm8tb3AgZm9yIHRoZSBsaW51eC93aW5kb3dzIHRhcmdldHMuCkVOViBNQUNPU1hfVkVSU0lPTl9NSU49IjExLjAiCkVOViBHT1BSSVZBVEU9ImdpdGh1Yi5jb20vZG9ja2VyLyoiClJVTiBhcGsgYWRkIC0tbm8tY2FjaGUgXAogIGNsYW5nIFwKICBmaWxlIFwKICBnaXQgXAogIG9wZW5zc2gtY2xpZW50IFwKICBvcGVuc3NsIFwKICByc3luYwpXT1JLRElSIC9zcmMKCkZST00gYmFzZSBBUyBidWlsZGJhc2UKQVJHIFRBUkdFVFBMQVRGT1JNCkVOViBDR09fRU5BQkxFRD0xIFwKICAgIEdPV09SSz1vZmYgXAogICAgR09GTEFHUz0iLW1vZD12ZW5kb3IiIFwKICAgIEdPUFJPWFk9b2ZmClJVTiAtLW1vdW50PXR5cGU9YmluZCx0YXJnZXQ9LiBcCiAgICAtLW1vdW50PXR5cGU9YmluZCxmcm9tPW9zeGNyb3NzLHNyYz0vb3N4c2RrLHRhcmdldD0veHgtc2RrIFwKICAgIC0tbW91bnQ9dHlwZT1jYWNoZSx0YXJnZXQ9L3Jvb3QvLmNhY2hlIDw8RU9UCiAgc2V0IC1lCiAgeHgtZ28gLS13cmFwCkVPVAoKRlJPTSBiYXNlIEFTIGJ1aWxkLWRvY3MKRU5WIEdPV09SSz1vZmYgXAogICAgR09GTEFHUz0iLW1vZD12ZW5kb3IiIFwKICAgIEdPUFJPWFk9b2ZmCkNPUFkgLiAuClJVTiAtLW1vdW50PXR5cGU9Y2FjaGUsdGFyZ2V0PS9yb290Ly5jYWNoZSA8PEVPVAogIHNldCAtZQogIGdvIHJ1biAtdGFncyBjbG91ZCxmaWxlc3RvcmUgLi9kb2NzL2dlbmVyYXRlLmdvCkVPVAoKRlJPTSBzY3JhdGNoIEFTIGNsaS1kb2NzCkNPUFkgLS1saW5rIC0tZnJvbT1idWlsZC1kb2NzIC9zcmMvZG9jcyAvCgojIG9wZW5hcGktZ2VuIGluc3RhbGxzIHRoZSBwaW5uZWQgb2FwaS1jb2RlZ2VuIGFuZCByZWdlbmVyYXRlcwojIHNhbmRib3hhcGkvKi5nZW4uZ28gZnJvbSB0aGUgT3BlbkFQSSBzcGVjIGludG8gL291dC9zYW5kYm94YXBpLy4gVGhpcyBpcwojIHRoZSBzaGFyZWQgYmFzZSBmb3IgYm90aCB0aGUgYGdlbmVyYXRlLW9wZW5hcGlgICh3cml0ZXMgZmlsZXMgYmFjayB0byB0aGUKIyBob3N0KSBhbmQgYHZhbGlkYXRlLW9wZW5hcGlgIChkaWZmcyBhZ2FpbnN0IGNoZWNrZWQtaW4gZmlsZXMpIHN0YWdlcy4KRlJPTSBiYXNlIEFTIG9wZW5hcGktZ2VuCkFSRyBPQVBJX0NPREVHRU5fVkVSU0lPTgpFTlYgR09XT1JLPW9mZiBcCiAgICBHT0ZMQUdTPSItbW9kPW1vZCIgXAogICAgR09QUk9YWT0iaHR0cHM6Ly9wcm94eS5nb2xhbmcub3JnfGRpcmVjdCIKQ09QWSAtLWxpbmsgc2FuZGJveGFwaS8gL3NyYy9zYW5kYm94YXBpLwpDT1BZIC0tbGluayBnby5tb2QgZ28uc3VtIC9zcmMvClJVTiAtLW1vdW50PXR5cGU9Y2FjaGUsdGFyZ2V0PS9nby9wa2cvbW9kIFwKICAgIC0tbW91bnQ9dHlwZT1jYWNoZSx0YXJnZXQ9L3Jvb3QvLmNhY2hlIDw8RU9UCiAgc2V0IC1lCiAgZ28gaW5zdGFsbCAiZ2l0aHViLmNvbS9vYXBpLWNvZGVnZW4vb2FwaS1jb2RlZ2VuL3YyL2NtZC9vYXBpLWNvZGVnZW5AJHtPQVBJX0NPREVHRU5fVkVSU0lPTn0iCiAgY2QgL3NyYwogIGdvIGdlbmVyYXRlIC4vc2FuZGJveGFwaS8uLi4KICBta2RpciAtcCAvb3V0CiAgY3AgLVIgL3NyYy9zYW5kYm94YXBpIC9vdXQvc2FuZGJveGFwaQpFT1QKCiMgZ2VuZXJhdGUtb3BlbmFwaSBleHBvcnRzIHRoZSByZWdlbmVyYXRlZCBzYW5kYm94YXBpLyBkaXJlY3Rvcnkgc28gdGhlCiMgaG9zdCBidWlsZCAoZS5nLiBgdGFzayBnZW5lcmF0ZTpvcGVuYXBpYCkgY2FuIHdyaXRlIGl0IGJhY2sgdG8gdGhlIHJlcG8uCkZST00gc2NyYXRjaCBBUyBnZW5lcmF0ZS1vcGVuYXBpCkNPUFkgLS1saW5rIC0tZnJvbT1vcGVuYXBpLWdlbiAvb3V0L3NhbmRib3hhcGkgL3NhbmRib3hhcGkKCiMgdmFsaWRhdGUtb3BlbmFwaSBkaWZmcyB0aGUgcmVnZW5lcmF0ZWQgc2FuZGJveGFwaS8gYWdhaW5zdCB3aGF0J3MgY2hlY2tlZAojIGluLiBDYXRjaGVzIGJvdGggc3RhbGUgZ2VuZXJhdGVkIGNvZGUgKHNwZWMgZWRpdGVkIGJ1dCBnZW5lcmF0ZSBmb3Jnb3R0ZW4pCiMgYW5kIGhhbmQtZWRpdGVkIGdlbmVyYXRlZCBmaWxlcy4gVXNlcyBgZGlmZmAgcmF0aGVyIHRoYW4gYGdpdCBkaWZmYAojIGJlY2F1c2UgdGhlIGJpbmQtbW91bnRlZCBzb3VyY2UgbWF5IG5vdCBoYXZlIGEgdmFsaWQgLmdpdCBjb250ZXh0IChlLmcuCiMgd2hlbiBydW4gZnJvbSBhIGdpdCB3b3JrdHJlZSkuCkZST00gYmFzZSBBUyB2YWxpZGF0ZS1vcGVuYXBpCkNPUFkgLS1saW5rIC0tZnJvbT1vcGVuYXBpLWdlbiAvb3V0L3NhbmRib3hhcGkgL3RtcC9yZWdlbmVyYXRlZApSVU4gLS1tb3VudD10eXBlPWJpbmQsdGFyZ2V0PS9zcmMgPDxFT1QKICBzZXQgLWUKICBpZiAhIGRpZmYgLXJ1IC9zcmMvc2FuZGJveGFwaS8uIC90bXAvcmVnZW5lcmF0ZWQvLiA+L3RtcC9vcGVuYXBpLmRpZmY7IHRoZW4KICAgIGVjaG8gIiIKICAgIGVjaG8gIuKdjCBHZW5lcmF0ZWQgZmlsZXMgaW4gc2FuZGJveGFwaS8gYXJlIG91dCBvZiBkYXRlLiIKICAgIGVjaG8gIiAgIFJ1biAndGFzayBnZW5lcmF0ZTpvcGVuYXBpJyAob3IgJ2dvIGdlbmVyYXRlIC4vc2FuZGJveGFwaS8uLi4nIGlmIgogICAgZWNobyAiICAgeW91IGhhdmUgb2FwaS1jb2RlZ2VuIGluc3RhbGxlZCkgYW5kIGNvbW1pdCB0aGUgcmVzdWx0LiIKICAgIGVjaG8gIiIKICAgIGVjaG8gIkRpZmY6IgogICAgY2F0IC90bXAvb3BlbmFwaS5kaWZmCiAgICBleGl0IDEKICBmaQogIGVjaG8gIuKchSBzYW5kYm94YXBpLyBnZW5lcmF0ZWQgY29kZSBpcyB1cCB0byBkYXRlIgpFT1QKCgpGUk9NIGJhc2UgQVMgdmVyc2lvbmZpbGUtdG9vbApFTlYgR09XT1JLPW9mZiBcCiAgICBHT0ZMQUdTPSItbW9kPXZlbmRvciIgXAogICAgR09QUk9YWT1vZmYKUlVOIC0tbW91bnQ9dHlwZT1iaW5kLHRhcmdldD0uIFwKICAgIC0tbW91bnQ9dHlwZT1jYWNoZSx0YXJnZXQ9L3Jvb3QvLmNhY2hlIFwKICAgIGdvIGJ1aWxkIC10YWdzIGZpbGVzdG9yZSAtbyAvdmVyc2lvbmZpbGUgLi90b29scy92ZXJzaW9uZmlsZQoKRlJPTSBiYXNlIEFTIHZlcnNpb24KQVJHIEdJVF9SRUYKQVJHIFZFUlNJT049dW5rbm93bgpBUkcgUkVWSVNJT049dW5rbm93bgpBUkcgQ09NTUlUX0RBVEUKQVJHIFJFTEVBU0U9ZmFsc2UKQVJHIERPQ0tFUl9ORVhUX1ZFUlNJT049IiIKQVJHIERPQ0tFUl9ORVhUX0NPTU1JVD0iIgpBUkcgTkVSREJPWF9WRVJTSU9OPSIiCkFSRyBTQUlMT1JfQ09NTUlUPSIiClJVTiAtLW1vdW50PWZyb209dmVyc2lvbmZpbGUtdG9vbCxzb3VyY2U9L3ZlcnNpb25maWxlLHRhcmdldD0vdXNyL2xvY2FsL2Jpbi92ZXJzaW9uZmlsZSA8PEVPVAogIHNldCAtZXgKCiAgZXhwb3J0IFNBTkRCT1hEX1BLRz1naXRodWIuY29tL2RvY2tlci9zYW5kYm94ZXMvc2FuZGJveGQKCiAgdmVyc2lvbmZpbGUgLXZlcnNpb24gIiR7VkVSU0lPTn0iIC1yZXZpc2lvbiAiJHtSRVZJU0lPTn0iIC1vdXRwdXQgL3RtcC9zYngtdmVyc2lvbi5qc29uCiAgZWNobyAtbiAiJHtWRVJTSU9OfSIgPiAvdG1wLy52ZXJzaW9uCiAgZWNobyAtbiAiJHtSRVZJU0lPTn0iID4gL3RtcC8ucmV2aXNpb24KICBlY2hvIC1uICIke0NPTU1JVF9EQVRFfSIgPiAvdG1wLy5jb21taXRfZGF0ZQogIGVjaG8gLW4gIiR7UkVMRUFTRX0iID4gL3RtcC8ucmVsZWFzZQogIGVjaG8gLW4gIiR7RE9DS0VSX05FWFRfVkVSU0lPTn0iID4gL3RtcC8uZG9ja2VyX25leHRfdmVyc2lvbgogIGVjaG8gLW4gIiR7RE9DS0VSX05FWFRfQ09NTUlUfSIgPiAvdG1wLy5kb2NrZXJfbmV4dF9jb21taXQKICBlY2hvIC1uICIke05FUkRCT1hfVkVSU0lPTn0iID4gL3RtcC8ubmVyZGJveF92ZXJzaW9uCiAgZWNobyAtbiAiJHtTQUlMT1JfQ09NTUlUfSIgPiAvdG1wLy5zYWlsb3JfY29tbWl0CgogIGVjaG8gIi1YICR7U0FOREJPWERfUEtHfS92ZXJzaW9uLlZlcnNpb249JHtWRVJTSU9OfSAtWCAke1NBTkRCT1hEX1BLR30vdmVyc2lvbi5SZXZpc2lvbj1zYngtcmV2aXNpb24tdjE6JHtSRVZJU0lPTn06c2J4LXJldmlzaW9uLWVuZCAtWCAke1NBTkRCT1hEX1BLR30vdmVyc2lvbi5QYWNrYWdlPSR7U0FOREJPWERfUEtHfSAtWCAke1NBTkRCT1hEX1BLR30vdmVyc2lvbi5CdWlsZERhdGU9JHtDT01NSVRfREFURX0gLVggJHtTQU5EQk9YRF9QS0d9L3ZlcnNpb24uUmVsZWFzZT0ke1JFTEVBU0V9IiA+IC90bXAvLmxkZmxhZ3MtY2xpCkVPVAoKRlJPTSB2ZXJzaW9uIEFTIGNsaS1wbHVnaW4tdmVyc2lvbgpSVU4gLS1tb3VudD10YXJnZXQ9LiA8PEVPVAogIHNldCAtZXgKCiAgZXhwb3J0IFBLRz1naXRodWIuY29tL2RvY2tlci9zYW5kYm94ZXMvc2FuZGJveGQKICBleHBvcnQgVkVSU0lPTj0kKGNhdCAvdG1wLy52ZXJzaW9uKQogIGV4cG9ydCBSRVZJU0lPTj0kKGNhdCAvdG1wLy5yZXZpc2lvbikKICBleHBvcnQgUkVMRUFTRT0kKGNhdCAvdG1wLy5yZWxlYXNlKQogIGV4cG9ydCBDT01NSVRfREFURT0kKGNhdCAvdG1wLy5jb21taXRfZGF0ZSkKICBleHBvcnQgRE9DS0VSX05FWFRfVkVSU0lPTj0kKGNhdCAvdG1wLy5kb2NrZXJfbmV4dF92ZXJzaW9uKQogIGV4cG9ydCBET0NLRVJfTkVYVF9DT01NSVQ9JChjYXQgL3RtcC8uZG9ja2VyX25leHRfY29tbWl0KQogIGV4cG9ydCBORVJEQk9YX1ZFUlNJT049JChjYXQgL3RtcC8ubmVyZGJveF92ZXJzaW9uKQogIGV4cG9ydCBTQUlMT1JfQ09NTUlUPSQoY2F0IC90bXAvLnNhaWxvcl9jb21taXQpCiAgTERGTEFHUz0iLVggJHtQS0d9L3ZlcnNpb24uVmVyc2lvbj0ke1ZFUlNJT059IC1YICR7UEtHfS92ZXJzaW9uLlJldmlzaW9uPXNieC1yZXZpc2lvbi12MToke1JFVklTSU9OfTpzYngtcmV2aXNpb24tZW5kIC1YICR7UEtHfS92ZXJzaW9uLlBhY2thZ2U9JHtQS0d9IC1YICR7UEtHfS92ZXJzaW9uLkJ1aWxkRGF0ZT0ke0NPTU1JVF9EQVRFfSAtWCAke1BLR30vdmVyc2lvbi5SZWxlYXNlPSR7UkVMRUFTRX0iCiAgTERGTEFHUz0iJHtMREZMQUdTfSAtWCAke1BLR30vdmVyc2lvbi5Eb2NrZXJOZXh0VmVyc2lvbj0ke0RPQ0tFUl9ORVhUX1ZFUlNJT059IC1YICR7UEtHfS92ZXJzaW9uLkRvY2tlck5leHRDb21taXQ9JHtET0NLRVJfTkVYVF9DT01NSVR9IC1YICR7UEtHfS92ZXJzaW9uLk5lcmRib3hWZXJzaW9uPSR7TkVSREJPWF9WRVJTSU9OfSAtWCAke1BLR30vdmVyc2lvbi5TYWlsb3JDb21taXQ9JHtTQUlMT1JfQ09NTUlUfSIKCiAgZWNobyAiJHtMREZMQUdTfSIgPiAvdG1wLy5sZGZsYWdzCkVPVAoKIyBzc2gtaGVscGVyIGNyb3NzLWJ1aWxkcyB0aGUgc3RhdGljIFNTSCBoZWxwZXIgKGludGVybmFsL3NzaGhlbHBlcikgZm9yIGVhY2gKIyBjb250YWluZXIgcGxhdGZvcm0gYW5kIGd6aXBzIGl0IGludG8gL291dC4gVGhlIGNsaS1wbHVnaW4gc3RhZ2UgbW91bnRzIC9vdXQKIyBvdmVyIHRoZSBnbzplbWJlZCBkaXIgc28gdGhlIHNieCBiaW5hcnkgYnVuZGxlcyBpdC4gQnVpbHQgaGVyZSAobmV2ZXIKIyBjb21taXR0ZWQpIHZpYSB0aGUgc2FtZSBzY3JpcHQgdGhlIGxvY2FsIGB0YXNrIGJ1aWxkOnNzaC1oZWxwZXJgIHJ1bnMsIHNvCiMgZXZlcnkgYmFrZSBwYXRoIOKAlCBiaW5hcmllcywgcmVsZWFzZSwgcGFja2FnZS1saW51eCDigJQgYnVuZGxlcyB0aGUgaGVscGVyCiMgaWRlbnRpY2FsbHkuCkZST00gYmFzZSBBUyBzc2gtaGVscGVyCkVOViBHT1dPUks9b2ZmIFwKICAgIEdPRkxBR1M9Ii1tb2Q9dmVuZG9yIiBcCiAgICBHT1BST1hZPW9mZgpSVU4gLS1tb3VudD10eXBlPWJpbmQsdGFyZ2V0PS4gXAogICAgLS1tb3VudD10eXBlPWNhY2hlLHRhcmdldD0vcm9vdC8uY2FjaGUgXAogICAgc2ggc2NyaXB0cy9idWlsZC1zc2gtaGVscGVyLnNoIC9vdXQKCiMgbGxtbWFuLWZldGNoIGRvd25sb2FkcyBsbG1tYW4ncyBvd24gcHJlYnVpbHQgcmVsZWFzZSBiaW5hcnkgKHNlZQojIHNjcmlwdHMvZG93bmxvYWQtbGxtbWFuLnNoKSBmb3Igd2hhdGV2ZXIgVEFSR0VUUExBVEZPUk0gdGhpcyBzdGFnZSBpcwojIGJ1aWx0IGZvci4gUnVucyBpdCB3aXRoIExMTU1BTl9PUy9MTE1NQU5fQVJDSCBvdmVycmlkZXMgc2luY2UgdGhlIGJ1aWxkZXIKIyBpcyBhbHdheXMgTGludXggcmVnYXJkbGVzcyBvZiB3aGljaCBwbGF0Zm9ybSdzIGFzc2V0IGlzIGJlaW5nIGZldGNoZWQuCkZST00gLS1wbGF0Zm9ybT0kQlVJTERQTEFURk9STSBhbHBpbmU6JHtBTFBJTkVfVkVSU0lPTn0gQVMgbGxtbWFuLWZldGNoClJVTiBhcGsgYWRkIC0tbm8tY2FjaGUgYmFzaCBnaXRodWItY2xpCkFSRyBUQVJHRVRPUwpBUkcgVEFSR0VUQVJDSApBUkcgTExNTUFOX1JFUE8KQVJHIExMTU1BTl9WRVJTSU9OClJVTiAtLW1vdW50PXR5cGU9YmluZCxzb3VyY2U9c2NyaXB0cyx0YXJnZXQ9L3NjcmlwdHMgXAogICAgLS1tb3VudD10eXBlPXNlY3JldCxpZD1HSVRIVUJfVE9LRU4gPDxFT1QKICBzZXQgLWUKICBleHBvcnQgTExNTUFOX1JFUE89IiR7TExNTUFOX1JFUE99IgogIGV4cG9ydCBMTE1NQU5fVkVSU0lPTj0iJHtMTE1NQU5fVkVSU0lPTn0iCiAgZXhwb3J0IExMTU1BTl9PUz0iJHtUQVJHRVRPU30iCiAgZXhwb3J0IExMTU1BTl9BUkNIPSIke1RBUkdFVEFSQ0h9IgogIGV4cG9ydCBMTE1NQU5fREVTVF9ESVI9L291dAogICMgSGlnaGVyIGF1dGhlbnRpY2F0ZWQgcmF0ZSBsaW1pdCB0aGFuIGFub255bW91cyByZXF1ZXN0cyBnZXQuCiAgZXhwb3J0IEdJVEhVQl9UT0tFTj0kKGNhdCAvcnVuL3NlY3JldHMvR0lUSFVCX1RPS0VOKQogIGJhc2ggL3NjcmlwdHMvZG93bmxvYWQtbGxtbWFuLnNoCkVPVAoKRlJPTSBidWlsZGJhc2UgQVMgY2xpLXBsdWdpbgpBUkcgVEFSR0VUUExBVEZPUk0KQVJHIEJVSUxEVEFHUwpBUkcgUkVMRUFTRT1mYWxzZQpFTlYgQ0dPX0VOQUJMRUQ9MQpSVU4gLS1tb3VudD10eXBlPWJpbmQsdGFyZ2V0PS4gXAogICAgLS1tb3VudD10eXBlPWJpbmQsZnJvbT1vc3hjcm9zcyxzcmM9L29zeHNkayx0YXJnZXQ9L3h4LXNkayBcCiAgICAtLW1vdW50PXR5cGU9YmluZCxmcm9tPWNsaS1wbHVnaW4tdmVyc2lvbixzb3VyY2U9L3RtcC8ubGRmbGFncyx0YXJnZXQ9L3RtcC8ubGRmbGFncyBcCiAgICAtLW1vdW50PWZyb209dmVyc2lvbmZpbGUtdG9vbCxzb3VyY2U9L3ZlcnNpb25maWxlLHRhcmdldD0vdXNyL2xvY2FsL2Jpbi92ZXJzaW9uZmlsZSBcCiAgICAtLW1vdW50PWZyb209dmVyc2lvbixzb3VyY2U9L3RtcC9zYngtdmVyc2lvbi5qc29uLHRhcmdldD0vdG1wL3NieC12ZXJzaW9uLmpzb24gXAogICAgLS1tb3VudD10eXBlPWJpbmQsZnJvbT1zc2gtaGVscGVyLHNvdXJjZT0vb3V0LHRhcmdldD0vc3JjL3NhbmRib3hkL2ludGVybmFsL3NzaGhlbHBlci9oZWxwZXJzIFwKICAgIC0tbW91bnQ9dHlwZT1jYWNoZSx0YXJnZXQ9L3Jvb3QvLmNhY2hlIDw8RU9UCiAgc2V0IC1lCiAgeHgtYXBrIGFkZCAtLW5vLWNhY2hlIFwKICAgIGdjYyBcCiAgICBtdXNsLWRldgogIGNkIC4vY2xpLXBsdWdpbgogIExERkxBR1M9IiQoY2F0IC90bXAvLmxkZmxhZ3MpIC1zIC13IgogIGNhc2UgIiQoeHgtaW5mbyBvcykiIGluCiAgICBsaW51eCkKICAgICAgTERGTEFHUz0iJHtMREZMQUdTfSAtbGlua21vZGU9ZXh0ZXJuYWwgLWV4dGxkZmxhZ3M9LXN0YXRpYyIKICAgICAgOzsKICBlc2FjCiAgTERGTEFHUz0iJHtMREZMQUdTfSAtWCBnaXRodWIuY29tL2RvY2tlci9zYW5kYm94ZXMvc2FuZGJveGQvdmVyc2lvbi5CdWlsZFRhZ3M9JHtCVUlMRFRBR1N9IgogIHh4LWdvIGJ1aWxkIC10cmltcGF0aCAtdGFncyAiJHtCVUlMRFRBR1N9IiBcCiAgICAtbGRmbGFncyAiJHtMREZMQUdTfSIgXAogICAgLW8gL3Vzci9sb2NhbC9iaW4vc2J4IC4vY21kL3NhbmRib3hlcwogIC4uL3NjcmlwdHMvdmVyaWZ5LXJlbGVhc2UtYnVpbGQtdGFncy5zaCAiJHtSRUxFQVNFfSIgIiR7QlVJTERUQUdTfSIgL3Vzci9sb2NhbC9iaW4vc2J4ICIke0xERkxBR1N9IgogIHZlcnNpb25maWxlIC1jaGVjayAvdG1wL3NieC12ZXJzaW9uLmpzb24gLWJpbmFyeSAvdXNyL2xvY2FsL2Jpbi9zYngKICB4eC12ZXJpZnkgLS1zdGF0aWMgL3Vzci9sb2NhbC9iaW4vc2J4CkVPVAoKCkZST00gLS1wbGF0Zm9ybT0kQlVJTERQTEFURk9STSBhbHBpbmU6JHtBTFBJTkVfVkVSU0lPTn0gQVMgZ3VpLWRhcndpbgpBUkcgVEFSR0VUQVJDSApXT1JLRElSIC9vdXQKUlVOIC0tbW91bnQ9dHlwZT1iaW5kLHRhcmdldD0vc3JjLHJ3IDw8RU9UCiAgc2V0IC1lCiAgIyBGYWlsIGZhc3QgaWYgZ3VpLWFydGlmYWN0cyBleGlzdHMgYnV0IHBsYXRmb3JtIGFydGlmYWN0cyBhcmUgbWlzc2luZwogIGlmIFsgLWQgL3NyYy9ndWktYXJ0aWZhY3RzIF0gJiYgWyAhIC1kIC9zcmMvZ3VpLWFydGlmYWN0cy9ndWktZGFyd2luLSR7VEFSR0VUQVJDSH0gXTsgdGhlbgogICAgZWNobyAiZXJyb3I6IGd1aS1hcnRpZmFjdHMgZGlyZWN0b3J5IGV4aXN0cyBidXQgZ3VpLWRhcndpbi0ke1RBUkdFVEFSQ0h9IG5vdCBmb3VuZCIgPiYyCiAgICBlY2hvICJhdmFpbGFibGUgYXJ0aWZhY3RzOiIgPiYyCiAgICBscyAtbGEgL3NyYy9ndWktYXJ0aWZhY3RzLyA+JjIgfHwgdHJ1ZQogICAgZXhpdCAxCiAgZmkKICBpZiBbIC1kIC9zcmMvZ3VpLWFydGlmYWN0cy9ndWktZGFyd2luLSR7VEFSR0VUQVJDSH0gXTsgdGhlbgogICAgY3AgL3NyYy9ndWktYXJ0aWZhY3RzL2d1aS1kYXJ3aW4tJHtUQVJHRVRBUkNIfS9zYngtZ3VpIC9vdXQvc2J4LWd1aQogICAgY2htb2QgMDc1NSAvb3V0L3NieC1ndWkKICBmaQpFT1QKCkZST00gLS1wbGF0Zm9ybT0kQlVJTERQTEFURk9STSBhbHBpbmU6JHtBTFBJTkVfVkVSU0lPTn0gQVMgZ3VpLXdpbmRvd3MKQVJHIFRBUkdFVEFSQ0gKV09SS0RJUiAvb3V0ClJVTiAtLW1vdW50PXR5cGU9YmluZCx0YXJnZXQ9L3NyYyxydyA8PEVPVAogIHNldCAtZQogICMgRmFpbCBmYXN0IGlmIGd1aS1hcnRpZmFjdHMgZXhpc3RzIGJ1dCBwbGF0Zm9ybSBhcnRpZmFjdHMgYXJlIG1pc3NpbmcKICBpZiBbIC1kIC9zcmMvZ3VpLWFydGlmYWN0cyBdICYmIFsgISAtZCAvc3JjL2d1aS1hcnRpZmFjdHMvZ3VpLXdpbmRvd3MtJHtUQVJHRVRBUkNIfSBdOyB0aGVuCiAgICBlY2hvICJlcnJvcjogZ3VpLWFydGlmYWN0cyBkaXJlY3RvcnkgZXhpc3RzIGJ1dCBndWktd2luZG93cy0ke1RBUkdFVEFSQ0h9IG5vdCBmb3VuZCIgPiYyCiAgICBlY2hvICJhdmFpbGFibGUgYXJ0aWZhY3RzOiIgPiYyCiAgICBscyAtbGEgL3NyYy9ndWktYXJ0aWZhY3RzLyA+JjIgfHwgdHJ1ZQogICAgZXhpdCAxCiAgZmkKICBpZiBbIC1kIC9zcmMvZ3VpLWFydGlmYWN0cy9ndWktd2luZG93cy0ke1RBUkdFVEFSQ0h9IF07IHRoZW4KICAgIGNwIC9zcmMvZ3VpLWFydGlmYWN0cy9ndWktd2luZG93cy0ke1RBUkdFVEFSQ0h9L3NieC1ndWkuZXhlIC9vdXQvc2J4LWd1aS5leGUKICBmaQpFT1QKCkZST00gc2NyYXRjaCBBUyBiaW5hcmllcy1kYXJ3aW4KQ09QWSAtLWxpbmsgLS1mcm9tPXZlcnNpb24gL3RtcC9zYngtdmVyc2lvbi5qc29uIC8KQ09QWSAtLWxpbmsgLS1mcm9tPWNsaS1wbHVnaW4gL3Vzci9sb2NhbC9iaW4vc2J4IC8KQ09QWSAtLWxpbmsgLS1mcm9tPWxsbW1hbi1mZXRjaCAvb3V0L2xsbW1hbiAvCkNPUFkgLS1saW5rIC0tZnJvbT1ndWktZGFyd2luIC9vdXQvIC8KCkZST00gc2NyYXRjaCBBUyBiaW5hcmllcy1saW51eApDT1BZIC0tbGluayAtLWZyb209dmVyc2lvbiAvdG1wL3NieC12ZXJzaW9uLmpzb24gLwpDT1BZIC0tbGluayAtLWZyb209Y2xpLXBsdWdpbiAvdXNyL2xvY2FsL2Jpbi9zYnggLwpDT1BZIC0tbGluayAtLWZyb209bGxtbWFuLWZldGNoIC9vdXQvbGxtbWFuIC8KIyBObyBHVUkgb24gTGludXg6IExpbnV4IHVzZXJzIHVzZSB0aGUgQ0xJIGV4Y2x1c2l2ZWx5LgoKRlJPTSBzY3JhdGNoIEFTIGJpbmFyaWVzLXdpbmRvd3MKQ09QWSAtLWxpbmsgLS1mcm9tPXZlcnNpb24gL3RtcC9zYngtdmVyc2lvbi5qc29uIC8KQ09QWSAtLWxpbmsgLS1mcm9tPWNsaS1wbHVnaW4gL3Vzci9sb2NhbC9iaW4vc2J4IC9zYnguZXhlCkNPUFkgLS1saW5rIC0tZnJvbT1sbG1tYW4tZmV0Y2ggL291dC9sbG1tYW4uZXhlIC8KQ09QWSAtLWxpbmsgLS1mcm9tPWd1aS13aW5kb3dzIC9vdXQvIC8KCgpGUk9NIGJpbmFyaWVzLSRUQVJHRVRPUyBBUyBiaW5hcmllcwojIEJVSUxES0lUX1NCT01fU0NBTl9TVEFHRSBlbmFibGVzIFNCT00gc2Nhbm5pbmcgZm9yIHRoaXMgc3RhZ2UKQVJHIEJVSUxES0lUX1NCT01fU0NBTl9TVEFHRT10cnVlCgoKRlJPTSAtLXBsYXRmb3JtPSRCVUlMRFBMQVRGT1JNIGFscGluZToke0FMUElORV9WRVJTSU9OfSBBUyByZWxlYXNlcgpSVU4gYXBrIGFkZCAtLW5vLWNhY2hlIHRhciBnemlwCldPUktESVIgL3dvcmsKQVJHIFRBUkdFVFBMQVRGT1JNClJVTiAtLW1vdW50PWZyb209YmluYXJpZXMgXAogICAgLS1tb3VudD1zb3VyY2U9L3RtcC8udmVyc2lvbix0YXJnZXQ9L3RtcC8udmVyc2lvbixmcm9tPXZlcnNpb24gXAogICAgLS1tb3VudD1zb3VyY2U9L3RtcC8uY29tbWl0X2RhdGUsdGFyZ2V0PS90bXAvLmNvbW1pdF9kYXRlLGZyb209dmVyc2lvbiBcCiAgICBta2RpciAtcCAvb3V0ICYmIHRhciBjenZmICIvb3V0L3NhbmRib3hlcy0kKGNhdCAvdG1wLy52ZXJzaW9uKS4kKGVjaG8gJFRBUkdFVFBMQVRGT1JNIHwgc2VkICdzL1wvLy0vZycpLnRhci5neiIgLS1tdGltZT0iJChjYXQgL3RtcC8uY29tbWl0X2RhdGUpIiAtLXNvcnQ9bmFtZSAuCgpGUk9NIHNjcmF0Y2ggQVMgcmVsZWFzZQpDT1BZIC0tbGluayAtLWZyb209cmVsZWFzZXIgL291dCAvCgoKRlJPTSBiYXNlIEFTIGJ1aWxkLXRlc3RzCkVOViBHT1dPUks9b2ZmIFwKICAgIEdPRkxBR1M9Ii1tb2Q9dmVuZG9yIiBcCiAgICBHT1BST1hZPW9mZgpSVU4gLS1tb3VudD10eXBlPWJpbmQsdGFyZ2V0PS4gXAogICAgLS1tb3VudD10eXBlPWNhY2hlLHRhcmdldD0vcm9vdC8uY2FjaGUgPDxFT1QKICBzZXQgLWV4CiAgY2QgL3NyYwogIGVjaG8gIkNvbXBpbGluZyBhbGwgdGVzdHMuLi4iCiAgZ28gdGVzdCAtYyAuLy4uLiAtbyAvZGV2L251bGwKRU9UCgpGUk9NIHNjcmF0Y2gKQ09QWSAtLWZyb209dmVyc2lvbiAvdG1wL3NieC12ZXJzaW9uLmpzb24gL3NieC12ZXJzaW9uLmpzb24KQ09QWSAtLWZyb209Y2xpLXBsdWdpbiAvdXNyL2xvY2FsL2Jpbi9zYnggL3NieApFTlRSWVBPSU5UIFsgIi9zYngiIF0K",
+                "llbDefinition": [
+                  {
+                    "id": "step0",
+                    "op": {
+                      "Op": {
+                        "source": {
+                          "identifier": "local://dockerfile",
+                          "attrs": {
+                            "local.differ": "none",
+                            "local.followpaths": "[\"Dockerfile\",\"Dockerfile.dockerignore\",\"dockerfile\"]",
+                            "local.sharedkeyhint": "dockerfile"
+                          }
+                        }
+                      },
+                      "constraints": {}
+                    }
+                  },
+                  {
+                    "id": "step1",
+                    "op": {
+                      "Op": {}
+                    },
+                    "inputs": [
+                      "step0:0"
+                    ]
+                  }
+                ],
+                "digestMapping": {
+                  "sha256:92e01e1504191bbf93db85a20bc96ed1c6d7cd36cf70e64282ad829f1edd9c0a": "step0",
+                  "sha256:ed147291563a3665c324f5ee67ba3a1ccfc443f540057d94751341af8a898d52": "step1"
+                }
+              }
+            ]
+          },
+          "layers": {
+            "step0:0": [
+              [
+                {
+                  "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+                  "digest": "sha256:318e7b249bff183413f29036c2d4859d5b4889eb5bb602fa98c65a44cfe8af9a",
+                  "size": 71727902
+                }
+              ]
+            ],
+            "step13:0": [
+              [
+                {
+                  "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+                  "digest": "sha256:e6f31ffc071e5560b82a8685fba8214954e5721e3e49269d00958316edbe89fe",
+                  "size": 3844421
+                },
+                {
+                  "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+                  "digest": "sha256:cbad53565a65d401140b9479783976530284e6c5e6d8c5bdc164d397afac7b54",
+                  "size": 245050
+                },
+                {
+                  "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+                  "digest": "sha256:daee4590c9478cfdac9f40a88759297738e75fbef28baa5b8ea3c56a8f9bb19f",
+                  "size": 71056760
+                },
+                {
+                  "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+                  "digest": "sha256:6142f58f224de6f4eddad4fae29edd9ecff5684a897d6600be55d40778355d49",
+                  "size": 127
+                },
+                {
+                  "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+                  "digest": "sha256:4f4fb700ef54461cfa02571ae0db9a0dc1e0cdb5577484a6d75e68dc38e8acc1",
+                  "size": 32
+                }
+              ]
+            ],
+            "step14:0": [
+              [
+                {
+                  "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+                  "digest": "sha256:6390c9e16af5a0bcbc5949cfa9e220778ff9a6728ea5d6afc1692616c6d9564b",
+                  "size": 17019
+                }
+              ]
+            ],
+            "step1:0": [
+              [
+                {
+                  "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+                  "digest": "sha256:ff62ee5b594035d8ad03d05aadc05e2a73f7e0e11bf2574dc5473677a60e22b4",
+                  "size": 17700
+                }
+              ]
+            ],
+            "step22:0": [
+              [
+                {
+                  "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+                  "digest": "sha256:6b7af0ec98eb29b2df5392bea41d84d517c4ffcfdadb8f0126d13e2694302a98",
+                  "size": 205869001
+                }
+              ]
+            ],
+            "step29:0": [
+              [
+                {
+                  "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+                  "digest": "sha256:d0c1d894c237d8192cbcd37e435031ad4eddec173299568a5a05869c2e40dfa3",
+                  "size": 3848507
+                }
+              ]
+            ],
+            "step7:0": [
+              [
+                {
+                  "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+                  "digest": "sha256:774043ccc8ccd0d0833a9ee0792142ab7ad93df971e59dd248fbf82db16d0150",
+                  "size": 28238443
+                }
+              ]
+            ]
+          }
+        },
+        "buildkit_completeness": {
+          "request": true,
+          "resolvedDependencies": false
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-06",
+  "observations": [
+    {
+      "profiles": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "owned_base_trees_remaining": 0,
+      "owned_preparation_paths_remaining": 0,
+      "owned_mounts_in_supervisor_namespace": false,
+      "aggregate_cgroup_remaining": false
+    },
+    {
+      "profiles": [
+        5
+      ],
+      "owned_base_trees_remaining": 0,
+      "owned_preparation_paths_remaining": 0,
+      "owned_mounts_in_supervisor_namespace": false,
+      "aggregate_cgroup_remaining": false
+    }
+  ],
+  "failed_unit_reset": "units already unloaded by --collect; reset-failed returned errors, not a successful extra cleanup command",
+  "existing_vm_running": true,
+  "execution_allowed": false,
+  "native_start_allowed": false,
+  "privileged_ssh_shell_closed": true,
+  "ssh_control_master_closed": true
+}

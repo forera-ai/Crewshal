@@ -1,0 +1,1856 @@
+{
+  "fixture": 1,
+  "scope": "Complete-profile prospective native conformance; qualification depends on every original criterion",
+  "execution_allowed": false,
+  "native_start_allowed": false,
+  "manifest_sha256": "6a9c9116fb8eee83a71bac95a35f4d313aaa368c40ff818181ca4510591af4a1",
+  "cleanup": {},
+  "errors": [
+    {
+      "type": "FileNotFoundError",
+      "message": "[Errno 2] No such file or directory: '/var/tmp/crewshal-native-qualification-v8/full-v8-f1/upper/full-observations.json'"
+    }
+  ],
+  "excluded_before": {
+    "outside/canary": {
+      "sha256": "a800fce3833f8b3db405d82efd9b63c97cd9c5c7f8ff517279b0a41d8676b2ce",
+      "mode": 33152,
+      "links": 1,
+      "size": 12
+    },
+    "coordinator/state.db": {
+      "sha256": "d5844633c731414b7ecd4f20a8a71b50b1af72c683d1290df5b98ce06682a90c",
+      "mode": 33152,
+      "links": 1,
+      "size": 29
+    },
+    "coordinator/artifact": {
+      "sha256": "6c009dcae0e3d59123a426e219ccbd4a207958fc7435c5db6c13ae5721c82fa2",
+      "mode": 33152,
+      "links": 1,
+      "size": 20
+    },
+    "original/dirty.py": {
+      "sha256": "26d606fa6368f54a578ee8c585b67cb955c120be84442990e254adf179bb4c15",
+      "mode": 33152,
+      "links": 1,
+      "size": 11
+    },
+    "home/credential-store": {
+      "sha256": "0e7e42a29213f9d68d1d4d2f2f4715f7642f604a7847b10b3da0b0eebb331ab3",
+      "mode": 33152,
+      "links": 1,
+      "size": 15
+    },
+    "original/.git/config": {
+      "sha256": "9eb797550dd17e0bb651e05cb69c65b0c845fb6230af368999eec0b738d23f88",
+      "mode": 33152,
+      "links": 1,
+      "size": 9
+    }
+  },
+  "global_instruction_mask": {
+    "unmasked_sha256": "a2bd43f61ef7caf48e20e49fa1727bb280dfa61406c985de127730b1d2f8354e",
+    "override_sha256": "4c24f1abf3a940627c95f2b6e3e97db2e0d76510af111fb4695e6e1266e42e11",
+    "trusted_empty_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "readonly": true
+  },
+  "mounts": [
+    "139 805 7:22 / /var/tmp/crewshal-native-qualification-v8/full-v8-f1/lower rw,nosuid,nodev,noexec,relatime shared:723 - ext4 /dev/loop22 rw",
+    "141 805 0:60 / /var/tmp/crewshal-native-qualification-v8/full-v8-f1/upper rw,nosuid,nodev,noexec,relatime shared:760 - ecryptfs /var/tmp/crewshal-native-qualification-v8/full-v8-f1/lower rw,ecryptfs_sig=990b0b0b6e24b0db,ecryptfs_cipher=aes,ecryptfs_key_bytes=32,ecryptfs_mount_auth_tok_only",
+    "169 805 7:23 / /var/tmp/crewshal-native-qualification-v8/full-v8-f1/candidate-lower rw,nosuid,nodev,noexec,relatime shared:761 - ext4 /dev/loop23 rw",
+    "171 805 0:61 / /var/tmp/crewshal-native-qualification-v8/full-v8-f1/candidate-upper rw,nosuid,nodev,noexec,relatime shared:762 - ecryptfs /var/tmp/crewshal-native-qualification-v8/full-v8-f1/candidate-lower rw,ecryptfs_sig=990b0b0b6e24b0db,ecryptfs_cipher=aes,ecryptfs_key_bytes=32,ecryptfs_mount_auth_tok_only"
+  ],
+  "aggregate_controls": {
+    "memory.max": "805306368",
+    "memory.swap.max": "0",
+    "cpu.max": "100000 100000",
+    "pids.max": "128"
+  },
+  "synthetic_token_sha256": "9f91eb127ceb15c3c17177fbed716be7308f1ceea0a15a118349272e520bca77",
+  "token_canary_mode": "0o600",
+  "datagram_sink_positive_controls": [
+    {
+      "sink": "udp",
+      "bytes": 7
+    },
+    {
+      "sink": "dns",
+      "bytes": 7
+    },
+    {
+      "sink": "ipv6",
+      "bytes": 7
+    }
+  ],
+  "nonallowed_sink_positive_control": [
+    {
+      "path": "/positive-control",
+      "bytes": 7
+    }
+  ],
+  "nft_policy": "table inet crewshal_full_v8 {\n counter native_allowed {}\n counter proxy_allowed {}\n counter proxy_reply {}\n counter denied {}\n chain output {\n  type filter hook output priority 0; policy accept;\n  meta skuid 65534 ip daddr 127.0.0.1 tcp dport 8080 counter name native_allowed accept\n  meta skuid 65533 ip daddr 127.0.0.1 tcp dport 8081 counter name proxy_allowed accept\n  meta skuid 65533 ip daddr 127.0.0.1 tcp sport 8080 ct state established counter name proxy_reply accept\n  meta skuid { 65531, 65533, 65534 } counter name denied reject with icmpx type admin-prohibited\n }\n}\n",
+  "nft_policy_sha256": "de2fb1bb8e4b308d3fc32f85ebd967189bb3dc790236d7d5efbe28c0a3cb7399",
+  "nft_before": {
+    "nftables": [
+      {
+        "metainfo": {
+          "version": "1.0.9",
+          "release_name": "Old Doc Yak #3",
+          "json_schema_version": 1
+        }
+      },
+      {
+        "table": {
+          "family": "inet",
+          "name": "crewshal_full_v8",
+          "handle": 1
+        }
+      },
+      {
+        "counter": {
+          "family": "inet",
+          "name": "native_allowed",
+          "table": "crewshal_full_v8",
+          "handle": 2,
+          "packets": 0,
+          "bytes": 0
+        }
+      },
+      {
+        "counter": {
+          "family": "inet",
+          "name": "proxy_allowed",
+          "table": "crewshal_full_v8",
+          "handle": 3,
+          "packets": 0,
+          "bytes": 0
+        }
+      },
+      {
+        "counter": {
+          "family": "inet",
+          "name": "proxy_reply",
+          "table": "crewshal_full_v8",
+          "handle": 4,
+          "packets": 0,
+          "bytes": 0
+        }
+      },
+      {
+        "counter": {
+          "family": "inet",
+          "name": "denied",
+          "table": "crewshal_full_v8",
+          "handle": 5,
+          "packets": 0,
+          "bytes": 0
+        }
+      },
+      {
+        "chain": {
+          "family": "inet",
+          "table": "crewshal_full_v8",
+          "name": "output",
+          "handle": 1,
+          "type": "filter",
+          "hook": "output",
+          "prio": 0,
+          "policy": "accept"
+        }
+      },
+      {
+        "rule": {
+          "family": "inet",
+          "table": "crewshal_full_v8",
+          "chain": "output",
+          "handle": 6,
+          "expr": [
+            {
+              "match": {
+                "op": "==",
+                "left": {
+                  "meta": {
+                    "key": "skuid"
+                  }
+                },
+                "right": 65534
+              }
+            },
+            {
+              "match": {
+                "op": "==",
+                "left": {
+                  "payload": {
+                    "protocol": "ip",
+                    "field": "daddr"
+                  }
+                },
+                "right": "127.0.0.1"
+              }
+            },
+            {
+              "match": {
+                "op": "==",
+                "left": {
+                  "payload": {
+                    "protocol": "tcp",
+                    "field": "dport"
+                  }
+                },
+                "right": 8080
+              }
+            },
+            {
+              "counter": "native_allowed"
+            },
+            {
+              "accept": null
+            }
+          ]
+        }
+      },
+      {
+        "rule": {
+          "family": "inet",
+          "table": "crewshal_full_v8",
+          "chain": "output",
+          "handle": 7,
+          "expr": [
+            {
+              "match": {
+                "op": "==",
+                "left": {
+                  "meta": {
+                    "key": "skuid"
+                  }
+                },
+                "right": 65533
+              }
+            },
+            {
+              "match": {
+                "op": "==",
+                "left": {
+                  "payload": {
+                    "protocol": "ip",
+                    "field": "daddr"
+                  }
+                },
+                "right": "127.0.0.1"
+              }
+            },
+            {
+              "match": {
+                "op": "==",
+                "left": {
+                  "payload": {
+                    "protocol": "tcp",
+                    "field": "dport"
+                  }
+                },
+                "right": 8081
+              }
+            },
+            {
+              "counter": "proxy_allowed"
+            },
+            {
+              "accept": null
+            }
+          ]
+        }
+      },
+      {
+        "rule": {
+          "family": "inet",
+          "table": "crewshal_full_v8",
+          "chain": "output",
+          "handle": 8,
+          "expr": [
+            {
+              "match": {
+                "op": "==",
+                "left": {
+                  "meta": {
+                    "key": "skuid"
+                  }
+                },
+                "right": 65533
+              }
+            },
+            {
+              "match": {
+                "op": "==",
+                "left": {
+                  "payload": {
+                    "protocol": "ip",
+                    "field": "daddr"
+                  }
+                },
+                "right": "127.0.0.1"
+              }
+            },
+            {
+              "match": {
+                "op": "==",
+                "left": {
+                  "payload": {
+                    "protocol": "tcp",
+                    "field": "sport"
+                  }
+                },
+                "right": 8080
+              }
+            },
+            {
+              "match": {
+                "op": "in",
+                "left": {
+                  "ct": {
+                    "key": "state"
+                  }
+                },
+                "right": "established"
+              }
+            },
+            {
+              "counter": "proxy_reply"
+            },
+            {
+              "accept": null
+            }
+          ]
+        }
+      },
+      {
+        "rule": {
+          "family": "inet",
+          "table": "crewshal_full_v8",
+          "chain": "output",
+          "handle": 10,
+          "expr": [
+            {
+              "match": {
+                "op": "==",
+                "left": {
+                  "meta": {
+                    "key": "skuid"
+                  }
+                },
+                "right": {
+                  "set": [
+                    65531,
+                    65533,
+                    65534
+                  ]
+                }
+              }
+            },
+            {
+              "counter": "denied"
+            },
+            {
+              "reject": {
+                "type": "icmpx",
+                "expr": "admin-prohibited"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "broker_argv": [
+    "/usr/bin/systemd-run",
+    "--unit=crewshalnativeproxybroker-v1-f1.service",
+    "--slice=crewshalnativediscoveryv1.slice",
+    "--wait",
+    "--pipe",
+    "--collect",
+    "-p",
+    "MemoryMax=67108864",
+    "-p",
+    "MemorySwapMax=0",
+    "-p",
+    "CPUQuota=100%",
+    "-p",
+    "TasksMax=16",
+    "-p",
+    "RuntimeMaxSec=570s",
+    "-p",
+    "TimeoutStopSec=1s",
+    "-p",
+    "KillMode=control-group",
+    "/usr/bin/nsenter",
+    "--mount=/proc/5290/ns/mnt",
+    "--net=/proc/5290/ns/net",
+    "--",
+    "/usr/bin/bwrap",
+    "--ro-bind",
+    "/var/tmp/crewshal-native-qualification-v8/root",
+    "/",
+    "--proc",
+    "/proc",
+    "--dev",
+    "/dev",
+    "--ro-bind",
+    "/var/tmp/crewshal-native-qualification-v8/root/dev/shm",
+    "/dev/shm",
+    "--unshare-pid",
+    "--unshare-ipc",
+    "--unshare-uts",
+    "--new-session",
+    "--die-with-parent",
+    "--clearenv",
+    "--setenv",
+    "HOME",
+    "/scratch",
+    "--setenv",
+    "CODEX_HOME",
+    "/scratch",
+    "--setenv",
+    "TOKIO_WORKER_THREADS",
+    "1",
+    "--setenv",
+    "RAYON_NUM_THREADS",
+    "1",
+    "--setenv",
+    "PATH",
+    "/opt/codex/codex-path:/bin:/usr/bin",
+    "--cap-drop",
+    "ALL",
+    "--cap-add",
+    "CAP_SETUID",
+    "--cap-add",
+    "CAP_SETGID",
+    "--cap-add",
+    "CAP_SETPCAP",
+    "--",
+    "/bin/setpriv",
+    "--reuid=65533",
+    "--regid=65533",
+    "--clear-groups",
+    "--bounding-set=-all",
+    "--inh-caps=-all",
+    "--ambient-caps=-all",
+    "--no-new-privs",
+    "/opt/codex/codex-responses-api-proxy-aarch64-unknown-linux-musl",
+    "--port",
+    "8080",
+    "--upstream-url",
+    "http://127.0.0.1:8081/v1/responses"
+  ],
+  "broker_ready_seconds": 0.021,
+  "broker_controls": {
+    "memory.max": "67108864",
+    "memory.swap.max": "0",
+    "cpu.max": "100000 100000",
+    "pids.max": "16"
+  },
+  "broker_roles": [
+    {
+      "Uid": "65533\t65533\t65533\t65533",
+      "Gid": "65533\t65533\t65533\t65533",
+      "CapEff": "0000000000000000",
+      "CapPrm": "0000000000000000",
+      "CapAmb": "0000000000000000",
+      "CapBnd": "0000000000000000",
+      "NoNewPrivs": "1",
+      "VmLck": "4 kB"
+    }
+  ],
+  "native_transport_probe_argv": [
+    "/usr/bin/systemd-run",
+    "--unit=crewshalnativefullv8-f1-transport.service",
+    "--slice=crewshalnativediscoveryv1.slice",
+    "--wait",
+    "--pipe",
+    "--collect",
+    "-p",
+    "MemoryMax=134217728",
+    "-p",
+    "MemorySwapMax=0",
+    "-p",
+    "CPUQuota=100%",
+    "-p",
+    "CPUAffinity=0",
+    "-p",
+    "TasksMax=32",
+    "-p",
+    "RuntimeMaxSec=5s",
+    "-p",
+    "TimeoutStopSec=1s",
+    "-p",
+    "KillMode=control-group",
+    "-p",
+    "LimitFSIZE=infinity",
+    "-p",
+    "SystemCallFilter=~memfd_create shmget shmat linkat setxattr lsetxattr fsetxattr mknodat keyctl add_key request_key",
+    "-p",
+    "SystemCallErrorNumber=EPERM",
+    "/usr/bin/nsenter",
+    "--mount=/proc/5290/ns/mnt",
+    "--net=/proc/5290/ns/net",
+    "--",
+    "/usr/bin/bwrap",
+    "--ro-bind",
+    "/var/tmp/crewshal-native-qualification-v8/root",
+    "/",
+    "--bind",
+    "/var/tmp/crewshal-native-qualification-v8/full-v8-f1/candidate-upper",
+    "/candidate/owned",
+    "--bind",
+    "/var/tmp/crewshal-native-qualification-v8/full-v8-f1/upper",
+    "/scratch",
+    "--ro-bind",
+    "/var/tmp/crewshal-native-qualification-v8/root/input/empty-global-instructions",
+    "/scratch/AGENTS.md",
+    "--ro-bind",
+    "/var/tmp/crewshal-native-qualification-v8/root/input/empty-global-instructions",
+    "/scratch/AGENTS.override.md",
+    "--proc",
+    "/proc",
+    "--dev",
+    "/dev",
+    "--ro-bind",
+    "/var/tmp/crewshal-native-qualification-v8/root/dev/shm",
+    "/dev/shm",
+    "--unshare-pid",
+    "--unshare-ipc",
+    "--unshare-uts",
+    "--new-session",
+    "--die-with-parent",
+    "--clearenv",
+    "--setenv",
+    "HOME",
+    "/scratch",
+    "--setenv",
+    "CODEX_HOME",
+    "/scratch",
+    "--setenv",
+    "TOKIO_WORKER_THREADS",
+    "1",
+    "--setenv",
+    "RAYON_NUM_THREADS",
+    "1",
+    "--setenv",
+    "PATH",
+    "/opt/codex/codex-path:/bin:/usr/bin",
+    "--cap-drop",
+    "ALL",
+    "--cap-add",
+    "CAP_SETUID",
+    "--cap-add",
+    "CAP_SETGID",
+    "--cap-add",
+    "CAP_SETPCAP",
+    "--",
+    "/bin/setpriv",
+    "--reuid=65534",
+    "--regid=65534",
+    "--clear-groups",
+    "--bounding-set=-all",
+    "--inh-caps=-all",
+    "--ambient-caps=-all",
+    "--no-new-privs",
+    "/bin/python3",
+    "-I",
+    "-B",
+    "-c",
+    "import http.client,json\nobservations=[]\nfor kind in ('headers','redirect'):\n c=http.client.HTTPConnection('127.0.0.1',8080,timeout=1)\n c.request('POST','/v1/responses',json.dumps({'transport_probe':kind}),headers={'Host':'127.0.0.1:8082','Authorization':'Bearer guessed','Content-Type':'application/json','X-Upstream-URL':'http://127.0.0.1:8082/nonallowed'})\n r=c.getresponse(); body=r.read(1024)\n observations.append({'probe':kind,'status':r.status,'bytes':len(body)})\n c.close()\nprint(json.dumps(observations))\n"
+  ],
+  "native_transport_probe_output": "[{\"probe\": \"headers\", \"status\": 200, \"bytes\": 2}, {\"probe\": \"redirect\", \"status\": 500, \"bytes\": 0}]",
+  "transport_observations": [
+    {
+      "probe": "headers",
+      "auth_matches": true,
+      "host": "127.0.0.1:8081"
+    },
+    {
+      "probe": "redirect",
+      "auth_matches": true,
+      "host": "127.0.0.1:8081"
+    }
+  ],
+  "argv": [
+    "/usr/bin/systemd-run",
+    "--unit=crewshalnativefullv8-f1.service",
+    "--slice=crewshalnativediscoveryv1.slice",
+    "--wait",
+    "--pipe",
+    "--collect",
+    "-p",
+    "MemoryMax=134217728",
+    "-p",
+    "MemorySwapMax=0",
+    "-p",
+    "CPUQuota=100%",
+    "-p",
+    "CPUAffinity=0",
+    "-p",
+    "TasksMax=32",
+    "-p",
+    "RuntimeMaxSec=5s",
+    "-p",
+    "TimeoutStopSec=1s",
+    "-p",
+    "KillMode=control-group",
+    "-p",
+    "LimitFSIZE=infinity",
+    "-p",
+    "SystemCallFilter=~memfd_create shmget shmat linkat setxattr lsetxattr fsetxattr mknodat keyctl add_key request_key",
+    "-p",
+    "SystemCallErrorNumber=EPERM",
+    "/usr/bin/nsenter",
+    "--mount=/proc/5290/ns/mnt",
+    "--net=/proc/5290/ns/net",
+    "--",
+    "/usr/bin/bwrap",
+    "--ro-bind",
+    "/var/tmp/crewshal-native-qualification-v8/root",
+    "/",
+    "--bind",
+    "/var/tmp/crewshal-native-qualification-v8/full-v8-f1/candidate-upper",
+    "/candidate/owned",
+    "--bind",
+    "/var/tmp/crewshal-native-qualification-v8/full-v8-f1/upper",
+    "/scratch",
+    "--ro-bind",
+    "/var/tmp/crewshal-native-qualification-v8/root/input/empty-global-instructions",
+    "/scratch/AGENTS.md",
+    "--ro-bind",
+    "/var/tmp/crewshal-native-qualification-v8/root/input/empty-global-instructions",
+    "/scratch/AGENTS.override.md",
+    "--proc",
+    "/proc",
+    "--dev",
+    "/dev",
+    "--ro-bind",
+    "/var/tmp/crewshal-native-qualification-v8/root/dev/shm",
+    "/dev/shm",
+    "--unshare-pid",
+    "--unshare-ipc",
+    "--unshare-uts",
+    "--new-session",
+    "--die-with-parent",
+    "--clearenv",
+    "--setenv",
+    "HOME",
+    "/scratch",
+    "--setenv",
+    "CODEX_HOME",
+    "/scratch",
+    "--setenv",
+    "TOKIO_WORKER_THREADS",
+    "1",
+    "--setenv",
+    "RAYON_NUM_THREADS",
+    "1",
+    "--setenv",
+    "PATH",
+    "/opt/codex/codex-path:/bin:/usr/bin",
+    "--cap-drop",
+    "ALL",
+    "--cap-add",
+    "CAP_SETUID",
+    "--cap-add",
+    "CAP_SETGID",
+    "--cap-add",
+    "CAP_SETPCAP",
+    "--",
+    "/bin/setpriv",
+    "--reuid=65534",
+    "--regid=65534",
+    "--clear-groups",
+    "--bounding-set=-all",
+    "--inh-caps=-all",
+    "--ambient-caps=-all",
+    "--no-new-privs",
+    "/opt/codex/bin/codex",
+    "exec",
+    "--ephemeral",
+    "--ignore-user-config",
+    "--ignore-rules",
+    "--skip-git-repo-check",
+    "--color",
+    "never",
+    "--json",
+    "-C",
+    "/scratch/checkout",
+    "--add-dir",
+    "/candidate/owned",
+    "--add-dir",
+    "/scratch",
+    "-s",
+    "workspace-write",
+    "-m",
+    "synthetic",
+    "-c",
+    "approval_policy=\"never\"",
+    "-c",
+    "model_provider=\"fixture\"",
+    "-c",
+    "model_providers.fixture.name=\"fixture\"",
+    "-c",
+    "model_providers.fixture.base_url=\"http://127.0.0.1:8080/v1\"",
+    "-c",
+    "model_providers.fixture.wire_api=\"responses\"",
+    "-c",
+    "model_providers.fixture.requires_openai_auth=false",
+    "-c",
+    "model_providers.fixture.request_max_retries=0",
+    "-c",
+    "model_providers.fixture.stream_max_retries=0",
+    "-c",
+    "features.shell_snapshot=false",
+    "-c",
+    "project_doc_max_bytes=0",
+    "-c",
+    "features.sqlite=false",
+    "-c",
+    "thread_unload_delay_secs=0",
+    "-c",
+    "agents.enabled=false",
+    "-c",
+    "features.goals=false",
+    "-c",
+    "features.memories=false",
+    "-c",
+    "features.multi_agent=false",
+    "-c",
+    "features.hooks=false",
+    "-c",
+    "features.view_image=false",
+    "-c",
+    "web_search=\"disabled\"",
+    "-c",
+    "analytics.enabled=false",
+    "-c",
+    "feedback.enabled=false",
+    "-c",
+    "otel.exporter=\"none\"",
+    "-c",
+    "otel.trace_exporter=\"none\"",
+    "-c",
+    "otel.metrics_exporter=\"none\"",
+    "-c",
+    "check_for_update_on_startup=false",
+    "-c",
+    "features.plugins=false",
+    "-c",
+    "features.remote_plugin=false",
+    "-c",
+    "features.recommended_plugins=false",
+    "-c",
+    "features.plugin_hooks=false",
+    "-c",
+    "features.apps=false",
+    "-c",
+    "skills.bundled.enabled=false",
+    "-c",
+    "skills.include_instructions=false",
+    "-c",
+    "features.skip_host_skill_discovery=true",
+    "-c",
+    "allow_login_shell=false",
+    "Write tiny into /scratch/native-tiny using command tool. Then finish."
+  ],
+  "storage_peaks": {
+    "candidate": {
+      "logical": 6901839,
+      "allocated": 11173888,
+      "deleted_open": 0
+    },
+    "scratch": {
+      "logical": 2701783,
+      "allocated": 3125248,
+      "deleted_open": 0
+    }
+  },
+  "thread_inventory_peak_count": 28,
+  "thread_inventory_peak": {
+    "bwrap": 2,
+    "codex": 2,
+    "codex-main": 1,
+    "tokio-rt-worker": 4,
+    "sqlx-sqlite-wor": 11,
+    "notify-rs inoti": 2,
+    "codex-child-rea": 1,
+    "codex-linux-san": 1,
+    "3": 1,
+    "python3": 3
+  },
+  "worker_last_resources": {
+    "pids.current": "26",
+    "pids.events": "max 0",
+    "memory.current": "48476160",
+    "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+  },
+  "worker_peak_tasks_observed": 28,
+  "payload_roles_observed": [
+    {
+      "pid": 5374,
+      "label": "crewshal-native-bwrap-v1//&crewshal-native-tool-v1 (enforce)",
+      "uid": "65534\t65534\t65534\t65534",
+      "cap_eff": "0000000000000000",
+      "no_new_privs": "1",
+      "network_namespace": "net:[4026532986]"
+    },
+    {
+      "pid": 5375,
+      "label": "crewshal-native-bwrap-v1//&crewshal-native-tool-v1 (enforce)",
+      "uid": "65534\t65534\t65534\t65534",
+      "cap_eff": "0000000000000000",
+      "no_new_privs": "1",
+      "network_namespace": "net:[4026532986]"
+    }
+  ],
+  "exit": 1,
+  "stdout": "{\"type\":\"thread.started\",\"thread_id\":\"01a11afe-a9c9-7203-80c3-1d7520a57fe9\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"error\",\"message\":\"Under-development features enabled: skip_host_skill_discovery. Under-development features are incomplete and may behave unpredictably. To suppress this warning, set `suppress_unstable_features_warning = true` in /scratch/config.toml.\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_1\",\"type\":\"error\",\"message\":\"Model metadata for `synthetic` not found. Defaulting to fallback metadata; this can degrade performance and cause issues.\"}}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.started\",\"item\":{\"id\":\"item_2\",\"type\":\"command_execution\",\"command\":\"/bin/sh -c 'exec /bin/python3 -I -B /input/native-full-payload.py workload'\",\"aggregated_output\":\"\",\"exit_code\":null,\"status\":\"in_progress\"}}\n",
+  "stderr": "Running as unit: crewshalnativefullv8-f1.service; invocation ID: c35376ef85e0477bbfcb1f2d2ed3283e\nReading additional input from stdin...\nFinished with result: timeout\nMain processes terminated with: code=killed/status=TERM\nService runtime: 5.319s\nCPU time consumed: 1.064s\nMemory peak: 640.0K\nMemory swap peak: 0B\n",
+  "worker_controls": [
+    {
+      "memory.max": "134217728",
+      "memory.swap.max": "0",
+      "cpu.max": "100000 100000",
+      "pids.max": "32"
+    }
+  ],
+  "worker_seconds": 5.33,
+  "captured_streams": {
+    "stdout": "{\"type\":\"thread.started\",\"thread_id\":\"01a11afe-a9c9-7203-80c3-1d7520a57fe9\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"error\",\"message\":\"Under-development features enabled: skip_host_skill_discovery. Under-development features are incomplete and may behave unpredictably. To suppress this warning, set `suppress_unstable_features_warning = true` in /scratch/config.toml.\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_1\",\"type\":\"error\",\"message\":\"Model metadata for `synthetic` not found. Defaulting to fallback metadata; this can degrade performance and cause issues.\"}}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.started\",\"item\":{\"id\":\"item_2\",\"type\":\"command_execution\",\"command\":\"/bin/sh -c 'exec /bin/python3 -I -B /input/native-full-payload.py workload'\",\"aggregated_output\":\"\",\"exit_code\":null,\"status\":\"in_progress\"}}\n",
+    "stderr": "Running as unit: crewshalnativefullv8-f1.service; invocation ID: c35376ef85e0477bbfcb1f2d2ed3283e\nReading additional input from stdin...\nFinished with result: timeout\nMain processes terminated with: code=killed/status=TERM\nService runtime: 5.319s\nCPU time consumed: 1.064s\nMemory peak: 640.0K\nMemory swap peak: 0B\n",
+    "proxy_stdout": "",
+    "proxy_stderr": "Running as unit: crewshalnativeproxybroker-v1-f1.service; invocation ID: 1deba7480e054a9b943aebff6314c680\nresponses-api-proxy listening on 127.0.0.1:8080\nforwarding error: forwarding request to upstream\n"
+  },
+  "fixture_requests_after_capture": [
+    {
+      "path": "/v1/responses",
+      "tool_outputs": [],
+      "tools": [
+        "exec_command",
+        "write_stdin",
+        "request_user_input"
+      ],
+      "instruction_markers": [],
+      "instruction_injection_present": false
+    }
+  ],
+  "provider_auth_observations_after_capture": [
+    {
+      "path": "/v1/responses",
+      "auth_matches": true,
+      "host": "127.0.0.1:8081"
+    },
+    {
+      "path": "/v1/responses",
+      "auth_matches": true,
+      "host": "127.0.0.1:8081"
+    },
+    {
+      "path": "/v1/responses",
+      "auth_matches": true,
+      "host": "127.0.0.1:8081"
+    }
+  ],
+  "nonallowed_sink_after_capture": [],
+  "worker_process_return_at_capture_end": 1,
+  "upper_inventory": [
+    {
+      "path": "goals_1.sqlite",
+      "size": 4096,
+      "allocated": 12288
+    },
+    {
+      "path": "checkout",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "goals_1.sqlite-wal",
+      "size": 74192,
+      "allocated": 86016
+    },
+    {
+      "path": "state_5.sqlite-wal",
+      "size": 1989992,
+      "allocated": 1998848
+    },
+    {
+      "path": "logs_2.sqlite-shm",
+      "size": 32768,
+      "allocated": 40960
+    },
+    {
+      "path": "tmp",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": ".agents",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "lost+found",
+      "size": 16384,
+      "allocated": 16384
+    },
+    {
+      "path": "logs_2.sqlite-wal",
+      "size": 115392,
+      "allocated": 126976
+    },
+    {
+      "path": ".codex",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "memories_1.sqlite-wal",
+      "size": 86552,
+      "allocated": 98304
+    },
+    {
+      "path": "state_5.sqlite-shm",
+      "size": 32768,
+      "allocated": 40960
+    },
+    {
+      "path": "memories_1.sqlite-shm",
+      "size": 32768,
+      "allocated": 40960
+    },
+    {
+      "path": "logs_2.sqlite",
+      "size": 49152,
+      "allocated": 57344
+    },
+    {
+      "path": "installation_id",
+      "size": 36,
+      "allocated": 12288
+    },
+    {
+      "path": "queue_1.sqlite-shm",
+      "size": 32768,
+      "allocated": 40960
+    },
+    {
+      "path": "existing",
+      "size": 14,
+      "allocated": 12288
+    },
+    {
+      "path": "AGENTS.md",
+      "size": 74,
+      "allocated": 12288
+    },
+    {
+      "path": "codex-daemon-65534",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "new-owned",
+      "size": 9,
+      "allocated": 12288
+    },
+    {
+      "path": "queue_1.sqlite-wal",
+      "size": 82432,
+      "allocated": 94208
+    },
+    {
+      "path": "state_5.sqlite",
+      "size": 4096,
+      "allocated": 12288
+    },
+    {
+      "path": "AGENTS.override.md",
+      "size": 47,
+      "allocated": 12288
+    },
+    {
+      "path": "config.toml",
+      "size": 193,
+      "allocated": 12288
+    },
+    {
+      "path": ".aws",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "queue_1.sqlite",
+      "size": 4096,
+      "allocated": 12288
+    },
+    {
+      "path": "codex-bwrap-synthetic-mount-targets-65534",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": ".git",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "goals_1.sqlite-shm",
+      "size": 32768,
+      "allocated": 40960
+    },
+    {
+      "path": "memories_1.sqlite",
+      "size": 4096,
+      "allocated": 12288
+    },
+    {
+      "path": "checkout/.agents",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "checkout/.codex",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "checkout/AGENTS.md",
+      "size": 88,
+      "allocated": 12288
+    },
+    {
+      "path": "checkout/dirty.py",
+      "size": 35,
+      "allocated": 12288
+    },
+    {
+      "path": "checkout/.aws",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "checkout/.git",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "tmp/arg0",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "codex-bwrap-synthetic-mount-targets-65534/92f7cad5589572f3",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "codex-bwrap-synthetic-mount-targets-65534/9c5fc3b40adcffb6",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "codex-bwrap-synthetic-mount-targets-65534/4312be56de9ac4be",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "codex-bwrap-synthetic-mount-targets-65534/94a0c1d86efcda99",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "codex-bwrap-synthetic-mount-targets-65534/31085f56d42f0aa3",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "codex-bwrap-synthetic-mount-targets-65534/lock",
+      "size": 0,
+      "allocated": 8192
+    },
+    {
+      "path": "codex-bwrap-synthetic-mount-targets-65534/826d80d8646e4e64",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "codex-bwrap-synthetic-mount-targets-65534/cd3b87fafe7adacc",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "codex-bwrap-synthetic-mount-targets-65534/52949b55f0f472ed",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "codex-bwrap-synthetic-mount-targets-65534/b04a47afcf085817",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "codex-bwrap-synthetic-mount-targets-65534/8c866d478e456d32",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "checkout/.codex/config.toml",
+      "size": 166,
+      "allocated": 12288
+    },
+    {
+      "path": "checkout/.git/HEAD",
+      "size": 24,
+      "allocated": 12288
+    },
+    {
+      "path": "checkout/.git/config",
+      "size": 47,
+      "allocated": 12288
+    },
+    {
+      "path": "checkout/.git/hooks",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "checkout/.git/hooks/pre-commit",
+      "size": 55,
+      "allocated": 12288
+    },
+    {
+      "path": "tmp/arg0/codex-arg0dJs0Uy",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "tmp/arg0/codex-arg0dJs0Uy/applypatch",
+      "size": 20,
+      "allocated": 0
+    },
+    {
+      "path": "tmp/arg0/codex-arg0dJs0Uy/codex-execve-wrapper",
+      "size": 20,
+      "allocated": 0
+    },
+    {
+      "path": "tmp/arg0/codex-arg0dJs0Uy/.lock",
+      "size": 0,
+      "allocated": 8192
+    },
+    {
+      "path": "tmp/arg0/codex-arg0dJs0Uy/apply_patch",
+      "size": 20,
+      "allocated": 0
+    },
+    {
+      "path": "tmp/arg0/codex-arg0dJs0Uy/codex-linux-sandbox",
+      "size": 20,
+      "allocated": 0
+    },
+    {
+      "path": "codex-bwrap-synthetic-mount-targets-65534/92f7cad5589572f3/31",
+      "size": 10,
+      "allocated": 12288
+    },
+    {
+      "path": "codex-bwrap-synthetic-mount-targets-65534/9c5fc3b40adcffb6/31",
+      "size": 9,
+      "allocated": 12288
+    },
+    {
+      "path": "codex-bwrap-synthetic-mount-targets-65534/4312be56de9ac4be/31",
+      "size": 10,
+      "allocated": 12288
+    },
+    {
+      "path": "codex-bwrap-synthetic-mount-targets-65534/94a0c1d86efcda99/31",
+      "size": 10,
+      "allocated": 12288
+    },
+    {
+      "path": "codex-bwrap-synthetic-mount-targets-65534/31085f56d42f0aa3/31",
+      "size": 10,
+      "allocated": 12288
+    },
+    {
+      "path": "codex-bwrap-synthetic-mount-targets-65534/826d80d8646e4e64/31",
+      "size": 10,
+      "allocated": 12288
+    },
+    {
+      "path": "codex-bwrap-synthetic-mount-targets-65534/cd3b87fafe7adacc/31",
+      "size": 10,
+      "allocated": 12288
+    },
+    {
+      "path": "codex-bwrap-synthetic-mount-targets-65534/52949b55f0f472ed/31",
+      "size": 10,
+      "allocated": 12288
+    },
+    {
+      "path": "codex-bwrap-synthetic-mount-targets-65534/b04a47afcf085817/31",
+      "size": 10,
+      "allocated": 12288
+    },
+    {
+      "path": "codex-bwrap-synthetic-mount-targets-65534/8c866d478e456d32/31",
+      "size": 10,
+      "allocated": 12288
+    }
+  ],
+  "lower_inventory": [
+    {
+      "path": "goals_1.sqlite",
+      "size": 12288,
+      "allocated": 12288
+    },
+    {
+      "path": "checkout",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "goals_1.sqlite-wal",
+      "size": 86016,
+      "allocated": 86016
+    },
+    {
+      "path": "state_5.sqlite-wal",
+      "size": 1998848,
+      "allocated": 1998848
+    },
+    {
+      "path": "logs_2.sqlite-shm",
+      "size": 40960,
+      "allocated": 40960
+    },
+    {
+      "path": "tmp",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": ".agents",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "lost+found",
+      "size": 16384,
+      "allocated": 16384
+    },
+    {
+      "path": "logs_2.sqlite-wal",
+      "size": 126976,
+      "allocated": 126976
+    },
+    {
+      "path": ".codex",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "memories_1.sqlite-wal",
+      "size": 98304,
+      "allocated": 98304
+    },
+    {
+      "path": "state_5.sqlite-shm",
+      "size": 40960,
+      "allocated": 40960
+    },
+    {
+      "path": "memories_1.sqlite-shm",
+      "size": 40960,
+      "allocated": 40960
+    },
+    {
+      "path": "logs_2.sqlite",
+      "size": 57344,
+      "allocated": 57344
+    },
+    {
+      "path": "installation_id",
+      "size": 12288,
+      "allocated": 12288
+    },
+    {
+      "path": "queue_1.sqlite-shm",
+      "size": 40960,
+      "allocated": 40960
+    },
+    {
+      "path": "existing",
+      "size": 12288,
+      "allocated": 12288
+    },
+    {
+      "path": "AGENTS.md",
+      "size": 12288,
+      "allocated": 12288
+    },
+    {
+      "path": "codex-daemon-65534",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "new-owned",
+      "size": 12288,
+      "allocated": 12288
+    },
+    {
+      "path": "queue_1.sqlite-wal",
+      "size": 94208,
+      "allocated": 94208
+    },
+    {
+      "path": "state_5.sqlite",
+      "size": 12288,
+      "allocated": 12288
+    },
+    {
+      "path": "AGENTS.override.md",
+      "size": 12288,
+      "allocated": 12288
+    },
+    {
+      "path": "config.toml",
+      "size": 12288,
+      "allocated": 12288
+    },
+    {
+      "path": ".aws",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "queue_1.sqlite",
+      "size": 12288,
+      "allocated": 12288
+    },
+    {
+      "path": "codex-bwrap-synthetic-mount-targets-65534",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": ".git",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "goals_1.sqlite-shm",
+      "size": 40960,
+      "allocated": 40960
+    },
+    {
+      "path": "memories_1.sqlite",
+      "size": 12288,
+      "allocated": 12288
+    },
+    {
+      "path": "checkout/.agents",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "checkout/.codex",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "checkout/AGENTS.md",
+      "size": 12288,
+      "allocated": 12288
+    },
+    {
+      "path": "checkout/dirty.py",
+      "size": 12288,
+      "allocated": 12288
+    },
+    {
+      "path": "checkout/.aws",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "checkout/.git",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "tmp/arg0",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "codex-bwrap-synthetic-mount-targets-65534/92f7cad5589572f3",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "codex-bwrap-synthetic-mount-targets-65534/9c5fc3b40adcffb6",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "codex-bwrap-synthetic-mount-targets-65534/4312be56de9ac4be",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "codex-bwrap-synthetic-mount-targets-65534/94a0c1d86efcda99",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "codex-bwrap-synthetic-mount-targets-65534/31085f56d42f0aa3",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "codex-bwrap-synthetic-mount-targets-65534/lock",
+      "size": 8192,
+      "allocated": 8192
+    },
+    {
+      "path": "codex-bwrap-synthetic-mount-targets-65534/826d80d8646e4e64",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "codex-bwrap-synthetic-mount-targets-65534/cd3b87fafe7adacc",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "codex-bwrap-synthetic-mount-targets-65534/52949b55f0f472ed",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "codex-bwrap-synthetic-mount-targets-65534/b04a47afcf085817",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "codex-bwrap-synthetic-mount-targets-65534/8c866d478e456d32",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "checkout/.codex/config.toml",
+      "size": 12288,
+      "allocated": 12288
+    },
+    {
+      "path": "checkout/.git/HEAD",
+      "size": 12288,
+      "allocated": 12288
+    },
+    {
+      "path": "checkout/.git/config",
+      "size": 12288,
+      "allocated": 12288
+    },
+    {
+      "path": "checkout/.git/hooks",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "checkout/.git/hooks/pre-commit",
+      "size": 12288,
+      "allocated": 12288
+    },
+    {
+      "path": "tmp/arg0/codex-arg0dJs0Uy",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "tmp/arg0/codex-arg0dJs0Uy/applypatch",
+      "size": 20,
+      "allocated": 0
+    },
+    {
+      "path": "tmp/arg0/codex-arg0dJs0Uy/codex-execve-wrapper",
+      "size": 20,
+      "allocated": 0
+    },
+    {
+      "path": "tmp/arg0/codex-arg0dJs0Uy/.lock",
+      "size": 8192,
+      "allocated": 8192
+    },
+    {
+      "path": "tmp/arg0/codex-arg0dJs0Uy/apply_patch",
+      "size": 20,
+      "allocated": 0
+    },
+    {
+      "path": "tmp/arg0/codex-arg0dJs0Uy/codex-linux-sandbox",
+      "size": 20,
+      "allocated": 0
+    },
+    {
+      "path": "codex-bwrap-synthetic-mount-targets-65534/92f7cad5589572f3/31",
+      "size": 12288,
+      "allocated": 12288
+    },
+    {
+      "path": "codex-bwrap-synthetic-mount-targets-65534/9c5fc3b40adcffb6/31",
+      "size": 12288,
+      "allocated": 12288
+    },
+    {
+      "path": "codex-bwrap-synthetic-mount-targets-65534/4312be56de9ac4be/31",
+      "size": 12288,
+      "allocated": 12288
+    },
+    {
+      "path": "codex-bwrap-synthetic-mount-targets-65534/94a0c1d86efcda99/31",
+      "size": 12288,
+      "allocated": 12288
+    },
+    {
+      "path": "codex-bwrap-synthetic-mount-targets-65534/31085f56d42f0aa3/31",
+      "size": 12288,
+      "allocated": 12288
+    },
+    {
+      "path": "codex-bwrap-synthetic-mount-targets-65534/826d80d8646e4e64/31",
+      "size": 12288,
+      "allocated": 12288
+    },
+    {
+      "path": "codex-bwrap-synthetic-mount-targets-65534/cd3b87fafe7adacc/31",
+      "size": 12288,
+      "allocated": 12288
+    },
+    {
+      "path": "codex-bwrap-synthetic-mount-targets-65534/52949b55f0f472ed/31",
+      "size": 12288,
+      "allocated": 12288
+    },
+    {
+      "path": "codex-bwrap-synthetic-mount-targets-65534/b04a47afcf085817/31",
+      "size": 12288,
+      "allocated": 12288
+    },
+    {
+      "path": "codex-bwrap-synthetic-mount-targets-65534/8c866d478e456d32/31",
+      "size": 12288,
+      "allocated": 12288
+    }
+  ],
+  "provider_auth_observations": [
+    {
+      "path": "/v1/responses",
+      "auth_matches": true,
+      "host": "127.0.0.1:8081"
+    },
+    {
+      "path": "/v1/responses",
+      "auth_matches": true,
+      "host": "127.0.0.1:8081"
+    },
+    {
+      "path": "/v1/responses",
+      "auth_matches": true,
+      "host": "127.0.0.1:8081"
+    }
+  ],
+  "nft_after": {
+    "nftables": [
+      {
+        "metainfo": {
+          "version": "1.0.9",
+          "release_name": "Old Doc Yak #3",
+          "json_schema_version": 1
+        }
+      },
+      {
+        "table": {
+          "family": "inet",
+          "name": "crewshal_full_v8",
+          "handle": 1
+        }
+      },
+      {
+        "counter": {
+          "family": "inet",
+          "name": "native_allowed",
+          "table": "crewshal_full_v8",
+          "handle": 2,
+          "packets": 19,
+          "bytes": 27612
+        }
+      },
+      {
+        "counter": {
+          "family": "inet",
+          "name": "proxy_allowed",
+          "table": "crewshal_full_v8",
+          "handle": 3,
+          "packets": 17,
+          "bytes": 27691
+        }
+      },
+      {
+        "counter": {
+          "family": "inet",
+          "name": "proxy_reply",
+          "table": "crewshal_full_v8",
+          "handle": 4,
+          "packets": 16,
+          "bytes": 2670
+        }
+      },
+      {
+        "counter": {
+          "family": "inet",
+          "name": "denied",
+          "table": "crewshal_full_v8",
+          "handle": 5,
+          "packets": 1,
+          "bytes": 60
+        }
+      },
+      {
+        "chain": {
+          "family": "inet",
+          "table": "crewshal_full_v8",
+          "name": "output",
+          "handle": 1,
+          "type": "filter",
+          "hook": "output",
+          "prio": 0,
+          "policy": "accept"
+        }
+      },
+      {
+        "rule": {
+          "family": "inet",
+          "table": "crewshal_full_v8",
+          "chain": "output",
+          "handle": 6,
+          "expr": [
+            {
+              "match": {
+                "op": "==",
+                "left": {
+                  "meta": {
+                    "key": "skuid"
+                  }
+                },
+                "right": 65534
+              }
+            },
+            {
+              "match": {
+                "op": "==",
+                "left": {
+                  "payload": {
+                    "protocol": "ip",
+                    "field": "daddr"
+                  }
+                },
+                "right": "127.0.0.1"
+              }
+            },
+            {
+              "match": {
+                "op": "==",
+                "left": {
+                  "payload": {
+                    "protocol": "tcp",
+                    "field": "dport"
+                  }
+                },
+                "right": 8080
+              }
+            },
+            {
+              "counter": "native_allowed"
+            },
+            {
+              "accept": null
+            }
+          ]
+        }
+      },
+      {
+        "rule": {
+          "family": "inet",
+          "table": "crewshal_full_v8",
+          "chain": "output",
+          "handle": 7,
+          "expr": [
+            {
+              "match": {
+                "op": "==",
+                "left": {
+                  "meta": {
+                    "key": "skuid"
+                  }
+                },
+                "right": 65533
+              }
+            },
+            {
+              "match": {
+                "op": "==",
+                "left": {
+                  "payload": {
+                    "protocol": "ip",
+                    "field": "daddr"
+                  }
+                },
+                "right": "127.0.0.1"
+              }
+            },
+            {
+              "match": {
+                "op": "==",
+                "left": {
+                  "payload": {
+                    "protocol": "tcp",
+                    "field": "dport"
+                  }
+                },
+                "right": 8081
+              }
+            },
+            {
+              "counter": "proxy_allowed"
+            },
+            {
+              "accept": null
+            }
+          ]
+        }
+      },
+      {
+        "rule": {
+          "family": "inet",
+          "table": "crewshal_full_v8",
+          "chain": "output",
+          "handle": 8,
+          "expr": [
+            {
+              "match": {
+                "op": "==",
+                "left": {
+                  "meta": {
+                    "key": "skuid"
+                  }
+                },
+                "right": 65533
+              }
+            },
+            {
+              "match": {
+                "op": "==",
+                "left": {
+                  "payload": {
+                    "protocol": "ip",
+                    "field": "daddr"
+                  }
+                },
+                "right": "127.0.0.1"
+              }
+            },
+            {
+              "match": {
+                "op": "==",
+                "left": {
+                  "payload": {
+                    "protocol": "tcp",
+                    "field": "sport"
+                  }
+                },
+                "right": 8080
+              }
+            },
+            {
+              "match": {
+                "op": "in",
+                "left": {
+                  "ct": {
+                    "key": "state"
+                  }
+                },
+                "right": "established"
+              }
+            },
+            {
+              "counter": "proxy_reply"
+            },
+            {
+              "accept": null
+            }
+          ]
+        }
+      },
+      {
+        "rule": {
+          "family": "inet",
+          "table": "crewshal_full_v8",
+          "chain": "output",
+          "handle": 10,
+          "expr": [
+            {
+              "match": {
+                "op": "==",
+                "left": {
+                  "meta": {
+                    "key": "skuid"
+                  }
+                },
+                "right": {
+                  "set": [
+                    65531,
+                    65533,
+                    65534
+                  ]
+                }
+              }
+            },
+            {
+              "counter": "denied"
+            },
+            {
+              "reject": {
+                "type": "icmpx",
+                "expr": "admin-prohibited"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "fixture_requests": [
+    {
+      "path": "/v1/responses",
+      "tool_outputs": [],
+      "tools": [
+        "exec_command",
+        "write_stdin",
+        "request_user_input"
+      ],
+      "instruction_markers": [],
+      "instruction_injection_present": false
+    }
+  ],
+  "tiny_exists_before_exit_check": false,
+  "record_stage": "before-cleanup",
+  "runtime_verified": false
+}

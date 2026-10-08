@@ -1,0 +1,37 @@
+{
+  "scope": "Actual native tiny command tool workflow with fixed synthetic local Responses; no broker qualification",
+  "source": "scripts/probe_direct_linux_native_compatibility_v21.py",
+  "source_sha256": "4feef3c622dc9928d49ff8e7b5419f005dd9c236fb3dabfe89ef1635909c2cd7",
+  "policy": "phase-2c-direct-linux-native-apparmor-proposal-v7.profile",
+  "policy_sha256": "6a6d743ab2a1d51db801ff944aa74c2fedd5316f34ee1965bc345b4917dc3039",
+  "authority": "phase-2c-direct-linux-native-apparmor-approval-v2.json",
+  "controls": {
+    "worker_memory": 134217728,
+    "worker_swap": 0,
+    "worker_cpu": "100000 100000",
+    "worker_pids": 32,
+    "worker_seconds": 5,
+    "aggregate_memory": 805306368,
+    "aggregate_swap": 0,
+    "aggregate_cpu": "100000 100000",
+    "aggregate_pids": 128,
+    "output_bytes_per_stream": 65536,
+    "command_seconds": 10,
+    "startup_seconds": 120,
+    "two_fixture_cleanup_seconds": 600,
+    "final_cleanup_reserve_seconds": 30,
+    "disk_logical_and_allocated": 8589934592
+  },
+  "execution_allowed": false,
+  "native_start_allowed": false,
+  "fixture_source": "scripts/native_fixed_response_fixture_v4.py",
+  "fixture_source_sha256": "d2322d7915e7833aec4354fc2d309bf4cb4332609cc083b88bd99169562f1602",
+  "storage_mechanism": {
+    "per_file_bytes": 2097152,
+    "scratch_tmpfs_bytes": 8388608,
+    "scratch_tmpfs_inodes": 16,
+    "conservative_regular_logical_max": 31457280,
+    "note": "Stricter diagnostic mechanism adjusted prospectively after observed SIGXFSZ. Full deleted-open/alias accounting qualification remains unavailable."
+  },
+  "change": "Preserve native partial stdout/stderr and fixed fixture request inventory on four-second timeout. No limit/authority change."
+}

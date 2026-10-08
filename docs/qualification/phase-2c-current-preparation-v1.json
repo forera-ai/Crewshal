@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "id": "crewshal-phase-2c-current-preparation-v1",
+  "scope": "preparation only, no bundled program/installer execution",
+  "source_path": "docs/qualification/phase-2c-current-preparation-v1-runner.txt",
+  "source_sha256": "d04e774f3efe773af6af035c2b72551196458901f4b881fc14f6bd34f22c58f1",
+  "inputs": {
+    "docs/qualification/phase-2c-amd64-preparation.json": "7b625ea170ba707619da6f2a5ea624b0e801dc21b6942d57acde11b26a32e7cb"
+  },
+  "root": "/srv/crewshal-2c-preparation-current-20261002-v1",
+  "command_seconds": 180,
+  "download_bytes": 82815215,
+  "expanded_bytes_maximum": 2000000000,
+  "cleanup": "Remove only exclusively created preparation directory after fixture cleanup; keep droplet until required host work finishes.",
+  "execution_allowed": false,
+  "native_start_allowed": false
+}

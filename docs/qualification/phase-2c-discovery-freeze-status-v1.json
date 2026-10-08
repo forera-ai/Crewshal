@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "id": "crewshal-phase-2c-discovery-freeze-status-v1",
+  "status": "blocked_supported_create_requires_Docker_authentication",
+  "authority_path": "docs/qualification/phase-2c-discovery-authorization-v1.json",
+  "observations_path": "docs/qualification/phase-2c-discovery-admission-v2-observed.json",
+  "discovery_source_frozen": true,
+  "complete_operational_manifest_frozen": false,
+  "sbx_guest_created": false,
+  "template_loaded": false,
+  "inner_enforcement_runs": 0,
+  "native_start_allowed": false,
+  "execution_allowed": false,
+  "required_unavailable": [
+    "supported authenticated dispatch without prohibited existing session import or login",
+    "effective guest engine, controllers, namespaces and complete runtime/toolchain identities",
+    "intended inner image and inherited privilege/socket/cgroup/resource/scratch policies",
+    "independent inner deadline/cancellation and cleanup observations in two fresh fixtures",
+    "native configuration and caller/request credential-authority whole-runtime evidence"
+  ],
+  "next_capability": "Separately authorize and specify an isolated Docker-account authentication/network/credential-domain path, or establish an officially supported unauthenticated path. Current discovery authorization excludes login and bypass; do not retry unchanged no-session create or ask again for discovery/resource approval."
+}

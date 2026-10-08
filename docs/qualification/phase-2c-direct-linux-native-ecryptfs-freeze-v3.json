@@ -1,0 +1,19 @@
+{
+  "aggregate_observed": {
+    "memory.max": "805306368",
+    "memory.swap.max": "0",
+    "cpu.max": "100000 100000",
+    "pids.max": "128",
+    "memory.current": "477667328"
+  },
+  "loaded_policy_sha256": {
+    "crewshal-native-tool-v1": "f96fb67936fcab509534ab180b512a8fd6a2eba0d59dc7fa92a2c50282e8e2ca",
+    "crewshal-native-bwrap-v1": "0712da1298b44d54de8d9a6184ecd528c72cef5402ef57d6bc7f92578f092061"
+  },
+  "global_userns_restriction": 1,
+  "profile": "phase-2c-direct-linux-native-ecryptfs-profile-v3.json",
+  "profile_sha256": "d59dfb2fed8af1ce7f1f15f2a14f4be2ae70bd73afb35a1f3821b210353fa47c",
+  "manifest": "phase-2c-direct-linux-native-ecryptfs-bindings-v3.json",
+  "manifest_sha256": "cbf91f52d00367de2b5119369f5b1e90daa18d70849bc9b8b3ae50361da627e2",
+  "scope": "Trusted native tiny workflow feasibility only"
+}

@@ -1,0 +1,13 @@
+{
+  "available_memory_bytes": 1708994560,
+  "execution_allowed": false,
+  "free_disk_bytes": 47687544832,
+  "kvm_handles": [],
+  "native_start_allowed": false,
+  "owned_sbx_processes": [],
+  "retained_preparation_allocated_bytes": 1190252544,
+  "retained_preparation_logical_bytes": 1190184184,
+  "scope": "independent final trusted preparation inventory; host and verified artifacts retained",
+  "units": "",
+  "unreadable_proc_entries": []
+}

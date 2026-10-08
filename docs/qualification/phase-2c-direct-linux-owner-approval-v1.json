@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "id": "crewshal-phase-2c-direct-linux-owner-approval-v1",
+  "date": "2026-10-06",
+  "base_revision": "cefef2e9318eb2d7d9b0382ea63c6e9c7ec0d255",
+  "owner_approval": {
+    "source": "direct owner message in current session",
+    "statement": "yes. local linux is ready.\nYou have to unlock 2C by the way. ask for blockers resolvers and will unblock you.",
+    "approved_scope": "ADR 0003 bounded direct Linux synthetic feasibility; retire SBX pilot route",
+    "access_confirmation": "Existing VMware guest; use logged-in console"
+  },
+  "historical_proposal_preserved": true,
+  "source_bindings": [
+    {
+      "path": "docs/decisions/0003-direct-linux-qualification.md",
+      "sha256": "dcd11ac51fc39fe62523dd7a2d351ef24cc902357203a55e34758f56a29ccf99"
+    },
+    {
+      "path": "docs/qualification/phase-2c-exit-decision-v1.json",
+      "sha256": "c9f4e4a6b1dab4fde53ac91e423e46feaf593ee06fea84b0653a1eb04fe07fe6"
+    },
+    {
+      "path": "docs/qualification/phase-2c-v1.json",
+      "sha256": "fed4dde5e3fe459110a5fb0b2d4f6c75b16214c91aa823d3df640a7415e41563"
+    }
+  ],
+  "limits_changed": false,
+  "paid_infrastructure_allowed": false,
+  "live_provider_calls_allowed": false,
+  "execution_allowed": false,
+  "phase_2c_complete": false,
+  "phase_2d_allowed": false
+}

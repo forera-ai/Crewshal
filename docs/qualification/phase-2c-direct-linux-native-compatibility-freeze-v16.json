@@ -1,0 +1,20 @@
+{
+  "aggregate_observed": {
+    "memory.max": "805306368",
+    "memory.swap.max": "0",
+    "cpu.max": "100000 100000",
+    "pids.max": "128",
+    "memory.current": "475463680"
+  },
+  "loaded_policy_sha256": {
+    "crewshal-native-tool-v1": "f96fb67936fcab509534ab180b512a8fd6a2eba0d59dc7fa92a2c50282e8e2ca",
+    "crewshal-native-bwrap-v1": "0712da1298b44d54de8d9a6184ecd528c72cef5402ef57d6bc7f92578f092061"
+  },
+  "global_userns_restriction": 1,
+  "scope": "Trusted exec help only",
+  "profile": "phase-2c-direct-linux-native-compatibility-profile-v16.json",
+  "profile_sha256": "135164a452f8e3f0b15f95787e6cc7c0f7e77b9a87069f43e7cb3e3d442b04e5",
+  "manifest": "phase-2c-direct-linux-native-compatibility-bindings-v16.json",
+  "manifest_sha256": "f83c42e7ce0291a913f4703848cb8e521ae6030f8e9269a9d724f10eb43855cd",
+  "extension_preparation_seconds": 0.338
+}

@@ -1,0 +1,27 @@
+{
+  "scope": "Exact v17 private-network refusal before broker/worker; complete scoped cleanup observed",
+  "files": [
+    {
+      "path": "docs/qualification/phase-2c-direct-linux-native-full-bindings-v17.json",
+      "bytes": 351141,
+      "sha256": "c51e76d8c4c4200de1ff0c94ffda72e6d6bb98c660997e037097920d288d800a"
+    },
+    {
+      "path": "docs/qualification/phase-2c-direct-linux-native-full-freeze-v17.json",
+      "bytes": 1290,
+      "sha256": "5aafbb5a3d4cca38c89dfaca089e58d3ee2e517d0c1d9287c9d71a18ddbb7065"
+    },
+    {
+      "path": "docs/qualification/phase-2c-direct-linux-native-full-v17-f1-before-cleanup.json",
+      "bytes": 4080,
+      "sha256": "4c4b5cdbb6dad2ebce61aa48927715669d6c2b5658781cc7e2a4f5af27732b29"
+    },
+    {
+      "path": "docs/qualification/phase-2c-direct-linux-native-full-v17-f1.json",
+      "bytes": 9862,
+      "sha256": "b874af837a5de92d80837ee0fcbb97a3c49324969779cf24a12082df8e644d6d"
+    }
+  ],
+  "runtime_verified": false,
+  "execution_allowed": false
+}

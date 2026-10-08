@@ -1,0 +1,22 @@
+#### sandbox.disk.dockerVolume {.wrap-anywhere}
+
+{{< setting-metadata type="string" default="10g" >}}
+
+Increase this default if sandboxes need more room for Docker images,
+containers, and volumes under `/var/lib/docker`. The minimum is 512 MiB:
+
+```console
+$ sbx settings set sandbox.disk.dockerVolume 20g
+```
+
+The size applies when creating a sandbox. It doesn't resize existing volumes
+or increase the size of the sandbox workspace.
+
+To choose a size for one sandbox without changing the default:
+
+```console
+$ DOCKER_SANDBOXES_DOCKER_SIZE=30g sbx create claude ~/my-project
+```
+
+This variable applies to that creation command. It doesn't change the value
+reported by `sbx settings get sandbox.disk.dockerVolume`.

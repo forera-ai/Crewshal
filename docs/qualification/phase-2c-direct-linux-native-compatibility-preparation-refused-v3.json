@@ -1,0 +1,12 @@
+{
+  "scope": "preparation only; no native payload ran",
+  "source": "scripts/probe_direct_linux_native_compatibility_v3.py",
+  "source_sha256": "3abd44aecb1868d3fe85ea4d069c089800e382886526b7444624dbe06e0db48a",
+  "preparation_exit": 1,
+  "preparation_seconds": 0.079,
+  "error": "FileNotFoundError: manifest-compat-v3.json; preparer mistakenly selected its not-yet-created output as prior input",
+  "installed_source_hash_observed_before_preparation": true,
+  "complete_native_freeze": false,
+  "execution_allowed": false,
+  "native_start_allowed": false
+}

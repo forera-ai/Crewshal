@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "id": "crewshal-phase-2c-resource-approval-v1",
+  "date": "2026-10-02",
+  "base_revision": "149c290e419249a446e2e67805d878b02e194525",
+  "scope": "Owner approval of exact resource envelope only; not an executable protocol or qualification.",
+  "authority": {
+    "source": "Direct owner instruction in this session",
+    "instruction": "approve [resource envelope], then freeze operational identities and qualify inner enforcement",
+    "decision": "approved",
+    "interpretation": "Approve the unchanged concrete resource envelope in the linked proposal. Operational identities and qualification remain prerequisites."
+  },
+  "bound_inputs": {
+    "docs/SBX-OPERATIONAL-PROPOSAL.md": "adf3eb56f438d3a375f1f44fc9db3b9699d37e52f57c53aa8c5f5134699d01ab",
+    "docs/qualification/phase-2c-readiness-v1.json": "f9a01b9665132707dd0e43d90a84749ad404047dc161435fc03102de3db60a54",
+    "docs/qualification/phase-2c-v1.json": "fed4dde5e3fe459110a5fb0b2d4f6c75b16214c91aa823d3df640a7415e41563"
+  },
+  "ceilings": {
+    "host_aggregate": {
+      "memory_bytes": 805306368,
+      "cpus": 1,
+      "pids": 128,
+      "swap_bytes": 0
+    },
+    "guest": {
+      "memory_bytes": 536870912,
+      "vcpus": 1,
+      "included_in_host_aggregate": true
+    },
+    "worker_and_descendants": {
+      "memory_bytes": 134217728,
+      "cpus": 1,
+      "pids": 32,
+      "swap_bytes": 0,
+      "deadline_seconds": 5
+    },
+    "validator": {
+      "memory_bytes": 134217728,
+      "cpus": 1,
+      "pids": 32,
+      "swap_bytes": 0,
+      "deadline_seconds": 5,
+      "sequential_with_worker": true,
+      "credentials": [],
+      "network": []
+    },
+    "fixture_disk": {
+      "allocated_bytes": 8589934592,
+      "logical_bytes": 8589934592
+    },
+    "guest_scratch_bytes": 134217728,
+    "inner_scratch_bytes": 33554432,
+    "candidate_bytes": 16777216,
+    "startup_seconds_per_fixture": 120,
+    "total_seconds_two_fixtures_including_cleanup": 600,
+    "cleanup_reserve_seconds": 30,
+    "command_seconds": 10,
+    "output_bytes_per_stream": 65536
+  },
+  "admission": {
+    "available_memory_bytes_minimum": 939524096,
+    "free_disk_bytes_minimum": 10737418240,
+    "required": [
+      "working cgroup v2 controllers",
+      "quota-capable dedicated fixture filesystem",
+      "current authorized disposable host access",
+      "fresh twice-reproduced KVM HLT and final cleanup"
+    ]
+  },
+  "remaining_gates": [
+    "current host access and fresh admission",
+    "fully bound prospective operational manifest",
+    "effective aggregate disk/resource controls",
+    "inner enforcement qualified before native startup",
+    "supported trusted provider-free dispatch and all twenty whole-runtime criteria twice"
+  ],
+  "excluded_authority": [
+    "host purchase or resize",
+    "swap enablement",
+    "worker-limit increase",
+    "real credential-store access",
+    "provider or paid evaluation calls",
+    "custom gateway or runtime launcher",
+    "Phase 2D",
+    "merge, deployment or registry release"
+  ],
+  "execution_allowed": false,
+  "native_start_allowed": false,
+  "operational_manifest_frozen": false,
+  "inner_enforcement_status": "not_run",
+  "qualification_decision": "denied; approval establishes resource authority only"
+}

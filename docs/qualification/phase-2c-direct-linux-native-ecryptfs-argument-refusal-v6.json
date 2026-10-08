@@ -1,0 +1,12 @@
+{
+  "scope": "Harness argument mistake; refused before fixture creation, storage mutation or native launch",
+  "source": "scripts/probe_native_ecryptfs_v6.py",
+  "supplied_manifest_sha256": "PLACEHOLDER",
+  "expected_manifest_sha256": "9daa51e4cb44cdad318ba970f403eccf9ba183e06873905574603a7d37b9c237",
+  "exit": 1,
+  "seconds": 0.072,
+  "error": "manifest changed",
+  "retry": "Same unchanged bound source/profile with exact admitted manifest digest",
+  "execution_allowed": false,
+  "native_start_allowed": false
+}

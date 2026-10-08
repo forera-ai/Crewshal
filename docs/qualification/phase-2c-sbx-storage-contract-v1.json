@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "base_revision": "9ebcc49f268ce9febe66b6a7a50600acd372f46a",
+  "package_version": "0.8.17",
+  "release": "v0.46.0",
+  "release_published_at": "2026-09-28T17:17:11Z",
+  "docs_revision": "7211da11e648595ef32f7d0c3d91fb86571b3907",
+  "docs_revision_date": "2026-09-28T15:13:25Z",
+  "selection": "Latest docker/docs main commit returned by anonymous GitHub commits API with until equal to release published_at; chronology is not a vendor release compatibility assertion.",
+  "release_api": "https://api.github.com/repos/docker/sbx-releases/releases/tags/v0.46.0",
+  "docs_selection_api": "https://api.github.com/repos/docker/docs/commits?until=2026-09-28T17:17:11Z&per_page=1",
+  "source_bindings": [
+    {
+      "path": "docs/qualification/sbx-storage-docs-v1/troubleshooting.excerpt.txt",
+      "url": "https://raw.githubusercontent.com/docker/docs/7211da11e648595ef32f7d0c3d91fb86571b3907/content/manuals/ai/sandboxes/troubleshooting.md",
+      "source_bytes": 20564,
+      "source_sha256": "ed1c6cf8aab877befc8b3f33267c9651ca9e42c9ecafdeb72350004e0b85ec06",
+      "line_ranges": [
+        [
+          314,
+          331
+        ],
+        [
+          508,
+          519
+        ]
+      ],
+      "excerpt_bytes": 1025,
+      "excerpt_sha256": "3472244a8369f82100d40e238d8e34b2c444a6c053643a1b55a056b91c24125d",
+      "evidence": "release-era documentation; not executable-source or effective runtime evidence"
+    },
+    {
+      "path": "docs/qualification/sbx-storage-docs-v1/architecture.excerpt.txt",
+      "url": "https://raw.githubusercontent.com/docker/docs/7211da11e648595ef32f7d0c3d91fb86571b3907/content/manuals/ai/sandboxes/architecture.md",
+      "source_bytes": 7827,
+      "source_sha256": "84a78230b22002cf2b670ed381084275a8bf1d0280777d5fcb52ec522798eadc",
+      "line_ranges": [
+        [
+          53,
+          63
+        ]
+      ],
+      "excerpt_bytes": 642,
+      "excerpt_sha256": "7ec3bf38be9c5574971014e5126619f0125a6c28c4b6ff1b4baf44185b2a4d22",
+      "evidence": "release-era documentation; not executable-source or effective runtime evidence"
+    },
+    {
+      "path": "docs/qualification/sbx-storage-docs-v1/configuration-settings.excerpt.txt",
+      "url": "https://raw.githubusercontent.com/docker/docs/7211da11e648595ef32f7d0c3d91fb86571b3907/content/manuals/ai/sandboxes/configuration/settings.md",
+      "source_bytes": 24178,
+      "source_sha256": "fc06b336501a560faefce0536a4860ff3d4623e8eb2395f0f1417e1b1cd982e6",
+      "line_ranges": [
+        [
+          264,
+          285
+        ]
+      ],
+      "excerpt_bytes": 716,
+      "excerpt_sha256": "df023c9d8a53dc1ae355e15d3f0f9585cfe761067d48ad2d22e17fd90a9849a9",
+      "evidence": "release-era documentation; not executable-source or effective runtime evidence"
+    }
+  ],
+  "execution_allowed": false,
+  "native_start_allowed": false,
+  "operational_manifest_frozen": false,
+  "supported_layout_selected": false,
+  "qualification_status": "denied; exact private-fork/VMM contract and guest logical enforcement unresolved",
+  "resolved_documentation": {
+    "root_control": "DOCKER_SANDBOXES_ROOT_SIZE documented before creation; root default 20 GB. No minimum root size established.",
+    "docker_control": "sandbox.disk.dockerVolume default 10g; minimum 512 MiB. DOCKER_SANDBOXES_DOCKER_SIZE is a creation-command override, not settings-get disk readback.",
+    "linux_roots": [
+      "XDG_STATE_HOME/sandboxes",
+      "XDG_CACHE_HOME/sandboxes",
+      "XDG_CONFIG_HOME/sandboxes"
+    ],
+    "cache": "Per-sandbox image/layer state is not documented as shared; read-only skills exception does not establish immutable image cache."
+  },
+  "unresolved_contract": [
+    {
+      "id": "path-map",
+      "answer": null,
+      "needed": "Version-matching supported directory/object mapping for image content, DB, snapshots, conversion temporary data, runtime bundles, disks and logs; permitted relocation/read-only split and complete writers."
+    },
+    {
+      "id": "root-disk",
+      "answer": null,
+      "needed": "Minimum validated root size, image format, initial/effective apparent and allocated sizes, growth/discard and VMM open/I/O semantics; exact returned objects and readback interface."
+    },
+    {
+      "id": "docker-disk",
+      "answer": null,
+      "needed": "Effective 512 MiB disk creation bytes and image format; per-command override handoff to daemon, restart behavior and independent readback."
+    },
+    {
+      "id": "conversion",
+      "answer": null,
+      "needed": "Selected private-fork EROFS full/index/block route, exact argv/options/patches and peak coexisting temporary/data/metadata objects."
+    },
+    {
+      "id": "filesystem",
+      "answer": null,
+      "needed": "Required ownership/xattrs/locks/mmap/fsync/seek/copy/preallocation/punch/direct-I/O semantics, exact errno fallbacks and exhaustion recovery for fork/DB/VMM."
+    },
+    {
+      "id": "guest-logical",
+      "answer": null,
+      "needed": "Existing supported independent guest apparent-size enforcement including sparse/hardlink/deleted-open behavior across worker and validator; host backing capacity alone is insufficient."
+    },
+    {
+      "id": "peak-admission",
+      "answer": null,
+      "needed": "Complete independently charged upper/lower/backing/cache/conversion/guest/output/FD peaks in both dimensions under unchanged 8589934592 bytes."
+    }
+  ],
+  "limits_unchanged": true,
+  "operations": "Anonymous public documentation reads only; no runtime, installer, credentials, host, VM, model product call or vendor message."
+}

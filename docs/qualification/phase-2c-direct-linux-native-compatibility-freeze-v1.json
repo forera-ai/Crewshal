@@ -1,0 +1,9 @@
+{
+  "scope": "prospective trusted literal tiny-file and one-byte memfd capability discovery; no hostile exhaustion, agent dispatch or broker",
+  "profile": "phase-2c-direct-linux-native-compatibility-profile-v1.json",
+  "profile_sha256": "5a961e1d7e49e6f957d98c1d0d253b12130c4bf1c7a92b56a85307454f97cd12",
+  "manifest": "phase-2c-direct-linux-native-compatibility-bindings-v1.json",
+  "manifest_sha256": "0e543c20544b64d0b3976cab81d0f78b079863a947c9793c171a3d4a2e3fbb8d",
+  "native_start_allowed": false,
+  "execution_allowed": false
+}

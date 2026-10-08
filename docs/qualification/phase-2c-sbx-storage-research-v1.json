@@ -1,0 +1,2476 @@
+{
+  "schema_version": 1,
+  "scope": "static data inspection only; no bundled code executed",
+  "archive_sha256": "edd86e2f21559e190723fd884c3a1dced161a555afdff85c5921ed45e7d6d56e",
+  "archive_bytes": 82815215,
+  "bundle": [
+    {
+      "path": "docker-sbx/LICENSE",
+      "bytes": 405,
+      "sha256": "aedab40ad891a0108bff8780a6127226f2fa4cf9ae606e0177d24673d3f4a9d1",
+      "mode": "0o644"
+    },
+    {
+      "path": "docker-sbx/THIRD-PARTY-NOTICES",
+      "bytes": 12966046,
+      "sha256": "6021185ec3137e396aadffe3e69ad06ca5cb589fc1b5d5ecea08eb601f3e1e8c",
+      "mode": "0o644"
+    },
+    {
+      "path": "docker-sbx/apparmor-profile",
+      "bytes": 601,
+      "sha256": "7ca5c3d883397b68b2c89499d42ceeee4e2ff2ddf04dfc40d17835dc065d55fb",
+      "mode": "0o644"
+    },
+    {
+      "path": "docker-sbx/containerd-shim-nerdbox-gpu-v1",
+      "bytes": 2674953,
+      "sha256": "a003b6fb86948e679d6819af10744dd7e42cd7302fe1d13ae84fbc6a28d7efe1",
+      "mode": "0o755"
+    },
+    {
+      "path": "docker-sbx/containerd-shim-nerdbox-v1",
+      "bytes": 14188256,
+      "sha256": "baf3a926160aff74025350e22ac36d2dfcc6dce6b87b7668d46714749b2eb4f5",
+      "mode": "0o755"
+    },
+    {
+      "path": "docker-sbx/install.sh",
+      "bytes": 3136,
+      "sha256": "c2c5527b27142f978a3934874384b3ab4c33160c5fd3c681fdb2484fc527ba3a",
+      "mode": "0o755"
+    },
+    {
+      "path": "docker-sbx/libsailor.so",
+      "bytes": 12939384,
+      "sha256": "aea232460c20763011216b048cd4495bc7ef23f498bce661137b09ed81bd34d2",
+      "mode": "0o755"
+    },
+    {
+      "path": "docker-sbx/mkfs.erofs",
+      "bytes": 990960,
+      "sha256": "e882dc1a18aa02e07dfb91ad32e31e99966c2d1085ba01f9dfd5112a748e2419",
+      "mode": "0o755"
+    },
+    {
+      "path": "docker-sbx/nerdbox-kernel-x86_64",
+      "bytes": 36993544,
+      "sha256": "ee7877107ca754b22ef37e455293ff05edc87fac2a204d9630621ba3f3440916",
+      "mode": "0o644"
+    },
+    {
+      "path": "docker-sbx/nerdbox-rootfs-x86_64.erofs",
+      "bytes": 12800000,
+      "sha256": "ca4412572eb0be56f1e66524ea7124fe615d739bda0ce11b55a87e60bf9d4831",
+      "mode": "0o644"
+    },
+    {
+      "path": "docker-sbx/sbx",
+      "bytes": 150937336,
+      "sha256": "530f1d5b8ec662946e33c46a454fc17381790b6c5f13d0922d050a82e57d75a2",
+      "mode": "0o755"
+    }
+  ],
+  "go_version": "go1.27.0",
+  "main_module": "mod\tgithub.com/docker/sandboxes\tv0.46.0+dirty\t",
+  "build_settings": [
+    "build\t-buildmode=exe",
+    "build\t-compiler=gc",
+    "build\t-tags=cloud",
+    "build\t-trimpath=true",
+    "build\tCGO_ENABLED=1",
+    "build\tGOARCH=amd64",
+    "build\tGOOS=linux",
+    "build\tGOAMD64=v1",
+    "build\tvcs=git",
+    "build\tvcs.revision=991967dc90ce0d9a440cd1df1bdf3e395c5a2693",
+    "build\tvcs.time=2026-09-25T19:43:51Z",
+    "build\tvcs.modified=true"
+  ],
+  "dependencies": [
+    {
+      "module": "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go",
+      "version": "v1.36.12-20260825204119-511051f7f437.2",
+      "sum": ""
+    },
+    {
+      "module": "buf.build/go/protovalidate",
+      "version": "v1.3.0",
+      "sum": ""
+    },
+    {
+      "module": "cel.dev/expr",
+      "version": "v0.25.2",
+      "sum": ""
+    },
+    {
+      "module": "charm.land/bubbles/v2",
+      "version": "v2.1.1",
+      "sum": ""
+    },
+    {
+      "module": "charm.land/bubbletea/v2",
+      "version": "v2.0.8",
+      "sum": ""
+    },
+    {
+      "module": "charm.land/glamour/v2",
+      "version": "v2.0.1",
+      "sum": ""
+    },
+    {
+      "module": "charm.land/lipgloss/v2",
+      "version": "v2.0.5",
+      "sum": ""
+    },
+    {
+      "module": "cloud.google.com/go/auth",
+      "version": "v0.20.0",
+      "sum": ""
+    },
+    {
+      "module": "cloud.google.com/go/auth/oauth2adapt",
+      "version": "v0.2.8",
+      "sum": ""
+    },
+    {
+      "module": "cloud.google.com/go/compute/metadata",
+      "version": "v0.9.0",
+      "sum": ""
+    },
+    {
+      "module": "connectrpc.com/connect",
+      "version": "v1.21.0",
+      "sum": ""
+    },
+    {
+      "module": "connectrpc.com/grpcreflect",
+      "version": "v1.3.0",
+      "sum": ""
+    },
+    {
+      "module": "connectrpc.com/validate",
+      "version": "v0.6.0",
+      "sum": ""
+    },
+    {
+      "module": "dario.cat/mergo",
+      "version": "v1.0.2",
+      "sum": ""
+    },
+    {
+      "module": "filippo.io/age",
+      "version": "v1.3.1",
+      "sum": ""
+    },
+    {
+      "module": "filippo.io/edwards25519",
+      "version": "v1.2.0",
+      "sum": ""
+    },
+    {
+      "module": "filippo.io/hpke",
+      "version": "v0.4.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/JohannesKaufmann/dom",
+      "version": "v0.3.1",
+      "sum": ""
+    },
+    {
+      "module": "github.com/JohannesKaufmann/html-to-markdown/v2",
+      "version": "v2.5.2",
+      "sum": ""
+    },
+    {
+      "module": "github.com/Masterminds/semver/v3",
+      "version": "v3.5.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/ProtonMail/go-crypto",
+      "version": "v1.4.1",
+      "sum": ""
+    },
+    {
+      "module": "github.com/agext/levenshtein",
+      "version": "v1.2.3",
+      "sum": ""
+    },
+    {
+      "module": "github.com/alecthomas/chroma/v2",
+      "version": "v2.27.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/alpkeskin/gotoon",
+      "version": "v0.1.1",
+      "sum": ""
+    },
+    {
+      "module": "github.com/anthropics/anthropic-sdk-go",
+      "version": "v1.57.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/antlr4-go/antlr/v4",
+      "version": "v4.13.1",
+      "sum": ""
+    },
+    {
+      "module": "github.com/apapsch/go-jsonmerge/v2",
+      "version": "v2.0.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/apparentlymart/go-textseg/v15",
+      "version": "v15.0.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/apparentlymart/go-textseg/v17",
+      "version": "v17.0.1",
+      "sum": ""
+    },
+    {
+      "module": "github.com/asaskevich/govalidator",
+      "version": "v0.0.0-20230301143203-a9d515a09cc2",
+      "sum": ""
+    },
+    {
+      "module": "github.com/atotto/clipboard",
+      "version": "v0.1.4",
+      "sum": ""
+    },
+    {
+      "module": "github.com/autarch/testify",
+      "version": "v1.2.2",
+      "sum": ""
+    },
+    {
+      "module": "github.com/aymanbagabas/go-udiff",
+      "version": "v0.4.1",
+      "sum": ""
+    },
+    {
+      "module": "github.com/aymerick/douceur",
+      "version": "v0.2.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/bahlo/generic-list-go",
+      "version": "v0.2.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/beorn7/perks",
+      "version": "v1.0.1",
+      "sum": ""
+    },
+    {
+      "module": "github.com/blang/semver",
+      "version": "v3.5.1+incompatible",
+      "sum": ""
+    },
+    {
+      "module": "github.com/bmatcuk/doublestar/v4",
+      "version": "v4.10.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/buger/jsonparser",
+      "version": "v1.1.2",
+      "sum": ""
+    },
+    {
+      "module": "github.com/buildkite/agent/v3",
+      "version": "v3.104.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/buildkite/go-pipeline",
+      "version": "v0.15.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/buildkite/interpolate",
+      "version": "v0.1.5",
+      "sum": ""
+    },
+    {
+      "module": "github.com/buildkite/roko",
+      "version": "v1.4.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/caarlos0/env/v11",
+      "version": "v11.3.1",
+      "sum": ""
+    },
+    {
+      "module": "github.com/cedar-policy/cedar-go",
+      "version": "v1.5.2",
+      "sum": ""
+    },
+    {
+      "module": "github.com/cenkalti/backoff/v4",
+      "version": "v4.3.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/cenkalti/backoff/v5",
+      "version": "v5.0.3",
+      "sum": ""
+    },
+    {
+      "module": "github.com/cespare/xxhash/v2",
+      "version": "v2.3.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/charmbracelet/colorprofile",
+      "version": "v0.4.3",
+      "sum": ""
+    },
+    {
+      "module": "github.com/charmbracelet/glamour/v2",
+      "version": "v2.0.0-20251106195642-800eb8175930",
+      "sum": ""
+    },
+    {
+      "module": "github.com/charmbracelet/ultraviolet",
+      "version": "v0.0.0-20260713092251-4bee1914c0cf",
+      "sum": ""
+    },
+    {
+      "module": "github.com/charmbracelet/x/ansi",
+      "version": "v0.11.7",
+      "sum": ""
+    },
+    {
+      "module": "github.com/charmbracelet/x/exp/slice",
+      "version": "v0.0.0-20251113172435-cef867b85f6a",
+      "sum": ""
+    },
+    {
+      "module": "github.com/charmbracelet/x/term",
+      "version": "v0.2.2",
+      "sum": ""
+    },
+    {
+      "module": "github.com/charmbracelet/x/termios",
+      "version": "v0.1.1",
+      "sum": ""
+    },
+    {
+      "module": "github.com/charmbracelet/x/windows",
+      "version": "v0.2.2",
+      "sum": ""
+    },
+    {
+      "module": "github.com/cilium/ebpf",
+      "version": "v0.17.3",
+      "sum": ""
+    },
+    {
+      "module": "github.com/clipperhouse/displaywidth",
+      "version": "v0.11.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/clipperhouse/uax29/v2",
+      "version": "v2.7.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/cloudflare/circl",
+      "version": "v1.6.3",
+      "sum": ""
+    },
+    {
+      "module": "github.com/containerd/cgroups/v3",
+      "version": "v3.1.3",
+      "sum": ""
+    },
+    {
+      "module": "github.com/containerd/console",
+      "version": "v1.0.5",
+      "sum": ""
+    },
+    {
+      "module": "github.com/containerd/containerd/api",
+      "version": "v1.11.1",
+      "sum": ""
+    },
+    {
+      "module": "github.com/containerd/containerd/v2",
+      "version": "v2.3.5",
+      "sum": null,
+      "replacement": {
+        "module": "github.com/docker/docker-next-containerd/v2",
+        "version": "v2.3.5-internal.2",
+        "sum": ""
+      }
+    },
+    {
+      "module": "github.com/containerd/continuity",
+      "version": "v0.5.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/containerd/errdefs",
+      "version": "v1.0.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/containerd/errdefs/pkg",
+      "version": "v0.3.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/containerd/fifo",
+      "version": "v1.1.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/containerd/go-dmverity",
+      "version": "v0.1.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/containerd/go-runc",
+      "version": "v1.2.1",
+      "sum": ""
+    },
+    {
+      "module": "github.com/containerd/log",
+      "version": "v0.1.1-0.20260403072107-cb1839ebf76b",
+      "sum": ""
+    },
+    {
+      "module": "github.com/containerd/nri",
+      "version": "v0.12.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/containerd/otelttrpc",
+      "version": "v0.1.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/containerd/platforms",
+      "version": "v1.0.0-rc.5",
+      "sum": ""
+    },
+    {
+      "module": "github.com/containerd/plugin",
+      "version": "v1.1.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/containerd/ttrpc",
+      "version": "v1.2.9",
+      "sum": ""
+    },
+    {
+      "module": "github.com/containerd/typeurl/v2",
+      "version": "v2.3.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/coreos/go-oidc/v3",
+      "version": "v3.17.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/coreos/go-systemd/v22",
+      "version": "v22.7.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/cyberphone/json-canonicalization",
+      "version": "v0.0.0-20241213102144-19d51d7fe467",
+      "sum": ""
+    },
+    {
+      "module": "github.com/cyphar/filepath-securejoin",
+      "version": "v0.6.1",
+      "sum": ""
+    },
+    {
+      "module": "github.com/darren/gpac",
+      "version": "v0.0.0-00010101000000-000000000000",
+      "sum": null,
+      "replacement": {
+        "module": "github.com/docker/gpac",
+        "version": "v0.0.0-20260710085353-9bf2ab8214fa",
+        "sum": ""
+      }
+    },
+    {
+      "module": "github.com/davecgh/go-spew",
+      "version": "v1.1.2-0.20180830191138-d8f796af33cc",
+      "sum": ""
+    },
+    {
+      "module": "github.com/digitorus/pkcs7",
+      "version": "v0.0.0-20230818184609-3a137a874352",
+      "sum": ""
+    },
+    {
+      "module": "github.com/digitorus/timestamp",
+      "version": "v0.0.0-20231217203849-220c5c2851b7",
+      "sum": ""
+    },
+    {
+      "module": "github.com/diskfs/go-diskfs",
+      "version": "v1.8.0",
+      "sum": null,
+      "replacement": {
+        "module": "github.com/docker/docker-next-go-diskfs",
+        "version": "v1.9.5-0.20260804131433-d801cc851604",
+        "sum": ""
+      }
+    },
+    {
+      "module": "github.com/distribution/reference",
+      "version": "v0.6.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/dlclark/regexp2/v2",
+      "version": "v2.2.1",
+      "sum": ""
+    },
+    {
+      "module": "github.com/docker/aijson",
+      "version": "v0.1.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/docker/cli",
+      "version": "v29.6.2+incompatible",
+      "sum": ""
+    },
+    {
+      "module": "github.com/docker/data-contracts",
+      "version": "v0.216.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/docker/data-platform/marlin/pii",
+      "version": "v0.3.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/docker/data-platform/sdk/go/audit",
+      "version": "v0.11.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/docker/data-platform/sdk/go/audit/config/marlin",
+      "version": "v0.3.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/docker/data-platform/sdk/go/audit/sink/marlin",
+      "version": "v0.0.0-20260624223134-ee1530a14d0c",
+      "sum": ""
+    },
+    {
+      "module": "github.com/docker/data-platform/sdk/go/marlin",
+      "version": "v0.7.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/docker/data-platform/sdk/go/marlin/persist",
+      "version": "v0.7.1",
+      "sum": ""
+    },
+    {
+      "module": "github.com/docker/distribution",
+      "version": "v2.8.3+incompatible",
+      "sum": ""
+    },
+    {
+      "module": "github.com/docker/docker-agent",
+      "version": "v1.109.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/docker/docker-auth/auth",
+      "version": "v0.1.2",
+      "sum": ""
+    },
+    {
+      "module": "github.com/docker/docker-auth/client",
+      "version": "v0.1.1",
+      "sum": ""
+    },
+    {
+      "module": "github.com/docker/docker-credential-helpers",
+      "version": "v0.9.8",
+      "sum": ""
+    },
+    {
+      "module": "github.com/docker/docker-next",
+      "version": "v0.43.1",
+      "sum": ""
+    },
+    {
+      "module": "github.com/docker/go-connections",
+      "version": "v0.7.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/docker/go-events",
+      "version": "v0.1.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/docker/go-metrics",
+      "version": "v0.0.1",
+      "sum": ""
+    },
+    {
+      "module": "github.com/docker/go-sdk/client",
+      "version": "v0.1.0-alpha013",
+      "sum": ""
+    },
+    {
+      "module": "github.com/docker/go-sdk/config",
+      "version": "v0.1.0-alpha013",
+      "sum": ""
+    },
+    {
+      "module": "github.com/docker/go-sdk/container",
+      "version": "v0.1.0-alpha016",
+      "sum": ""
+    },
+    {
+      "module": "github.com/docker/go-sdk/context",
+      "version": "v0.1.0-alpha013",
+      "sum": ""
+    },
+    {
+      "module": "github.com/docker/go-sdk/image",
+      "version": "v0.1.0-alpha015",
+      "sum": ""
+    },
+    {
+      "module": "github.com/docker/go-sdk/network",
+      "version": "v0.1.0-alpha013",
+      "sum": ""
+    },
+    {
+      "module": "github.com/docker/go-sdk/sandboxes",
+      "version": "v0.0.0-00010101000000-000000000000",
+      "sum": null,
+      "replacement": {
+        "module": "github.com/docker/go-sdk-sandboxes/sandboxes",
+        "version": "v0.1.0-beta.37",
+        "sum": ""
+      }
+    },
+    {
+      "module": "github.com/docker/go-units",
+      "version": "v0.5.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/docker/governor-lib",
+      "version": "v1.21.3",
+      "sum": ""
+    },
+    {
+      "module": "github.com/docker/governor-lib/schema",
+      "version": "v1.14.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/docker/governor-services/api",
+      "version": "v0.124.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/docker/kaemon-stdlib-go",
+      "version": "v0.27.2",
+      "sum": ""
+    },
+    {
+      "module": "github.com/docker/libtrust",
+      "version": "v0.0.0-20150526203908-9cbd2a1374f4",
+      "sum": ""
+    },
+    {
+      "module": "github.com/docker/mcp-gateway-oauth-helpers",
+      "version": "v0.0.8-0.20260914234305-3ffdcdf692c2",
+      "sum": ""
+    },
+    {
+      "module": "github.com/docker/mcpruntime",
+      "version": "v0.0.0-20260918003751-7219414760f7",
+      "sum": ""
+    },
+    {
+      "module": "github.com/docker/pii-scanner",
+      "version": "v0.1.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/docker/portcullis",
+      "version": "v0.0.0-20260708112053-4399abc601ee",
+      "sum": ""
+    },
+    {
+      "module": "github.com/docker/sailor/go/sailor",
+      "version": "v0.0.0-20260921151505-324ed50506ad",
+      "sum": ""
+    },
+    {
+      "module": "github.com/docker/sandbox-kit-spec/v3",
+      "version": "v3.0.0-m.5",
+      "sum": ""
+    },
+    {
+      "module": "github.com/docker/sbx-api",
+      "version": "v0.38.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/docker/sbx-cloud",
+      "version": "v1.22.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/docker/sbx-kits-contrib",
+      "version": "v0.19.1",
+      "sum": ""
+    },
+    {
+      "module": "github.com/docker/secrets-engine/client",
+      "version": "v0.0.30",
+      "sum": ""
+    },
+    {
+      "module": "github.com/docker/secrets-engine/store",
+      "version": "v0.4.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/docker/secrets-engine/x",
+      "version": "v0.7.0-do.not.use",
+      "sum": ""
+    },
+    {
+      "module": "github.com/dop251/goja",
+      "version": "v0.0.0-20260701091749-b07b74453ea9",
+      "sum": ""
+    },
+    {
+      "module": "github.com/dustin/go-humanize",
+      "version": "v1.0.1",
+      "sum": ""
+    },
+    {
+      "module": "github.com/ebitengine/purego",
+      "version": "v0.10.2",
+      "sum": ""
+    },
+    {
+      "module": "github.com/elazarl/goproxy",
+      "version": "v1.9.1",
+      "sum": ""
+    },
+    {
+      "module": "github.com/emirpasic/gods",
+      "version": "v1.18.1",
+      "sum": ""
+    },
+    {
+      "module": "github.com/erofs/go-erofs",
+      "version": "v0.3.1",
+      "sum": ""
+    },
+    {
+      "module": "github.com/expr-lang/expr",
+      "version": "v1.17.8",
+      "sum": ""
+    },
+    {
+      "module": "github.com/fatih/color",
+      "version": "v1.19.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/felixge/httpsnoop",
+      "version": "v1.1.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/fsnotify/fsnotify",
+      "version": "v1.10.1",
+      "sum": ""
+    },
+    {
+      "module": "github.com/fvbommel/sortorder",
+      "version": "v1.1.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/fxamacker/cbor/v2",
+      "version": "v2.9.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/garyburd/redigo",
+      "version": "v1.1.1-0.20170914051019-70e1b1943d4f",
+      "sum": ""
+    },
+    {
+      "module": "github.com/go-git/gcfg",
+      "version": "v1.5.1-0.20230307220236-3a3c6141e376",
+      "sum": ""
+    },
+    {
+      "module": "github.com/go-git/go-billy/v5",
+      "version": "v5.9.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/go-git/go-git/v5",
+      "version": "v5.19.1",
+      "sum": ""
+    },
+    {
+      "module": "github.com/go-jose/go-jose/v4",
+      "version": "v4.1.4",
+      "sum": ""
+    },
+    {
+      "module": "github.com/go-logr/logr",
+      "version": "v1.4.4",
+      "sum": ""
+    },
+    {
+      "module": "github.com/go-logr/stdr",
+      "version": "v1.2.2",
+      "sum": ""
+    },
+    {
+      "module": "github.com/go-openapi/analysis",
+      "version": "v0.25.2",
+      "sum": ""
+    },
+    {
+      "module": "github.com/go-openapi/errors",
+      "version": "v0.22.8",
+      "sum": ""
+    },
+    {
+      "module": "github.com/go-openapi/jsonpointer",
+      "version": "v0.23.1",
+      "sum": ""
+    },
+    {
+      "module": "github.com/go-openapi/jsonreference",
+      "version": "v0.21.6",
+      "sum": ""
+    },
+    {
+      "module": "github.com/go-openapi/loads",
+      "version": "v0.24.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/go-openapi/runtime",
+      "version": "v0.32.4",
+      "sum": ""
+    },
+    {
+      "module": "github.com/go-openapi/runtime/server-middleware",
+      "version": "v0.30.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/go-openapi/spec",
+      "version": "v0.22.6",
+      "sum": ""
+    },
+    {
+      "module": "github.com/go-openapi/strfmt",
+      "version": "v0.26.4",
+      "sum": ""
+    },
+    {
+      "module": "github.com/go-openapi/swag",
+      "version": "v0.26.1",
+      "sum": ""
+    },
+    {
+      "module": "github.com/go-openapi/swag/cmdutils",
+      "version": "v0.26.1",
+      "sum": ""
+    },
+    {
+      "module": "github.com/go-openapi/swag/conv",
+      "version": "v0.27.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/go-openapi/swag/fileutils",
+      "version": "v0.26.1",
+      "sum": ""
+    },
+    {
+      "module": "github.com/go-openapi/swag/jsonname",
+      "version": "v0.26.1",
+      "sum": ""
+    },
+    {
+      "module": "github.com/go-openapi/swag/jsonutils",
+      "version": "v0.26.1",
+      "sum": ""
+    },
+    {
+      "module": "github.com/go-openapi/swag/loading",
+      "version": "v0.26.1",
+      "sum": ""
+    },
+    {
+      "module": "github.com/go-openapi/swag/mangling",
+      "version": "v0.26.1",
+      "sum": ""
+    },
+    {
+      "module": "github.com/go-openapi/swag/netutils",
+      "version": "v0.26.1",
+      "sum": ""
+    },
+    {
+      "module": "github.com/go-openapi/swag/stringutils",
+      "version": "v0.26.1",
+      "sum": ""
+    },
+    {
+      "module": "github.com/go-openapi/swag/typeutils",
+      "version": "v0.27.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/go-openapi/swag/yamlutils",
+      "version": "v0.26.1",
+      "sum": ""
+    },
+    {
+      "module": "github.com/go-openapi/validate",
+      "version": "v0.26.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/go-sourcemap/sourcemap",
+      "version": "v2.1.3+incompatible",
+      "sum": ""
+    },
+    {
+      "module": "github.com/go-viper/mapstructure/v2",
+      "version": "v2.5.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/goccy/go-yaml",
+      "version": "v1.19.2",
+      "sum": ""
+    },
+    {
+      "module": "github.com/godbus/dbus/v5",
+      "version": "v5.2.2",
+      "sum": ""
+    },
+    {
+      "module": "github.com/gofrs/flock",
+      "version": "v0.13.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/golang-jwt/jwt/v5",
+      "version": "v5.3.1",
+      "sum": ""
+    },
+    {
+      "module": "github.com/golang/gddo",
+      "version": "v0.0.0-20210115222349-20d68f94ee1f",
+      "sum": ""
+    },
+    {
+      "module": "github.com/golang/groupcache",
+      "version": "v0.0.0-20241129210726-2c02b8208cf8",
+      "sum": ""
+    },
+    {
+      "module": "github.com/google/btree",
+      "version": "v1.1.3",
+      "sum": ""
+    },
+    {
+      "module": "github.com/google/cel-go",
+      "version": "v0.30.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/google/certificate-transparency-go",
+      "version": "v1.3.3",
+      "sum": ""
+    },
+    {
+      "module": "github.com/google/go-cmp",
+      "version": "v0.7.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/google/go-containerregistry",
+      "version": "v0.21.9",
+      "sum": ""
+    },
+    {
+      "module": "github.com/google/go-querystring",
+      "version": "v1.1.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/google/gopacket",
+      "version": "v1.1.19",
+      "sum": ""
+    },
+    {
+      "module": "github.com/google/jsonschema-go",
+      "version": "v0.4.3",
+      "sum": ""
+    },
+    {
+      "module": "github.com/google/pprof",
+      "version": "v0.0.0-20260802141513-ef3492d7dac3",
+      "sum": ""
+    },
+    {
+      "module": "github.com/google/s2a-go",
+      "version": "v0.1.9",
+      "sum": ""
+    },
+    {
+      "module": "github.com/google/uuid",
+      "version": "v1.6.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/googleapis/enterprise-certificate-proxy",
+      "version": "v0.3.16",
+      "sum": ""
+    },
+    {
+      "module": "github.com/googleapis/gax-go/v2",
+      "version": "v2.22.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/gorilla/css",
+      "version": "v1.0.1",
+      "sum": ""
+    },
+    {
+      "module": "github.com/gorilla/handlers",
+      "version": "v1.5.2",
+      "sum": ""
+    },
+    {
+      "module": "github.com/gorilla/mux",
+      "version": "v1.8.1",
+      "sum": ""
+    },
+    {
+      "module": "github.com/grpc-ecosystem/go-grpc-middleware/providers/prometheus",
+      "version": "v1.1.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/grpc-ecosystem/go-grpc-middleware/v2",
+      "version": "v2.3.3",
+      "sum": ""
+    },
+    {
+      "module": "github.com/grpc-ecosystem/grpc-gateway/v2",
+      "version": "v2.29.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/hashicorp/go-cleanhttp",
+      "version": "v0.5.2",
+      "sum": ""
+    },
+    {
+      "module": "github.com/hashicorp/go-retryablehttp",
+      "version": "v0.7.8",
+      "sum": ""
+    },
+    {
+      "module": "github.com/hashicorp/hcl/v2",
+      "version": "v2.24.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/in-toto/attestation",
+      "version": "v1.2.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/in-toto/in-toto-golang",
+      "version": "v0.11.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/intel/goresctrl",
+      "version": "v0.12.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/invopop/jsonschema",
+      "version": "v0.14.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/ishidawataru/sctp",
+      "version": "v0.0.0-20251114114122-19ddcbc6aae2",
+      "sum": ""
+    },
+    {
+      "module": "github.com/jbenet/go-context",
+      "version": "v0.0.0-20150711004518-d14ea06fba99",
+      "sum": ""
+    },
+    {
+      "module": "github.com/jedisct1/go-minisign",
+      "version": "v0.0.0-20230811132847-661be99b8267",
+      "sum": ""
+    },
+    {
+      "module": "github.com/junegunn/fzf",
+      "version": "v0.74.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/junegunn/go-shellwords",
+      "version": "v0.0.0-20250127100254-2aa3b3277741",
+      "sum": ""
+    },
+    {
+      "module": "github.com/k3a/html2text",
+      "version": "v1.4.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/kevinburke/ssh_config",
+      "version": "v1.2.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/keygen-sh/machineid",
+      "version": "v1.1.3",
+      "sum": ""
+    },
+    {
+      "module": "github.com/klauspost/compress",
+      "version": "v1.19.1",
+      "sum": ""
+    },
+    {
+      "module": "github.com/klauspost/cpuid/v2",
+      "version": "v2.3.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/knqyf263/go-plugin",
+      "version": "v0.9.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/kr/fs",
+      "version": "v0.1.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/labstack/echo/v4",
+      "version": "v4.15.4",
+      "sum": ""
+    },
+    {
+      "module": "github.com/labstack/gommon",
+      "version": "v0.5.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/lucasb-eyer/go-colorful",
+      "version": "v1.4.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/mailru/easyjson",
+      "version": "v0.7.7",
+      "sum": ""
+    },
+    {
+      "module": "github.com/mattn/go-colorable",
+      "version": "v0.1.15",
+      "sum": ""
+    },
+    {
+      "module": "github.com/mattn/go-isatty",
+      "version": "v0.0.24",
+      "sum": ""
+    },
+    {
+      "module": "github.com/mattn/go-runewidth",
+      "version": "v0.0.24",
+      "sum": ""
+    },
+    {
+      "module": "github.com/mdlayher/socket",
+      "version": "v0.6.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/mdlayher/vsock",
+      "version": "v1.3.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/microcosm-cc/bluemonday",
+      "version": "v1.0.27",
+      "sum": ""
+    },
+    {
+      "module": "github.com/miekg/dns",
+      "version": "v1.1.72",
+      "sum": ""
+    },
+    {
+      "module": "github.com/mitchellh/go-wordwrap",
+      "version": "v1.0.1",
+      "sum": ""
+    },
+    {
+      "module": "github.com/moby/buildkit",
+      "version": "v0.32.2",
+      "sum": ""
+    },
+    {
+      "module": "github.com/moby/docker-image-spec",
+      "version": "v1.3.1",
+      "sum": ""
+    },
+    {
+      "module": "github.com/moby/go-archive",
+      "version": "v0.3.3",
+      "sum": ""
+    },
+    {
+      "module": "github.com/moby/locker",
+      "version": "v1.0.1",
+      "sum": ""
+    },
+    {
+      "module": "github.com/moby/moby/api",
+      "version": "v1.55.0",
+      "sum": null,
+      "replacement": {
+        "module": "github.com/docker/docker-next-moby/api",
+        "version": "v0.0.0-20260703150458-6a7008024ea3",
+        "sum": ""
+      }
+    },
+    {
+      "module": "github.com/moby/moby/client",
+      "version": "v0.5.1",
+      "sum": ""
+    },
+    {
+      "module": "github.com/moby/moby/v2",
+      "version": "v2.0.0-beta.0.0.20251014104319-ee0810e2f1cd",
+      "sum": null,
+      "replacement": {
+        "module": "github.com/docker/docker-next-moby/v2",
+        "version": "v2.0.0-20260703150458-6a7008024ea3",
+        "sum": ""
+      }
+    },
+    {
+      "module": "github.com/moby/patternmatcher",
+      "version": "v0.6.1",
+      "sum": ""
+    },
+    {
+      "module": "github.com/moby/sys/atomicwriter",
+      "version": "v0.1.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/moby/sys/capability",
+      "version": "v0.4.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/moby/sys/mount",
+      "version": "v0.3.5",
+      "sum": ""
+    },
+    {
+      "module": "github.com/moby/sys/mountinfo",
+      "version": "v0.7.2",
+      "sum": ""
+    },
+    {
+      "module": "github.com/moby/sys/sequential",
+      "version": "v0.7.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/moby/sys/signal",
+      "version": "v0.7.1",
+      "sum": ""
+    },
+    {
+      "module": "github.com/moby/sys/symlink",
+      "version": "v0.3.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/moby/sys/user",
+      "version": "v0.4.1",
+      "sum": ""
+    },
+    {
+      "module": "github.com/moby/sys/userns",
+      "version": "v0.2.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/moby/term",
+      "version": "v0.5.2",
+      "sum": ""
+    },
+    {
+      "module": "github.com/modelcontextprotocol/go-sdk",
+      "version": "v1.8.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/morikuni/aec",
+      "version": "v1.1.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/muesli/cancelreader",
+      "version": "v0.2.2",
+      "sum": ""
+    },
+    {
+      "module": "github.com/munnerz/goautoneg",
+      "version": "v0.0.0-20191010083416-a7dc8b61c822",
+      "sum": ""
+    },
+    {
+      "module": "github.com/natefinch/atomic",
+      "version": "v1.0.1",
+      "sum": ""
+    },
+    {
+      "module": "github.com/oapi-codegen/runtime",
+      "version": "v1.4.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/oklog/ulid/v2",
+      "version": "v2.1.1",
+      "sum": ""
+    },
+    {
+      "module": "github.com/oleiade/reflections",
+      "version": "v1.1.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/openai/openai-go/v3",
+      "version": "v3.42.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/opencontainers/go-digest",
+      "version": "v1.0.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/opencontainers/image-spec",
+      "version": "v1.1.1",
+      "sum": ""
+    },
+    {
+      "module": "github.com/opencontainers/runtime-spec",
+      "version": "v1.3.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/pb33f/ordered-map/v2",
+      "version": "v2.3.1",
+      "sum": ""
+    },
+    {
+      "module": "github.com/pborman/uuid",
+      "version": "v1.2.1",
+      "sum": ""
+    },
+    {
+      "module": "github.com/pelletier/go-toml/v2",
+      "version": "v2.4.3",
+      "sum": ""
+    },
+    {
+      "module": "github.com/pjbgf/sha1cd",
+      "version": "v0.6.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/pkg/browser",
+      "version": "v0.0.0-20240102092130-5ac0b6a4141c",
+      "sum": ""
+    },
+    {
+      "module": "github.com/pkg/errors",
+      "version": "v0.9.1",
+      "sum": ""
+    },
+    {
+      "module": "github.com/pkg/sftp",
+      "version": "v1.13.10",
+      "sum": ""
+    },
+    {
+      "module": "github.com/planetscale/vtprotobuf",
+      "version": "v0.6.1-0.20240319094008-0393e58bdf10",
+      "sum": ""
+    },
+    {
+      "module": "github.com/pmezard/go-difflib",
+      "version": "v1.0.1-0.20181226105442-5d4384ee4fb2",
+      "sum": ""
+    },
+    {
+      "module": "github.com/prometheus/client_golang",
+      "version": "v1.23.2",
+      "sum": ""
+    },
+    {
+      "module": "github.com/prometheus/client_model",
+      "version": "v0.6.2",
+      "sum": ""
+    },
+    {
+      "module": "github.com/prometheus/common",
+      "version": "v0.67.5",
+      "sum": ""
+    },
+    {
+      "module": "github.com/prometheus/procfs",
+      "version": "v0.20.1",
+      "sum": ""
+    },
+    {
+      "module": "github.com/remyoudompheng/bigfft",
+      "version": "v0.0.0-20230129092748-24d4a6f8daec",
+      "sum": ""
+    },
+    {
+      "module": "github.com/rivo/uniseg",
+      "version": "v0.4.7",
+      "sum": ""
+    },
+    {
+      "module": "github.com/rumpl/harness",
+      "version": "v0.0.0-20260612213434-3f63cb8efc05",
+      "sum": ""
+    },
+    {
+      "module": "github.com/sassoftware/relic",
+      "version": "v7.2.1+incompatible",
+      "sum": ""
+    },
+    {
+      "module": "github.com/secure-systems-lab/go-securesystemslib",
+      "version": "v0.11.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/segmentio/asm",
+      "version": "v1.2.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/segmentio/encoding",
+      "version": "v0.5.4",
+      "sum": ""
+    },
+    {
+      "module": "github.com/sergi/go-diff",
+      "version": "v1.4.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/shibumi/go-pathspec",
+      "version": "v1.3.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/shirou/gopsutil/v4",
+      "version": "v4.26.6",
+      "sum": ""
+    },
+    {
+      "module": "github.com/sigstore/cosign/v2",
+      "version": "v2.6.4",
+      "sum": ""
+    },
+    {
+      "module": "github.com/sigstore/protobuf-specs",
+      "version": "v0.5.1",
+      "sum": ""
+    },
+    {
+      "module": "github.com/sigstore/rekor",
+      "version": "v1.5.3",
+      "sum": ""
+    },
+    {
+      "module": "github.com/sigstore/rekor-tiles/v2",
+      "version": "v2.3.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/sigstore/sigstore",
+      "version": "v1.10.8",
+      "sum": ""
+    },
+    {
+      "module": "github.com/sigstore/sigstore-go",
+      "version": "v1.2.2",
+      "sum": ""
+    },
+    {
+      "module": "github.com/sigstore/timestamp-authority/v2",
+      "version": "v2.1.2",
+      "sum": ""
+    },
+    {
+      "module": "github.com/sirupsen/logrus",
+      "version": "v1.10.2",
+      "sum": ""
+    },
+    {
+      "module": "github.com/skeema/knownhosts",
+      "version": "v1.3.1",
+      "sum": ""
+    },
+    {
+      "module": "github.com/spf13/cobra",
+      "version": "v1.10.2",
+      "sum": ""
+    },
+    {
+      "module": "github.com/spf13/pflag",
+      "version": "v1.0.10",
+      "sum": ""
+    },
+    {
+      "module": "github.com/spiffe/go-spiffe/v2",
+      "version": "v2.7.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/standard-webhooks/standard-webhooks/libraries",
+      "version": "v0.0.1",
+      "sum": ""
+    },
+    {
+      "module": "github.com/stretchr/testify",
+      "version": "v1.12.1",
+      "sum": ""
+    },
+    {
+      "module": "github.com/temoto/robotstxt",
+      "version": "v1.1.2",
+      "sum": ""
+    },
+    {
+      "module": "github.com/tetratelabs/wazero",
+      "version": "v1.11.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/theupdateframework/go-tuf",
+      "version": "v0.7.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/theupdateframework/go-tuf/v2",
+      "version": "v2.4.2",
+      "sum": ""
+    },
+    {
+      "module": "github.com/tidwall/gjson",
+      "version": "v1.18.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/tidwall/match",
+      "version": "v1.1.1",
+      "sum": ""
+    },
+    {
+      "module": "github.com/tidwall/pretty",
+      "version": "v1.2.1",
+      "sum": ""
+    },
+    {
+      "module": "github.com/tidwall/sjson",
+      "version": "v1.2.5",
+      "sum": ""
+    },
+    {
+      "module": "github.com/tklauser/go-sysconf",
+      "version": "v0.4.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/tklauser/numcpus",
+      "version": "v0.12.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/transparency-dev/formats",
+      "version": "v0.1.1",
+      "sum": ""
+    },
+    {
+      "module": "github.com/transparency-dev/merkle",
+      "version": "v0.0.2",
+      "sum": ""
+    },
+    {
+      "module": "github.com/valyala/bytebufferpool",
+      "version": "v1.0.0",
+      "sum": ""
+    },
+    {
+      "module": "github.com/valyala/fasttemplate",
+      "version": "v1.2.2",
+      "sum": ""
+    },
+    {
+      "module": "github.com/vbatts/tar-split",
+      "version": "v0.12.3",
+      "sum": ""
+    },
+    {
+      "module": "github.com/vishvananda/netlink",
+      "version": "v1.3.1",
+      "sum": ""
+    },
+    {
+      "module": "github.com/vishvananda/netns",
+      "version": "v0.0.5",
+      "sum": ""
+    },
+    {
+      "module": "github.com/wk8/go-ordered-map/v2",
+      "version": "v2.1.9-0.20250401010720-46d686821e33",
+      "sum": ""
+    },
+    {
+      "module": "github.com/x448/float16",
+      "version": "v0.8.4",
+      "sum": ""
+    },
+    {
+      "module": "github.com/xanzy/ssh-agent",
+      "version": "v0.3.3",
+      "sum": ""
+    },
+    {
+      "module": "github.com/xo/terminfo",
+      "version": "v0.0.0-20220910002029-abceb7e1c41e",
+      "sum": ""
+    },
+    {
+      "module": "github.com/yosida95/uritemplate/v3",
+      "version": "v3.0.2",
+      "sum": ""
+    },
+    {
+      "module": "github.com/youmark/pkcs8",
+      "version": "v0.0.0-20240726163527-a2c0da244d78",
+      "sum": ""
+    },
+    {
+      "module": "github.com/yuin/goldmark",
+      "version": "v1.8.4",
+      "sum": ""
+    },
+    {
+      "module": "github.com/yuin/goldmark-emoji",
+      "version": "v1.0.5",
+      "sum": ""
+    },
+    {
+      "module": "github.com/zclconf/go-cty",
+      "version": "v1.19.0",
+      "sum": ""
+    },
+    {
+      "module": "go.etcd.io/bbolt",
+      "version": "v1.5.0",
+      "sum": ""
+    },
+    {
+      "module": "go.opentelemetry.io/auto/sdk",
+      "version": "v1.2.1",
+      "sum": ""
+    },
+    {
+      "module": "go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc",
+      "version": "v0.69.0",
+      "sum": ""
+    },
+    {
+      "module": "go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp",
+      "version": "v0.69.0",
+      "sum": ""
+    },
+    {
+      "module": "go.opentelemetry.io/contrib/processors/baggagecopy",
+      "version": "v0.16.1",
+      "sum": ""
+    },
+    {
+      "module": "go.opentelemetry.io/otel",
+      "version": "v1.45.0",
+      "sum": ""
+    },
+    {
+      "module": "go.opentelemetry.io/otel/exporters/otlp/otlpmetric/otlpmetricgrpc",
+      "version": "v1.44.0",
+      "sum": ""
+    },
+    {
+      "module": "go.opentelemetry.io/otel/exporters/otlp/otlpmetric/otlpmetrichttp",
+      "version": "v1.44.0",
+      "sum": ""
+    },
+    {
+      "module": "go.opentelemetry.io/otel/exporters/otlp/otlptrace",
+      "version": "v1.45.0",
+      "sum": ""
+    },
+    {
+      "module": "go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracegrpc",
+      "version": "v1.44.0",
+      "sum": ""
+    },
+    {
+      "module": "go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracehttp",
+      "version": "v1.45.0",
+      "sum": ""
+    },
+    {
+      "module": "go.opentelemetry.io/otel/log",
+      "version": "v0.20.0",
+      "sum": ""
+    },
+    {
+      "module": "go.opentelemetry.io/otel/metric",
+      "version": "v1.45.0",
+      "sum": ""
+    },
+    {
+      "module": "go.opentelemetry.io/otel/sdk",
+      "version": "v1.45.0",
+      "sum": ""
+    },
+    {
+      "module": "go.opentelemetry.io/otel/sdk/log",
+      "version": "v0.20.0",
+      "sum": ""
+    },
+    {
+      "module": "go.opentelemetry.io/otel/sdk/metric",
+      "version": "v1.45.0",
+      "sum": ""
+    },
+    {
+      "module": "go.opentelemetry.io/otel/trace",
+      "version": "v1.45.0",
+      "sum": ""
+    },
+    {
+      "module": "go.opentelemetry.io/proto/otlp",
+      "version": "v1.11.0",
+      "sum": ""
+    },
+    {
+      "module": "go.yaml.in/yaml/v2",
+      "version": "v2.4.4",
+      "sum": ""
+    },
+    {
+      "module": "go.yaml.in/yaml/v3",
+      "version": "v3.0.5",
+      "sum": ""
+    },
+    {
+      "module": "go.yaml.in/yaml/v4",
+      "version": "v4.0.0-rc.6",
+      "sum": ""
+    },
+    {
+      "module": "golang.org/x/crypto",
+      "version": "v0.57.0",
+      "sum": ""
+    },
+    {
+      "module": "golang.org/x/exp",
+      "version": "v0.0.0-20260603202125-055de637280b",
+      "sum": ""
+    },
+    {
+      "module": "golang.org/x/image",
+      "version": "v0.44.0",
+      "sum": ""
+    },
+    {
+      "module": "golang.org/x/mod",
+      "version": "v0.41.0",
+      "sum": ""
+    },
+    {
+      "module": "golang.org/x/net",
+      "version": "v0.58.0",
+      "sum": ""
+    },
+    {
+      "module": "golang.org/x/oauth2",
+      "version": "v0.37.0",
+      "sum": ""
+    },
+    {
+      "module": "golang.org/x/sync",
+      "version": "v0.23.0",
+      "sum": ""
+    },
+    {
+      "module": "golang.org/x/sys",
+      "version": "v0.48.0",
+      "sum": ""
+    },
+    {
+      "module": "golang.org/x/term",
+      "version": "v0.46.0",
+      "sum": ""
+    },
+    {
+      "module": "golang.org/x/text",
+      "version": "v0.42.0",
+      "sum": ""
+    },
+    {
+      "module": "golang.org/x/time",
+      "version": "v0.15.0",
+      "sum": ""
+    },
+    {
+      "module": "google.golang.org/api",
+      "version": "v0.283.0",
+      "sum": ""
+    },
+    {
+      "module": "google.golang.org/genproto",
+      "version": "v0.0.0-20260526163538-3dc84a4a5aaa",
+      "sum": ""
+    },
+    {
+      "module": "google.golang.org/genproto/googleapis/api",
+      "version": "v0.0.0-20260803160001-6ac0973c030d",
+      "sum": ""
+    },
+    {
+      "module": "google.golang.org/genproto/googleapis/rpc",
+      "version": "v0.0.0-20260803160001-6ac0973c030d",
+      "sum": ""
+    },
+    {
+      "module": "google.golang.org/grpc",
+      "version": "v1.83.2",
+      "sum": ""
+    },
+    {
+      "module": "google.golang.org/protobuf",
+      "version": "v1.36.12",
+      "sum": ""
+    },
+    {
+      "module": "gopkg.in/inf.v0",
+      "version": "v0.9.1",
+      "sum": ""
+    },
+    {
+      "module": "gopkg.in/natefinch/lumberjack.v2",
+      "version": "v2.2.1",
+      "sum": ""
+    },
+    {
+      "module": "gopkg.in/warnings.v0",
+      "version": "v0.1.2",
+      "sum": ""
+    },
+    {
+      "module": "gopkg.in/yaml.v2",
+      "version": "v2.4.0",
+      "sum": ""
+    },
+    {
+      "module": "gopkg.in/yaml.v3",
+      "version": "v3.0.1",
+      "sum": ""
+    },
+    {
+      "module": "gvisor.dev/gvisor",
+      "version": "v0.0.0-20260220000113-21970e293898",
+      "sum": ""
+    },
+    {
+      "module": "k8s.io/apimachinery",
+      "version": "v0.36.3",
+      "sum": ""
+    },
+    {
+      "module": "k8s.io/klog/v2",
+      "version": "v2.140.0",
+      "sum": ""
+    },
+    {
+      "module": "modernc.org/libc",
+      "version": "v1.75.6",
+      "sum": ""
+    },
+    {
+      "module": "modernc.org/mathutil",
+      "version": "v1.7.1",
+      "sum": ""
+    },
+    {
+      "module": "modernc.org/memory",
+      "version": "v1.12.1",
+      "sum": ""
+    },
+    {
+      "module": "modernc.org/sqlite",
+      "version": "v1.58.0",
+      "sum": ""
+    },
+    {
+      "module": "oras.land/oras-go/v2",
+      "version": "v2.6.2",
+      "sum": ""
+    },
+    {
+      "module": "resenje.org/singleflight",
+      "version": "v0.4.3",
+      "sum": ""
+    },
+    {
+      "module": "sigs.k8s.io/json",
+      "version": "v0.0.0-20250730193827-2d320260d730",
+      "sum": ""
+    },
+    {
+      "module": "sigs.k8s.io/yaml",
+      "version": "v1.6.0",
+      "sum": ""
+    },
+    {
+      "module": "tags.cncf.io/container-device-interface",
+      "version": "v1.1.0",
+      "sum": ""
+    }
+  ],
+  "storage_symbols": [
+    "github.com/docker/cli/cli/config/configfile.copyFilePermissions",
+    "github.com/docker/go-sdk/client.sdkClient.DiskUsage",
+    "github.com/docker/go-sdk/client.(*sdkClient).DiskUsage",
+    "github.com/docker/sandboxes/sandboxlib/workspace.CopyFileOrDir",
+    "github.com/docker/sandboxes/sandboxlib/workspace.copyFileContent",
+    "github.com/docker/sandboxes/sandboxlib/workspace.CopyFileOrDir.func1",
+    "github.com/docker/sandboxes/sandboxlib/workspace.copyFileContent.deferwrap1",
+    "github.com/docker/sandboxes/sandboxlib/oauth.(*OAuthEngine).ReloadFromDisk",
+    "github.com/docker/sandboxes/sandboxlib/oauth.(*OAuthTokenManager).loadTokenDataFromDisk",
+    "github.com/docker/sandboxes/sandboxlib/oauth.(*OAuthTokenManager).LoadFromDisk",
+    "github.com/docker/sandboxes/sandboxlib/oauth.(*OAuthTokenManager).SyncWithDisk",
+    "github.com/docker/sandboxes/sandboxlib/oauth.(*OAuthTokenManager).LoadFromDisk.deferwrap1",
+    "github.com/docker/sandboxes/sandboxlib/oauth.(*OAuthTokenManager).SyncWithDisk.deferwrap2",
+    "github.com/docker/sandboxes/sandboxlib/oauth.(*OAuthTokenManager).SyncWithDisk.deferwrap1",
+    "github.com/docker/data-contracts/gen/go/docker/marlin/dash/sandboxes/event/v1.(*DashHeartbeat).GetDiskTotalBytes",
+    "github.com/docker/data-contracts/gen/go/docker/marlin/dash/sandboxes/event/v1.(*DashHeartbeat).GetDiskFreeBytes",
+    "github.com/docker/data-platform/sdk/go/marlin/persist.copyFile",
+    "github.com/docker/data-platform/sdk/go/marlin/persist.copyFile.func1",
+    "github.com/docker/sandboxes/sandboxlib/platform.loadUnleashDiskCache",
+    "github.com/docker/data-platform/sdk/go/audit/config/marlin.(*MarlinConfigProvider).loadFromDisk",
+    "github.com/docker/data-platform/sdk/go/audit/config/marlin.(*MarlinConfigProvider).saveToDisk",
+    "github.com/containerd/continuity/fs.diskUsage",
+    "github.com/containerd/continuity/fs.diskUsage.func1",
+    "go.etcd.io/bbolt.(*DB).growSize",
+    "go.etcd.io/bbolt.(*DB).grow",
+    "go.etcd.io/bbolt.(*Tx).CopyFile",
+    "github.com/containerd/containerd/v2/plugins/content/local.(*store).tryLock",
+    "github.com/containerd/containerd/v2/plugins/content/local.(*store).unlock",
+    "github.com/containerd/containerd/v2/plugins/content/local.OpenReader",
+    "github.com/containerd/containerd/v2/plugins/content/local.sizeReaderAt.ReadAt",
+    "github.com/containerd/containerd/v2/plugins/content/local.sizeReaderAt.Size",
+    "github.com/containerd/containerd/v2/plugins/content/local.sizeReaderAt.Close",
+    "github.com/containerd/containerd/v2/plugins/content/local.sizeReaderAt.Reader",
+    "github.com/containerd/containerd/v2/plugins/content/local.NewLabeledStore",
+    "github.com/containerd/containerd/v2/plugins/content/local.(*store).Info",
+    "github.com/containerd/containerd/v2/plugins/content/local.(*store).info",
+    "github.com/containerd/containerd/v2/plugins/content/local.(*store).ReaderAt",
+    "github.com/containerd/containerd/v2/plugins/content/local.(*store).Delete",
+    "github.com/containerd/containerd/v2/plugins/content/local.(*store).Update",
+    "github.com/containerd/containerd/v2/plugins/content/local.(*store).Walk",
+    "github.com/containerd/containerd/v2/plugins/content/local.(*store).Status",
+    "github.com/containerd/containerd/v2/plugins/content/local.(*store).ListStatuses",
+    "github.com/containerd/containerd/v2/plugins/content/local.adaptStatus",
+    "github.com/containerd/containerd/v2/plugins/content/local.(*store).WalkStatusRefs",
+    "github.com/containerd/containerd/v2/plugins/content/local.readFileString",
+    "github.com/containerd/containerd/v2/plugins/content/local.(*store).status",
+    "github.com/containerd/containerd/v2/plugins/content/local.(*store).total",
+    "github.com/containerd/containerd/v2/plugins/content/local.(*store).Writer",
+    "github.com/containerd/containerd/v2/plugins/content/local.(*store).resumeStatus",
+    "github.com/containerd/containerd/v2/plugins/content/local.(*store).writer",
+    "github.com/containerd/containerd/v2/plugins/content/local.(*store).Abort",
+    "github.com/containerd/containerd/v2/plugins/content/local.(*store).blobPath",
+    "github.com/containerd/containerd/v2/plugins/content/local.(*store).ingestRoot",
+    "github.com/containerd/containerd/v2/plugins/content/local.(*store).ingestPaths",
+    "github.com/containerd/containerd/v2/plugins/content/local.(*store).ensureIngestRoot",
+    "github.com/containerd/containerd/v2/plugins/content/local.readFileTimestamp",
+    "github.com/containerd/containerd/v2/plugins/content/local.writeTimestampFile",
+    "github.com/containerd/containerd/v2/plugins/content/local.writeToCompletion",
+    "github.com/containerd/containerd/v2/plugins/content/local.getATime",
+    "github.com/containerd/containerd/v2/plugins/content/local.(*writer).Status",
+    "github.com/containerd/containerd/v2/plugins/content/local.(*writer).Digest",
+    "github.com/containerd/containerd/v2/plugins/content/local.(*writer).Write",
+    "github.com/containerd/containerd/v2/plugins/content/local.(*writer).Commit",
+    "github.com/containerd/containerd/v2/plugins/content/local.(*writer).Close",
+    "github.com/containerd/containerd/v2/plugins/content/local.(*writer).Truncate",
+    "github.com/containerd/containerd/v2/plugins/content/local.(*writer).Sync",
+    "github.com/containerd/containerd/v2/plugins/content/local.syncDir",
+    "github.com/containerd/containerd/v2/plugins/content/local.init.func1",
+    "github.com/containerd/containerd/v2/plugins/content/local.(*store).tryLock.deferwrap1",
+    "github.com/containerd/containerd/v2/plugins/content/local.(*store).unlock.deferwrap1",
+    "github.com/containerd/containerd/v2/plugins/content/local.(*store).Walk.func1",
+    "github.com/containerd/containerd/v2/plugins/content/local.adaptStatus.func1",
+    "github.com/containerd/containerd/v2/plugins/content/local.(*store).ListStatuses.deferwrap1",
+    "github.com/containerd/containerd/v2/plugins/content/local.(*store).WalkStatusRefs.deferwrap1",
+    "github.com/containerd/containerd/v2/plugins/content/local.(*writer).Commit.deferwrap1",
+    "github.com/containerd/containerd/v2/plugins/content/local.(*sizeReaderAt).Close",
+    "github.com/containerd/containerd/v2/plugins/content/local.(*sizeReaderAt).ReadAt",
+    "github.com/containerd/containerd/v2/plugins/content/local.(*sizeReaderAt).Reader",
+    "github.com/containerd/containerd/v2/plugins/content/local.(*sizeReaderAt).Size",
+    "github.com/containerd/containerd/v2/plugins/content/local.(*store).ensureIngestRoot-fm",
+    "github.com/containerd/containerd/v2/plugins/content/local/plugin.init.0",
+    "github.com/containerd/containerd/v2/plugins/content/local/plugin.init.0.func1",
+    "github.com/containerd/containerd/v2/plugins/content/local.NewStore",
+    "github.com/containerd/containerd/v2/internal/erofsutils.ConvertTarErofs",
+    "github.com/containerd/containerd/v2/internal/erofsutils.GenerateTarIndexAndAppendTar",
+    "github.com/containerd/containerd/v2/internal/erofsutils.ConvertErofs",
+    "github.com/containerd/containerd/v2/internal/erofsutils.MountsToLayer",
+    "github.com/containerd/containerd/v2/internal/erofsutils.SupportGenerateFromTar",
+    "github.com/containerd/containerd/v2/internal/erofsutils.GenerateTarIndexAndAppendTar.deferwrap3",
+    "github.com/containerd/containerd/v2/internal/erofsutils.GenerateTarIndexAndAppendTar.deferwrap2",
+    "github.com/containerd/containerd/v2/internal/erofsutils.GenerateTarIndexAndAppendTar.deferwrap1",
+    "github.com/containerd/containerd/v2/plugins/diff/erofs.writeDiff",
+    "github.com/containerd/containerd/v2/plugins/diff/erofs.erofsDiff.Compare",
+    "github.com/containerd/containerd/v2/plugins/diff/erofs.NewErofsDiffer",
+    "github.com/containerd/containerd/v2/internal/erofsutils.AddDefaultMkfsOpts",
+    "github.com/containerd/containerd/v2/plugins/diff/erofs.erofsDiff.Apply",
+    "github.com/containerd/containerd/v2/internal/erofsutils.IsErofsMediaType",
+    "github.com/containerd/containerd/v2/plugins/diff/erofs.uniqueRef",
+    "github.com/containerd/containerd/v2/plugins/diff/erofs.(*readCounter).Read",
+    "github.com/containerd/containerd/v2/plugins/diff/erofs.(*erofsDiff).formatDmverityLayer",
+    "github.com/containerd/containerd/v2/plugins/diff/erofs.(*erofsDiff).getDmverityOptions",
+    "github.com/containerd/containerd/v2/plugins/diff/erofs.writeDiff.func1",
+    "github.com/containerd/containerd/v2/plugins/diff/erofs.erofsDiff.Compare.func1",
+    "github.com/containerd/containerd/v2/plugins/diff/erofs.erofsDiff.Apply.deferwrap2",
+    "github.com/containerd/containerd/v2/plugins/diff/erofs.erofsDiff.Apply.deferwrap1",
+    "github.com/containerd/containerd/v2/plugins/diff/erofs.erofsDiff.Apply.func1",
+    "github.com/containerd/containerd/v2/plugins/diff/erofs.(*erofsDiff).Apply",
+    "github.com/containerd/containerd/v2/plugins/diff/erofs.(*erofsDiff).Compare",
+    "github.com/containerd/containerd/v2/plugins/diff/erofs/plugin.init.0",
+    "github.com/containerd/containerd/v2/plugins/diff/erofs/plugin.init.0.func1",
+    "github.com/containerd/containerd/v2/plugins/diff/erofs.WithMkfsOptions",
+    "github.com/containerd/containerd/v2/plugins/diff/erofs.WithMkfsOptions.1",
+    "github.com/containerd/containerd/v2/plugins/diff/erofs.WithTarIndexMode.1",
+    "github.com/containerd/containerd/v2/plugins/diff/erofs.WithDmverity.1",
+    "github.com/containerd/containerd/v2/plugins/mount/fsview/erofs.init.0",
+    "github.com/containerd/containerd/v2/plugins/mount/fsview/erofs.handleMount",
+    "github.com/containerd/containerd/v2/plugins/mount/fsview/erofs.(*erofsView).Close",
+    "github.com/containerd/containerd/v2/plugins/mount/fsview/erofs.getxattr",
+    "github.com/containerd/containerd/v2/plugins/mount/fsview/erofs.isWhiteout",
+    "github.com/containerd/containerd/v2/plugins/mount/fsview/erofs.erofsView.Lstat",
+    "github.com/containerd/containerd/v2/plugins/mount/fsview/erofs.(*erofsView).Lstat",
+    "github.com/containerd/containerd/v2/plugins/mount/fsview/erofs.erofsView.Open",
+    "github.com/containerd/containerd/v2/plugins/mount/fsview/erofs.(*erofsView).Open",
+    "github.com/containerd/containerd/v2/plugins/mount/fsview/erofs.erofsView.ReadLink",
+    "github.com/containerd/containerd/v2/plugins/mount/fsview/erofs.(*erofsView).ReadLink",
+    "github.com/containerd/containerd/v2/plugins/snapshots/erofs.NewSnapshotter",
+    "github.com/containerd/containerd/v2/plugins/snapshots/erofs.(*snapshotter).Close",
+    "github.com/containerd/containerd/v2/plugins/snapshots/erofs.(*snapshotter).writableSize",
+    "github.com/containerd/containerd/v2/plugins/snapshots/erofs.(*snapshotter).lowerPath",
+    "github.com/containerd/containerd/v2/plugins/snapshots/erofs.(*snapshotter).layerBlobPath",
+    "github.com/containerd/containerd/v2/plugins/snapshots/erofs.(*snapshotter).prepareDirectory",
+    "github.com/containerd/containerd/v2/plugins/snapshots/erofs.(*snapshotter).mountFsMeta",
+    "github.com/containerd/containerd/v2/plugins/snapshots/erofs.(*snapshotter).fsMetaPath",
+    "github.com/containerd/containerd/v2/plugins/snapshots/erofs.(*snapshotter).applyDmverityPolicy",
+    "github.com/containerd/containerd/v2/plugins/snapshots/erofs.(*snapshotter).createErofsMount",
+    "github.com/containerd/containerd/v2/plugins/snapshots/erofs.(*snapshotter).mounts",
+    "github.com/containerd/containerd/v2/plugins/snapshots/erofs.(*snapshotter).writablePath",
+    "github.com/containerd/containerd/v2/plugins/snapshots/erofs.(*snapshotter).workPath",
+    "github.com/containerd/containerd/v2/plugins/snapshots/erofs.(*snapshotter).upperPath",
+    "github.com/containerd/containerd/v2/plugins/snapshots/erofs.(*snapshotter).createSnapshot",
+    "github.com/containerd/containerd/v2/plugins/snapshots/erofs.(*snapshotter).Prepare",
+    "github.com/containerd/containerd/v2/plugins/snapshots/erofs.(*snapshotter).View",
+    "github.com/containerd/containerd/v2/plugins/snapshots/erofs.(*snapshotter).commitBlock",
+    "github.com/containerd/containerd/v2/plugins/snapshots/erofs.(*snapshotter).Commit",
+    "github.com/containerd/containerd/v2/plugins/snapshots/erofs.(*snapshotter).Mounts",
+    "github.com/containerd/containerd/v2/plugins/snapshots/erofs.(*snapshotter).Cleanup",
+    "github.com/containerd/containerd/v2/plugins/snapshots/erofs.(*snapshotter).getCleanupDirectories",
+    "github.com/containerd/containerd/v2/plugins/snapshots/erofs.(*snapshotter).Remove",
+    "github.com/containerd/containerd/v2/plugins/snapshots/erofs.(*snapshotter).Stat",
+    "github.com/containerd/containerd/v2/plugins/snapshots/erofs.(*snapshotter).Update",
+    "github.com/containerd/containerd/v2/plugins/snapshots/erofs.(*snapshotter).Walk",
+    "github.com/containerd/containerd/v2/plugins/snapshots/erofs.(*snapshotter).Usage",
+    "github.com/containerd/continuity/fs.DiskUsage",
+    "github.com/containerd/containerd/v2/plugins/snapshots/erofs.(*snapshotter).verifyFsverity",
+    "github.com/containerd/containerd/v2/plugins/snapshots/erofs.FindErofs",
+    "github.com/containerd/containerd/v2/plugins/snapshots/erofs.checkCompatibility",
+    "github.com/containerd/containerd/v2/plugins/snapshots/erofs.setImmutable",
+    "github.com/containerd/containerd/v2/plugins/snapshots/erofs.cleanupUpper",
+    "github.com/containerd/containerd/v2/plugins/snapshots/erofs.convertDirToErofs",
+    "github.com/containerd/containerd/v2/plugins/snapshots/erofs.getParentOwnership",
+    "github.com/containerd/containerd/v2/plugins/snapshots/erofs.(*snapshotter).createSnapshot.func2",
+    "github.com/containerd/containerd/v2/plugins/snapshots/erofs.(*snapshotter).createSnapshot.func1",
+    "github.com/containerd/containerd/v2/plugins/snapshots/erofs.(*snapshotter).commitBlock.func1",
+    "github.com/containerd/containerd/v2/plugins/snapshots/erofs.(*snapshotter).Commit.func2",
+    "github.com/containerd/containerd/v2/plugins/snapshots/erofs.(*snapshotter).Commit.func1",
+    "github.com/containerd/containerd/v2/plugins/snapshots/erofs.(*snapshotter).Mounts.func1",
+    "github.com/containerd/containerd/v2/plugins/snapshots/erofs.(*snapshotter).Cleanup.func1",
+    "github.com/containerd/containerd/v2/plugins/snapshots/erofs.(*snapshotter).getCleanupDirectories.deferwrap1",
+    "github.com/containerd/containerd/v2/plugins/snapshots/erofs.(*snapshotter).Remove.func2",
+    "github.com/containerd/containerd/v2/plugins/snapshots/erofs.(*snapshotter).Remove.func1",
+    "github.com/containerd/containerd/v2/plugins/snapshots/erofs.(*snapshotter).Stat.func1",
+    "github.com/containerd/containerd/v2/plugins/snapshots/erofs.(*snapshotter).Update.func1",
+    "github.com/containerd/containerd/v2/plugins/snapshots/erofs.(*snapshotter).Walk.func1",
+    "github.com/containerd/containerd/v2/plugins/snapshots/erofs.(*snapshotter).Usage.func1",
+    "github.com/containerd/containerd/v2/plugins/snapshots/erofs.setImmutable.deferwrap1",
+    "github.com/containerd/containerd/v2/plugins/snapshots/erofs.convertDirToErofs.deferwrap1",
+    "github.com/containerd/containerd/v2/plugins/snapshots/erofs.NewSnapshotter.func1",
+    "github.com/containerd/containerd/v2/plugins/snapshots/erofs/plugin.snapshotterPlatforms",
+    "github.com/containerd/containerd/v2/plugins/snapshots/erofs/plugin.init.0",
+    "github.com/containerd/containerd/v2/plugins/snapshots/erofs/plugin.init.0.func1",
+    "github.com/containerd/containerd/v2/plugins/snapshots/erofs.WithOvlOptions",
+    "github.com/containerd/containerd/v2/plugins/snapshots/erofs.WithRwlOptions",
+    "github.com/containerd/containerd/v2/plugins/snapshots/erofs.WithDefaultSize",
+    "github.com/containerd/containerd/v2/plugins/snapshots/erofs.WithDmverityMode",
+    "github.com/containerd/containerd/v2/plugins/snapshots/erofs/plugin.supportsIDMappedMounts",
+    "github.com/containerd/containerd/v2/plugins/snapshots/erofs.WithDmverityMode.1",
+    "github.com/containerd/containerd/v2/plugins/snapshots/erofs.WithDefaultSize.1",
+    "github.com/containerd/containerd/v2/plugins/snapshots/erofs.WithRwlOptions.1",
+    "github.com/containerd/containerd/v2/plugins/snapshots/erofs.WithOvlOptions.1",
+    "github.com/containerd/containerd/v2/plugins/snapshots/erofs.WithFsverity.1",
+    "github.com/containerd/containerd/v2/plugins/snapshots/erofs.WithImmutable.1",
+    "github.com/containerd/containerd/v2/plugins/snapshots/erofs.WithRemapIDs.1",
+    "github.com/containerd/containerd/v2/plugins/snapshots/erofs.WithNoSync.1",
+    "github.com/containerd/containerd/v2/plugins/transfer.erofsPlatformSpec",
+    "github.com/docker/docker-next/pkg/api/v1/handlers/system.(*Backend).SystemDiskUsage",
+    "github.com/docker/docker-next/pkg/volume/drivers/block.CheckMkfsExt4",
+    "github.com/docker/docker-next/pkg/volume/drivers/block.NewDriver",
+    "github.com/docker/docker-next/pkg/volume/drivers/block.(*Driver).Name",
+    "github.com/docker/docker-next/pkg/volume/drivers/block.(*Driver).Capabilities",
+    "github.com/docker/docker-next/pkg/volume/drivers/block.(*Driver).Create",
+    "github.com/docker/docker-next/pkg/volume/drivers/block.(*Driver).Remove",
+    "github.com/docker/docker-next/pkg/volume/drivers/block.(*Driver).ContainerMounts",
+    "github.com/docker/docker-next/pkg/volume/drivers/block.(*Driver).imagePath",
+    "github.com/docker/sandboxes/sandboxlib/hostdisk.Stat",
+    "github.com/docker/sandboxes/sandboxlib/hostdisk.clampToInt64",
+    "github.com/docker/sandboxes/sandboxd/pkg/server/analyticsmiddleware.DiskSinkFromEnv",
+    "github.com/docker/sandboxes/sandboxd/pkg/server/analyticsmiddleware.NewDiskSinkKit",
+    "github.com/docker/sandboxes/sandboxd/pkg/server/analyticsmiddleware.(*diskSinkKit).Start",
+    "github.com/docker/sandboxes/sandboxd/pkg/server/analyticsmiddleware.(*diskSinkKit).Shutdown",
+    "github.com/docker/sandboxes/sandboxd/pkg/server/analyticsmiddleware.(*diskSinkKit).Identify",
+    "github.com/docker/sandboxes/sandboxd/pkg/server/analyticsmiddleware.(*diskSinkKit).SetDoNotTrack",
+    "github.com/docker/sandboxes/sandboxd/pkg/server/analyticsmiddleware.(*diskSinkKit).ResetSession",
+    "github.com/docker/sandboxes/sandboxd/pkg/server/analyticsmiddleware.(*diskSinkKit).WithContext",
+    "github.com/docker/sandboxes/sandboxd/pkg/server/analyticsmiddleware.CloseDiskSink",
+    "github.com/docker/sandboxes/sandboxd/pkg/server/analyticsmiddleware.(*diskSinkKit).write",
+    "github.com/docker/sandboxes/sandboxd/pkg/server/analyticsmiddleware.(*diskSinkTracker).WithActor",
+    "github.com/docker/sandboxes/sandboxd/pkg/server/analyticsmiddleware.(*diskSinkTracker).WithSubject",
+    "github.com/docker/sandboxes/sandboxd/pkg/server/analyticsmiddleware.(*diskSinkTracker).WithCreatedAt",
+    "github.com/docker/sandboxes/sandboxd/pkg/server/analyticsmiddleware.(*diskSinkTracker).Track",
+    "github.com/docker/sandboxes/sandboxd/pkg/server/analyticsmiddleware.(*diskSinkKit).Shutdown.deferwrap1",
+    "github.com/docker/sandboxes/sandboxd/pkg/server/analyticsmiddleware.CloseDiskSink.deferwrap1",
+    "github.com/docker/sandboxes/sandboxd/pkg/server/analyticsmiddleware.(*diskSinkKit).write.deferwrap1",
+    "github.com/docker/sandboxes/sandboxd/pkg/operations.committedOnDisk",
+    "github.com/docker/sandboxes/sandboxd/pkg/server.collectDiskUsage",
+    "github.com/docker/sandboxes/sandboxd/pkg/server.(*DockerNextBackend).loadRuntimesFromDisk",
+    "github.com/docker/sandboxes/sandboxd/pkg/server.(*DockerNextBackend).loadRuntimeFromDiskEntry",
+    "github.com/docker/docker-agent/pkg/cache.(*Cache).persistToDisk",
+    "github.com/docker/docker-agent/pkg/gateway.loadFromDisk",
+    "github.com/docker/docker-agent/pkg/gateway.saveToDisk",
+    "github.com/docker/docker-agent/pkg/skills.(*diskCache).cacheDir",
+    "github.com/docker/docker-agent/pkg/skills.(*diskCache).Get",
+    "github.com/docker/docker-agent/pkg/skills.(*diskCache).FetchAndStore",
+    "github.com/docker/docker-agent/pkg/skills.(*diskCache).readMetadata",
+    "github.com/docker/docker-agent/pkg/skills.newDiskCache",
+    "github.com/docker/docker-agent/pkg/skills.(*diskCache).FetchAndStore.deferwrap1",
+    "github.com/docker/docker-agent/pkg/tools.MustSchemaFor[go.shape.struct { Name string \"json:\\\"name\\\" jsonschema:\\\"The name of the plan to export.\\\"\"; Path string \"json:\\\"path\\\" jsonschema:\\\"Path to write the plan content to. The content is written to disk and is NOT returned as tool output, so you can materialise the plan cheaply before editing it.\\\"\" }]",
+    "github.com/docker/docker-agent/pkg/tools.NewHandler[go.shape.struct { Name string \"json:\\\"name\\\" jsonschema:\\\"The name of the plan to export.\\\"\"; Path string \"json:\\\"path\\\" jsonschema:\\\"Path to write the plan content to. The content is written to disk and is NOT returned as tool output, so you can materialise the plan cheaply before editing it.\\\"\" }]",
+    "github.com/docker/docker-agent/pkg/tools.NewRuntimeHandler[go.shape.struct { Name string \"json:\\\"name\\\" jsonschema:\\\"The name of the plan to export.\\\"\"; Path string \"json:\\\"path\\\" jsonschema:\\\"Path to write the plan content to. The content is written to disk and is NOT returned as tool output, so you can materialise the plan cheaply before editing it.\\\"\" }]",
+    "github.com/docker/docker-agent/pkg/tools.NewRuntimeHandler[go.shape.struct { Name string \"json:\\\"name\\\" jsonschema:\\\"The name of the plan to export.\\\"\"; Path string \"json:\\\"path\\\" jsonschema:\\\"Path to write the plan content to. The content is written to disk and is NOT returned as tool output, so you can materialise the plan cheaply before editing it.\\\"\" }].func1",
+    "github.com/docker/docker-agent/pkg/tools.NewRuntimeHandler[go.shape.struct { Name string \"json:\\\"name\\\" jsonschema:\\\"The name of the plan to export.\\\"\"; Path string \"json:\\\"path\\\" jsonschema:\\\"Path to write the plan content to. The content is written to disk and is NOT returned as tool output, so you can materialise the plan cheaply before editing it.\\\"\" }].func1.1",
+    "github.com/docker/docker-agent/pkg/tools.NewHandler[go.shape.struct { Name string \"json:\\\"name\\\" jsonschema:\\\"The name of the plan to export.\\\"\"; Path string \"json:\\\"path\\\" jsonschema:\\\"Path to write the plan content to. The content is written to disk and is NOT returned as tool output, so you can materialise the plan cheaply before editing it.\\\"\" }].func1",
+    "github.com/docker/docker-agent/pkg/tools.SchemaFor[go.shape.struct { Name string \"json:\\\"name\\\" jsonschema:\\\"The name of the plan to export.\\\"\"; Path string \"json:\\\"path\\\" jsonschema:\\\"Path to write the plan content to. The content is written to disk and is NOT returned as tool output, so you can materialise the plan cheaply before editing it.\\\"\" }]",
+    "github.com/docker/sandboxes/cli-plugin/commands.writeArgRows",
+    "github.com/docker/sandboxes/cli-plugin/commands.copyFileContents",
+    "github.com/docker/sandboxes/cli-plugin/commands.copyFileToTemp",
+    "github.com/docker/sandboxes/cli-plugin/commands.copyFileContents.deferwrap1",
+    "github.com/docker/sandboxes/cli-plugin/commands.copyFileToTemp.func1",
+    "github.com/docker/sandboxes/sandboxlib/hostdisk/hostdisk.go",
+    "github.com/docker/sandboxes/sandboxd/pkg/server/analyticsmiddleware/disksink.go",
+    "github.com/docker/sandboxes/cli-plugin/commands/diagnose/check_disk.go",
+    "github.com/docker/sandboxes/cli-plugin/commands/diagnose/check_erofs.go"
+  ],
+  "string_signals": [
+    "DOCKER_SANDBOXES_ROOT_SIZE",
+    "DOCKER_SANDBOXES_DOCKER_SIZE",
+    "XDG_CACHE_HOME",
+    "com.docker.sandboxes"
+  ],
+  "string_signal_limit": "presence is not a supported path, effective size, selected route or filesystem contract",
+  "erofs_notice": {
+    "component": "erofs-utils (mkfs.erofs)",
+    "source": "https://github.com/erofs/erofs-utils",
+    "patches": "https://github.com/docker/docker-next/tree/main/hack/patches/erofs-utils"
+  },
+  "source_bindings": [
+    {
+      "path": "docs/qualification/sbx-storage-source-v1/continuity-copy-linux.go.txt",
+      "url": "https://raw.githubusercontent.com/containerd/continuity/v0.5.0/fs/copy_linux.go",
+      "bytes": 6245,
+      "sha256": "e5fc6f82c2fe44e018552265fe335f06d8e715304dfa5c5f84be959fdbcb07a6",
+      "evidence": "declared dependency; runtime route unknown"
+    },
+    {
+      "path": "docs/qualification/sbx-storage-source-v1/continuity-copy.go.txt",
+      "url": "https://raw.githubusercontent.com/containerd/continuity/v0.5.0/fs/copy.go",
+      "bytes": 5754,
+      "sha256": "d4bbff2f024765c3ae2a071b56898e9aabfb75cb5bba8608ac0d823648ec68a2",
+      "evidence": "declared dependency; runtime route unknown"
+    },
+    {
+      "path": "docs/qualification/sbx-storage-source-v1/bbolt-db.go.txt",
+      "url": "https://raw.githubusercontent.com/etcd-io/bbolt/v1.5.0/db.go",
+      "bytes": 43291,
+      "sha256": "73c02fc45a9e67cf8818b8c7099a4532681fa728e235afc6d30cbca1d2c1ac86",
+      "evidence": "declared dependency; binary DB.grow symbol present"
+    },
+    {
+      "path": "docs/qualification/sbx-storage-source-v1/bbolt-unix.go.txt",
+      "url": "https://raw.githubusercontent.com/etcd-io/bbolt/v1.5.0/bolt_unix.go",
+      "bytes": 2034,
+      "sha256": "80b2f1b8c1798a11457d5d21dff4c25130fe60e1c80d6af1db645834b6056647",
+      "evidence": "declared dependency; effective options unobserved"
+    },
+    {
+      "path": "docs/qualification/sbx-storage-source-v1/containerd-writer.go.txt",
+      "url": "https://raw.githubusercontent.com/containerd/containerd/v2.3.5/plugins/content/local/writer.go",
+      "bytes": 7238,
+      "sha256": "d962c694db91b7841fc757730a7acb1fa7de003a7991bf873097db2febfe81f5",
+      "evidence": "comparison only; SBX uses private replacement"
+    },
+    {
+      "path": "docs/qualification/sbx-storage-source-v1/containerd-store.go.txt",
+      "url": "https://raw.githubusercontent.com/containerd/containerd/v2.3.5/plugins/content/local/store.go",
+      "bytes": 19286,
+      "sha256": "8cde60fa4822a02b074828d0de1352ad51a3d36e9dcbce8f8c2480592fdb7716",
+      "evidence": "comparison only; SBX uses private replacement"
+    },
+    {
+      "path": "docs/qualification/sbx-storage-source-v1/containerd-erofs-mount.go.txt",
+      "url": "https://raw.githubusercontent.com/containerd/containerd/v2.3.5/internal/erofsutils/mount.go",
+      "bytes": 6476,
+      "sha256": "d2c1be81bb16ca5ba900a4f201c6d1166fd69f95b846cfd66229b1a6c7f14a60",
+      "evidence": "comparison only; SBX uses private replacement"
+    },
+    {
+      "path": "docs/qualification/sbx-storage-source-v1/containerd-erofs.go.txt",
+      "url": "https://raw.githubusercontent.com/containerd/containerd/v2.3.5/plugins/snapshots/erofs/erofs.go",
+      "bytes": 26510,
+      "sha256": "5c6398aa88a0966c180b2ba9d7d911337734393c0e0e6c58e9ff361477a5871f",
+      "evidence": "comparison only; SBX uses private replacement"
+    },
+    {
+      "path": "docs/qualification/sbx-storage-source-v1/erofs-io.c.txt",
+      "url": "https://raw.githubusercontent.com/erofs/erofs-utils/b96836c051cbdbc0e21f0f8e8396bd239b56c4a5/lib/io.c",
+      "bytes": 14356,
+      "sha256": "f7a42655b738a03056e243d1462ec7c81a3950063b7667f0b7daebced3312f32",
+      "evidence": "provenance base source; private patches declared, not exact bundled source"
+    },
+    {
+      "path": "docs/qualification/phase-2c-sbx-storage-provenance-v1.json",
+      "url": "https://github.com/docker/sbx-releases/releases/download/v0.46.0/DockerSandboxes-linux-amd64.provenance.json",
+      "bytes": 164466,
+      "sha256": "288db46fe0797c1383a7471c113e305b9cf2b86b1a5eafb9cf0a440dd91e09ab",
+      "evidence": "public release statement; signature not verified"
+    },
+    {
+      "path": "docs/qualification/phase-2c-sbx-storage-sbom-v1.json",
+      "url": "https://github.com/docker/sbx-releases/releases/download/v0.46.0/DockerSandboxes-linux-amd64.sbom.json",
+      "bytes": 1330,
+      "sha256": "0b31dff3a918641afb306ec9d0ced19eabf01ec600141e5e183a7dc07dbdfc06",
+      "evidence": "public release statement; signature not verified"
+    }
+  ],
+  "module_access": [
+    {
+      "module": "github.com/docker/docker-next-containerd/v2",
+      "version": "v2.3.5-internal.2",
+      "url": "https://proxy.golang.org/github.com/docker/docker-next-containerd/v2/@v/v2.3.5-internal.2.zip",
+      "status": 404,
+      "limitation": "anonymous module proxy returned 404; no authentication attempted"
+    },
+    {
+      "module": "github.com/docker/docker-next",
+      "version": "v0.43.1",
+      "url": "https://proxy.golang.org/github.com/docker/docker-next/@v/v0.43.1.zip",
+      "status": 404,
+      "limitation": "anonymous module proxy returned 404; no authentication attempted"
+    },
+    {
+      "module": "github.com/docker/docker-next-go-diskfs",
+      "version": "v1.9.5-0.20260804131433-d801cc851604",
+      "url": "https://proxy.golang.org/github.com/docker/docker-next-go-diskfs/@v/v1.9.5-0.20260804131433-d801cc851604.zip",
+      "status": 404,
+      "limitation": "anonymous module proxy returned 404; no authentication attempted"
+    },
+    {
+      "module": "github.com/containerd/containerd/v2",
+      "version": "v2.3.5",
+      "url": "https://proxy.golang.org/github.com/containerd/containerd/v2/@v/v2.3.5.zip",
+      "status": 200,
+      "bytes": 3957173,
+      "sha256": "b819554ecc9ffe17d85df124d369c109c45da44b18ab1edd669fa850a64e305b"
+    },
+    {
+      "module": "github.com/containerd/continuity",
+      "version": "v0.5.0",
+      "url": "https://proxy.golang.org/github.com/containerd/continuity/@v/v0.5.0.zip",
+      "status": 200,
+      "bytes": 152566,
+      "sha256": "bc1857ce83f4d08781284557b9b3a31e2044b2c8143c83494ac55ab90cf61a07"
+    },
+    {
+      "module": "go.etcd.io/bbolt",
+      "version": "v1.5.0",
+      "url": "https://proxy.golang.org/go.etcd.io/bbolt/@v/v1.5.0.zip",
+      "status": 200,
+      "bytes": 255081,
+      "sha256": "2c350ca36afba707b917529a8049b001c71915c99c152d5e2600ed4bac6fbc37"
+    },
+    {
+      "module": "github.com/erofs/go-erofs",
+      "version": "v0.3.1",
+      "url": "https://proxy.golang.org/github.com/erofs/go-erofs/@v/v0.3.1.zip",
+      "status": 200,
+      "bytes": 114054,
+      "sha256": "163564f9c7f5a173a509b9deb647361ad5d0e540d303bd52e5bda8adccefe2b9"
+    }
+  ],
+  "execution_allowed": false,
+  "native_start_allowed": false,
+  "operational_manifest_frozen": false,
+  "qualification_status": "denied; selected engine/VMM paths and supported layout unresolved",
+  "private_source_access": [
+    {
+      "url": "https://api.github.com/repos/docker/docker-next/contents/hack/patches/erofs-utils?ref=v0.43.1",
+      "status": 404,
+      "scope": "anonymous read only; no credential lookup or authentication"
+    },
+    {
+      "url": "https://api.github.com/repos/docker/sailor/git/ref/tags/v0.136.0",
+      "status": 404,
+      "scope": "anonymous read only; no credential lookup or authentication"
+    },
+    {
+      "url": "https://api.github.com/repos/docker/sandboxes/git/ref/tags/v0.46.0",
+      "status": 404,
+      "scope": "anonymous read only; no credential lookup or authentication"
+    }
+  ],
+  "findings": {
+    "identity": "All eleven bundle members match immutable prior manifest; archive matches published release digest. Source metadata is dirty and includes private replacements. Statements are not signature-verified.",
+    "erofs": "Pinned provenance base io.c zero-writes when ordinary-file hole punching fails; fsync/pwrite/ftruncate are used. THIRD-PARTY-NOTICES declares private patches, whose bytes are unavailable. This source fallback is not bundled-runtime qualification.",
+    "continuity": "v0.5.0 initial SEEK_DATA failure EINVAL/ENOTSUP/EOPNOTSUPP falls back to plain copy. Its later copy_file_range fallback accepts EXDEV/ENOSYS/EOPNOTSUPP, not EINVAL. Presence of module is not a selected CopyFile route.",
+    "bbolt": "v1.5.0 default Unix writable growth truncates and syncs; read mmap and advisory flock are required by inspected paths. Effective SBX options and recovery under exhaustion remain unknown.",
+    "containerd": "Upstream v2.3.5 is comparison only because the binary declares docker-next-containerd/v2 v2.3.5-internal.2. Binary contains private WithRwlOptions/WithNoSync symbols absent from inspected upstream snapshotter source. Do not infer exact fork behavior.",
+    "cache": "Historical XDG cache/config relocation and settings establish private writable state, not a supported immutable shared cache. Inspected upstream store commits/renames content and mutates metadata; no compatible entire-cache read-only recipe is established.",
+    "disk": "Only historical dockerVolume=1g effective setting is observed, not a disk. ROOT_SIZE literal and requested 3g do not establish effective root disk size or the chosen mode. Guest apparent content can remain sparse despite encrypted host backing.",
+    "layout": "No supported admissible layout selected. Pruned 3g+1g encrypted upper/lower hypothetical layout exceeds logical ceiling before backing/cache/guest contents. Other representations are unknown and force refusal."
+  },
+  "limitations": [
+    "No bundled ELF executable, installer, daemon, template, native CLI, provider or paid host ran. No guest operation occurred.",
+    "The source lookup is bounded to named versions/files; anonymous 404 is an access result, not proof that source does not exist.",
+    "Public module hashes identify retrieved comparison files, not reproducible builds of private replacements.",
+    "Binary symbol/string presence does not establish reachability, selected paths, invocation flags or successful fallbacks.",
+    "Full cache/temporary/EROFS/guest/containerd/VMM accounting, effective sizes and guest apparent-size enforcement remain unavailable.",
+    "No compatibility or original whole-runtime qualification criterion passes."
+  ],
+  "license_bindings": [
+    {
+      "path": "docs/qualification/sbx-storage-source-v1/LICENSE-bbolt-MIT.txt",
+      "url": "https://raw.githubusercontent.com/etcd-io/bbolt/v1.5.0/LICENSE",
+      "sha256": "c15d721c37e277a11584547de6d618541501f7aa10c4e32a945a4f9ff36cb0f6",
+      "bytes": 1078
+    },
+    {
+      "path": "docs/qualification/sbx-storage-source-v1/LICENSE-containerd-Apache-2.0.txt",
+      "url": "https://raw.githubusercontent.com/containerd/continuity/v0.5.0/LICENSE",
+      "sha256": "4bbe3b885e8cd1907ab4cf9a41e862e74e24b5422297a4f2fe524e6a30ada2b4",
+      "bytes": 10765
+    },
+    {
+      "path": "docs/qualification/sbx-storage-source-v1/LICENSE-erofs-MIT.txt",
+      "url": "https://raw.githubusercontent.com/erofs/erofs-utils/b96836c051cbdbc0e21f0f8e8396bd239b56c4a5/LICENSES/MIT",
+      "sha256": "323c587d0ccf10e376f8bf9a7f31fb4ca6078105194b42e0b1e0ee2bc9bde71f",
+      "bytes": 1372
+    },
+    {
+      "path": "docs/qualification/sbx-storage-source-v1/COPYING-erofs.txt",
+      "url": "https://raw.githubusercontent.com/erofs/erofs-utils/b96836c051cbdbc0e21f0f8e8396bd239b56c4a5/COPYING",
+      "sha256": "20fa22694a29d63c7637857242e96959868c4caa287049a128498653a14ac323",
+      "bytes": 527
+    }
+  ]
+}

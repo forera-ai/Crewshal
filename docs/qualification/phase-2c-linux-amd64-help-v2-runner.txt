@@ -1,0 +1,26 @@
+import hashlib, json, os, pathlib, subprocess
+root = pathlib.Path('/srv/crewshal-2c-help-amd64-20261002-v1')
+profile = json.loads(os.environ['CREWSHAL_HELP_PROFILE'])
+for item in profile['files']:
+    path = root / 'bundle' / item['path']
+    assert path.is_file() and not path.is_symlink()
+    assert path.stat().st_size == item['bytes']
+    assert hashlib.sha256(path.read_bytes()).hexdigest() == item['sha256']
+records = []
+for run in range(2):
+    commands = []
+    for index, arguments in enumerate(profile['commands']):
+        command = profile['unit_command_prefix'] + ['--unit=crewshal-help-amd64-v2-' + str(run) + '-' + str(index)]
+        for key, value in profile['unit_properties'].items():
+            command += ['--property=' + key + '=' + value]
+        command += ['/usr/bin/env', '-i'] + [key + '=' + value for key, value in profile['environment'].items()]
+        command += ['/bin/sh', '-c', 'mkdir -p "$HOME/config" "$HOME/run" && exec "$@"', 'crewshal-help', profile['remote_bundle'] + '/sbx'] + arguments
+        try:
+            result = subprocess.run(command, capture_output=True, text=True, timeout=15)
+            within = len(result.stdout.encode()) <= 65536 and len(result.stderr.encode()) <= 65536
+            commands.append({'arguments': arguments, 'exit_code': result.returncode, 'stdout': result.stdout, 'stderr': result.stderr, 'output_within_cap': within})
+        except subprocess.TimeoutExpired:
+            commands.append({'arguments': arguments, 'status': 'timeout', 'exit_code': None})
+            break
+    records.append({'run': run, 'commands': commands})
+print(json.dumps({'runs': records, 'execution_allowed': False, 'native_start_allowed': False, 'scope': 'trusted help/version only; no independently observed inner qualification'}, sort_keys=True))

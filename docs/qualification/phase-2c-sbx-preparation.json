@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "scope": "Read-only official release preparation and help/version inspection, not a broker qualification",
+  "release": "v0.46.0",
+  "build": "991967dc90ce0d9a440cd1df1bdf3e395c5a2693",
+  "archive_url": "https://github.com/docker/sbx-releases/releases/download/v0.46.0/DockerSandboxes-darwin.tar.gz",
+  "archive_bytes": 133447662,
+  "archive_sha256": "1daa077a793bc048ef69acb33cb89d27ce0696efadf44df6466463f2a79d8adc",
+  "binary_sha256": "cca2b8379897afa957f6f0fbe98ff45724ddb10e135f1b575232581fdc3caad3",
+  "commands": [
+    "sbx --help",
+    "sbx version",
+    "sbx daemon start --help",
+    "sbx create --help"
+  ],
+  "command_environment": "env -i, synthetic HOME/XDG_CONFIG_HOME, macOS sandbox-exec deny network*",
+  "all_command_exits": 0,
+  "observed_create_minimum_memory": "512 MiB",
+  "frozen_worker_memory_bytes": 134217728,
+  "runtime_compatibility": "Advertised sandbox minimum exceeds existing 128 MiB profile allocation; outer VM/inner worker resource mapping untested. No compliant create attempted.",
+  "documentation": {
+    "installation": "https://docs.docker.com/ai/sandboxes/install/",
+    "credentials": "https://docs.docker.com/ai/sandboxes/configuration/credentials/"
+  },
+  "unavailable": [
+    "isolated daemon and login",
+    "synthetic token read/replay/redirect/egress",
+    "arbitrary descendant request authority",
+    "separate credential-free validation",
+    "native customization exclusion",
+    "owner design acceptance"
+  ],
+  "daemon_started": false,
+  "login_attempted": false,
+  "credential_store_accessed": false,
+  "execution_allowed": false
+}

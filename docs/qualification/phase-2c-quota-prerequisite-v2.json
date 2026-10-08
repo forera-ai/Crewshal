@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "scope": "Trusted host XFS prerequisite; two fresh fixtures; no SBX VM/inner/native qualification",
+  "source_sha256": "0778aea87956ac1f7214be8643d61c40bcafb4c904df91274fb0644d3203c849",
+  "root": "/srv/crewshal-2c-quota-prerequisite-20261003-v2",
+  "fixture_indices": [
+    0,
+    1
+  ],
+  "image_bytes": 536870912,
+  "scratch_quota_bytes": 33554432,
+  "candidate_quota_bytes": 16777216,
+  "allocated_write_attempt_max_bytes": 83886080,
+  "sparse_truncate_attempt_bytes": 67108864,
+  "payload_uid_gid": 65534,
+  "command_seconds": 10,
+  "output_bytes_per_stream": 65536,
+  "outer_deadline_seconds": 90,
+  "quota_oracles": "Allocated writes must reach EDQUOT at/below quota; sparse logical size must not exceed quota. A successful oversized truncate is a logical-ceiling failure.",
+  "cleanup": "Only exact exclusively created root, verified owned loop handles and mountpoints. Unmount/detach before deleting owned files. Retain droplet and preparation artifacts.",
+  "limitations": "Host-only prerequisite; no inner placement/cgroup/privilege/cancellation qualification. ldd binary map in source is not complete OS or Python standard-library attestation. Trusted command outputs checked after capture.",
+  "execution_allowed": false,
+  "native_start_allowed": false,
+  "operational_manifest_frozen": false,
+  "prospective_amendment": "Associated-loop absence is empty output on installed losetup. v1 failed cleanup observation preserved; no v1 results promoted."
+}

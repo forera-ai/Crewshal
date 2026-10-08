@@ -1,0 +1,25 @@
+{
+  "source_path": "docs/qualification/phase-2c-isolated-auth-v1-runner.txt",
+  "source_sha256": "9d1bd7674abff69db0a6ee85f9f5fbf044020590f4381fe4f248aba9d201839e",
+  "transport_path": "docs/qualification/phase-2c-isolated-auth-v1-transport.txt",
+  "transport_sha256": "94b9fbe8f9c90ea0de0eaf21dfd2e9e5b318576e070e4573fd9735fe3cdc0bfc",
+  "login_exit_code": -9,
+  "reason": "authentication_deadline",
+  "elapsed_seconds": 585.09,
+  "controls": {
+    "cpu.max": "100000 100000",
+    "memory.max": "268435456",
+    "memory.swap.max": "0",
+    "pids.max": "32"
+  },
+  "output_bytes": {
+    "stdout": 384,
+    "stderr": 0
+  },
+  "private_state_retained": true,
+  "service_state": "inactive/dead",
+  "authenticated_success": false,
+  "execution_allowed": false,
+  "native_start_allowed": false,
+  "operational_manifest_frozen": false
+}

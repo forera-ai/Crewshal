@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "scope": "second replacement-host trusted diagnostic evidence only",
+  "manifest_sha256": "44f064d78945415e9af163c15a97f4f01fc9a270e2c8717cd9b1cf82e5df25cd",
+  "host": {
+    "os": "Ubuntu 24.04.5 LTS",
+    "architecture": "x86_64",
+    "kernel": "6.8.0-142-generic",
+    "administrative_user": "root",
+    "memory_total_bytes": 2063577088,
+    "swap_total_bytes": 0,
+    "kvm_device_present": true,
+    "kvm_sysfs_present": true,
+    "kvm_device_mode": "0660",
+    "kvm_device_major_minor": "10:232",
+    "root_filesystem": "ext4",
+    "root_mount_options": [
+      "rw",
+      "relatime",
+      "discard",
+      "errors=remount-ro",
+      "commit=30"
+    ],
+    "cgroup_controllers": [
+      "cpuset",
+      "cpu",
+      "io",
+      "memory",
+      "hugetlb",
+      "pids",
+      "rdma",
+      "misc"
+    ],
+    "root_subtree_control": [
+      "cpu",
+      "memory",
+      "pids"
+    ],
+    "initial_available_tools": {
+      "python3": "/usr/bin/python3",
+      "timeout": "/usr/bin/timeout",
+      "systemd-run": "/usr/bin/systemd-run",
+      "docker": null,
+      "sbx": null,
+      "setquota": null,
+      "xfs_quota": "/usr/sbin/xfs_quota"
+    }
+  },
+  "resource_samples": [
+    {
+      "stage": "initial",
+      "available_memory_bytes": 1720717312,
+      "disk_free_bytes": 48877850624
+    },
+    {
+      "stage": "independent_post_hlt",
+      "available_memory_bytes": 1757585408,
+      "disk_free_bytes": 48877821952
+    }
+  ],
+  "resource_gate": {
+    "required_available_memory_bytes": 939524096,
+    "required_disk_free_bytes": 10737418240,
+    "memory_admission_pass": true,
+    "disk_headroom_pass": true,
+    "quota_enforcement": "unavailable; dedicated fixture filesystem not demonstrated",
+    "effective_host_and_inner_limits": "unavailable",
+    "owner_envelope_approval": "pending"
+  },
+  "hlt_runs": [
+    {
+      "api_version": 12,
+      "exit_reason": 5,
+      "guest_memory_bytes": 1048576,
+      "deadline_seconds": 5,
+      "kvm_run_hlt": "pass",
+      "process_owned_handles_closed": true,
+      "execution_allowed": false
+    },
+    {
+      "api_version": 12,
+      "exit_reason": 5,
+      "guest_memory_bytes": 1048576,
+      "deadline_seconds": 5,
+      "kvm_run_hlt": "pass",
+      "process_owned_handles_closed": true,
+      "execution_allowed": false
+    }
+  ],
+  "cleanup": {
+    "kvm_handles": [],
+    "named_sbx_qemu_processes": [],
+    "unreadable_proc_pids": [],
+    "remote_files_created": false,
+    "packages_or_settings_changed": false,
+    "ssh_commands_exit_status": 0,
+    "persistent_vm_created": false,
+    "scope": "independent final administrative snapshots; supplementary observer not prospectively source-pinned; not exhaustive transient-process evidence"
+  },
+  "limitations": [
+    "No independent SSH console fingerprint supplied; first-use accepted key pinned for later commands.",
+    "Sanitized transcriptions, not signed host attestations.",
+    "Root hardware diagnostic only; no SBX or native/inner qualification.",
+    "Operational resource envelope approval and effective quota/aggregate/inner controls remain unresolved."
+  ],
+  "operational_creation_allowed": false,
+  "execution_allowed": false,
+  "inner_enforcement": "unavailable",
+  "native_runtime_launched": false,
+  "provider_request_made": false,
+  "decision": "KVM diagnostic passes twice; observed memory/disk headroom passes. No operational or inner qualification."
+}

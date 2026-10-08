@@ -1,0 +1,31 @@
+{
+  "source_sha256": "a807abe3ece7d42cc29bc478a896b0a2f6102de6e587c45ccfcab9bbfcbc64b9",
+  "elapsed_seconds": 3.752,
+  "observations": [
+    {
+      "fixture_index": 0,
+      "hlt_exit_codes": [
+        0,
+        0
+      ],
+      "error": "PermissionError(13, 'Permission denied')",
+      "cause": "Capability-restricted root cannot read newly created UID 65534 private account directory. No template load invoked.",
+      "owned_unit_remaining": "",
+      "remaining_kvm_handles": []
+    },
+    {
+      "fixture_index": 1,
+      "hlt_exit_codes": [
+        0,
+        0
+      ],
+      "error": "PermissionError(13, 'Permission denied')",
+      "cause": "Capability-restricted root cannot read newly created UID 65534 private account directory. No template load invoked.",
+      "owned_unit_remaining": "",
+      "remaining_kvm_handles": []
+    }
+  ],
+  "execution_allowed": false,
+  "native_start_allowed": false,
+  "operational_manifest_frozen": false
+}

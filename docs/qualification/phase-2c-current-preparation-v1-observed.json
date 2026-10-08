@@ -1,0 +1,11 @@
+{
+  "scope": "trusted official SBX archive preparation only; no bundled code execution",
+  "archive_bytes": 82815215,
+  "archive_sha256": "edd86e2f21559e190723fd884c3a1dced161a555afdff85c5921ed45e7d6d56e",
+  "all_file_identities_verified": true,
+  "elapsed_seconds": 7.305,
+  "root": "/srv/crewshal-2c-preparation-current-20261002-v1",
+  "executed_bundled_code": false,
+  "execution_allowed": false,
+  "source_sha256": "d04e774f3efe773af6af035c2b72551196458901f4b881fc14f6bd34f22c58f1"
+}

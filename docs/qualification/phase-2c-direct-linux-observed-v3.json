@@ -1,0 +1,48 @@
+{
+  "manifest_sha256": "364b40b21953af45db3c52ac7e758ba09aa3ba342a77e310ae038e6969404bef",
+  "fixtures": [
+    {
+      "fixture": 1,
+      "aggregate": {
+        "memory.max": "805306368",
+        "memory.swap.max": "0",
+        "cpu.max": "100000 100000",
+        "pids.max": "128",
+        "cgroup.events": "populated 1\nfrozen 0"
+      },
+      "worker": {
+        "memory.max": "134217728",
+        "memory.swap.max": "0",
+        "cpu.max": "100000 100000",
+        "pids.max": "32",
+        "cgroup.events": "populated 0\nfrozen 0"
+      },
+      "bounds": {
+        "exit": 0,
+        "killed": false,
+        "deleted_open": [],
+        "stdout": "{\"input\": \"read-only synthetic input\", \"uid\": 65534, \"fsize\": [65536, 65536], \"denials\": {\"readonly\": true, \"outside\": true, \"coordinator\": true}, \"/candidate/owned\": {\"created_before_inode_exhaustion\": 127}, \"/scratch\": {\"created_before_inode_exhaustion\": 255}}\n",
+        "stderr": "",
+        "candidate": {
+          "logical": 40,
+          "allocated": 0,
+          "inodes": 1
+        },
+        "scratch": {
+          "logical": 40,
+          "allocated": 0,
+          "inodes": 1
+        },
+        "terminal": "populated 1\nfrozen 0"
+      },
+      "cleanup": {
+        "owned_mounts_removed": true,
+        "worker": "populated 0\nfrozen 0"
+      },
+      "seconds": 0.07936686299944995
+    }
+  ],
+  "execution_allowed": false,
+  "native_start_allowed": false,
+  "scope": "mechanism subset only; not native/broker qualification"
+}

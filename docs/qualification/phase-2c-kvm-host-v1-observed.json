@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "scope": "Phase 2C disposable host capability only; not SBX or worker qualification",
+  "host": {
+    "os": "Ubuntu 24.04.5 LTS",
+    "kernel": "6.8.0-142-generic",
+    "architecture": "x86_64",
+    "memory_mib_reported": 961,
+    "swap_mib": 0,
+    "root_disk_free_human": "22G",
+    "cpu_virtualization_flag": "vmx",
+    "kvm_device": "character device 10:232, mode 0660, root:kvm",
+    "modules": [
+      "kvm_intel",
+      "kvm",
+      "irqbypass"
+    ]
+  },
+  "probe_sha256": "cfce2653fe58d2a53c7ebc5a541b3067737c2e788ac662183a014807b30b4a2f",
+  "runs": [
+    {
+      "api_version": 12,
+      "deadline_seconds": 5,
+      "execution_allowed": false,
+      "exit_reason": 5,
+      "guest_memory_bytes": 1048576,
+      "kvm_run_hlt": "pass",
+      "probe": "trusted x86 HLT only",
+      "process_owned_handles_closed": true
+    },
+    {
+      "api_version": 12,
+      "deadline_seconds": 5,
+      "execution_allowed": false,
+      "exit_reason": 5,
+      "guest_memory_bytes": 1048576,
+      "kvm_run_hlt": "pass",
+      "probe": "trusted x86 HLT only",
+      "process_owned_handles_closed": true
+    }
+  ],
+  "supplementary_negative_control": {
+    "description": "fork; clear supplementary groups; drop to UID/GID 65534; open /dev/kvm read/write",
+    "result": "PermissionError",
+    "exit_status": 0,
+    "prospective_control": false
+  },
+  "cleanup": {
+    "remaining_kvm_vm_vcpu_handles": [],
+    "observed_sbx_sandboxd_qemu_processes": [],
+    "remote_files_created": [],
+    "remote_packages_installed": [],
+    "ssh_disconnected": true
+  },
+  "limitations": [
+    "SSH host key accepted on first use; no independent console fingerprint supplied.",
+    "Two HLT runs were root administrative probes, not a qualified non-root worker.",
+    "Non-KVM-group negative control was supplementary, not prospectively frozen.",
+    "No SBX binary, daemon, template, broker request, native runtime or validator exercised.",
+    "Host is temporary and owner plans deletion; future host must be verified again."
+  ],
+  "execution_allowed": false
+}

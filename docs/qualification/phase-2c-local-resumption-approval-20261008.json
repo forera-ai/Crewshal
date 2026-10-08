@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-08",
+  "authority": "Direct human messages in the current session",
+  "decision": "Reconnect and resume Phase 2C checks on the existing local VMware Ubuntu installation only. The earlier VMware/Linux test stop is superseded for this approved local continuation.",
+  "scope": [
+    "Existing local Ubuntu SSH and privileged fixture preparation",
+    "Fresh complete-profile synthetic qualification under all original limits",
+    "Preserve every historical failed/prepared/executed source and evidence byte",
+    "No droplet or other paid host, provider/model call, credential store, runtime launcher, custom gateway, model/tool loop or Phase 2D"
+  ],
+  "publication": "Only after independently verified Phase 2C completion",
+  "execution_allowed": false,
+  "native_start_allowed": false,
+  "authentication_material_included": false
+}

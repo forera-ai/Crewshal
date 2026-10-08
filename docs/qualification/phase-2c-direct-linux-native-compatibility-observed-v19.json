@@ -1,0 +1,69 @@
+{
+  "manifest_sha256": "3a2acef5a4a784b3939ce1d57757fe5a08dfa3173bcd934d944c40e10d5d43d8",
+  "records": [
+    {
+      "fixture": 1,
+      "command": [
+        "/bin/python3",
+        "-I",
+        "-B",
+        "/input/native_fixed_response_fixture_v3.py"
+      ],
+      "argv": [
+        "/usr/bin/systemd-run",
+        "--unit=crewshalnativecompatv19-f1-c0.service",
+        "--slice=crewshalnativediscoveryv1.slice",
+        "--wait",
+        "--pipe",
+        "--collect",
+        "--property=User=65534",
+        "--property=Group=65534",
+        "--property=RootDirectory=/var/tmp/crewshal-native-discovery-v1/root",
+        "--property=WorkingDirectory=/input",
+        "--property=ProtectSystem=strict",
+        "--property=ProtectHome=yes",
+        "--property=PrivateNetwork=yes",
+        "--property=PrivateDevices=yes",
+        "--property=MountAPIVFS=yes",
+        "--property=ProtectProc=invisible",
+        "--property=InaccessiblePaths=/sys /dev/shm",
+        "--property=NoNewPrivileges=yes",
+        "--property=RestrictNamespaces=user mnt pid net ipc uts",
+        "--property=MemoryMax=134217728",
+        "--property=MemorySwapMax=0",
+        "--property=CPUQuota=100%",
+        "--property=TasksMax=32",
+        "--property=RuntimeMaxSec=5s",
+        "--property=TimeoutStopSec=1s",
+        "--property=KillMode=control-group",
+        "--property=LimitFSIZE=1048576",
+        "--property=SystemCallFilter=~memfd_create shmget shmat linkat setxattr lsetxattr fsetxattr mknodat keyctl add_key request_key",
+        "--property=SystemCallErrorNumber=EPERM",
+        "--property=TemporaryFileSystem=/scratch:size=8388608,nr_inodes=24,nodev,nosuid,noexec,mode=0755,uid=65534,gid=65534",
+        "--setenv=HOME=/scratch",
+        "--setenv=CODEX_HOME=/scratch",
+        "--setenv=PATH=/opt/codex/codex-path:/bin:/usr/bin",
+        "/bin/python3",
+        "-I",
+        "-B",
+        "/input/native_fixed_response_fixture_v3.py"
+      ],
+      "exit": 0,
+      "seconds": 0.687487302000136,
+      "controls": [
+        {
+          "memory.max": "134217728",
+          "memory.swap.max": "0",
+          "cpu.max": "100000 100000",
+          "pids.max": "32"
+        }
+      ],
+      "stdout": "{\"exit\": -25, \"stdout\": \"\", \"stderr\": \"\", \"requests\": [], \"scratch_inventory\": [{\"path\": \"state_5.sqlite-shm\", \"size\": 32768, \"allocated\": 32768}, {\"path\": \"state_5.sqlite-wal\", \"size\": 1048576, \"allocated\": 1048576}, {\"path\": \"state_5.sqlite\", \"size\": 4096, \"allocated\": 4096}, {\"path\": \"tmp\", \"size\": 60, \"allocated\": 0}, {\"path\": \"tmp/arg0\", \"size\": 60, \"allocated\": 0}, {\"path\": \"tmp/arg0/codex-arg0CKtr3B\", \"size\": 140, \"allocated\": 0}, {\"path\": \"tmp/arg0/codex-arg0CKtr3B/codex-execve-wrapper\", \"size\": 20, \"allocated\": 0}, {\"path\": \"tmp/arg0/codex-arg0CKtr3B/codex-linux-sandbox\", \"size\": 20, \"allocated\": 0}, {\"path\": \"tmp/arg0/codex-arg0CKtr3B/applypatch\", \"size\": 20, \"allocated\": 0}, {\"path\": \"tmp/arg0/codex-arg0CKtr3B/apply_patch\", \"size\": 20, \"allocated\": 0}, {\"path\": \"tmp/arg0/codex-arg0CKtr3B/.lock\", \"size\": 0, \"allocated\": 0}], \"tiny\": null}\n",
+      "stderr": "Running as unit: crewshalnativecompatv19-f1-c0.service\nFinished with result: success\nMain processes terminated with: code=exited/status=0\nService runtime: 673ms\nCPU time consumed: 185ms\nMemory peak: 2.4M\nMemory swap peak: 0B\n"
+    }
+  ],
+  "scope": "trusted actual native tiny workflow with fixed synthetic Responses only; no hostile exhaustion, agent dispatch or broker qualification",
+  "execution_allowed": false,
+  "native_start_allowed": false,
+  "credential_mediation_qualified": false
+}

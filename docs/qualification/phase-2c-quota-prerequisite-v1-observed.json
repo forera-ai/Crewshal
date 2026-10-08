@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "source_sha256": "472f6c379e2a42e695376245141210284e021661465ecabec65d57b6298157b4",
+  "scope": "host quota prerequisite only",
+  "status": "failed_cleanup_observer_parser",
+  "traceback": "Traceback (most recent call last):\r\n  File \"<stdin>\", line 4, in <module>\r\n  File \"frozen-quota-prerequisite-v1\", line 67, in <module>\r\n  File \"/usr/lib/python3.12/json/__init__.py\", line 346, in loads\r\n    return _default_decoder.decode(s)\r\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\r\n  File \"/usr/lib/python3.12/json/decoder.py\", line 337, in decode\r\n    obj, end = self.raw_decode(s, idx=_w(s, 0).end())\r\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\n  File \"/usr/lib/python3.12/json/decoder.py\", line 355, in raw_decode\r\n    raise JSONDecodeError(\"Expecting value\", s, err.value) from None\r\njson.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)",
+  "qualification_pass": false,
+  "execution_allowed": false,
+  "native_start_allowed": false,
+  "limitation": "No structured probe results emitted; do not infer passing quota tests from this failed attempt. Loop detach executed before empty associated-loop output was parsed as JSON. Separate scoped cleanup required.",
+  "separate_cleanup": {
+    "scope": "supplementary read-only absence checks, not prospectively source-bound qualification",
+    "associated_loop_output": "",
+    "owned_mounts": [],
+    "owned_root_removed": true
+  }
+}

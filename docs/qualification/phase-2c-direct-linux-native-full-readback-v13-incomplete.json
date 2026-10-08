@@ -1,0 +1,216 @@
+{
+  "scope": "Independent diagnostics; excludes execution authority",
+  "original_protocol_sha256": "fed4dde5e3fe459110a5fb0b2d4f6c75b16214c91aa823d3df640a7415e41563",
+  "profile_sha256": "058adb7e41f66c7d349ff29ac1abad4ee8b75cc596345d283f1f77817293aa0c",
+  "manifest_sha256": "fd81b4ea0fe921e56d7cc241aca9778158ebe1ab6d99cd354f6f48de0036a233",
+  "record_sha256": [
+    "c7c93f16324b780cc084d965f70a3cc4ed7a7719b4aba914a42d10f07b7169de",
+    "f3851366e0a15edc83df1d044dac524b9036306e5781e4bb96bcf137715fd325"
+  ],
+  "identity": {
+    "host_os": "linux",
+    "host_kernel": "7.0.0-38-generic",
+    "architecture": "aarch64",
+    "substrate": "direct-linux-bwrap-systemd-ecryptfs",
+    "substrate_version": "a3d860c9b41ecdc99a69708fc3a7472aff28051a4b703ad85a2cfc6530233984",
+    "image": "77201f4bfaf3e5a6e000053504c96a15b774c21d67a802f5cfae59ddf73be286",
+    "runtime": "codex-rust-v0.160.1",
+    "toolchain": "a3d860c9b41ecdc99a69708fc3a7472aff28051a4b703ad85a2cfc6530233984",
+    "configuration": "058adb7e41f66c7d349ff29ac1abad4ee8b75cc596345d283f1f77817293aa0c",
+    "grant": "4007fa677b7e96194fc6a532a8c7c949989a0ccc7d695b303f9297c59ac020a5",
+    "harness": "bda5938afc40ccb80fbfc725f9cf271736acb2458d071e91f58b6333ed3c0e42",
+    "manifest": "fd81b4ea0fe921e56d7cc241aca9778158ebe1ab6d99cd354f6f48de0036a233",
+    "credential_design": "e1c6e5601faf281492936103846b6046b5e563a9ac3462133634afe7aaaa9cfb"
+  },
+  "runs": [
+    {
+      "fixture": 1,
+      "cases": [
+        {
+          "id": "allowed-grant",
+          "status": "passed"
+        },
+        {
+          "id": "external-read",
+          "status": "passed"
+        },
+        {
+          "id": "external-write",
+          "status": "passed"
+        },
+        {
+          "id": "original-checkout",
+          "status": "passed"
+        },
+        {
+          "id": "coordinator-state",
+          "status": "passed"
+        },
+        {
+          "id": "symlink-escape",
+          "status": "passed"
+        },
+        {
+          "id": "new-file-escape",
+          "status": "passed"
+        },
+        {
+          "id": "metadata-escape",
+          "status": "passed"
+        },
+        {
+          "id": "network-egress",
+          "status": "passed"
+        },
+        {
+          "id": "environment-credentials",
+          "status": "passed"
+        },
+        {
+          "id": "repository-hooks",
+          "status": "passed"
+        },
+        {
+          "id": "global-hooks",
+          "status": "passed"
+        },
+        {
+          "id": "mcp-plugins-instructions",
+          "status": "unavailable"
+        },
+        {
+          "id": "descendant-escape",
+          "status": "passed"
+        },
+        {
+          "id": "cancellation",
+          "status": "passed"
+        },
+        {
+          "id": "deadline",
+          "status": "passed"
+        },
+        {
+          "id": "credential-mediation",
+          "status": "passed"
+        },
+        {
+          "id": "credential-free-validation",
+          "status": "passed"
+        },
+        {
+          "id": "configuration-binding",
+          "status": "passed"
+        },
+        {
+          "id": "qualification-refusal",
+          "status": "passed"
+        }
+      ],
+      "issues": [],
+      "refusal": {
+        "fresh_denied_decisions": 56,
+        "malformed_refused": 3,
+        "execution_allowed": false
+      },
+      "execution_allowed": false,
+      "runtime_verified": false
+    },
+    {
+      "fixture": 2,
+      "cases": [
+        {
+          "id": "allowed-grant",
+          "status": "passed"
+        },
+        {
+          "id": "external-read",
+          "status": "passed"
+        },
+        {
+          "id": "external-write",
+          "status": "passed"
+        },
+        {
+          "id": "original-checkout",
+          "status": "passed"
+        },
+        {
+          "id": "coordinator-state",
+          "status": "passed"
+        },
+        {
+          "id": "symlink-escape",
+          "status": "passed"
+        },
+        {
+          "id": "new-file-escape",
+          "status": "passed"
+        },
+        {
+          "id": "metadata-escape",
+          "status": "passed"
+        },
+        {
+          "id": "network-egress",
+          "status": "passed"
+        },
+        {
+          "id": "environment-credentials",
+          "status": "passed"
+        },
+        {
+          "id": "repository-hooks",
+          "status": "passed"
+        },
+        {
+          "id": "global-hooks",
+          "status": "passed"
+        },
+        {
+          "id": "mcp-plugins-instructions",
+          "status": "unavailable"
+        },
+        {
+          "id": "descendant-escape",
+          "status": "passed"
+        },
+        {
+          "id": "cancellation",
+          "status": "passed"
+        },
+        {
+          "id": "deadline",
+          "status": "passed"
+        },
+        {
+          "id": "credential-mediation",
+          "status": "passed"
+        },
+        {
+          "id": "credential-free-validation",
+          "status": "passed"
+        },
+        {
+          "id": "configuration-binding",
+          "status": "passed"
+        },
+        {
+          "id": "qualification-refusal",
+          "status": "passed"
+        }
+      ],
+      "issues": [],
+      "refusal": {
+        "fresh_denied_decisions": 56,
+        "malformed_refused": 3,
+        "execution_allowed": false
+      },
+      "execution_allowed": false,
+      "runtime_verified": false
+    }
+  ],
+  "all_twenty_twice_observed": false,
+  "runtime_verified": false,
+  "execution_allowed": false
+}

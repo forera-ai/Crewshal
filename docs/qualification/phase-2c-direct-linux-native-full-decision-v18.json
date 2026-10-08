@@ -1,0 +1,37 @@
+{
+  "scope": "Trusted conversion of each independently checked complete v18 record against its frozen observed identity; separate later execution authorization required",
+  "milestone": "2C",
+  "complete_original_runs": 2,
+  "original_cases_per_run": 20,
+  "actual_native_file_tools": [
+    "exec_command",
+    "write_stdin"
+  ],
+  "all_twenty_twice_observed": true,
+  "decisions": [
+    {
+      "fixture": 1,
+      "decision": {
+        "status": "qualified_for_later_authorization",
+        "reasons": [],
+        "execution_allowed": false
+      }
+    },
+    {
+      "fixture": 2,
+      "decision": {
+        "status": "qualified_for_later_authorization",
+        "reasons": [],
+        "execution_allowed": false
+      }
+    }
+  ],
+  "runtime_verified": false,
+  "execution_allowed": false,
+  "native_start_allowed": false,
+  "limitations": [
+    "Only this local Linux aarch64 controlled profile observed; Windows/macOS runtime compatibility unknown",
+    "Lost original v5 cause and final cleanup unknown",
+    "No real provider model/paid host, production launch or Phase 2D work"
+  ]
+}

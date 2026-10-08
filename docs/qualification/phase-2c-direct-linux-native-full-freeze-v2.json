@@ -1,0 +1,19 @@
+{
+  "aggregate_observed": {
+    "memory.max": "805306368",
+    "memory.swap.max": "0",
+    "cpu.max": "100000 100000",
+    "pids.max": "128",
+    "memory.current": "749678592"
+  },
+  "loaded_policy_sha256": {
+    "crewshal-native-tool-v1": "f96fb67936fcab509534ab180b512a8fd6a2eba0d59dc7fa92a2c50282e8e2ca",
+    "crewshal-native-bwrap-v1": "0712da1298b44d54de8d9a6184ecd528c72cef5402ef57d6bc7f92578f092061"
+  },
+  "global_userns_restriction": 1,
+  "profile": "phase-2c-direct-linux-native-full-profile-v2.json",
+  "profile_sha256": "5a525b532497e819f94ad7f5658aa158c007ae0272d98b5f5f8e2578638cdea3",
+  "manifest": "phase-2c-direct-linux-native-full-bindings-v2.json",
+  "manifest_sha256": "b7cf9587a951d4e931678fb2567c0c00006793224545acdd1d1d805180e40dae",
+  "scope": "Prospective native candidate/scratch/filesystem/configuration conformance workload; not complete twenty-case qualification"
+}

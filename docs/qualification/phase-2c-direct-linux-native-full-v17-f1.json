@@ -1,0 +1,390 @@
+{
+  "fixture": 1,
+  "scope": "Complete-profile prospective native conformance; qualification depends on every original criterion",
+  "execution_allowed": false,
+  "native_start_allowed": false,
+  "manifest_sha256": "c51e76d8c4c4200de1ff0c94ffda72e6d6bb98c660997e037097920d288d800a",
+  "cleanup": {
+    "unmounts": [
+      {
+        "view": "candidate-upper",
+        "unmounted": true
+      },
+      {
+        "view": "candidate-lower",
+        "unmounted": true
+      },
+      {
+        "view": "upper",
+        "unmounted": true
+      },
+      {
+        "view": "lower",
+        "unmounted": true
+      }
+    ],
+    "loop_detached": true,
+    "candidate_loop_detached": true,
+    "anonymous_ring_empty": true,
+    "owned_files_absent": true
+  },
+  "errors": [
+    {
+      "type": "RuntimeError",
+      "message": "private network namespace absent"
+    }
+  ],
+  "excluded_before": {
+    "outside/canary": {
+      "sha256": "a800fce3833f8b3db405d82efd9b63c97cd9c5c7f8ff517279b0a41d8676b2ce",
+      "mode": 33152,
+      "links": 1,
+      "size": 12
+    },
+    "coordinator/state.db": {
+      "sha256": "d5844633c731414b7ecd4f20a8a71b50b1af72c683d1290df5b98ce06682a90c",
+      "mode": 33152,
+      "links": 1,
+      "size": 29
+    },
+    "coordinator/artifact": {
+      "sha256": "6c009dcae0e3d59123a426e219ccbd4a207958fc7435c5db6c13ae5721c82fa2",
+      "mode": 33152,
+      "links": 1,
+      "size": 20
+    },
+    "original/dirty.py": {
+      "sha256": "26d606fa6368f54a578ee8c585b67cb955c120be84442990e254adf179bb4c15",
+      "mode": 33152,
+      "links": 1,
+      "size": 11
+    },
+    "home/credential-store": {
+      "sha256": "0e7e42a29213f9d68d1d4d2f2f4715f7642f604a7847b10b3da0b0eebb331ab3",
+      "mode": 33152,
+      "links": 1,
+      "size": 15
+    },
+    "original/.git/config": {
+      "sha256": "9eb797550dd17e0bb651e05cb69c65b0c845fb6230af368999eec0b738d23f88",
+      "mode": 33152,
+      "links": 1,
+      "size": 9
+    }
+  },
+  "global_instruction_mask": {
+    "unmasked_sha256": "a2bd43f61ef7caf48e20e49fa1727bb280dfa61406c985de127730b1d2f8354e",
+    "override_sha256": "4c24f1abf3a940627c95f2b6e3e97db2e0d76510af111fb4695e6e1266e42e11",
+    "trusted_empty_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "readonly": true
+  },
+  "synthetic_parent_hook_environment": {
+    "BASH_ENV": "/input/runtime-hook.sh",
+    "ENV": "/input/runtime-hook.sh",
+    "PYTHONSTARTUP": "/input/runtime-hook.py",
+    "GIT_CONFIG": "/scratch/.gitconfig",
+    "GIT_CONFIG_SYSTEM": "/scratch/.gitconfig"
+  },
+  "hook_fixtures": {
+    "global_git_sha256": "4f376cc91c83465a16c86d39a8c6d743252049dd40375d2e5b3d9d1af2903ec3",
+    "global_hook_sha256": "794bbd86800c8a7b58291552edfa7c51aed207acd0676344518f314e9ee56fa1",
+    "repository_hook_sha256": "d0eddfaaa75ec391213b04f21bdd6174a5132e12895fcc2ee33cddffc81c3796",
+    "runtime_hook_sha256": "51a63ac58d35f4b1a9f9602deb329fedffde8256b0fed6b1a08a99bc62f89a03"
+  },
+  "mounts": [
+    "134 35 7:22 / /var/tmp/crewshal-native-qualification-v17/full-v17-f1/lower rw,nosuid,nodev,noexec,relatime shared:664 - ext4 /dev/loop22 rw",
+    "722 35 0:58 / /var/tmp/crewshal-native-qualification-v17/full-v17-f1/upper rw,nosuid,nodev,noexec,relatime shared:725 - ecryptfs /var/tmp/crewshal-native-qualification-v17/full-v17-f1/lower rw,ecryptfs_sig=6f4579acc5cc5652,ecryptfs_cipher=aes,ecryptfs_key_bytes=32,ecryptfs_mount_auth_tok_only",
+    "744 35 7:23 / /var/tmp/crewshal-native-qualification-v17/full-v17-f1/candidate-lower rw,nosuid,nodev,noexec,relatime shared:741 - ext4 /dev/loop23 rw",
+    "820 35 0:60 / /var/tmp/crewshal-native-qualification-v17/full-v17-f1/candidate-upper rw,nosuid,nodev,noexec,relatime shared:757 - ecryptfs /var/tmp/crewshal-native-qualification-v17/full-v17-f1/candidate-lower rw,ecryptfs_sig=6f4579acc5cc5652,ecryptfs_cipher=aes,ecryptfs_key_bytes=32,ecryptfs_mount_auth_tok_only"
+  ],
+  "aggregate_controls": {
+    "memory.max": "805306368",
+    "memory.swap.max": "0",
+    "cpu.max": "100000 100000",
+    "pids.max": "128"
+  },
+  "synthetic_token_sha256": "4da5397476a29c8fa5e1359ee7d5538541d1176ccd97e2fe91da3ccf9608f3b0",
+  "token_canary_mode": "0o600",
+  "datagram_sink_positive_controls": [
+    {
+      "sink": "udp",
+      "bytes": 7
+    },
+    {
+      "sink": "dns",
+      "bytes": 7
+    },
+    {
+      "sink": "ipv6",
+      "bytes": 7
+    }
+  ],
+  "nonallowed_sink_positive_control": [
+    {
+      "path": "/positive-control",
+      "bytes": 7
+    }
+  ],
+  "partial_observation_sha256": "4c4b5cdbb6dad2ebce61aa48927715669d6c2b5658781cc7e2a4f5af27732b29",
+  "final_storage_views": {
+    "candidate": [
+      {
+        "path": "relative-link",
+        "logical": 20,
+        "allocated": 0
+      },
+      {
+        "path": "absolute-parent",
+        "logical": 8,
+        "allocated": 0
+      },
+      {
+        "path": "relative-parent",
+        "logical": 13,
+        "allocated": 0
+      },
+      {
+        "path": "lost+found",
+        "logical": 16384,
+        "allocated": 16384
+      },
+      {
+        "path": "existing",
+        "logical": 14,
+        "allocated": 12288
+      },
+      {
+        "path": "absolute-link",
+        "logical": 15,
+        "allocated": 0
+      }
+    ],
+    "candidate_lower": [
+      {
+        "path": "relative-link",
+        "logical": 20,
+        "allocated": 0
+      },
+      {
+        "path": "absolute-parent",
+        "logical": 8,
+        "allocated": 0
+      },
+      {
+        "path": "relative-parent",
+        "logical": 13,
+        "allocated": 0
+      },
+      {
+        "path": "lost+found",
+        "logical": 16384,
+        "allocated": 16384
+      },
+      {
+        "path": "existing",
+        "logical": 12288,
+        "allocated": 12288
+      },
+      {
+        "path": "absolute-link",
+        "logical": 15,
+        "allocated": 0
+      }
+    ],
+    "scratch": [
+      {
+        "path": "lost+found",
+        "logical": 16384,
+        "allocated": 16384
+      },
+      {
+        "path": "existing",
+        "logical": 14,
+        "allocated": 12288
+      },
+      {
+        "path": "checkout",
+        "logical": 4096,
+        "allocated": 4096
+      },
+      {
+        "path": "AGENTS.md",
+        "logical": 74,
+        "allocated": 12288
+      },
+      {
+        "path": "config.toml",
+        "logical": 137,
+        "allocated": 12288
+      },
+      {
+        "path": ".gitconfig",
+        "logical": 44,
+        "allocated": 12288
+      },
+      {
+        "path": "AGENTS.override.md",
+        "logical": 47,
+        "allocated": 12288
+      },
+      {
+        "path": "checkout/.git",
+        "logical": 4096,
+        "allocated": 4096
+      },
+      {
+        "path": "checkout/.agents",
+        "logical": 4096,
+        "allocated": 4096
+      },
+      {
+        "path": "checkout/AGENTS.md",
+        "logical": 88,
+        "allocated": 12288
+      },
+      {
+        "path": "checkout/dirty.py",
+        "logical": 35,
+        "allocated": 12288
+      },
+      {
+        "path": "checkout/.codex",
+        "logical": 4096,
+        "allocated": 4096
+      },
+      {
+        "path": "checkout/.git/HEAD",
+        "logical": 24,
+        "allocated": 12288
+      },
+      {
+        "path": "checkout/.git/objects",
+        "logical": 4096,
+        "allocated": 4096
+      },
+      {
+        "path": "checkout/.git/refs",
+        "logical": 4096,
+        "allocated": 4096
+      },
+      {
+        "path": "checkout/.git/hooks",
+        "logical": 4096,
+        "allocated": 4096
+      },
+      {
+        "path": "checkout/.git/config",
+        "logical": 47,
+        "allocated": 12288
+      },
+      {
+        "path": "checkout/.codex/config.toml",
+        "logical": 166,
+        "allocated": 12288
+      },
+      {
+        "path": "checkout/.git/hooks/pre-commit",
+        "logical": 58,
+        "allocated": 12288
+      }
+    ],
+    "scratch_lower": [
+      {
+        "path": "lost+found",
+        "logical": 16384,
+        "allocated": 16384
+      },
+      {
+        "path": "existing",
+        "logical": 12288,
+        "allocated": 12288
+      },
+      {
+        "path": "checkout",
+        "logical": 4096,
+        "allocated": 4096
+      },
+      {
+        "path": "AGENTS.md",
+        "logical": 12288,
+        "allocated": 12288
+      },
+      {
+        "path": "config.toml",
+        "logical": 12288,
+        "allocated": 12288
+      },
+      {
+        "path": ".gitconfig",
+        "logical": 12288,
+        "allocated": 12288
+      },
+      {
+        "path": "AGENTS.override.md",
+        "logical": 12288,
+        "allocated": 12288
+      },
+      {
+        "path": "checkout/.git",
+        "logical": 4096,
+        "allocated": 4096
+      },
+      {
+        "path": "checkout/.agents",
+        "logical": 4096,
+        "allocated": 4096
+      },
+      {
+        "path": "checkout/AGENTS.md",
+        "logical": 12288,
+        "allocated": 12288
+      },
+      {
+        "path": "checkout/dirty.py",
+        "logical": 12288,
+        "allocated": 12288
+      },
+      {
+        "path": "checkout/.codex",
+        "logical": 4096,
+        "allocated": 4096
+      },
+      {
+        "path": "checkout/.git/HEAD",
+        "logical": 12288,
+        "allocated": 12288
+      },
+      {
+        "path": "checkout/.git/objects",
+        "logical": 4096,
+        "allocated": 4096
+      },
+      {
+        "path": "checkout/.git/refs",
+        "logical": 4096,
+        "allocated": 4096
+      },
+      {
+        "path": "checkout/.git/hooks",
+        "logical": 4096,
+        "allocated": 4096
+      },
+      {
+        "path": "checkout/.git/config",
+        "logical": 12288,
+        "allocated": 12288
+      },
+      {
+        "path": "checkout/.codex/config.toml",
+        "logical": 12288,
+        "allocated": 12288
+      },
+      {
+        "path": "checkout/.git/hooks/pre-commit",
+        "logical": 12288,
+        "allocated": 12288
+      }
+    ]
+  },
+  "seconds": 1.428
+}

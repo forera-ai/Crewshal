@@ -1,0 +1,125 @@
+{
+  "manifest_sha256": "f83c42e7ce0291a913f4703848cb8e521ae6030f8e9269a9d724f10eb43855cd",
+  "records": [
+    {
+      "fixture": 1,
+      "command": [
+        "/opt/codex/bin/codex",
+        "exec",
+        "--help"
+      ],
+      "argv": [
+        "/usr/bin/systemd-run",
+        "--unit=crewshalnativecompatv16-f1-c0.service",
+        "--slice=crewshalnativediscoveryv1.slice",
+        "--wait",
+        "--pipe",
+        "--collect",
+        "--property=User=65534",
+        "--property=Group=65534",
+        "--property=RootDirectory=/var/tmp/crewshal-native-discovery-v1/root",
+        "--property=WorkingDirectory=/input",
+        "--property=ProtectSystem=strict",
+        "--property=ProtectHome=yes",
+        "--property=PrivateNetwork=yes",
+        "--property=PrivateDevices=yes",
+        "--property=MountAPIVFS=yes",
+        "--property=ProtectProc=invisible",
+        "--property=InaccessiblePaths=/sys /dev/shm",
+        "--property=NoNewPrivileges=yes",
+        "--property=RestrictNamespaces=user mnt pid net ipc uts",
+        "--property=MemoryMax=134217728",
+        "--property=MemorySwapMax=0",
+        "--property=CPUQuota=100%",
+        "--property=TasksMax=32",
+        "--property=RuntimeMaxSec=5s",
+        "--property=TimeoutStopSec=1s",
+        "--property=KillMode=control-group",
+        "--property=LimitFSIZE=65536",
+        "--property=SystemCallFilter=~memfd_create shmget shmat linkat setxattr lsetxattr fsetxattr mknodat keyctl add_key request_key",
+        "--property=SystemCallErrorNumber=EPERM",
+        "--property=TemporaryFileSystem=/scratch:size=8388608,nr_inodes=256,nodev,nosuid,noexec,mode=0755,uid=65534,gid=65534",
+        "--setenv=HOME=/scratch",
+        "--setenv=CODEX_HOME=/scratch",
+        "--setenv=PATH=/opt/codex/codex-path:/bin:/usr/bin",
+        "/opt/codex/bin/codex",
+        "exec",
+        "--help"
+      ],
+      "exit": 0,
+      "seconds": 0.01967919900016568,
+      "controls": [
+        {
+          "memory.max": "134217728",
+          "memory.swap.max": "0",
+          "cpu.max": "100000 100000",
+          "pids.max": "32"
+        }
+      ],
+      "stdout": "Run Codex non-interactively\n\nUsage: codex exec [OPTIONS] [PROMPT]\n       codex exec [OPTIONS] <COMMAND> [ARGS]\n\nCommands:\n  resume  Resume a previous session by id or pick the most recent with --last\n  fork    Fork a previous session by id into a new session\n  review  Run a code review against the current repository\n  help    Print this message or the help of the given subcommand(s)\n\nArguments:\n  [PROMPT]\n          Initial instructions for the agent. If not provided as an argument (or if `-` is used),\n          instructions are read from stdin. If stdin is piped and a prompt is also provided, stdin\n          is appended as a `<stdin>` block\n\nOptions:\n  -c, --config <key=value>\n          Override a configuration value that would otherwise be loaded from `~/.codex/config.toml`.\n          Use a dotted path (`foo.bar.baz`) to override nested values. The `value` portion is parsed\n          as TOML. If it fails to parse as TOML, the raw string is used as a literal.\n          \n          Examples: - `-c model=\"o3\"` - `-c 'sandbox_permissions=[\"disk-full-read-access\"]'` - `-c\n          shell_environment_policy.inherit=all`\n\n      --enable <FEATURE>\n          Enable a feature (repeatable). Equivalent to `-c features.<name>=true`\n\n      --disable <FEATURE>\n          Disable a feature (repeatable). Equivalent to `-c features.<name>=false`\n\n      --strict-config\n          Error out when config.toml contains fields that are not recognized by this version of\n          Codex\n\n  -i, --image <FILE>...\n          Optional image(s) to attach to the initial prompt\n\n  -m, --model <MODEL>\n          Model the agent should use\n\n      --oss\n          Use open-source provider\n\n      --local-provider <OSS_PROVIDER>\n          Specify which local provider to use (lmstudio or ollama). If not specified with --oss,\n          will use config default or show selection\n\n  -p, --profile <CONFIG_PROFILE_V2>\n          Layer $CODEX_HOME/<name>.config.toml on top of the base user config\n\n  -s, --sandbox <SANDBOX_MODE>\n          Select the sandbox policy to use when executing model-generated shell commands\n          \n          [possible values: read-only, workspace-write, danger-full-access]\n\n      --approve-for-me\n          Route approval requests through automatic review using the workspace-write sandbox\n\n      --dangerously-bypass-approvals-and-sandbox\n          Skip all confirmation prompts and execute commands without sandboxing. EXTREMELY\n          DANGEROUS. Intended solely for running in environments that are externally sandboxed\n\n      --dangerously-bypass-hook-trust\n          Run enabled hooks without requiring persisted hook trust for this invocation. DANGEROUS.\n          Intended only for automation that already vets hook sources\n\n  -C, --cd <DIR>\n          Tell the agent to use the specified directory as its working root\n\n      --worktree\n          Run the session in a new managed Git worktree\n\n      --add-dir <DIR>\n          Additional directories that should be writable alongside the primary workspace\n\n      --thread-source <SOURCE>\n          Source classification for newly created or forked threads\n\n      --skip-git-repo-check\n          Allow running Codex outside a Git repository\n\n      --ephemeral\n          Run without persisting session files to disk\n\n      --ignore-user-config\n          Do not load `$CODEX_HOME/config.toml`; auth still uses `CODEX_HOME`\n\n      --ignore-rules\n          Do not load user or project execpolicy `.rules` files\n\n      --output-schema <FILE>\n          Path to a JSON Schema file describing the model's final response shape\n\n      --color <COLOR>\n          Specifies color settings for use in the output\n          \n          [default: auto]\n          [possible values: always, never, auto]\n\n      --json\n          Print events to stdout as JSONL\n\n  -o, --output-last-message <FILE>\n          Specifies file where the last message from the agent should be written\n\n  -h, --help\n          Print help (see a summary with '-h')\n\n  -V, --version\n          Print version\n",
+      "stderr": "Running as unit: crewshalnativecompatv16-f1-c0.service; invocation ID: c377e0b51bc34c93b2d513e011966956\nFinished with result: success\nMain processes terminated with: code=exited/status=0\nService runtime: 5ms\nCPU time consumed: 5ms\nMemory peak: 256.0K\nMemory swap peak: 0B\n"
+    },
+    {
+      "fixture": 2,
+      "command": [
+        "/opt/codex/bin/codex",
+        "exec",
+        "--help"
+      ],
+      "argv": [
+        "/usr/bin/systemd-run",
+        "--unit=crewshalnativecompatv16-f2-c0.service",
+        "--slice=crewshalnativediscoveryv1.slice",
+        "--wait",
+        "--pipe",
+        "--collect",
+        "--property=User=65534",
+        "--property=Group=65534",
+        "--property=RootDirectory=/var/tmp/crewshal-native-discovery-v1/root",
+        "--property=WorkingDirectory=/input",
+        "--property=ProtectSystem=strict",
+        "--property=ProtectHome=yes",
+        "--property=PrivateNetwork=yes",
+        "--property=PrivateDevices=yes",
+        "--property=MountAPIVFS=yes",
+        "--property=ProtectProc=invisible",
+        "--property=InaccessiblePaths=/sys /dev/shm",
+        "--property=NoNewPrivileges=yes",
+        "--property=RestrictNamespaces=user mnt pid net ipc uts",
+        "--property=MemoryMax=134217728",
+        "--property=MemorySwapMax=0",
+        "--property=CPUQuota=100%",
+        "--property=TasksMax=32",
+        "--property=RuntimeMaxSec=5s",
+        "--property=TimeoutStopSec=1s",
+        "--property=KillMode=control-group",
+        "--property=LimitFSIZE=65536",
+        "--property=SystemCallFilter=~memfd_create shmget shmat linkat setxattr lsetxattr fsetxattr mknodat keyctl add_key request_key",
+        "--property=SystemCallErrorNumber=EPERM",
+        "--property=TemporaryFileSystem=/scratch:size=8388608,nr_inodes=256,nodev,nosuid,noexec,mode=0755,uid=65534,gid=65534",
+        "--setenv=HOME=/scratch",
+        "--setenv=CODEX_HOME=/scratch",
+        "--setenv=PATH=/opt/codex/codex-path:/bin:/usr/bin",
+        "/opt/codex/bin/codex",
+        "exec",
+        "--help"
+      ],
+      "exit": 0,
+      "seconds": 0.014429365000069083,
+      "controls": [
+        {
+          "memory.max": "134217728",
+          "memory.swap.max": "0",
+          "cpu.max": "100000 100000",
+          "pids.max": "32"
+        }
+      ],
+      "stdout": "Run Codex non-interactively\n\nUsage: codex exec [OPTIONS] [PROMPT]\n       codex exec [OPTIONS] <COMMAND> [ARGS]\n\nCommands:\n  resume  Resume a previous session by id or pick the most recent with --last\n  fork    Fork a previous session by id into a new session\n  review  Run a code review against the current repository\n  help    Print this message or the help of the given subcommand(s)\n\nArguments:\n  [PROMPT]\n          Initial instructions for the agent. If not provided as an argument (or if `-` is used),\n          instructions are read from stdin. If stdin is piped and a prompt is also provided, stdin\n          is appended as a `<stdin>` block\n\nOptions:\n  -c, --config <key=value>\n          Override a configuration value that would otherwise be loaded from `~/.codex/config.toml`.\n          Use a dotted path (`foo.bar.baz`) to override nested values. The `value` portion is parsed\n          as TOML. If it fails to parse as TOML, the raw string is used as a literal.\n          \n          Examples: - `-c model=\"o3\"` - `-c 'sandbox_permissions=[\"disk-full-read-access\"]'` - `-c\n          shell_environment_policy.inherit=all`\n\n      --enable <FEATURE>\n          Enable a feature (repeatable). Equivalent to `-c features.<name>=true`\n\n      --disable <FEATURE>\n          Disable a feature (repeatable). Equivalent to `-c features.<name>=false`\n\n      --strict-config\n          Error out when config.toml contains fields that are not recognized by this version of\n          Codex\n\n  -i, --image <FILE>...\n          Optional image(s) to attach to the initial prompt\n\n  -m, --model <MODEL>\n          Model the agent should use\n\n      --oss\n          Use open-source provider\n\n      --local-provider <OSS_PROVIDER>\n          Specify which local provider to use (lmstudio or ollama). If not specified with --oss,\n          will use config default or show selection\n\n  -p, --profile <CONFIG_PROFILE_V2>\n          Layer $CODEX_HOME/<name>.config.toml on top of the base user config\n\n  -s, --sandbox <SANDBOX_MODE>\n          Select the sandbox policy to use when executing model-generated shell commands\n          \n          [possible values: read-only, workspace-write, danger-full-access]\n\n      --approve-for-me\n          Route approval requests through automatic review using the workspace-write sandbox\n\n      --dangerously-bypass-approvals-and-sandbox\n          Skip all confirmation prompts and execute commands without sandboxing. EXTREMELY\n          DANGEROUS. Intended solely for running in environments that are externally sandboxed\n\n      --dangerously-bypass-hook-trust\n          Run enabled hooks without requiring persisted hook trust for this invocation. DANGEROUS.\n          Intended only for automation that already vets hook sources\n\n  -C, --cd <DIR>\n          Tell the agent to use the specified directory as its working root\n\n      --worktree\n          Run the session in a new managed Git worktree\n\n      --add-dir <DIR>\n          Additional directories that should be writable alongside the primary workspace\n\n      --thread-source <SOURCE>\n          Source classification for newly created or forked threads\n\n      --skip-git-repo-check\n          Allow running Codex outside a Git repository\n\n      --ephemeral\n          Run without persisting session files to disk\n\n      --ignore-user-config\n          Do not load `$CODEX_HOME/config.toml`; auth still uses `CODEX_HOME`\n\n      --ignore-rules\n          Do not load user or project execpolicy `.rules` files\n\n      --output-schema <FILE>\n          Path to a JSON Schema file describing the model's final response shape\n\n      --color <COLOR>\n          Specifies color settings for use in the output\n          \n          [default: auto]\n          [possible values: always, never, auto]\n\n      --json\n          Print events to stdout as JSONL\n\n  -o, --output-last-message <FILE>\n          Specifies file where the last message from the agent should be written\n\n  -h, --help\n          Print help (see a summary with '-h')\n\n  -V, --version\n          Print version\n",
+      "stderr": "Running as unit: crewshalnativecompatv16-f2-c0.service; invocation ID: e256dd241c8a4fe7b53827fb44563115\nFinished with result: success\nMain processes terminated with: code=exited/status=0\nService runtime: 5ms\nCPU time consumed: 5ms\nMemory peak: 256.0K\nMemory swap peak: 0B\n"
+    }
+  ],
+  "scope": "trusted native exec help only; no hostile exhaustion, agent dispatch or broker qualification",
+  "execution_allowed": false,
+  "native_start_allowed": false,
+  "credential_mediation_qualified": false
+}

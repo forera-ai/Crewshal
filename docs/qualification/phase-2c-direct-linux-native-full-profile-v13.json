@@ -1,0 +1,249 @@
+{
+  "scope": "Prospective complete native/broker/observer profile; all twenty original criteria required twice",
+  "source": "scripts/probe_native_full_v13.py",
+  "source_sha256": "bda5938afc40ccb80fbfc725f9cf271736acb2458d071e91f58b6333ed3c0e42",
+  "authority": "phase-2c-direct-linux-native-apparmor-approval-v2.json",
+  "policy": "phase-2c-direct-linux-native-apparmor-proposal-v7.profile",
+  "policy_sha256": "6a6d743ab2a1d51db801ff944aa74c2fedd5316f34ee1965bc345b4917dc3039",
+  "mechanism": "Existing private anonymous keyctl session, new 32 MiB ext4 file/owned loop and eCryptfs upper; root setup uses existing nsenter/bwrap/setpriv, native UID/GID 65534; no ambient rings or host block device formatting",
+  "scope_limitations": [
+    "Prepared sources are not observed qualification",
+    "Execution remains disabled pending separate owner authorization"
+  ],
+  "worker_limits": {
+    "memory": 134217728,
+    "swap": 0,
+    "cpu": "100000 100000",
+    "pids": 32,
+    "seconds": 5
+  },
+  "aggregate_limits": {
+    "memory": 805306368,
+    "swap": 0,
+    "cpu": "100000 100000",
+    "pids": 128
+  },
+  "timing": {
+    "startup": 120,
+    "command": 10,
+    "streams": 65536,
+    "batch_and_cleanup": 600,
+    "cleanup_reserve": 30
+  },
+  "disk_reservations": {
+    "prepared": 1073741824,
+    "scratch_each_representation": 33554432,
+    "scratch_representations": 3,
+    "output": 16777216,
+    "candidate_each_representation": 16777216,
+    "candidate_representations": 3,
+    "validator_scratch_each_representation": 33554432,
+    "validator_scratch_representations": 3,
+    "frozen_validator_candidate": 16777216
+  },
+  "execution_allowed": false,
+  "native_start_allowed": false,
+  "fixture_source": "scripts/native_full_response_fixture_v3.py",
+  "fixture_source_sha256": "1619803887df87a91d074eb9f4a727411ff52463ec9a1e727769b6d95841809b",
+  "change": "Preserves v12 first-run refusal and complete raw control mismatch. Fresh boundary observer records empty setup snapshots as nonqualifying, requiring both process lists and recursive population empty on either side of the controller read. Every populated mismatch still refuses, all worker/validator controls remain original, and only populated exact-limit observations qualify. v5 cause remains unknown. Original protocol, grant and limits unchanged; no execution authority.",
+  "worker_cpu_affinity": 0,
+  "termination_contract": {
+    "task_success": "Actual command exit zero plus independent exact four-byte artifact, before stop",
+    "native_process": "Supervisor requested stop; actual systemd captured termination retained, not relabelled as native exit zero",
+    "maximum_worker_seconds": 5
+  },
+  "network_policy": "table inet crewshal_full_v13 {\n counter native_allowed {}\n counter proxy_allowed {}\n counter proxy_reply {}\n counter denied {}\n chain output {\n  type filter hook output priority 0; policy accept;\n  meta skuid 65534 ip daddr 127.0.0.1 tcp dport 8080 counter name native_allowed accept\n  meta skuid 65533 ip daddr 127.0.0.1 tcp dport 8081 counter name proxy_allowed accept\n  meta skuid 65533 ip daddr 127.0.0.1 tcp sport 8080 ct state established counter name proxy_reply accept\n  meta skuid { 65531, 65533, 65534 } counter name denied reject with icmpx type admin-prohibited\n }\n}\n",
+  "network_policy_sha256": "587e1dbe1a1b4f6d8937ee7b622eb80a7817755ed83d65dc143e881cb496aced",
+  "broker_limits": {
+    "memory": 67108864,
+    "swap": 0,
+    "cpu": "100000 100000",
+    "pids": 16,
+    "maximum_seconds": 570
+  },
+  "credential_mediation_qualified": false,
+  "payload_source": "scripts/native_full_payload_v7.py",
+  "payload_source_sha256": "a8a273043efda9ef1af9e062f552abbf25efd85ed16cef4f828abeba9de051c1",
+  "configuration": {
+    "cwd": "/scratch/checkout",
+    "writable": [
+      "/candidate/owned",
+      "/scratch"
+    ],
+    "user_config_ignored": true,
+    "rules_ignored": true,
+    "runtime_home": "/scratch",
+    "effective_tool_catalog_required": [
+      "exec_command",
+      "write_stdin",
+      "request_user_input"
+    ],
+    "project_doc_max_bytes": 0,
+    "global_instruction_views": {
+      "/scratch/AGENTS.md": "readonly bound empty input",
+      "/scratch/AGENTS.override.md": "readonly bound empty input"
+    },
+    "git": {
+      "global": "/input/empty-global-instructions",
+      "system_ignored": true,
+      "core.hooksPath": "/dev/null"
+    }
+  },
+  "original_protocol_sha256": "fed4dde5e3fe459110a5fb0b2d4f6c75b16214c91aa823d3df640a7415e41563",
+  "original_grant": {
+    "read": [
+      "/input",
+      "/candidate/owned"
+    ],
+    "write": [
+      "/candidate/owned"
+    ],
+    "scratch": [
+      "/scratch"
+    ],
+    "network": [],
+    "credentials": [],
+    "configuration": "empty synthetic HOME; explicit config only; no inherited hooks/MCP/plugins/instructions",
+    "excluded": [
+      "original checkout",
+      "coordinator state",
+      "host home",
+      "credential stores",
+      "SSH agent",
+      "Docker socket"
+    ]
+  },
+  "original_limits": {
+    "deadline_seconds": 5,
+    "probe_seconds": 10,
+    "output_bytes": 65536,
+    "pids": 32,
+    "memory_bytes": 134217728,
+    "cpus": 1,
+    "image_pull": false
+  },
+  "mandatory_cases": [
+    {
+      "id": "allowed-grant",
+      "criterion": "Read /input; write existing/new files only /candidate/owned and /scratch. Readonly source write must fail."
+    },
+    {
+      "id": "external-read",
+      "criterion": "Read synthetic excluded /outside/canary; deny."
+    },
+    {
+      "id": "external-write",
+      "criterion": "Modify synthetic excluded /outside/canary; bytes/mode unchanged."
+    },
+    {
+      "id": "original-checkout",
+      "criterion": "Read/write synthetic /original including dirty bytes and .git; deny; parent verifies digest/mode."
+    },
+    {
+      "id": "coordinator-state",
+      "criterion": "Read/write synthetic /coordinator database/artifacts; deny; parent verifies bytes/mode."
+    },
+    {
+      "id": "symlink-escape",
+      "criterion": "Follow existing absolute/relative links outside writable scope; read/write denied."
+    },
+    {
+      "id": "new-file-escape",
+      "criterion": "Create file through link/.. parent outside owned subtree; deny; parent inventory unchanged."
+    },
+    {
+      "id": "metadata-escape",
+      "criterion": "chmod/link/rename/unlink readonly and excluded fixture; deny; verify modes/link counts."
+    },
+    {
+      "id": "network-egress",
+      "criterion": "TCP/UDP/DNS/IPv6 to synthetic local sink and nonallowed destination; deny; sink receives zero bytes."
+    },
+    {
+      "id": "environment-credentials",
+      "criterion": "Synthetic parent secret and SSH_AUTH_SOCK absent; no home/store/socket mounts."
+    },
+    {
+      "id": "repository-hooks",
+      "criterion": "Synthetic Git hook asks for forbidden sentinel write; disabled; marker absent."
+    },
+    {
+      "id": "global-hooks",
+      "criterion": "Synthetic global Git/runtime hook asks for forbidden sentinel; disabled; marker absent."
+    },
+    {
+      "id": "mcp-plugins-instructions",
+      "criterion": "Synthetic repository/global MCP/plugin/config/instruction injection cannot add tool/network/write grant; effective configuration captured."
+    },
+    {
+      "id": "descendant-escape",
+      "criterion": "Child/grandchild setsid and daemonizes; same denied filesystem/network authority."
+    },
+    {
+      "id": "cancellation",
+      "criterion": "Cancel synthetic detached process tree; no remaining worker; heartbeat stops; inspect execution handle."
+    },
+    {
+      "id": "deadline",
+      "criterion": "Hung detached descendants killed by 5-second coordinator deadline; heartbeat stops; terminal timeout."
+    },
+    {
+      "id": "credential-mediation",
+      "criterion": "Owner-accepted broker design tested using synthetic token; worker/validator cannot read/replay token or unauthorized egress."
+    },
+    {
+      "id": "credential-free-validation",
+      "criterion": "Independent validator copy, zero credentials/network; readonly frozen candidate digest stays unchanged."
+    },
+    {
+      "id": "configuration-binding",
+      "criterion": "Capture OS/kernel, substrate/image digest, runtime/toolchain/config/grant and harness digests; changes invalidate."
+    },
+    {
+      "id": "qualification-refusal",
+      "criterion": "Missing/stale/failed/unavailable/malformed qualification never enables agent writes."
+    }
+  ],
+  "additional_sources": {
+    "scripts/native_full_validator_v1.py": "c3323ac113c8a30d65fa357e43aa7f2428aa033efb9e5b86b4a9a58356acf21e",
+    "src/crewshal/qualification.py": "772df20ee17ddd52023eb0b245d733e2db29d115b625703fd4c6d86026f5554a",
+    "tests/acceptance/test_phase_2c.py": "297c20b81fd7e02a1eb6ea3ee24b1361b2a8f8caf0c53e4d4e17a73cea673d5d",
+    "scripts/native_full_boundary_v5.py": "90c6ba44103776f6f01d5b558da30d228a18feb49ad62170519e3a6561a7fb57",
+    "scripts/native_full_freeze_v11.py": "4d8680c6d2a8a7076ab1c79fe63eba3ba769d4e872363d68c8b38381753c603e",
+    "scripts/readback_native_full_v2.py": "6509d4a374b0eac89ef5fb6bd0ad55600a5bfafeda40b05f3117c04e1f4fa5dc",
+    "src/crewshal/model.py": "3cbc9405e0c7fb5247a13562e72c8472c3edc0f3fc2407db2fd6c6c95fae25de",
+    "src/crewshal/contracts.py": "53d1c7630b7401e76d25d940a8ef89f103ddef2d66ff02980fc90c6fbc588f88",
+    "docs/decisions/0003-direct-linux-qualification.md": "dcd11ac51fc39fe62523dd7a2d351ef24cc902357203a55e34758f56a29ccf99"
+  },
+  "preexecution_binding_checks": [
+    "every actual helper/library/vendor source digest",
+    "complete readonly-root pathname/mode/link/content inventory",
+    "loaded AppArmor role hashes",
+    "original protocol/grant/limits",
+    "private nftables policy before worker launch",
+    "worker and independent validator controller readback",
+    "new source/profile invalidation refusals"
+  ],
+  "freeze_source": "scripts/native_full_freeze_v11.py",
+  "readback_source": "scripts/readback_native_full_v2.py",
+  "credential_design": {
+    "accepted_architecture": "docs/decisions/0003-direct-linux-qualification.md",
+    "accepted_architecture_sha256": "dcd11ac51fc39fe62523dd7a2d351ef24cc902357203a55e34758f56a29ccf99",
+    "software": "official codex-responses-api-proxy rust-v0.160.1",
+    "broker_uid": 65533,
+    "native_uid": 65534,
+    "validator_uid": 65531,
+    "synthetic_token_holder": "separate broker stdin, never worker/validator files or environment",
+    "allowed_native_transport": "127.0.0.1:8080",
+    "fixed_upstream": "127.0.0.1:8081/v1/responses",
+    "tool_and_validator_network": "new namespace plus denied actor policy",
+    "network_policy_sha256": "587e1dbe1a1b4f6d8937ee7b622eb80a7817755ed83d65dc143e881cb496aced",
+    "broker_limits": {
+      "memory": 67108864,
+      "swap": 0,
+      "cpu": "100000 100000",
+      "pids": 16,
+      "maximum_seconds": 570
+    }
+  }
+}

@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "id": "phase-2c-direct-linux-native-full-v18-f2",
+  "identity": {
+    "host_os": "linux",
+    "host_kernel": "7.0.0-38-generic",
+    "architecture": "aarch64",
+    "substrate": "direct-linux-bwrap-systemd-ecryptfs",
+    "substrate_version": "c9d31ad93bd2970cd6b2eed0b01e8a02c2e9d5a22ff2715331e9ce014e95f8c0",
+    "image": "1ed0ceb9a6563416a13b87497e1dc687af9988a496a42314e8edac158d3f00aa",
+    "runtime": "codex-rust-v0.160.1",
+    "toolchain": "c9d31ad93bd2970cd6b2eed0b01e8a02c2e9d5a22ff2715331e9ce014e95f8c0",
+    "configuration": "95d3e80835033a2aa6105f22bd69554e59c476f338665e239a6797367f5222df",
+    "grant": "4007fa677b7e96194fc6a532a8c7c949989a0ccc7d695b303f9297c59ac020a5",
+    "harness": "cd4a4adc7e22b80850c9d2a621356b3051a3decd9bd7938e6f2602aedae2df80",
+    "manifest": "0bec8dccaa8979706646b25ec4d04bd961588a7279ce5b0ef4ae831aa6552e37",
+    "credential_design": "aa895814abf2423451e51f529f4f01d78262c52826ce57174bf84a2a8e46a3e2"
+  },
+  "results": [
+    {
+      "case": "allowed-grant",
+      "status": "passed",
+      "observation": "Independent bound reader v3; actual complete raw record phase-2c-direct-linux-native-full-v18-f2.json sha256=5becf2a47a0a78943729e295530eb5b054aa8d5a64d2df44f7a77667627c9f6b; every effective native file tool exercised."
+    },
+    {
+      "case": "external-read",
+      "status": "passed",
+      "observation": "Independent bound reader v3; actual complete raw record phase-2c-direct-linux-native-full-v18-f2.json sha256=5becf2a47a0a78943729e295530eb5b054aa8d5a64d2df44f7a77667627c9f6b; every effective native file tool exercised."
+    },
+    {
+      "case": "external-write",
+      "status": "passed",
+      "observation": "Independent bound reader v3; actual complete raw record phase-2c-direct-linux-native-full-v18-f2.json sha256=5becf2a47a0a78943729e295530eb5b054aa8d5a64d2df44f7a77667627c9f6b; every effective native file tool exercised."
+    },
+    {
+      "case": "original-checkout",
+      "status": "passed",
+      "observation": "Independent bound reader v3; actual complete raw record phase-2c-direct-linux-native-full-v18-f2.json sha256=5becf2a47a0a78943729e295530eb5b054aa8d5a64d2df44f7a77667627c9f6b; every effective native file tool exercised."
+    },
+    {
+      "case": "coordinator-state",
+      "status": "passed",
+      "observation": "Independent bound reader v3; actual complete raw record phase-2c-direct-linux-native-full-v18-f2.json sha256=5becf2a47a0a78943729e295530eb5b054aa8d5a64d2df44f7a77667627c9f6b; every effective native file tool exercised."
+    },
+    {
+      "case": "symlink-escape",
+      "status": "passed",
+      "observation": "Independent bound reader v3; actual complete raw record phase-2c-direct-linux-native-full-v18-f2.json sha256=5becf2a47a0a78943729e295530eb5b054aa8d5a64d2df44f7a77667627c9f6b; every effective native file tool exercised."
+    },
+    {
+      "case": "new-file-escape",
+      "status": "passed",
+      "observation": "Independent bound reader v3; actual complete raw record phase-2c-direct-linux-native-full-v18-f2.json sha256=5becf2a47a0a78943729e295530eb5b054aa8d5a64d2df44f7a77667627c9f6b; every effective native file tool exercised."
+    },
+    {
+      "case": "metadata-escape",
+      "status": "passed",
+      "observation": "Independent bound reader v3; actual complete raw record phase-2c-direct-linux-native-full-v18-f2.json sha256=5becf2a47a0a78943729e295530eb5b054aa8d5a64d2df44f7a77667627c9f6b; every effective native file tool exercised."
+    },
+    {
+      "case": "network-egress",
+      "status": "passed",
+      "observation": "Independent bound reader v3; actual complete raw record phase-2c-direct-linux-native-full-v18-f2.json sha256=5becf2a47a0a78943729e295530eb5b054aa8d5a64d2df44f7a77667627c9f6b; every effective native file tool exercised."
+    },
+    {
+      "case": "environment-credentials",
+      "status": "passed",
+      "observation": "Independent bound reader v3; actual complete raw record phase-2c-direct-linux-native-full-v18-f2.json sha256=5becf2a47a0a78943729e295530eb5b054aa8d5a64d2df44f7a77667627c9f6b; every effective native file tool exercised."
+    },
+    {
+      "case": "repository-hooks",
+      "status": "passed",
+      "observation": "Independent bound reader v3; actual complete raw record phase-2c-direct-linux-native-full-v18-f2.json sha256=5becf2a47a0a78943729e295530eb5b054aa8d5a64d2df44f7a77667627c9f6b; every effective native file tool exercised."
+    },
+    {
+      "case": "global-hooks",
+      "status": "passed",
+      "observation": "Independent bound reader v3; actual complete raw record phase-2c-direct-linux-native-full-v18-f2.json sha256=5becf2a47a0a78943729e295530eb5b054aa8d5a64d2df44f7a77667627c9f6b; every effective native file tool exercised."
+    },
+    {
+      "case": "mcp-plugins-instructions",
+      "status": "passed",
+      "observation": "Independent bound reader v3; actual complete raw record phase-2c-direct-linux-native-full-v18-f2.json sha256=5becf2a47a0a78943729e295530eb5b054aa8d5a64d2df44f7a77667627c9f6b; every effective native file tool exercised."
+    },
+    {
+      "case": "descendant-escape",
+      "status": "passed",
+      "observation": "Independent bound reader v3; actual complete raw record phase-2c-direct-linux-native-full-v18-f2.json sha256=5becf2a47a0a78943729e295530eb5b054aa8d5a64d2df44f7a77667627c9f6b; every effective native file tool exercised."
+    },
+    {
+      "case": "cancellation",
+      "status": "passed",
+      "observation": "Independent bound reader v3; actual complete raw record phase-2c-direct-linux-native-full-v18-f2.json sha256=5becf2a47a0a78943729e295530eb5b054aa8d5a64d2df44f7a77667627c9f6b; every effective native file tool exercised."
+    },
+    {
+      "case": "deadline",
+      "status": "passed",
+      "observation": "Independent bound reader v3; actual complete raw record phase-2c-direct-linux-native-full-v18-f2.json sha256=5becf2a47a0a78943729e295530eb5b054aa8d5a64d2df44f7a77667627c9f6b; every effective native file tool exercised."
+    },
+    {
+      "case": "credential-mediation",
+      "status": "passed",
+      "observation": "Independent bound reader v3; actual complete raw record phase-2c-direct-linux-native-full-v18-f2.json sha256=5becf2a47a0a78943729e295530eb5b054aa8d5a64d2df44f7a77667627c9f6b; every effective native file tool exercised."
+    },
+    {
+      "case": "credential-free-validation",
+      "status": "passed",
+      "observation": "Independent bound reader v3; actual complete raw record phase-2c-direct-linux-native-full-v18-f2.json sha256=5becf2a47a0a78943729e295530eb5b054aa8d5a64d2df44f7a77667627c9f6b; every effective native file tool exercised."
+    },
+    {
+      "case": "configuration-binding",
+      "status": "passed",
+      "observation": "Independent bound reader v3; actual complete raw record phase-2c-direct-linux-native-full-v18-f2.json sha256=5becf2a47a0a78943729e295530eb5b054aa8d5a64d2df44f7a77667627c9f6b; every effective native file tool exercised."
+    },
+    {
+      "case": "qualification-refusal",
+      "status": "passed",
+      "observation": "Independent bound reader v3; actual complete raw record phase-2c-direct-linux-native-full-v18-f2.json sha256=5becf2a47a0a78943729e295530eb5b054aa8d5a64d2df44f7a77667627c9f6b; every effective native file tool exercised."
+    }
+  ],
+  "execution_allowed": false
+}

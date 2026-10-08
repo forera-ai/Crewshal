@@ -1,0 +1,21 @@
+# Phase 2C offline continuation after record-audit corrections
+
+Date: October 8, 2026. Branch `codex/phase1-architecture`; published HEAD `21e368654c20c2e7dfbbb94c06f1ec04b0d0985a`; package **0.8.20**. Work remains uncommitted and unpublished. This prompt updates local evidence from the [preceding offline continuation](PHASE-2C-OFFLINE-CONTINUATION-2026-10-08.md), preserving its owner restrictions. Historical guest-testing prompts are superseded.
+
+## Initial prompt
+
+Continue Crewshal Phase 2C only in `/Volumes/X10Pro/Crewshal`. Apply caveman and codebase-memory Verify. Read Jev instructions but make no paid model calls. Preserve original dirty work and every executed/prepared diagnostic source, profile, binding, freeze and observation byte-for-byte, including failed variants. Choose only concrete portable Phase 2C source work supported by current evidence; no new launcher, executor, custom gateway, model/tool loop, adapters or Phase 2D.
+
+The owner stopped all VMware and Linux tests. Continue development for macOS, Windows and Linux, with fresh local offline macOS checks only. Do not reconnect, inspect, inventory, clean up, authenticate, start/stop VMware, run Linux tests or substitute Docker/VPS/another Linux environment. Do not ask for routine guest-test approval. No paid host/provider/model operation, credential-store access or credentials in Git.
+
+Native v8 and proxy v3/v6 two-run subsets remain preserved. Full v3 failed ENOSPC and instruction exclusion; resumed v4 failed global instructions. Executed v5 reached the separate validator and reported `BoundaryFailure: boundary cgroup limits differ from frozen limits`. Its complete raw manifest/freeze/observation did not transfer. Cause, guest state and final cleanup remain unknown. Do not fabricate missing v5 records, treat console summaries as verified evidence or combine historical subsets into completion.
+
+The portable record audit now refuses policy aliases before resolution, directory case aliases, nonfinite JSON and exponent overflow. Valid nested profiles/policies and finite numeric data remain accepted. Five new fresh fixture methods bring the suite to **119 tests**, passed on macOS 27.2 arm64 / CPython 3.12.15 with empty inherited environment and OS-level network denial. Focused bundle suite: 26 tests; lint, formatting and strict typing pass. This is record-consistency evidence, not runtime qualification. Both `runtime_verified` and `execution_allowed` always remain false. Existing assessor/model contracts are unchanged; Windows/Linux runtime compatibility remains unverified.
+
+Original protocol SHA-256 remains `fed4dde5e3fe459110a5fb0b2d4f6c75b16214c91aa823d3df640a7415e41563`. Worker/validator: 134217728 bytes, zero swap, one CPU, 32 tasks, five seconds. Aggregate: 805306368 bytes, zero swap, one CPU, 128 tasks. Candidate 16 MiB, scratch 32 MiB; capture ten seconds and 65536 bytes per stream. Every original twenty-case criterion still needs two independently verified complete runs on one fresh unchanged profile. That runtime gate cannot be satisfied by offline fixtures while the testing restriction remains active.
+
+Update continuity at an incomplete boundary and stop within 2C. No version bump, commit, push or other publication before independently verified Phase 2C completion. Only completion permits the recorded publishing ceremony; merge, deployment, registry publication and live execution retain separate gates.
+
+## Exact files to feed
+
+Read [AGENTS.md](../AGENTS.md), [HANDOFF.md](HANDOFF.md), [DEVELOPMENT-PLAN.md](DEVELOPMENT-PLAN.md), [ARCHITECTURE.md](ARCHITECTURE.md), [ADR 0003](decisions/0003-direct-linux-qualification.md), [offline audit guide](PHASE-2C-OFFLINE-AUDIT.md), [README.md](../README.md) and [CHANGELOG.md](../CHANGELOG.md). Then load every exact file in [PHASE-2C-ACTIVE-CONTINUATION.md](PHASE-2C-ACTIVE-CONTINUATION.md), including its published [input set](PHASE-2C-RESUME-PROMPT.md) and October 8 additions. Read [qualification_bundle.py](../src/crewshal/qualification_bundle.py), [its fresh tests](../tests/acceptance/test_phase_2c_bundle.py), [qualification.py](../src/crewshal/qualification.py) and [model.py](../src/crewshal/model.py) before contract changes. Credentials, addresses and private transport state are not inputs.

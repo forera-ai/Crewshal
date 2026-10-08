@@ -1,0 +1,27 @@
+{
+  "scope": "Exact v16 refusal before worker/key creation; private-session wrapper omitted; no nonempty ring contents used or changed",
+  "files": [
+    {
+      "path": "docs/qualification/phase-2c-direct-linux-native-full-bindings-v16.json",
+      "bytes": 351141,
+      "sha256": "e05ad64728b2ee58fb030d59b7765ec44949f0ec62576ae03833a00b4046a5f6"
+    },
+    {
+      "path": "docs/qualification/phase-2c-direct-linux-native-full-freeze-v16.json",
+      "bytes": 1290,
+      "sha256": "24cf29a680cb560a22bb60c4b1dd56fc24658acf7e402a1add996f82fd97a75d"
+    },
+    {
+      "path": "docs/qualification/phase-2c-direct-linux-native-full-v16-f1-before-cleanup.json",
+      "bytes": 470,
+      "sha256": "96bbdbc6e5e49526a1c0d2c24d12e774aa6daf78a7038342a09b1018d007943e"
+    },
+    {
+      "path": "docs/qualification/phase-2c-direct-linux-native-full-v16-f1.json",
+      "bytes": 643,
+      "sha256": "9b1e303ceb0ff92f0a81b9516bc85b414093f334204736ceb20914054ee40710"
+    }
+  ],
+  "runtime_verified": false,
+  "execution_allowed": false
+}

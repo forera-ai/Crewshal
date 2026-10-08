@@ -1,0 +1,27 @@
+{
+  "scope": "Exact failed v15 source binding/freeze/raw records; no second run or complete pass",
+  "files": [
+    {
+      "path": "docs/qualification/phase-2c-direct-linux-native-full-bindings-v15.json",
+      "bytes": 351141,
+      "sha256": "83a3683a10e9f99614a3aa54898d6d31d2e9f3c36a8a0cf6c1ec1fd6192b0b27"
+    },
+    {
+      "path": "docs/qualification/phase-2c-direct-linux-native-full-freeze-v15.json",
+      "bytes": 1290,
+      "sha256": "4eb7aab9991e32d8fd3d2bea5ac9156f26b7c5310beddfcc68f97d797d909116"
+    },
+    {
+      "path": "docs/qualification/phase-2c-direct-linux-native-full-v15-f1-before-cleanup.json",
+      "bytes": 120397,
+      "sha256": "d6b5c740cc562f5423b9cbfcd83a682d752111869da9c85a06eae20b1cbf4c61"
+    },
+    {
+      "path": "docs/qualification/phase-2c-direct-linux-native-full-v15-f1.json",
+      "bytes": 138655,
+      "sha256": "2463d97bb210494614a70c8d90588f30beb72f09f2423b14f1a41047de3fe828"
+    }
+  ],
+  "runtime_verified": false,
+  "execution_allowed": false
+}

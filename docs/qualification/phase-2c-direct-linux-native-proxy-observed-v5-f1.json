@@ -1,0 +1,737 @@
+{
+  "fixture": 1,
+  "scope": "Trusted native compatibility only",
+  "execution_allowed": false,
+  "native_start_allowed": false,
+  "manifest_sha256": "e0bb5c151c8f8826965422baa5d3a913a8143624f33b060283fa08f4f6e4298a",
+  "cleanup": {
+    "unmounts": [
+      {
+        "view": "upper",
+        "unmounted": true
+      },
+      {
+        "view": "lower",
+        "unmounted": true
+      }
+    ],
+    "loop_detached": true,
+    "anonymous_ring_empty": true,
+    "owned_files_absent": true
+  },
+  "errors": [
+    {
+      "type": "TimeoutError",
+      "message": "capture deadline"
+    }
+  ],
+  "mounts": [
+    "99 931 7:22 / /var/tmp/crewshal-native-discovery-v1/proxy-v5-f1/lower rw,nosuid,nodev,noexec,relatime shared:785 - ext4 /dev/loop22 rw",
+    "100 931 0:62 / /var/tmp/crewshal-native-discovery-v1/proxy-v5-f1/upper rw,nosuid,nodev,noexec,relatime shared:822 - ecryptfs /var/tmp/crewshal-native-discovery-v1/proxy-v5-f1/lower rw,ecryptfs_sig=e565abce5d39e454,ecryptfs_cipher=aes,ecryptfs_key_bytes=32,ecryptfs_mount_auth_tok_only"
+  ],
+  "aggregate_controls": {
+    "memory.max": "805306368",
+    "memory.swap.max": "0",
+    "cpu.max": "100000 100000",
+    "pids.max": "128"
+  },
+  "synthetic_token_sha256": "182b05d261a0dd165a26e391b1045d57e1229581e4b6385391cd069a98d8c8ad",
+  "token_canary_mode": "0o600",
+  "nonallowed_sink_positive_control": [
+    {
+      "path": "/positive-control",
+      "bytes": 7
+    }
+  ],
+  "nft_policy": "table inet crewshal_proxy_v5 {\n counter native_allowed {}\n counter proxy_allowed {}\n counter proxy_reply {}\n counter denied {}\n chain output {\n  type filter hook output priority 0; policy accept;\n  meta skuid 65534 ip daddr 127.0.0.1 tcp dport 8080 counter name native_allowed accept\n  meta skuid 65533 ip daddr 127.0.0.1 tcp dport 8081 counter name proxy_allowed accept\n  meta skuid 65533 ip daddr 127.0.0.1 tcp sport 8080 ct state established counter name proxy_reply accept\n  meta skuid { 65531, 65533, 65534 } counter name denied reject with icmpx type admin-prohibited\n }\n}\n",
+  "nft_policy_sha256": "c1d9cd78135abaef97cd32ebcb3f0bd71ee3b2a9ae7c37604735f11b6a472c79",
+  "nft_before": {
+    "nftables": [
+      {
+        "metainfo": {
+          "version": "1.0.9",
+          "release_name": "Old Doc Yak #3",
+          "json_schema_version": 1
+        }
+      },
+      {
+        "table": {
+          "family": "inet",
+          "name": "crewshal_proxy_v5",
+          "handle": 1
+        }
+      },
+      {
+        "counter": {
+          "family": "inet",
+          "name": "native_allowed",
+          "table": "crewshal_proxy_v5",
+          "handle": 2,
+          "packets": 0,
+          "bytes": 0
+        }
+      },
+      {
+        "counter": {
+          "family": "inet",
+          "name": "proxy_allowed",
+          "table": "crewshal_proxy_v5",
+          "handle": 3,
+          "packets": 0,
+          "bytes": 0
+        }
+      },
+      {
+        "counter": {
+          "family": "inet",
+          "name": "proxy_reply",
+          "table": "crewshal_proxy_v5",
+          "handle": 4,
+          "packets": 0,
+          "bytes": 0
+        }
+      },
+      {
+        "counter": {
+          "family": "inet",
+          "name": "denied",
+          "table": "crewshal_proxy_v5",
+          "handle": 5,
+          "packets": 0,
+          "bytes": 0
+        }
+      },
+      {
+        "chain": {
+          "family": "inet",
+          "table": "crewshal_proxy_v5",
+          "name": "output",
+          "handle": 1,
+          "type": "filter",
+          "hook": "output",
+          "prio": 0,
+          "policy": "accept"
+        }
+      },
+      {
+        "rule": {
+          "family": "inet",
+          "table": "crewshal_proxy_v5",
+          "chain": "output",
+          "handle": 6,
+          "expr": [
+            {
+              "match": {
+                "op": "==",
+                "left": {
+                  "meta": {
+                    "key": "skuid"
+                  }
+                },
+                "right": 65534
+              }
+            },
+            {
+              "match": {
+                "op": "==",
+                "left": {
+                  "payload": {
+                    "protocol": "ip",
+                    "field": "daddr"
+                  }
+                },
+                "right": "127.0.0.1"
+              }
+            },
+            {
+              "match": {
+                "op": "==",
+                "left": {
+                  "payload": {
+                    "protocol": "tcp",
+                    "field": "dport"
+                  }
+                },
+                "right": 8080
+              }
+            },
+            {
+              "counter": "native_allowed"
+            },
+            {
+              "accept": null
+            }
+          ]
+        }
+      },
+      {
+        "rule": {
+          "family": "inet",
+          "table": "crewshal_proxy_v5",
+          "chain": "output",
+          "handle": 7,
+          "expr": [
+            {
+              "match": {
+                "op": "==",
+                "left": {
+                  "meta": {
+                    "key": "skuid"
+                  }
+                },
+                "right": 65533
+              }
+            },
+            {
+              "match": {
+                "op": "==",
+                "left": {
+                  "payload": {
+                    "protocol": "ip",
+                    "field": "daddr"
+                  }
+                },
+                "right": "127.0.0.1"
+              }
+            },
+            {
+              "match": {
+                "op": "==",
+                "left": {
+                  "payload": {
+                    "protocol": "tcp",
+                    "field": "dport"
+                  }
+                },
+                "right": 8081
+              }
+            },
+            {
+              "counter": "proxy_allowed"
+            },
+            {
+              "accept": null
+            }
+          ]
+        }
+      },
+      {
+        "rule": {
+          "family": "inet",
+          "table": "crewshal_proxy_v5",
+          "chain": "output",
+          "handle": 8,
+          "expr": [
+            {
+              "match": {
+                "op": "==",
+                "left": {
+                  "meta": {
+                    "key": "skuid"
+                  }
+                },
+                "right": 65533
+              }
+            },
+            {
+              "match": {
+                "op": "==",
+                "left": {
+                  "payload": {
+                    "protocol": "ip",
+                    "field": "daddr"
+                  }
+                },
+                "right": "127.0.0.1"
+              }
+            },
+            {
+              "match": {
+                "op": "==",
+                "left": {
+                  "payload": {
+                    "protocol": "tcp",
+                    "field": "sport"
+                  }
+                },
+                "right": 8080
+              }
+            },
+            {
+              "match": {
+                "op": "in",
+                "left": {
+                  "ct": {
+                    "key": "state"
+                  }
+                },
+                "right": "established"
+              }
+            },
+            {
+              "counter": "proxy_reply"
+            },
+            {
+              "accept": null
+            }
+          ]
+        }
+      },
+      {
+        "rule": {
+          "family": "inet",
+          "table": "crewshal_proxy_v5",
+          "chain": "output",
+          "handle": 10,
+          "expr": [
+            {
+              "match": {
+                "op": "==",
+                "left": {
+                  "meta": {
+                    "key": "skuid"
+                  }
+                },
+                "right": {
+                  "set": [
+                    65531,
+                    65533,
+                    65534
+                  ]
+                }
+              }
+            },
+            {
+              "counter": "denied"
+            },
+            {
+              "reject": {
+                "type": "icmpx",
+                "expr": "admin-prohibited"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "broker_argv": [
+    "/usr/bin/systemd-run",
+    "--unit=crewshalnativeproxybroker-v1-f1.service",
+    "--slice=crewshalnativediscoveryv1.slice",
+    "--wait",
+    "--pipe",
+    "--collect",
+    "-p",
+    "MemoryMax=67108864",
+    "-p",
+    "MemorySwapMax=0",
+    "-p",
+    "CPUQuota=100%",
+    "-p",
+    "TasksMax=16",
+    "-p",
+    "RuntimeMaxSec=570s",
+    "-p",
+    "TimeoutStopSec=1s",
+    "-p",
+    "KillMode=control-group",
+    "/usr/bin/nsenter",
+    "--mount=/proc/8525/ns/mnt",
+    "--net=/proc/8525/ns/net",
+    "--",
+    "/usr/bin/bwrap",
+    "--ro-bind",
+    "/var/tmp/crewshal-native-discovery-v1/root",
+    "/",
+    "--proc",
+    "/proc",
+    "--dev",
+    "/dev",
+    "--unshare-pid",
+    "--unshare-ipc",
+    "--unshare-uts",
+    "--new-session",
+    "--die-with-parent",
+    "--clearenv",
+    "--setenv",
+    "HOME",
+    "/scratch",
+    "--setenv",
+    "CODEX_HOME",
+    "/scratch",
+    "--setenv",
+    "TOKIO_WORKER_THREADS",
+    "1",
+    "--setenv",
+    "RAYON_NUM_THREADS",
+    "1",
+    "--setenv",
+    "PATH",
+    "/opt/codex/codex-path:/bin:/usr/bin",
+    "--cap-drop",
+    "ALL",
+    "--cap-add",
+    "CAP_SETUID",
+    "--cap-add",
+    "CAP_SETGID",
+    "--cap-add",
+    "CAP_SETPCAP",
+    "--",
+    "/bin/setpriv",
+    "--reuid=65533",
+    "--regid=65533",
+    "--clear-groups",
+    "--bounding-set=-all",
+    "--inh-caps=-all",
+    "--ambient-caps=-all",
+    "--no-new-privs",
+    "/opt/codex/codex-responses-api-proxy-aarch64-unknown-linux-musl",
+    "--port",
+    "8080",
+    "--upstream-url",
+    "http://127.0.0.1:8081/v1/responses"
+  ],
+  "broker_ready_seconds": 0.01,
+  "broker_controls": {
+    "memory.max": "67108864",
+    "memory.swap.max": "0",
+    "cpu.max": "100000 100000",
+    "pids.max": "16"
+  },
+  "broker_roles": [
+    {
+      "Uid": "65533\t65533\t65533\t65533",
+      "Gid": "65533\t65533\t65533\t65533",
+      "CapEff": "0000000000000000",
+      "CapPrm": "0000000000000000",
+      "CapAmb": "0000000000000000",
+      "CapBnd": "0000000000000000",
+      "NoNewPrivs": "1",
+      "VmLck": "4 kB"
+    }
+  ],
+  "native_transport_probe_argv": [
+    "/usr/bin/systemd-run",
+    "--unit=crewshalnativeproxyv5-f1-transport.service",
+    "--slice=crewshalnativediscoveryv1.slice",
+    "--wait",
+    "--pipe",
+    "--collect",
+    "-p",
+    "MemoryMax=134217728",
+    "-p",
+    "MemorySwapMax=0",
+    "-p",
+    "CPUQuota=100%",
+    "-p",
+    "CPUAffinity=0",
+    "-p",
+    "TasksMax=32",
+    "-p",
+    "RuntimeMaxSec=5s",
+    "-p",
+    "TimeoutStopSec=1s",
+    "-p",
+    "KillMode=control-group",
+    "-p",
+    "LimitFSIZE=infinity",
+    "-p",
+    "SystemCallFilter=~memfd_create shmget shmat linkat setxattr lsetxattr fsetxattr mknodat keyctl add_key request_key",
+    "-p",
+    "SystemCallErrorNumber=EPERM",
+    "/usr/bin/nsenter",
+    "--mount=/proc/8525/ns/mnt",
+    "--net=/proc/8525/ns/net",
+    "--",
+    "/usr/bin/bwrap",
+    "--ro-bind",
+    "/var/tmp/crewshal-native-discovery-v1/root",
+    "/",
+    "--bind",
+    "/var/tmp/crewshal-native-discovery-v1/proxy-v5-f1/upper",
+    "/scratch",
+    "--proc",
+    "/proc",
+    "--dev",
+    "/dev",
+    "--unshare-pid",
+    "--unshare-ipc",
+    "--unshare-uts",
+    "--new-session",
+    "--die-with-parent",
+    "--clearenv",
+    "--setenv",
+    "HOME",
+    "/scratch",
+    "--setenv",
+    "CODEX_HOME",
+    "/scratch",
+    "--setenv",
+    "TOKIO_WORKER_THREADS",
+    "1",
+    "--setenv",
+    "RAYON_NUM_THREADS",
+    "1",
+    "--setenv",
+    "PATH",
+    "/opt/codex/codex-path:/bin:/usr/bin",
+    "--cap-drop",
+    "ALL",
+    "--cap-add",
+    "CAP_SETUID",
+    "--cap-add",
+    "CAP_SETGID",
+    "--cap-add",
+    "CAP_SETPCAP",
+    "--",
+    "/bin/setpriv",
+    "--reuid=65534",
+    "--regid=65534",
+    "--clear-groups",
+    "--bounding-set=-all",
+    "--inh-caps=-all",
+    "--ambient-caps=-all",
+    "--no-new-privs",
+    "/bin/python3",
+    "-I",
+    "-B",
+    "-c",
+    "import http.client,json\nobservations=[]\nfor kind in ('headers','redirect'):\n c=http.client.HTTPConnection('127.0.0.1',8080,timeout=1)\n c.request('POST','/v1/responses',json.dumps({'transport_probe':kind}),headers={'Host':'127.0.0.1:8082','Authorization':'Bearer guessed','Content-Type':'application/json','X-Upstream-URL':'http://127.0.0.1:8082/nonallowed'})\n r=c.getresponse(); body=r.read(1024)\n observations.append({'probe':kind,'status':r.status,'bytes':len(body)})\n c.close()\nprint(json.dumps(observations))\n"
+  ],
+  "native_transport_probe_output": "[{\"probe\": \"headers\", \"status\": 200, \"bytes\": 2}, {\"probe\": \"redirect\", \"status\": 500, \"bytes\": 0}]",
+  "transport_observations": [
+    {
+      "probe": "headers",
+      "auth_matches": true,
+      "host": "127.0.0.1:8081"
+    },
+    {
+      "probe": "redirect",
+      "auth_matches": true,
+      "host": "127.0.0.1:8081"
+    }
+  ],
+  "argv": [
+    "/usr/bin/systemd-run",
+    "--unit=crewshalnativeproxyv5-f1.service",
+    "--slice=crewshalnativediscoveryv1.slice",
+    "--wait",
+    "--pipe",
+    "--collect",
+    "-p",
+    "MemoryMax=134217728",
+    "-p",
+    "MemorySwapMax=0",
+    "-p",
+    "CPUQuota=100%",
+    "-p",
+    "CPUAffinity=0",
+    "-p",
+    "TasksMax=32",
+    "-p",
+    "RuntimeMaxSec=5s",
+    "-p",
+    "TimeoutStopSec=1s",
+    "-p",
+    "KillMode=control-group",
+    "-p",
+    "LimitFSIZE=infinity",
+    "-p",
+    "SystemCallFilter=~memfd_create shmget shmat linkat setxattr lsetxattr fsetxattr mknodat keyctl add_key request_key",
+    "-p",
+    "SystemCallErrorNumber=EPERM",
+    "/usr/bin/nsenter",
+    "--mount=/proc/8525/ns/mnt",
+    "--net=/proc/8525/ns/net",
+    "--",
+    "/usr/bin/bwrap",
+    "--ro-bind",
+    "/var/tmp/crewshal-native-discovery-v1/root",
+    "/",
+    "--bind",
+    "/var/tmp/crewshal-native-discovery-v1/proxy-v5-f1/upper",
+    "/scratch",
+    "--proc",
+    "/proc",
+    "--dev",
+    "/dev",
+    "--unshare-pid",
+    "--unshare-ipc",
+    "--unshare-uts",
+    "--new-session",
+    "--die-with-parent",
+    "--clearenv",
+    "--setenv",
+    "HOME",
+    "/scratch",
+    "--setenv",
+    "CODEX_HOME",
+    "/scratch",
+    "--setenv",
+    "TOKIO_WORKER_THREADS",
+    "1",
+    "--setenv",
+    "RAYON_NUM_THREADS",
+    "1",
+    "--setenv",
+    "PATH",
+    "/opt/codex/codex-path:/bin:/usr/bin",
+    "--cap-drop",
+    "ALL",
+    "--cap-add",
+    "CAP_SETUID",
+    "--cap-add",
+    "CAP_SETGID",
+    "--cap-add",
+    "CAP_SETPCAP",
+    "--",
+    "/bin/setpriv",
+    "--reuid=65534",
+    "--regid=65534",
+    "--clear-groups",
+    "--bounding-set=-all",
+    "--inh-caps=-all",
+    "--ambient-caps=-all",
+    "--no-new-privs",
+    "/opt/codex/bin/codex",
+    "exec",
+    "--ephemeral",
+    "--ignore-user-config",
+    "--ignore-rules",
+    "--skip-git-repo-check",
+    "--color",
+    "never",
+    "--json",
+    "-C",
+    "/scratch",
+    "-s",
+    "workspace-write",
+    "-m",
+    "synthetic",
+    "-c",
+    "approval_policy=\"never\"",
+    "-c",
+    "model_provider=\"fixture\"",
+    "-c",
+    "model_providers.fixture.name=\"fixture\"",
+    "-c",
+    "model_providers.fixture.base_url=\"http://127.0.0.1:8080/v1\"",
+    "-c",
+    "model_providers.fixture.wire_api=\"responses\"",
+    "-c",
+    "model_providers.fixture.requires_openai_auth=false",
+    "-c",
+    "model_providers.fixture.request_max_retries=0",
+    "-c",
+    "model_providers.fixture.stream_max_retries=0",
+    "-c",
+    "features.shell_snapshot=false",
+    "-c",
+    "features.sqlite=false",
+    "-c",
+    "thread_unload_delay_secs=0",
+    "-c",
+    "agents.enabled=false",
+    "-c",
+    "features.goals=false",
+    "-c",
+    "features.memories=false",
+    "-c",
+    "features.multi_agent=false",
+    "-c",
+    "features.hooks=false",
+    "-c",
+    "features.view_image=false",
+    "-c",
+    "web_search=\"disabled\"",
+    "-c",
+    "analytics.enabled=false",
+    "-c",
+    "feedback.enabled=false",
+    "-c",
+    "otel.exporter=\"none\"",
+    "-c",
+    "otel.trace_exporter=\"none\"",
+    "-c",
+    "otel.metrics_exporter=\"none\"",
+    "-c",
+    "check_for_update_on_startup=false",
+    "Write tiny into /scratch/native-tiny using command tool. Then finish."
+  ],
+  "thread_inventory_peak_count": 31,
+  "thread_inventory_peak": {
+    "bwrap": 2,
+    "codex": 1,
+    "codex-main": 1,
+    "tokio-rt-worker": 11,
+    "sqlx-sqlite-wor": 11,
+    "notify-rs inoti": 2,
+    "plugins-curated": 1,
+    "codex-child-rea": 1,
+    "codex-linux-san": 1
+  },
+  "worker_last_resources": {
+    "pids.current": "4",
+    "pids.events": "max 2",
+    "memory.current": "21614592",
+    "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+  },
+  "worker_peak_tasks_observed": 32,
+  "captured_streams": {
+    "stdout": "{\"type\":\"thread.started\",\"thread_id\":\"01a11606-173b-7fe2-a2d0-dd9e41e570d1\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"error\",\"message\":\"Model metadata for `synthetic` not found. Defaulting to fallback metadata; this can degrade performance and cause issues.\"}}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.started\",\"item\":{\"id\":\"item_1\",\"type\":\"command_execution\",\"command\":\"/bin/sh -lc 'exec /bin/python3 -I -B /input/native-negative-v2.py'\",\"aggregated_output\":\"\",\"exit_code\":null,\"status\":\"in_progress\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_1\",\"type\":\"command_execution\",\"command\":\"/bin/sh -lc 'exec /bin/python3 -I -B /input/native-negative-v2.py'\",\"aggregated_output\":\"bwrap: Creating new namespace failed: Resource temporarily unavailable\\n\",\"exit_code\":1,\"status\":\"failed\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_2\",\"type\":\"agent_message\",\"text\":\"tiny\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":2,\"cached_input_tokens\":0,\"cache_write_input_tokens\":0,\"output_tokens\":2,\"reasoning_output_tokens\":0}}\n",
+    "stderr": "Running as unit: crewshalnativeproxyv5-f1.service; invocation ID: 4b901771e2cc46a19061321ad9dc45bc\nReading additional input from stdin...\nFinished with result: timeout\nMain processes terminated with: code=killed/status=TERM\nService runtime: 5.203s\nCPU time consumed: 70ms\nMemory peak: 24.4M\nMemory swap peak: 0B\n",
+    "proxy_stdout": "",
+    "proxy_stderr": "Running as unit: crewshalnativeproxybroker-v1-f1.service; invocation ID: e6f2a1440538451a87ed6d4f3258c7a1\nresponses-api-proxy listening on 127.0.0.1:8080\nforwarding error: forwarding request to upstream\n"
+  },
+  "fixture_requests_after_capture": [
+    {
+      "path": "/v1/responses",
+      "tool_outputs": [],
+      "tools": [
+        "exec_command",
+        "write_stdin",
+        "request_user_input"
+      ]
+    },
+    {
+      "path": "/v1/responses",
+      "tool_outputs": [
+        {
+          "call_id": "call_tiny",
+          "output": "Chunk ID: 9233fa\nWall time: 0.0000 seconds\nProcess exited with code 1\nOriginal token count: 18\nOutput:\nbwrap: Creating new namespace failed: Resource temporarily unavailable\n"
+        }
+      ],
+      "tools": [
+        "exec_command",
+        "write_stdin",
+        "request_user_input"
+      ]
+    }
+  ],
+  "provider_auth_observations_after_capture": [
+    {
+      "path": "/v1/responses",
+      "auth_matches": true,
+      "host": "127.0.0.1:8081"
+    },
+    {
+      "path": "/v1/responses",
+      "auth_matches": true,
+      "host": "127.0.0.1:8081"
+    },
+    {
+      "path": "/v1/responses",
+      "auth_matches": true,
+      "host": "127.0.0.1:8081"
+    },
+    {
+      "path": "/v1/responses",
+      "auth_matches": true,
+      "host": "127.0.0.1:8081"
+    }
+  ],
+  "nonallowed_sink_after_capture": [],
+  "worker_process_return_at_capture_end": 1,
+  "seconds": 10.867
+}

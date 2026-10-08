@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "kind": "console-only-incomplete-diagnostic",
+  "date": "2026-10-08",
+  "profile": "phase-2c-direct-linux-native-full-profile-v5.json",
+  "profile_sha256": "2f6b4198901820cf69ccef4eaae1ce192561cb5ef4a05a50885156cbb91d7a41",
+  "console_reported_manifest_sha256": "7b2eb308ba050369413cec4bd64daccca99cdcd23aa5710c8d6d6a2f75d25cc0",
+  "freeze_source_sha256": "b9bd841df328c1389dbf440c5a2976894551a34cc4b5e2b25fb20c44b5dedbfc",
+  "preparation": {
+    "console_reported_success": true,
+    "service_seconds": 4.667
+  },
+  "freeze": {
+    "console_reported_success": true,
+    "stale_manifest_refused": true,
+    "raw_record_available_locally": false
+  },
+  "fixture": 1,
+  "run_console": {
+    "errors": [
+      {
+        "type": "BoundaryFailure",
+        "message": "boundary cgroup limits differ from frozen limits"
+      }
+    ],
+    "tiny_workflow_passed": true,
+    "seconds": 1.979
+  },
+  "driver_seconds": 3.371,
+  "driver_exit_code": 0,
+  "raw_manifest_available_locally": false,
+  "raw_observation_available_locally": false,
+  "second_run": "not run",
+  "independent_complete_profile_verification": "unavailable",
+  "transport": {
+    "scp_exit_code": 255,
+    "scp_error": "mux_client_request_session: read from master failed: Broken pipe",
+    "ssh_exit_code": 255,
+    "ssh_error": "Operation timed out / Broken pipe"
+  },
+  "cleanup": "unknown after transport loss; owner stopped guest tests before any reconnection",
+  "failure_cause": "unresolved; control readback and full raw record unavailable",
+  "execution_allowed": false,
+  "native_start_allowed": false,
+  "runtime_verified": false,
+  "limitations": [
+    "Console summary is not a complete observation or independently verified freeze.",
+    "Driver exit zero catches recorded failure and does not indicate qualification.",
+    "tiny_workflow_passed does not establish all original cases.",
+    "No VMware or Linux test, connection, inventory or cleanup after owner stop instruction."
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "fixture": 1,
+  "scope": "Complete-profile prospective native conformance; qualification depends on every original criterion",
+  "execution_allowed": false,
+  "native_start_allowed": false,
+  "manifest_sha256": "e05ad64728b2ee58fb030d59b7765ec44949f0ec62576ae03833a00b4046a5f6",
+  "cleanup": {
+    "unmounts": [],
+    "anonymous_ring_empty": false,
+    "owned_files_absent": true
+  },
+  "errors": [
+    {
+      "type": "RuntimeError",
+      "message": "anonymous ring not empty"
+    }
+  ],
+  "partial_observation_sha256": "96bbdbc6e5e49526a1c0d2c24d12e774aa6daf78a7038342a09b1018d007943e",
+  "final_storage_views": {},
+  "seconds": 0.035
+}

@@ -1,0 +1,1125 @@
+{
+  "fixture": 1,
+  "scope": "Trusted native compatibility only",
+  "execution_allowed": false,
+  "native_start_allowed": false,
+  "manifest_sha256": "cbf91f52d00367de2b5119369f5b1e90daa18d70849bc9b8b3ae50361da627e2",
+  "cleanup": {
+    "unmounts": [
+      {
+        "view": "upper",
+        "unmounted": true
+      },
+      {
+        "view": "lower",
+        "unmounted": true
+      }
+    ],
+    "loop_detached": true,
+    "anonymous_ring_empty": true,
+    "owned_files_absent": true
+  },
+  "errors": [
+    {
+      "type": "RuntimeError",
+      "message": "native tiny workflow refused"
+    }
+  ],
+  "mounts": [
+    "99 931 7:22 / /var/tmp/crewshal-native-discovery-v1/ecryptfs-v3-f1/lower rw,nosuid,nodev,noexec,relatime shared:785 - ext4 /dev/loop22 rw",
+    "100 931 0:62 / /var/tmp/crewshal-native-discovery-v1/ecryptfs-v3-f1/upper rw,nosuid,nodev,noexec,relatime shared:822 - ecryptfs /var/tmp/crewshal-native-discovery-v1/ecryptfs-v3-f1/lower rw,ecryptfs_sig=45b402e3fb9195b2,ecryptfs_cipher=aes,ecryptfs_key_bytes=32,ecryptfs_mount_auth_tok_only"
+  ],
+  "aggregate_controls": {
+    "memory.max": "805306368",
+    "memory.swap.max": "0",
+    "cpu.max": "100000 100000",
+    "pids.max": "128"
+  },
+  "argv": [
+    "/usr/bin/systemd-run",
+    "--unit=crewshalnativecryptv3-f1.service",
+    "--slice=crewshalnativediscoveryv1.slice",
+    "--wait",
+    "--pipe",
+    "--collect",
+    "-p",
+    "MemoryMax=134217728",
+    "-p",
+    "MemorySwapMax=0",
+    "-p",
+    "CPUQuota=100%",
+    "-p",
+    "TasksMax=32",
+    "-p",
+    "RuntimeMaxSec=5s",
+    "-p",
+    "TimeoutStopSec=1s",
+    "-p",
+    "KillMode=control-group",
+    "-p",
+    "LimitFSIZE=infinity",
+    "-p",
+    "SystemCallFilter=~memfd_create shmget shmat linkat setxattr lsetxattr fsetxattr mknodat keyctl add_key request_key",
+    "-p",
+    "SystemCallErrorNumber=EPERM",
+    "/usr/bin/nsenter",
+    "--mount=/proc/6526/ns/mnt",
+    "--",
+    "/usr/bin/bwrap",
+    "--ro-bind",
+    "/var/tmp/crewshal-native-discovery-v1/root",
+    "/",
+    "--bind",
+    "/var/tmp/crewshal-native-discovery-v1/ecryptfs-v3-f1/upper",
+    "/scratch",
+    "--proc",
+    "/proc",
+    "--dev",
+    "/dev",
+    "--unshare-pid",
+    "--unshare-net",
+    "--unshare-ipc",
+    "--unshare-uts",
+    "--new-session",
+    "--die-with-parent",
+    "--clearenv",
+    "--setenv",
+    "HOME",
+    "/scratch",
+    "--setenv",
+    "CODEX_HOME",
+    "/scratch",
+    "--setenv",
+    "PATH",
+    "/opt/codex/codex-path:/bin:/usr/bin",
+    "--cap-drop",
+    "ALL",
+    "--cap-add",
+    "CAP_SETUID",
+    "--cap-add",
+    "CAP_SETGID",
+    "--cap-add",
+    "CAP_SETPCAP",
+    "--",
+    "/bin/setpriv",
+    "--reuid=65534",
+    "--regid=65534",
+    "--clear-groups",
+    "--bounding-set=-all",
+    "--inh-caps=-all",
+    "--ambient-caps=-all",
+    "--no-new-privs",
+    "/bin/python3",
+    "-I",
+    "-B",
+    "/input/native_fixed_response_fixture_v4.py"
+  ],
+  "exit": 0,
+  "stdout": "{\"exit\": 124, \"stdout\": \"{\\\"type\\\":\\\"thread.started\\\",\\\"thread_id\\\":\\\"01a115d6-f0a3-7b10-ab90-b7c4683ac4f8\\\"}\\n{\\\"type\\\":\\\"item.completed\\\",\\\"item\\\":{\\\"id\\\":\\\"item_0\\\",\\\"type\\\":\\\"error\\\",\\\"message\\\":\\\"Model metadata for `synthetic` not found. Defaulting to fallback metadata; this can degrade performance and cause issues.\\\"}}\\n{\\\"type\\\":\\\"turn.started\\\"}\\n{\\\"type\\\":\\\"item.started\\\",\\\"item\\\":{\\\"id\\\":\\\"item_1\\\",\\\"type\\\":\\\"command_execution\\\",\\\"command\\\":\\\"/bin/sh -lc 'printf tiny > /scratch/native-tiny; cat /scratch/native-tiny'\\\",\\\"aggregated_output\\\":\\\"\\\",\\\"exit_code\\\":null,\\\"status\\\":\\\"in_progress\\\"}}\\n{\\\"type\\\":\\\"item.completed\\\",\\\"item\\\":{\\\"id\\\":\\\"item_1\\\",\\\"type\\\":\\\"command_execution\\\",\\\"command\\\":\\\"/bin/sh -lc 'printf tiny > /scratch/native-tiny; cat /scratch/native-tiny'\\\",\\\"aggregated_output\\\":\\\"Failed to create unified exec process: Resource temporarily unavailable (os error 11)\\\",\\\"exit_code\\\":-1,\\\"status\\\":\\\"failed\\\"}}\\n{\\\"type\\\":\\\"item.completed\\\",\\\"item\\\":{\\\"id\\\":\\\"item_2\\\",\\\"type\\\":\\\"agent_message\\\",\\\"text\\\":\\\"tiny\\\"}}\\n{\\\"type\\\":\\\"turn.completed\\\",\\\"usage\\\":{\\\"input_tokens\\\":2,\\\"cached_input_tokens\\\":0,\\\"cache_write_input_tokens\\\":0,\\\"output_tokens\\\":2,\\\"reasoning_output_tokens\\\":0}}\\n\", \"stderr\": \"Reading additional input from stdin...\\n2026-10-07T10:09:30.291453Z ERROR codex_core::tools::router: error=exec_command failed: CreateProcess { message: \\\"Rejected(\\\\\\\"Failed to create unified exec process: Resource temporarily unavailable (os error 11)\\\\\\\")\\\" }\\n\", \"requests\": [{\"path\": \"/v1/responses\", \"tools\": [\"exec_command\", \"write_stdin\", \"request_user_input\", \"view_image\", \"multi_agent_v1\", \"get_goal\", \"create_goal\", \"update_goal\", \"web_search\"]}, {\"path\": \"/v1/responses\", \"tools\": [\"exec_command\", \"write_stdin\", \"request_user_input\", \"view_image\", \"multi_agent_v1\", \"get_goal\", \"create_goal\", \"update_goal\", \"web_search\"]}], \"scratch_inventory\": [{\"path\": \"state_5.sqlite\", \"size\": 4096, \"allocated\": 12288}, {\"path\": \"lost+found\", \"size\": 16384, \"allocated\": 16384}, {\"path\": \"queue_1.sqlite\", \"size\": 4096, \"allocated\": 12288}, {\"path\": \"state_5.sqlite-wal\", \"size\": 1989992, \"allocated\": 1998848}, {\"path\": \"queue_1.sqlite-wal\", \"size\": 82432, \"allocated\": 94208}, {\"path\": \"logs_2.sqlite-shm\", \"size\": 32768, \"allocated\": 40960}, {\"path\": \"installation_id\", \"size\": 36, \"allocated\": 12288}, {\"path\": \"memories_1.sqlite-wal\", \"size\": 86552, \"allocated\": 98304}, {\"path\": \".tmp\", \"size\": 4096, \"allocated\": 4096}, {\"path\": \"tmp\", \"size\": 4096, \"allocated\": 4096}, {\"path\": \"memories_1.sqlite\", \"size\": 4096, \"allocated\": 12288}, {\"path\": \"logs_2.sqlite-wal\", \"size\": 115392, \"allocated\": 126976}, {\"path\": \"goals_1.sqlite\", \"size\": 4096, \"allocated\": 12288}, {\"path\": \"skills\", \"size\": 4096, \"allocated\": 4096}, {\"path\": \"logs_2.sqlite\", \"size\": 49152, \"allocated\": 57344}, {\"path\": \"goals_1.sqlite-shm\", \"size\": 32768, \"allocated\": 40960}, {\"path\": \"memories_1.sqlite-shm\", \"size\": 32768, \"allocated\": 40960}, {\"path\": \"state_5.sqlite-shm\", \"size\": 32768, \"allocated\": 40960}, {\"path\": \"queue_1.sqlite-shm\", \"size\": 32768, \"allocated\": 40960}, {\"path\": \"goals_1.sqlite-wal\", \"size\": 74192, \"allocated\": 86016}, {\"path\": \".tmp/plugins.sync.lock\", \"size\": 0, \"allocated\": 8192}, {\"path\": \"tmp/arg0\", \"size\": 4096, \"allocated\": 4096}, {\"path\": \"skills/.system\", \"size\": 4096, \"allocated\": 4096}, {\"path\": \"tmp/arg0/codex-arg0mxmo3r\", \"size\": 4096, \"allocated\": 4096}, {\"path\": \"tmp/arg0/codex-arg0mxmo3r/applypatch\", \"size\": 20, \"allocated\": 0}, {\"path\": \"tmp/arg0/codex-arg0mxmo3r/.lock\", \"size\": 0, \"allocated\": 8192}, {\"path\": \"tmp/arg0/codex-arg0mxmo3r/apply_patch\", \"size\": 20, \"allocated\": 0}, {\"path\": \"tmp/arg0/codex-arg0mxmo3r/codex-linux-sandbox\", \"size\": 20, \"allocated\": 0}, {\"path\": \"tmp/arg0/codex-arg0mxmo3r/codex-execve-wrapper\", \"size\": 20, \"allocated\": 0}, {\"path\": \"skills/.system/skill-creator\", \"size\": 4096, \"allocated\": 4096}, {\"path\": \"skills/.system/review-agent\", \"size\": 4096, \"allocated\": 4096}, {\"path\": \"skills/.system/openai-docs\", \"size\": 4096, \"allocated\": 4096}, {\"path\": \"skills/.system/.codex-system-skills.marker\", \"size\": 17, \"allocated\": 12288}, {\"path\": \"skills/.system/imagegen\", \"size\": 4096, \"allocated\": 4096}, {\"path\": \"skills/.system/skill-installer\", \"size\": 4096, \"allocated\": 4096}, {\"path\": \"skills/.system/skill-creator/references\", \"size\": 4096, \"allocated\": 4096}, {\"path\": \"skills/.system/skill-creator/assets\", \"size\": 4096, \"allocated\": 4096}, {\"path\": \"skills/.system/skill-creator/scripts\", \"size\": 4096, \"allocated\": 4096}, {\"path\": \"skills/.system/skill-creator/SKILL.md\", \"size\": 15311, \"allocated\": 24576}, {\"path\": \"skills/.system/skill-creator/license.txt\", \"size\": 11358, \"allocated\": 20480}, {\"path\": \"skills/.system/skill-creator/agents\", \"size\": 4096, \"allocated\": 4096}, {\"path\": \"skills/.system/review-agent/SKILL.md\", \"size\": 2661, \"allocated\": 12288}, {\"path\": \"skills/.system/review-agent/agents\", \"size\": 4096, \"allocated\": 4096}, {\"path\": \"skills/.system/openai-docs/references\", \"size\": 4096, \"allocated\": 4096}, {\"path\": \"skills/.system/openai-docs/assets\", \"size\": 4096, \"allocated\": 4096}, {\"path\": \"skills/.system/openai-docs/scripts\", \"size\": 4096, \"allocated\": 4096}, {\"path\": \"skills/.system/openai-docs/SKILL.md\", \"size\": 5437, \"allocated\": 16384}, {\"path\": \"skills/.system/openai-docs/LICENSE.txt\", \"size\": 10776, \"allocated\": 20480}, {\"path\": \"skills/.system/openai-docs/agents\", \"size\": 4096, \"allocated\": 4096}, {\"path\": \"skills/.system/imagegen/references\", \"size\": 4096, \"allocated\": 4096}, {\"path\": \"skills/.system/imagegen/assets\", \"size\": 4096, \"allocated\": 4096}, {\"path\": \"skills/.system/imagegen/scripts\", \"size\": 4096, \"allocated\": 4096}, {\"path\": \"skills/.system/imagegen/SKILL.md\", \"size\": 19201, \"allocated\": 28672}, {\"path\": \"skills/.system/imagegen/LICENSE.txt\", \"size\": 10776, \"allocated\": 20480}, {\"path\": \"skills/.system/imagegen/agents\", \"size\": 4096, \"allocated\": 4096}, {\"path\": \"skills/.system/skill-installer/assets\", \"size\": 4096, \"allocated\": 4096}, {\"path\": \"skills/.system/skill-installer/scripts\", \"size\": 4096, \"allocated\": 4096}, {\"path\": \"skills/.system/skill-installer/SKILL.md\", \"size\": 3367, \"allocated\": 12288}, {\"path\": \"skills/.system/skill-installer/LICENSE.txt\", \"size\": 11358, \"allocated\": 20480}, {\"path\": \"skills/.system/skill-installer/agents\", \"size\": 4096, \"allocated\": 4096}, {\"path\": \"skills/.system/skill-creator/references/openai_yaml.md\", \"size\": 2356, \"allocated\": 12288}, {\"path\": \"skills/.system/skill-creator/assets/skill-creator.png\", \"size\": 1563, \"allocated\": 12288}, {\"path\": \"skills/.system/skill-creator/assets/skill-creator-small.svg\", \"size\": 1319, \"allocated\": 12288}, {\"path\": \"skills/.system/skill-creator/scripts/init_skill.py\", \"size\": 10314, \"allocated\": 20480}, {\"path\": \"skills/.system/skill-creator/scripts/quick_validate.py\", \"size\": 4249, \"allocated\": 16384}, {\"path\": \"skills/.system/skill-creator/scripts/generate_openai_yaml.py\", \"size\": 6669, \"allocated\": 16384}, {\"path\": \"skills/.system/skill-creator/agents/openai.yaml\", \"size\": 183, \"allocated\": 12288}, {\"path\": \"skills/.system/review-agent/agents/openai.yaml\", \"size\": 252, \"allocated\": 12288}, {\"path\": \"skills/.system/openai-docs/references/upgrade-guide.md\", \"size\": 1027, \"allocated\": 12288}, {\"path\": \"skills/.system/openai-docs/references/mcp-diagnostics.md\", \"size\": 2318, \"allocated\": 12288}, {\"path\": \"skills/.system/openai-docs/references/prompting-guide.md\", \"size\": 10166, \"allocated\": 20480}, {\"path\": \"skills/.system/openai-docs/references/upgrading-to-gpt-6-astra.md\", \"size\": 18993, \"allocated\": 28672}, {\"path\": \"skills/.system/openai-docs/references/model-selection.md\", \"size\": 1344, \"allocated\": 12288}, {\"path\": \"skills/.system/openai-docs/references/codex-self-knowledge.md\", \"size\": 7417, \"allocated\": 16384}, {\"path\": \"skills/.system/openai-docs/references/model-migration.md\", \"size\": 5094, \"allocated\": 16384}, {\"path\": \"skills/.system/openai-docs/references/latest-model.md\", \"size\": 2147, \"allocated\": 12288}, {\"path\": \"skills/.system/openai-docs/references/official-docs.md\", \"size\": 3337, \"allocated\": 12288}, {\"path\": \"skills/.system/openai-docs/assets/openai.png\", \"size\": 1429, \"allocated\": 12288}, {\"path\": \"skills/.system/openai-docs/assets/openai-small.svg\", \"size\": 1091, \"allocated\": 12288}, {\"path\": \"skills/.system/openai-docs/scripts/fetch-codex-manual.mjs\", \"size\": 16085, \"allocated\": 24576}, {\"path\": \"skills/.system/openai-docs/scripts/resolve-latest-model-info\", \"size\": 1038, \"allocated\": 12288}, {\"path\": \"skills/.system/openai-docs/scripts/resolve-latest-model-info.cjs\", \"size\": 3937, \"allocated\": 12288}, {\"path\": \"skills/.system/openai-docs/agents/openai.yaml\", \"size\": 370, \"allocated\": 12288}, {\"path\": \"skills/.system/imagegen/references/sample-prompts.md\", \"size\": 17617, \"allocated\": 28672}, {\"path\": \"skills/.system/imagegen/references/prompting.md\", \"size\": 8282, \"allocated\": 20480}, {\"path\": \"skills/.system/imagegen/references/cli.md\", \"size\": 9655, \"allocated\": 20480}, {\"path\": \"skills/.system/imagegen/references/image-api.md\", \"size\": 6072, \"allocated\": 16384}, {\"path\": \"skills/.system/imagegen/references/codex-network.md\", \"size\": 1779, \"allocated\": 12288}, {\"path\": \"skills/.system/imagegen/assets/imagegen-small.svg\", \"size\": 2889, \"allocated\": 12288}, {\"path\": \"skills/.system/imagegen/assets/imagegen.png\", \"size\": 1711, \"allocated\": 12288}, {\"path\": \"skills/.system/imagegen/scripts/image_gen.py\", \"size\": 34667, \"allocated\": 45056}, {\"path\": \"skills/.system/imagegen/scripts/remove_chroma_key.py\", \"size\": 13905, \"allocated\": 24576}, {\"path\": \"skills/.system/imagegen/agents/openai.yaml\", \"size\": 275, \"allocated\": 12288}, {\"path\": \"skills/.system/skill-installer/assets/skill-installer-small.svg\", \"size\": 923, \"allocated\": 12288}, {\"path\": \"skills/.system/skill-installer/assets/skill-installer.png\", \"size\": 1086, \"allocated\": 12288}, {\"path\": \"skills/.system/skill-installer/scripts/github_utils.py\", \"size\": 659, \"allocated\": 12288}, {\"path\": \"skills/.system/skill-installer/scripts/install-skill-from-github.py\", \"size\": 11917, \"allocated\": 20480}, {\"path\": \"skills/.system/skill-installer/scripts/list-skills.py\", \"size\": 2948, \"allocated\": 12288}, {\"path\": \"skills/.system/skill-installer/agents/openai.yaml\", \"size\": 221, \"allocated\": 12288}], \"tiny\": null}\n",
+  "stderr": "Running as unit: crewshalnativecryptv3-f1.service; invocation ID: 40d9c1b74bb54b98a5ea6d34f5707f09\nFinished with result: success\nMain processes terminated with: code=exited/status=0\nService runtime: 4.269s\nCPU time consumed: 229ms\nMemory peak: 636.0K\nMemory swap peak: 0B\n",
+  "worker_controls": [
+    {
+      "memory.max": "134217728",
+      "memory.swap.max": "0",
+      "cpu.max": "100000 100000",
+      "pids.max": "32"
+    }
+  ],
+  "worker_seconds": 4.287,
+  "upper_inventory": [
+    {
+      "path": "state_5.sqlite",
+      "size": 4096,
+      "allocated": 12288
+    },
+    {
+      "path": "lost+found",
+      "size": 16384,
+      "allocated": 16384
+    },
+    {
+      "path": "queue_1.sqlite",
+      "size": 4096,
+      "allocated": 12288
+    },
+    {
+      "path": "state_5.sqlite-wal",
+      "size": 1989992,
+      "allocated": 1998848
+    },
+    {
+      "path": "queue_1.sqlite-wal",
+      "size": 82432,
+      "allocated": 94208
+    },
+    {
+      "path": "logs_2.sqlite-shm",
+      "size": 32768,
+      "allocated": 40960
+    },
+    {
+      "path": "installation_id",
+      "size": 36,
+      "allocated": 12288
+    },
+    {
+      "path": "memories_1.sqlite-wal",
+      "size": 86552,
+      "allocated": 98304
+    },
+    {
+      "path": ".tmp",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "tmp",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "memories_1.sqlite",
+      "size": 4096,
+      "allocated": 12288
+    },
+    {
+      "path": "logs_2.sqlite-wal",
+      "size": 115392,
+      "allocated": 126976
+    },
+    {
+      "path": "goals_1.sqlite",
+      "size": 4096,
+      "allocated": 12288
+    },
+    {
+      "path": "skills",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "logs_2.sqlite",
+      "size": 49152,
+      "allocated": 57344
+    },
+    {
+      "path": "goals_1.sqlite-shm",
+      "size": 32768,
+      "allocated": 40960
+    },
+    {
+      "path": "memories_1.sqlite-shm",
+      "size": 32768,
+      "allocated": 40960
+    },
+    {
+      "path": "state_5.sqlite-shm",
+      "size": 32768,
+      "allocated": 40960
+    },
+    {
+      "path": "queue_1.sqlite-shm",
+      "size": 32768,
+      "allocated": 40960
+    },
+    {
+      "path": "goals_1.sqlite-wal",
+      "size": 74192,
+      "allocated": 86016
+    },
+    {
+      "path": ".tmp/plugins.sync.lock",
+      "size": 0,
+      "allocated": 8192
+    },
+    {
+      "path": "tmp/arg0",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "skills/.system",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "tmp/arg0/codex-arg0mxmo3r",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "tmp/arg0/codex-arg0mxmo3r/applypatch",
+      "size": 20,
+      "allocated": 0
+    },
+    {
+      "path": "tmp/arg0/codex-arg0mxmo3r/.lock",
+      "size": 0,
+      "allocated": 8192
+    },
+    {
+      "path": "tmp/arg0/codex-arg0mxmo3r/apply_patch",
+      "size": 20,
+      "allocated": 0
+    },
+    {
+      "path": "tmp/arg0/codex-arg0mxmo3r/codex-linux-sandbox",
+      "size": 20,
+      "allocated": 0
+    },
+    {
+      "path": "tmp/arg0/codex-arg0mxmo3r/codex-execve-wrapper",
+      "size": 20,
+      "allocated": 0
+    },
+    {
+      "path": "skills/.system/skill-creator",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "skills/.system/review-agent",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "skills/.system/openai-docs",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "skills/.system/.codex-system-skills.marker",
+      "size": 17,
+      "allocated": 12288
+    },
+    {
+      "path": "skills/.system/imagegen",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "skills/.system/skill-installer",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "skills/.system/skill-creator/references",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "skills/.system/skill-creator/assets",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "skills/.system/skill-creator/scripts",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "skills/.system/skill-creator/SKILL.md",
+      "size": 15311,
+      "allocated": 24576
+    },
+    {
+      "path": "skills/.system/skill-creator/license.txt",
+      "size": 11358,
+      "allocated": 20480
+    },
+    {
+      "path": "skills/.system/skill-creator/agents",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "skills/.system/review-agent/SKILL.md",
+      "size": 2661,
+      "allocated": 12288
+    },
+    {
+      "path": "skills/.system/review-agent/agents",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "skills/.system/openai-docs/references",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "skills/.system/openai-docs/assets",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "skills/.system/openai-docs/scripts",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "skills/.system/openai-docs/SKILL.md",
+      "size": 5437,
+      "allocated": 16384
+    },
+    {
+      "path": "skills/.system/openai-docs/LICENSE.txt",
+      "size": 10776,
+      "allocated": 20480
+    },
+    {
+      "path": "skills/.system/openai-docs/agents",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "skills/.system/imagegen/references",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "skills/.system/imagegen/assets",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "skills/.system/imagegen/scripts",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "skills/.system/imagegen/SKILL.md",
+      "size": 19201,
+      "allocated": 28672
+    },
+    {
+      "path": "skills/.system/imagegen/LICENSE.txt",
+      "size": 10776,
+      "allocated": 20480
+    },
+    {
+      "path": "skills/.system/imagegen/agents",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "skills/.system/skill-installer/assets",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "skills/.system/skill-installer/scripts",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "skills/.system/skill-installer/SKILL.md",
+      "size": 3367,
+      "allocated": 12288
+    },
+    {
+      "path": "skills/.system/skill-installer/LICENSE.txt",
+      "size": 11358,
+      "allocated": 20480
+    },
+    {
+      "path": "skills/.system/skill-installer/agents",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "skills/.system/skill-creator/references/openai_yaml.md",
+      "size": 2356,
+      "allocated": 12288
+    },
+    {
+      "path": "skills/.system/skill-creator/assets/skill-creator.png",
+      "size": 1563,
+      "allocated": 12288
+    },
+    {
+      "path": "skills/.system/skill-creator/assets/skill-creator-small.svg",
+      "size": 1319,
+      "allocated": 12288
+    },
+    {
+      "path": "skills/.system/skill-creator/scripts/init_skill.py",
+      "size": 10314,
+      "allocated": 20480
+    },
+    {
+      "path": "skills/.system/skill-creator/scripts/quick_validate.py",
+      "size": 4249,
+      "allocated": 16384
+    },
+    {
+      "path": "skills/.system/skill-creator/scripts/generate_openai_yaml.py",
+      "size": 6669,
+      "allocated": 16384
+    },
+    {
+      "path": "skills/.system/skill-creator/agents/openai.yaml",
+      "size": 183,
+      "allocated": 12288
+    },
+    {
+      "path": "skills/.system/review-agent/agents/openai.yaml",
+      "size": 252,
+      "allocated": 12288
+    },
+    {
+      "path": "skills/.system/openai-docs/references/upgrade-guide.md",
+      "size": 1027,
+      "allocated": 12288
+    },
+    {
+      "path": "skills/.system/openai-docs/references/mcp-diagnostics.md",
+      "size": 2318,
+      "allocated": 12288
+    },
+    {
+      "path": "skills/.system/openai-docs/references/prompting-guide.md",
+      "size": 10166,
+      "allocated": 20480
+    },
+    {
+      "path": "skills/.system/openai-docs/references/upgrading-to-gpt-6-astra.md",
+      "size": 18993,
+      "allocated": 28672
+    },
+    {
+      "path": "skills/.system/openai-docs/references/model-selection.md",
+      "size": 1344,
+      "allocated": 12288
+    },
+    {
+      "path": "skills/.system/openai-docs/references/codex-self-knowledge.md",
+      "size": 7417,
+      "allocated": 16384
+    },
+    {
+      "path": "skills/.system/openai-docs/references/model-migration.md",
+      "size": 5094,
+      "allocated": 16384
+    },
+    {
+      "path": "skills/.system/openai-docs/references/latest-model.md",
+      "size": 2147,
+      "allocated": 12288
+    },
+    {
+      "path": "skills/.system/openai-docs/references/official-docs.md",
+      "size": 3337,
+      "allocated": 12288
+    },
+    {
+      "path": "skills/.system/openai-docs/assets/openai.png",
+      "size": 1429,
+      "allocated": 12288
+    },
+    {
+      "path": "skills/.system/openai-docs/assets/openai-small.svg",
+      "size": 1091,
+      "allocated": 12288
+    },
+    {
+      "path": "skills/.system/openai-docs/scripts/fetch-codex-manual.mjs",
+      "size": 16085,
+      "allocated": 24576
+    },
+    {
+      "path": "skills/.system/openai-docs/scripts/resolve-latest-model-info",
+      "size": 1038,
+      "allocated": 12288
+    },
+    {
+      "path": "skills/.system/openai-docs/scripts/resolve-latest-model-info.cjs",
+      "size": 3937,
+      "allocated": 12288
+    },
+    {
+      "path": "skills/.system/openai-docs/agents/openai.yaml",
+      "size": 370,
+      "allocated": 12288
+    },
+    {
+      "path": "skills/.system/imagegen/references/sample-prompts.md",
+      "size": 17617,
+      "allocated": 28672
+    },
+    {
+      "path": "skills/.system/imagegen/references/prompting.md",
+      "size": 8282,
+      "allocated": 20480
+    },
+    {
+      "path": "skills/.system/imagegen/references/cli.md",
+      "size": 9655,
+      "allocated": 20480
+    },
+    {
+      "path": "skills/.system/imagegen/references/image-api.md",
+      "size": 6072,
+      "allocated": 16384
+    },
+    {
+      "path": "skills/.system/imagegen/references/codex-network.md",
+      "size": 1779,
+      "allocated": 12288
+    },
+    {
+      "path": "skills/.system/imagegen/assets/imagegen-small.svg",
+      "size": 2889,
+      "allocated": 12288
+    },
+    {
+      "path": "skills/.system/imagegen/assets/imagegen.png",
+      "size": 1711,
+      "allocated": 12288
+    },
+    {
+      "path": "skills/.system/imagegen/scripts/image_gen.py",
+      "size": 34667,
+      "allocated": 45056
+    },
+    {
+      "path": "skills/.system/imagegen/scripts/remove_chroma_key.py",
+      "size": 13905,
+      "allocated": 24576
+    },
+    {
+      "path": "skills/.system/imagegen/agents/openai.yaml",
+      "size": 275,
+      "allocated": 12288
+    },
+    {
+      "path": "skills/.system/skill-installer/assets/skill-installer-small.svg",
+      "size": 923,
+      "allocated": 12288
+    },
+    {
+      "path": "skills/.system/skill-installer/assets/skill-installer.png",
+      "size": 1086,
+      "allocated": 12288
+    },
+    {
+      "path": "skills/.system/skill-installer/scripts/github_utils.py",
+      "size": 659,
+      "allocated": 12288
+    },
+    {
+      "path": "skills/.system/skill-installer/scripts/install-skill-from-github.py",
+      "size": 11917,
+      "allocated": 20480
+    },
+    {
+      "path": "skills/.system/skill-installer/scripts/list-skills.py",
+      "size": 2948,
+      "allocated": 12288
+    },
+    {
+      "path": "skills/.system/skill-installer/agents/openai.yaml",
+      "size": 221,
+      "allocated": 12288
+    }
+  ],
+  "lower_inventory": [
+    {
+      "path": "state_5.sqlite",
+      "size": 12288,
+      "allocated": 12288
+    },
+    {
+      "path": "lost+found",
+      "size": 16384,
+      "allocated": 16384
+    },
+    {
+      "path": "queue_1.sqlite",
+      "size": 12288,
+      "allocated": 12288
+    },
+    {
+      "path": "state_5.sqlite-wal",
+      "size": 1998848,
+      "allocated": 1998848
+    },
+    {
+      "path": "queue_1.sqlite-wal",
+      "size": 94208,
+      "allocated": 94208
+    },
+    {
+      "path": "logs_2.sqlite-shm",
+      "size": 40960,
+      "allocated": 40960
+    },
+    {
+      "path": "installation_id",
+      "size": 12288,
+      "allocated": 12288
+    },
+    {
+      "path": "memories_1.sqlite-wal",
+      "size": 98304,
+      "allocated": 98304
+    },
+    {
+      "path": ".tmp",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "tmp",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "memories_1.sqlite",
+      "size": 12288,
+      "allocated": 12288
+    },
+    {
+      "path": "logs_2.sqlite-wal",
+      "size": 126976,
+      "allocated": 126976
+    },
+    {
+      "path": "goals_1.sqlite",
+      "size": 12288,
+      "allocated": 12288
+    },
+    {
+      "path": "skills",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "logs_2.sqlite",
+      "size": 57344,
+      "allocated": 57344
+    },
+    {
+      "path": "goals_1.sqlite-shm",
+      "size": 40960,
+      "allocated": 40960
+    },
+    {
+      "path": "memories_1.sqlite-shm",
+      "size": 40960,
+      "allocated": 40960
+    },
+    {
+      "path": "state_5.sqlite-shm",
+      "size": 40960,
+      "allocated": 40960
+    },
+    {
+      "path": "queue_1.sqlite-shm",
+      "size": 40960,
+      "allocated": 40960
+    },
+    {
+      "path": "goals_1.sqlite-wal",
+      "size": 86016,
+      "allocated": 86016
+    },
+    {
+      "path": ".tmp/plugins.sync.lock",
+      "size": 8192,
+      "allocated": 8192
+    },
+    {
+      "path": "tmp/arg0",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "skills/.system",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "tmp/arg0/codex-arg0mxmo3r",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "tmp/arg0/codex-arg0mxmo3r/applypatch",
+      "size": 20,
+      "allocated": 0
+    },
+    {
+      "path": "tmp/arg0/codex-arg0mxmo3r/.lock",
+      "size": 8192,
+      "allocated": 8192
+    },
+    {
+      "path": "tmp/arg0/codex-arg0mxmo3r/apply_patch",
+      "size": 20,
+      "allocated": 0
+    },
+    {
+      "path": "tmp/arg0/codex-arg0mxmo3r/codex-linux-sandbox",
+      "size": 20,
+      "allocated": 0
+    },
+    {
+      "path": "tmp/arg0/codex-arg0mxmo3r/codex-execve-wrapper",
+      "size": 20,
+      "allocated": 0
+    },
+    {
+      "path": "skills/.system/skill-creator",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "skills/.system/review-agent",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "skills/.system/openai-docs",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "skills/.system/.codex-system-skills.marker",
+      "size": 12288,
+      "allocated": 12288
+    },
+    {
+      "path": "skills/.system/imagegen",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "skills/.system/skill-installer",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "skills/.system/skill-creator/references",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "skills/.system/skill-creator/assets",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "skills/.system/skill-creator/scripts",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "skills/.system/skill-creator/SKILL.md",
+      "size": 24576,
+      "allocated": 24576
+    },
+    {
+      "path": "skills/.system/skill-creator/license.txt",
+      "size": 20480,
+      "allocated": 20480
+    },
+    {
+      "path": "skills/.system/skill-creator/agents",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "skills/.system/review-agent/SKILL.md",
+      "size": 12288,
+      "allocated": 12288
+    },
+    {
+      "path": "skills/.system/review-agent/agents",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "skills/.system/openai-docs/references",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "skills/.system/openai-docs/assets",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "skills/.system/openai-docs/scripts",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "skills/.system/openai-docs/SKILL.md",
+      "size": 16384,
+      "allocated": 16384
+    },
+    {
+      "path": "skills/.system/openai-docs/LICENSE.txt",
+      "size": 20480,
+      "allocated": 20480
+    },
+    {
+      "path": "skills/.system/openai-docs/agents",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "skills/.system/imagegen/references",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "skills/.system/imagegen/assets",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "skills/.system/imagegen/scripts",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "skills/.system/imagegen/SKILL.md",
+      "size": 28672,
+      "allocated": 28672
+    },
+    {
+      "path": "skills/.system/imagegen/LICENSE.txt",
+      "size": 20480,
+      "allocated": 20480
+    },
+    {
+      "path": "skills/.system/imagegen/agents",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "skills/.system/skill-installer/assets",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "skills/.system/skill-installer/scripts",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "skills/.system/skill-installer/SKILL.md",
+      "size": 12288,
+      "allocated": 12288
+    },
+    {
+      "path": "skills/.system/skill-installer/LICENSE.txt",
+      "size": 20480,
+      "allocated": 20480
+    },
+    {
+      "path": "skills/.system/skill-installer/agents",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "skills/.system/skill-creator/references/openai_yaml.md",
+      "size": 12288,
+      "allocated": 12288
+    },
+    {
+      "path": "skills/.system/skill-creator/assets/skill-creator.png",
+      "size": 12288,
+      "allocated": 12288
+    },
+    {
+      "path": "skills/.system/skill-creator/assets/skill-creator-small.svg",
+      "size": 12288,
+      "allocated": 12288
+    },
+    {
+      "path": "skills/.system/skill-creator/scripts/init_skill.py",
+      "size": 20480,
+      "allocated": 20480
+    },
+    {
+      "path": "skills/.system/skill-creator/scripts/quick_validate.py",
+      "size": 16384,
+      "allocated": 16384
+    },
+    {
+      "path": "skills/.system/skill-creator/scripts/generate_openai_yaml.py",
+      "size": 16384,
+      "allocated": 16384
+    },
+    {
+      "path": "skills/.system/skill-creator/agents/openai.yaml",
+      "size": 12288,
+      "allocated": 12288
+    },
+    {
+      "path": "skills/.system/review-agent/agents/openai.yaml",
+      "size": 12288,
+      "allocated": 12288
+    },
+    {
+      "path": "skills/.system/openai-docs/references/upgrade-guide.md",
+      "size": 12288,
+      "allocated": 12288
+    },
+    {
+      "path": "skills/.system/openai-docs/references/mcp-diagnostics.md",
+      "size": 12288,
+      "allocated": 12288
+    },
+    {
+      "path": "skills/.system/openai-docs/references/prompting-guide.md",
+      "size": 20480,
+      "allocated": 20480
+    },
+    {
+      "path": "skills/.system/openai-docs/references/upgrading-to-gpt-6-astra.md",
+      "size": 28672,
+      "allocated": 28672
+    },
+    {
+      "path": "skills/.system/openai-docs/references/model-selection.md",
+      "size": 12288,
+      "allocated": 12288
+    },
+    {
+      "path": "skills/.system/openai-docs/references/codex-self-knowledge.md",
+      "size": 16384,
+      "allocated": 16384
+    },
+    {
+      "path": "skills/.system/openai-docs/references/model-migration.md",
+      "size": 16384,
+      "allocated": 16384
+    },
+    {
+      "path": "skills/.system/openai-docs/references/latest-model.md",
+      "size": 12288,
+      "allocated": 12288
+    },
+    {
+      "path": "skills/.system/openai-docs/references/official-docs.md",
+      "size": 12288,
+      "allocated": 12288
+    },
+    {
+      "path": "skills/.system/openai-docs/assets/openai.png",
+      "size": 12288,
+      "allocated": 12288
+    },
+    {
+      "path": "skills/.system/openai-docs/assets/openai-small.svg",
+      "size": 12288,
+      "allocated": 12288
+    },
+    {
+      "path": "skills/.system/openai-docs/scripts/fetch-codex-manual.mjs",
+      "size": 24576,
+      "allocated": 24576
+    },
+    {
+      "path": "skills/.system/openai-docs/scripts/resolve-latest-model-info",
+      "size": 12288,
+      "allocated": 12288
+    },
+    {
+      "path": "skills/.system/openai-docs/scripts/resolve-latest-model-info.cjs",
+      "size": 12288,
+      "allocated": 12288
+    },
+    {
+      "path": "skills/.system/openai-docs/agents/openai.yaml",
+      "size": 12288,
+      "allocated": 12288
+    },
+    {
+      "path": "skills/.system/imagegen/references/sample-prompts.md",
+      "size": 28672,
+      "allocated": 28672
+    },
+    {
+      "path": "skills/.system/imagegen/references/prompting.md",
+      "size": 20480,
+      "allocated": 20480
+    },
+    {
+      "path": "skills/.system/imagegen/references/cli.md",
+      "size": 20480,
+      "allocated": 20480
+    },
+    {
+      "path": "skills/.system/imagegen/references/image-api.md",
+      "size": 16384,
+      "allocated": 16384
+    },
+    {
+      "path": "skills/.system/imagegen/references/codex-network.md",
+      "size": 12288,
+      "allocated": 12288
+    },
+    {
+      "path": "skills/.system/imagegen/assets/imagegen-small.svg",
+      "size": 12288,
+      "allocated": 12288
+    },
+    {
+      "path": "skills/.system/imagegen/assets/imagegen.png",
+      "size": 12288,
+      "allocated": 12288
+    },
+    {
+      "path": "skills/.system/imagegen/scripts/image_gen.py",
+      "size": 45056,
+      "allocated": 45056
+    },
+    {
+      "path": "skills/.system/imagegen/scripts/remove_chroma_key.py",
+      "size": 24576,
+      "allocated": 24576
+    },
+    {
+      "path": "skills/.system/imagegen/agents/openai.yaml",
+      "size": 12288,
+      "allocated": 12288
+    },
+    {
+      "path": "skills/.system/skill-installer/assets/skill-installer-small.svg",
+      "size": 12288,
+      "allocated": 12288
+    },
+    {
+      "path": "skills/.system/skill-installer/assets/skill-installer.png",
+      "size": 12288,
+      "allocated": 12288
+    },
+    {
+      "path": "skills/.system/skill-installer/scripts/github_utils.py",
+      "size": 12288,
+      "allocated": 12288
+    },
+    {
+      "path": "skills/.system/skill-installer/scripts/install-skill-from-github.py",
+      "size": 20480,
+      "allocated": 20480
+    },
+    {
+      "path": "skills/.system/skill-installer/scripts/list-skills.py",
+      "size": 12288,
+      "allocated": 12288
+    },
+    {
+      "path": "skills/.system/skill-installer/agents/openai.yaml",
+      "size": 12288,
+      "allocated": 12288
+    }
+  ],
+  "tiny_workflow_passed": false,
+  "seconds": 4.335
+}

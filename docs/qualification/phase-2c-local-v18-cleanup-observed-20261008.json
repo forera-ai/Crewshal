@@ -1,0 +1,12 @@
+{
+  "scope": "Independent current local continuation cleanup readback; no retrospective claim for lost v5 attempt",
+  "owned_cgroup_children": [],
+  "owned_loops": [],
+  "owned_mounts": [],
+  "v8_through_v18_fixture_roots_absent": true,
+  "v6_failed_files_preserved": true,
+  "global_userns_restriction": "1",
+  "original_v5_final_cleanup": "unknown",
+  "vm_left_running": true,
+  "execution_allowed": false
+}

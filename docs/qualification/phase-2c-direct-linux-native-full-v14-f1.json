@@ -1,0 +1,4876 @@
+{
+  "fixture": 1,
+  "scope": "Complete-profile prospective native conformance; qualification depends on every original criterion",
+  "execution_allowed": false,
+  "native_start_allowed": false,
+  "manifest_sha256": "08cab74f16fa49b462cebcd227b75610e2c1b4062348f058a277be0d8b44afbb",
+  "cleanup": {
+    "unmounts": [
+      {
+        "view": "candidate-upper",
+        "unmounted": true
+      },
+      {
+        "view": "candidate-lower",
+        "unmounted": true
+      },
+      {
+        "view": "upper",
+        "unmounted": true
+      },
+      {
+        "view": "lower",
+        "unmounted": true
+      }
+    ],
+    "loop_detached": true,
+    "candidate_loop_detached": true,
+    "anonymous_ring_empty": true,
+    "owned_files_absent": true
+  },
+  "errors": [],
+  "excluded_before": {
+    "outside/canary": {
+      "sha256": "a800fce3833f8b3db405d82efd9b63c97cd9c5c7f8ff517279b0a41d8676b2ce",
+      "mode": 33152,
+      "links": 1,
+      "size": 12
+    },
+    "coordinator/state.db": {
+      "sha256": "d5844633c731414b7ecd4f20a8a71b50b1af72c683d1290df5b98ce06682a90c",
+      "mode": 33152,
+      "links": 1,
+      "size": 29
+    },
+    "coordinator/artifact": {
+      "sha256": "6c009dcae0e3d59123a426e219ccbd4a207958fc7435c5db6c13ae5721c82fa2",
+      "mode": 33152,
+      "links": 1,
+      "size": 20
+    },
+    "original/dirty.py": {
+      "sha256": "26d606fa6368f54a578ee8c585b67cb955c120be84442990e254adf179bb4c15",
+      "mode": 33152,
+      "links": 1,
+      "size": 11
+    },
+    "home/credential-store": {
+      "sha256": "0e7e42a29213f9d68d1d4d2f2f4715f7642f604a7847b10b3da0b0eebb331ab3",
+      "mode": 33152,
+      "links": 1,
+      "size": 15
+    },
+    "original/.git/config": {
+      "sha256": "9eb797550dd17e0bb651e05cb69c65b0c845fb6230af368999eec0b738d23f88",
+      "mode": 33152,
+      "links": 1,
+      "size": 9
+    }
+  },
+  "global_instruction_mask": {
+    "unmasked_sha256": "a2bd43f61ef7caf48e20e49fa1727bb280dfa61406c985de127730b1d2f8354e",
+    "override_sha256": "4c24f1abf3a940627c95f2b6e3e97db2e0d76510af111fb4695e6e1266e42e11",
+    "trusted_empty_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "readonly": true
+  },
+  "synthetic_parent_hook_environment": {
+    "BASH_ENV": "/input/runtime-hook.sh",
+    "ENV": "/input/runtime-hook.sh",
+    "PYTHONSTARTUP": "/input/runtime-hook.py",
+    "GIT_CONFIG": "/scratch/.gitconfig",
+    "GIT_CONFIG_SYSTEM": "/scratch/.gitconfig"
+  },
+  "hook_fixtures": {
+    "global_git_sha256": "4f376cc91c83465a16c86d39a8c6d743252049dd40375d2e5b3d9d1af2903ec3",
+    "global_hook_sha256": "794bbd86800c8a7b58291552edfa7c51aed207acd0676344518f314e9ee56fa1",
+    "repository_hook_sha256": "d0eddfaaa75ec391213b04f21bdd6174a5132e12895fcc2ee33cddffc81c3796",
+    "runtime_hook_sha256": "51a63ac58d35f4b1a9f9602deb329fedffde8256b0fed6b1a08a99bc62f89a03"
+  },
+  "mounts": [
+    "139 805 7:22 / /var/tmp/crewshal-native-qualification-v14/full-v14-f1/lower rw,nosuid,nodev,noexec,relatime shared:723 - ext4 /dev/loop22 rw",
+    "141 805 0:60 / /var/tmp/crewshal-native-qualification-v14/full-v14-f1/upper rw,nosuid,nodev,noexec,relatime shared:760 - ecryptfs /var/tmp/crewshal-native-qualification-v14/full-v14-f1/lower rw,ecryptfs_sig=58cf76c4ca40cd7b,ecryptfs_cipher=aes,ecryptfs_key_bytes=32,ecryptfs_mount_auth_tok_only",
+    "169 805 7:23 / /var/tmp/crewshal-native-qualification-v14/full-v14-f1/candidate-lower rw,nosuid,nodev,noexec,relatime shared:761 - ext4 /dev/loop23 rw",
+    "171 805 0:61 / /var/tmp/crewshal-native-qualification-v14/full-v14-f1/candidate-upper rw,nosuid,nodev,noexec,relatime shared:762 - ecryptfs /var/tmp/crewshal-native-qualification-v14/full-v14-f1/candidate-lower rw,ecryptfs_sig=58cf76c4ca40cd7b,ecryptfs_cipher=aes,ecryptfs_key_bytes=32,ecryptfs_mount_auth_tok_only"
+  ],
+  "aggregate_controls": {
+    "memory.max": "805306368",
+    "memory.swap.max": "0",
+    "cpu.max": "100000 100000",
+    "pids.max": "128"
+  },
+  "synthetic_token_sha256": "e8a5f3f74fd2a1b0fdf1c12df73b5d73b5c1324680f692009dd3dcea3e7e0ca3",
+  "token_canary_mode": "0o600",
+  "datagram_sink_positive_controls": [
+    {
+      "sink": "udp",
+      "bytes": 7
+    },
+    {
+      "sink": "dns",
+      "bytes": 7
+    },
+    {
+      "sink": "ipv6",
+      "bytes": 7
+    }
+  ],
+  "nonallowed_sink_positive_control": [
+    {
+      "path": "/positive-control",
+      "bytes": 7
+    }
+  ],
+  "nft_policy": "table inet crewshal_full_v14 {\n counter native_allowed {}\n counter proxy_allowed {}\n counter proxy_reply {}\n counter denied {}\n chain output {\n  type filter hook output priority 0; policy accept;\n  meta skuid 65534 ip daddr 127.0.0.1 tcp dport 8080 counter name native_allowed accept\n  meta skuid 65533 ip daddr 127.0.0.1 tcp dport 8081 counter name proxy_allowed accept\n  meta skuid 65533 ip daddr 127.0.0.1 tcp sport 8080 ct state established counter name proxy_reply accept\n  meta skuid { 65531, 65533, 65534 } counter name denied reject with icmpx type admin-prohibited\n }\n}\n",
+  "nft_policy_sha256": "dcd119cad1496a746381019b221ffdc2519137719e8a683b92a20af26a5a7ab7",
+  "nft_before": {
+    "nftables": [
+      {
+        "metainfo": {
+          "version": "1.0.9",
+          "release_name": "Old Doc Yak #3",
+          "json_schema_version": 1
+        }
+      },
+      {
+        "table": {
+          "family": "inet",
+          "name": "crewshal_full_v14",
+          "handle": 1
+        }
+      },
+      {
+        "counter": {
+          "family": "inet",
+          "name": "native_allowed",
+          "table": "crewshal_full_v14",
+          "handle": 2,
+          "packets": 0,
+          "bytes": 0
+        }
+      },
+      {
+        "counter": {
+          "family": "inet",
+          "name": "proxy_allowed",
+          "table": "crewshal_full_v14",
+          "handle": 3,
+          "packets": 0,
+          "bytes": 0
+        }
+      },
+      {
+        "counter": {
+          "family": "inet",
+          "name": "proxy_reply",
+          "table": "crewshal_full_v14",
+          "handle": 4,
+          "packets": 0,
+          "bytes": 0
+        }
+      },
+      {
+        "counter": {
+          "family": "inet",
+          "name": "denied",
+          "table": "crewshal_full_v14",
+          "handle": 5,
+          "packets": 0,
+          "bytes": 0
+        }
+      },
+      {
+        "chain": {
+          "family": "inet",
+          "table": "crewshal_full_v14",
+          "name": "output",
+          "handle": 1,
+          "type": "filter",
+          "hook": "output",
+          "prio": 0,
+          "policy": "accept"
+        }
+      },
+      {
+        "rule": {
+          "family": "inet",
+          "table": "crewshal_full_v14",
+          "chain": "output",
+          "handle": 6,
+          "expr": [
+            {
+              "match": {
+                "op": "==",
+                "left": {
+                  "meta": {
+                    "key": "skuid"
+                  }
+                },
+                "right": 65534
+              }
+            },
+            {
+              "match": {
+                "op": "==",
+                "left": {
+                  "payload": {
+                    "protocol": "ip",
+                    "field": "daddr"
+                  }
+                },
+                "right": "127.0.0.1"
+              }
+            },
+            {
+              "match": {
+                "op": "==",
+                "left": {
+                  "payload": {
+                    "protocol": "tcp",
+                    "field": "dport"
+                  }
+                },
+                "right": 8080
+              }
+            },
+            {
+              "counter": "native_allowed"
+            },
+            {
+              "accept": null
+            }
+          ]
+        }
+      },
+      {
+        "rule": {
+          "family": "inet",
+          "table": "crewshal_full_v14",
+          "chain": "output",
+          "handle": 7,
+          "expr": [
+            {
+              "match": {
+                "op": "==",
+                "left": {
+                  "meta": {
+                    "key": "skuid"
+                  }
+                },
+                "right": 65533
+              }
+            },
+            {
+              "match": {
+                "op": "==",
+                "left": {
+                  "payload": {
+                    "protocol": "ip",
+                    "field": "daddr"
+                  }
+                },
+                "right": "127.0.0.1"
+              }
+            },
+            {
+              "match": {
+                "op": "==",
+                "left": {
+                  "payload": {
+                    "protocol": "tcp",
+                    "field": "dport"
+                  }
+                },
+                "right": 8081
+              }
+            },
+            {
+              "counter": "proxy_allowed"
+            },
+            {
+              "accept": null
+            }
+          ]
+        }
+      },
+      {
+        "rule": {
+          "family": "inet",
+          "table": "crewshal_full_v14",
+          "chain": "output",
+          "handle": 8,
+          "expr": [
+            {
+              "match": {
+                "op": "==",
+                "left": {
+                  "meta": {
+                    "key": "skuid"
+                  }
+                },
+                "right": 65533
+              }
+            },
+            {
+              "match": {
+                "op": "==",
+                "left": {
+                  "payload": {
+                    "protocol": "ip",
+                    "field": "daddr"
+                  }
+                },
+                "right": "127.0.0.1"
+              }
+            },
+            {
+              "match": {
+                "op": "==",
+                "left": {
+                  "payload": {
+                    "protocol": "tcp",
+                    "field": "sport"
+                  }
+                },
+                "right": 8080
+              }
+            },
+            {
+              "match": {
+                "op": "in",
+                "left": {
+                  "ct": {
+                    "key": "state"
+                  }
+                },
+                "right": "established"
+              }
+            },
+            {
+              "counter": "proxy_reply"
+            },
+            {
+              "accept": null
+            }
+          ]
+        }
+      },
+      {
+        "rule": {
+          "family": "inet",
+          "table": "crewshal_full_v14",
+          "chain": "output",
+          "handle": 10,
+          "expr": [
+            {
+              "match": {
+                "op": "==",
+                "left": {
+                  "meta": {
+                    "key": "skuid"
+                  }
+                },
+                "right": {
+                  "set": [
+                    65531,
+                    65533,
+                    65534
+                  ]
+                }
+              }
+            },
+            {
+              "counter": "denied"
+            },
+            {
+              "reject": {
+                "type": "icmpx",
+                "expr": "admin-prohibited"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "broker_argv": [
+    "/usr/bin/systemd-run",
+    "--unit=crewshalnativeproxybroker-v1-f1.service",
+    "--slice=crewshalnativediscoveryv1.slice",
+    "--wait",
+    "--pipe",
+    "--collect",
+    "-p",
+    "MemoryMax=67108864",
+    "-p",
+    "MemorySwapMax=0",
+    "-p",
+    "CPUQuota=100%",
+    "-p",
+    "TasksMax=16",
+    "-p",
+    "RuntimeMaxSec=570s",
+    "-p",
+    "TimeoutStopSec=1s",
+    "-p",
+    "KillMode=control-group",
+    "/usr/bin/nsenter",
+    "--mount=/proc/10331/ns/mnt",
+    "--net=/proc/10331/ns/net",
+    "--",
+    "/usr/bin/bwrap",
+    "--ro-bind",
+    "/var/tmp/crewshal-native-qualification-v14/root",
+    "/",
+    "--proc",
+    "/proc",
+    "--dev",
+    "/dev",
+    "--ro-bind",
+    "/var/tmp/crewshal-native-qualification-v14/root/dev/shm",
+    "/dev/shm",
+    "--unshare-pid",
+    "--unshare-ipc",
+    "--unshare-uts",
+    "--new-session",
+    "--die-with-parent",
+    "--clearenv",
+    "--setenv",
+    "HOME",
+    "/scratch",
+    "--setenv",
+    "CODEX_HOME",
+    "/scratch",
+    "--setenv",
+    "GIT_CONFIG_NOSYSTEM",
+    "1",
+    "--setenv",
+    "GIT_CONFIG_GLOBAL",
+    "/input/empty-global-instructions",
+    "--setenv",
+    "GIT_CONFIG_COUNT",
+    "1",
+    "--setenv",
+    "GIT_CONFIG_KEY_0",
+    "core.hooksPath",
+    "--setenv",
+    "GIT_CONFIG_VALUE_0",
+    "/dev/null",
+    "--setenv",
+    "TOKIO_WORKER_THREADS",
+    "1",
+    "--setenv",
+    "RAYON_NUM_THREADS",
+    "1",
+    "--setenv",
+    "PATH",
+    "/opt/codex/codex-path:/bin:/usr/bin",
+    "--cap-drop",
+    "ALL",
+    "--cap-add",
+    "CAP_SETUID",
+    "--cap-add",
+    "CAP_SETGID",
+    "--cap-add",
+    "CAP_SETPCAP",
+    "--",
+    "/bin/setpriv",
+    "--reuid=65533",
+    "--regid=65533",
+    "--clear-groups",
+    "--bounding-set=-all",
+    "--inh-caps=-all",
+    "--ambient-caps=-all",
+    "--no-new-privs",
+    "/opt/codex/codex-responses-api-proxy-aarch64-unknown-linux-musl",
+    "--port",
+    "8080",
+    "--upstream-url",
+    "http://127.0.0.1:8081/v1/responses"
+  ],
+  "broker_ready_seconds": 0.021,
+  "broker_controls": {
+    "memory.max": "67108864",
+    "memory.swap.max": "0",
+    "cpu.max": "100000 100000",
+    "pids.max": "16"
+  },
+  "broker_roles": [
+    {
+      "Uid": "65533\t65533\t65533\t65533",
+      "Gid": "65533\t65533\t65533\t65533",
+      "CapEff": "0000000000000000",
+      "CapPrm": "0000000000000000",
+      "CapAmb": "0000000000000000",
+      "CapBnd": "0000000000000000",
+      "NoNewPrivs": "1",
+      "VmLck": "4 kB"
+    }
+  ],
+  "native_transport_probe_argv": [
+    "/usr/bin/systemd-run",
+    "--unit=crewshalnativefullv14-f1-transport.service",
+    "--slice=crewshalnativediscoveryv1.slice",
+    "--wait",
+    "--pipe",
+    "--collect",
+    "-p",
+    "MemoryMax=134217728",
+    "-p",
+    "MemorySwapMax=0",
+    "-p",
+    "CPUQuota=100%",
+    "-p",
+    "CPUAffinity=0",
+    "-p",
+    "TasksMax=32",
+    "-p",
+    "RuntimeMaxSec=5s",
+    "-p",
+    "TimeoutStopSec=1s",
+    "-p",
+    "KillMode=control-group",
+    "-p",
+    "LimitFSIZE=infinity",
+    "-p",
+    "SystemCallFilter=~memfd_create shmget shmat linkat setxattr lsetxattr fsetxattr mknodat keyctl add_key request_key",
+    "-p",
+    "SystemCallErrorNumber=EPERM",
+    "/usr/bin/nsenter",
+    "--mount=/proc/10331/ns/mnt",
+    "--net=/proc/10331/ns/net",
+    "--",
+    "/usr/bin/bwrap",
+    "--ro-bind",
+    "/var/tmp/crewshal-native-qualification-v14/root",
+    "/",
+    "--bind",
+    "/var/tmp/crewshal-native-qualification-v14/full-v14-f1/candidate-upper",
+    "/candidate/owned",
+    "--bind",
+    "/var/tmp/crewshal-native-qualification-v14/full-v14-f1/upper",
+    "/scratch",
+    "--ro-bind",
+    "/var/tmp/crewshal-native-qualification-v14/root/input/empty-global-instructions",
+    "/scratch/AGENTS.md",
+    "--ro-bind",
+    "/var/tmp/crewshal-native-qualification-v14/root/input/empty-global-instructions",
+    "/scratch/AGENTS.override.md",
+    "--proc",
+    "/proc",
+    "--dev",
+    "/dev",
+    "--ro-bind",
+    "/var/tmp/crewshal-native-qualification-v14/root/dev/shm",
+    "/dev/shm",
+    "--unshare-pid",
+    "--unshare-ipc",
+    "--unshare-uts",
+    "--new-session",
+    "--die-with-parent",
+    "--clearenv",
+    "--setenv",
+    "HOME",
+    "/scratch",
+    "--setenv",
+    "CODEX_HOME",
+    "/scratch",
+    "--setenv",
+    "GIT_CONFIG_NOSYSTEM",
+    "1",
+    "--setenv",
+    "GIT_CONFIG_GLOBAL",
+    "/input/empty-global-instructions",
+    "--setenv",
+    "GIT_CONFIG_COUNT",
+    "1",
+    "--setenv",
+    "GIT_CONFIG_KEY_0",
+    "core.hooksPath",
+    "--setenv",
+    "GIT_CONFIG_VALUE_0",
+    "/dev/null",
+    "--setenv",
+    "TOKIO_WORKER_THREADS",
+    "1",
+    "--setenv",
+    "RAYON_NUM_THREADS",
+    "1",
+    "--setenv",
+    "PATH",
+    "/opt/codex/codex-path:/bin:/usr/bin",
+    "--cap-drop",
+    "ALL",
+    "--cap-add",
+    "CAP_SETUID",
+    "--cap-add",
+    "CAP_SETGID",
+    "--cap-add",
+    "CAP_SETPCAP",
+    "--",
+    "/bin/setpriv",
+    "--reuid=65534",
+    "--regid=65534",
+    "--clear-groups",
+    "--bounding-set=-all",
+    "--inh-caps=-all",
+    "--ambient-caps=-all",
+    "--no-new-privs",
+    "/bin/python3",
+    "-I",
+    "-B",
+    "-c",
+    "import http.client,json\nobservations=[]\nfor kind in ('headers','redirect'):\n c=http.client.HTTPConnection('127.0.0.1',8080,timeout=1)\n c.request('POST','/v1/responses',json.dumps({'transport_probe':kind}),headers={'Host':'127.0.0.1:8082','Authorization':'Bearer guessed','Content-Type':'application/json','X-Upstream-URL':'http://127.0.0.1:8082/nonallowed'})\n r=c.getresponse(); body=r.read(1024)\n observations.append({'probe':kind,'status':r.status,'bytes':len(body)})\n c.close()\nprint(json.dumps(observations))\n"
+  ],
+  "native_transport_probe_output": "[{\"probe\": \"headers\", \"status\": 200, \"bytes\": 2}, {\"probe\": \"redirect\", \"status\": 500, \"bytes\": 0}]",
+  "transport_observations": [
+    {
+      "probe": "headers",
+      "auth_matches": true,
+      "host": "127.0.0.1:8081"
+    },
+    {
+      "probe": "redirect",
+      "auth_matches": true,
+      "host": "127.0.0.1:8081"
+    }
+  ],
+  "argv": [
+    "/usr/bin/systemd-run",
+    "--unit=crewshalnativefullv14-f1.service",
+    "--slice=crewshalnativediscoveryv1.slice",
+    "--wait",
+    "--pipe",
+    "--collect",
+    "-p",
+    "MemoryMax=134217728",
+    "-p",
+    "MemorySwapMax=0",
+    "-p",
+    "CPUQuota=100%",
+    "-p",
+    "CPUAffinity=0",
+    "-p",
+    "TasksMax=32",
+    "-p",
+    "RuntimeMaxSec=5s",
+    "-p",
+    "TimeoutStopSec=1s",
+    "-p",
+    "KillMode=control-group",
+    "-p",
+    "LimitFSIZE=infinity",
+    "-p",
+    "SystemCallFilter=~memfd_create shmget shmat linkat setxattr lsetxattr fsetxattr mknodat keyctl add_key request_key",
+    "-p",
+    "SystemCallErrorNumber=EPERM",
+    "/usr/bin/nsenter",
+    "--mount=/proc/10331/ns/mnt",
+    "--net=/proc/10331/ns/net",
+    "--",
+    "/usr/bin/bwrap",
+    "--ro-bind",
+    "/var/tmp/crewshal-native-qualification-v14/root",
+    "/",
+    "--bind",
+    "/var/tmp/crewshal-native-qualification-v14/full-v14-f1/candidate-upper",
+    "/candidate/owned",
+    "--bind",
+    "/var/tmp/crewshal-native-qualification-v14/full-v14-f1/upper",
+    "/scratch",
+    "--ro-bind",
+    "/var/tmp/crewshal-native-qualification-v14/root/input/empty-global-instructions",
+    "/scratch/AGENTS.md",
+    "--ro-bind",
+    "/var/tmp/crewshal-native-qualification-v14/root/input/empty-global-instructions",
+    "/scratch/AGENTS.override.md",
+    "--proc",
+    "/proc",
+    "--dev",
+    "/dev",
+    "--ro-bind",
+    "/var/tmp/crewshal-native-qualification-v14/root/dev/shm",
+    "/dev/shm",
+    "--unshare-pid",
+    "--unshare-ipc",
+    "--unshare-uts",
+    "--new-session",
+    "--die-with-parent",
+    "--clearenv",
+    "--setenv",
+    "HOME",
+    "/scratch",
+    "--setenv",
+    "CODEX_HOME",
+    "/scratch",
+    "--setenv",
+    "GIT_CONFIG_NOSYSTEM",
+    "1",
+    "--setenv",
+    "GIT_CONFIG_GLOBAL",
+    "/input/empty-global-instructions",
+    "--setenv",
+    "GIT_CONFIG_COUNT",
+    "1",
+    "--setenv",
+    "GIT_CONFIG_KEY_0",
+    "core.hooksPath",
+    "--setenv",
+    "GIT_CONFIG_VALUE_0",
+    "/dev/null",
+    "--setenv",
+    "TOKIO_WORKER_THREADS",
+    "1",
+    "--setenv",
+    "RAYON_NUM_THREADS",
+    "1",
+    "--setenv",
+    "PATH",
+    "/opt/codex/codex-path:/bin:/usr/bin",
+    "--cap-drop",
+    "ALL",
+    "--cap-add",
+    "CAP_SETUID",
+    "--cap-add",
+    "CAP_SETGID",
+    "--cap-add",
+    "CAP_SETPCAP",
+    "--",
+    "/bin/setpriv",
+    "--reuid=65534",
+    "--regid=65534",
+    "--clear-groups",
+    "--bounding-set=-all",
+    "--inh-caps=-all",
+    "--ambient-caps=-all",
+    "--no-new-privs",
+    "/opt/codex/bin/codex",
+    "exec",
+    "--ephemeral",
+    "--ignore-user-config",
+    "--ignore-rules",
+    "--skip-git-repo-check",
+    "--color",
+    "never",
+    "--json",
+    "-C",
+    "/scratch/checkout",
+    "--add-dir",
+    "/candidate/owned",
+    "--add-dir",
+    "/scratch",
+    "-s",
+    "workspace-write",
+    "-m",
+    "synthetic",
+    "-c",
+    "approval_policy=\"never\"",
+    "-c",
+    "model_provider=\"fixture\"",
+    "-c",
+    "model_providers.fixture.name=\"fixture\"",
+    "-c",
+    "model_providers.fixture.base_url=\"http://127.0.0.1:8080/v1\"",
+    "-c",
+    "model_providers.fixture.wire_api=\"responses\"",
+    "-c",
+    "model_providers.fixture.requires_openai_auth=false",
+    "-c",
+    "model_providers.fixture.request_max_retries=0",
+    "-c",
+    "model_providers.fixture.stream_max_retries=0",
+    "-c",
+    "features.shell_snapshot=false",
+    "-c",
+    "project_doc_max_bytes=0",
+    "-c",
+    "features.sqlite=false",
+    "-c",
+    "thread_unload_delay_secs=0",
+    "-c",
+    "agents.enabled=false",
+    "-c",
+    "features.goals=false",
+    "-c",
+    "features.memories=false",
+    "-c",
+    "features.multi_agent=false",
+    "-c",
+    "features.hooks=false",
+    "-c",
+    "features.view_image=false",
+    "-c",
+    "web_search=\"disabled\"",
+    "-c",
+    "analytics.enabled=false",
+    "-c",
+    "feedback.enabled=false",
+    "-c",
+    "otel.exporter=\"none\"",
+    "-c",
+    "otel.trace_exporter=\"none\"",
+    "-c",
+    "otel.metrics_exporter=\"none\"",
+    "-c",
+    "check_for_update_on_startup=false",
+    "-c",
+    "features.plugins=false",
+    "-c",
+    "features.remote_plugin=false",
+    "-c",
+    "features.recommended_plugins=false",
+    "-c",
+    "features.plugin_hooks=false",
+    "-c",
+    "features.apps=false",
+    "-c",
+    "skills.bundled.enabled=false",
+    "-c",
+    "skills.include_instructions=false",
+    "-c",
+    "features.skip_host_skill_discovery=true",
+    "-c",
+    "allow_login_shell=false",
+    "Write tiny into /scratch/native-tiny using command tool. Then finish."
+  ],
+  "storage_peaks": {
+    "candidate": {
+      "logical": 9396303,
+      "allocated": 11177984,
+      "deleted_open": 1
+    },
+    "scratch": {
+      "logical": 23223430,
+      "allocated": 26562560,
+      "deleted_open": 0
+    }
+  },
+  "thread_inventory_peak_count": 25,
+  "thread_inventory_peak": {
+    "bwrap": 2,
+    "codex": 2,
+    "codex-main": 1,
+    "tokio-rt-worker": 3,
+    "sqlx-sqlite-wor": 9,
+    "notify-rs inoti": 2,
+    "codex-child-rea": 1,
+    "codex-linux-san": 1,
+    "3": 1,
+    "python3": 3
+  },
+  "worker_last_resources": {
+    "pids.current": "20",
+    "pids.events": "max 0",
+    "memory.current": "19419136",
+    "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+  },
+  "worker_peak_tasks_observed": 25,
+  "payload_roles_observed": [
+    {
+      "pid": 10411,
+      "label": "crewshal-native-bwrap-v1//&crewshal-native-tool-v1 (enforce)",
+      "uid": "65534\t65534\t65534\t65534",
+      "cap_eff": "0000000000000000",
+      "no_new_privs": "1",
+      "network_namespace": "net:[4026532988]"
+    },
+    {
+      "pid": 10412,
+      "label": "crewshal-native-bwrap-v1//&crewshal-native-tool-v1 (enforce)",
+      "uid": "65534\t65534\t65534\t65534",
+      "cap_eff": "0000000000000000",
+      "no_new_privs": "1",
+      "network_namespace": "net:[4026532988]"
+    }
+  ],
+  "deleted_open_observed": {
+    "pid": 10412,
+    "fd": 3,
+    "device": 61,
+    "inode": 22,
+    "logical": 1048576,
+    "allocated": 1056768,
+    "links": 0,
+    "uid": 65534,
+    "lower_used": 1122304
+  },
+  "live_artifact": {
+    "logical": 4,
+    "allocated": 12288,
+    "uid": 65534,
+    "gid": 65534,
+    "links": 1,
+    "sha256": "8950abfda7b727630760dd35bcf5c3daa7631aff223a90f7728c0d2521dde10c"
+  },
+  "verified_work_seconds": 1.087,
+  "supervisor_stop_after_verified_work": true,
+  "exit": 0,
+  "stdout": "{\"type\":\"thread.started\",\"thread_id\":\"01a11b25-c9d9-7bc3-b197-2a713489969d\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"error\",\"message\":\"Under-development features enabled: skip_host_skill_discovery. Under-development features are incomplete and may behave unpredictably. To suppress this warning, set `suppress_unstable_features_warning = true` in /scratch/config.toml.\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_1\",\"type\":\"error\",\"message\":\"Model metadata for `synthetic` not found. Defaulting to fallback metadata; this can degrade performance and cause issues.\"}}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.started\",\"item\":{\"id\":\"item_2\",\"type\":\"command_execution\",\"command\":\"/bin/sh -c 'exec /bin/python3 -I -B /input/native-full-payload.py workload'\",\"aggregated_output\":\"\",\"exit_code\":null,\"status\":\"in_progress\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_2\",\"type\":\"command_execution\",\"command\":\"/bin/sh -c 'exec /bin/python3 -I -B /input/native-full-payload.py workload'\",\"aggregated_output\":\"\",\"exit_code\":0,\"status\":\"completed\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_3\",\"type\":\"agent_message\",\"text\":\"tiny\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":2,\"cached_input_tokens\":0,\"cache_write_input_tokens\":0,\"output_tokens\":2,\"reasoning_output_tokens\":0}}\n",
+  "stderr": "Running as unit: crewshalnativefullv14-f1.service; invocation ID: 25dcb078df6841b7a0bb0ae01f58441d\nReading additional input from stdin...\nFinished with result: success\nMain processes terminated with: code=killed/status=TERM\nService runtime: 1.084s\nCPU time consumed: 588ms\nMemory peak: 75.8M\nMemory swap peak: 0B\n",
+  "worker_controls": [
+    {
+      "memory.max": "134217728",
+      "memory.swap.max": "0",
+      "cpu.max": "100000 100000",
+      "pids.max": "32"
+    }
+  ],
+  "worker_seconds": 1.102,
+  "captured_streams": {
+    "stdout": "{\"type\":\"thread.started\",\"thread_id\":\"01a11b25-c9d9-7bc3-b197-2a713489969d\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"error\",\"message\":\"Under-development features enabled: skip_host_skill_discovery. Under-development features are incomplete and may behave unpredictably. To suppress this warning, set `suppress_unstable_features_warning = true` in /scratch/config.toml.\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_1\",\"type\":\"error\",\"message\":\"Model metadata for `synthetic` not found. Defaulting to fallback metadata; this can degrade performance and cause issues.\"}}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.started\",\"item\":{\"id\":\"item_2\",\"type\":\"command_execution\",\"command\":\"/bin/sh -c 'exec /bin/python3 -I -B /input/native-full-payload.py workload'\",\"aggregated_output\":\"\",\"exit_code\":null,\"status\":\"in_progress\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_2\",\"type\":\"command_execution\",\"command\":\"/bin/sh -c 'exec /bin/python3 -I -B /input/native-full-payload.py workload'\",\"aggregated_output\":\"\",\"exit_code\":0,\"status\":\"completed\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_3\",\"type\":\"agent_message\",\"text\":\"tiny\"}}\n{\"type\":\"turn.completed\",\"usage\":{\"input_tokens\":2,\"cached_input_tokens\":0,\"cache_write_input_tokens\":0,\"output_tokens\":2,\"reasoning_output_tokens\":0}}\n",
+    "stderr": "Running as unit: crewshalnativefullv14-f1.service; invocation ID: 25dcb078df6841b7a0bb0ae01f58441d\nReading additional input from stdin...\nFinished with result: success\nMain processes terminated with: code=killed/status=TERM\nService runtime: 1.084s\nCPU time consumed: 588ms\nMemory peak: 75.8M\nMemory swap peak: 0B\n",
+    "proxy_stdout": "",
+    "proxy_stderr": "Running as unit: crewshalnativeproxybroker-v1-f1.service; invocation ID: 4e562d6357ff4503928a4a2868ec64ad\nresponses-api-proxy listening on 127.0.0.1:8080\nforwarding error: forwarding request to upstream\n"
+  },
+  "fixture_requests_after_capture": [
+    {
+      "path": "/v1/responses",
+      "tool_outputs": [],
+      "tools": [
+        "exec_command",
+        "write_stdin",
+        "request_user_input"
+      ],
+      "instruction_markers": [],
+      "instruction_injection_present": false
+    },
+    {
+      "path": "/v1/responses",
+      "tool_outputs": [
+        {
+          "call_id": "call_tiny",
+          "output": "Chunk ID: 7fb427\nWall time: 0.8247 seconds\nProcess exited with code 0\nOriginal token count: 0\nOutput:\n"
+        }
+      ],
+      "tools": [
+        "exec_command",
+        "write_stdin",
+        "request_user_input"
+      ],
+      "instruction_markers": [],
+      "instruction_injection_present": false
+    }
+  ],
+  "provider_auth_observations_after_capture": [
+    {
+      "path": "/v1/responses",
+      "auth_matches": true,
+      "host": "127.0.0.1:8081"
+    },
+    {
+      "path": "/v1/responses",
+      "auth_matches": true,
+      "host": "127.0.0.1:8081"
+    },
+    {
+      "path": "/v1/responses",
+      "auth_matches": true,
+      "host": "127.0.0.1:8081"
+    },
+    {
+      "path": "/v1/responses",
+      "auth_matches": true,
+      "host": "127.0.0.1:8081"
+    }
+  ],
+  "nonallowed_sink_after_capture": [],
+  "worker_process_return_at_capture_end": 0,
+  "upper_inventory": [
+    {
+      "path": "codex-bwrap-synthetic-mount-targets-65534",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "AGENTS.md",
+      "size": 74,
+      "allocated": 12288
+    },
+    {
+      "path": "native-tiny",
+      "size": 4,
+      "allocated": 12288
+    },
+    {
+      "path": "memories_1.sqlite-wal",
+      "size": 86552,
+      "allocated": 98304
+    },
+    {
+      "path": "goals_1.sqlite-wal",
+      "size": 74192,
+      "allocated": 86016
+    },
+    {
+      "path": "full-observations.json",
+      "size": 17749,
+      "allocated": 28672
+    },
+    {
+      "path": "state_5.sqlite",
+      "size": 4096,
+      "allocated": 12288
+    },
+    {
+      "path": "goals_1.sqlite",
+      "size": 4096,
+      "allocated": 12288
+    },
+    {
+      "path": "payload-progress.json",
+      "size": 764,
+      "allocated": 12288
+    },
+    {
+      "path": "codex-daemon-65534",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "goals_1.sqlite-shm",
+      "size": 32768,
+      "allocated": 40960
+    },
+    {
+      "path": "config.toml",
+      "size": 193,
+      "allocated": 12288
+    },
+    {
+      "path": "memories_1.sqlite-shm",
+      "size": 32768,
+      "allocated": 40960
+    },
+    {
+      "path": "existing",
+      "size": 14,
+      "allocated": 12288
+    },
+    {
+      "path": "queue_1.sqlite",
+      "size": 4096,
+      "allocated": 12288
+    },
+    {
+      "path": "queue_1.sqlite-shm",
+      "size": 32768,
+      "allocated": 40960
+    },
+    {
+      "path": "memories_1.sqlite",
+      "size": 4096,
+      "allocated": 12288
+    },
+    {
+      "path": "deleted-ready.json",
+      "size": 76,
+      "allocated": 12288
+    },
+    {
+      "path": "logs_2.sqlite",
+      "size": 49152,
+      "allocated": 57344
+    },
+    {
+      "path": "installation_id",
+      "size": 36,
+      "allocated": 12288
+    },
+    {
+      "path": "state_5.sqlite-shm",
+      "size": 32768,
+      "allocated": 40960
+    },
+    {
+      "path": "lost+found",
+      "size": 16384,
+      "allocated": 16384
+    },
+    {
+      "path": "new-owned",
+      "size": 9,
+      "allocated": 12288
+    },
+    {
+      "path": "state_5.sqlite-wal",
+      "size": 1989992,
+      "allocated": 1998848
+    },
+    {
+      "path": "checkout",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "queue_1.sqlite-wal",
+      "size": 82432,
+      "allocated": 94208
+    },
+    {
+      "path": "AGENTS.override.md",
+      "size": 47,
+      "allocated": 12288
+    },
+    {
+      "path": ".gitconfig",
+      "size": 44,
+      "allocated": 12288
+    },
+    {
+      "path": "tmp",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "codex-bwrap-synthetic-mount-targets-65534/lock",
+      "size": 0,
+      "allocated": 8192
+    },
+    {
+      "path": "checkout/AGENTS.md",
+      "size": 88,
+      "allocated": 12288
+    },
+    {
+      "path": "checkout/.agents",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "checkout/dirty.py",
+      "size": 35,
+      "allocated": 12288
+    },
+    {
+      "path": "checkout/.codex",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "checkout/.git",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "tmp/arg0",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "checkout/.codex/config.toml",
+      "size": 166,
+      "allocated": 12288
+    },
+    {
+      "path": "checkout/.git/HEAD",
+      "size": 24,
+      "allocated": 12288
+    },
+    {
+      "path": "checkout/.git/objects",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "checkout/.git/config",
+      "size": 47,
+      "allocated": 12288
+    },
+    {
+      "path": "checkout/.git/refs",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "checkout/.git/hooks",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "checkout/.git/hooks/pre-commit",
+      "size": 58,
+      "allocated": 12288
+    }
+  ],
+  "lower_inventory": [
+    {
+      "path": "codex-bwrap-synthetic-mount-targets-65534",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "AGENTS.md",
+      "size": 12288,
+      "allocated": 12288
+    },
+    {
+      "path": "native-tiny",
+      "size": 12288,
+      "allocated": 12288
+    },
+    {
+      "path": "memories_1.sqlite-wal",
+      "size": 98304,
+      "allocated": 98304
+    },
+    {
+      "path": "goals_1.sqlite-wal",
+      "size": 86016,
+      "allocated": 86016
+    },
+    {
+      "path": "full-observations.json",
+      "size": 28672,
+      "allocated": 28672
+    },
+    {
+      "path": "state_5.sqlite",
+      "size": 12288,
+      "allocated": 12288
+    },
+    {
+      "path": "goals_1.sqlite",
+      "size": 12288,
+      "allocated": 12288
+    },
+    {
+      "path": "payload-progress.json",
+      "size": 12288,
+      "allocated": 12288
+    },
+    {
+      "path": "codex-daemon-65534",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "goals_1.sqlite-shm",
+      "size": 40960,
+      "allocated": 40960
+    },
+    {
+      "path": "config.toml",
+      "size": 12288,
+      "allocated": 12288
+    },
+    {
+      "path": "memories_1.sqlite-shm",
+      "size": 40960,
+      "allocated": 40960
+    },
+    {
+      "path": "existing",
+      "size": 12288,
+      "allocated": 12288
+    },
+    {
+      "path": "queue_1.sqlite",
+      "size": 12288,
+      "allocated": 12288
+    },
+    {
+      "path": "queue_1.sqlite-shm",
+      "size": 40960,
+      "allocated": 40960
+    },
+    {
+      "path": "memories_1.sqlite",
+      "size": 12288,
+      "allocated": 12288
+    },
+    {
+      "path": "deleted-ready.json",
+      "size": 12288,
+      "allocated": 12288
+    },
+    {
+      "path": "logs_2.sqlite",
+      "size": 57344,
+      "allocated": 57344
+    },
+    {
+      "path": "installation_id",
+      "size": 12288,
+      "allocated": 12288
+    },
+    {
+      "path": "state_5.sqlite-shm",
+      "size": 40960,
+      "allocated": 40960
+    },
+    {
+      "path": "lost+found",
+      "size": 16384,
+      "allocated": 16384
+    },
+    {
+      "path": "new-owned",
+      "size": 12288,
+      "allocated": 12288
+    },
+    {
+      "path": "state_5.sqlite-wal",
+      "size": 1998848,
+      "allocated": 1998848
+    },
+    {
+      "path": "checkout",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "queue_1.sqlite-wal",
+      "size": 94208,
+      "allocated": 94208
+    },
+    {
+      "path": "AGENTS.override.md",
+      "size": 12288,
+      "allocated": 12288
+    },
+    {
+      "path": ".gitconfig",
+      "size": 12288,
+      "allocated": 12288
+    },
+    {
+      "path": "tmp",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "codex-bwrap-synthetic-mount-targets-65534/lock",
+      "size": 8192,
+      "allocated": 8192
+    },
+    {
+      "path": "checkout/AGENTS.md",
+      "size": 12288,
+      "allocated": 12288
+    },
+    {
+      "path": "checkout/.agents",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "checkout/dirty.py",
+      "size": 12288,
+      "allocated": 12288
+    },
+    {
+      "path": "checkout/.codex",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "checkout/.git",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "tmp/arg0",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "checkout/.codex/config.toml",
+      "size": 12288,
+      "allocated": 12288
+    },
+    {
+      "path": "checkout/.git/HEAD",
+      "size": 12288,
+      "allocated": 12288
+    },
+    {
+      "path": "checkout/.git/objects",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "checkout/.git/config",
+      "size": 12288,
+      "allocated": 12288
+    },
+    {
+      "path": "checkout/.git/refs",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "checkout/.git/hooks",
+      "size": 4096,
+      "allocated": 4096
+    },
+    {
+      "path": "checkout/.git/hooks/pre-commit",
+      "size": 12288,
+      "allocated": 12288
+    }
+  ],
+  "provider_auth_observations": [
+    {
+      "path": "/v1/responses",
+      "auth_matches": true,
+      "host": "127.0.0.1:8081"
+    },
+    {
+      "path": "/v1/responses",
+      "auth_matches": true,
+      "host": "127.0.0.1:8081"
+    },
+    {
+      "path": "/v1/responses",
+      "auth_matches": true,
+      "host": "127.0.0.1:8081"
+    },
+    {
+      "path": "/v1/responses",
+      "auth_matches": true,
+      "host": "127.0.0.1:8081"
+    }
+  ],
+  "nft_after": {
+    "nftables": [
+      {
+        "metainfo": {
+          "version": "1.0.9",
+          "release_name": "Old Doc Yak #3",
+          "json_schema_version": 1
+        }
+      },
+      {
+        "table": {
+          "family": "inet",
+          "name": "crewshal_full_v14",
+          "handle": 1
+        }
+      },
+      {
+        "counter": {
+          "family": "inet",
+          "name": "native_allowed",
+          "table": "crewshal_full_v14",
+          "handle": 2,
+          "packets": 25,
+          "bytes": 54614
+        }
+      },
+      {
+        "counter": {
+          "family": "inet",
+          "name": "proxy_allowed",
+          "table": "crewshal_full_v14",
+          "handle": 3,
+          "packets": 23,
+          "bytes": 54766
+        }
+      },
+      {
+        "counter": {
+          "family": "inet",
+          "name": "proxy_reply",
+          "table": "crewshal_full_v14",
+          "handle": 4,
+          "packets": 21,
+          "bytes": 4259
+        }
+      },
+      {
+        "counter": {
+          "family": "inet",
+          "name": "denied",
+          "table": "crewshal_full_v14",
+          "handle": 5,
+          "packets": 1,
+          "bytes": 60
+        }
+      },
+      {
+        "chain": {
+          "family": "inet",
+          "table": "crewshal_full_v14",
+          "name": "output",
+          "handle": 1,
+          "type": "filter",
+          "hook": "output",
+          "prio": 0,
+          "policy": "accept"
+        }
+      },
+      {
+        "rule": {
+          "family": "inet",
+          "table": "crewshal_full_v14",
+          "chain": "output",
+          "handle": 6,
+          "expr": [
+            {
+              "match": {
+                "op": "==",
+                "left": {
+                  "meta": {
+                    "key": "skuid"
+                  }
+                },
+                "right": 65534
+              }
+            },
+            {
+              "match": {
+                "op": "==",
+                "left": {
+                  "payload": {
+                    "protocol": "ip",
+                    "field": "daddr"
+                  }
+                },
+                "right": "127.0.0.1"
+              }
+            },
+            {
+              "match": {
+                "op": "==",
+                "left": {
+                  "payload": {
+                    "protocol": "tcp",
+                    "field": "dport"
+                  }
+                },
+                "right": 8080
+              }
+            },
+            {
+              "counter": "native_allowed"
+            },
+            {
+              "accept": null
+            }
+          ]
+        }
+      },
+      {
+        "rule": {
+          "family": "inet",
+          "table": "crewshal_full_v14",
+          "chain": "output",
+          "handle": 7,
+          "expr": [
+            {
+              "match": {
+                "op": "==",
+                "left": {
+                  "meta": {
+                    "key": "skuid"
+                  }
+                },
+                "right": 65533
+              }
+            },
+            {
+              "match": {
+                "op": "==",
+                "left": {
+                  "payload": {
+                    "protocol": "ip",
+                    "field": "daddr"
+                  }
+                },
+                "right": "127.0.0.1"
+              }
+            },
+            {
+              "match": {
+                "op": "==",
+                "left": {
+                  "payload": {
+                    "protocol": "tcp",
+                    "field": "dport"
+                  }
+                },
+                "right": 8081
+              }
+            },
+            {
+              "counter": "proxy_allowed"
+            },
+            {
+              "accept": null
+            }
+          ]
+        }
+      },
+      {
+        "rule": {
+          "family": "inet",
+          "table": "crewshal_full_v14",
+          "chain": "output",
+          "handle": 8,
+          "expr": [
+            {
+              "match": {
+                "op": "==",
+                "left": {
+                  "meta": {
+                    "key": "skuid"
+                  }
+                },
+                "right": 65533
+              }
+            },
+            {
+              "match": {
+                "op": "==",
+                "left": {
+                  "payload": {
+                    "protocol": "ip",
+                    "field": "daddr"
+                  }
+                },
+                "right": "127.0.0.1"
+              }
+            },
+            {
+              "match": {
+                "op": "==",
+                "left": {
+                  "payload": {
+                    "protocol": "tcp",
+                    "field": "sport"
+                  }
+                },
+                "right": 8080
+              }
+            },
+            {
+              "match": {
+                "op": "in",
+                "left": {
+                  "ct": {
+                    "key": "state"
+                  }
+                },
+                "right": "established"
+              }
+            },
+            {
+              "counter": "proxy_reply"
+            },
+            {
+              "accept": null
+            }
+          ]
+        }
+      },
+      {
+        "rule": {
+          "family": "inet",
+          "table": "crewshal_full_v14",
+          "chain": "output",
+          "handle": 10,
+          "expr": [
+            {
+              "match": {
+                "op": "==",
+                "left": {
+                  "meta": {
+                    "key": "skuid"
+                  }
+                },
+                "right": {
+                  "set": [
+                    65531,
+                    65533,
+                    65534
+                  ]
+                }
+              }
+            },
+            {
+              "counter": "denied"
+            },
+            {
+              "reject": {
+                "type": "icmpx",
+                "expr": "admin-prohibited"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "fixture_requests": [
+    {
+      "path": "/v1/responses",
+      "tool_outputs": [],
+      "tools": [
+        "exec_command",
+        "write_stdin",
+        "request_user_input"
+      ],
+      "instruction_markers": [],
+      "instruction_injection_present": false
+    },
+    {
+      "path": "/v1/responses",
+      "tool_outputs": [
+        {
+          "call_id": "call_tiny",
+          "output": "Chunk ID: 7fb427\nWall time: 0.8247 seconds\nProcess exited with code 0\nOriginal token count: 0\nOutput:\n"
+        }
+      ],
+      "tools": [
+        "exec_command",
+        "write_stdin",
+        "request_user_input"
+      ],
+      "instruction_markers": [],
+      "instruction_injection_present": false
+    }
+  ],
+  "tiny_exists_before_exit_check": true,
+  "tool_negative_observations": {
+    "uid": 65534,
+    "environment": {
+      "CODEX_CI": "1",
+      "CODEX_HOME": "/scratch",
+      "GIT_CONFIG_COUNT": "1",
+      "HOME": "/scratch",
+      "RAYON_NUM_THREADS": "1",
+      "GIT_CONFIG_GLOBAL": "/input/empty-global-instructions",
+      "PAGER": "cat",
+      "LC_CTYPE": "C.UTF-8",
+      "NO_COLOR": "1",
+      "COLORTERM": "",
+      "TERM": "dumb",
+      "GIT_CONFIG_VALUE_0": "/dev/null",
+      "PATH": "/opt/codex/codex-path:/scratch/tmp/arg0/codex-arg07oSFGt:/bin:/usr/bin",
+      "CODEX_SESSION_ID": "01a11b25-c9d9-7bc3-b197-2a713489969d",
+      "CODEX_VERSION": "0.160.1",
+      "GIT_CONFIG_NOSYSTEM": "1",
+      "CODEX_SANDBOX_NETWORK_DISABLED": "1",
+      "LANG": "C.UTF-8",
+      "GH_PAGER": "cat",
+      "GIT_CONFIG_KEY_0": "core.hooksPath",
+      "CODEX_THREAD_ID": "01a11b25-c9d9-7bc3-b197-2a713489969d",
+      "GIT_PAGER": "cat",
+      "LC_ALL": "C.UTF-8",
+      "PWD": "/scratch/checkout",
+      "TOKIO_WORKER_THREADS": "1"
+    },
+    "denied": {
+      "token": {
+        "errno": 2
+      },
+      "host_home": {
+        "errno": 2
+      },
+      "host_root": {
+        "errno": 13
+      },
+      "coordinator": {
+        "errno": 2
+      },
+      "native_fd": {
+        "errno": 13
+      },
+      "tcp_8080": {
+        "errno": 1
+      },
+      "tcp_8081": {
+        "errno": 1
+      },
+      "tcp_8082": {
+        "errno": 1
+      },
+      "udp": {
+        "errno": 1
+      },
+      "dns": {
+        "errno": 1
+      },
+      "ipv6": {
+        "errno": 1
+      },
+      "memfd": {
+        "errno": 1
+      },
+      "userns": {
+        "return": -1,
+        "errno": 13
+      }
+    },
+    "status": {
+      "CapPrm": "0000000000000000",
+      "CapEff": "0000000000000000",
+      "CapBnd": "0000000000000000",
+      "CapAmb": "0000000000000000",
+      "NoNewPrivs": "1"
+    },
+    "label": "crewshal-native-bwrap-v1//&crewshal-native-tool-v1 (enforce)",
+    "network_namespace": "net:[4026532988]",
+    "filesystem": {
+      "outside_read": {
+        "denied": true,
+        "errno": 2
+      },
+      "outside_write": {
+        "denied": true,
+        "errno": 2
+      },
+      "outside_chmod": {
+        "denied": true,
+        "errno": 2
+      },
+      "outside_unlink": {
+        "denied": true,
+        "errno": 2
+      },
+      "outside_rename": {
+        "denied": true,
+        "errno": 2
+      },
+      "outside_link": {
+        "denied": true,
+        "errno": 1
+      },
+      "dirty_read": {
+        "denied": true,
+        "errno": 2
+      },
+      "dirty_write": {
+        "denied": true,
+        "errno": 2
+      },
+      "dirty_chmod": {
+        "denied": true,
+        "errno": 2
+      },
+      "dirty_unlink": {
+        "denied": true,
+        "errno": 2
+      },
+      "dirty_rename": {
+        "denied": true,
+        "errno": 2
+      },
+      "dirty_link": {
+        "denied": true,
+        "errno": 1
+      },
+      "git_read": {
+        "denied": true,
+        "errno": 2
+      },
+      "git_write": {
+        "denied": true,
+        "errno": 2
+      },
+      "git_chmod": {
+        "denied": true,
+        "errno": 2
+      },
+      "git_unlink": {
+        "denied": true,
+        "errno": 2
+      },
+      "git_rename": {
+        "denied": true,
+        "errno": 2
+      },
+      "git_link": {
+        "denied": true,
+        "errno": 1
+      },
+      "database_read": {
+        "denied": true,
+        "errno": 2
+      },
+      "database_write": {
+        "denied": true,
+        "errno": 2
+      },
+      "database_chmod": {
+        "denied": true,
+        "errno": 2
+      },
+      "database_unlink": {
+        "denied": true,
+        "errno": 2
+      },
+      "database_rename": {
+        "denied": true,
+        "errno": 2
+      },
+      "database_link": {
+        "denied": true,
+        "errno": 1
+      },
+      "artifact_read": {
+        "denied": true,
+        "errno": 2
+      },
+      "artifact_write": {
+        "denied": true,
+        "errno": 2
+      },
+      "artifact_chmod": {
+        "denied": true,
+        "errno": 2
+      },
+      "artifact_unlink": {
+        "denied": true,
+        "errno": 2
+      },
+      "artifact_rename": {
+        "denied": true,
+        "errno": 2
+      },
+      "artifact_link": {
+        "denied": true,
+        "errno": 1
+      },
+      "readonly_write": {
+        "denied": true,
+        "errno": 30
+      },
+      "readonly_chmod": {
+        "denied": true,
+        "errno": 30
+      },
+      "readonly_unlink": {
+        "denied": true,
+        "errno": 30
+      },
+      "readonly_rename": {
+        "denied": true,
+        "errno": 18
+      },
+      "readonly_link": {
+        "denied": true,
+        "errno": 1
+      },
+      "absolute_link_read": {
+        "denied": true,
+        "errno": 2
+      },
+      "absolute_link_write": {
+        "denied": true,
+        "errno": 2
+      },
+      "relative_link_read": {
+        "denied": true,
+        "errno": 2
+      },
+      "relative_link_write": {
+        "denied": true,
+        "errno": 2
+      },
+      "new_/candidate/owned/absolute-parent/new": {
+        "denied": true,
+        "errno": 2
+      },
+      "new_/candidate/owned/relative-parent/new": {
+        "denied": true,
+        "errno": 2
+      },
+      "new_/candidate/owned/../new": {
+        "denied": true,
+        "errno": 30
+      },
+      "new_/outside/new": {
+        "denied": true,
+        "errno": 2
+      },
+      "new_/original/new": {
+        "denied": true,
+        "errno": 2
+      },
+      "new_/coordinator/new": {
+        "denied": true,
+        "errno": 2
+      },
+      "new_/input/new": {
+        "denied": true,
+        "errno": 30
+      }
+    },
+    "global_instruction_view": {
+      "AGENTS.md": {
+        "contents": "",
+        "write": {
+          "denied": true,
+          "errno": 30
+        },
+        "unlink": {
+          "denied": true,
+          "errno": 16
+        }
+      },
+      "AGENTS.override.md": {
+        "contents": "",
+        "write": {
+          "denied": true,
+          "errno": 30
+        },
+        "unlink": {
+          "denied": true,
+          "errno": 16
+        }
+      }
+    },
+    "input": "read-only synthetic input",
+    "hooks": {
+      "positive": {
+        "repository": {
+          "exit": 0,
+          "sentinel": "hook"
+        },
+        "global": {
+          "exit": 0,
+          "sentinel": "hook"
+        },
+        "runtime": {
+          "exit": 0,
+          "sentinel": "hook"
+        }
+      },
+      "negative": {
+        "effective_hooks_path": "command line:\t/dev/null",
+        "hook_exit": 0,
+        "sentinels_absent": true
+      },
+      "runtime_environment": {
+        "BASH_ENV": false,
+        "ENV": false,
+        "PYTHONSTARTUP": false,
+        "GIT_CONFIG": false,
+        "GIT_CONFIG_SYSTEM": false
+      }
+    },
+    "child": {
+      "uid": 65534,
+      "environment": {
+        "CODEX_CI": "1",
+        "CODEX_HOME": "/scratch",
+        "GIT_CONFIG_COUNT": "1",
+        "HOME": "/scratch",
+        "RAYON_NUM_THREADS": "1",
+        "GIT_CONFIG_GLOBAL": "/input/empty-global-instructions",
+        "PAGER": "cat",
+        "LC_CTYPE": "C.UTF-8",
+        "NO_COLOR": "1",
+        "COLORTERM": "",
+        "TERM": "dumb",
+        "GIT_CONFIG_VALUE_0": "/dev/null",
+        "PATH": "/opt/codex/codex-path:/scratch/tmp/arg0/codex-arg07oSFGt:/bin:/usr/bin",
+        "CODEX_SESSION_ID": "01a11b25-c9d9-7bc3-b197-2a713489969d",
+        "CODEX_VERSION": "0.160.1",
+        "GIT_CONFIG_NOSYSTEM": "1",
+        "CODEX_SANDBOX_NETWORK_DISABLED": "1",
+        "LANG": "C.UTF-8",
+        "GH_PAGER": "cat",
+        "GIT_CONFIG_KEY_0": "core.hooksPath",
+        "CODEX_THREAD_ID": "01a11b25-c9d9-7bc3-b197-2a713489969d",
+        "GIT_PAGER": "cat",
+        "LC_ALL": "C.UTF-8",
+        "PWD": "/scratch/checkout",
+        "TOKIO_WORKER_THREADS": "1"
+      },
+      "denied": {
+        "token": {
+          "errno": 2
+        },
+        "host_home": {
+          "errno": 2
+        },
+        "host_root": {
+          "errno": 13
+        },
+        "coordinator": {
+          "errno": 2
+        },
+        "native_fd": {
+          "errno": 13
+        },
+        "tcp_8080": {
+          "errno": 1
+        },
+        "tcp_8081": {
+          "errno": 1
+        },
+        "tcp_8082": {
+          "errno": 1
+        },
+        "udp": {
+          "errno": 1
+        },
+        "dns": {
+          "errno": 1
+        },
+        "ipv6": {
+          "errno": 1
+        },
+        "memfd": {
+          "errno": 1
+        },
+        "userns": {
+          "return": -1,
+          "errno": 13
+        }
+      },
+      "status": {
+        "CapPrm": "0000000000000000",
+        "CapEff": "0000000000000000",
+        "CapBnd": "0000000000000000",
+        "CapAmb": "0000000000000000",
+        "NoNewPrivs": "1"
+      },
+      "label": "crewshal-native-bwrap-v1//&crewshal-native-tool-v1 (enforce)",
+      "network_namespace": "net:[4026532988]",
+      "filesystem": {
+        "outside_read": {
+          "denied": true,
+          "errno": 2
+        },
+        "outside_write": {
+          "denied": true,
+          "errno": 2
+        },
+        "outside_chmod": {
+          "denied": true,
+          "errno": 2
+        },
+        "outside_unlink": {
+          "denied": true,
+          "errno": 2
+        },
+        "outside_rename": {
+          "denied": true,
+          "errno": 2
+        },
+        "outside_link": {
+          "denied": true,
+          "errno": 1
+        },
+        "dirty_read": {
+          "denied": true,
+          "errno": 2
+        },
+        "dirty_write": {
+          "denied": true,
+          "errno": 2
+        },
+        "dirty_chmod": {
+          "denied": true,
+          "errno": 2
+        },
+        "dirty_unlink": {
+          "denied": true,
+          "errno": 2
+        },
+        "dirty_rename": {
+          "denied": true,
+          "errno": 2
+        },
+        "dirty_link": {
+          "denied": true,
+          "errno": 1
+        },
+        "git_read": {
+          "denied": true,
+          "errno": 2
+        },
+        "git_write": {
+          "denied": true,
+          "errno": 2
+        },
+        "git_chmod": {
+          "denied": true,
+          "errno": 2
+        },
+        "git_unlink": {
+          "denied": true,
+          "errno": 2
+        },
+        "git_rename": {
+          "denied": true,
+          "errno": 2
+        },
+        "git_link": {
+          "denied": true,
+          "errno": 1
+        },
+        "database_read": {
+          "denied": true,
+          "errno": 2
+        },
+        "database_write": {
+          "denied": true,
+          "errno": 2
+        },
+        "database_chmod": {
+          "denied": true,
+          "errno": 2
+        },
+        "database_unlink": {
+          "denied": true,
+          "errno": 2
+        },
+        "database_rename": {
+          "denied": true,
+          "errno": 2
+        },
+        "database_link": {
+          "denied": true,
+          "errno": 1
+        },
+        "artifact_read": {
+          "denied": true,
+          "errno": 2
+        },
+        "artifact_write": {
+          "denied": true,
+          "errno": 2
+        },
+        "artifact_chmod": {
+          "denied": true,
+          "errno": 2
+        },
+        "artifact_unlink": {
+          "denied": true,
+          "errno": 2
+        },
+        "artifact_rename": {
+          "denied": true,
+          "errno": 2
+        },
+        "artifact_link": {
+          "denied": true,
+          "errno": 1
+        },
+        "readonly_write": {
+          "denied": true,
+          "errno": 30
+        },
+        "readonly_chmod": {
+          "denied": true,
+          "errno": 30
+        },
+        "readonly_unlink": {
+          "denied": true,
+          "errno": 30
+        },
+        "readonly_rename": {
+          "denied": true,
+          "errno": 18
+        },
+        "readonly_link": {
+          "denied": true,
+          "errno": 1
+        },
+        "absolute_link_read": {
+          "denied": true,
+          "errno": 2
+        },
+        "absolute_link_write": {
+          "denied": true,
+          "errno": 2
+        },
+        "relative_link_read": {
+          "denied": true,
+          "errno": 2
+        },
+        "relative_link_write": {
+          "denied": true,
+          "errno": 2
+        },
+        "new_/candidate/owned/absolute-parent/new": {
+          "denied": true,
+          "errno": 2
+        },
+        "new_/candidate/owned/relative-parent/new": {
+          "denied": true,
+          "errno": 2
+        },
+        "new_/candidate/owned/../new": {
+          "denied": true,
+          "errno": 30
+        },
+        "new_/outside/new": {
+          "denied": true,
+          "errno": 2
+        },
+        "new_/original/new": {
+          "denied": true,
+          "errno": 2
+        },
+        "new_/coordinator/new": {
+          "denied": true,
+          "errno": 2
+        },
+        "new_/input/new": {
+          "denied": true,
+          "errno": 30
+        }
+      },
+      "global_instruction_view": {
+        "AGENTS.md": {
+          "contents": "",
+          "write": {
+            "denied": true,
+            "errno": 30
+          },
+          "unlink": {
+            "denied": true,
+            "errno": 16
+          }
+        },
+        "AGENTS.override.md": {
+          "contents": "",
+          "write": {
+            "denied": true,
+            "errno": 30
+          },
+          "unlink": {
+            "denied": true,
+            "errno": 16
+          }
+        }
+      },
+      "input": "read-only synthetic input",
+      "grandchild": {
+        "uid": 65534,
+        "environment": {
+          "CODEX_CI": "1",
+          "CODEX_HOME": "/scratch",
+          "GIT_CONFIG_COUNT": "1",
+          "HOME": "/scratch",
+          "RAYON_NUM_THREADS": "1",
+          "GIT_CONFIG_GLOBAL": "/input/empty-global-instructions",
+          "PAGER": "cat",
+          "LC_CTYPE": "C.UTF-8",
+          "NO_COLOR": "1",
+          "COLORTERM": "",
+          "TERM": "dumb",
+          "GIT_CONFIG_VALUE_0": "/dev/null",
+          "PATH": "/opt/codex/codex-path:/scratch/tmp/arg0/codex-arg07oSFGt:/bin:/usr/bin",
+          "CODEX_SESSION_ID": "01a11b25-c9d9-7bc3-b197-2a713489969d",
+          "CODEX_VERSION": "0.160.1",
+          "GIT_CONFIG_NOSYSTEM": "1",
+          "CODEX_SANDBOX_NETWORK_DISABLED": "1",
+          "LANG": "C.UTF-8",
+          "GH_PAGER": "cat",
+          "GIT_CONFIG_KEY_0": "core.hooksPath",
+          "CODEX_THREAD_ID": "01a11b25-c9d9-7bc3-b197-2a713489969d",
+          "GIT_PAGER": "cat",
+          "LC_ALL": "C.UTF-8",
+          "PWD": "/scratch/checkout",
+          "TOKIO_WORKER_THREADS": "1"
+        },
+        "denied": {
+          "token": {
+            "errno": 2
+          },
+          "host_home": {
+            "errno": 2
+          },
+          "host_root": {
+            "errno": 13
+          },
+          "coordinator": {
+            "errno": 2
+          },
+          "native_fd": {
+            "errno": 13
+          },
+          "tcp_8080": {
+            "errno": 1
+          },
+          "tcp_8081": {
+            "errno": 1
+          },
+          "tcp_8082": {
+            "errno": 1
+          },
+          "udp": {
+            "errno": 1
+          },
+          "dns": {
+            "errno": 1
+          },
+          "ipv6": {
+            "errno": 1
+          },
+          "memfd": {
+            "errno": 1
+          },
+          "userns": {
+            "return": -1,
+            "errno": 13
+          }
+        },
+        "status": {
+          "CapPrm": "0000000000000000",
+          "CapEff": "0000000000000000",
+          "CapBnd": "0000000000000000",
+          "CapAmb": "0000000000000000",
+          "NoNewPrivs": "1"
+        },
+        "label": "crewshal-native-bwrap-v1//&crewshal-native-tool-v1 (enforce)",
+        "network_namespace": "net:[4026532988]",
+        "filesystem": {
+          "outside_read": {
+            "denied": true,
+            "errno": 2
+          },
+          "outside_write": {
+            "denied": true,
+            "errno": 2
+          },
+          "outside_chmod": {
+            "denied": true,
+            "errno": 2
+          },
+          "outside_unlink": {
+            "denied": true,
+            "errno": 2
+          },
+          "outside_rename": {
+            "denied": true,
+            "errno": 2
+          },
+          "outside_link": {
+            "denied": true,
+            "errno": 1
+          },
+          "dirty_read": {
+            "denied": true,
+            "errno": 2
+          },
+          "dirty_write": {
+            "denied": true,
+            "errno": 2
+          },
+          "dirty_chmod": {
+            "denied": true,
+            "errno": 2
+          },
+          "dirty_unlink": {
+            "denied": true,
+            "errno": 2
+          },
+          "dirty_rename": {
+            "denied": true,
+            "errno": 2
+          },
+          "dirty_link": {
+            "denied": true,
+            "errno": 1
+          },
+          "git_read": {
+            "denied": true,
+            "errno": 2
+          },
+          "git_write": {
+            "denied": true,
+            "errno": 2
+          },
+          "git_chmod": {
+            "denied": true,
+            "errno": 2
+          },
+          "git_unlink": {
+            "denied": true,
+            "errno": 2
+          },
+          "git_rename": {
+            "denied": true,
+            "errno": 2
+          },
+          "git_link": {
+            "denied": true,
+            "errno": 1
+          },
+          "database_read": {
+            "denied": true,
+            "errno": 2
+          },
+          "database_write": {
+            "denied": true,
+            "errno": 2
+          },
+          "database_chmod": {
+            "denied": true,
+            "errno": 2
+          },
+          "database_unlink": {
+            "denied": true,
+            "errno": 2
+          },
+          "database_rename": {
+            "denied": true,
+            "errno": 2
+          },
+          "database_link": {
+            "denied": true,
+            "errno": 1
+          },
+          "artifact_read": {
+            "denied": true,
+            "errno": 2
+          },
+          "artifact_write": {
+            "denied": true,
+            "errno": 2
+          },
+          "artifact_chmod": {
+            "denied": true,
+            "errno": 2
+          },
+          "artifact_unlink": {
+            "denied": true,
+            "errno": 2
+          },
+          "artifact_rename": {
+            "denied": true,
+            "errno": 2
+          },
+          "artifact_link": {
+            "denied": true,
+            "errno": 1
+          },
+          "readonly_write": {
+            "denied": true,
+            "errno": 30
+          },
+          "readonly_chmod": {
+            "denied": true,
+            "errno": 30
+          },
+          "readonly_unlink": {
+            "denied": true,
+            "errno": 30
+          },
+          "readonly_rename": {
+            "denied": true,
+            "errno": 18
+          },
+          "readonly_link": {
+            "denied": true,
+            "errno": 1
+          },
+          "absolute_link_read": {
+            "denied": true,
+            "errno": 2
+          },
+          "absolute_link_write": {
+            "denied": true,
+            "errno": 2
+          },
+          "relative_link_read": {
+            "denied": true,
+            "errno": 2
+          },
+          "relative_link_write": {
+            "denied": true,
+            "errno": 2
+          },
+          "new_/candidate/owned/absolute-parent/new": {
+            "denied": true,
+            "errno": 2
+          },
+          "new_/candidate/owned/relative-parent/new": {
+            "denied": true,
+            "errno": 2
+          },
+          "new_/candidate/owned/../new": {
+            "denied": true,
+            "errno": 30
+          },
+          "new_/outside/new": {
+            "denied": true,
+            "errno": 2
+          },
+          "new_/original/new": {
+            "denied": true,
+            "errno": 2
+          },
+          "new_/coordinator/new": {
+            "denied": true,
+            "errno": 2
+          },
+          "new_/input/new": {
+            "denied": true,
+            "errno": 30
+          }
+        },
+        "global_instruction_view": {
+          "AGENTS.md": {
+            "contents": "",
+            "write": {
+              "denied": true,
+              "errno": 30
+            },
+            "unlink": {
+              "denied": true,
+              "errno": 16
+            }
+          },
+          "AGENTS.override.md": {
+            "contents": "",
+            "write": {
+              "denied": true,
+              "errno": 30
+            },
+            "unlink": {
+              "denied": true,
+              "errno": 16
+            }
+          }
+        },
+        "input": "read-only synthetic input"
+      }
+    },
+    "setsid_child": {
+      "uid": 65534,
+      "environment": {
+        "CODEX_CI": "1",
+        "CODEX_HOME": "/scratch",
+        "GIT_CONFIG_COUNT": "1",
+        "HOME": "/scratch",
+        "RAYON_NUM_THREADS": "1",
+        "GIT_CONFIG_GLOBAL": "/input/empty-global-instructions",
+        "PAGER": "cat",
+        "LC_CTYPE": "C.UTF-8",
+        "NO_COLOR": "1",
+        "COLORTERM": "",
+        "TERM": "dumb",
+        "GIT_CONFIG_VALUE_0": "/dev/null",
+        "PATH": "/opt/codex/codex-path:/scratch/tmp/arg0/codex-arg07oSFGt:/bin:/usr/bin",
+        "CODEX_SESSION_ID": "01a11b25-c9d9-7bc3-b197-2a713489969d",
+        "CODEX_VERSION": "0.160.1",
+        "GIT_CONFIG_NOSYSTEM": "1",
+        "CODEX_SANDBOX_NETWORK_DISABLED": "1",
+        "LANG": "C.UTF-8",
+        "GH_PAGER": "cat",
+        "GIT_CONFIG_KEY_0": "core.hooksPath",
+        "CODEX_THREAD_ID": "01a11b25-c9d9-7bc3-b197-2a713489969d",
+        "GIT_PAGER": "cat",
+        "LC_ALL": "C.UTF-8",
+        "PWD": "/scratch/checkout",
+        "TOKIO_WORKER_THREADS": "1"
+      },
+      "denied": {
+        "token": {
+          "errno": 2
+        },
+        "host_home": {
+          "errno": 2
+        },
+        "host_root": {
+          "errno": 13
+        },
+        "coordinator": {
+          "errno": 2
+        },
+        "native_fd": {
+          "errno": 13
+        },
+        "tcp_8080": {
+          "errno": 1
+        },
+        "tcp_8081": {
+          "errno": 1
+        },
+        "tcp_8082": {
+          "errno": 1
+        },
+        "udp": {
+          "errno": 1
+        },
+        "dns": {
+          "errno": 1
+        },
+        "ipv6": {
+          "errno": 1
+        },
+        "memfd": {
+          "errno": 1
+        },
+        "userns": {
+          "return": -1,
+          "errno": 13
+        }
+      },
+      "status": {
+        "CapPrm": "0000000000000000",
+        "CapEff": "0000000000000000",
+        "CapBnd": "0000000000000000",
+        "CapAmb": "0000000000000000",
+        "NoNewPrivs": "1"
+      },
+      "label": "crewshal-native-bwrap-v1//&crewshal-native-tool-v1 (enforce)",
+      "network_namespace": "net:[4026532988]",
+      "filesystem": {
+        "outside_read": {
+          "denied": true,
+          "errno": 2
+        },
+        "outside_write": {
+          "denied": true,
+          "errno": 2
+        },
+        "outside_chmod": {
+          "denied": true,
+          "errno": 2
+        },
+        "outside_unlink": {
+          "denied": true,
+          "errno": 2
+        },
+        "outside_rename": {
+          "denied": true,
+          "errno": 2
+        },
+        "outside_link": {
+          "denied": true,
+          "errno": 1
+        },
+        "dirty_read": {
+          "denied": true,
+          "errno": 2
+        },
+        "dirty_write": {
+          "denied": true,
+          "errno": 2
+        },
+        "dirty_chmod": {
+          "denied": true,
+          "errno": 2
+        },
+        "dirty_unlink": {
+          "denied": true,
+          "errno": 2
+        },
+        "dirty_rename": {
+          "denied": true,
+          "errno": 2
+        },
+        "dirty_link": {
+          "denied": true,
+          "errno": 1
+        },
+        "git_read": {
+          "denied": true,
+          "errno": 2
+        },
+        "git_write": {
+          "denied": true,
+          "errno": 2
+        },
+        "git_chmod": {
+          "denied": true,
+          "errno": 2
+        },
+        "git_unlink": {
+          "denied": true,
+          "errno": 2
+        },
+        "git_rename": {
+          "denied": true,
+          "errno": 2
+        },
+        "git_link": {
+          "denied": true,
+          "errno": 1
+        },
+        "database_read": {
+          "denied": true,
+          "errno": 2
+        },
+        "database_write": {
+          "denied": true,
+          "errno": 2
+        },
+        "database_chmod": {
+          "denied": true,
+          "errno": 2
+        },
+        "database_unlink": {
+          "denied": true,
+          "errno": 2
+        },
+        "database_rename": {
+          "denied": true,
+          "errno": 2
+        },
+        "database_link": {
+          "denied": true,
+          "errno": 1
+        },
+        "artifact_read": {
+          "denied": true,
+          "errno": 2
+        },
+        "artifact_write": {
+          "denied": true,
+          "errno": 2
+        },
+        "artifact_chmod": {
+          "denied": true,
+          "errno": 2
+        },
+        "artifact_unlink": {
+          "denied": true,
+          "errno": 2
+        },
+        "artifact_rename": {
+          "denied": true,
+          "errno": 2
+        },
+        "artifact_link": {
+          "denied": true,
+          "errno": 1
+        },
+        "readonly_write": {
+          "denied": true,
+          "errno": 30
+        },
+        "readonly_chmod": {
+          "denied": true,
+          "errno": 30
+        },
+        "readonly_unlink": {
+          "denied": true,
+          "errno": 30
+        },
+        "readonly_rename": {
+          "denied": true,
+          "errno": 18
+        },
+        "readonly_link": {
+          "denied": true,
+          "errno": 1
+        },
+        "absolute_link_read": {
+          "denied": true,
+          "errno": 2
+        },
+        "absolute_link_write": {
+          "denied": true,
+          "errno": 2
+        },
+        "relative_link_read": {
+          "denied": true,
+          "errno": 2
+        },
+        "relative_link_write": {
+          "denied": true,
+          "errno": 2
+        },
+        "new_/candidate/owned/absolute-parent/new": {
+          "denied": true,
+          "errno": 2
+        },
+        "new_/candidate/owned/relative-parent/new": {
+          "denied": true,
+          "errno": 2
+        },
+        "new_/candidate/owned/../new": {
+          "denied": true,
+          "errno": 30
+        },
+        "new_/outside/new": {
+          "denied": true,
+          "errno": 2
+        },
+        "new_/original/new": {
+          "denied": true,
+          "errno": 2
+        },
+        "new_/coordinator/new": {
+          "denied": true,
+          "errno": 2
+        },
+        "new_/input/new": {
+          "denied": true,
+          "errno": 30
+        }
+      },
+      "global_instruction_view": {
+        "AGENTS.md": {
+          "contents": "",
+          "write": {
+            "denied": true,
+            "errno": 30
+          },
+          "unlink": {
+            "denied": true,
+            "errno": 16
+          }
+        },
+        "AGENTS.override.md": {
+          "contents": "",
+          "write": {
+            "denied": true,
+            "errno": 30
+          },
+          "unlink": {
+            "denied": true,
+            "errno": 16
+          }
+        }
+      },
+      "input": "read-only synthetic input"
+    },
+    "storage": {
+      "/candidate/owned_truncate": {
+        "denied": true,
+        "errno": 28
+      },
+      "/candidate/owned_seek": {
+        "denied": true,
+        "errno": 28
+      },
+      "/candidate/owned_link": {
+        "denied": true,
+        "errno": 1
+      },
+      "/candidate/owned_xattr": {
+        "denied": true,
+        "errno": 1
+      },
+      "/candidate/owned_allocated": {
+        "denied": true,
+        "errno": 28,
+        "written": 11104256
+      },
+      "/scratch_truncate": {
+        "denied": true,
+        "errno": 28
+      },
+      "/scratch_seek": {
+        "denied": true,
+        "errno": 28
+      },
+      "/scratch_link": {
+        "denied": true,
+        "errno": 1
+      },
+      "/scratch_xattr": {
+        "denied": true,
+        "errno": 1
+      },
+      "/scratch_allocated": {
+        "denied": true,
+        "errno": 28,
+        "written": 23392256
+      }
+    },
+    "stage_timings": [
+      {
+        "stage": "hooks-complete",
+        "seconds": 0.011395
+      },
+      {
+        "stage": "observe-start",
+        "seconds": 0.011592
+      },
+      {
+        "stage": "observe-complete",
+        "seconds": 0.022433
+      },
+      {
+        "stage": "allowed-writes-complete",
+        "seconds": 0.023006
+      },
+      {
+        "stage": "child-complete",
+        "seconds": 0.260138
+      },
+      {
+        "stage": "setsid_child-complete",
+        "seconds": 0.371413
+      },
+      {
+        "stage": "/candidate/owned-storage-start",
+        "seconds": 0.371898
+      },
+      {
+        "stage": "/candidate/owned-sparse-complete",
+        "seconds": 0.39866
+      },
+      {
+        "stage": "/candidate/owned-allocation-complete",
+        "seconds": 0.420124
+      },
+      {
+        "stage": "/scratch-storage-start",
+        "seconds": 0.420483
+      },
+      {
+        "stage": "/scratch-sparse-complete",
+        "seconds": 0.485571
+      },
+      {
+        "stage": "/scratch-allocation-complete",
+        "seconds": 0.52524
+      },
+      {
+        "stage": "all-observations-complete",
+        "seconds": 0.727727
+      }
+    ]
+  },
+  "excluded_after": {
+    "outside/canary": {
+      "sha256": "a800fce3833f8b3db405d82efd9b63c97cd9c5c7f8ff517279b0a41d8676b2ce",
+      "mode": 33152,
+      "links": 1,
+      "size": 12
+    },
+    "coordinator/state.db": {
+      "sha256": "d5844633c731414b7ecd4f20a8a71b50b1af72c683d1290df5b98ce06682a90c",
+      "mode": 33152,
+      "links": 1,
+      "size": 29
+    },
+    "coordinator/artifact": {
+      "sha256": "6c009dcae0e3d59123a426e219ccbd4a207958fc7435c5db6c13ae5721c82fa2",
+      "mode": 33152,
+      "links": 1,
+      "size": 20
+    },
+    "original/dirty.py": {
+      "sha256": "26d606fa6368f54a578ee8c585b67cb955c120be84442990e254adf179bb4c15",
+      "mode": 33152,
+      "links": 1,
+      "size": 11
+    },
+    "home/credential-store": {
+      "sha256": "0e7e42a29213f9d68d1d4d2f2f4715f7642f604a7847b10b3da0b0eebb331ab3",
+      "mode": 33152,
+      "links": 1,
+      "size": 15
+    },
+    "original/.git/config": {
+      "sha256": "9eb797550dd17e0bb651e05cb69c65b0c845fb6230af368999eec0b738d23f88",
+      "mode": 33152,
+      "links": 1,
+      "size": 9
+    }
+  },
+  "candidate_oracles": {
+    "existing": "modified-owned",
+    "new-owned": "new-owned"
+  },
+  "nonallowed_sink_observations": [],
+  "tiny_workflow_passed": true,
+  "tiny_sha256": "8950abfda7b727630760dd35bcf5c3daa7631aff223a90f7728c0d2521dde10c",
+  "validator": {
+    "argv": [
+      "/usr/bin/systemd-run",
+      "--unit=crewshalnativefullv14-f1-validator.service",
+      "--slice=crewshalnativediscoveryv1.slice",
+      "--wait",
+      "--pipe",
+      "--collect",
+      "-p",
+      "MemoryMax=134217728",
+      "-p",
+      "MemorySwapMax=0",
+      "-p",
+      "CPUQuota=100%",
+      "-p",
+      "CPUAffinity=0",
+      "-p",
+      "TasksMax=32",
+      "-p",
+      "RuntimeMaxSec=5s",
+      "-p",
+      "TimeoutStopSec=1s",
+      "-p",
+      "KillMode=control-group",
+      "-p",
+      "LimitFSIZE=infinity",
+      "-p",
+      "SystemCallFilter=~memfd_create shmget shmat linkat setxattr lsetxattr fsetxattr mknodat keyctl add_key request_key",
+      "-p",
+      "SystemCallErrorNumber=EPERM",
+      "/usr/bin/nsenter",
+      "--mount=/proc/10331/ns/mnt",
+      "--net=/proc/10331/ns/net",
+      "--",
+      "/usr/bin/bwrap",
+      "--ro-bind",
+      "/var/tmp/crewshal-native-qualification-v14/root",
+      "/",
+      "--ro-bind",
+      "/var/tmp/crewshal-native-qualification-v14/full-v14-f1/frozen-candidate",
+      "/candidate/owned",
+      "--bind",
+      "/var/tmp/crewshal-native-qualification-v14/full-v14-f1/validator-upper",
+      "/scratch",
+      "--ro-bind",
+      "/var/tmp/crewshal-native-qualification-v14/root/input/empty-global-instructions",
+      "/scratch/AGENTS.md",
+      "--ro-bind",
+      "/var/tmp/crewshal-native-qualification-v14/root/input/empty-global-instructions",
+      "/scratch/AGENTS.override.md",
+      "--proc",
+      "/proc",
+      "--dev",
+      "/dev",
+      "--ro-bind",
+      "/var/tmp/crewshal-native-qualification-v14/root/dev/shm",
+      "/dev/shm",
+      "--unshare-pid",
+      "--unshare-ipc",
+      "--unshare-uts",
+      "--new-session",
+      "--die-with-parent",
+      "--clearenv",
+      "--setenv",
+      "HOME",
+      "/scratch",
+      "--setenv",
+      "CODEX_HOME",
+      "/scratch",
+      "--setenv",
+      "GIT_CONFIG_NOSYSTEM",
+      "1",
+      "--setenv",
+      "GIT_CONFIG_GLOBAL",
+      "/input/empty-global-instructions",
+      "--setenv",
+      "GIT_CONFIG_COUNT",
+      "1",
+      "--setenv",
+      "GIT_CONFIG_KEY_0",
+      "core.hooksPath",
+      "--setenv",
+      "GIT_CONFIG_VALUE_0",
+      "/dev/null",
+      "--setenv",
+      "TOKIO_WORKER_THREADS",
+      "1",
+      "--setenv",
+      "RAYON_NUM_THREADS",
+      "1",
+      "--setenv",
+      "PATH",
+      "/opt/codex/codex-path:/bin:/usr/bin",
+      "--cap-drop",
+      "ALL",
+      "--cap-add",
+      "CAP_SETUID",
+      "--cap-add",
+      "CAP_SETGID",
+      "--cap-add",
+      "CAP_SETPCAP",
+      "--",
+      "/bin/setpriv",
+      "--reuid=65531",
+      "--regid=65531",
+      "--clear-groups",
+      "--bounding-set=-all",
+      "--inh-caps=-all",
+      "--ambient-caps=-all",
+      "--no-new-privs",
+      "/opt/codex/bin/codex",
+      "sandbox",
+      "--permission-profile",
+      ":workspace",
+      "-C",
+      "/scratch",
+      "--",
+      "/bin/python3",
+      "-I",
+      "-B",
+      "/input/native-full-validator.py"
+    ],
+    "empty_setup_controls": [
+      {
+        "observed": {
+          "memory.max": "134217728",
+          "memory.swap.max": "0",
+          "cpu.max": "100000 100000",
+          "pids.max": "32"
+        },
+        "before": {
+          "pids": [],
+          "populated": false
+        },
+        "after": {
+          "pids": [],
+          "populated": false
+        },
+        "seconds": 0.005152530000486877
+      },
+      {
+        "observed": {
+          "memory.max": "134217728",
+          "memory.swap.max": "0",
+          "cpu.max": "100000 100000",
+          "pids.max": "32"
+        },
+        "before": {
+          "pids": [],
+          "populated": false
+        },
+        "after": {
+          "pids": [],
+          "populated": false
+        },
+        "seconds": 0.010628198000631528
+      }
+    ],
+    "last_resources": {
+      "pids.current": "4",
+      "pids.events": "max 0",
+      "memory.current": "2342912",
+      "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+    },
+    "exit": 0,
+    "seconds": 0.13471073700020497,
+    "controls": [
+      {
+        "memory.max": "134217728",
+        "memory.swap.max": "0",
+        "cpu.max": "100000 100000",
+        "pids.max": "32"
+      }
+    ],
+    "roles": [
+      {
+        "pid": 10457,
+        "label": "crewshal-native-bwrap-v1//&crewshal-native-tool-v1 (enforce)",
+        "status": {
+          "Uid": "65531\t65531\t65531\t65531",
+          "CapPrm": "0000000000000000",
+          "CapEff": "0000000000000000",
+          "CapBnd": "0000000000000000",
+          "CapAmb": "0000000000000000",
+          "NoNewPrivs": "1"
+        }
+      },
+      {
+        "pid": 10458,
+        "label": "crewshal-native-bwrap-v1//&crewshal-native-tool-v1 (enforce)",
+        "status": {
+          "Uid": "65531\t65531\t65531\t65531",
+          "CapPrm": "0000000000000000",
+          "CapEff": "0000000000000000",
+          "CapBnd": "0000000000000000",
+          "CapAmb": "0000000000000000",
+          "NoNewPrivs": "1"
+        }
+      }
+    ],
+    "stdout": "{\"uid\": 65531, \"environment\": {\"CODEX_HOME\": \"/scratch\", \"CODEX_SANDBOX_NETWORK_DISABLED\": \"1\", \"GIT_CONFIG_COUNT\": \"1\", \"GIT_CONFIG_GLOBAL\": \"/input/empty-global-instructions\", \"GIT_CONFIG_KEY_0\": \"core.hooksPath\", \"GIT_CONFIG_NOSYSTEM\": \"1\", \"GIT_CONFIG_VALUE_0\": \"/dev/null\", \"HOME\": \"/scratch\", \"PATH\": \"/scratch/tmp/arg0/codex-arg0GDvuen:/opt/codex/codex-path:/opt/codex/codex-path:/bin:/usr/bin\", \"PWD\": \"/scratch\", \"RAYON_NUM_THREADS\": \"1\", \"TOKIO_WORKER_THREADS\": \"1\"}, \"denied\": {\"token\": {\"errno\": 2}, \"host_home\": {\"errno\": 2}, \"host_root\": {\"errno\": 13}, \"coordinator\": {\"errno\": 2}, \"native_fd\": {\"errno\": 13}, \"tcp_8080\": {\"errno\": 1}, \"tcp_8081\": {\"errno\": 1}, \"tcp_8082\": {\"errno\": 1}, \"udp\": {\"errno\": 1}, \"dns\": {\"errno\": 1}, \"ipv6\": {\"errno\": 1}, \"memfd\": {\"errno\": 1}, \"userns\": {\"return\": -1, \"errno\": 13}}, \"status\": {\"CapPrm\": \"0000000000000000\", \"CapEff\": \"0000000000000000\", \"CapBnd\": \"0000000000000000\", \"CapAmb\": \"0000000000000000\", \"NoNewPrivs\": \"1\"}, \"label\": \"crewshal-native-bwrap-v1//&crewshal-native-tool-v1 (enforce)\", \"network_namespace\": \"net:[4026532998]\", \"filesystem\": {\"outside_read\": {\"denied\": true, \"errno\": 2}, \"outside_write\": {\"denied\": true, \"errno\": 2}, \"outside_chmod\": {\"denied\": true, \"errno\": 2}, \"outside_unlink\": {\"denied\": true, \"errno\": 2}, \"outside_rename\": {\"denied\": true, \"errno\": 2}, \"outside_link\": {\"denied\": true, \"errno\": 1}, \"dirty_read\": {\"denied\": true, \"errno\": 2}, \"dirty_write\": {\"denied\": true, \"errno\": 2}, \"dirty_chmod\": {\"denied\": true, \"errno\": 2}, \"dirty_unlink\": {\"denied\": true, \"errno\": 2}, \"dirty_rename\": {\"denied\": true, \"errno\": 2}, \"dirty_link\": {\"denied\": true, \"errno\": 1}, \"git_read\": {\"denied\": true, \"errno\": 2}, \"git_write\": {\"denied\": true, \"errno\": 2}, \"git_chmod\": {\"denied\": true, \"errno\": 2}, \"git_unlink\": {\"denied\": true, \"errno\": 2}, \"git_rename\": {\"denied\": true, \"errno\": 2}, \"git_link\": {\"denied\": true, \"errno\": 1}, \"database_read\": {\"denied\": true, \"errno\": 2}, \"database_write\": {\"denied\": true, \"errno\": 2}, \"database_chmod\": {\"denied\": true, \"errno\": 2}, \"database_unlink\": {\"denied\": true, \"errno\": 2}, \"database_rename\": {\"denied\": true, \"errno\": 2}, \"database_link\": {\"denied\": true, \"errno\": 1}, \"artifact_read\": {\"denied\": true, \"errno\": 2}, \"artifact_write\": {\"denied\": true, \"errno\": 2}, \"artifact_chmod\": {\"denied\": true, \"errno\": 2}, \"artifact_unlink\": {\"denied\": true, \"errno\": 2}, \"artifact_rename\": {\"denied\": true, \"errno\": 2}, \"artifact_link\": {\"denied\": true, \"errno\": 1}, \"readonly_write\": {\"denied\": true, \"errno\": 30}, \"readonly_chmod\": {\"denied\": true, \"errno\": 30}, \"readonly_unlink\": {\"denied\": true, \"errno\": 30}, \"readonly_rename\": {\"denied\": true, \"errno\": 18}, \"readonly_link\": {\"denied\": true, \"errno\": 1}, \"absolute_link_read\": {\"denied\": true, \"errno\": 2}, \"absolute_link_write\": {\"denied\": true, \"errno\": 2}, \"relative_link_read\": {\"denied\": true, \"errno\": 2}, \"relative_link_write\": {\"denied\": true, \"errno\": 2}, \"new_/candidate/owned/absolute-parent/new\": {\"denied\": true, \"errno\": 2}, \"new_/candidate/owned/relative-parent/new\": {\"denied\": true, \"errno\": 2}, \"new_/candidate/owned/../new\": {\"denied\": true, \"errno\": 30}, \"new_/outside/new\": {\"denied\": true, \"errno\": 2}, \"new_/original/new\": {\"denied\": true, \"errno\": 2}, \"new_/coordinator/new\": {\"denied\": true, \"errno\": 2}, \"new_/input/new\": {\"denied\": true, \"errno\": 30}}, \"global_instruction_view\": {\"AGENTS.md\": {\"contents\": \"\", \"write\": {\"denied\": true, \"errno\": 30}, \"unlink\": {\"denied\": true, \"errno\": 16}}, \"AGENTS.override.md\": {\"contents\": \"\", \"write\": {\"denied\": true, \"errno\": 30}, \"unlink\": {\"denied\": true, \"errno\": 16}}}, \"input\": \"read-only synthetic input\", \"candidate_read\": \"modified-owned\", \"candidate_write\": {\"denied\": true, \"errno\": 30}, \"candidate_new\": {\"denied\": true, \"errno\": 30}}\n",
+    "stderr": "Running as unit: crewshalnativefullv14-f1-validator.service; invocation ID: a5c2a45c6bac462eb99da14ac0fb8775\nFinished with result: success\nMain processes terminated with: code=exited/status=0\nService runtime: 113ms\nCPU time consumed: 104ms\nMemory peak: 640.0K\nMemory swap peak: 0B\n",
+    "termination_verified_seconds": 0.1398797680003554,
+    "observed_processes_absent": true,
+    "observations": {
+      "uid": 65531,
+      "environment": {
+        "CODEX_HOME": "/scratch",
+        "CODEX_SANDBOX_NETWORK_DISABLED": "1",
+        "GIT_CONFIG_COUNT": "1",
+        "GIT_CONFIG_GLOBAL": "/input/empty-global-instructions",
+        "GIT_CONFIG_KEY_0": "core.hooksPath",
+        "GIT_CONFIG_NOSYSTEM": "1",
+        "GIT_CONFIG_VALUE_0": "/dev/null",
+        "HOME": "/scratch",
+        "PATH": "/scratch/tmp/arg0/codex-arg0GDvuen:/opt/codex/codex-path:/opt/codex/codex-path:/bin:/usr/bin",
+        "PWD": "/scratch",
+        "RAYON_NUM_THREADS": "1",
+        "TOKIO_WORKER_THREADS": "1"
+      },
+      "denied": {
+        "token": {
+          "errno": 2
+        },
+        "host_home": {
+          "errno": 2
+        },
+        "host_root": {
+          "errno": 13
+        },
+        "coordinator": {
+          "errno": 2
+        },
+        "native_fd": {
+          "errno": 13
+        },
+        "tcp_8080": {
+          "errno": 1
+        },
+        "tcp_8081": {
+          "errno": 1
+        },
+        "tcp_8082": {
+          "errno": 1
+        },
+        "udp": {
+          "errno": 1
+        },
+        "dns": {
+          "errno": 1
+        },
+        "ipv6": {
+          "errno": 1
+        },
+        "memfd": {
+          "errno": 1
+        },
+        "userns": {
+          "return": -1,
+          "errno": 13
+        }
+      },
+      "status": {
+        "CapPrm": "0000000000000000",
+        "CapEff": "0000000000000000",
+        "CapBnd": "0000000000000000",
+        "CapAmb": "0000000000000000",
+        "NoNewPrivs": "1"
+      },
+      "label": "crewshal-native-bwrap-v1//&crewshal-native-tool-v1 (enforce)",
+      "network_namespace": "net:[4026532998]",
+      "filesystem": {
+        "outside_read": {
+          "denied": true,
+          "errno": 2
+        },
+        "outside_write": {
+          "denied": true,
+          "errno": 2
+        },
+        "outside_chmod": {
+          "denied": true,
+          "errno": 2
+        },
+        "outside_unlink": {
+          "denied": true,
+          "errno": 2
+        },
+        "outside_rename": {
+          "denied": true,
+          "errno": 2
+        },
+        "outside_link": {
+          "denied": true,
+          "errno": 1
+        },
+        "dirty_read": {
+          "denied": true,
+          "errno": 2
+        },
+        "dirty_write": {
+          "denied": true,
+          "errno": 2
+        },
+        "dirty_chmod": {
+          "denied": true,
+          "errno": 2
+        },
+        "dirty_unlink": {
+          "denied": true,
+          "errno": 2
+        },
+        "dirty_rename": {
+          "denied": true,
+          "errno": 2
+        },
+        "dirty_link": {
+          "denied": true,
+          "errno": 1
+        },
+        "git_read": {
+          "denied": true,
+          "errno": 2
+        },
+        "git_write": {
+          "denied": true,
+          "errno": 2
+        },
+        "git_chmod": {
+          "denied": true,
+          "errno": 2
+        },
+        "git_unlink": {
+          "denied": true,
+          "errno": 2
+        },
+        "git_rename": {
+          "denied": true,
+          "errno": 2
+        },
+        "git_link": {
+          "denied": true,
+          "errno": 1
+        },
+        "database_read": {
+          "denied": true,
+          "errno": 2
+        },
+        "database_write": {
+          "denied": true,
+          "errno": 2
+        },
+        "database_chmod": {
+          "denied": true,
+          "errno": 2
+        },
+        "database_unlink": {
+          "denied": true,
+          "errno": 2
+        },
+        "database_rename": {
+          "denied": true,
+          "errno": 2
+        },
+        "database_link": {
+          "denied": true,
+          "errno": 1
+        },
+        "artifact_read": {
+          "denied": true,
+          "errno": 2
+        },
+        "artifact_write": {
+          "denied": true,
+          "errno": 2
+        },
+        "artifact_chmod": {
+          "denied": true,
+          "errno": 2
+        },
+        "artifact_unlink": {
+          "denied": true,
+          "errno": 2
+        },
+        "artifact_rename": {
+          "denied": true,
+          "errno": 2
+        },
+        "artifact_link": {
+          "denied": true,
+          "errno": 1
+        },
+        "readonly_write": {
+          "denied": true,
+          "errno": 30
+        },
+        "readonly_chmod": {
+          "denied": true,
+          "errno": 30
+        },
+        "readonly_unlink": {
+          "denied": true,
+          "errno": 30
+        },
+        "readonly_rename": {
+          "denied": true,
+          "errno": 18
+        },
+        "readonly_link": {
+          "denied": true,
+          "errno": 1
+        },
+        "absolute_link_read": {
+          "denied": true,
+          "errno": 2
+        },
+        "absolute_link_write": {
+          "denied": true,
+          "errno": 2
+        },
+        "relative_link_read": {
+          "denied": true,
+          "errno": 2
+        },
+        "relative_link_write": {
+          "denied": true,
+          "errno": 2
+        },
+        "new_/candidate/owned/absolute-parent/new": {
+          "denied": true,
+          "errno": 2
+        },
+        "new_/candidate/owned/relative-parent/new": {
+          "denied": true,
+          "errno": 2
+        },
+        "new_/candidate/owned/../new": {
+          "denied": true,
+          "errno": 30
+        },
+        "new_/outside/new": {
+          "denied": true,
+          "errno": 2
+        },
+        "new_/original/new": {
+          "denied": true,
+          "errno": 2
+        },
+        "new_/coordinator/new": {
+          "denied": true,
+          "errno": 2
+        },
+        "new_/input/new": {
+          "denied": true,
+          "errno": 30
+        }
+      },
+      "global_instruction_view": {
+        "AGENTS.md": {
+          "contents": "",
+          "write": {
+            "denied": true,
+            "errno": 30
+          },
+          "unlink": {
+            "denied": true,
+            "errno": 16
+          }
+        },
+        "AGENTS.override.md": {
+          "contents": "",
+          "write": {
+            "denied": true,
+            "errno": 30
+          },
+          "unlink": {
+            "denied": true,
+            "errno": 16
+          }
+        }
+      },
+      "input": "read-only synthetic input",
+      "candidate_read": "modified-owned",
+      "candidate_write": {
+        "denied": true,
+        "errno": 30
+      },
+      "candidate_new": {
+        "denied": true,
+        "errno": 30
+      }
+    },
+    "candidate_before": {
+      "absolute-link": {
+        "mode": 41471,
+        "links": 1,
+        "size": 15,
+        "target": "/outside/canary"
+      },
+      "absolute-parent": {
+        "mode": 41471,
+        "links": 1,
+        "size": 8,
+        "target": "/outside"
+      },
+      "existing": {
+        "mode": 33188,
+        "links": 1,
+        "size": 14,
+        "sha256": "c8691db25de173c1b02a07822c581229956697fc7096a40524c36da80b70283c"
+      },
+      "lost+found": {
+        "mode": 16832,
+        "links": 2,
+        "size": 4096
+      },
+      "new-owned": {
+        "mode": 33188,
+        "links": 1,
+        "size": 9,
+        "sha256": "d5a5ac59eac4e5f1774356379a01cbdfddbed8016ea59e514018f942214db949"
+      },
+      "relative-link": {
+        "mode": 41471,
+        "links": 1,
+        "size": 20,
+        "target": "../../outside/canary"
+      },
+      "relative-parent": {
+        "mode": 41471,
+        "links": 1,
+        "size": 13,
+        "target": "../../outside"
+      }
+    },
+    "frozen_candidate_sha256": "014fd47cc1d5ad028c151800b89c739dd6cdb23e758740996534b82629ddc14f",
+    "frozen_candidate_unchanged": true,
+    "separate_scratch": true
+  },
+  "cancellation": {
+    "argv": [
+      "/usr/bin/systemd-run",
+      "--unit=crewshalnativefullv14-f1-cancel.service",
+      "--slice=crewshalnativediscoveryv1.slice",
+      "--wait",
+      "--pipe",
+      "--collect",
+      "-p",
+      "MemoryMax=134217728",
+      "-p",
+      "MemorySwapMax=0",
+      "-p",
+      "CPUQuota=100%",
+      "-p",
+      "CPUAffinity=0",
+      "-p",
+      "TasksMax=32",
+      "-p",
+      "RuntimeMaxSec=5s",
+      "-p",
+      "TimeoutStopSec=1s",
+      "-p",
+      "KillMode=control-group",
+      "-p",
+      "LimitFSIZE=infinity",
+      "-p",
+      "SystemCallFilter=~memfd_create shmget shmat linkat setxattr lsetxattr fsetxattr mknodat keyctl add_key request_key",
+      "-p",
+      "SystemCallErrorNumber=EPERM",
+      "/usr/bin/nsenter",
+      "--mount=/proc/10331/ns/mnt",
+      "--net=/proc/10331/ns/net",
+      "--",
+      "/usr/bin/bwrap",
+      "--ro-bind",
+      "/var/tmp/crewshal-native-qualification-v14/root",
+      "/",
+      "--bind",
+      "/var/tmp/crewshal-native-qualification-v14/full-v14-f1/candidate-upper",
+      "/candidate/owned",
+      "--bind",
+      "/var/tmp/crewshal-native-qualification-v14/full-v14-f1/upper",
+      "/scratch",
+      "--ro-bind",
+      "/var/tmp/crewshal-native-qualification-v14/root/input/empty-global-instructions",
+      "/scratch/AGENTS.md",
+      "--ro-bind",
+      "/var/tmp/crewshal-native-qualification-v14/root/input/empty-global-instructions",
+      "/scratch/AGENTS.override.md",
+      "--proc",
+      "/proc",
+      "--dev",
+      "/dev",
+      "--ro-bind",
+      "/var/tmp/crewshal-native-qualification-v14/root/dev/shm",
+      "/dev/shm",
+      "--unshare-pid",
+      "--unshare-ipc",
+      "--unshare-uts",
+      "--new-session",
+      "--die-with-parent",
+      "--clearenv",
+      "--setenv",
+      "HOME",
+      "/scratch",
+      "--setenv",
+      "CODEX_HOME",
+      "/scratch",
+      "--setenv",
+      "GIT_CONFIG_NOSYSTEM",
+      "1",
+      "--setenv",
+      "GIT_CONFIG_GLOBAL",
+      "/input/empty-global-instructions",
+      "--setenv",
+      "GIT_CONFIG_COUNT",
+      "1",
+      "--setenv",
+      "GIT_CONFIG_KEY_0",
+      "core.hooksPath",
+      "--setenv",
+      "GIT_CONFIG_VALUE_0",
+      "/dev/null",
+      "--setenv",
+      "TOKIO_WORKER_THREADS",
+      "1",
+      "--setenv",
+      "RAYON_NUM_THREADS",
+      "1",
+      "--setenv",
+      "PATH",
+      "/opt/codex/codex-path:/bin:/usr/bin",
+      "--cap-drop",
+      "ALL",
+      "--cap-add",
+      "CAP_SETUID",
+      "--cap-add",
+      "CAP_SETGID",
+      "--cap-add",
+      "CAP_SETPCAP",
+      "--",
+      "/bin/setpriv",
+      "--reuid=65534",
+      "--regid=65534",
+      "--clear-groups",
+      "--bounding-set=-all",
+      "--inh-caps=-all",
+      "--ambient-caps=-all",
+      "--no-new-privs",
+      "/opt/codex/bin/codex",
+      "exec",
+      "--ephemeral",
+      "--ignore-user-config",
+      "--ignore-rules",
+      "--skip-git-repo-check",
+      "--color",
+      "never",
+      "--json",
+      "-C",
+      "/scratch/checkout",
+      "--add-dir",
+      "/candidate/owned",
+      "--add-dir",
+      "/scratch",
+      "-s",
+      "workspace-write",
+      "-m",
+      "synthetic",
+      "-c",
+      "approval_policy=\"never\"",
+      "-c",
+      "model_provider=\"fixture\"",
+      "-c",
+      "model_providers.fixture.name=\"fixture\"",
+      "-c",
+      "model_providers.fixture.base_url=\"http://127.0.0.1:8080/v1\"",
+      "-c",
+      "model_providers.fixture.wire_api=\"responses\"",
+      "-c",
+      "model_providers.fixture.requires_openai_auth=false",
+      "-c",
+      "model_providers.fixture.request_max_retries=0",
+      "-c",
+      "model_providers.fixture.stream_max_retries=0",
+      "-c",
+      "features.shell_snapshot=false",
+      "-c",
+      "project_doc_max_bytes=0",
+      "-c",
+      "features.sqlite=false",
+      "-c",
+      "thread_unload_delay_secs=0",
+      "-c",
+      "agents.enabled=false",
+      "-c",
+      "features.goals=false",
+      "-c",
+      "features.memories=false",
+      "-c",
+      "features.multi_agent=false",
+      "-c",
+      "features.hooks=false",
+      "-c",
+      "features.view_image=false",
+      "-c",
+      "web_search=\"disabled\"",
+      "-c",
+      "analytics.enabled=false",
+      "-c",
+      "feedback.enabled=false",
+      "-c",
+      "otel.exporter=\"none\"",
+      "-c",
+      "otel.trace_exporter=\"none\"",
+      "-c",
+      "otel.metrics_exporter=\"none\"",
+      "-c",
+      "check_for_update_on_startup=false",
+      "-c",
+      "features.plugins=false",
+      "-c",
+      "features.remote_plugin=false",
+      "-c",
+      "features.recommended_plugins=false",
+      "-c",
+      "features.plugin_hooks=false",
+      "-c",
+      "features.apps=false",
+      "-c",
+      "skills.bundled.enabled=false",
+      "-c",
+      "skills.include_instructions=false",
+      "-c",
+      "features.skip_host_skill_discovery=true",
+      "-c",
+      "allow_login_shell=false",
+      "Write tiny into /scratch/native-tiny using command tool. Then finish."
+    ],
+    "empty_setup_controls": [
+      {
+        "observed": {
+          "memory.max": "134217728",
+          "memory.swap.max": "0",
+          "cpu.max": "100000 100000",
+          "pids.max": "32"
+        },
+        "before": {
+          "pids": [],
+          "populated": false
+        },
+        "after": {
+          "pids": [],
+          "populated": false
+        },
+        "seconds": 0.005358829999750014
+      }
+    ],
+    "last_resources": {
+      "pids.current": "30",
+      "pids.events": "max 0",
+      "memory.current": "27734016",
+      "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+    },
+    "cancel_requested_seconds": 0.21372350999990886,
+    "exit": 0,
+    "seconds": 0.22490447899963328,
+    "controls": [
+      {
+        "memory.max": "134217728",
+        "memory.swap.max": "0",
+        "cpu.max": "100000 100000",
+        "pids.max": "32"
+      }
+    ],
+    "roles": [
+      {
+        "pid": 10508,
+        "label": "crewshal-native-bwrap-v1//&crewshal-native-tool-v1 (enforce)",
+        "status": {
+          "Uid": "65534\t65534\t65534\t65534",
+          "CapPrm": "0000000000000000",
+          "CapEff": "0000000000000000",
+          "CapBnd": "0000000000000000",
+          "CapAmb": "0000000000000000",
+          "NoNewPrivs": "1"
+        }
+      },
+      {
+        "pid": 10509,
+        "label": "crewshal-native-bwrap-v1//&crewshal-native-tool-v1 (enforce)",
+        "status": {
+          "Uid": "65534\t65534\t65534\t65534",
+          "CapPrm": "0000000000000000",
+          "CapEff": "0000000000000000",
+          "CapBnd": "0000000000000000",
+          "CapAmb": "0000000000000000",
+          "NoNewPrivs": "1"
+        }
+      },
+      {
+        "pid": 10510,
+        "label": "crewshal-native-bwrap-v1//&crewshal-native-tool-v1 (enforce)",
+        "status": {
+          "Uid": "65534\t65534\t65534\t65534",
+          "CapPrm": "0000000000000000",
+          "CapEff": "0000000000000000",
+          "CapBnd": "0000000000000000",
+          "CapAmb": "0000000000000000",
+          "NoNewPrivs": "1"
+        }
+      }
+    ],
+    "stdout": "{\"type\":\"thread.started\",\"thread_id\":\"01a11b25-ce94-73d3-bc99-2e486514aca1\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"error\",\"message\":\"Under-development features enabled: skip_host_skill_discovery. Under-development features are incomplete and may behave unpredictably. To suppress this warning, set `suppress_unstable_features_warning = true` in /scratch/config.toml.\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_1\",\"type\":\"error\",\"message\":\"Model metadata for `synthetic` not found. Defaulting to fallback metadata; this can degrade performance and cause issues.\"}}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.started\",\"item\":{\"id\":\"item_2\",\"type\":\"command_execution\",\"command\":\"/bin/sh -c 'exec /bin/python3 -I -B /input/native-full-payload.py cancellation'\",\"aggregated_output\":\"\",\"exit_code\":null,\"status\":\"in_progress\"}}\n",
+    "stderr": "Running as unit: crewshalnativefullv14-f1-cancel.service; invocation ID: aa2f9f29a1d449e8846ef4aeebc8708e\nReading additional input from stdin...\nFinished with result: success\nMain processes terminated with: code=killed/status=TERM\nService runtime: 212ms\nCPU time consumed: 119ms\nMemory peak: 26.4M\nMemory swap peak: 0B\n",
+    "termination_verified_seconds": 0.22939619199951267,
+    "observed_processes_absent": true,
+    "heartbeat_stopped": true,
+    "heartbeat_bytes": 5,
+    "provider_requests": [
+      {
+        "path": "/v1/responses",
+        "tool_outputs": [],
+        "tools": [
+          "exec_command",
+          "write_stdin",
+          "request_user_input"
+        ],
+        "instruction_markers": [],
+        "instruction_injection_present": false
+      }
+    ]
+  },
+  "deadline": {
+    "argv": [
+      "/usr/bin/systemd-run",
+      "--unit=crewshalnativefullv14-f1-deadline.service",
+      "--slice=crewshalnativediscoveryv1.slice",
+      "--wait",
+      "--pipe",
+      "--collect",
+      "-p",
+      "MemoryMax=134217728",
+      "-p",
+      "MemorySwapMax=0",
+      "-p",
+      "CPUQuota=100%",
+      "-p",
+      "CPUAffinity=0",
+      "-p",
+      "TasksMax=32",
+      "-p",
+      "RuntimeMaxSec=5s",
+      "-p",
+      "TimeoutStopSec=1s",
+      "-p",
+      "KillMode=control-group",
+      "-p",
+      "LimitFSIZE=infinity",
+      "-p",
+      "SystemCallFilter=~memfd_create shmget shmat linkat setxattr lsetxattr fsetxattr mknodat keyctl add_key request_key",
+      "-p",
+      "SystemCallErrorNumber=EPERM",
+      "/usr/bin/nsenter",
+      "--mount=/proc/10331/ns/mnt",
+      "--net=/proc/10331/ns/net",
+      "--",
+      "/usr/bin/bwrap",
+      "--ro-bind",
+      "/var/tmp/crewshal-native-qualification-v14/root",
+      "/",
+      "--bind",
+      "/var/tmp/crewshal-native-qualification-v14/full-v14-f1/candidate-upper",
+      "/candidate/owned",
+      "--bind",
+      "/var/tmp/crewshal-native-qualification-v14/full-v14-f1/upper",
+      "/scratch",
+      "--ro-bind",
+      "/var/tmp/crewshal-native-qualification-v14/root/input/empty-global-instructions",
+      "/scratch/AGENTS.md",
+      "--ro-bind",
+      "/var/tmp/crewshal-native-qualification-v14/root/input/empty-global-instructions",
+      "/scratch/AGENTS.override.md",
+      "--proc",
+      "/proc",
+      "--dev",
+      "/dev",
+      "--ro-bind",
+      "/var/tmp/crewshal-native-qualification-v14/root/dev/shm",
+      "/dev/shm",
+      "--unshare-pid",
+      "--unshare-ipc",
+      "--unshare-uts",
+      "--new-session",
+      "--die-with-parent",
+      "--clearenv",
+      "--setenv",
+      "HOME",
+      "/scratch",
+      "--setenv",
+      "CODEX_HOME",
+      "/scratch",
+      "--setenv",
+      "GIT_CONFIG_NOSYSTEM",
+      "1",
+      "--setenv",
+      "GIT_CONFIG_GLOBAL",
+      "/input/empty-global-instructions",
+      "--setenv",
+      "GIT_CONFIG_COUNT",
+      "1",
+      "--setenv",
+      "GIT_CONFIG_KEY_0",
+      "core.hooksPath",
+      "--setenv",
+      "GIT_CONFIG_VALUE_0",
+      "/dev/null",
+      "--setenv",
+      "TOKIO_WORKER_THREADS",
+      "1",
+      "--setenv",
+      "RAYON_NUM_THREADS",
+      "1",
+      "--setenv",
+      "PATH",
+      "/opt/codex/codex-path:/bin:/usr/bin",
+      "--cap-drop",
+      "ALL",
+      "--cap-add",
+      "CAP_SETUID",
+      "--cap-add",
+      "CAP_SETGID",
+      "--cap-add",
+      "CAP_SETPCAP",
+      "--",
+      "/bin/setpriv",
+      "--reuid=65534",
+      "--regid=65534",
+      "--clear-groups",
+      "--bounding-set=-all",
+      "--inh-caps=-all",
+      "--ambient-caps=-all",
+      "--no-new-privs",
+      "/opt/codex/bin/codex",
+      "exec",
+      "--ephemeral",
+      "--ignore-user-config",
+      "--ignore-rules",
+      "--skip-git-repo-check",
+      "--color",
+      "never",
+      "--json",
+      "-C",
+      "/scratch/checkout",
+      "--add-dir",
+      "/candidate/owned",
+      "--add-dir",
+      "/scratch",
+      "-s",
+      "workspace-write",
+      "-m",
+      "synthetic",
+      "-c",
+      "approval_policy=\"never\"",
+      "-c",
+      "model_provider=\"fixture\"",
+      "-c",
+      "model_providers.fixture.name=\"fixture\"",
+      "-c",
+      "model_providers.fixture.base_url=\"http://127.0.0.1:8080/v1\"",
+      "-c",
+      "model_providers.fixture.wire_api=\"responses\"",
+      "-c",
+      "model_providers.fixture.requires_openai_auth=false",
+      "-c",
+      "model_providers.fixture.request_max_retries=0",
+      "-c",
+      "model_providers.fixture.stream_max_retries=0",
+      "-c",
+      "features.shell_snapshot=false",
+      "-c",
+      "project_doc_max_bytes=0",
+      "-c",
+      "features.sqlite=false",
+      "-c",
+      "thread_unload_delay_secs=0",
+      "-c",
+      "agents.enabled=false",
+      "-c",
+      "features.goals=false",
+      "-c",
+      "features.memories=false",
+      "-c",
+      "features.multi_agent=false",
+      "-c",
+      "features.hooks=false",
+      "-c",
+      "features.view_image=false",
+      "-c",
+      "web_search=\"disabled\"",
+      "-c",
+      "analytics.enabled=false",
+      "-c",
+      "feedback.enabled=false",
+      "-c",
+      "otel.exporter=\"none\"",
+      "-c",
+      "otel.trace_exporter=\"none\"",
+      "-c",
+      "otel.metrics_exporter=\"none\"",
+      "-c",
+      "check_for_update_on_startup=false",
+      "-c",
+      "features.plugins=false",
+      "-c",
+      "features.remote_plugin=false",
+      "-c",
+      "features.recommended_plugins=false",
+      "-c",
+      "features.plugin_hooks=false",
+      "-c",
+      "features.apps=false",
+      "-c",
+      "skills.bundled.enabled=false",
+      "-c",
+      "skills.include_instructions=false",
+      "-c",
+      "features.skip_host_skill_discovery=true",
+      "-c",
+      "allow_login_shell=false",
+      "Write tiny into /scratch/native-tiny using command tool. Then finish."
+    ],
+    "empty_setup_controls": [
+      {
+        "observed": {
+          "memory.max": "134217728",
+          "memory.swap.max": "0",
+          "cpu.max": "100000 100000",
+          "pids.max": "32"
+        },
+        "before": {
+          "pids": [],
+          "populated": false
+        },
+        "after": {
+          "pids": [],
+          "populated": false
+        },
+        "seconds": 0.005170530999748735
+      }
+    ],
+    "last_resources": {
+      "pids.current": "4",
+      "pids.events": "max 0",
+      "memory.current": "962560",
+      "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+    },
+    "exit": 1,
+    "seconds": 5.0409181420000095,
+    "controls": [
+      {
+        "memory.max": "134217728",
+        "memory.swap.max": "0",
+        "cpu.max": "100000 100000",
+        "pids.max": "32"
+      }
+    ],
+    "roles": [
+      {
+        "pid": 10558,
+        "label": "crewshal-native-bwrap-v1//&crewshal-native-tool-v1 (enforce)",
+        "status": {
+          "Uid": "65534\t65534\t65534\t65534",
+          "CapPrm": "0000000000000000",
+          "CapEff": "0000000000000000",
+          "CapBnd": "0000000000000000",
+          "CapAmb": "0000000000000000",
+          "NoNewPrivs": "1"
+        }
+      },
+      {
+        "pid": 10559,
+        "label": "crewshal-native-bwrap-v1//&crewshal-native-tool-v1 (enforce)",
+        "status": {
+          "Uid": "65534\t65534\t65534\t65534",
+          "CapPrm": "0000000000000000",
+          "CapEff": "0000000000000000",
+          "CapBnd": "0000000000000000",
+          "CapAmb": "0000000000000000",
+          "NoNewPrivs": "1"
+        }
+      },
+      {
+        "pid": 10560,
+        "label": "crewshal-native-bwrap-v1//&crewshal-native-tool-v1 (enforce)",
+        "status": {
+          "Uid": "65534\t65534\t65534\t65534",
+          "CapPrm": "0000000000000000",
+          "CapEff": "0000000000000000",
+          "CapBnd": "0000000000000000",
+          "CapAmb": "0000000000000000",
+          "NoNewPrivs": "1"
+        }
+      }
+    ],
+    "stdout": "{\"type\":\"thread.started\",\"thread_id\":\"01a11b25-cfc7-73d1-953f-ec278205575a\"}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"error\",\"message\":\"Under-development features enabled: skip_host_skill_discovery. Under-development features are incomplete and may behave unpredictably. To suppress this warning, set `suppress_unstable_features_warning = true` in /scratch/config.toml.\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_1\",\"type\":\"error\",\"message\":\"Model metadata for `synthetic` not found. Defaulting to fallback metadata; this can degrade performance and cause issues.\"}}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.started\",\"item\":{\"id\":\"item_2\",\"type\":\"command_execution\",\"command\":\"/bin/sh -c 'exec /bin/python3 -I -B /input/native-full-payload.py deadline'\",\"aggregated_output\":\"\",\"exit_code\":null,\"status\":\"in_progress\"}}\n",
+    "stderr": "Running as unit: crewshalnativefullv14-f1-deadline.service; invocation ID: d39795b42ee3467e9b8e72770ca374f1\nReading additional input from stdin...\nFinished with result: timeout\nMain processes terminated with: code=killed/status=TERM\nService runtime: 5.028s\nCPU time consumed: 228ms\nMemory peak: 26.3M\nMemory swap peak: 0B\n",
+    "termination_verified_seconds": 5.047738653000124,
+    "observed_processes_absent": true,
+    "heartbeat_stopped": true,
+    "heartbeat_bytes": 237,
+    "provider_requests": [
+      {
+        "path": "/v1/responses",
+        "tool_outputs": [],
+        "tools": [
+          "exec_command",
+          "write_stdin",
+          "request_user_input"
+        ],
+        "instruction_markers": [],
+        "instruction_injection_present": false
+      }
+    ]
+  },
+  "datagram_sink_observations": [],
+  "provider_auth_observations_final": [
+    {
+      "path": "/v1/responses",
+      "auth_matches": true,
+      "host": "127.0.0.1:8081"
+    },
+    {
+      "path": "/v1/responses",
+      "auth_matches": true,
+      "host": "127.0.0.1:8081"
+    },
+    {
+      "path": "/v1/responses",
+      "auth_matches": true,
+      "host": "127.0.0.1:8081"
+    },
+    {
+      "path": "/v1/responses",
+      "auth_matches": true,
+      "host": "127.0.0.1:8081"
+    },
+    {
+      "path": "/v1/responses",
+      "auth_matches": true,
+      "host": "127.0.0.1:8081"
+    },
+    {
+      "path": "/v1/responses",
+      "auth_matches": true,
+      "host": "127.0.0.1:8081"
+    }
+  ],
+  "native_boundary_stages_passed": true,
+  "payload_progress": [
+    {
+      "stage": "hooks-complete",
+      "seconds": 0.011395
+    },
+    {
+      "stage": "observe-start",
+      "seconds": 0.011592
+    },
+    {
+      "stage": "observe-complete",
+      "seconds": 0.022433
+    },
+    {
+      "stage": "allowed-writes-complete",
+      "seconds": 0.023006
+    },
+    {
+      "stage": "child-complete",
+      "seconds": 0.260138
+    },
+    {
+      "stage": "setsid_child-complete",
+      "seconds": 0.371413
+    },
+    {
+      "stage": "/candidate/owned-storage-start",
+      "seconds": 0.371898
+    },
+    {
+      "stage": "/candidate/owned-sparse-complete",
+      "seconds": 0.39866
+    },
+    {
+      "stage": "/candidate/owned-allocation-complete",
+      "seconds": 0.420124
+    },
+    {
+      "stage": "/scratch-storage-start",
+      "seconds": 0.420483
+    },
+    {
+      "stage": "/scratch-sparse-complete",
+      "seconds": 0.485571
+    },
+    {
+      "stage": "/scratch-allocation-complete",
+      "seconds": 0.52524
+    },
+    {
+      "stage": "all-observations-complete",
+      "seconds": 0.727727
+    }
+  ],
+  "partial_observation_sha256": "e5a477a539fd2c245dee7f67eb02254abf9eaac2806f946b1ebe413711dda3c8",
+  "final_storage_views": {
+    "candidate": [
+      {
+        "path": "absolute-parent",
+        "logical": 8,
+        "allocated": 0
+      },
+      {
+        "path": "absolute-link",
+        "logical": 15,
+        "allocated": 0
+      },
+      {
+        "path": "relative-link",
+        "logical": 20,
+        "allocated": 0
+      },
+      {
+        "path": "new-owned",
+        "logical": 9,
+        "allocated": 12288
+      },
+      {
+        "path": "relative-parent",
+        "logical": 13,
+        "allocated": 0
+      },
+      {
+        "path": "lost+found",
+        "logical": 16384,
+        "allocated": 16384
+      },
+      {
+        "path": "existing",
+        "logical": 14,
+        "allocated": 12288
+      }
+    ],
+    "candidate_lower": [
+      {
+        "path": "absolute-parent",
+        "logical": 8,
+        "allocated": 0
+      },
+      {
+        "path": "absolute-link",
+        "logical": 15,
+        "allocated": 0
+      },
+      {
+        "path": "relative-link",
+        "logical": 20,
+        "allocated": 0
+      },
+      {
+        "path": "new-owned",
+        "logical": 12288,
+        "allocated": 12288
+      },
+      {
+        "path": "relative-parent",
+        "logical": 13,
+        "allocated": 0
+      },
+      {
+        "path": "lost+found",
+        "logical": 16384,
+        "allocated": 16384
+      },
+      {
+        "path": "existing",
+        "logical": 12288,
+        "allocated": 12288
+      }
+    ],
+    "scratch": [
+      {
+        "path": "codex-bwrap-synthetic-mount-targets-65534",
+        "logical": 4096,
+        "allocated": 4096
+      },
+      {
+        "path": "AGENTS.md",
+        "logical": 74,
+        "allocated": 12288
+      },
+      {
+        "path": "native-tiny",
+        "logical": 4,
+        "allocated": 12288
+      },
+      {
+        "path": "memories_1.sqlite-wal",
+        "logical": 86552,
+        "allocated": 98304
+      },
+      {
+        "path": "goals_1.sqlite-wal",
+        "logical": 74192,
+        "allocated": 86016
+      },
+      {
+        "path": "full-observations.json",
+        "logical": 17749,
+        "allocated": 28672
+      },
+      {
+        "path": "state_5.sqlite",
+        "logical": 4096,
+        "allocated": 12288
+      },
+      {
+        "path": "goals_1.sqlite",
+        "logical": 4096,
+        "allocated": 12288
+      },
+      {
+        "path": "payload-progress.json",
+        "logical": 764,
+        "allocated": 12288
+      },
+      {
+        "path": "codex-daemon-65534",
+        "logical": 4096,
+        "allocated": 4096
+      },
+      {
+        "path": "goals_1.sqlite-shm",
+        "logical": 32768,
+        "allocated": 40960
+      },
+      {
+        "path": "config.toml",
+        "logical": 193,
+        "allocated": 12288
+      },
+      {
+        "path": "memories_1.sqlite-shm",
+        "logical": 32768,
+        "allocated": 40960
+      },
+      {
+        "path": "existing",
+        "logical": 14,
+        "allocated": 12288
+      },
+      {
+        "path": "queue_1.sqlite",
+        "logical": 4096,
+        "allocated": 12288
+      },
+      {
+        "path": "queue_1.sqlite-shm",
+        "logical": 32768,
+        "allocated": 40960
+      },
+      {
+        "path": "memories_1.sqlite",
+        "logical": 4096,
+        "allocated": 12288
+      },
+      {
+        "path": "deleted-ready.json",
+        "logical": 76,
+        "allocated": 12288
+      },
+      {
+        "path": "logs_2.sqlite-shm",
+        "logical": 32768,
+        "allocated": 40960
+      },
+      {
+        "path": "logs_2.sqlite",
+        "logical": 49152,
+        "allocated": 57344
+      },
+      {
+        "path": "installation_id",
+        "logical": 36,
+        "allocated": 12288
+      },
+      {
+        "path": "state_5.sqlite-shm",
+        "logical": 32768,
+        "allocated": 40960
+      },
+      {
+        "path": "lost+found",
+        "logical": 16384,
+        "allocated": 16384
+      },
+      {
+        "path": "new-owned",
+        "logical": 9,
+        "allocated": 12288
+      },
+      {
+        "path": "state_5.sqlite-wal",
+        "logical": 1989992,
+        "allocated": 1998848
+      },
+      {
+        "path": "checkout",
+        "logical": 4096,
+        "allocated": 4096
+      },
+      {
+        "path": "queue_1.sqlite-wal",
+        "logical": 82432,
+        "allocated": 94208
+      },
+      {
+        "path": "AGENTS.override.md",
+        "logical": 47,
+        "allocated": 12288
+      },
+      {
+        "path": "logs_2.sqlite-wal",
+        "logical": 0,
+        "allocated": 8192
+      },
+      {
+        "path": ".gitconfig",
+        "logical": 44,
+        "allocated": 12288
+      },
+      {
+        "path": "tmp",
+        "logical": 4096,
+        "allocated": 4096
+      },
+      {
+        "path": "codex-bwrap-synthetic-mount-targets-65534/lock",
+        "logical": 0,
+        "allocated": 8192
+      },
+      {
+        "path": "checkout/AGENTS.md",
+        "logical": 88,
+        "allocated": 12288
+      },
+      {
+        "path": "checkout/.agents",
+        "logical": 4096,
+        "allocated": 4096
+      },
+      {
+        "path": "checkout/dirty.py",
+        "logical": 35,
+        "allocated": 12288
+      },
+      {
+        "path": "checkout/.codex",
+        "logical": 4096,
+        "allocated": 4096
+      },
+      {
+        "path": "checkout/.git",
+        "logical": 4096,
+        "allocated": 4096
+      },
+      {
+        "path": "tmp/arg0",
+        "logical": 4096,
+        "allocated": 4096
+      },
+      {
+        "path": "checkout/.codex/config.toml",
+        "logical": 166,
+        "allocated": 12288
+      },
+      {
+        "path": "checkout/.git/HEAD",
+        "logical": 24,
+        "allocated": 12288
+      },
+      {
+        "path": "checkout/.git/objects",
+        "logical": 4096,
+        "allocated": 4096
+      },
+      {
+        "path": "checkout/.git/config",
+        "logical": 47,
+        "allocated": 12288
+      },
+      {
+        "path": "checkout/.git/refs",
+        "logical": 4096,
+        "allocated": 4096
+      },
+      {
+        "path": "checkout/.git/hooks",
+        "logical": 4096,
+        "allocated": 4096
+      },
+      {
+        "path": "checkout/.git/hooks/pre-commit",
+        "logical": 58,
+        "allocated": 12288
+      },
+      {
+        "path": "tmp/arg0/codex-arg03elrJ6",
+        "logical": 4096,
+        "allocated": 4096
+      },
+      {
+        "path": "tmp/arg0/codex-arg03elrJ6/codex-execve-wrapper",
+        "logical": 20,
+        "allocated": 0
+      },
+      {
+        "path": "tmp/arg0/codex-arg03elrJ6/.lock",
+        "logical": 0,
+        "allocated": 8192
+      },
+      {
+        "path": "tmp/arg0/codex-arg03elrJ6/codex-linux-sandbox",
+        "logical": 20,
+        "allocated": 0
+      },
+      {
+        "path": "tmp/arg0/codex-arg03elrJ6/apply_patch",
+        "logical": 20,
+        "allocated": 0
+      },
+      {
+        "path": "tmp/arg0/codex-arg03elrJ6/applypatch",
+        "logical": 20,
+        "allocated": 0
+      }
+    ],
+    "scratch_lower": [
+      {
+        "path": "codex-bwrap-synthetic-mount-targets-65534",
+        "logical": 4096,
+        "allocated": 4096
+      },
+      {
+        "path": "AGENTS.md",
+        "logical": 12288,
+        "allocated": 12288
+      },
+      {
+        "path": "native-tiny",
+        "logical": 12288,
+        "allocated": 12288
+      },
+      {
+        "path": "memories_1.sqlite-wal",
+        "logical": 98304,
+        "allocated": 98304
+      },
+      {
+        "path": "goals_1.sqlite-wal",
+        "logical": 86016,
+        "allocated": 86016
+      },
+      {
+        "path": "full-observations.json",
+        "logical": 28672,
+        "allocated": 28672
+      },
+      {
+        "path": "state_5.sqlite",
+        "logical": 12288,
+        "allocated": 12288
+      },
+      {
+        "path": "goals_1.sqlite",
+        "logical": 12288,
+        "allocated": 12288
+      },
+      {
+        "path": "payload-progress.json",
+        "logical": 12288,
+        "allocated": 12288
+      },
+      {
+        "path": "codex-daemon-65534",
+        "logical": 4096,
+        "allocated": 4096
+      },
+      {
+        "path": "goals_1.sqlite-shm",
+        "logical": 40960,
+        "allocated": 40960
+      },
+      {
+        "path": "config.toml",
+        "logical": 12288,
+        "allocated": 12288
+      },
+      {
+        "path": "memories_1.sqlite-shm",
+        "logical": 40960,
+        "allocated": 40960
+      },
+      {
+        "path": "existing",
+        "logical": 12288,
+        "allocated": 12288
+      },
+      {
+        "path": "queue_1.sqlite",
+        "logical": 12288,
+        "allocated": 12288
+      },
+      {
+        "path": "queue_1.sqlite-shm",
+        "logical": 40960,
+        "allocated": 40960
+      },
+      {
+        "path": "memories_1.sqlite",
+        "logical": 12288,
+        "allocated": 12288
+      },
+      {
+        "path": "deleted-ready.json",
+        "logical": 12288,
+        "allocated": 12288
+      },
+      {
+        "path": "logs_2.sqlite-shm",
+        "logical": 40960,
+        "allocated": 40960
+      },
+      {
+        "path": "logs_2.sqlite",
+        "logical": 57344,
+        "allocated": 57344
+      },
+      {
+        "path": "installation_id",
+        "logical": 12288,
+        "allocated": 12288
+      },
+      {
+        "path": "state_5.sqlite-shm",
+        "logical": 40960,
+        "allocated": 40960
+      },
+      {
+        "path": "lost+found",
+        "logical": 16384,
+        "allocated": 16384
+      },
+      {
+        "path": "new-owned",
+        "logical": 12288,
+        "allocated": 12288
+      },
+      {
+        "path": "state_5.sqlite-wal",
+        "logical": 1998848,
+        "allocated": 1998848
+      },
+      {
+        "path": "checkout",
+        "logical": 4096,
+        "allocated": 4096
+      },
+      {
+        "path": "queue_1.sqlite-wal",
+        "logical": 94208,
+        "allocated": 94208
+      },
+      {
+        "path": "AGENTS.override.md",
+        "logical": 12288,
+        "allocated": 12288
+      },
+      {
+        "path": "logs_2.sqlite-wal",
+        "logical": 8192,
+        "allocated": 8192
+      },
+      {
+        "path": ".gitconfig",
+        "logical": 12288,
+        "allocated": 12288
+      },
+      {
+        "path": "tmp",
+        "logical": 4096,
+        "allocated": 4096
+      },
+      {
+        "path": "codex-bwrap-synthetic-mount-targets-65534/lock",
+        "logical": 8192,
+        "allocated": 8192
+      },
+      {
+        "path": "checkout/AGENTS.md",
+        "logical": 12288,
+        "allocated": 12288
+      },
+      {
+        "path": "checkout/.agents",
+        "logical": 4096,
+        "allocated": 4096
+      },
+      {
+        "path": "checkout/dirty.py",
+        "logical": 12288,
+        "allocated": 12288
+      },
+      {
+        "path": "checkout/.codex",
+        "logical": 4096,
+        "allocated": 4096
+      },
+      {
+        "path": "checkout/.git",
+        "logical": 4096,
+        "allocated": 4096
+      },
+      {
+        "path": "tmp/arg0",
+        "logical": 4096,
+        "allocated": 4096
+      },
+      {
+        "path": "checkout/.codex/config.toml",
+        "logical": 12288,
+        "allocated": 12288
+      },
+      {
+        "path": "checkout/.git/HEAD",
+        "logical": 12288,
+        "allocated": 12288
+      },
+      {
+        "path": "checkout/.git/objects",
+        "logical": 4096,
+        "allocated": 4096
+      },
+      {
+        "path": "checkout/.git/config",
+        "logical": 12288,
+        "allocated": 12288
+      },
+      {
+        "path": "checkout/.git/refs",
+        "logical": 4096,
+        "allocated": 4096
+      },
+      {
+        "path": "checkout/.git/hooks",
+        "logical": 4096,
+        "allocated": 4096
+      },
+      {
+        "path": "checkout/.git/hooks/pre-commit",
+        "logical": 12288,
+        "allocated": 12288
+      },
+      {
+        "path": "tmp/arg0/codex-arg03elrJ6",
+        "logical": 4096,
+        "allocated": 4096
+      },
+      {
+        "path": "tmp/arg0/codex-arg03elrJ6/codex-execve-wrapper",
+        "logical": 20,
+        "allocated": 0
+      },
+      {
+        "path": "tmp/arg0/codex-arg03elrJ6/.lock",
+        "logical": 8192,
+        "allocated": 8192
+      },
+      {
+        "path": "tmp/arg0/codex-arg03elrJ6/codex-linux-sandbox",
+        "logical": 20,
+        "allocated": 0
+      },
+      {
+        "path": "tmp/arg0/codex-arg03elrJ6/apply_patch",
+        "logical": 20,
+        "allocated": 0
+      },
+      {
+        "path": "tmp/arg0/codex-arg03elrJ6/applypatch",
+        "logical": 20,
+        "allocated": 0
+      }
+    ]
+  },
+  "seconds": 7.355
+}

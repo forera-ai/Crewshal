@@ -1,0 +1,273 @@
+{
+  "scope": "Final current local continuation source preservation and cleanup; original v5 cleanup remains unknown",
+  "v18_current_binding_recheck_passed": true,
+  "owned_service_inventory": "",
+  "preserved_source_files": [
+    {
+      "file": "crewshal-direct-mechanism-v5.py",
+      "sha256": "175c7c76fac548c0cfe9fa6d6e1b7d0eff0539ccca2c4a64c68e9d2a1a635860"
+    },
+    {
+      "file": "crewshal-native-apparmor-proposal-v7.profile",
+      "sha256": "6a6d743ab2a1d51db801ff944aa74c2fedd5316f34ee1965bc345b4917dc3039"
+    },
+    {
+      "file": "crewshal-native-credential-negative-v2.py",
+      "sha256": "6b012953364c6265b47059654998a7fc4c6e74c87edc98d93d7ce61776d4f2d2"
+    },
+    {
+      "file": "crewshal-native-discovery-v1.py",
+      "sha256": "a8d9b0d5bb204b7cb67570c37b9c49fcfc7fa46a0c2384979b3bb8a364de1a7a"
+    },
+    {
+      "file": "crewshal-native-full-boundary-v3.py",
+      "sha256": "594bfc5794898952ab011bb5b565b5f8a794bdd75d8ee90c56debfd5fc2c7dc9"
+    },
+    {
+      "file": "crewshal-native-full-boundary-v4.py",
+      "sha256": "e6c4e0e372e1e2ef6465797dcfd96f064b1b7d30c123a01eafd76430f615e15a"
+    },
+    {
+      "file": "crewshal-native-full-boundary-v5.py",
+      "sha256": "90c6ba44103776f6f01d5b558da30d228a18feb49ad62170519e3a6561a7fb57"
+    },
+    {
+      "file": "crewshal-native-full-boundary-v6.py",
+      "sha256": "4d9669e2830205edf38658c267331309399e6e5e72af4c127df8f2ab7278286c"
+    },
+    {
+      "file": "crewshal-native-full-freeze-v10.py",
+      "sha256": "bade0f5e3794e09a7c163bed1c4ba1a8dcb7aa5df8568d2a3a83820bf9d32dbd"
+    },
+    {
+      "file": "crewshal-native-full-freeze-v11.py",
+      "sha256": "4d8680c6d2a8a7076ab1c79fe63eba3ba769d4e872363d68c8b38381753c603e"
+    },
+    {
+      "file": "crewshal-native-full-freeze-v12.py",
+      "sha256": "09a0563f83a7135755795143335b84b4bf65b5d86a584e89a83168f49d338996"
+    },
+    {
+      "file": "crewshal-native-full-freeze-v13.py",
+      "sha256": "46c53119e8be4091f1cccebfd2baec93c208eb9002ecd761d7284c3a41fa58ed"
+    },
+    {
+      "file": "crewshal-native-full-freeze-v14.py",
+      "sha256": "36b8c36305304119044423f3f7bf60a9aab331f73d3076124b7ec8296d984021"
+    },
+    {
+      "file": "crewshal-native-full-freeze-v15.py",
+      "sha256": "ad70a4311cd10e0ab6ff7dabef1d678f8e22bcaee1c67c264dd9245eaab6f402"
+    },
+    {
+      "file": "crewshal-native-full-freeze-v16.py",
+      "sha256": "44f98dc1ebd1f1c534fcd09067f0b587c13121f1143fba57d84891c765dca1d6"
+    },
+    {
+      "file": "crewshal-native-full-freeze-v4.py",
+      "sha256": "9bd1864e9e63b3b85383c82605cbf6d845101fd17da35cec0a3636f37bdd679a"
+    },
+    {
+      "file": "crewshal-native-full-freeze-v5.py",
+      "sha256": "4a543ccac2ca23fb392f5c61f7bf05903cf39699c52add276ecfb58b28c44f44"
+    },
+    {
+      "file": "crewshal-native-full-freeze-v6.py",
+      "sha256": "077853450cfa476673ea9ba85620398cad27850f79b0dda50c4067874fea8234"
+    },
+    {
+      "file": "crewshal-native-full-freeze-v7.py",
+      "sha256": "a1cb70bc5359a2a953c3586778bb8daa7a8fa17f2b8af4618d8bd36879cd0036"
+    },
+    {
+      "file": "crewshal-native-full-freeze-v8.py",
+      "sha256": "9c1ad944e2c5a9a65fc5219251d9bfca977413702fc9605b0762b6be3ad356f0"
+    },
+    {
+      "file": "crewshal-native-full-freeze-v9.py",
+      "sha256": "ad1c0f4eef1973b68b2a2897878e8c150a125ac02d7cb432a2855f607f80b97e"
+    },
+    {
+      "file": "crewshal-native-full-payload-v4.py",
+      "sha256": "38d19d735e058e82c663de175e6de82b1ef627329a29bc06e88a71cfb5f09459"
+    },
+    {
+      "file": "crewshal-native-full-payload-v5.py",
+      "sha256": "f14cf3404c38a15ac6d3f29708b41fe7639a8b2cebb52c0c8071d5f466a4deb4"
+    },
+    {
+      "file": "crewshal-native-full-payload-v6.py",
+      "sha256": "60754135c4de6e998ffddcede54e30027d088b0306411afd9e8166cd67598edf"
+    },
+    {
+      "file": "crewshal-native-full-payload-v7.py",
+      "sha256": "a8a273043efda9ef1af9e062f552abbf25efd85ed16cef4f828abeba9de051c1"
+    },
+    {
+      "file": "crewshal-native-full-payload-v8.py",
+      "sha256": "4f16d4a7571bb937af16bdbbdfb6566888092340d510e84617a2217a8886bfd1"
+    },
+    {
+      "file": "crewshal-native-full-profile-v10.json",
+      "sha256": "0a575c756ab89b5d7101c0e6dc61087f61cdd2cad88ff494a2ebab53cd970b66"
+    },
+    {
+      "file": "crewshal-native-full-profile-v11.json",
+      "sha256": "35246759c473ff109407983d28a03d4e98030fa2d3a8dedd3d4178923b05ef4f"
+    },
+    {
+      "file": "crewshal-native-full-profile-v12.json",
+      "sha256": "0bb59e53a547d514034c0949d4da1dddda67454f662b871130df1c1c023e938c"
+    },
+    {
+      "file": "crewshal-native-full-profile-v13.json",
+      "sha256": "058adb7e41f66c7d349ff29ac1abad4ee8b75cc596345d283f1f77817293aa0c"
+    },
+    {
+      "file": "crewshal-native-full-profile-v14.json",
+      "sha256": "3a474248ebdfa57056c8ed5faad92a9bfd7535ff9b277aa99851844f6f44f24f"
+    },
+    {
+      "file": "crewshal-native-full-profile-v15.json",
+      "sha256": "cc4c593a3ad33302d00407dbe3800fff4ffd7ccb2a3b186c50a5ab907ca3d6e3"
+    },
+    {
+      "file": "crewshal-native-full-profile-v16.json",
+      "sha256": "8a5d69e18cf1977d912c38ed1aaa2618cdd02715ef1f728363acede16d722d2b"
+    },
+    {
+      "file": "crewshal-native-full-profile-v17.json",
+      "sha256": "7f77920bdf9a686079e236f076af0fbdafbd9bafb543db676f8a29580787ed85"
+    },
+    {
+      "file": "crewshal-native-full-profile-v18.json",
+      "sha256": "95d3e80835033a2aa6105f22bd69554e59c476f338665e239a6797367f5222df"
+    },
+    {
+      "file": "crewshal-native-full-profile-v6.json",
+      "sha256": "429bb16b29ad7a932c67e69c814d225f85523e826c0da2775c3d01cf276c883f"
+    },
+    {
+      "file": "crewshal-native-full-profile-v7.json",
+      "sha256": "cccae002324ce6994275a6f42d116ec6cb8541d465a04360c9d7adccfd964b4c"
+    },
+    {
+      "file": "crewshal-native-full-profile-v8.json",
+      "sha256": "dcb265e2252fde784ceeb0f133522852b31e15c8fe1fdf98692ed3f30a1a21c8"
+    },
+    {
+      "file": "crewshal-native-full-profile-v9.json",
+      "sha256": "7a02680688d0f3a14e32a581bbf79ca22802f8648c60a086568a8db4f3d90ccf"
+    },
+    {
+      "file": "crewshal-native-full-readback-v1.py",
+      "sha256": "dee2bdc16c6df86067490e2ebb69e80e05628f3f4bf9dbf474597917d10cf812"
+    },
+    {
+      "file": "crewshal-native-full-readback-v2.py",
+      "sha256": "6509d4a374b0eac89ef5fb6bd0ad55600a5bfafeda40b05f3117c04e1f4fa5dc"
+    },
+    {
+      "file": "crewshal-native-full-readback-v3.py",
+      "sha256": "80628f03b6eae8beb20b86e8564ba880f0025f9efb2213d158dcbf8eb2216097"
+    },
+    {
+      "file": "crewshal-native-full-response-fixture-v3.py",
+      "sha256": "1619803887df87a91d074eb9f4a727411ff52463ec9a1e727769b6d95841809b"
+    },
+    {
+      "file": "crewshal-native-full-response-fixture-v4.py",
+      "sha256": "db68b2bfee13888350f51191d5e027dc99ad237010715d866d715993d6d02dcc"
+    },
+    {
+      "file": "crewshal-native-full-v10.py",
+      "sha256": "d7bdca68d0ededdb0ae558b21e5f20894ad891acbed0c103073f81ed2f5720e5"
+    },
+    {
+      "file": "crewshal-native-full-v11.py",
+      "sha256": "0f236eac199a5079fa6afee7e6134c50e6ce11f754e4af75532b5d1e73671961"
+    },
+    {
+      "file": "crewshal-native-full-v12.py",
+      "sha256": "98380e65844e3cca46883b9aed71a365980fdbad19eb87ea2f6bd4b8a79ac253"
+    },
+    {
+      "file": "crewshal-native-full-v13.py",
+      "sha256": "bda5938afc40ccb80fbfc725f9cf271736acb2458d071e91f58b6333ed3c0e42"
+    },
+    {
+      "file": "crewshal-native-full-v14.py",
+      "sha256": "50c44d750c011dbb6c996bc0c2ba8d84444593aff726253b27a5f3723f7cbee8"
+    },
+    {
+      "file": "crewshal-native-full-v15.py",
+      "sha256": "964df28a81803980b669a57ef167d5c785277550ad4467d48da2483ecba0ac0a"
+    },
+    {
+      "file": "crewshal-native-full-v16.py",
+      "sha256": "60195b7eb13111850b48a853f0fa701ca75d12e2c71228c844ce0de471f65a02"
+    },
+    {
+      "file": "crewshal-native-full-v17.py",
+      "sha256": "07de573419d16ba1fb201ff0ca5b1e8d09f841338a1b053f5e357075fb473531"
+    },
+    {
+      "file": "crewshal-native-full-v18.py",
+      "sha256": "cd4a4adc7e22b80850c9d2a621356b3051a3decd9bd7938e6f2602aedae2df80"
+    },
+    {
+      "file": "crewshal-native-full-v6.py",
+      "sha256": "63b41e27d3b121b505df26fd441263ef824fb458a172c4d8cae607be39a8c345"
+    },
+    {
+      "file": "crewshal-native-full-v7.py",
+      "sha256": "9ca2d6775c29502526a30f3794d9ca616d9c4e4d9090b573a648fa4b1af692cf"
+    },
+    {
+      "file": "crewshal-native-full-v8.py",
+      "sha256": "0cc4f390c95be06798e5d682b50f9dd1a19c0ea4200d353dacfd67a37c0efcf7"
+    },
+    {
+      "file": "crewshal-native-full-v9.py",
+      "sha256": "a2dfc28916a7aaa60b53a4619f665b51894d1a7e9595a5314536c5a3343398fb"
+    },
+    {
+      "file": "crewshal-native-full-validator-v1.py",
+      "sha256": "c3323ac113c8a30d65fa357e43aa7f2428aa033efb9e5b86b4a9a58356acf21e"
+    },
+    {
+      "file": "crewshal-phase-2c-original-v1.json",
+      "sha256": "fed4dde5e3fe459110a5fb0b2d4f6c75b16214c91aa823d3df640a7415e41563"
+    },
+    {
+      "file": "crewshalnativediscoveryv1.slice",
+      "sha256": "e59811b6d83fc927f8a5e63be6834031cdb08c9d7af8d0376b652e4e693c04cc"
+    }
+  ],
+  "prepared_roots_retained": [
+    "crewshal-native-qualification-v1",
+    "crewshal-native-qualification-v10",
+    "crewshal-native-qualification-v11",
+    "crewshal-native-qualification-v12",
+    "crewshal-native-qualification-v13",
+    "crewshal-native-qualification-v14",
+    "crewshal-native-qualification-v15",
+    "crewshal-native-qualification-v16",
+    "crewshal-native-qualification-v17",
+    "crewshal-native-qualification-v18",
+    "crewshal-native-qualification-v2",
+    "crewshal-native-qualification-v4",
+    "crewshal-native-qualification-v5",
+    "crewshal-native-qualification-v6",
+    "crewshal-native-qualification-v7",
+    "crewshal-native-qualification-v8",
+    "crewshal-native-qualification-v9"
+  ],
+  "owned_roles_unloaded": true,
+  "owned_run_helpers_absent": true,
+  "owned_slice_config_and_cgroup_absent": true,
+  "global_userns_restriction": 1,
+  "vm_left_running": true,
+  "original_v5_final_cleanup": "unknown",
+  "execution_allowed": false
+}

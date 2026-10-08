@@ -1,0 +1,16 @@
+{
+  "fixture": 1,
+  "scope": "Complete-profile prospective native conformance; qualification depends on every original criterion",
+  "execution_allowed": false,
+  "native_start_allowed": false,
+  "manifest_sha256": "e05ad64728b2ee58fb030d59b7765ec44949f0ec62576ae03833a00b4046a5f6",
+  "cleanup": {},
+  "errors": [
+    {
+      "type": "RuntimeError",
+      "message": "anonymous ring not empty"
+    }
+  ],
+  "record_stage": "before-cleanup",
+  "runtime_verified": false
+}

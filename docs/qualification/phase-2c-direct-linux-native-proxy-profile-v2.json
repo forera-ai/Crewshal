@@ -1,0 +1,61 @@
+{
+  "scope": "Trusted actual native and official-proxy authenticated positive control only; no complete credential mediation",
+  "source": "scripts/probe_native_proxy_v2.py",
+  "source_sha256": "e94702c0cfe1dfe334e57b8bbb047df9a23c72c21335c07e5fadc9f626f658e2",
+  "authority": "phase-2c-direct-linux-native-apparmor-approval-v2.json",
+  "policy": "phase-2c-direct-linux-native-apparmor-proposal-v7.profile",
+  "policy_sha256": "6a6d743ab2a1d51db801ff944aa74c2fedd5316f34ee1965bc345b4917dc3039",
+  "mechanism": "Existing private anonymous keyctl session, new 32 MiB ext4 file/owned loop and eCryptfs upper; root setup uses existing nsenter/bwrap/setpriv, native UID/GID 65534; no ambient rings or host block device formatting",
+  "scope_limitations": [
+    "Not same profile as prior tmpfs sandbox subset",
+    "No inference of full credential mediation",
+    "Original logical/allocated and deleted-open bounds need same-profile hostile re-observation"
+  ],
+  "worker_limits": {
+    "memory": 134217728,
+    "swap": 0,
+    "cpu": "100000 100000",
+    "pids": 32,
+    "seconds": 5
+  },
+  "aggregate_limits": {
+    "memory": 805306368,
+    "swap": 0,
+    "cpu": "100000 100000",
+    "pids": 128
+  },
+  "timing": {
+    "startup": 120,
+    "command": 10,
+    "streams": 65536,
+    "batch_and_cleanup": 600,
+    "cleanup_reserve": 30
+  },
+  "disk_reservations": {
+    "prepared": 1073741824,
+    "scratch_each_representation": 33554432,
+    "scratch_representations": 3,
+    "output": 16777216
+  },
+  "execution_allowed": false,
+  "native_start_allowed": false,
+  "fixture_source": "scripts/native_authenticated_response_fixture_v1.py",
+  "fixture_source_sha256": "8dbcc111b45424bfdf86450f87498fbb4ece098355ff950e1cb39d676ee959cb",
+  "change": "External pinned official Responses proxy at UID/GID 65533, original native worker at 65534, nonce token only outside worker views and broker stdin, permitted authenticated synthetic sink, private nftables actor/destination restriction before native dispatch; use builtin open for exclusive mode-0600 canary creation; prior v1 TypeError preserved",
+  "worker_cpu_affinity": 0,
+  "termination_contract": {
+    "task_success": "Actual command exit zero plus independent exact four-byte artifact, before stop",
+    "native_process": "Supervisor requested stop; actual systemd captured termination retained, not relabelled as native exit zero",
+    "maximum_worker_seconds": 5
+  },
+  "network_policy": "table inet crewshal_proxy_v2 {\n counter native_allowed {}\n counter proxy_allowed {}\n counter proxy_reply {}\n counter denied {}\n chain output {\n  type filter hook output priority 0; policy accept;\n  meta skuid 65534 ip daddr 127.0.0.1 tcp dport 8080 counter name native_allowed accept\n  meta skuid 65533 ip daddr 127.0.0.1 tcp dport 8081 counter name proxy_allowed accept\n  meta skuid 65533 ip daddr 127.0.0.1 tcp sport 8080 ct state established counter name proxy_reply accept\n  meta skuid { 65531, 65533, 65534 } counter name denied reject with icmpx type admin-prohibited\n }\n}\n",
+  "network_policy_sha256": "2fc4517680b835df87810f6cbe6df0bc78c20c47961ea48c572bafa0014157a5",
+  "broker_limits": {
+    "memory": 67108864,
+    "swap": 0,
+    "cpu": "100000 100000",
+    "pids": 16,
+    "maximum_seconds": 570
+  },
+  "credential_mediation_qualified": false
+}

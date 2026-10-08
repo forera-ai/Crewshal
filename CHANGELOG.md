@@ -2,6 +2,15 @@
 
 Versions follow semantic versioning. Remote branch publication is distinct from a package-registry release; no registry release has occurred.
 
+## 0.9.0 — 2026-10-08
+
+- Complete Phase 2C on one fresh Linux aarch64 native/proxy v18 profile: all twenty original cases independently pass twice, including actual native `exec_command` and `write_stdin`, unchanged grants/limits, credential mediation, readonly validator, cancellation and deadline cleanup.
+- Preserve every historical source/profile/binding/freeze/observation and failed variant. Keep the lost v5 raw evidence, cause and original cleanup unknown; recover only its actual surviving binding bytes.
+- Record the owner's explicit local VMware resumption after the earlier test stop; use no droplet or paid model/provider. Independently verify current owned cleanup, preserve prepared roots and source bytes, unload owned roles, disconnect SSH and leave the VM running.
+- Add a bounded portable two-record consistency audit with false runtime-verification/execution authority. Refuse source/profile/identity changes, incomplete cases, path/case aliases, nonfinite JSON and malformed records.
+- Add independent native readback and fresh regressions for controller setup races, mutable capture snapshots, native continuation and departed observation targets. Verify 141 network-denied macOS offline tests, lint and strict typing.
+- Keep Windows/macOS runtime compatibility unknown and agent writes disabled. Stop development at 2C; deliver the separately gated Phase 2D prompt. No registry release, deployment or Phase 2D implementation.
+
 ## 0.8.20 — 2026-10-07
 
 - Record the direct fixture-only AppArmor approval and eight immutable native setup failures under unchanged limits; isolate actual disconnected `/proc` UID-map denial after correcting mount, UID, CLI and proc-view setup issues.

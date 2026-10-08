@@ -1,0 +1,10 @@
+{
+  "date": "2026-10-07",
+  "authority": "direct owner message",
+  "owner_message": "V4 policy approved. unblock 2C",
+  "policy": "phase-2c-direct-linux-native-apparmor-proposal-v4.profile",
+  "policy_sha256": "fcf5efa39ef08c3afe95766f9f9c6db9e82e129055f36e83133bb05aa3cde883",
+  "scope": "temporary fixture-only setup flag; unchanged payload denials, global protection and limits",
+  "execution_allowed": false,
+  "native_start_allowed": false
+}

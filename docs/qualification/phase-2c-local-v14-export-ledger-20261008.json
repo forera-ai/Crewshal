@@ -1,0 +1,31 @@
+{
+  "scope": "Exact raw export",
+  "files": {
+    "phase-2c-direct-linux-native-full-v14-f2-before-cleanup.json": {
+      "bytes": 111788,
+      "sha256": "96877885f60f77c26c4823ec554eba1c0ff9435497ea8a70c7d0ffa5e67f962b"
+    },
+    "phase-2c-direct-linux-native-full-v14-f1-before-cleanup.json": {
+      "bytes": 111668,
+      "sha256": "e5a477a539fd2c245dee7f67eb02254abf9eaac2806f946b1ebe413711dda3c8"
+    },
+    "phase-2c-direct-linux-native-full-v14-f2.json": {
+      "bytes": 128741,
+      "sha256": "033d5e415900f9ece33467f5a66e98e2377963e70fbcabf01f2a2b3a776dc052"
+    },
+    "phase-2c-direct-linux-native-full-bindings-v14.json": {
+      "bytes": 351141,
+      "sha256": "08cab74f16fa49b462cebcd227b75610e2c1b4062348f058a277be0d8b44afbb"
+    },
+    "phase-2c-direct-linux-native-full-v14-f1.json": {
+      "bytes": 124671,
+      "sha256": "7c8174a5847bbdd29d86c8af3ceffcfe5a665d0a1cec18e0369d924683acf587"
+    },
+    "phase-2c-direct-linux-native-full-freeze-v14.json": {
+      "bytes": 1290,
+      "sha256": "036b0291460efdfd6722f67089a8ef18e5645a2616c18b9cda64f1599ce875dc"
+    }
+  },
+  "runtime_verified": false,
+  "execution_allowed": false
+}

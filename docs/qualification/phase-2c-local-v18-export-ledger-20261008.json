@@ -1,0 +1,42 @@
+{
+  "scope": "Exact v18 complete two-run raw records and independent diagnostic readback; no execution permission",
+  "files": [
+    {
+      "path": "docs/qualification/phase-2c-direct-linux-native-full-bindings-v18.json",
+      "bytes": 351141,
+      "sha256": "0bec8dccaa8979706646b25ec4d04bd961588a7279ce5b0ef4ae831aa6552e37"
+    },
+    {
+      "path": "docs/qualification/phase-2c-direct-linux-native-full-freeze-v18.json",
+      "bytes": 1290,
+      "sha256": "d9236388440548870494b567476e3926a494d1d1695c8e3464047f0e48be01ed"
+    },
+    {
+      "path": "docs/qualification/phase-2c-direct-linux-native-full-v18-f1-before-cleanup.json",
+      "bytes": 122367,
+      "sha256": "141559a98255886d1329ab737357c8ff09e9e679b697ee2d4068109c34f321c9"
+    },
+    {
+      "path": "docs/qualification/phase-2c-direct-linux-native-full-v18-f1.json",
+      "bytes": 140429,
+      "sha256": "97ff552fc0112bcb908934104d31f447313feed47fa556406f9db8af56cd7b0b"
+    },
+    {
+      "path": "docs/qualification/phase-2c-direct-linux-native-full-v18-f2-before-cleanup.json",
+      "bytes": 121973,
+      "sha256": "3cf96049c66b8f5c87fdfc9c2569e2c8245ff7733efc391ae776ec810dd9eb00"
+    },
+    {
+      "path": "docs/qualification/phase-2c-direct-linux-native-full-v18-f2.json",
+      "bytes": 139555,
+      "sha256": "5becf2a47a0a78943729e295530eb5b054aa8d5a64d2df44f7a77667627c9f6b"
+    },
+    {
+      "path": "docs/qualification/phase-2c-direct-linux-native-full-readback-v18.json",
+      "bytes": 5542,
+      "sha256": "71badf9ecae2be3550f4ca84f2ad884aa3ceb08a314165ddb0f35538b83e8a87"
+    }
+  ],
+  "runtime_verified": false,
+  "execution_allowed": false
+}

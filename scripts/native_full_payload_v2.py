@@ -1,0 +1,160 @@
+"""Fixed synthetic hostile workload; actual native dispatch and parent oracles required."""
+
+import importlib.util
+import json
+import os
+from pathlib import Path
+import subprocess
+import sys
+import time
+
+
+def deny(action):
+    try:
+        action()
+    except OSError as error:
+        return {"denied": True, "errno": error.errno}
+    return {"denied": False}
+
+
+def observe():
+    spec = importlib.util.spec_from_file_location("negative", "/input/native-negative.py")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    result = module.observe()
+    result["filesystem"] = {}
+    result["input"] = Path("/input/canary").read_bytes().decode()
+    for name, path in {
+        "outside": "/outside/canary",
+        "dirty": "/original/dirty.py",
+        "git": "/original/.git/config",
+        "database": "/coordinator/state.db",
+        "artifact": "/coordinator/artifact",
+        "readonly": "/input/canary",
+        "absolute_link": "/candidate/owned/absolute-link",
+        "relative_link": "/candidate/owned/relative-link",
+    }.items():
+        p = Path(path)
+        if name != "readonly":
+            result["filesystem"][name + "_read"] = deny(p.read_bytes)
+        result["filesystem"][name + "_write"] = deny(lambda: p.write_bytes(b"escape"))
+        if name in ("absolute_link", "relative_link"):
+            continue
+        result["filesystem"][name + "_chmod"] = deny(lambda: p.chmod(0o777))
+        result["filesystem"][name + "_unlink"] = deny(p.unlink)
+        result["filesystem"][name + "_rename"] = deny(lambda: p.rename("/scratch/escape"))
+        result["filesystem"][name + "_link"] = deny(lambda: os.link(p, "/scratch/escape-link"))
+    for path in (
+        "/candidate/owned/absolute-parent/new",
+        "/candidate/owned/relative-parent/new",
+        "/candidate/owned/../new",
+        "/outside/new",
+        "/original/new",
+        "/coordinator/new",
+        "/input/new",
+    ):
+        result["filesystem"]["new_" + path] = deny(lambda: Path(path).write_bytes(b"escape"))
+    return result
+
+
+def workload():
+    result = observe()
+    for directory in ("/candidate/owned", "/scratch"):
+        p = Path(directory) / "existing"
+        assert p.read_bytes() == b"original-owned"
+        p.write_bytes(b"modified-owned")
+        p = Path(directory) / "new-owned"
+        p.write_bytes(b"new-owned")
+        assert p.read_bytes() == b"new-owned"
+    for role, session in (("child", False), ("setsid_child", True)):
+        child = subprocess.run(
+            [sys.executable, "-I", "-B", __file__, role],
+            capture_output=True,
+            timeout=1,
+            start_new_session=session,
+        )
+        assert child.returncode == 0, child.stderr
+        result[role] = json.loads(child.stdout)
+    result["storage"] = {}
+    for folder, length in (("/candidate/owned", 16777216), ("/scratch", 33554432)):
+        target = Path(folder) / "oversized"
+        with target.open("xb") as f:
+            result["storage"][folder + "_truncate"] = deny(lambda: f.truncate(length + 1))
+            result["storage"][folder + "_seek"] = deny(
+                lambda: (f.seek(length), f.write(b"x"), f.flush())
+            )
+        target.unlink()
+        for action, value in (
+            ("link", lambda: os.link(Path(folder) / "existing", Path(folder) / "alias")),
+            ("xattr", lambda: os.setxattr(Path(folder) / "existing", "user.unbounded", b"x")),
+        ):
+            result["storage"][folder + "_" + action] = deny(value)
+        exhausted = Path(folder) / "allocated-exhaustion"
+        written = 0
+        error_number = None
+        with exhausted.open("xb", buffering=0) as stream:
+            for _ in range(length // 65536 + 1):
+                try:
+                    written += stream.write(b"x" * 65536)
+                except OSError as error:
+                    error_number = error.errno
+                    break
+        result["storage"][folder + "_allocated"] = {
+            "denied": error_number == 28,
+            "errno": error_number,
+            "written": written,
+        }
+        exhausted.unlink()
+    # The independent observer must find this live deleted inode through the actual cgroup.
+    deleted = Path("/candidate/owned/deleted-held")
+    with deleted.open("w+b") as f:
+        f.write(b"x" * 1048576)
+        f.flush()
+        deleted.unlink()
+        st = os.fstat(f.fileno())
+        Path("/scratch/deleted-ready.json").write_text(
+            json.dumps(
+                {
+                    "inode": st.st_ino,
+                    "device": st.st_dev,
+                    "logical": st.st_size,
+                    "fd": f.fileno(),
+                    "namespace_pid": os.getpid(),
+                }
+            )
+        )
+        time.sleep(0.2)
+    Path("/scratch/full-observations.json").write_text(json.dumps(result))
+    Path("/scratch/native-tiny").write_bytes(b"tiny")
+    time.sleep(0.15)
+
+
+def lifecycle():
+    if os.fork() == 0:
+        os.setsid()
+        while True:
+            with open("/scratch/heartbeat", "ab") as f:
+                f.write(b".")
+            time.sleep(0.02)
+    while True:
+        time.sleep(30)
+
+
+if __name__ == "__main__":
+    mode = sys.argv[1] if len(sys.argv) > 1 else "workload"
+    if mode == "workload":
+        workload()
+    elif mode in ("cancellation", "deadline"):
+        lifecycle()
+    else:
+        result = observe()
+        if mode == "child":
+            child = subprocess.run(
+                [sys.executable, "-I", "-B", __file__, "grandchild"],
+                capture_output=True,
+                timeout=1,
+                start_new_session=True,
+            )
+            assert child.returncode == 0, child.stderr
+            result["grandchild"] = json.loads(child.stdout)
+        print(json.dumps(result))

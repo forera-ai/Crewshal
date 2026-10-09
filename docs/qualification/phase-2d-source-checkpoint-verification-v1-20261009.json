@@ -1,0 +1,1062 @@
+{
+  "acceptance": {
+    "complete_tests": 473,
+    "dispatch_bound_sources": 21,
+    "focused_tests": 72,
+    "mypy_package_modules": 25,
+    "offline_build_and_fresh_wheel_pass": true,
+    "packaged_sources_compared": 26,
+    "phase_2d_methods": 332,
+    "ruff_python_files": 61,
+    "version_synchronized": true
+  },
+  "authorization": "Owner explicitly requested commit + push works and next-session prompt; this source checkpoint publication supersedes the previous stop for this delivery only.",
+  "base_revision": "7ae02cfc64ce71b8f443af4073eb4814b588eb4f",
+  "before_publication_inputs": {
+    "CHANGELOG.md": {
+      "bytes": 32777,
+      "sha256": "76af73a0d7494b24d87561903eb36e59b19fd87b5ec6fd13ebd6ab8732a76280"
+    },
+    "README.md": {
+      "bytes": 16795,
+      "sha256": "5a0e416cea3947fe8d71e0f405961e16a964fc60532bbf92a4c0f897ee02e46e"
+    },
+    "docs/DEVELOPMENT-PLAN.md": {
+      "bytes": 45383,
+      "sha256": "a6bac4edbd58842ab9175d752e15abbb190db653e1c9f2dacd4174054787e13a"
+    },
+    "docs/DEVELOPMENT.md": {
+      "bytes": 29816,
+      "sha256": "1033dd429cefb16731261414b52a347690deeae3bdc0abd53265def022fc3c86"
+    },
+    "docs/HANDOFF.md": {
+      "bytes": 294519,
+      "sha256": "2766202b7f9eb3db0df088822efec29d06c1a0906a0358a8116bfdfb1be90026"
+    },
+    "docs/PHASE-2D-ADMISSION-COLLECTION.md": {
+      "bytes": 8457,
+      "sha256": "4137b1fa325058ab26a75ac091e6d2bde60d6fc9122737c30063b043f1cfa30e"
+    },
+    "docs/PHASE-2D-BATCH-PREPARATION.md": {
+      "bytes": 7915,
+      "sha256": "86be3e55eef44295fb4abd5a0d01dfe889d892ecd7fc78c9506bdea939a84a53"
+    },
+    "docs/PHASE-2D-CONTINUATION-2026-10-08.md": {
+      "bytes": 28732,
+      "sha256": "95b0cfaba525a86caa3f601f30bebc021eb18e26c7aba2bc5f963a83cd49647b"
+    },
+    "docs/PHASE-2D-DISPATCH-PREPARATION.md": {
+      "bytes": 7873,
+      "sha256": "faee3590c0298b64f24ae94b0e2c167180ca4fd1c90b26b65e3459f20ac8624e"
+    },
+    "docs/PHASE-2D-EXECUTION-GATE.md": {
+      "bytes": 10450,
+      "sha256": "d44c2580557e3883fae20b74e388f1c77de722c9f4d699004f6f0c3d68a00118"
+    },
+    "docs/PHASE-2D-LINUX-ENVELOPE.md": {
+      "bytes": 10722,
+      "sha256": "ccb67d7b921faae28a588ba9006e0b4d3566e962d13b970e9d02b7c14f647e80"
+    },
+    "docs/PHASE-2D-LINUX-STORAGE-OWNER.md": {
+      "bytes": 14163,
+      "sha256": "034875fa80db84f79a50ccb1ebeac2b3b5e43688c99a3d29cd008fef9050e960"
+    },
+    "docs/PHASE-2D-NATIVE-ADMISSION.md": {
+      "bytes": 8937,
+      "sha256": "1cdc3e12642d8a16fb9a77a3b30757ee91e0aaf04eace5a44ccb336208473fc3"
+    },
+    "docs/PHASE-2D-OFFLINE-CONTRACTS.md": {
+      "bytes": 10916,
+      "sha256": "abcf5f2b46ec4a3a65cffb4e6a87bf63f1c369c40a9bea48afed7d53be15995b"
+    },
+    "docs/PHASE-2D-OWNED-BOOTSTRAP.md": {
+      "bytes": 12212,
+      "sha256": "d5b01cb82c63fb0be3826efe32f9e137c84aff3f5b3ca5e1cdad2b5e5bad5560"
+    },
+    "docs/PHASE-2D-OWNED-SETUP.md": {
+      "bytes": 15821,
+      "sha256": "5b35cbc83d1dad598e30ad1aac42539695524900b40e488c4ec23a47b09e0ec4"
+    },
+    "docs/PHASE-2D-OWNED-TEARDOWN.md": {
+      "bytes": 13487,
+      "sha256": "fd24755e758dafb1c90a23c5b10071bc26f0c84ea4cc0ea466a6ce02411efd8c"
+    },
+    "docs/PHASE-2D-PARENT-WATCHDOG.md": {
+      "bytes": 13994,
+      "sha256": "a2d6c5509ea79af1fafdf846e6ca6f5cb924d1acf2746a28bb630e82a19b0970"
+    },
+    "docs/PHASE-2D-PRODUCTION-CAPTURE.md": {
+      "bytes": 9260,
+      "sha256": "16fe40d65d2c3232d594e84c726624710bd16d8c273b37ce4904a5a142fa5f9a"
+    },
+    "docs/PHASE-2D-SESSION-SELECTION.md": {
+      "bytes": 5488,
+      "sha256": "900da101e00c56e0f8e9ea719e925fe0d68785ffdf5d9b5855bd8c06ce3be7f1"
+    },
+    "docs/PHASE-2D-SUPERVISOR-SOURCE.md": {
+      "bytes": 9772,
+      "sha256": "a8b6acc6c92ef1b0d7a55528c97877b5de5c8efe00f80756c22ad4837d2b3673"
+    },
+    "docs/qualification/phase-2d-admission-collection-verification-v1-20261008.json": {
+      "bytes": 201134,
+      "sha256": "0f70c4550bf904fa38a7d0663859b80ae7d6200da907321e8f410539a464dafe"
+    },
+    "docs/qualification/phase-2d-batch-preparation-v1-20261008.json": {
+      "bytes": 10353,
+      "sha256": "b08afc86a6146acce8c4947874b833f699d65495eac7bc3c7f2ebe4ed1ae6bd1"
+    },
+    "docs/qualification/phase-2d-batch-preparation-verification-v1-20261008.json": {
+      "bytes": 2446,
+      "sha256": "37bf9c8b201e82b4a9c0796038554af76ea86108db8a6ead306f7709c94c63b3"
+    },
+    "docs/qualification/phase-2d-dispatch-preparation-verification-v1-20261008.json": {
+      "bytes": 190477,
+      "sha256": "e2a95bcd0d5aafb8d58eb348654d3b3a77e3f96c7b61a262c63622634d57a0ba"
+    },
+    "docs/qualification/phase-2d-linux-envelope-verification-v1-20261008.json": {
+      "bytes": 243941,
+      "sha256": "6743dfc4fc33fd6594b1979744a237d6e0ea7b726c90c7852c02693ecd4619a3"
+    },
+    "docs/qualification/phase-2d-linux-storage-owner-verification-v1-20261009.json": {
+      "bytes": 148854,
+      "sha256": "bc06a0df2fc14e9a4edc52ce51b12d3c85b66a92752aa315052fe91b1470314f"
+    },
+    "docs/qualification/phase-2d-native-admission-verification-v1-20261008.json": {
+      "bytes": 200933,
+      "sha256": "27d1d93b61d03158f79715288ab29f25c2b2cc607b3fdeb389b310fd2f20c0c9"
+    },
+    "docs/qualification/phase-2d-offline-continuity-20261008.json": {
+      "bytes": 172290,
+      "sha256": "9e330457c868085b7d73ef19b4c6535aa9ffed511bf9b811cd11bb476f934023"
+    },
+    "docs/qualification/phase-2d-owned-bootstrap-verification-v1-20261009.json": {
+      "bytes": 236965,
+      "sha256": "b4cc366d314941a58d39bd46b3ec8e0805567bddafe55ccc7aca2d6b0fe8dd92"
+    },
+    "docs/qualification/phase-2d-owned-setup-verification-v1-20261009.json": {
+      "bytes": 190775,
+      "sha256": "20f08a74cdea7916dc1aacb17834656a87212b4916af6bf861f45584e598bd4a"
+    },
+    "docs/qualification/phase-2d-owned-teardown-verification-v1-20261009.json": {
+      "bytes": 175800,
+      "sha256": "3d71e1fa7dfed0a2dbdb2a4b84a1aef8a6034d497193dd3fa85758ef9bea8062"
+    },
+    "docs/qualification/phase-2d-parent-watchdog-verification-v1-20261009.json": {
+      "bytes": 320004,
+      "sha256": "c637c6fad6085ed703be6cb406f5071a4546321c53f00f466e36ecb14aecbf2e"
+    },
+    "docs/qualification/phase-2d-production-capture-verification-v1-20261008.json": {
+      "bytes": 185005,
+      "sha256": "c578291cd8595b89de2916519b5858ac4fcc295f800ee313cba96783b38aca62"
+    },
+    "docs/qualification/phase-2d-session-selection-v1-20261008.json": {
+      "bytes": 11688,
+      "sha256": "ade780071f57be32759a0c38ef518faf1119a065b6a5f219854d9b261d166a6a"
+    },
+    "docs/qualification/phase-2d-session-selection-verification-v1-20261008.json": {
+      "bytes": 7358,
+      "sha256": "2caec0558b7de0bccdcb2beac0f6c255cd46d805dd79167433c0ea7f3880c1cb"
+    },
+    "docs/qualification/phase-2d-supervisor-verification-v1-20261008.json": {
+      "bytes": 123625,
+      "sha256": "5189ae2b4926031ff400de07c3d66c20070b958b9c3cd790fb8dc4424a24bfad"
+    },
+    "pyproject.toml": {
+      "bytes": 919,
+      "sha256": "30291cd3b05ecc11007f54176f0c40cb227fe8fdca7ff7152b2824799be1feca"
+    },
+    "scripts/prepare_phase_2d_batch.py": {
+      "bytes": 2058,
+      "sha256": "87da5cd5d78f42899b6b17dfe976d1b2070b892e7c5cae5d9a6e5f87299e9d21"
+    },
+    "src/crewshal/__init__.py": {
+      "bytes": 90,
+      "sha256": "ce3b980ebd007723f1100a540376668219fb55632baf91f2b1d542bad6ff9c49"
+    },
+    "src/crewshal/admission.py": {
+      "bytes": 26319,
+      "sha256": "3ad8f13d014b35f50b6d1da8885abc07e091574f349bc7dad37920530dbc751d"
+    },
+    "src/crewshal/bootstrap_helper.c": {
+      "bytes": 6687,
+      "sha256": "8ddeb82f62b417302de6e6873401414ce783aa8b8368b7dc4272a9f5a301a8d7"
+    },
+    "src/crewshal/candidate.py": {
+      "bytes": 14056,
+      "sha256": "98d830994c6d16746e707e60276abd1975c3d8dd5f0d96d4885d8cbf0a944fce"
+    },
+    "src/crewshal/dispatch.py": {
+      "bytes": 12061,
+      "sha256": "d80628388e681c6ec6cbcecb082698346ed5d4d1751759b9ddccdb1c4424250b"
+    },
+    "src/crewshal/durable.py": {
+      "bytes": 29974,
+      "sha256": "2e45f19e67071055c5f746824257d22176ba26328b4f27d88ee635b654193ef7"
+    },
+    "src/crewshal/integration.py": {
+      "bytes": 11120,
+      "sha256": "662bf94ae65773eafa4b50d75be928b1d072a78f15fd710f946a453c12845b6c"
+    },
+    "src/crewshal/linux_bootstrap.py": {
+      "bytes": 18330,
+      "sha256": "5d40c825ed429188699d9cc358a65622a5e333e9bb3253d53dd19a00cc0589f7"
+    },
+    "src/crewshal/linux_envelope.py": {
+      "bytes": 14180,
+      "sha256": "a3d47f71b30e28192f9d7a8a1c9071ecefa7ee3a9fc3342df3f85ff2cbc6988a"
+    },
+    "src/crewshal/linux_inventory.py": {
+      "bytes": 12379,
+      "sha256": "db1cce7d9596cfb5a68afa7e9fd6ffa09ed7a87231aecf55cbdd5a95ee668372"
+    },
+    "src/crewshal/linux_parent.py": {
+      "bytes": 24985,
+      "sha256": "0fc3e8b12560955b1c38c07369f58a9fad4251eb1fd20e8474eae01da967d1e2"
+    },
+    "src/crewshal/linux_setup.py": {
+      "bytes": 35741,
+      "sha256": "6008eb2e438dadf5dd10f282ed48c31084f9ea21e3c5b567fe3f9402924a7127"
+    },
+    "src/crewshal/linux_storage.py": {
+      "bytes": 35124,
+      "sha256": "f354f5f4a477b0e6c0b53c9fce4f2f072e167c87f4f2a81a6adfb3bba08343f5"
+    },
+    "src/crewshal/linux_teardown.py": {
+      "bytes": 16930,
+      "sha256": "a7ec245a8cadb64cd859948afaa2ada421f936ab5138e2742ee9e4e0b7296bae"
+    },
+    "src/crewshal/runtime.py": {
+      "bytes": 15954,
+      "sha256": "d00f4624826ee02225a5608602e074ce90301765b8595aee60943158659ed15a"
+    },
+    "src/crewshal/runtime_batch.py": {
+      "bytes": 17351,
+      "sha256": "aca68f6f4949ea6c9cf06be6fcab94c1f4923f6f4185bbfbc1b3dc430f4da18d"
+    },
+    "src/crewshal/supervisor.py": {
+      "bytes": 25475,
+      "sha256": "575328e2529e21487c8c3b9df4913772ac4fc68497a7e6c209da463333f1ba6b"
+    },
+    "tests/acceptance/test_phase_2d.py": {
+      "bytes": 28719,
+      "sha256": "4fda8059eb97ca9aa0a4a9b79957e3710a71abbc3f8baeb7c30d2b76b81b7cfe"
+    },
+    "tests/acceptance/test_phase_2d_admission.py": {
+      "bytes": 19928,
+      "sha256": "c10dec5398a96755d14c205171b3a36a66615538c4b8d5893f17fdd02c74f670"
+    },
+    "tests/acceptance/test_phase_2d_admission_collection.py": {
+      "bytes": 13219,
+      "sha256": "7ad464fd267d9a971117e5d6a024a4caebe7f6644bc56fd5ba08614e0d6a6d29"
+    },
+    "tests/acceptance/test_phase_2d_batch.py": {
+      "bytes": 7956,
+      "sha256": "10679206b79009d5dc498cf94fb30bb62737086ac21b065c39d82fc4e2e81e6c"
+    },
+    "tests/acceptance/test_phase_2d_bootstrap.py": {
+      "bytes": 18787,
+      "sha256": "1e8e6e2d9ce0360a4a5f00290e03915c1769deb13c0c11a970bb6a05262c7d39"
+    },
+    "tests/acceptance/test_phase_2d_dispatch.py": {
+      "bytes": 18299,
+      "sha256": "c9e0d4000204ddeb4beeab28a543174be48efc176b57af749a18912ad475ddcc"
+    },
+    "tests/acceptance/test_phase_2d_envelope.py": {
+      "bytes": 17028,
+      "sha256": "1862453e82df513c2f0f72b7c4be695dcd99c5f2d1d164957996302b916b48f3"
+    },
+    "tests/acceptance/test_phase_2d_integration.py": {
+      "bytes": 15580,
+      "sha256": "a0f55c3b1ab3188a226a0e4ca95c5d6f32371c3d4350c4a22b77396d4d9e2bbe"
+    },
+    "tests/acceptance/test_phase_2d_inventory.py": {
+      "bytes": 13505,
+      "sha256": "098bb83c02960ae10be3d2f1471f85f3f0bbb59282fde613cb8be768a929e20e"
+    },
+    "tests/acceptance/test_phase_2d_parent.py": {
+      "bytes": 26434,
+      "sha256": "b0343d062bf95298d113551d7d2d004fee920f0fdfa419ff6b6445bffee12b2d"
+    },
+    "tests/acceptance/test_phase_2d_selection.py": {
+      "bytes": 9253,
+      "sha256": "07ad5bcc63f14ff729ebbaa4d17cd2fd25e6147690a8bcbef2cc905d27023053"
+    },
+    "tests/acceptance/test_phase_2d_setup.py": {
+      "bytes": 33486,
+      "sha256": "1b684e9ad5d134227bf02f29656cfd1e4153a9822a24425eb3f6f8ac6f3f9c1d"
+    },
+    "tests/acceptance/test_phase_2d_storage.py": {
+      "bytes": 26476,
+      "sha256": "b83892a0d03be33ba0b7ab08412a1015b97db11eee1f25cbc35c3a9369dc92d9"
+    },
+    "tests/acceptance/test_phase_2d_supervisor.py": {
+      "bytes": 23210,
+      "sha256": "573ffdd310d4ee06bbaab1029fea52b7bd636f432dd89a3d9147603f62287aa8"
+    },
+    "tests/acceptance/test_phase_2d_teardown.py": {
+      "bytes": 18563,
+      "sha256": "d80624f3dc59ab2cbf1f274786409692697b129396e1e38e98662261f577d45b"
+    }
+  },
+  "branch": "codex/phase1-architecture",
+  "builds": {
+    "dist/crewshal-0.10.0-py3-none-any.whl": {
+      "bytes": 119543,
+      "sha256": "9fb51fe96496ffa3559e350902b70b2413f957d4b16f34cafa9a77819888d9c7"
+    },
+    "dist/crewshal-0.10.0.tar.gz": {
+      "bytes": 109250,
+      "sha256": "f115558384182e0bb268ca256cc8ae93d7e9dc49d5e583f0f86cc73de7706cf3"
+    }
+  },
+  "continuity": {
+    "all_other_pending_bytes_equal": true,
+    "intentionally_modified": {
+      "CHANGELOG.md": {
+        "after": {
+          "bytes": 33808,
+          "sha256": "09507b0036717da6d79a3a9db80348fe3df4bce8b299c815ebafeec7a6274acc"
+        },
+        "before": {
+          "bytes": 32777,
+          "sha256": "76af73a0d7494b24d87561903eb36e59b19fd87b5ec6fd13ebd6ab8732a76280"
+        }
+      },
+      "README.md": {
+        "after": {
+          "bytes": 16923,
+          "sha256": "03c1ae60d42bf5828e6ff8060d52c016fc3b92fb0497b86f55ec5f792ac08cfb"
+        },
+        "before": {
+          "bytes": 16795,
+          "sha256": "5a0e416cea3947fe8d71e0f405961e16a964fc60532bbf92a4c0f897ee02e46e"
+        }
+      },
+      "docs/DEVELOPMENT-PLAN.md": {
+        "after": {
+          "bytes": 45921,
+          "sha256": "4eb91f7f6f5d7c6c89307f0378c121f901d41d11f2cda720458f1cbc2dfd7310"
+        },
+        "before": {
+          "bytes": 45383,
+          "sha256": "a6bac4edbd58842ab9175d752e15abbb190db653e1c9f2dacd4174054787e13a"
+        }
+      },
+      "docs/DEVELOPMENT.md": {
+        "after": {
+          "bytes": 30459,
+          "sha256": "20bed8b80eb46df7308686064d061df3a581d58bb96ebf05c5051fa34055050d"
+        },
+        "before": {
+          "bytes": 29816,
+          "sha256": "1033dd429cefb16731261414b52a347690deeae3bdc0abd53265def022fc3c86"
+        }
+      },
+      "docs/HANDOFF.md": {
+        "after": {
+          "bytes": 297162,
+          "sha256": "fd6fac0d20205cd5bc97837bd5ae772e0193703be5bf1e97d7349b4d1a83d9fc"
+        },
+        "before": {
+          "bytes": 294519,
+          "sha256": "2766202b7f9eb3db0df088822efec29d06c1a0906a0358a8116bfdfb1be90026"
+        }
+      },
+      "pyproject.toml": {
+        "after": {
+          "bytes": 920,
+          "sha256": "154096b244641603efab898f158ad0e9a3f5abcf795f8b974c0e27160d762f03"
+        },
+        "before": {
+          "bytes": 919,
+          "sha256": "30291cd3b05ecc11007f54176f0c40cb227fe8fdca7ff7152b2824799be1feca"
+        }
+      },
+      "src/crewshal/__init__.py": {
+        "after": {
+          "bytes": 91,
+          "sha256": "e247a13fadd84550409266e7b2986b70b9ace1e8b3e527000ad8caccc43769f8"
+        },
+        "before": {
+          "bytes": 90,
+          "sha256": "ce3b980ebd007723f1100a540376668219fb55632baf91f2b1d542bad6ff9c49"
+        }
+      }
+    },
+    "preserved_pending_count": 64,
+    "preserved_pending_files": [
+      "docs/PHASE-2D-ADMISSION-COLLECTION.md",
+      "docs/PHASE-2D-BATCH-PREPARATION.md",
+      "docs/PHASE-2D-CONTINUATION-2026-10-08.md",
+      "docs/PHASE-2D-DISPATCH-PREPARATION.md",
+      "docs/PHASE-2D-EXECUTION-GATE.md",
+      "docs/PHASE-2D-LINUX-ENVELOPE.md",
+      "docs/PHASE-2D-LINUX-STORAGE-OWNER.md",
+      "docs/PHASE-2D-NATIVE-ADMISSION.md",
+      "docs/PHASE-2D-OFFLINE-CONTRACTS.md",
+      "docs/PHASE-2D-OWNED-BOOTSTRAP.md",
+      "docs/PHASE-2D-OWNED-SETUP.md",
+      "docs/PHASE-2D-OWNED-TEARDOWN.md",
+      "docs/PHASE-2D-PARENT-WATCHDOG.md",
+      "docs/PHASE-2D-PRODUCTION-CAPTURE.md",
+      "docs/PHASE-2D-SESSION-SELECTION.md",
+      "docs/PHASE-2D-SUPERVISOR-SOURCE.md",
+      "docs/qualification/phase-2d-admission-collection-verification-v1-20261008.json",
+      "docs/qualification/phase-2d-batch-preparation-v1-20261008.json",
+      "docs/qualification/phase-2d-batch-preparation-verification-v1-20261008.json",
+      "docs/qualification/phase-2d-dispatch-preparation-verification-v1-20261008.json",
+      "docs/qualification/phase-2d-linux-envelope-verification-v1-20261008.json",
+      "docs/qualification/phase-2d-linux-storage-owner-verification-v1-20261009.json",
+      "docs/qualification/phase-2d-native-admission-verification-v1-20261008.json",
+      "docs/qualification/phase-2d-offline-continuity-20261008.json",
+      "docs/qualification/phase-2d-owned-bootstrap-verification-v1-20261009.json",
+      "docs/qualification/phase-2d-owned-setup-verification-v1-20261009.json",
+      "docs/qualification/phase-2d-owned-teardown-verification-v1-20261009.json",
+      "docs/qualification/phase-2d-parent-watchdog-verification-v1-20261009.json",
+      "docs/qualification/phase-2d-production-capture-verification-v1-20261008.json",
+      "docs/qualification/phase-2d-session-selection-v1-20261008.json",
+      "docs/qualification/phase-2d-session-selection-verification-v1-20261008.json",
+      "docs/qualification/phase-2d-supervisor-verification-v1-20261008.json",
+      "scripts/prepare_phase_2d_batch.py",
+      "src/crewshal/admission.py",
+      "src/crewshal/bootstrap_helper.c",
+      "src/crewshal/candidate.py",
+      "src/crewshal/dispatch.py",
+      "src/crewshal/integration.py",
+      "src/crewshal/linux_bootstrap.py",
+      "src/crewshal/linux_envelope.py",
+      "src/crewshal/linux_inventory.py",
+      "src/crewshal/linux_parent.py",
+      "src/crewshal/linux_setup.py",
+      "src/crewshal/linux_storage.py",
+      "src/crewshal/linux_teardown.py",
+      "src/crewshal/runtime.py",
+      "src/crewshal/runtime_batch.py",
+      "src/crewshal/supervisor.py",
+      "tests/acceptance/test_phase_2d.py",
+      "tests/acceptance/test_phase_2d_admission.py",
+      "tests/acceptance/test_phase_2d_admission_collection.py",
+      "tests/acceptance/test_phase_2d_batch.py",
+      "tests/acceptance/test_phase_2d_bootstrap.py",
+      "tests/acceptance/test_phase_2d_dispatch.py",
+      "tests/acceptance/test_phase_2d_envelope.py",
+      "tests/acceptance/test_phase_2d_integration.py",
+      "tests/acceptance/test_phase_2d_inventory.py",
+      "tests/acceptance/test_phase_2d_parent.py",
+      "tests/acceptance/test_phase_2d_selection.py",
+      "tests/acceptance/test_phase_2d_setup.py",
+      "tests/acceptance/test_phase_2d_storage.py",
+      "tests/acceptance/test_phase_2d_supervisor.py",
+      "tests/acceptance/test_phase_2d_teardown.py",
+      "src/crewshal/durable.py"
+    ],
+    "prior_guides_and_verification_preserved": true
+  },
+  "current_package_sources": {
+    "src/crewshal/__init__.py": {
+      "bytes": 91,
+      "sha256": "e247a13fadd84550409266e7b2986b70b9ace1e8b3e527000ad8caccc43769f8"
+    },
+    "src/crewshal/__main__.py": {
+      "bytes": 56,
+      "sha256": "61e1b048145332e9aab85470bb2fa2bc1312e41dffa6cd26741319fbfe5443c1"
+    },
+    "src/crewshal/admission.py": {
+      "bytes": 26319,
+      "sha256": "3ad8f13d014b35f50b6d1da8885abc07e091574f349bc7dad37920530dbc751d"
+    },
+    "src/crewshal/bootstrap_helper.c": {
+      "bytes": 6687,
+      "sha256": "8ddeb82f62b417302de6e6873401414ce783aa8b8368b7dc4272a9f5a301a8d7"
+    },
+    "src/crewshal/candidate.py": {
+      "bytes": 14056,
+      "sha256": "98d830994c6d16746e707e60276abd1975c3d8dd5f0d96d4885d8cbf0a944fce"
+    },
+    "src/crewshal/cli.py": {
+      "bytes": 7017,
+      "sha256": "8ecd936c862da846969fc2da482c7f889d0174c208076301fc16e6353842d372"
+    },
+    "src/crewshal/contracts.py": {
+      "bytes": 8103,
+      "sha256": "53d1c7630b7401e76d25d940a8ef89f103ddef2d66ff02980fc90c6fbc588f88"
+    },
+    "src/crewshal/discovery.py": {
+      "bytes": 13229,
+      "sha256": "b9ab698faa5951f9badf566b1fdd8cd3be7487f82fdc96acd6a246ef44aa1b2c"
+    },
+    "src/crewshal/dispatch.py": {
+      "bytes": 12061,
+      "sha256": "d80628388e681c6ec6cbcecb082698346ed5d4d1751759b9ddccdb1c4424250b"
+    },
+    "src/crewshal/durable.py": {
+      "bytes": 29974,
+      "sha256": "2e45f19e67071055c5f746824257d22176ba26328b4f27d88ee635b654193ef7"
+    },
+    "src/crewshal/gates.py": {
+      "bytes": 5137,
+      "sha256": "06d841c18cbdde260486c94e91fa0f0f6ca17508ccd36e43778a3bbbec096baf"
+    },
+    "src/crewshal/integration.py": {
+      "bytes": 11120,
+      "sha256": "662bf94ae65773eafa4b50d75be928b1d072a78f15fd710f946a453c12845b6c"
+    },
+    "src/crewshal/linux_bootstrap.py": {
+      "bytes": 18330,
+      "sha256": "5d40c825ed429188699d9cc358a65622a5e333e9bb3253d53dd19a00cc0589f7"
+    },
+    "src/crewshal/linux_envelope.py": {
+      "bytes": 14180,
+      "sha256": "a3d47f71b30e28192f9d7a8a1c9071ecefa7ee3a9fc3342df3f85ff2cbc6988a"
+    },
+    "src/crewshal/linux_inventory.py": {
+      "bytes": 12379,
+      "sha256": "db1cce7d9596cfb5a68afa7e9fd6ffa09ed7a87231aecf55cbdd5a95ee668372"
+    },
+    "src/crewshal/linux_parent.py": {
+      "bytes": 24985,
+      "sha256": "0fc3e8b12560955b1c38c07369f58a9fad4251eb1fd20e8474eae01da967d1e2"
+    },
+    "src/crewshal/linux_setup.py": {
+      "bytes": 35741,
+      "sha256": "6008eb2e438dadf5dd10f282ed48c31084f9ea21e3c5b567fe3f9402924a7127"
+    },
+    "src/crewshal/linux_storage.py": {
+      "bytes": 35124,
+      "sha256": "f354f5f4a477b0e6c0b53c9fce4f2f072e167c87f4f2a81a6adfb3bba08343f5"
+    },
+    "src/crewshal/linux_teardown.py": {
+      "bytes": 16930,
+      "sha256": "a7ec245a8cadb64cd859948afaa2ada421f936ab5138e2742ee9e4e0b7296bae"
+    },
+    "src/crewshal/model.py": {
+      "bytes": 6575,
+      "sha256": "3cbc9405e0c7fb5247a13562e72c8472c3edc0f3fc2407db2fd6c6c95fae25de"
+    },
+    "src/crewshal/qualification.py": {
+      "bytes": 3082,
+      "sha256": "772df20ee17ddd52023eb0b245d733e2db29d115b625703fd4c6d86026f5554a"
+    },
+    "src/crewshal/qualification_bundle.py": {
+      "bytes": 10798,
+      "sha256": "4a595fc100539d997ad9b5f5750b58cd5f14b0ca276a6cc1cc9de6596c1aae7b"
+    },
+    "src/crewshal/runtime.py": {
+      "bytes": 15954,
+      "sha256": "d00f4624826ee02225a5608602e074ce90301765b8595aee60943158659ed15a"
+    },
+    "src/crewshal/runtime_batch.py": {
+      "bytes": 17351,
+      "sha256": "aca68f6f4949ea6c9cf06be6fcab94c1f4923f6f4185bbfbc1b3dc430f4da18d"
+    },
+    "src/crewshal/state.py": {
+      "bytes": 3347,
+      "sha256": "856abbc9de6e630798736eab14ddc6062bc6768621edd8a0d9477f1f3fa7e5a3"
+    },
+    "src/crewshal/supervisor.py": {
+      "bytes": 25475,
+      "sha256": "575328e2529e21487c8c3b9df4913772ac4fc68497a7e6c209da463333f1ba6b"
+    }
+  },
+  "date": "2026-10-09",
+  "development_failures_and_corrections": [
+    {
+      "cause": "Verifier retained dist/crewshal-0.9.2 wheel path; __init__.py byte comparison caught the wrong version.",
+      "command": "publication verifier initial fresh-wheel check",
+      "correction": "Correct all wheel paths to 0.10.0 and verify a new fresh-proof-correct environment; prior run is not 0.10.0 wheel evidence."
+    },
+    {
+      "cause": "Temporary continuation script omitted python variable and stopped with NameError before tool commands.",
+      "command": "publication continuation verifier first invocation",
+      "correction": "Restore literal repository venv interpreter variable, then run final fresh-install checks."
+    }
+  ],
+  "document_checks": {
+    "CHANGELOG.md": "local links/fences/whitespace pass",
+    "README.md": "local links/fences/whitespace pass",
+    "docs/DEVELOPMENT-PLAN.md": "local links/fences/whitespace pass",
+    "docs/DEVELOPMENT.md": "local links/fences/whitespace pass",
+    "docs/HANDOFF.md": "local links/fences/whitespace pass",
+    "docs/PHASE-2D-ADMISSION-COLLECTION.md": "local links/fences/whitespace pass",
+    "docs/PHASE-2D-BATCH-PREPARATION.md": "local links/fences/whitespace pass",
+    "docs/PHASE-2D-CONTINUATION-2026-10-08.md": "local links/fences/whitespace pass",
+    "docs/PHASE-2D-DISPATCH-PREPARATION.md": "local links/fences/whitespace pass",
+    "docs/PHASE-2D-EXECUTION-GATE.md": "local links/fences/whitespace pass",
+    "docs/PHASE-2D-LINUX-ENVELOPE.md": "local links/fences/whitespace pass",
+    "docs/PHASE-2D-LINUX-STORAGE-OWNER.md": "local links/fences/whitespace pass",
+    "docs/PHASE-2D-NATIVE-ADMISSION.md": "local links/fences/whitespace pass",
+    "docs/PHASE-2D-OFFLINE-CONTRACTS.md": "local links/fences/whitespace pass",
+    "docs/PHASE-2D-OWNED-BOOTSTRAP.md": "local links/fences/whitespace pass",
+    "docs/PHASE-2D-OWNED-SETUP.md": "local links/fences/whitespace pass",
+    "docs/PHASE-2D-OWNED-TEARDOWN.md": "local links/fences/whitespace pass",
+    "docs/PHASE-2D-PARENT-WATCHDOG.md": "local links/fences/whitespace pass",
+    "docs/PHASE-2D-PRODUCTION-CAPTURE.md": "local links/fences/whitespace pass",
+    "docs/PHASE-2D-SESSION-SELECTION.md": "local links/fences/whitespace pass",
+    "docs/PHASE-2D-SOURCE-CHECKPOINT-2026-10-09.md": "local links/fences/whitespace pass",
+    "docs/PHASE-2D-SUPERVISOR-SOURCE.md": "local links/fences/whitespace pass"
+  },
+  "environment": {
+    "isolation": "Each isolated check has a new empty HOME, env -i and macOS sandbox-exec deny network*. Literal venv interpreter paths.",
+    "platform": "macOS-27.2-arm64-arm-64bit-Mach-O",
+    "python": "3.14.8 (main, Sep 30 2026, 17:55:09) [Clang 21.0.0 (clang-2100.3.34.2)]"
+  },
+  "initial_verification_commands": [
+    {
+      "argv": [
+        "rtk",
+        "proxy",
+        "env",
+        "-i",
+        "PATH=/usr/bin:/bin",
+        "HOME=/var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-publish-mvhwhg8f/fresh-home-n8mc7csl",
+        "PYTHONDONTWRITEBYTECODE=1",
+        "/usr/bin/sandbox-exec",
+        "-p",
+        "(version 1)(allow default)(deny network*)",
+        "/Volumes/X10Pro/Crewshal/.venv/bin/python",
+        "-m",
+        "unittest",
+        "tests.acceptance.test_phase_2d_storage",
+        "tests.acceptance.test_phase_2d_teardown"
+      ],
+      "cwd": "/Volumes/X10Pro/Crewshal",
+      "elapsed_seconds": 2.365,
+      "exit_code": 0,
+      "output": "........................................................................\n----------------------------------------------------------------------\nRan 72 tests in 1.345s\n\nOK\n"
+    },
+    {
+      "argv": [
+        "rtk",
+        "proxy",
+        "env",
+        "-i",
+        "PATH=/usr/bin:/bin",
+        "HOME=/var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-publish-mvhwhg8f/fresh-home-zo619h4w",
+        "PYTHONDONTWRITEBYTECODE=1",
+        "/usr/bin/sandbox-exec",
+        "-p",
+        "(version 1)(allow default)(deny network*)",
+        "/Volumes/X10Pro/Crewshal/.venv/bin/python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-t",
+        "."
+      ],
+      "cwd": "/Volumes/X10Pro/Crewshal",
+      "elapsed_seconds": 13.783,
+      "exit_code": 0,
+      "output": ".........................................................................................................................................................................................................................................................................................................................................................................................................................................................................................\n----------------------------------------------------------------------\nRan 473 tests in 13.285s\n\nOK\n"
+    },
+    {
+      "argv": [
+        "rtk",
+        "proxy",
+        "/Volumes/X10Pro/Crewshal/.venv/bin/ruff",
+        "check",
+        "src",
+        "tests",
+        "scripts/audit_phase_2c_bundle.py",
+        "scripts/prepare_phase_2d_batch.py"
+      ],
+      "cwd": "/Volumes/X10Pro/Crewshal",
+      "elapsed_seconds": 1.029,
+      "exit_code": 0,
+      "output": "All checks passed!\n"
+    },
+    {
+      "argv": [
+        "rtk",
+        "proxy",
+        "/Volumes/X10Pro/Crewshal/.venv/bin/ruff",
+        "format",
+        "--check",
+        "src",
+        "tests",
+        "scripts/audit_phase_2c_bundle.py",
+        "scripts/prepare_phase_2d_batch.py"
+      ],
+      "cwd": "/Volumes/X10Pro/Crewshal",
+      "elapsed_seconds": 0.035,
+      "exit_code": 0,
+      "output": "61 files already formatted\n"
+    },
+    {
+      "argv": [
+        "rtk",
+        "proxy",
+        "/Volumes/X10Pro/Crewshal/.venv/bin/mypy"
+      ],
+      "cwd": "/Volumes/X10Pro/Crewshal",
+      "elapsed_seconds": 3.726,
+      "exit_code": 0,
+      "output": "Success: no issues found in 25 source files\n"
+    },
+    {
+      "argv": [
+        "rtk",
+        "proxy",
+        "uv",
+        "build",
+        "--offline",
+        "--quiet"
+      ],
+      "cwd": "/Volumes/X10Pro/Crewshal",
+      "elapsed_seconds": 1.655,
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "argv": [
+        "rtk",
+        "proxy",
+        "uv",
+        "venv",
+        "--python",
+        "/Volumes/X10Pro/Crewshal/.venv/bin/python",
+        "/var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-publish-mvhwhg8f/fresh-proof"
+      ],
+      "cwd": "/Volumes/X10Pro/Crewshal",
+      "elapsed_seconds": 0.037,
+      "exit_code": 0,
+      "output": "Using CPython 3.12.15 interpreter at: .venv/bin/python\nCreating virtual environment at: /var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-publish-mvhwhg8f/fresh-proof\nActivate with: source /var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-publish-mvhwhg8f/fresh-proof/bin/activate\n"
+    },
+    {
+      "argv": [
+        "rtk",
+        "proxy",
+        "uv",
+        "pip",
+        "install",
+        "--offline",
+        "--require-hashes",
+        "--python",
+        "/var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-publish-mvhwhg8f/fresh-proof/bin/python",
+        "-r",
+        "requirements-dev.lock"
+      ],
+      "cwd": "/Volumes/X10Pro/Crewshal",
+      "elapsed_seconds": 0.13,
+      "exit_code": 0,
+      "output": "Using Python 3.12.15 environment at: /private/var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-publish-mvhwhg8f/fresh-proof\nResolved 9 packages in 8ms\nInstalled 9 packages in 45ms\n + annotated-types==0.8.0\n + mypy==1.18.2\n + mypy-extensions==1.1.0\n + pathspec==1.1.1\n + pydantic==2.12.5\n + pydantic-core==2.41.5\n + ruff==0.14.1\n + typing-extensions==4.16.0\n + typing-inspection==0.4.4\n"
+    },
+    {
+      "argv": [
+        "rtk",
+        "proxy",
+        "uv",
+        "pip",
+        "install",
+        "--offline",
+        "--no-deps",
+        "--python",
+        "/var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-publish-mvhwhg8f/fresh-proof/bin/python",
+        "/Volumes/X10Pro/Crewshal/dist/crewshal-0.9.2-py3-none-any.whl"
+      ],
+      "cwd": "/Volumes/X10Pro/Crewshal",
+      "elapsed_seconds": 0.053,
+      "exit_code": 0,
+      "output": "Using Python 3.12.15 environment at: /private/var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-publish-mvhwhg8f/fresh-proof\nResolved 1 package in 25ms\nInstalled 1 package in 4ms\n + crewshal==0.9.2 (from file:///Volumes/X10Pro/Crewshal/dist/crewshal-0.9.2-py3-none-any.whl)\n"
+    },
+    {
+      "argv": [
+        "rtk",
+        "proxy",
+        "env",
+        "-i",
+        "PATH=/usr/bin:/bin",
+        "HOME=/var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-publish-mvhwhg8f/fresh-home-s34rm1cj",
+        "PYTHONDONTWRITEBYTECODE=1",
+        "/usr/bin/sandbox-exec",
+        "-p",
+        "(version 1)(allow default)(deny network*)",
+        "/var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-publish-mvhwhg8f/fresh-proof/bin/python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-t",
+        "."
+      ],
+      "cwd": "/Volumes/X10Pro/Crewshal",
+      "elapsed_seconds": 18.154,
+      "exit_code": 0,
+      "output": ".........................................................................................................................................................................................................................................................................................................................................................................................................................................................................................\n----------------------------------------------------------------------\nRan 473 tests in 17.440s\n\nOK\n"
+    },
+    {
+      "argv": [
+        "rtk",
+        "proxy",
+        "env",
+        "-i",
+        "PATH=/usr/bin:/bin",
+        "HOME=/var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-publish-mvhwhg8f/fresh-home-b7e03zyk",
+        "PYTHONDONTWRITEBYTECODE=1",
+        "/usr/bin/sandbox-exec",
+        "-p",
+        "(version 1)(allow default)(deny network*)",
+        "/var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-publish-mvhwhg8f/fresh-proof/bin/python",
+        "/var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-publish-mvhwhg8f/package_check.py"
+      ],
+      "cwd": "/var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-publish-mvhwhg8f",
+      "elapsed_seconds": 0.183,
+      "exit_code": 1,
+      "output": "Traceback (most recent call last):\n  File \"/var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-publish-mvhwhg8f/package_check.py\", line 6, in <module>\n    for source in sources:assert source.read_bytes()==(package/source.name).read_bytes(),source.name\n                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: __init__.py\n"
+    }
+  ],
+  "limits_and_gates": "Original five-second origin, one-second recovery grace, 30-second cleanup reserve/600-second batch and resource ceilings unchanged. Effective reference closure, trusted parent/observer installation and exact Linux/live acceptance remain unresolved. All resources_reusable and execution permission remain false.",
+  "new_checkpoint_guide": {
+    "bytes": 6743,
+    "sha256": "43bea4585c26d461a39c27f42ed469c4e9aac0cbaed490ea78829b4efecf8354"
+  },
+  "next_prompt": "docs/PHASE-2D-SOURCE-CHECKPOINT-2026-10-09.md#initial-prompt",
+  "repository": "forera-ai/Crewshal",
+  "schema_version": 1,
+  "scope": "Complete verified pending Phase 2D source and required dependencies/tests/guides, source-only; no operational acceptance, execution, spend, host action, merge/deployment/registry release or 2E.",
+  "status": "All offline 0.10.0 publication checks pass; owner-authorized branch checkpoint. Delivery commit and remote readback are reported in publishing turn.",
+  "verification_commands": [
+    {
+      "argv": [
+        "rtk",
+        "proxy",
+        "env",
+        "-i",
+        "PATH=/usr/bin:/bin",
+        "HOME=/var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-publish-mvhwhg8f/fresh-home-n8mc7csl",
+        "PYTHONDONTWRITEBYTECODE=1",
+        "/usr/bin/sandbox-exec",
+        "-p",
+        "(version 1)(allow default)(deny network*)",
+        "/Volumes/X10Pro/Crewshal/.venv/bin/python",
+        "-m",
+        "unittest",
+        "tests.acceptance.test_phase_2d_storage",
+        "tests.acceptance.test_phase_2d_teardown"
+      ],
+      "cwd": "/Volumes/X10Pro/Crewshal",
+      "elapsed_seconds": 2.365,
+      "exit_code": 0,
+      "output": "........................................................................\n----------------------------------------------------------------------\nRan 72 tests in 1.345s\n\nOK\n"
+    },
+    {
+      "argv": [
+        "rtk",
+        "proxy",
+        "env",
+        "-i",
+        "PATH=/usr/bin:/bin",
+        "HOME=/var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-publish-mvhwhg8f/fresh-home-zo619h4w",
+        "PYTHONDONTWRITEBYTECODE=1",
+        "/usr/bin/sandbox-exec",
+        "-p",
+        "(version 1)(allow default)(deny network*)",
+        "/Volumes/X10Pro/Crewshal/.venv/bin/python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-t",
+        "."
+      ],
+      "cwd": "/Volumes/X10Pro/Crewshal",
+      "elapsed_seconds": 13.783,
+      "exit_code": 0,
+      "output": ".........................................................................................................................................................................................................................................................................................................................................................................................................................................................................................\n----------------------------------------------------------------------\nRan 473 tests in 13.285s\n\nOK\n"
+    },
+    {
+      "argv": [
+        "rtk",
+        "proxy",
+        "/Volumes/X10Pro/Crewshal/.venv/bin/ruff",
+        "check",
+        "src",
+        "tests",
+        "scripts/audit_phase_2c_bundle.py",
+        "scripts/prepare_phase_2d_batch.py"
+      ],
+      "cwd": "/Volumes/X10Pro/Crewshal",
+      "elapsed_seconds": 1.029,
+      "exit_code": 0,
+      "output": "All checks passed!\n"
+    },
+    {
+      "argv": [
+        "rtk",
+        "proxy",
+        "/Volumes/X10Pro/Crewshal/.venv/bin/ruff",
+        "format",
+        "--check",
+        "src",
+        "tests",
+        "scripts/audit_phase_2c_bundle.py",
+        "scripts/prepare_phase_2d_batch.py"
+      ],
+      "cwd": "/Volumes/X10Pro/Crewshal",
+      "elapsed_seconds": 0.035,
+      "exit_code": 0,
+      "output": "61 files already formatted\n"
+    },
+    {
+      "argv": [
+        "rtk",
+        "proxy",
+        "/Volumes/X10Pro/Crewshal/.venv/bin/mypy"
+      ],
+      "cwd": "/Volumes/X10Pro/Crewshal",
+      "elapsed_seconds": 3.726,
+      "exit_code": 0,
+      "output": "Success: no issues found in 25 source files\n"
+    },
+    {
+      "argv": [
+        "rtk",
+        "proxy",
+        "uv",
+        "build",
+        "--offline",
+        "--quiet"
+      ],
+      "cwd": "/Volumes/X10Pro/Crewshal",
+      "elapsed_seconds": 1.655,
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "argv": [
+        "rtk",
+        "proxy",
+        "uv",
+        "venv",
+        "--python",
+        "/Volumes/X10Pro/Crewshal/.venv/bin/python",
+        "/var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-publish-mvhwhg8f/fresh-proof-correct"
+      ],
+      "cwd": "/Volumes/X10Pro/Crewshal",
+      "elapsed_seconds": 0.115,
+      "exit_code": 0,
+      "output": "Using CPython 3.12.15 interpreter at: .venv/bin/python\nCreating virtual environment at: /var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-publish-mvhwhg8f/fresh-proof-correct\nActivate with: source /var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-publish-mvhwhg8f/fresh-proof-correct/bin/activate\n"
+    },
+    {
+      "argv": [
+        "rtk",
+        "proxy",
+        "uv",
+        "pip",
+        "install",
+        "--offline",
+        "--require-hashes",
+        "--python",
+        "/var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-publish-mvhwhg8f/fresh-proof-correct/bin/python",
+        "-r",
+        "requirements-dev.lock"
+      ],
+      "cwd": "/Volumes/X10Pro/Crewshal",
+      "elapsed_seconds": 0.147,
+      "exit_code": 0,
+      "output": "Using Python 3.12.15 environment at: /private/var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-publish-mvhwhg8f/fresh-proof-correct\nResolved 9 packages in 18ms\nInstalled 9 packages in 36ms\n + annotated-types==0.8.0\n + mypy==1.18.2\n + mypy-extensions==1.1.0\n + pathspec==1.1.1\n + pydantic==2.12.5\n + pydantic-core==2.41.5\n + ruff==0.14.1\n + typing-extensions==4.16.0\n + typing-inspection==0.4.4\n"
+    },
+    {
+      "argv": [
+        "rtk",
+        "proxy",
+        "uv",
+        "pip",
+        "install",
+        "--offline",
+        "--no-deps",
+        "--python",
+        "/var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-publish-mvhwhg8f/fresh-proof-correct/bin/python",
+        "/Volumes/X10Pro/Crewshal/dist/crewshal-0.10.0-py3-none-any.whl"
+      ],
+      "cwd": "/Volumes/X10Pro/Crewshal",
+      "elapsed_seconds": 0.128,
+      "exit_code": 0,
+      "output": "Using Python 3.12.15 environment at: /private/var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-publish-mvhwhg8f/fresh-proof-correct\nResolved 1 package in 7ms\nPrepared 1 package in 94ms\nInstalled 1 package in 2ms\n + crewshal==0.10.0 (from file:///Volumes/X10Pro/Crewshal/dist/crewshal-0.10.0-py3-none-any.whl)\n"
+    },
+    {
+      "argv": [
+        "rtk",
+        "proxy",
+        "env",
+        "-i",
+        "PATH=/usr/bin:/bin",
+        "HOME=/var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-publish-mvhwhg8f/fresh-home-493nuit0",
+        "PYTHONDONTWRITEBYTECODE=1",
+        "/usr/bin/sandbox-exec",
+        "-p",
+        "(version 1)(allow default)(deny network*)",
+        "/var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-publish-mvhwhg8f/fresh-proof-correct/bin/python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-t",
+        "."
+      ],
+      "cwd": "/Volumes/X10Pro/Crewshal",
+      "elapsed_seconds": 19.069,
+      "exit_code": 0,
+      "output": ".........................................................................................................................................................................................................................................................................................................................................................................................................................................................................................\n----------------------------------------------------------------------\nRan 473 tests in 18.090s\n\nOK\n"
+    },
+    {
+      "argv": [
+        "rtk",
+        "proxy",
+        "env",
+        "-i",
+        "PATH=/usr/bin:/bin",
+        "HOME=/var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-publish-mvhwhg8f/fresh-home-dmdxz04w",
+        "PYTHONDONTWRITEBYTECODE=1",
+        "/usr/bin/sandbox-exec",
+        "-p",
+        "(version 1)(allow default)(deny network*)",
+        "/var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-publish-mvhwhg8f/fresh-proof-correct/bin/python",
+        "/var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-publish-mvhwhg8f/package_check.py"
+      ],
+      "cwd": "/var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-publish-mvhwhg8f",
+      "elapsed_seconds": 0.273,
+      "exit_code": 0,
+      "output": "{\"version\": \"0.10.0\", \"installed_package\": \"/private/var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-publish-mvhwhg8f/fresh-proof-correct/lib/python3.12/site-packages/crewshal\", \"packaged_sources\": 26, \"dispatch_sources\": 21, \"python\": \"3.12.15 (main, Sep 30 2026, 22:04:19) [Clang 21.0.0 (clang-2100.3.34.2)]\"}\n"
+    },
+    {
+      "argv": [
+        "rtk",
+        "proxy",
+        "env",
+        "-i",
+        "PATH=/usr/bin:/bin",
+        "HOME=/var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-publish-mvhwhg8f/fresh-home-_3ta6z6t",
+        "PYTHONDONTWRITEBYTECODE=1",
+        "/usr/bin/sandbox-exec",
+        "-p",
+        "(version 1)(allow default)(deny network*)",
+        "/var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-publish-mvhwhg8f/fresh-proof-correct/bin/crewshal",
+        "--help"
+      ],
+      "cwd": "/var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-publish-mvhwhg8f",
+      "elapsed_seconds": 0.138,
+      "exit_code": 0,
+      "output": "usage: crewshal [-h] {init,show,validate} ...\n\nOffline project discovery\n\npositional arguments:\n  {init,show,validate}\n    init                discover, optionally correct/confirm, save externally\n    show                inspect stored model; does not refresh source validity\n    validate            refuse malformed or unsupported model records\n\noptions:\n  -h, --help            show this help message and exit\n"
+    },
+    {
+      "argv": [
+        "rtk",
+        "proxy",
+        "git",
+        "diff",
+        "--check"
+      ],
+      "cwd": "/Volumes/X10Pro/Crewshal",
+      "elapsed_seconds": 0.18,
+      "exit_code": 0,
+      "output": ""
+    }
+  ],
+  "verification_script": "import json,os,pathlib,subprocess,time,sys,tempfile\nrepo=pathlib.Path('/Volumes/X10Pro/Crewshal'); work=pathlib.Path(__file__).parent\nlog=[]\ndef run(args,cwd=repo):\n start=time.monotonic(); result=subprocess.run(['rtk','proxy',*map(str,args)],cwd=cwd,text=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT)\n log.append(dict(argv=['rtk','proxy',*map(str,args)],cwd=str(cwd),exit_code=result.returncode,elapsed_seconds=round(time.monotonic()-start,3),output=result.stdout))\n (work/'commands.json').write_text(json.dumps(log,indent=2))\n print('PASS' if result.returncode==0 else 'FAIL', args[0], result.stdout[-650:],flush=True)\n if result.returncode:sys.exit(result.returncode)\ndef isolated(python,args,cwd=repo):\n home=pathlib.Path(tempfile.mkdtemp(prefix='fresh-home-',dir=work))\n run(['env','-i','PATH=/usr/bin:/bin','HOME='+str(home),'PYTHONDONTWRITEBYTECODE=1','/usr/bin/sandbox-exec','-p','(version 1)(allow default)(deny network*)',python,*args],cwd)\npython=repo/'.venv/bin/python'\nisolated(python,['-m','unittest','tests.acceptance.test_phase_2d_storage','tests.acceptance.test_phase_2d_teardown'])\nisolated(python,['-m','unittest','discover','-s','tests','-t','.'])\nrun([repo/'.venv/bin/ruff','check','src','tests','scripts/audit_phase_2c_bundle.py','scripts/prepare_phase_2d_batch.py'])\nrun([repo/'.venv/bin/ruff','format','--check','src','tests','scripts/audit_phase_2c_bundle.py','scripts/prepare_phase_2d_batch.py'])\nrun([repo/'.venv/bin/mypy'])\nrun(['uv','build','--offline','--quiet'])\nfresh=work/'fresh-proof-correct'\nrun(['uv','venv','--python',python,fresh])\nrun(['uv','pip','install','--offline','--require-hashes','--python',fresh/'bin/python','-r','requirements-dev.lock'])\nrun(['uv','pip','install','--offline','--no-deps','--python',fresh/'bin/python',repo/'dist/crewshal-0.10.0-py3-none-any.whl'])\nisolated(fresh/'bin/python',['-m','unittest','discover','-s','tests','-t','.'])\nscript=work/'package_check.py'\nscript.write_text(\"\"\"import crewshal,pathlib,json,sys,hashlib\nfrom crewshal.dispatch import SOURCE_FILES\nrepo=pathlib.Path('/Volumes/X10Pro/Crewshal');package=pathlib.Path(crewshal.__file__).parent\nassert not package.is_relative_to(repo/'src')\nsources=[p for p in (repo/'src/crewshal').iterdir() if p.suffix in ('.py','.c')]\nfor source in sources:assert source.read_bytes()==(package/source.name).read_bytes(),source.name\nassert crewshal.__version__=='0.10.0';assert len(SOURCE_FILES)==21\nprint(json.dumps(dict(version=crewshal.__version__,installed_package=str(package),packaged_sources=len(sources),dispatch_sources=len(SOURCE_FILES),python=sys.version)))\n\"\"\")\nisolated(fresh/'bin/python',[script],work)\nisolated(fresh/'bin/crewshal',['--help'],work)\nrun(['git','diff','--check'])\nprint('VERIFICATION COMPLETE',str(work),flush=True)\n",
+  "version": "0.10.0"
+}

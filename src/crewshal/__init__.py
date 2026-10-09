@@ -1,3 +1,3 @@
 """Crewshal's offline models, durable state and evidence gates."""
 
-__version__ = "0.9.2"
+__version__ = "0.10.0"

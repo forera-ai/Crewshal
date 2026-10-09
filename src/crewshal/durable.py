@@ -24,7 +24,10 @@ from crewshal.contracts import (
     record_digest,
 )
 from crewshal.gates import evaluate
+from crewshal.admission import NativeAdmissionRecord
+from crewshal.integration import CodexCollection
 from crewshal.model import Contract, ProjectModel, digest, model_digest
+from crewshal.supervisor import SupervisionReceipt
 
 SCHEMA_VERSION = 2
 APPLICATION_ID = 0x43525348
@@ -41,6 +44,9 @@ TYPES: dict[str, type[Contract]] = {
     "waiver": Waiver,
     "verdict": Verdict,
     "usage": Usage,
+    "collection": CodexCollection,
+    "supervision": SupervisionReceipt,
+    "admission": NativeAdmissionRecord,
 }
 
 
@@ -537,7 +543,15 @@ class CoordinatorStore:
             )
             self._put("usage", usage.id, usage, version)
 
-    def verdict(self, run_id: str, project_id: str, current: Binding, token: str) -> Verdict:
+    def verdict(
+        self,
+        run_id: str,
+        project_id: str,
+        current: Binding,
+        token: str,
+        *,
+        candidate_root: Path | None = None,
+    ) -> Verdict:
         with self.transaction():
             self._lease(run_id, token)
             run, version = self.get("run", run_id, Run)
@@ -547,6 +561,76 @@ class CoordinatorStore:
             task, _ = self.get("task", run.task_id, Task)
             if task is None:
                 raise ValueError("task missing")
+            collections = [
+                item
+                for item in self.records("collection", CodexCollection)
+                if item.run_id == run_id
+            ]
+            if collections:
+                from crewshal.candidate import _root, _scan
+
+                if len(collections) != 1 or candidate_root is None:
+                    raise ValueError(
+                        "collected implementation requires exact frozen candidate readback"
+                    )
+                collection = collections[0]
+                attempt, _ = self.get("attempt", collection.outcome.attempt.id, Attempt)
+                expected_attempt = Attempt.model_validate(
+                    {
+                        **collection.outcome.attempt.model_dump(),
+                        "binding": collection.binding.model_dump(),
+                    }
+                )
+                if (
+                    collection.binding != current
+                    or collection.frozen is None
+                    or collection.outcome.status != "completed"
+                    or attempt != expected_attempt
+                    or _scan(_root(candidate_root))[0] != collection.frozen
+                ):
+                    raise ValueError("collected implementation or frozen candidate changed")
+                for collection_fingerprint in (
+                    collection.stdout,
+                    collection.stderr,
+                    record_digest(collection),
+                ):
+                    self._verify_artifact(collection_fingerprint)
+                admissions = [
+                    item
+                    for item in self.records("admission", NativeAdmissionRecord)
+                    if item.run_id == run_id
+                ]
+                linked = [
+                    item
+                    for item in self.records("supervision", SupervisionReceipt)
+                    if item.run_id == run_id and item.admission is not None
+                ]
+                if admissions or linked:
+                    if len(admissions) != 1 or len(linked) != 1:
+                        raise ValueError("admitted collection linkage missing or ambiguous")
+                    admission, supervision = admissions[0], linked[0]
+                    scope, _ = self.get(
+                        "evidence", f"scope:{digest(admission.attempt_id.encode())}", Evidence
+                    )
+                    if (
+                        admission.attempt_id != collection.outcome.attempt.id
+                        or supervision.attempt_id != admission.attempt_id
+                        or supervision.handle != admission.handle
+                        or supervision.dispatch != admission.dispatch
+                        or supervision.collection != record_digest(collection)
+                        or supervision.admission != record_digest(admission)
+                        or supervision.pid != admission.receipt.spec.pid
+                        or supervision.initial.identity != admission.receipt.spec.worker
+                        or supervision.observation.started != admission.receipt.started
+                        or supervision.stdout != collection.stdout
+                        or supervision.stderr != collection.stderr
+                        or scope is None
+                        or not {record_digest(admission), record_digest(supervision)}
+                        <= set(scope.artifacts)
+                    ):
+                        raise ValueError("admitted collection linkage changed")
+                    self._verify_artifact(record_digest(admission))
+                    self._verify_artifact(record_digest(supervision))
             captured = [e for e in self.records("evidence", Evidence) if e.run_id == run_id]
             for item in captured:
                 for fingerprint in (item.stdout, item.stderr, *item.artifacts):

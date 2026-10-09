@@ -1,0 +1,165 @@
+{
+  "artifact_contents_utf8": {
+    "candidate/README.md": "phase-2d-before\n",
+    "dispatch-template.json": "{\n  \"credential_channel_identity\": null,\n  \"effective_configuration_digest\": null,\n  \"execution_allowed\": false,\n  \"execution_authorization_record\": null,\n  \"financial_or_quota_enforcement\": null,\n  \"fresh_qualification_record\": null,\n  \"loaded_roles_and_helpers\": null,\n  \"mechanisms\": [\n    \"systemd/cgroup-v2\",\n    \"nsenter\",\n    \"bubblewrap\",\n    \"setpriv\",\n    \"native Codex sandbox\",\n    \"official fixed-upstream Responses proxy\"\n  ],\n  \"namespace_pid_and_birth\": null,\n  \"native_tail\": [\n    \"/opt/codex/bin/codex\",\n    \"exec\",\n    \"--ephemeral\",\n    \"--ignore-user-config\",\n    \"--ignore-rules\",\n    \"--skip-git-repo-check\",\n    \"--color\",\n    \"never\",\n    \"--json\",\n    \"-C\",\n    \"/scratch/checkout\",\n    \"--add-dir\",\n    \"/candidate/owned\",\n    \"--add-dir\",\n    \"/scratch\",\n    \"-s\",\n    \"workspace-write\",\n    \"-m\",\n    \"gpt-6.1-sol\"\n  ],\n  \"production_envelope_argv\": null,\n  \"provider_route_and_destination\": null,\n  \"requested_selection\": {\n    \"billing_mode\": \"unresolved\",\n    \"credential_treatment\": \"unresolved\",\n    \"destination\": null,\n    \"model\": \"gpt-6.1-sol\",\n    \"project\": \"Crewshal\",\n    \"provider\": null,\n    \"schema_version\": 1,\n    \"session\": \"2026-10-08-preparation\"\n  },\n  \"required_native_configuration\": {\n    \"additional_agents\": false,\n    \"global_instructions\": false,\n    \"hooks\": false,\n    \"inherited_configuration\": false,\n    \"login_shell\": false,\n    \"mcp\": false,\n    \"plugins\": false,\n    \"request_max_retries\": 0,\n    \"skills\": false,\n    \"stream_max_retries\": 0,\n    \"web_search\": false\n  },\n  \"required_validator_authority\": {\n    \"credential_free\": true,\n    \"network_disabled\": true,\n    \"readonly_candidate\": true,\n    \"separate_scratch\": true,\n    \"uid\": 65531\n  },\n  \"spend_authorization_record\": null,\n  \"status\": \"template_not_launchable\",\n  \"task_stdin\": \"Replace README.md content with exactly phase-2d-after followed by one newline. Change no other path.\\n\",\n  \"validator_argv\": [\n    \"/bin/python3\",\n    \"-I\",\n    \"-B\",\n    \"/input/check_fixture.py\",\n    \"/candidate/owned\"\n  ],\n  \"validator_cwd\": \".\"\n}\n",
+    "fixture.json": "{\n  \"execution_allowed\": false,\n  \"expected_readme_sha256\": \"fd2a2dfe9820e901635cb87bbc2696fcbef560c5b2dd1d272b70e739e2308693\",\n  \"included_paths\": [\n    \"README.md\"\n  ],\n  \"initial_candidate_sha256\": \"9ecb065eb7eba685b74c8f3b02e1d1b1eb3e1dd9ec160109c4226c3b6278bf45\",\n  \"live_repository_git_identity\": null,\n  \"original_integrity\": {\n    \".git/fixture-metadata\": \"1bb49f3c41141fd6656a9a50773ea99e8b527ad1e0a7ea1e3e88fea2e145440e\",\n    \"README.md\": \"0190e4d66d35b22529ac3e158a0f233ffa0c1ebc9a6fff683ac6508977b5654d\",\n    \"dirty-marker.txt\": \"02eaea4d45a7cbe0b2296019e7b809127d1d1d3874c0f98dec6e528f5da790e0\"\n  },\n  \"requirement\": \"Replace README.md content with exactly phase-2d-after followed by one newline. Change no other path.\",\n  \"review_required\": false,\n  \"risk_reason\": \"synthetic documentation-only exact-byte task\",\n  \"writable_paths\": [\n    \"README.md\"\n  ]\n}\n",
+    "initial-manifest.json": "{\n  \"schema_version\": 1,\n  \"files\": [\n    {\n      \"path\": \"README.md\",\n      \"kind\": \"file\",\n      \"mode\": 420,\n      \"size\": 16,\n      \"sha256\": \"0190e4d66d35b22529ac3e158a0f233ffa0c1ebc9a6fff683ac6508977b5654d\"\n    }\n  ],\n  \"execution_allowed\": false\n}\n",
+    "input/check_fixture.py": "\"\"\"Trusted synthetic Phase 2D byte check; no imports from candidate.\"\"\"\nfrom pathlib import Path\nimport sys\n\nif len(sys.argv) != 2:\n    print(\"phase-2d-check: candidate path required\", file=sys.stderr)\n    raise SystemExit(2)\ntry:\n    actual = (Path(sys.argv[1]) / \"README.md\").read_bytes()\nexcept OSError:\n    print(\"phase-2d-check: README unavailable\", file=sys.stderr)\n    raise SystemExit(1)\nif actual != b\"phase-2d-after\\n\":\n    print(\"phase-2d-check: README bytes differ\", file=sys.stderr)\n    raise SystemExit(1)\nprint(\"phase-2d-check: passed\")\n",
+    "input/expected-README.md": "phase-2d-after\n",
+    "input/task.txt": "Replace README.md content with exactly phase-2d-after followed by one newline. Change no other path.\n",
+    "limits.json": "{\n  \"aggregate\": {\n    \"allocated_disk_bytes\": 8589934592,\n    \"cpu_count\": 1,\n    \"logical_disk_bytes\": 8589934592,\n    \"memory_bytes\": 805306368,\n    \"swap_bytes\": 0,\n    \"tasks\": 128\n  },\n  \"automatic_retries\": 0,\n  \"batch_seconds\": 600,\n  \"candidate_bytes\": 16777216,\n  \"capture_seconds\": 10,\n  \"cleanup_reserve_seconds\": 30,\n  \"execution_allowed\": false,\n  \"implementation_attempts\": 1,\n  \"scratch_bytes\": 33554432,\n  \"startup_seconds\": 120,\n  \"stream_bytes\": 65536,\n  \"worker_and_validator\": {\n    \"cpu_count\": 1,\n    \"deadline_seconds\": 5,\n    \"memory_bytes\": 134217728,\n    \"stop_grace_seconds\": 1,\n    \"swap_bytes\": 0,\n    \"tasks\": 32\n  }\n}\n",
+    "original/.git/fixture-metadata": "synthetic original metadata\n",
+    "original/README.md": "phase-2d-before\n",
+    "original/dirty-marker.txt": "original uncommitted marker\n"
+  },
+  "base_revision": "211538c86b13edf8971b6fc0de7e121d47fc3cf9",
+  "bundle": {
+    "artifacts": [
+      {
+        "path": "candidate/README.md",
+        "sha256": "0190e4d66d35b22529ac3e158a0f233ffa0c1ebc9a6fff683ac6508977b5654d"
+      },
+      {
+        "path": "dispatch-template.json",
+        "sha256": "0e724762afdbf71db3ee710fc1426f581c489662b638c392d201cc0b0a4f9c70"
+      },
+      {
+        "path": "fixture.json",
+        "sha256": "e821cf939ab17ac88b8428ef3e5d89328b8dee67c5a2a8a72e46524f6f0b5f0f"
+      },
+      {
+        "path": "initial-manifest.json",
+        "sha256": "3d6e0b3fd1830e2df360f17fcc96870b42039ffd30d879cbe99731763fa3b1e4"
+      },
+      {
+        "path": "input/check_fixture.py",
+        "sha256": "614e9278e0e708dc2026988009f15c7bbda8f3017ef6ba8e58d55f8d380161c9"
+      },
+      {
+        "path": "input/expected-README.md",
+        "sha256": "fd2a2dfe9820e901635cb87bbc2696fcbef560c5b2dd1d272b70e739e2308693"
+      },
+      {
+        "path": "input/task.txt",
+        "sha256": "1b67e71fb8615e0ed1d04c7518f9e59c4d42093e15b02314e4e18e91d0af7c1b"
+      },
+      {
+        "path": "limits.json",
+        "sha256": "c352c0377c90bcdb025d806df8ae0a5b3987edd8e9882c0c7163c8df0ca98f1d"
+      },
+      {
+        "path": "original/.git/fixture-metadata",
+        "sha256": "1bb49f3c41141fd6656a9a50773ea99e8b527ad1e0a7ea1e3e88fea2e145440e"
+      },
+      {
+        "path": "original/README.md",
+        "sha256": "0190e4d66d35b22529ac3e158a0f233ffa0c1ebc9a6fff683ac6508977b5654d"
+      },
+      {
+        "path": "original/dirty-marker.txt",
+        "sha256": "02eaea4d45a7cbe0b2296019e7b809127d1d1d3874c0f98dec6e528f5da790e0"
+      }
+    ],
+    "documented_model": "gpt-6.1-sol",
+    "execution_allowed": false,
+    "historical_references": [
+      {
+        "path": "docs/qualification/phase-2c-v1.json",
+        "sha256": "fed4dde5e3fe459110a5fb0b2d4f6c75b16214c91aa823d3df640a7415e41563"
+      },
+      {
+        "path": "docs/qualification/phase-2c-direct-linux-native-full-profile-v18.json",
+        "sha256": "95d3e80835033a2aa6105f22bd69554e59c476f338665e239a6797367f5222df"
+      },
+      {
+        "path": "docs/qualification/phase-2c-direct-linux-native-full-bindings-v18.json",
+        "sha256": "0bec8dccaa8979706646b25ec4d04bd961588a7279ce5b0ef4ae831aa6552e37"
+      },
+      {
+        "path": "docs/qualification/phase-2c-direct-linux-native-full-freeze-v18.json",
+        "sha256": "d9236388440548870494b567476e3926a494d1d1695c8e3464047f0e48be01ed"
+      },
+      {
+        "path": "docs/qualification/phase-2c-direct-linux-native-full-v18-f1.json",
+        "sha256": "97ff552fc0112bcb908934104d31f447313feed47fa556406f9db8af56cd7b0b"
+      },
+      {
+        "path": "docs/qualification/phase-2c-direct-linux-native-full-v18-f2.json",
+        "sha256": "5becf2a47a0a78943729e295530eb5b054aa8d5a64d2df44f7a77667627c9f6b"
+      },
+      {
+        "path": "docs/qualification/phase-2c-direct-linux-native-full-readback-v18.json",
+        "sha256": "71badf9ecae2be3550f4ca84f2ad884aa3ceb08a314165ddb0f35538b83e8a87"
+      },
+      {
+        "path": "docs/qualification/phase-2c-local-v18-cleanup-complete-20261008.json",
+        "sha256": "301704582284e39443a3760cf2988c78a5ca4b162db037015170ef873e7c27d4"
+      }
+    ],
+    "milestone": "2D",
+    "mode": "batch_preparation_only",
+    "model_source": "https://developers.openai.com/api/docs/models/gpt-6.1-sol",
+    "native_runtime": "codex-rust-v0.160.1",
+    "owner_model_label": null,
+    "profile_qualified": false,
+    "schema_version": 1,
+    "selection": {
+      "billing_mode": "unresolved",
+      "credential_treatment": "unresolved",
+      "destination": null,
+      "model": "gpt-6.1-sol",
+      "project": "Crewshal",
+      "provider": null,
+      "schema_version": 1,
+      "session": "2026-10-08-preparation"
+    },
+    "spend_authorized": false,
+    "unresolved": [
+      "owner approved batch preparation only; no startup/spend authority",
+      "requested provider destination, billing/quota and credential choices are not approved or observed",
+      "model selection/documentation does not establish pinned CLI/account availability",
+      "production envelope, role/configuration/source/grant identities not frozen",
+      "new profile needs exact independent qualification; v18 cannot transfer",
+      "fresh Linux identities/controllers/storage/cleanup unobserved",
+      "real live fixture Git identity and confirmed model/task/check unbound"
+    ]
+  },
+  "date": "2026-10-08",
+  "execution_allowed": false,
+  "historical_preparation_record_sha256": "b08afc86a6146acce8c4947874b833f699d65495eac7bc3c7f2ebe4ed1ae6bd1",
+  "limitations": [
+    "No pinned CLI/account availability observation",
+    "Route, billing/quota and credential treatment deferred to each future live project/session",
+    "No production launcher, live native/model/provider/validator or fresh production qualification",
+    "Preparation selection and readback are not approval or authenticity evidence"
+  ],
+  "milestone": "2D",
+  "owner_instruction": "just do the preparation with ability to select on each project/session",
+  "owner_scope": "batch_preparation_only",
+  "profile_qualified": false,
+  "readback": {
+    "execution_allowed": false,
+    "preparation_digest": "fa8d2fcbcbfb55bc30cbbb3433efb83d17358f735870b6d66db17245e3bddb6c",
+    "profile_qualified": false,
+    "selection": {
+      "billing_mode": "unresolved",
+      "credential_treatment": "unresolved",
+      "destination": null,
+      "model": "gpt-6.1-sol",
+      "project": "Crewshal",
+      "provider": null,
+      "schema_version": 1,
+      "session": "2026-10-08-preparation"
+    },
+    "spend_authorized": false,
+    "status": "prepared_data_matches"
+  },
+  "schema_version": 1,
+  "selection_label_note": "project/session are explicit preparation labels, not authenticated live Git/thread identities",
+  "source_sha256": {
+    "scripts/prepare_phase_2d_batch.py": "87da5cd5d78f42899b6b17dfe976d1b2070b892e7c5cae5d9a6e5f87299e9d21",
+    "src/crewshal/runtime_batch.py": "aca68f6f4949ea6c9cf06be6fcab94c1f4923f6f4185bbfbc1b3dc430f4da18d",
+    "tests/acceptance/test_phase_2d_selection.py": "07ad5bcc63f14ff729ebbaa4d17cd2fd25e6147690a8bcbef2cc905d27023053"
+  },
+  "spend_authorized": false
+}

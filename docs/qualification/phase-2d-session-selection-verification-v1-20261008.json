@@ -1,0 +1,172 @@
+{
+  "all_other_initial_bytes_preserved": true,
+  "base_revision": "211538c86b13edf8971b6fc0de7e121d47fc3cf9",
+  "changed_initial_paths": [
+    "CHANGELOG.md",
+    "README.md",
+    "docs/DEVELOPMENT-PLAN.md",
+    "docs/DEVELOPMENT.md",
+    "docs/HANDOFF.md",
+    "docs/PHASE-2D-CONTINUATION-2026-10-08.md",
+    "docs/PHASE-2D-EXECUTION-GATE.md",
+    "scripts/prepare_phase_2d_batch.py",
+    "src/crewshal/runtime_batch.py"
+  ],
+  "commands": [
+    {
+      "command": "rtk proxy .venv/bin/python -m unittest tests.acceptance.test_phase_2d_selection tests.acceptance.test_phase_2d_batch",
+      "exit_code": 0,
+      "seconds": 0.64,
+      "tests": 14
+    },
+    {
+      "command": "rtk proxy env -i PATH=/usr/bin:/bin HOME=/private/tmp PYTHONDONTWRITEBYTECODE=1 /usr/bin/sandbox-exec -p '(version 1)(allow default)(deny network*)' /Volumes/X10Pro/Crewshal/.venv/bin/python -m unittest discover -s tests -t .",
+      "exit_code": 0,
+      "seconds": 5.669,
+      "tests": 181
+    },
+    {
+      "command": "rtk proxy .venv/bin/ruff check src tests scripts/prepare_phase_2d_batch.py scripts/audit_phase_2c_bundle.py",
+      "exit_code": 0
+    },
+    {
+      "command": "rtk proxy .venv/bin/ruff format --check src tests scripts/prepare_phase_2d_batch.py scripts/audit_phase_2c_bundle.py",
+      "exit_code": 0,
+      "files": 38
+    },
+    {
+      "command": "rtk proxy .venv/bin/mypy",
+      "exit_code": 0,
+      "source_files": 14
+    },
+    {
+      "command": "rtk proxy uv build --offline --out-dir /private/tmp/crewshal-2d-readback-20261008-m_h3njjg/dist",
+      "exit_code": 0
+    },
+    {
+      "command": "rtk proxy uv venv --python python3.12 /private/tmp/crewshal-2d-readback-20261008-m_h3njjg/fresh",
+      "exit_code": 0
+    },
+    {
+      "command": "rtk proxy uv pip install --python /private/tmp/crewshal-2d-readback-20261008-m_h3njjg/fresh/bin/python --offline --require-hashes -r requirements-dev.lock",
+      "exit_code": 0
+    },
+    {
+      "command": "rtk proxy uv pip install --python /private/tmp/crewshal-2d-readback-20261008-m_h3njjg/fresh/bin/python --offline --no-deps /private/tmp/crewshal-2d-readback-20261008-m_h3njjg/dist/crewshal-0.9.0-py3-none-any.whl",
+      "exit_code": 0
+    },
+    {
+      "command": "rtk proxy env -i PATH=/usr/bin:/bin HOME=/private/tmp/crewshal-2d-readback-20261008-m_h3njjg/home PYTHONDONTWRITEBYTECODE=1 /usr/bin/sandbox-exec -p '(version 1)(allow default)(deny network*)' /private/tmp/crewshal-2d-readback-20261008-m_h3njjg/fresh/bin/python -m unittest discover -s tests -t .",
+      "exit_code": 0,
+      "seconds": 5.097,
+      "tests": 181
+    },
+    {
+      "command": "rtk proxy /private/tmp/crewshal-2d-readback-20261008-m_h3njjg/fresh/bin/crewshal --help",
+      "commands": [
+        "init",
+        "show",
+        "validate"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": "rtk proxy git diff --check",
+      "exit_code": 0
+    }
+  ],
+  "committed": false,
+  "complete_2d_tests": 40,
+  "complete_editable_tests": 181,
+  "complete_installed_wheel_tests": 181,
+  "credential_store_access": false,
+  "date": "2026-10-08",
+  "delivery_revision": null,
+  "draft_wheel_sha256": "c953e61f98443ffe9c525e864f8caf2fd2be2832ddd9f42dbeae898ab4114881",
+  "execution_allowed": false,
+  "focused_new_tests": 7,
+  "graph": {
+    "final_generation": "2026-10-08T13:37:41Z",
+    "freshness": "metadata_match_no_recorded_issue",
+    "initial_generation": "2026-10-08T13:22:57Z",
+    "paths": [
+      "src/crewshal/runtime_batch.py",
+      "scripts/prepare_phase_2d_batch.py",
+      "tests/acceptance/test_phase_2d_selection.py",
+      "src/crewshal/candidate.py",
+      "src/crewshal/qualification_bundle.py"
+    ],
+    "project": "Volumes-X10Pro-Crewshal",
+    "signal": "best_effort_not_completeness",
+    "source_fallback": "Exact source inspection replaced misresolved JSON Path/digest and dict.get edges; broad regex discovery narrowed to exact file scopes, all relevant pages exhausted"
+  },
+  "historical_preparation_records_sha256": {
+    "docs/qualification/phase-2d-batch-preparation-v1-20261008.json": "b08afc86a6146acce8c4947874b833f699d65495eac7bc3c7f2ebe4ed1ae6bd1",
+    "docs/qualification/phase-2d-batch-preparation-verification-v1-20261008.json": "37bf9c8b201e82b4a9c0796038554af76ea86108db8a6ead306f7709c94c63b3",
+    "docs/qualification/phase-2d-offline-continuity-20261008.json": "9e330457c868085b7d73ef19b4c6535aa9ffed511bf9b811cd11bb476f934023"
+  },
+  "host": {
+    "architecture": "arm64",
+    "build": "26B5101f",
+    "mypy": "1.18.2",
+    "os": "macOS 27.2",
+    "pydantic": "2.12.5",
+    "python": "3.12.15",
+    "ruff": "0.14.1"
+  },
+  "inherited_environment": "empty",
+  "installed_module": "/private/tmp/crewshal-2d-readback-20261008-m_h3njjg/fresh/lib/python3.12/site-packages/crewshal/runtime_batch.py",
+  "installed_source_matches": true,
+  "jev_call": false,
+  "limitations": [
+    "No product launcher/production dispatch/authority integration",
+    "No prospective exact production profile qualification or approved live implementation/check acceptance",
+    "Selection is requested data, not provider availability, egress approval, credential or billing enforcement",
+    "Readback depends on an independent trusted coordinator expectation and stable directories; no authenticity or hostile same-user/directory race claim",
+    "Windows/macOS runtime compatibility and original v5 cause/final cleanup remain unknown"
+  ],
+  "linked_input_bytes": 17878511,
+  "linked_input_count": 359,
+  "milestone": "2D",
+  "native_runtime_run": false,
+  "network_during_tests": "denied",
+  "next_milestone": "2D",
+  "next_prompt": "docs/PHASE-2D-CONTINUATION-2026-10-08.md",
+  "original_baseline_files": 763,
+  "owner_instruction": "just do the preparation with ability to select on each project/session",
+  "owner_scope": "batch_preparation_only",
+  "phase_2c_initial_bytes_preserved": true,
+  "phase_2c_initial_path_count": 528,
+  "preparation_record_sha256": "ade780071f57be32759a0c38ef518faf1119a065b6a5f219854d9b261d166a6a",
+  "previous_runtime_candidate_and_tests_preserved": true,
+  "profile_qualified": false,
+  "provider_model_request": false,
+  "pushed": false,
+  "recorded_local_failures": [
+    {
+      "command": "rtk proxy .venv/bin/python -m unittest tests.acceptance.test_phase_2d_selection",
+      "exit_code": 1,
+      "reason": "ImportError: PreparationSelection did not exist before implementation"
+    },
+    {
+      "command": "rtk proxy .venv/bin/mypy",
+      "exit_code": 1,
+      "reason": "model_source widened to str; corrected MODEL_SOURCE to exact Literal annotation"
+    },
+    {
+      "operation": "documentation apply_patch",
+      "reason": "context did not match complete paragraph; reapplied with exact bounded text replacement"
+    }
+  ],
+  "route_billing_credential_selection": "deferred_to_each_project_session",
+  "schema_version": 1,
+  "source_sha256": {
+    "scripts/prepare_phase_2d_batch.py": "87da5cd5d78f42899b6b17dfe976d1b2070b892e7c5cae5d9a6e5f87299e9d21",
+    "src/crewshal/runtime_batch.py": "aca68f6f4949ea6c9cf06be6fcab94c1f4923f6f4185bbfbc1b3dc430f4da18d",
+    "tests/acceptance/test_phase_2d_selection.py": "07ad5bcc63f14ff729ebbaa4d17cd2fd25e6147690a8bcbef2cc905d27023053"
+  },
+  "spend_authorized": false,
+  "status": "incomplete_preparation_selection_boundary",
+  "version": "0.9.0",
+  "vmware_or_ssh_operation": false
+}

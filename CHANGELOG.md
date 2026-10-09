@@ -2,6 +2,37 @@
 
 Versions follow semantic versioning. Remote branch publication is distinct from a package-registry release; no registry release has occurred.
 
+## 0.10.0 — 2026-10-09
+
+- Publish the owner-authorized Phase 2D source checkpoint and its verified dependencies: passive preparation/dispatch, durable collection/admission, stopped-native/bootstrap/setup source, trusted inventory and retained physical storage-owner readback. Compatible source functionality warrants a minor version bump; package metadata and `crewshal.__version__` remain synchronized.
+- Preserve the earlier unreleased entries as dated development history. All 473 offline tests (332 Phase 2D), static checks and fresh installed-wheel/source comparisons pass. Effective reference closure, production parent/observer installation, Linux enforcement/qualification and separately approved live acceptance remain unresolved. Commit/push does not authorize execution, deployment, package-registry release, spend or 2E.
+- Record the superseding 0.10.0 continuation and exact input set in [the source checkpoint](docs/PHASE-2D-SOURCE-CHECKPOINT-2026-10-09.md); retain prior 0.9.2 verification/guide bytes unchanged.
+
+## Unreleased — Phase 2D retained Linux storage-owner source, 2026-10-09
+
+- Add pinned Linux namespace/mount/keyring/loop/backing readback, positive deleted-open/mapped/alias detection, retained anonymous-ring provenance and a fixed-deadline observer-child operation source. Preserve unknown reference closure and failed handles; empty proc scans cannot authorize actual physical teardown.
+- Add 44 fresh storage methods and two teardown deadline methods: 332 Phase 2D / 473 complete offline tests pass. Bind twenty-one sources; static/build and denied-network editable/fresh-wheel comparisons cover 26 packaged sources. Effective reference closure, qualified parent/observer installation, Linux controls/qualification and separate live acceptance remain missing. Version stays 0.9.2, uncommitted; no fork/compiler/startup/kernel effect, publication or 2E.
+
+## Unreleased — Phase 2D physical teardown ordering and trusted inventory source, 2026-10-09
+
+- Add exact copied-root, parent entry and helper/library inventory binding/readback and carry bound inventories through namespace setup. Add retained one-shot physical teardown ordering with terminal watchdog/parent/wrapper and role readback, conservative unknown/partial refusal, backing-FD closure before unlink, pinned group release and retained observer/aggregate ownership. Every reuse result remains false; the concrete Linux storage-owner adapter and actual parent installation/loader proof remain missing.
+- Add 46 fresh offline methods (286 Phase 2D / 427 complete tests), bind twenty sources and retain original admission, deadlines and resource ceilings. Static checks, denied-network editable/fresh-wheel suites, offline build and all 25 packaged-source comparisons are recorded in the new verification. Linux kernel effects, effective controls, exact qualification and separate live acceptance remain unverified. Version stays 0.9.2, uncommitted; no publication or 2E.
+
+## Unreleased — Phase 2D owned setup and terminal lifetime source, 2026-10-09
+
+- Add passive namespace-parent setup, sealed fixed-FD retained controls, bounded observer/setup placement under the original aggregate, independently attached namespace parent and owned direct watchdog creation before the unchanged native bridge. Add one-grace local/external terminal observations with retained failures and no resource reuse from process emptiness. Physical resource teardown and operational/qualified parent entry remain missing; no native release is added.
+- Add 35 fresh offline methods (240 Phase 2D / 381 complete tests), bind eighteen current source files and package the uncompiled C FD normalization source. Editable/fresh-wheel denied-network suites, lint/format/typing, offline build and 23 packaged-source comparisons pass. Actual helper/Linux effects, effective controls and the separate live gate remain unverified. Version stays 0.9.2, uncommitted; no publication or 2E.
+
+## Unreleased — Phase 2D parent/watchdog bridge source, 2026-10-09
+
+- Add retained trusted parent/watchdog and initial traced attachment source, independent timer/FD/kill readback before one-shot inherited worker placement, and retained owned refusal resources without a second recovery grace. Native admission and original ceilings remain unchanged; no operational namespace/watchdog launcher or native release is added.
+- Add 23 fresh offline methods (205 Phase 2D / 346 complete tests), bind seventeen source files and require exact watchdog timer FD 6. Editable/fresh-wheel denied-network suites, lint/format/typing, offline build and 22 packaged source comparisons pass. Production setup/lifecycle, Linux compilation/effective qualification and the separate live gate remain missing. Version stays 0.9.2, uncommitted; no publication or 2E.
+
+## Unreleased — Phase 2D owned bootstrap source, 2026-10-09
+
+- Add owned, packaged Linux C helper source and bounded Python exec-stop handoff for an already retained direct helper child. Require a real SIGSTOP delivery stop before detach, preserve PID/configuration/stdio and call unchanged admission. Add separate absolute five-second watchdog source, retained deadline readback and one-second owned refusal recovery with explicit incomplete outcomes. No launcher, native release or effective Linux proof is added.
+- Add 25 fresh offline methods (182 Phase 2D / 323 complete tests), bind sixteen current source files and preserve false readiness/authority. Static checks, empty-environment/network-denied editable and fresh-wheel suites, offline build and all 21 packaged source-byte comparisons pass. C compilation, namespace-resident Popen/initial traced attachment, effective watchdog/containment readback, exact qualification and separately approved live acceptance remain unavailable. Version stays 0.9.2; no commit/push or 2E.
+
 ## 0.9.2 — 2026-10-08
 
 - Update the project copyright notice to “Copyright 2026 forera.ai and contributors.” in README and LICENSE following the explicit owner correction. Preserve the Apache-2.0 license body and unrelated unpublished Phase 2D work; record the current notice in persistent project memory.
@@ -10,6 +41,28 @@ Versions follow semantic versioning. Remote branch publication is distinct from 
 
 - Adopt `forera-ai/Crewshal` as the canonical repository and `forera-ai` as the project owner and maintainer after the owner-reported GitHub transfer. Update clone instructions, package metadata and persistent session memory.
 - Preserve repository history, existing copyright attribution and unrelated unpublished Phase 2D work. Publish only this ownership-maintenance checkpoint; runtime qualification, execution and release gates are unchanged.
+
+## Unreleased — Phase 2D offline work, 2026-10-08
+
+- Add passive Linux envelope preparation and exact readback for per-session dispatch: literal role/mount/argv fragments, original systemd/controller ceilings, explicit storage reservations and unchanged admission checkpoint requirements. Bind prospective policies/inventories in dispatch and include fourteen current package sources. Add 18 fresh methods (157 Phase 2D / 298 complete offline tests); change one old source-count assertion to fourteen. Bootstrap, effective controls, qualification and separate live gates remain unresolved even with all prospective hashes supplied. Version stays 0.9.2; no Phase 2D publication.
+
+- Bind retained native admission to supervised terminal collection in one SQLite transaction. Preserve receipt/spec/clock snapshots, private admission artifacts and scope/supervision links; require intact linkage at verdict readback. Add 15 fresh rollback/restart/mutation/replay methods, bringing unpublished 2D coverage to 139 methods / 280 complete offline tests. Maintenance version remains 0.9.2; production envelope and separately approved live 2D acceptance remain gated.
+
+- Add inert pinned-Codex requests and bounded recorded event normalization with exact identity/binding checks and typed failure/capture refusal. Worker text and command events remain claims.
+- Add explicit source/candidate copies, frozen manifests, exact scope comparison and trusted credential-free validator capture; integrate fresh offline fixtures with existing SQLite evidence/verdict integrity.
+- Add 124 independent offline acceptance methods (265 total), source/input continuity and a precise 2D execution preparation/continuation. Live execution and the production envelope remain unimplemented/unqualified; maintenance version is 0.9.2 and no Phase 2D implementation commit/push occurs before the complete 2D gate.
+
+- Materialize a reproducible Sol6.1 (`gpt-6.1-sol` documented mapping) preparation bundle with eleven bound fixture/check/template artifacts and seven additional fresh refusal/smoke methods. Record the owner’s preparation-only scope; no live startup, spend, credential access or v18 qualification transfer.
+
+- Add explicit per-project/session model, provider/destination, billing and credential-treatment preparation choices; preserve unresolved values and false authority. Add readback against an independent coordinator record, refusing changed context, bytes, declarations, references, links and candidate modes.
+
+- Integrate trusted Codex terminal collection, frozen-candidate revision binding, scope, claims and usage in one private SQLite transaction. Preserve launch provenance and prior approvals; require current approval and final candidate/capture readback. Add 18 fresh cases covering stale state/replay, false completion, mutation, real SQL rollback and restart integrity. No product launcher or execution authority is added.
+
+- Prepare source-bound literal native/proxy argv and separate task stdin through pinned existing interfaces; join audited per-session preparation to exact task/check, launch binding and qualification configuration. Add 14 fresh offline cases. Changes invalidate the prospective configuration; no historical qualification transfers. Effective Linux controls, execution/spend authority and the production supervisor remain unavailable.
+
+- Add bounded source for supervising an already admitted Linux worker through pinned cgroup descriptors, bounded separate pipes and a retained child handle. Persist independent readback with collection and scope artifacts in one transaction; reject stale source/state, missing EOF, retained descendants, quota events, failed stop and receipt mutation. Add 24 fresh offline methods. Include supervisor bytes in prospective dispatch source bindings; no startup, envelope qualification or live authority is added.
+
+- Add read-only source for admission of a retained stopped native child: bounded proc/pidfd identity, privilege/configuration/executable/namespace and pipe readback, actual aggregate ancestry, and original controls/deadline refusal. Connect retained resources to bounded capture; bind thirteen source files. Add 28 new offline methods. No process release, envelope/bootstrap, durable admission authority or live qualification is added.
 
 ## 0.9.0 — 2026-10-08
 

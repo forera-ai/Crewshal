@@ -95,6 +95,9 @@ class Phase2DAdmission(unittest.TestCase):
         }
         self.write_status()
         self.write(
+            "limits", "Max file size             131072               131072               bytes\n"
+        )
+        self.write(
             "cmdline", b"\0".join(x.encode() for x in self.configuration.native_argv) + b"\0"
         )
         self.environment = (
@@ -202,6 +205,25 @@ class Phase2DAdmission(unittest.TestCase):
         self.assertFalse(admitted.receipt.profile_qualified)
         self.assertEqual((self.worker_path / "cgroup.kill").read_bytes(), b"")
         self.proc.verify_stopped()
+
+    def test_missing_relaxed_or_duplicate_kernel_file_limits_refuse_native_admission(self):
+        for row in (
+            "",
+            "Max file size unlimited unlimited bytes\n",
+            "Max file size 131073 131072 bytes\n",
+            "Max file size 131072 131073 bytes\n",
+            "Max file size 131072 131072 files\n",
+            "Max file size 131072 131072 bytes\n" * 2,
+        ):
+            with self.subTest(row=row):
+                self.write("limits", row)
+                with self.assertRaisesRegex(ValueError, "file growth limits"):
+                    self.admit()
+                os.fstat(self.proc.descriptor)
+                os.fstat(self.proc.pidfd)
+                self.assertIsNone(self.child.poll())
+        self.write("limits", "Max file size 131072 131072 bytes\n")
+        self.admit()
 
     def test_pid_start_parent_and_unstopped_identity_refuse(self):
         original = (self.proc_path / "stat").read_bytes()
@@ -435,6 +457,9 @@ class Phase2DAdmission(unittest.TestCase):
         (self.worker_path / "cgroup.events").write_text("populated 0\nfrozen 0")
         with patch("crewshal.supervisor.time.monotonic", return_value=1.0):
             capture = admitted.capture(cancelled=lambda: False)
+        self.assertIs(admitted._captured_process, capture)
+        with self.assertRaisesRegex(ValueError, "consumed"):
+            admitted.capture(cancelled=lambda: False)
         self.assertEqual(capture.stdout, b"literal native output\n")
         self.assertTrue(capture.observation.tree_stopped)
         self.assertTrue(capture.observation.stdout_complete)
@@ -532,7 +557,7 @@ class Phase2DAdmission(unittest.TestCase):
         ):
             with self.subTest(changes=changes), self.assertRaises(ValueError):
                 NativeAdmissionSpec.model_validate({**self.spec.model_dump(), **changes})
-        self.assertEqual(len(self.configuration.source_sha256), 23)
+        self.assertEqual(len(self.configuration.source_sha256), 26)
 
     def test_missing_or_reaped_child_cannot_supply_admission(self):
         self.child.result = 0

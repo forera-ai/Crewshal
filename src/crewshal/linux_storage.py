@@ -25,11 +25,18 @@ from typing import Callable, Literal, Protocol
 from crewshal.admission import NamespaceIdentity, _fields, _read, _stat_identity
 from crewshal.contracts import record_digest
 from crewshal.dispatch import DispatchConfiguration
-from crewshal.linux_envelope import prepare_linux_envelope
+from crewshal.linux_envelope import (
+    DIRECTORY_GROWTH_KIB,
+    EXT4_INODE_LIMITS,
+    _verify_ext4_growth,
+    prepare_linux_envelope,
+)
 from crewshal.linux_parent import RetainedTrustedTask, _proc_root
-from crewshal.linux_setup import OwnedStorageReservation
+from crewshal.linux_setup import OwnedBatchTimer, OwnedStorageReservation, _role_controls
+from crewshal.linux_parent import _move_self
+from crewshal.admission import _aggregate_readback
 from crewshal.linux_teardown import FileIdentity, LoopIdentity, MountIdentity, PhysicalState
-from crewshal.supervisor import OwnedCgroup
+from crewshal.supervisor import OwnedCgroup, _counters
 
 
 LOOP_GET_STATUS64 = 0x4C05
@@ -170,8 +177,12 @@ class AnonymousKeyring:
             # The original observer credentials retain the kernel anchor; pin
             # this exact lifetime before joining, including a failed syscall.
             setattr(reservation, "_private_ring", ring)
-            reservation.verify()
         try:
+            if reservation is not None:
+                if type(reservation) is OwnedStorageReservation:
+                    reservation.verify_operational()
+                else:
+                    reservation.verify()
             ring.serial = _keyctl(1)  # JOIN_SESSION_KEYRING(NULL), no named lookup.
             if ring.serial <= 0:
                 raise ValueError("new anonymous keyring identity unavailable")
@@ -181,8 +192,11 @@ class AnonymousKeyring:
                 raise ValueError("new private keyring remains unknown")
             if reservation is not None:
                 reservation.verify()
-        except BaseException:
-            raise KeyringCreationRefusal(ring) from None
+        except BaseException as error:
+            refusal = KeyringCreationRefusal(ring)
+            if type(reservation) is OwnedStorageReservation:
+                reservation._retain_installation_refusal(refusal)
+            raise refusal from error
         ring.complete = True
         return ring
 
@@ -197,9 +211,11 @@ class RetainedCreationTransfer(Protocol):
 
 
 class BoundedStorageJobs:
-    """One child at a time, already inside the bounded observer before fork.
+    """One child at a time, inheriting the original bounded observer before fork.
 
-    No cgroup migration, exec, Popen, watchdog reset or new resource allowance.
+    Operational production moves only its child into the pinned setup sibling
+    before acknowledging placement or performing creation. The retaining observer
+    never enters the stopped role. No watchdog reset or new resource allowance.
     A blocked syscall may outlive SIGKILL: retain its pidfd, refuse later jobs and
     report unknown. Never wait beyond the original absolute cleanup deadline.
     """
@@ -210,9 +226,15 @@ class BoundedStorageJobs:
         group: OwnedCgroup,
         aggregate: OwnedCgroup,
         deadline: float,
+        *,
+        execution_group: OwnedCgroup | None = None,
+        batch_timer: OwnedBatchTimer | None = None,
     ):
         self.observer, self.group, self.aggregate = observer, group, aggregate
         self.deadline = deadline
+        self.execution_group = self._execution_group = execution_group
+        self._execution_identity = None if execution_group is None else execution_group.identity
+        self.batch_timer = self._batch_timer = batch_timer
         self._active_deadline: float | None = None
         self.pending: tuple[int, int] | None = None
         self._creation_child: tuple[int, int, int, int, int, int] | None = None
@@ -246,6 +268,11 @@ class BoundedStorageJobs:
         """Actual retained pidfd/proc identity, never a numeric-PID permission."""
         if self.failed or self._creation_child is None:
             raise ValueError("original live creation child unavailable")
+        if self.execution_group is not self._execution_group or (
+            self.execution_group is not None
+            and self.execution_group.identity != self._execution_identity
+        ):
+            raise ValueError("original storage execution role changed")
         pid, pidfd, descriptor, start, device, inode = self._creation_child
         if (
             self.pending != (pid, pidfd)
@@ -280,7 +307,7 @@ class BoundedStorageJobs:
                     }.items()
                 )
                 or _read(descriptor, "cgroup").decode().strip()
-                != f"0::/{self.group.identity.relative_path}"
+                != f"0::/{(self.execution_group or self.group).identity.relative_path}"
             ):
                 raise ValueError("retained creation child proc/pidfd/role differs")
         finally:
@@ -292,6 +319,35 @@ class BoundedStorageJobs:
             raise ValueError("storage job failed or remains retained; no retry")
         if not math.isfinite(self.deadline) or time.monotonic() >= self.deadline:
             raise ValueError("original storage cleanup deadline exhausted")
+        if self.batch_timer is not self._batch_timer:
+            raise ValueError("original storage batch timer changed")
+        if self.batch_timer is not None:
+            if type(self.batch_timer) is not OwnedBatchTimer:
+                raise ValueError("original storage batch timer unavailable")
+            self.batch_timer.verify()
+            reservation = self.batch_timer.reservation
+            from crewshal.linux_production import EffectiveInstallation
+            from crewshal.durable import LiveStorageInstallationClaim
+
+            claim = reservation.capacity_claim
+            if (
+                type(claim) is LiveStorageInstallationClaim
+                and claim.record.installation == "observed"
+            ):
+                proof = getattr(reservation, "_installation", None)
+                if type(proof) is not EffectiveInstallation:
+                    raise ValueError("observed data lacks original installed job custody")
+                proof.verify_registered_job(self)
+                reservation.verify()
+            else:
+                reservation.verify_operational()
+            if (
+                self.execution_group is not self.batch_timer.setup
+                or self.observer is not reservation.observer
+                or self.group is not reservation.observer_group
+                or self.aggregate is not reservation.aggregate
+            ):
+                raise ValueError("original storage timer/observer/setup binding differs")
         if sys.platform != "linux" or not hasattr(os, "pidfd_open"):
             raise ValueError("Linux storage job pidfd unavailable")
         if signal.getsignal(signal.SIGCHLD) != signal.SIG_DFL:
@@ -310,6 +366,26 @@ class BoundedStorageJobs:
             or self.aggregate._read("cpu.max") != "100000 100000"
         ):
             raise ValueError("storage observer/aggregate original ceilings differ")
+        if self.execution_group is not self._execution_group or (
+            self.execution_group is not None
+            and self.execution_group.identity != self._execution_identity
+        ):
+            raise ValueError("original storage execution role changed")
+        if self.execution_group is not None:
+            if (
+                self.execution_group is self.group
+                or PurePosixPath(self.execution_group.identity.relative_path).name != "setup"
+            ):
+                raise ValueError("storage creation requires distinct original setup role")
+            _aggregate_readback(self.aggregate, self.execution_group)
+            _role_controls(self.execution_group)
+            if (
+                self.execution_group._read("cgroup.procs")
+                or _counters(self.execution_group._read("cgroup.events"), {"populated"})[
+                    "populated"
+                ]
+            ):
+                raise ValueError("storage creation requires empty original setup role")
 
     def run(
         self,
@@ -320,6 +396,12 @@ class BoundedStorageJobs:
         _format_output: bool = False,
     ) -> bytes:
         try:
+            if self.batch_timer is not None:
+                from crewshal.linux_production import EffectiveInstallation
+
+                proof = getattr(self.batch_timer.reservation, "_installation", None)
+                if type(proof) is EffectiveInstallation:
+                    proof.verify_registered_action(self, action)
             self._admit()
             job_deadline = min(self.deadline, time.monotonic() + 30)
             self._active_deadline = job_deadline
@@ -353,6 +435,12 @@ class BoundedStorageJobs:
                 libc = ctypes.CDLL(None, use_errno=True)
                 if libc.prctl(1, int(signal.SIGKILL), 0, 0, 0) != 0 or os.getppid() != parent_pid:
                     os._exit(1)
+                if self.execution_group is not None:
+                    _move_self(self.execution_group)
+                    # Placement text is transport only. Parent retains proc/pidfd
+                    # and independently checks the actual group before release.
+                    if os.write(write_end, b"@") != 1:
+                        os._exit(1)
                 remaining = job_deadline - time.monotonic()
                 if (
                     remaining <= 0
@@ -404,7 +492,15 @@ class BoundedStorageJobs:
         try:
             pidfd = getattr(os, "pidfd_open")(pid, 0)
             self.pending = (pid, pidfd)
-            if transfer is not None or _format_output:
+            if self.execution_group is not None:
+                remaining = job_deadline - time.monotonic()
+                if (
+                    remaining <= 0
+                    or not select.select([read_end], [], [], remaining)[0]
+                    or os.read(read_end, 1) != b"@"
+                ):
+                    raise ValueError("original storage child placement acknowledgement unavailable")
+            if transfer is not None or _format_output or self.execution_group is not None:
                 self._pin_creation_child()
             if time.monotonic() >= job_deadline or os.write(admit_write, b"1") != 1:
                 raise ValueError("retained storage child admission deadline exhausted")
@@ -462,8 +558,10 @@ class BoundedStorageJobs:
             # Command exit/status is transport only. Caller independently
             # re-observes kernel state before accepting a physical transition.
             return bytes(output[1:])
-        except BaseException:
+        except BaseException as error:
             self.failed = True
+            if type(self._batch_timer) is OwnedBatchTimer:
+                self._batch_timer.reservation._retain_installation_refusal(error)
             if pidfd >= 0:
                 getattr(signal, "pidfd_send_signal")(pidfd, signal.SIGKILL)
                 if select.select([pidfd], [], [], 0)[0] and os.waitpid(pid, os.WNOHANG)[0] == pid:
@@ -514,6 +612,9 @@ class LinuxPhysicalOwner:
         self.retention_readback_jobs = retention_readback_jobs
         self._retention_jobs = retention_readback_jobs
         self._retention_end = batch_started_monotonic + 600
+        self._jobs = jobs
+        self._execution_group = getattr(jobs, "execution_group", None)
+        self._batch_timer = getattr(jobs, "batch_timer", None)
         if reservation is not None:
             reservation.pin_storage_owner(self)
             if (
@@ -524,12 +625,22 @@ class LinuxPhysicalOwner:
                 or reservation.batch_started != batch_started_monotonic
             ):
                 raise ValueError("storage owner requires its original live reservation")
+            timer = getattr(reservation, "_batch_timer", None)
+            if timer is not None and (
+                type(jobs) is not BoundedStorageJobs
+                or type(timer) is not OwnedBatchTimer
+                or self._batch_timer is not timer
+                or self._execution_group is not timer.setup
+            ):
+                raise ValueError("storage owner requires original timer and execution role")
         if retention_readback_jobs is not None and (
             reservation is None
             or type(retention_readback_jobs) is not BoundedStorageJobs
             or retention_readback_jobs.observer is not jobs.observer
             or retention_readback_jobs.group is not jobs.group
             or retention_readback_jobs.aggregate is not jobs.aggregate
+            or retention_readback_jobs.execution_group is not self._execution_group
+            or retention_readback_jobs.batch_timer is not self._batch_timer
             or retention_readback_jobs.deadline != self._retention_end
             or retention_readback_jobs.failed
             or retention_readback_jobs.pending is not None
@@ -680,13 +791,26 @@ class LinuxPhysicalOwner:
     def _verify(self) -> None:
         initial_digest = record_digest(self.initial) if self.initial is not None else None
         if (
-            self.retention_readback_jobs is not self._retention_jobs
+            self.jobs is not self._jobs
+            or getattr(self.jobs, "execution_group", None) is not self._execution_group
+            or getattr(self.jobs, "batch_timer", None) is not self._batch_timer
+            or (
+                self.reservation is not None
+                and getattr(self.reservation, "_batch_timer", None) is not None
+                and (
+                    self._batch_timer is not self.reservation._batch_timer
+                    or self._execution_group is not self.reservation._batch_timer.setup
+                )
+            )
+            or self.retention_readback_jobs is not self._retention_jobs
             or (
                 self._retention_jobs is not None
                 and (
                     self._retention_jobs.observer is not self.jobs.observer
                     or self._retention_jobs.group is not self.jobs.group
                     or self._retention_jobs.aggregate is not self.jobs.aggregate
+                    or self._retention_jobs.execution_group is not self._execution_group
+                    or self._retention_jobs.batch_timer is not self._batch_timer
                     or self._retention_jobs.deadline != self._retention_end
                 )
             )
@@ -850,7 +974,8 @@ class LinuxPhysicalOwner:
 
     def _readback(self) -> PhysicalState:
         self._enter()
-        rows = parse_mountinfo(_read(self.handles["proc"], "self/mountinfo"))
+        raw_mounts = _read(self.handles["proc"], "self/mountinfo")
+        rows = parse_mountinfo(raw_mounts)
         mounts: dict[str, MountIdentity] = {}
         if self.initial is not None:
             for pinned_mount in self.initial.mounts.values():
@@ -866,11 +991,31 @@ class LinuxPhysicalOwner:
                 if self.initial is not None and mount != self.initial.mounts[name]:
                     raise ValueError("owned mount identity substituted")
                 mounts[name] = mount
+                if mount.filesystem == "ext4":
+                    # Match the original actual mount ID, not a requested flag
+                    # or a target substring. A lost/changed directory bound
+                    # prevents ownership readback; it never authorizes release.
+                    row = next(
+                        line
+                        for line in raw_mounts.decode("ascii").splitlines()
+                        if line.split()[0] == str(mount.mount_id)
+                    )
+                    options = row.partition(" - ")[2].split()[2].split(",")
+                    bounds = [option for option in options if option.startswith("max_dir_size_kb=")]
+                    if bounds != [f"max_dir_size_kb={DIRECTORY_GROWTH_KIB}"]:
+                        raise ValueError("actual owned ext4 directory growth option differs")
         loops = {
             name: loop
             for name in (n[5:] for n in self.handles if n.startswith("loop:"))
             if (loop := self._loop(name)) is not None
         }
+        for name, descriptor in self._backing_handles.items():
+            if name in EXT4_INODE_LIMITS:
+                _verify_ext4_growth(
+                    os.pread(descriptor, 1024, 1024), name, os.fstat(descriptor).st_size
+                )
+            elif type(self.reservation) is OwnedStorageReservation:
+                raise ValueError("operational storage owner has an unknown growth slot")
         loop_devices = {loop.rdev for loop in loops.values()}
         if any(
             os.makedev(*map(int, m.device.split(":"))) not in loop_devices
@@ -915,9 +1060,12 @@ class LinuxPhysicalOwner:
         self._verify()
         readback_jobs = self.retention_readback_jobs or self.jobs
         raw = readback_jobs.run(
-            lambda: self._readback().model_dump_json().encode(), set(self.handles.values())
+            self._readback_bytes, {*self.handles.values(), *self._backing_handles.values()}
         )
         return PhysicalState.model_validate_json(raw)
+
+    def _readback_bytes(self) -> bytes:
+        return self._readback().model_dump_json().encode()
 
     def _effect(self, key: str, deadline: float, action: Callable[[], None]) -> None:
         if (

@@ -15,6 +15,34 @@ from crewshal.model import Contract
 if TYPE_CHECKING:
     from crewshal.dispatch import DispatchConfiguration
 
+# Additional prospective per-file/inode controls stay inside the original role
+# totals. Actual inherited limits and formatted/mounted geometry must be read
+# independently; constants and arithmetic confer no enforcement or authority.
+FILE_GROWTH_BYTES = 131072
+DIRECTORY_GROWTH_KIB = 64
+EXT4_INODE_LIMITS = {
+    "physical-domain.img": 8192,
+    "scratch.img": 128,
+    "candidate.img": 64,
+    "native-auth.img": 256,
+    "validator-scratch.img": 128,
+    "validator-candidate.img": 64,
+}
+
+
+def _verify_ext4_growth(block: bytes, name: str, size: int) -> None:
+    """Check an actual owned superblock; never infer filesystem readiness."""
+    if name not in EXT4_INODE_LIMITS:
+        raise ValueError("unknown owned ext4 growth slot")
+    if len(block) != 1024 or block[56:58] != b"\x53\xef":
+        raise ValueError("actual owned ext4 superblock unavailable")
+    blocks = int.from_bytes(block[4:8], "little") | int.from_bytes(block[336:340], "little") << 32
+    shift = int.from_bytes(block[24:28], "little")
+    if shift != 2 or blocks * (1024 << shift) != size:
+        raise ValueError("owned ext4 declared size differs from original backing")
+    if not 11 <= int.from_bytes(block[:4], "little") <= EXT4_INODE_LIMITS[name]:
+        raise ValueError("actual owned ext4 inode geometry exceeds fixed growth bound")
+
 
 class LinuxEnvelopeBindings(Contract):
     """Prospective digests supplied explicitly; no effective readback or authority."""
@@ -249,7 +277,7 @@ def prepare_linux_envelope(configuration: "DispatchConfiguration") -> LinuxEnvel
         "validator": [
             *readonly,
             EnvelopeMount(
-                source=root + "/validator-candidate", target="/candidate/owned", readonly=True
+                source=root + "/validator-frozen", target="/candidate/owned", readonly=True
             ),
             EnvelopeMount(
                 source=root + "/validator-scratch-upper", target="/scratch", readonly=False

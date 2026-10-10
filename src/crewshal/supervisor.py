@@ -372,8 +372,12 @@ def capture_attached_process(
                     termination = termination or "cancelled"
                 elif final is not None and _quota(final):
                     termination = termination or "quota"
-                elif elapsed >= 5 and (
-                    exit_code is None or (final is not None and final.populated)
+                elif elapsed >= 5 and not (
+                    exit_code is not None
+                    and final is not None
+                    and not final.populated
+                    and not final.direct_pids
+                    and all(eof)
                 ):
                     termination = termination or "timeout"
                 elif exit_code is not None and final is not None and final.populated:

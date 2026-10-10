@@ -176,6 +176,11 @@ class Phase2DParent(unittest.TestCase):
             )
             + "\n",
         )
+        self.write(
+            path,
+            "limits",
+            "Max file size             131072               131072               bytes\n",
+        )
         self.write(path, "cgroup", f"0::/{spec.cgroup.relative_path}\n")
         self.write(path, "cmdline", b"\0".join(x.encode() for x in spec.argv) + b"\0")
         self.write(path, "environ", b"")
@@ -280,6 +285,143 @@ class Phase2DParent(unittest.TestCase):
             patch.object(bridge.ObservedWatchdog, "check", side_effect=readiness),
         ):
             return bridge.stage_namespace_parent(**arguments)
+
+    def capture_fixture(self):
+        from crewshal.linux_setup import OwnedWatchdogLifetime, TerminalObservation
+        from crewshal.runtime import ProcessObservation
+        from crewshal.supervisor import CapturedProcess, CgroupSample
+
+        admitted = self.stage()
+        self.addCleanup(admitted.proc.close)
+        lifetime = OwnedWatchdogLifetime(self.parent, self.f.worker, self.supervisor)
+        lifetime.observed = self.watchdog
+        self.parent._watchdog_lifetime = lifetime
+        self.parent._bridge_channel = object()
+        initial = self.f.worker.sample()
+        final = CgroupSample.model_validate(
+            {**initial.model_dump(), "populated": False, "direct_pids": []}
+        )
+        captured = CapturedProcess(
+            ProcessObservation(
+                started=self.owned.deadline.started,
+                ended=self.owned.deadline.started,
+                elapsed_seconds=0.1,
+                exit_code=0,
+                stdout_complete=True,
+                stderr_complete=True,
+                tree_stopped=True,
+            ),
+            b"original native output",
+            b"",
+            initial,
+            final,
+            False,
+            False,
+        )
+        return admitted, lifetime, captured, TerminalObservation(True, True, True, ())
+
+    def test_namespace_capture_retains_original_result_and_sends_only_after_terminal(self):
+        from crewshal.admission import AdmittedNative
+        from crewshal.linux_setup import OwnedWatchdogLifetime
+
+        admitted, lifetime, captured, terminal = self.capture_fixture()
+        events = []
+        with (
+            patch.object(OwnedWatchdogLifetime, "verify_native_binding"),
+            patch.object(bridge.ObservedWatchdog, "check"),
+            patch.object(
+                bridge.signal,
+                "pidfd_send_signal",
+                side_effect=lambda *args: events.append("resume"),
+                create=True,
+            ) as resume,
+            patch.object(
+                AdmittedNative,
+                "capture",
+                side_effect=lambda **kwargs: events.append("capture") or captured,
+            ),
+            patch.object(
+                OwnedWatchdogLifetime,
+                "terminal",
+                side_effect=lambda **kwargs: events.append("terminal") or terminal,
+            ),
+            patch.object(
+                OwnedWatchdogLifetime,
+                "verify_native_terminal",
+                side_effect=lambda *args: events.append("readback"),
+            ),
+            patch(
+                "crewshal.linux_bridge.send_original_native_capture",
+                side_effect=lambda *args: events.append("send"),
+            ) as send,
+        ):
+            self.assertIs(
+                bridge.capture_namespace_native(self.parent, cancelled=lambda: False), captured
+            )
+            self.assertEqual(events, ["resume", "capture", "terminal", "readback", "send"])
+            resume.assert_called_once_with(admitted.proc.pidfd, signal.SIGCONT, None, 0)
+            send.assert_called_once_with(self.parent._bridge_channel, lifetime)
+            with self.assertRaisesRegex(ValueError, "consumed"):
+                bridge.capture_namespace_native(self.parent, cancelled=lambda: False)
+        self.assertIs(lifetime._native_capture, captured)
+        self.assertIs(lifetime._native_terminal, terminal)
+        self.assertFalse(lifetime.resources_reusable)
+
+    def test_namespace_capture_refuses_changed_checkpoint_before_resume_without_retry(self):
+        from crewshal.linux_setup import OwnedWatchdogLifetime
+
+        admitted, lifetime, _, _ = self.capture_fixture()
+        self.f.status["TracerPid"] = "42"
+        self.f.write_status()
+        with (
+            patch.object(OwnedWatchdogLifetime, "verify_native_binding"),
+            patch.object(bridge.ObservedWatchdog, "check"),
+            patch.object(bridge.signal, "pidfd_send_signal", create=True) as resume,
+        ):
+            with self.assertRaisesRegex(ValueError, "status differs"):
+                bridge.capture_namespace_native(self.parent, cancelled=lambda: False)
+            resume.assert_not_called()
+            self.f.status["TracerPid"] = "0"
+            self.f.write_status()
+            with self.assertRaisesRegex(ValueError, "consumed"):
+                bridge.capture_namespace_native(self.parent, cancelled=lambda: False)
+        self.assertIs(lifetime.parent, self.parent)
+        self.assertIs(self.parent._native_handoff[0], admitted)
+
+    def test_namespace_capture_keeps_unknown_terminal_and_never_sends_success(self):
+        from crewshal.admission import AdmittedNative
+        from crewshal.linux_setup import OwnedWatchdogLifetime, TerminalObservation
+
+        _, lifetime, captured, _ = self.capture_fixture()
+        unknown = TerminalObservation(False, True, False, ("unreaped fixture",))
+        with (
+            patch.object(OwnedWatchdogLifetime, "verify_native_binding"),
+            patch.object(bridge.ObservedWatchdog, "check"),
+            patch.object(bridge.signal, "pidfd_send_signal", create=True),
+            patch.object(AdmittedNative, "capture", return_value=captured),
+            patch.object(OwnedWatchdogLifetime, "terminal", return_value=unknown),
+            patch("crewshal.linux_bridge.send_original_native_capture") as send,
+            self.assertRaisesRegex(ValueError, "remains unknown"),
+        ):
+            bridge.capture_namespace_native(self.parent, cancelled=lambda: False)
+        self.assertIs(lifetime._native_capture, captured)
+        self.assertIs(lifetime._native_terminal, unknown)
+        send.assert_not_called()
+
+    def test_namespace_file_limits_refuse_before_any_native_creation(self):
+        for role in ("parent", "watchdog"):
+            with self.subTest(role=role):
+                fixture = Phase2DParent()
+                fixture.setUp()
+                self.addCleanup(fixture.doCleanups)
+                path = fixture.parent_path if role == "parent" else fixture.watchdog_path
+                fixture.write(path, "limits", "Max file size 131072 unlimited bytes\n")
+                with self.assertRaisesRegex(ValueError, "file growth limits"):
+                    admitted = fixture.stage()
+                    fixture.addCleanup(admitted.proc.close)
+                self.assertFalse(fixture.spawned)
+                os.fstat(fixture.parent.descriptor)
+                os.fstat(fixture.watchdog.task.descriptor)
 
     def test_namespace_parent_orders_effective_readiness_migration_and_direct_popen(self):
         admitted = self.stage()

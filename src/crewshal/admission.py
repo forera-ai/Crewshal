@@ -24,6 +24,7 @@ from pydantic import Field, model_validator
 
 from crewshal.candidate import FrozenCandidate
 from crewshal.contracts import Digest, Identifier, Record, record_digest
+from crewshal.linux_envelope import FILE_GROWTH_BYTES
 from crewshal.model import Contract, digest
 from crewshal.qualification_bundle import _Reader
 from crewshal.supervisor import (
@@ -77,6 +78,21 @@ class NativeAdmissionSpec(Contract):
         if self.pid == self.parent_pid:
             raise ValueError("native process cannot be its own parent")
         return self
+
+
+def _verify_file_growth_limit(descriptor: int) -> None:
+    """Read both inherited file limits through the original task's retained proc FD.
+
+    This is one admission invariant, never a combined-storage proof. Unknown,
+    duplicate, unlimited or changed kernel rows refuse admission.
+    """
+    rows = [
+        line.split()
+        for line in _read(descriptor, "limits").decode("ascii").splitlines()
+        if line.split()[:3] == ["Max", "file", "size"]
+    ]
+    if rows != [["Max", "file", "size", str(FILE_GROWTH_BYTES), str(FILE_GROWTH_BYTES), "bytes"]]:
+        raise ValueError("actual inherited soft/hard file growth limits differ")
 
 
 def _read(descriptor: int, name: str, limit: int = 65536) -> bytes:
@@ -240,6 +256,8 @@ class RetainedProc:
             value = status.get(key, "")
             if not re.fullmatch(r"[0-9a-fA-F]{16}", value) or int(value, 16) != 0:
                 raise ValueError("native capabilities must be empty")
+        _verify_file_growth_limit(self.descriptor)
+        self._verify_handles()
 
     def read_configuration(self, configuration: "DispatchConfiguration") -> dict[str, Digest]:
         from crewshal.linux_envelope import native_working_directory
@@ -487,6 +505,9 @@ class AdmittedNative:
     def capture(self, *, cancelled: Callable[[], bool]) -> CapturedProcess:
         # Trusted launcher must release the stopped child separately, after its
         # exact authority/deadline/envelope gates. Receipt never authorizes that.
+        if getattr(self, "_capture_started", False):
+            raise ValueError("original native capture consumed; no retry")
+        object.__setattr__(self, "_capture_started", True)
         self._verify_binding()
         if self.child.stdout is None or self.child.stderr is None:
             raise ValueError("retained child capture pipes missing")
@@ -524,6 +545,9 @@ class AdmittedNative:
             exchange=exchange,
             stdin_stream=stdin_stream,
         )
+        # Preserve the actual returned capture before terminal verification.
+        # Refusal retains the same object; another capture cannot replace it.
+        object.__setattr__(self, "_captured_process", captured)
         if captured.observation.tree_stopped:
             if captured.observation.exit_code is None:
                 raise ValueError("native exit missing from terminal capture")

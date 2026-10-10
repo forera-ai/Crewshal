@@ -270,7 +270,7 @@ class Phase2DEnvelope(unittest.TestCase):
         mounts = plan.mounts["validator"]
         candidate = next(m for m in mounts if m.target == "/candidate/owned")
         self.assertTrue(candidate.readonly)
-        self.assertTrue(candidate.source.endswith("/validator-candidate"))
+        self.assertTrue(candidate.source.endswith("/validator-frozen"))
         self.assertNotEqual(
             candidate.source,
             next(m.source for m in plan.mounts["native"] if m.target == "/candidate/owned"),

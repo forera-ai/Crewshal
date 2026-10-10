@@ -1,5 +1,41 @@
 # Changelog
 
+## 0.12.0 — 2026-10-10
+
+- Publish the owner-authorized compatible Phase 2D preparation checkpoint, including all preserved uncommitted upfront-charge/timer/growth work, retained physical-domain/journal/root production, original-volume freeze, parent/observer capture transport and credential-free validator source. Preserve the exact stock-runtime MAP_SHARED/WAL incompatibility, retained unknowns/full charges and explicitly closed installation admission.
+- Synchronize package metadata, record this explicit publication exception, and deliver a next-session prompt with an exact source/test/evidence input manifest. The blocked source boundary passes 863 unique offline methods / 722 Phase 2D in source and a fresh wheel; current-version publication verification is recorded separately.
+- Phase 2D remains incomplete and source unqualified. Compatible effective shmem/additional-filesystem growth enforcement, installed parent/validator/admission identities and separately approved exact Linux/live acceptance remain required. Publication grants no operational/spend/release/reuse or Phase 2E authority. Earlier conditional publication entries are dated history.
+
+## Unreleased — Phase 2D retained installation and compatibility blocker, 2026-10-10
+
+- Prepare original physical-domain/role-volume production, source/root/formatter custody, persistent exclusive SQLite journal and finite charged outputs, actual original-volume readonly freeze, fixed parent/observer capture transport and separate credential-free validator admission/watchdog source. Preserve partial handles, irreversible charges and one-use refusal. Correct original five-second capture expiry when an exited empty worker leaves a stream open; precharge constructor failures close only known local handles.
+- Reproduce the current shared-mapping filter's incompatibility with pinned stock app-server SQLite WAL. Keep installation admission explicitly closed and retain unknown even after synthetic successful volume readback. Compatible effective anonymous/dev-zero/additional-filesystem enforcement, installed finite parent/validator view and original admission linkage remain missing. See [the exact blocker, verification and continuation](docs/PHASE-2D-EFFECTIVE-OWNERSHIP-BLOCKED-2026-10-10.md).
+- Final denied-network source/fresh-wheel verification passes 863 unique methods / 722 Phase 2D, with all 31 packaged and 26 dispatch-bound inputs matching; Ruff, strict mypy and diff checks pass. Phase 2D remains incomplete/unqualified. Original dirty work and immutable evidence remain intact, version 0.11.0 unchanged, no commit/push before full acceptance, no operational compiler/host/credentials/model action, no release/reuse or Phase 2E. Earlier unreleased sections are dated history.
+
+## Unreleased — Phase 2D accepted upfront installation preparation, 2026-10-10
+
+- Record the owner's upfront charged bootstrap approval in accepted ADR 0006. Add a distinct synchronous installation-charge record and one original live claim/reservation binding, preserving the existing installed-domain path. Keep full charges through constructor/commit/refusal uncertainty, deny original-attempt retry/reconstruction, and record retained unknown outcomes without a readiness/refund/reuse API.
+- Add one original-timer bounded root/backing-directory creation sequence with actual FD custody before subsequent effects. Require the original timer for real key source and retain unknown installation on timer/job/production refusals. Matching observed record data cannot supply the missing effective physical-domain/root/journal combined-growth producer; payload admission for the new charge path deliberately stays closed.
+- Eighteen fresh methods bring complete offline verification to 699 / 558 Phase 2D. Source remains unqualified and uncommitted at 0.11.0; full growth, actual frozen volume/validator, installed identities and exact Linux/live acceptance remain required. No further compiler, host, credentials/model, release/reuse or Phase 2E action occurred. Earlier pending-bootstrap statements are dated history.
+
+## Unreleased — Phase 2D growth and installation boundary, 2026-10-10
+
+- Add namespace-parent inherited 131072-byte soft/hard file limits and independently read them at trusted-task/stopped-native admission. Request 4 KiB ext4 blocks, fixed inode ceilings and 64 KiB directory bounds; reject missing/changed actual superblock and matching-mount readback while retaining handles. These additional source controls are not full combined-growth or Linux qualification.
+- Seven fresh methods bring complete source verification to 681 / 540 Phase 2D. Three regression methods reproduce twelve failures on a fresh independently byte-verified published baseline and pass current source. Static/build/package evidence is recorded separately.
+- Present the exact installed-first bootstrap obstruction and one original-owner upfront-charge lifecycle decision. Keep that material amendment unapproved/unimplemented; no synthetic installation initializer, broader runtime authority, release/reuse or 2E. All three approved syntax invocations are consumed. Source remains uncommitted/unqualified at 0.11.0.
+
+## Unreleased — Phase 2D approved timer syntax and idle custody, 2026-10-10
+
+- Record explicit additional-check approval and one exact syntax pass for the 13411 C bytes: complete transport/input, exit 0, empty streams, 0.36629341600928456 seconds. Retain all three consumed markers/results; no additional compiler/host/helper/native/login/model operation or broader authority follows.
+- Separate expired-batch idle custody observation from live creation admission. Verify original helper/lifeline identities, independent pidfd cessation/reap, stopped roles, concrete original jobs/wrapper and sole observer; retain all original charges/handles and kernel unknowns. Five fresh offline methods bring source/installed-wheel verification to 674 complete / 533 Phase 2D, plus static/build/package checks.
+- Keep full 2D unqualified/incomplete and subsequent source uncommitted at 0.11.0. Effective installed capacity/growth, actual frozen volume/credential-free validator, installed identities and Linux/live qualification remain unfinished; no physical release/reuse or 2E. Earlier pending compiler statements are dated history.
+
+## Unreleased — Phase 2D timer and child-placement source, 2026-10-10
+
+- Leave the original retaining observer outside every stopped role during namespace construction. Add original-observer timer custody/readback for the original 570-second reserve boundary and 600-second batch; add no second recovery grace, observer or resource allowance. Pin creation-child actual setup placement before effect admission.
+- Bind production and storage-owner readback to the same original job, timer and execution role. Reject replaced jobs and changed bindings while retaining handles. Three regression methods independently fail the published 0.11.0 wheel and pass current source. Source and installed wheel pass 669 complete / 528 Phase 2D offline tests, with lint/format, strict types, build and packaged-byte verification.
+- Prepare one additional frozen syntax-only check for the changed 13411-byte helper; approval remains pending, and no new compiler/SSH/helper/kernel/native/login/model operation occurred. Effective child birth/terminal readback, installed capacity/growth, original-volume freeze/validator and exact Linux/live acceptance remain unfinished. Subsequent source is uncommitted at 0.11.0; preceding 758079b publication is complete. Full Phase 2D remains unqualified and incomplete.
+
 ## 0.11.0 — 2026-10-10
 
 - Publish the owner-authorized compatible Phase 2D source checkpoint: accepted retained ownership, irreversible capacity accounting, official subscription preparation, bounded production custody, owned roots/views and candidate/terminal capture corrections. Preserve all prior immutable evidence.

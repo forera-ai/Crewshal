@@ -1,13 +1,17 @@
 """Fresh coordinator integration fixtures; no native runtime or check is launched."""
 
 from datetime import datetime, timezone
+from dataclasses import replace
 import json
+import os
 import sqlite3
 from pathlib import Path
 import tempfile
 import unittest
+from types import SimpleNamespace
+from unittest.mock import Mock, patch
 
-from crewshal.candidate import prepare_candidate, validator_evidence
+from crewshal.candidate import _scan_fd, freeze_candidate, prepare_candidate, validator_evidence
 from crewshal.contracts import (
     Approval,
     Attempt,
@@ -22,7 +26,13 @@ from crewshal.contracts import (
 )
 from crewshal.discovery import discover
 from crewshal.durable import CoordinatorStore
-from crewshal.integration import CodexCollection, collect_codex_attempt, scope_digest
+from crewshal.integration import (
+    ORIGINAL_VOLUME_COLLECTION_UNRESOLVED,
+    CodexCollection,
+    collect_codex_attempt,
+    collect_original_volume_codex,
+    scope_digest,
+)
 from crewshal.model import digest, model_digest
 from crewshal.runtime import CodexIdentity, ProcessObservation
 
@@ -365,6 +375,340 @@ class Phase2DIntegration(unittest.TestCase):
             self.collect()
         self.assertFalse(self.frozen.exists())
         self.assertEqual(self.store.records("collection", CodexCollection), [])
+
+
+class Phase2DOriginalVolumeCollection(unittest.TestCase):
+    """Real fresh SQLite/files/retained FDs; Linux custody is an explicit seam."""
+
+    def setUp(self):
+        # Use only the fixture helper, never inherit its tests or reuse artifacts.
+        from tests.acceptance import test_phase_2d_supervisor as supervisor_fixtures
+        from tests.acceptance import test_phase_2d_admission as admission_fixtures
+        from crewshal.admission import NativeAdmissionSpec, RetainedProc
+        from crewshal.linux_bridge import StoppedNativeBridge
+        from crewshal.linux_freeze import OriginalVolumeFreeze
+        from crewshal.supervisor import CapturedProcess
+
+        helper = supervisor_fixtures.Phase2DSupervisor()
+        self.addCleanup(helper.doCleanups)
+        fixture, self.dispatch = helper.integration_fixture()
+        self.fixture = fixture
+        native_fixture = admission_fixtures.Phase2DAdmission()
+        native_fixture.setUp()
+        self.addCleanup(native_fixture.doCleanups)
+        self.native_fixture = native_fixture
+        self.original_dirty = (fixture.original / "dirty.txt").read_bytes()
+        fixture.candidate.rename(fixture.root / "candidate-upper")
+        fixture.candidate = fixture.root / "candidate-upper"
+        fixture.frozen = fixture.root / "validator-frozen"
+        manifest = freeze_candidate(fixture.candidate, fixture.frozen, tree_stopped=True)
+        descriptor = os.open(fixture.frozen, os.O_RDONLY | os.O_DIRECTORY)
+        self.addCleanup(os.close, descriptor)
+        actual = os.fstat(descriptor)
+        self.projection = descriptor
+        self.projection_identity = actual.st_dev, actual.st_ino
+        self.initial_projection = record_digest(manifest)
+        installation = SimpleNamespace(
+            growth=SimpleNamespace(store=fixture.store),
+            production=SimpleNamespace(root=str(fixture.root)),
+            reservation=SimpleNamespace(_retain_installation_refusal=Mock()),
+        )
+        frozen = object.__new__(OriginalVolumeFreeze)
+        frozen.installation, frozen.manifest, frozen.failed = installation, manifest, False
+        frozen.handles = {"readonly-projection": descriptor, "frozen-root": descriptor}
+        frozen.verify_custody = Mock()
+        frozen._verify_terminal_kernel = Mock()
+
+        def projection_readback():
+            # Read actual original pinned inode/content. Readonly/UID/mount and
+            # original host task kernel validation remain explicitly synthetic.
+            info = os.fstat(frozen.handles["readonly-projection"])
+            if (
+                (info.st_dev, info.st_ino) != self.projection_identity
+                or _scan_fd(descriptor)[0] != frozen.manifest
+                or record_digest(frozen.manifest) != self.initial_projection
+            ):
+                raise ValueError("synthetic original projection readback changed")
+
+        frozen._verify_projection = Mock(side_effect=projection_readback)
+        installation._freeze = frozen
+        bridge = self.bridge = object.__new__(StoppedNativeBridge)
+        bridge.installation, bridge.freeze, bridge.failed, bridge.stage = (
+            installation,
+            frozen,
+            False,
+            3,
+        )
+        installation._bridge = bridge
+        spec = NativeAdmissionSpec.model_validate(
+            {
+                **native_fixture.spec.model_dump(),
+                "configuration": record_digest(self.dispatch.configuration),
+            }
+        )
+        bridge.native = RetainedProc(
+            native_fixture.proc.descriptor, native_fixture.pid_reader.fileno(), spec
+        )
+        self.addCleanup(bridge.native.close)
+        bridge.lifetime = SimpleNamespace(
+            controls=SimpleNamespace(configuration=self.dispatch.configuration),
+            worker=native_fixture.worker,
+        )
+        initial = native_fixture.worker.sample()
+        (native_fixture.worker_path / "cgroup.events").write_text("populated 0\nfrozen 0")
+        (native_fixture.worker_path / "cgroup.procs").write_text("")
+        final = native_fixture.worker.sample()
+        captured = CapturedProcess(
+            fixture.observation, fixture.raw, b"diagnostic", initial, final, False, False
+        )
+        bridge.native_capture = bridge._capture_owner = captured
+        bridge._capture_streams = (captured.stdout, captured.stderr)
+        bridge.capture_packets = [captured.stdout, captured.stderr, b"synthetic closed header"]
+        bridge._capture_records = (
+            captured.observation.model_dump_json(),
+            captured.initial.model_dump_json(),
+            captured.final.model_dump_json(),
+            captured.overflow,
+            captured.stop_error,
+        )
+        # The bridge's real immutable capture validation runs. Only Linux
+        # observer/task/timer/namespace readback is replaced with this seam.
+        bridge._verify_original = Mock()
+
+    def collect(self, **changes):
+        fixture = self.fixture
+        arguments = dict(
+            expected_run_version=1,
+            expected_attempt_version=2,
+            token="lease",
+            initial=fixture.initial,
+            allowed_paths=["README.md"],
+        )
+        store = changes.pop("store", fixture.store)
+        dispatch = changes.pop("dispatch", self.dispatch)
+        with (
+            patch(
+                "crewshal.integration.freeze_candidate", side_effect=AssertionError("no path copy")
+            ),
+            patch("subprocess.Popen.__init__", side_effect=AssertionError("no child startup")),
+        ):
+            return collect_original_volume_codex(
+                store, self.bridge, dispatch, **{**arguments, **changes}
+            )
+
+    def assert_uncommitted(self):
+        from crewshal.supervisor import SupervisionReceipt
+
+        store = self.fixture.store
+        self.assertEqual(store.get("attempt", "worker", Attempt)[0].state, "acknowledged")
+        self.assertEqual(store.get("run", "run", Run)[0].state, "ready")
+        self.assertEqual(store.records("collection", CodexCollection), [])
+        self.assertEqual(store.records("supervision", SupervisionReceipt), [])
+        self.assertEqual(store.records("evidence", Evidence), [])
+        self.assertEqual((self.fixture.frozen / "README.md").read_bytes(), b"after\n")
+        os.fstat(self.projection)
+
+    def test_original_capture_persists_actual_host_supervision_and_scope_link(self):
+        from crewshal.supervisor import SupervisionReceipt
+
+        result = self.collect()
+        self.assertEqual(result.outcome.status, "completed")
+        self.assertEqual(result.frozen, self.bridge.freeze.manifest)
+        receipts = self.fixture.store.records("supervision", SupervisionReceipt)
+        self.assertEqual(len(receipts), 1)
+        receipt = receipts[0]
+        self.assertEqual(receipt.pid, self.bridge.native.spec.pid)
+        self.assertEqual(receipt.dispatch, record_digest(self.dispatch))
+        self.assertEqual(receipt.collection, record_digest(result))
+        self.assertEqual(receipt.initial, self.bridge.native_capture.initial)
+        self.assertEqual(receipt.final, self.bridge.native_capture.final)
+        self.assertEqual((receipt.stdout, receipt.stderr), (result.stdout, result.stderr))
+        self.assertIsNone(receipt.admission)
+        self.assertEqual(
+            ORIGINAL_VOLUME_COLLECTION_UNRESOLVED,
+            ("original_namespace_admission_receipt_transport",),
+        )
+        self.assertEqual(
+            self.fixture.store.connection.execute(
+                "SELECT count(*) FROM records WHERE kind='admission'"
+            ).fetchone()[0],
+            0,
+        )
+        evidence = self.fixture.store.records("evidence", Evidence)[0]
+        self.assertIn(record_digest(receipt), evidence.artifacts)
+        self.assertTrue(
+            (self.fixture.store.directory / "artifacts" / record_digest(receipt)).is_file()
+        )
+        self.assertGreaterEqual(self.bridge._verify_original.call_count, 4)
+        self.assertEqual((self.fixture.original / "dirty.txt").read_bytes(), self.original_dirty)
+        with self.assertRaisesRegex(ValueError, "consumed"):
+            self.collect()
+
+    def test_forged_dispatch_requirement_and_task_digest_cannot_pass_current_binding(self):
+        dispatch = self.dispatch.model_copy(deep=True)
+        dispatch.request.requirement = "silently broaden task"
+        dispatch.task_digest = digest(b"forged task")
+        with self.assertRaisesRegex(ValueError, "source/task/configuration"):
+            self.collect(dispatch=dispatch)
+        self.assert_uncommitted()
+        self.assertTrue(self.bridge._collection_attempted)
+        self.assertTrue(self.bridge.failed)
+
+    def test_source_configuration_forgery_refuses_even_with_matching_bridge_hashes(self):
+        dispatch = self.dispatch.model_copy(deep=True)
+        dispatch.configuration.source_sha256["integration.py"] = digest(b"stale implementation")
+        fingerprint = record_digest(dispatch.configuration)
+        dispatch.request.identity.configuration = fingerprint
+        dispatch.qualification.configuration = fingerprint
+        self.bridge.lifetime.controls.configuration = dispatch.configuration
+        self.bridge.native.spec.configuration = fingerprint
+        with self.assertRaisesRegex(ValueError, "source/task/configuration"):
+            self.collect(dispatch=dispatch)
+        self.assert_uncommitted()
+
+    def test_other_original_store_cannot_import_or_reopen_sqlite_and_consumes_bridge(self):
+        other = CoordinatorStore(self.fixture.root / "other-state")
+        self.addCleanup(other.close)
+        with self.assertRaisesRegex(ValueError, "store/bridge custody"):
+            self.collect(store=other)
+        self.assert_uncommitted()
+        self.assertTrue(self.bridge._collection_attempted)
+        self.assertTrue(self.bridge.failed)
+        self.bridge.installation.reservation._retain_installation_refusal.assert_called_once()
+
+    def test_substituted_capture_refuses_before_any_sqlite_or_artifact_write(self):
+        self.bridge.native_capture = replace(self.bridge.native_capture, stdout=b"replacement")
+        with self.assertRaisesRegex(ValueError, "capture changed"):
+            self.collect()
+        self.assert_uncommitted()
+        self.assertFalse((self.fixture.store.directory / "artifacts").exists())
+
+    def test_mutated_capture_record_refuses_while_retaining_original_packets(self):
+        self.bridge.native_capture.initial.populated = False
+        with self.assertRaisesRegex(ValueError, "capture changed"):
+            self.collect()
+        self.assert_uncommitted()
+        self.assertIs(self.bridge.capture_packets[0], self.bridge._capture_streams[0])
+
+    def test_sql_rollback_retains_actual_projection_artifacts_and_consumed_bridge(self):
+        store = self.fixture.store
+        store.connection.execute(
+            "CREATE TEMP TRIGGER refuse_original_supervision "
+            "BEFORE INSERT ON records WHEN NEW.kind='supervision' "
+            "BEGIN SELECT RAISE(ABORT, 'fixture original SQL failure'); END"
+        )
+        with self.assertRaisesRegex(sqlite3.IntegrityError, "original SQL failure"):
+            self.collect()
+        self.assert_uncommitted()
+        self.assertEqual(store.records("usage", Usage), [])
+        self.assertEqual(store.records("claim", Claim), [])
+        self.assertGreater(len(list((store.directory / "artifacts").iterdir())), 0)
+        self.assertTrue(self.bridge._collection_attempted)
+        self.assertTrue(self.bridge.failed)
+        store.connection.execute("DROP TRIGGER refuse_original_supervision")
+        with self.assertRaisesRegex(ValueError, "consumed"):
+            self.collect()
+
+    def test_capture_mutation_during_artifact_write_rolls_back_and_retains_artifact(self):
+        store = self.fixture.store
+        actual_write = store._artifact
+
+        def changed(fingerprint, data):
+            actual_write(fingerprint, data)
+            self.bridge.native_capture = replace(self.bridge.native_capture, stdout=b"substituted")
+
+        with patch.object(store, "_artifact", side_effect=changed):
+            with self.assertRaisesRegex(ValueError, "capture changed"):
+                self.collect()
+        self.assert_uncommitted()
+        self.assertGreater(len(list((store.directory / "artifacts").iterdir())), 0)
+
+    def test_stale_versions_lease_and_scope_refuse_without_store_terminal_state(self):
+        # Fresh class instance per invocation; refused attempts cannot retry.
+        with self.assertRaisesRegex(ValueError, "state version changed"):
+            self.collect(expected_attempt_version=1)
+        self.assert_uncommitted()
+        self.assertTrue(self.bridge._collection_attempted)
+
+    def test_wrong_lease_cannot_write_collection(self):
+        with self.assertRaises(ValueError):
+            self.collect(token="wrong")
+        self.assert_uncommitted()
+
+    def test_stale_initial_manifest_cannot_rebind_original_frozen_projection(self):
+        with self.assertRaisesRegex(ValueError, "snapshot/scope"):
+            self.collect(initial=self.fixture.replace(self.fixture.initial, files=[]))
+        self.assert_uncommitted()
+
+    def test_other_scope_cannot_broaden_original_approved_candidate(self):
+        with self.assertRaisesRegex(ValueError, "snapshot/scope"):
+            self.collect(allowed_paths=["README.md", "dirty.txt"])
+        self.assert_uncommitted()
+
+    def test_original_projection_inode_replacement_cannot_be_path_copy_fallback(self):
+        replacement = self.fixture.root / "replacement"
+        replacement.mkdir()
+        (replacement / "README.md").write_bytes(b"after\n")
+        descriptor = os.open(replacement, os.O_RDONLY | os.O_DIRECTORY)
+        self.addCleanup(os.close, descriptor)
+        self.bridge.freeze.handles["readonly-projection"] = descriptor
+        with self.assertRaisesRegex(ValueError, "projection readback changed"):
+            self.collect()
+        self.assert_uncommitted()
+
+    def test_projection_change_after_receipt_write_rolls_back_before_commit(self):
+        store = self.fixture.store
+        actual_put = store._put
+
+        def altered(kind, key, record, version):
+            actual_put(kind, key, record, version)
+            if kind == "supervision":
+                path = self.fixture.frozen / "README.md"
+                path.chmod(0o600)
+                path.write_bytes(b"projection changed after receipt")
+
+        with patch.object(store, "_put", side_effect=altered):
+            with self.assertRaisesRegex(ValueError, "projection readback changed"):
+                self.collect()
+        self.assertEqual(store.get("run", "run", Run)[0].state, "ready")
+        self.assertEqual(store.get("attempt", "worker", Attempt)[0].state, "acknowledged")
+        self.assertEqual(
+            store.connection.execute(
+                "SELECT count(*) FROM records WHERE kind IN ('collection','supervision','evidence')"
+            ).fetchone()[0],
+            0,
+        )
+        self.assertTrue(self.bridge.failed)
+        self.assertTrue(self.bridge.freeze.failed)
+        self.assertGreater(len(list((store.directory / "artifacts").iterdir())), 0)
+        os.fstat(self.projection)
+
+    def test_dispatch_requirement_task_runtime_provider_and_check_each_remain_bound(self):
+        modifications = (
+            lambda d: setattr(d.request, "requirement", "different task"),
+            lambda d: setattr(d, "task_digest", digest(b"different task")),
+            lambda d: setattr(d.qualification, "runtime", "different runtime"),
+            lambda d: setattr(d.qualification, "architecture", "x86_64"),
+            lambda d: setattr(d.request.identity, "provider", "different-provider"),
+            lambda d: setattr(d.configuration, "validator_argv", ["/bin/false"]),
+        )
+        for change in modifications:
+            with self.subTest(change=change):
+                fresh = Phase2DOriginalVolumeCollection()
+                fresh.setUp()
+                try:
+                    dispatch = fresh.dispatch.model_copy(deep=True)
+                    change(dispatch)
+                    # These matching data fields cannot replace source/task
+                    # preparation. Kernel custody remains the fixture seam.
+                    fresh.bridge.lifetime.controls.configuration = dispatch.configuration
+                    fresh.bridge.native.spec.configuration = record_digest(dispatch.configuration)
+                    with self.assertRaises(ValueError):
+                        fresh.collect(dispatch=dispatch)
+                    fresh.assert_uncommitted()
+                    self.assertTrue(fresh.bridge._collection_attempted)
+                finally:
+                    fresh.doCleanups()
 
 
 if __name__ == "__main__":

@@ -6,10 +6,12 @@ import ctypes
 import os
 from pathlib import Path
 import signal
+import struct
 import sys
 import time
+from types import SimpleNamespace
 import unittest
-from unittest.mock import patch
+from unittest.mock import Mock, patch
 
 from crewshal.admission import NativeAdmissionSpec
 from crewshal.contracts import record_digest
@@ -23,6 +25,7 @@ from crewshal.linux_bootstrap import (
     audit_linux_bootstrap,
     bootstrap_policy,
     prepare_linux_bootstrap,
+    payload_storage_filter,
     stage_retained_bootstrap,
 )
 from crewshal.linux_envelope import LinuxEnvelopeBindings
@@ -67,6 +70,9 @@ class SyntheticTrace:
 
     def exec_pid(self, pid):
         return self.exec_identity
+
+    def verify_storage_filter(self, pid):
+        self.calls.append(("kernel_filter", pid))
 
     def queue_stop(self, pidfd):
         self.calls.append(("queue_pidfd_stop", pidfd))
@@ -226,6 +232,7 @@ class Phase2DBootstrap(unittest.TestCase):
                 "options",
                 "continue",
                 "wait",
+                "kernel_filter",
                 "queue_pidfd_stop",
                 "continue",
                 "wait",
@@ -234,6 +241,83 @@ class Phase2DBootstrap(unittest.TestCase):
             ],
         )
         self.assertEqual((self.fixture.worker_path / "cgroup.kill").read_bytes(), b"")
+
+    def test_missing_kernel_filter_proof_refuses_before_detach_without_new_grace(self):
+        self.driver.verify_storage_filter = Mock(side_effect=OSError(13, "filter unavailable"))
+        with self.assertRaisesRegex(BootstrapRefusal, "filter unavailable"):
+            self.stage()
+        self.assertNotIn("detach", [name for name, _ in self.driver.calls])
+        self.assertNotIn("queue_pidfd_stop", [name for name, _ in self.driver.calls])
+        self.assertEqual(self.deadline.expires_ns - self.deadline.origin_ns, 5_000_000_000)
+        self.assertEqual(self.outside.read_bytes(), b"original unrelated bytes")
+
+    def test_filter_denies_anonymous_storage_and_compat_without_denying_stdio(self):
+        # Small independent cBPF evaluator; no kernel loading or C compiler.
+        def evaluate(program, arch, number, mmap_flags=0):
+            rows = list(struct.iter_unpack("=HBBI", program))
+            pc, accumulator = 0, 0
+            for _ in range(len(rows)):
+                code, yes, no, value = rows[pc]
+                if code == 0x20:
+                    accumulator = {0: number, 4: arch, 40: mmap_flags}[value]
+                elif code == 0x54:
+                    accumulator &= value
+                elif code in (0x15, 0x35):
+                    matches = accumulator == value if code == 0x15 else accumulator >= value
+                    pc += yes if matches else no
+                elif code == 0x06:
+                    return value
+                else:
+                    raise AssertionError("unexpected filter opcode")
+                pc += 1
+            raise AssertionError("unterminated filter")
+
+        for machine, arch, anonymous in (
+            ("x86_64", 0xC000003E, (319, 29, 30, 447, 425)),
+            ("aarch64", 0xC00000B7, (279, 194, 196, 447, 425)),
+        ):
+            program = payload_storage_filter(machine)
+            for number in anonymous:
+                self.assertEqual(evaluate(program, arch, number), 0x50001)
+            for number in (0x40000000, 0x4000013F, 0xFFFFFFFF):
+                self.assertEqual(evaluate(program, arch, number), 0x80000000)
+            self.assertEqual(evaluate(program, arch ^ 1, 0), 0x80000000)
+            self.assertEqual(evaluate(program, arch, 0), 0x7FFF0000)
+            self.assertEqual(evaluate(program, arch, 1), 0x7FFF0000)
+            mmap_number = 9 if machine == "x86_64" else 222
+            for flags in (1, 3, 0x21, 0x23, 0x4021, 0x80000001):
+                self.assertEqual(evaluate(program, arch, mmap_number, flags), 0x50001)
+            for flags in (2, 0x22, 0x4022):
+                self.assertEqual(evaluate(program, arch, mmap_number, flags), 0x7FFF0000)
+        with self.assertRaisesRegex(ValueError, "ABI unavailable"):
+            payload_storage_filter("armv7l")
+
+    def test_actual_filter_reader_rejects_missing_short_changed_or_failed_kernel_program(self):
+        trace = object.__new__(LinuxTrace)
+        expected = payload_storage_filter("aarch64")
+
+        def read(request, pid, index, pointer):
+            self.assertEqual((request, pid, index.value), (0x420C, 12345, None))
+            if pointer is not None:
+                ctypes.memmove(pointer, expected, len(expected))
+            return len(expected) // 8
+
+        trace.libc = SimpleNamespace(ptrace=Mock(side_effect=read))
+        with patch("crewshal.linux_bootstrap.platform.machine", return_value="aarch64"):
+            trace.verify_storage_filter(12345)
+            for result in (-1, 0, len(expected) // 8 - 1):
+                trace.libc.ptrace = Mock(return_value=result)
+                with self.assertRaises((OSError, ValueError)):
+                    trace.verify_storage_filter(12345)
+
+            def changed(request, pid, index, pointer):
+                if pointer is not None:
+                    ctypes.memmove(pointer, bytes(len(expected)), len(expected))
+                return len(expected) // 8
+
+            trace.libc.ptrace = Mock(side_effect=changed)
+            with self.assertRaisesRegex(ValueError, "instructions differ"):
+                trace.verify_storage_filter(12345)
 
     def test_wrong_exec_event_never_detaches_and_recovers_only_owned_worker(self):
         self.driver.events[1] = (int(signal.SIGTRAP) << 8) | 0x7F
@@ -431,7 +515,7 @@ class Phase2DBootstrap(unittest.TestCase):
             self.stage()
 
     def test_bootstrap_source_and_C_bytes_bind_dispatch(self):
-        self.assertEqual(len(self.fixture.configuration.source_sha256), 23)
+        self.assertEqual(len(self.fixture.configuration.source_sha256), 26)
         self.assertEqual(
             self.fixture.configuration.source_sha256["bootstrap_helper.c"],
             digest(

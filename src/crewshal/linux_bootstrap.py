@@ -9,11 +9,13 @@ import ctypes
 from dataclasses import dataclass
 from datetime import datetime
 import os
+import platform
 from pathlib import Path
 import re
 import select
 import signal
 import stat
+import struct
 import subprocess
 import sys
 import time
@@ -41,6 +43,46 @@ HELPER_PATH = "/bin/crewshal-bootstrap"
 TRACEEXEC = 0x10
 EXITKILL = 0x100000
 EXEC_EVENT = 4
+
+
+def payload_storage_filter(machine: str) -> bytes:
+    """Exact native-ABI kernel program required at the retained exec stop.
+
+    This is control data, not enforcement. Compat/x32 calls cannot select a
+    different syscall namespace. Shared mappings (including dev/zero and
+    MAP_SHARED|MAP_ANONYMOUS) cannot create unlinked sparse shmem inodes.
+    Private mappings, bounded file writes and stdio remain available.
+    """
+    if machine == "x86_64":
+        arch = 0xC000003E
+        numbers = (319, 29, 30, 265, 188, 189, 190, 259, 250, 248, 249)
+    elif machine == "aarch64":
+        arch = 0xC00000B7
+        numbers = (279, 194, 196, 37, 5, 6, 7, 33, 219, 217, 218)
+    else:
+        raise ValueError("qualified native payload filter ABI unavailable")
+    instructions = [
+        (0x20, 0, 0, 4),
+        (0x15, 1, 0, arch),
+        (0x06, 0, 0, 0x80000000),
+        (0x20, 0, 0, 0),
+        (0x35, 0, 1, 0x40000000),
+        (0x06, 0, 0, 0x80000000),
+    ]
+    for number in (*numbers, 447, 425, 463):
+        instructions.extend(((0x15, 0, 1, number), (0x06, 0, 0, 0x50001)))
+    instructions.extend(
+        (
+            (0x15, 0, 5, 9 if machine == "x86_64" else 222),
+            (0x20, 0, 0, 40),  # seccomp_data.args[3], flags low word
+            (0x54, 0, 0, 3),  # MAP_TYPE
+            (0x15, 1, 0, 1),  # MAP_SHARED
+            (0x15, 0, 1, 3),  # MAP_SHARED_VALIDATE
+            (0x06, 0, 0, 0x50001),
+        )
+    )
+    instructions.append((0x06, 0, 0, 0x7FFF0000))
+    return b"".join(struct.pack("=HBBI", *row) for row in instructions)
 
 
 class BootstrapPolicy(Contract):
@@ -205,6 +247,8 @@ class TraceDriver(Protocol):
 
     def exec_pid(self, pid: int) -> int: ...
 
+    def verify_storage_filter(self, pid: int) -> None: ...
+
     def queue_stop(self, pidfd: int) -> None: ...
 
     def verify_stop_delivery(self, pid: int, sender: int) -> None: ...
@@ -240,6 +284,23 @@ class LinuxTrace:
         value = ctypes.c_ulong()
         self._call(0x4201, pid, ctypes.cast(ctypes.byref(value), ctypes.c_void_p))
         return value.value
+
+    def verify_storage_filter(self, pid: int) -> None:
+        # PTRACE_SECCOMP_GET_FILTER is available only to an unfiltered privileged
+        # tracer and its actual stopped tracee. Failure is retained refusal; no
+        # status/hash-only fallback. Index zero is the helper's newest filter.
+        expected = payload_storage_filter(platform.machine())
+        size = self.libc.ptrace(0x420C, pid, ctypes.c_void_p(0), None)
+        if size == -1:
+            raise OSError(ctypes.get_errno(), "actual payload filter readback unavailable")
+        if size * 8 != len(expected):
+            raise ValueError("actual payload kernel filter length differs")
+        buffer = ctypes.create_string_buffer(len(expected))
+        count = self.libc.ptrace(
+            0x420C, pid, ctypes.c_void_p(0), ctypes.cast(buffer, ctypes.c_void_p)
+        )
+        if count != size or buffer.raw != expected:
+            raise ValueError("actual payload kernel filter instructions differ")
 
     def queue_stop(self, pidfd: int) -> None:
         sender = getattr(signal, "pidfd_send_signal", None)
@@ -427,6 +488,7 @@ def stage_retained_bootstrap(
         if driver.exec_pid(child.pid) != child.pid:
             raise ValueError("bootstrap exec changed retained thread/PID identity")
         _traced(proc, child)
+        driver.verify_storage_filter(child.pid)
         proc.read_configuration(configuration)
         proc.verify_pipes(child.stdin.fileno(), child.stdout.fileno(), child.stderr.fileno())
         check()

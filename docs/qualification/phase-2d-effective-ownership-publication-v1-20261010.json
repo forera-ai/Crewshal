@@ -1,0 +1,1502 @@
+{
+  "admission": {
+    "installation_open": false,
+    "qualified": false,
+    "release_reuse_authorized": false
+  },
+  "artifact_hashes": {
+    "AGENTS.md": {
+      "bytes": 7014,
+      "sha256": "38ce264fa96db2ab878a4322e11e90cdfa7190d341e2a2dda038c508c14df23f"
+    },
+    "CHANGELOG.md": {
+      "bytes": 51878,
+      "sha256": "a8225b1558af4c1b9539d3720d0d6f14916c5f0c280888d97b303d06544c02d7"
+    },
+    "README.md": {
+      "bytes": 22607,
+      "sha256": "ad401e87f175ebda50ea8b8246459fcbcd8f8ffb30a58b403c212ecd3268aba0"
+    },
+    "docs/ARCHITECTURE.md": {
+      "bytes": 18341,
+      "sha256": "5e376a4131d0ea1e8ea08b7099d7a486c9ea7b13f37f10230ca55e3fa0f5d6eb"
+    },
+    "docs/DEVELOPMENT-PLAN.md": {
+      "bytes": 54097,
+      "sha256": "fde4b7623535ff80287049dc98f550211a51383db570ed2314edc214481fbb0c"
+    },
+    "docs/HANDOFF.md": {
+      "bytes": 337747,
+      "sha256": "61ca88eb1a0afefb0f1925d1367addeb36639bd2f5d79f70da4be4c54c59a707"
+    },
+    "docs/PHASE-2C-ACTIVE-CONTINUATION.md": {
+      "bytes": 50775,
+      "sha256": "d9a03481aa2b252c01b3403d325bf36c1fb447fa27fbc2a63dc53bd41606f498"
+    },
+    "docs/PHASE-2C-COMPLETION-ASSESSMENT.md": {
+      "bytes": 13233,
+      "sha256": "d1138096b5531d299093eb734735e5da9a492261c56758e5ffceb0e0ae02e1c0"
+    },
+    "docs/PHASE-2D-ADMISSION-COLLECTION.md": {
+      "bytes": 8457,
+      "sha256": "4137b1fa325058ab26a75ac091e6d2bde60d6fc9122737c30063b043f1cfa30e"
+    },
+    "docs/PHASE-2D-BATCH-PREPARATION.md": {
+      "bytes": 7915,
+      "sha256": "86be3e55eef44295fb4abd5a0d01dfe889d892ecd7fc78c9506bdea939a84a53"
+    },
+    "docs/PHASE-2D-BATCH-TIMER-2026-10-10.md": {
+      "bytes": 10238,
+      "sha256": "775803208a8cedcd2011e5028fac49b062d1d874624a2ecb75406a7601e0224b"
+    },
+    "docs/PHASE-2D-BATCH-TIMER-SYNTAX-2026-10-10.md": {
+      "bytes": 4194,
+      "sha256": "a4a240a5dd81a3b9cae306a94c6599e5f202d7eceeb2fa48a56f733a7f3df177"
+    },
+    "docs/PHASE-2D-CHECKPOINT-2026-10-10.md": {
+      "bytes": 3980,
+      "sha256": "7f7b433928e8189d7cd256f0d2a67cf5147934f42a370efa416c2414c96bb784"
+    },
+    "docs/PHASE-2D-COMPLETION-DECISION-2026-10-09.md": {
+      "bytes": 13423,
+      "sha256": "248a94bbf858bc1241900f7f6fe7221388ad490b0423a90f7dc6dd51361834cc"
+    },
+    "docs/PHASE-2D-CONTINUATION-2026-10-08.md": {
+      "bytes": 28732,
+      "sha256": "95b0cfaba525a86caa3f601f30bebc021eb18e26c7aba2bc5f963a83cd49647b"
+    },
+    "docs/PHASE-2D-DISPATCH-PREPARATION.md": {
+      "bytes": 7873,
+      "sha256": "faee3590c0298b64f24ae94b0e2c167180ca4fd1c90b26b65e3459f20ac8624e"
+    },
+    "docs/PHASE-2D-EFFECTIVE-OWNERSHIP-BLOCKED-2026-10-10.md": {
+      "bytes": 14960,
+      "sha256": "2b94c0a459a015b623d974e2ef9cb138fb400641ceff55668d77df40853c4495"
+    },
+    "docs/PHASE-2D-EFFECTIVE-OWNERSHIP-CHECKPOINT-2026-10-10.md": {
+      "bytes": 4139,
+      "sha256": "7f7e209e0cfec63475efabad22f6c6cabf7239738a3ea7f66638ebeb517bc2f5"
+    },
+    "docs/PHASE-2D-EXECUTION-GATE.md": {
+      "bytes": 10450,
+      "sha256": "d44c2580557e3883fae20b74e388f1c77de722c9f4d699004f6f0c3d68a00118"
+    },
+    "docs/PHASE-2D-GROWTH-BOUNDARY-2026-10-10.md": {
+      "bytes": 8827,
+      "sha256": "c88a118bb4fd5067b6596845bfa4f344a4e00979ac29150e458c436171cff1db"
+    },
+    "docs/PHASE-2D-INSTALLATION-BOOTSTRAP-2026-10-10.md": {
+      "bytes": 11488,
+      "sha256": "6080dbe289f558e175d1ac834334be3bef0d7a28c188a56d9f89249a8b2a4e8b"
+    },
+    "docs/PHASE-2D-INSTALLATION-BOOTSTRAP-DECISION-2026-10-10.md": {
+      "bytes": 8004,
+      "sha256": "92e4f45d74741d4411892ec58490aecb48278e2e8bf43d7e6a08ed49103eb284"
+    },
+    "docs/PHASE-2D-LINUX-ENVELOPE.md": {
+      "bytes": 10722,
+      "sha256": "ccb67d7b921faae28a588ba9006e0b4d3566e962d13b970e9d02b7c14f647e80"
+    },
+    "docs/PHASE-2D-LINUX-STORAGE-OWNER.md": {
+      "bytes": 14163,
+      "sha256": "034875fa80db84f79a50ccb1ebeac2b3b5e43688c99a3d29cd008fef9050e960"
+    },
+    "docs/PHASE-2D-LINUX-SYNTAX-BATCH-2026-10-09.md": {
+      "bytes": 5133,
+      "sha256": "e514bc0db2f95040a061ebd5c244ae5d6882d1f8a96eebfef4385f5c8dc1c448"
+    },
+    "docs/PHASE-2D-NATIVE-ADMISSION.md": {
+      "bytes": 8937,
+      "sha256": "1cdc3e12642d8a16fb9a77a3b30757ee91e0aaf04eace5a44ccb336208473fc3"
+    },
+    "docs/PHASE-2D-NEXT-SESSION-2026-10-08.md": {
+      "bytes": 4336,
+      "sha256": "0aaf2306c83f5e2d37412834b16d4241f8e050807192a3a293003a6a22963449"
+    },
+    "docs/PHASE-2D-NEXT-SESSION-2026-10-10.md": {
+      "bytes": 6601,
+      "sha256": "7727427f4c107681e5ebd80f2e2db2359da1afb9ff93c9fd19bf8a7d0da0a84b"
+    },
+    "docs/PHASE-2D-NEXT-SESSION-INPUTS-2026-10-10.json": {
+      "bytes": 10008,
+      "sha256": "354359349109d7510cf9bfa21246f257671e8f83eb442a8c32569af2a517310a"
+    },
+    "docs/PHASE-2D-OFFLINE-CONTRACTS.md": {
+      "bytes": 10916,
+      "sha256": "abcf5f2b46ec4a3a65cffb4e6a87bf63f1c369c40a9bea48afed7d53be15995b"
+    },
+    "docs/PHASE-2D-OWNED-BOOTSTRAP.md": {
+      "bytes": 12212,
+      "sha256": "d5b01cb82c63fb0be3826efe32f9e137c84aff3f5b3ca5e1cdad2b5e5bad5560"
+    },
+    "docs/PHASE-2D-OWNED-SETUP.md": {
+      "bytes": 15821,
+      "sha256": "5b35cbc83d1dad598e30ad1aac42539695524900b40e488c4ec23a47b09e0ec4"
+    },
+    "docs/PHASE-2D-OWNED-TEARDOWN.md": {
+      "bytes": 13487,
+      "sha256": "fd24755e758dafb1c90a23c5b10071bc26f0c84ea4cc0ea466a6ce02411efd8c"
+    },
+    "docs/PHASE-2D-OWNED-VIEWS-2026-10-09.md": {
+      "bytes": 9219,
+      "sha256": "bb22c47e8483028e881444485dc12a15fd61423ececf3d8ad3a3b29b99eddcaf"
+    },
+    "docs/PHASE-2D-PARENT-WATCHDOG.md": {
+      "bytes": 13994,
+      "sha256": "a2d6c5509ea79af1fafdf846e6ca6f5cb924d1acf2746a28bb630e82a19b0970"
+    },
+    "docs/PHASE-2D-PRODUCTION-CAPTURE.md": {
+      "bytes": 9260,
+      "sha256": "16fe40d65d2c3232d594e84c726624710bd16d8c273b37ce4904a5a142fa5f9a"
+    },
+    "docs/PHASE-2D-PRODUCTION-OWNERSHIP-2026-10-09.md": {
+      "bytes": 10453,
+      "sha256": "8dcbb13a30d2b1693718abd1a61e174d610983ac1f4b79519674c4b112c7c5a3"
+    },
+    "docs/PHASE-2D-RETAINED-OWNERSHIP-2026-10-09.md": {
+      "bytes": 10292,
+      "sha256": "f3dc8522be221bc7a5c09e509cd1d993e339605e27a3953f4dab0dd126dfb3a0"
+    },
+    "docs/PHASE-2D-SESSION-SELECTION.md": {
+      "bytes": 5488,
+      "sha256": "900da101e00c56e0f8e9ea719e925fe0d68785ffdf5d9b5855bd8c06ce3be7f1"
+    },
+    "docs/PHASE-2D-SOURCE-CHECKPOINT-2026-10-09.md": {
+      "bytes": 6743,
+      "sha256": "43bea4585c26d461a39c27f42ed469c4e9aac0cbaed490ea78829b4efecf8354"
+    },
+    "docs/PHASE-2D-STORAGE-CLOSURE-BLOCKER-2026-10-09.md": {
+      "bytes": 13926,
+      "sha256": "c31f15d2d033009ae17b68ec3803e8653802207db55e934118546fcbcdae65a7"
+    },
+    "docs/PHASE-2D-SUBSCRIPTION-AUTH-BOUNDARY-2026-10-09.md": {
+      "bytes": 11576,
+      "sha256": "ea54b2785b006adc1c5bb355bf2f8f1e69aaf05144a7a9282e9bc1af3e8e045c"
+    },
+    "docs/PHASE-2D-SUBSCRIPTION-ROUTE-DECISION-2026-10-09.md": {
+      "bytes": 10494,
+      "sha256": "9e303c99130fe2ca9f02415762cefc7d2cbb13c9499ce4725fdfa5512674432a"
+    },
+    "docs/PHASE-2D-SUPERVISOR-SOURCE.md": {
+      "bytes": 9772,
+      "sha256": "a8b6acc6c92ef1b0d7a55528c97877b5de5c8efe00f80756c22ad4837d2b3673"
+    },
+    "docs/PHASE-2D-SYNTAX-CAPABILITY-2026-10-10.md": {
+      "bytes": 5246,
+      "sha256": "9741af36fc6a7562c6aa1095931238ce1bd4c482c2697cab6a57f1b0017b7068"
+    },
+    "docs/PHASE-2D-SYNTAX-PASS-2026-10-10.md": {
+      "bytes": 10845,
+      "sha256": "4a07d9f910f7f7a71fdcd3e5674c3c36cb50355f2cbf5320b271fa781bc192f2"
+    },
+    "docs/PHASE-2D-SYNTAX-RESULT-2026-10-10.md": {
+      "bytes": 7961,
+      "sha256": "e23d979bb70dc7c394d24e2217bacec2523bb2917178200a446dbaade8b9eb9a"
+    },
+    "docs/PHASE-2D-TIMER-SYNTAX-PASS-2026-10-10.md": {
+      "bytes": 8310,
+      "sha256": "372d2e37722053492c8427cb6485be39ab9907ee186aa4638978260f381e8422"
+    },
+    "docs/decisions/0001-name-and-repository.md": {
+      "bytes": 7328,
+      "sha256": "cecb3ecb8df79bff668af4f6374197a8f01867f80a31f1f9a83afacf3479fe47"
+    },
+    "docs/decisions/0002-minimal-architecture.md": {
+      "bytes": 3578,
+      "sha256": "46f1648d98ba2cb895bf1fd096b7faffec1417d040cf37536dcdf7fc08af7207"
+    },
+    "docs/decisions/0003-direct-linux-qualification.md": {
+      "bytes": 11609,
+      "sha256": "dcd11ac51fc39fe62523dd7a2d351ef24cc902357203a55e34758f56a29ccf99"
+    },
+    "docs/decisions/0004-retained-terminal-storage.md": {
+      "bytes": 2748,
+      "sha256": "09883c39b2a7b52a198bbc5ab7e3e3e6840d7425e3d706dfdf3cc92714c67817"
+    },
+    "docs/decisions/0005-official-subscription-pilot.md": {
+      "bytes": 3214,
+      "sha256": "fd2cc19b5317307ca20510cd9a0bc60fd5874ae41a74b090fa0431091cdd4e53"
+    },
+    "docs/decisions/0006-upfront-installation-charge.md": {
+      "bytes": 2544,
+      "sha256": "d794f8d7d5b8f38eb04b4e4ff1fb837100b6964abe79bfe1610ef35e5f0bf629"
+    },
+    "docs/qualification/phase-2c-direct-linux-native-full-bindings-v18.json": {
+      "bytes": 351141,
+      "sha256": "0bec8dccaa8979706646b25ec4d04bd961588a7279ce5b0ef4ae831aa6552e37"
+    },
+    "docs/qualification/phase-2c-direct-linux-native-full-decision-v18.json": {
+      "bytes": 1094,
+      "sha256": "43eb440a2d338c32df93483da7f7aa41d3566e1c9e7d0e5be594d8ee2ea37aec"
+    },
+    "docs/qualification/phase-2c-direct-linux-native-full-freeze-v18.json": {
+      "bytes": 1290,
+      "sha256": "d9236388440548870494b567476e3926a494d1d1695c8e3464047f0e48be01ed"
+    },
+    "docs/qualification/phase-2c-direct-linux-native-full-profile-v18.json": {
+      "bytes": 12426,
+      "sha256": "95d3e80835033a2aa6105f22bd69554e59c476f338665e239a6797367f5222df"
+    },
+    "docs/qualification/phase-2c-direct-linux-native-full-qualified-v18-f1.json": {
+      "bytes": 7336,
+      "sha256": "e0b3dfb02ee52732c107723e41d0eddfdeca130d8137f8ff383cf6ebf3d0bb23"
+    },
+    "docs/qualification/phase-2c-direct-linux-native-full-qualified-v18-f2.json": {
+      "bytes": 7336,
+      "sha256": "9d4dce5b60b9be8ef034e5aa692af725ebe99e05a987970c847abbaa844cd805"
+    },
+    "docs/qualification/phase-2c-direct-linux-native-full-readback-v18.json": {
+      "bytes": 5542,
+      "sha256": "71badf9ecae2be3550f4ca84f2ad884aa3ceb08a314165ddb0f35538b83e8a87"
+    },
+    "docs/qualification/phase-2c-direct-linux-native-full-v18-f1-before-cleanup.json": {
+      "bytes": 122367,
+      "sha256": "141559a98255886d1329ab737357c8ff09e9e679b697ee2d4068109c34f321c9"
+    },
+    "docs/qualification/phase-2c-direct-linux-native-full-v18-f1.json": {
+      "bytes": 140429,
+      "sha256": "97ff552fc0112bcb908934104d31f447313feed47fa556406f9db8af56cd7b0b"
+    },
+    "docs/qualification/phase-2c-direct-linux-native-full-v18-f2-before-cleanup.json": {
+      "bytes": 121973,
+      "sha256": "3cf96049c66b8f5c87fdfc9c2569e2c8245ff7733efc391ae776ec810dd9eb00"
+    },
+    "docs/qualification/phase-2c-direct-linux-native-full-v18-f2.json": {
+      "bytes": 139555,
+      "sha256": "5becf2a47a0a78943729e295530eb5b054aa8d5a64d2df44f7a77667627c9f6b"
+    },
+    "docs/qualification/phase-2c-v1.json": {
+      "bytes": 4487,
+      "sha256": "fed4dde5e3fe459110a5fb0b2d4f6c75b16214c91aa823d3df640a7415e41563"
+    },
+    "docs/qualification/phase-2d-admission-collection-verification-v1-20261008.json": {
+      "bytes": 201134,
+      "sha256": "0f70c4550bf904fa38a7d0663859b80ae7d6200da907321e8f410539a464dafe"
+    },
+    "docs/qualification/phase-2d-batch-preparation-v1-20261008.json": {
+      "bytes": 10353,
+      "sha256": "b08afc86a6146acce8c4947874b833f699d65495eac7bc3c7f2ebe4ed1ae6bd1"
+    },
+    "docs/qualification/phase-2d-batch-preparation-verification-v1-20261008.json": {
+      "bytes": 2446,
+      "sha256": "37bf9c8b201e82b4a9c0796038554af76ea86108db8a6ead306f7709c94c63b3"
+    },
+    "docs/qualification/phase-2d-batch-timer-verification-v1-20261010.json": {
+      "bytes": 164132,
+      "sha256": "0684b95a4bfd6b996dcc34159b58f0455f4935224f747c382e35f9d4b84d1542"
+    },
+    "docs/qualification/phase-2d-dispatch-preparation-verification-v1-20261008.json": {
+      "bytes": 190477,
+      "sha256": "e2a95bcd0d5aafb8d58eb348654d3b3a77e3f96c7b61a262c63622634d57a0ba"
+    },
+    "docs/qualification/phase-2d-effective-ownership-verification-v1-20261010.json": {
+      "bytes": 62918,
+      "sha256": "b8c0ef2c14a40bd3bc3df392f9efbb9e4c562bbc6bef8ea3edd87bb0669f7f42"
+    },
+    "docs/qualification/phase-2d-growth-verification-v1-20261010.json": {
+      "bytes": 168456,
+      "sha256": "8a38a004c4e7bf79f1ab15d1b3071bd08841264fbf729c539f1aa4b924fd1327"
+    },
+    "docs/qualification/phase-2d-installation-bootstrap-verification-v1-20261010.json": {
+      "bytes": 165093,
+      "sha256": "536491ffbdb61832a900d936ce7a4e1d7995a1f7593359abbb6c980fcfdde927"
+    },
+    "docs/qualification/phase-2d-installation-bootstrap-verification-v2-20261010.json": {
+      "bytes": 166470,
+      "sha256": "3a5f3fca43f26bd15ca3ea4a19110355742141c1028be2d202490cb211dde347"
+    },
+    "docs/qualification/phase-2d-linux-envelope-verification-v1-20261008.json": {
+      "bytes": 243941,
+      "sha256": "6743dfc4fc33fd6594b1979744a237d6e0ea7b726c90c7852c02693ecd4619a3"
+    },
+    "docs/qualification/phase-2d-linux-storage-owner-verification-v1-20261009.json": {
+      "bytes": 148854,
+      "sha256": "bc06a0df2fc14e9a4edc52ce51b12d3c85b66a92752aa315052fe91b1470314f"
+    },
+    "docs/qualification/phase-2d-native-admission-verification-v1-20261008.json": {
+      "bytes": 200933,
+      "sha256": "27d1d93b61d03158f79715288ab29f25c2b2cc607b3fdeb389b310fd2f20c0c9"
+    },
+    "docs/qualification/phase-2d-offline-continuity-20261008.json": {
+      "bytes": 172290,
+      "sha256": "9e330457c868085b7d73ef19b4c6535aa9ffed511bf9b811cd11bb476f934023"
+    },
+    "docs/qualification/phase-2d-owned-bootstrap-verification-v1-20261009.json": {
+      "bytes": 236965,
+      "sha256": "b4cc366d314941a58d39bd46b3ec8e0805567bddafe55ccc7aca2d6b0fe8dd92"
+    },
+    "docs/qualification/phase-2d-owned-setup-verification-v1-20261009.json": {
+      "bytes": 190775,
+      "sha256": "20f08a74cdea7916dc1aacb17834656a87212b4916af6bf861f45584e598bd4a"
+    },
+    "docs/qualification/phase-2d-owned-teardown-verification-v1-20261009.json": {
+      "bytes": 175800,
+      "sha256": "3d71e1fa7dfed0a2dbdb2a4b84a1aef8a6034d497193dd3fa85758ef9bea8062"
+    },
+    "docs/qualification/phase-2d-owned-views-verification-v1-20261009.json": {
+      "bytes": 315194,
+      "sha256": "89e7b69fcb0b1037a72d86d18a3d9a9e8b1072cc4cdfc20b3daa59d2de901b90"
+    },
+    "docs/qualification/phase-2d-owner-decisions-verification-v1-20261009.json": {
+      "bytes": 48166,
+      "sha256": "3fc657dbfe3aca47c499cfcb49c6b14dc1ae349a38836edce50f68bbc412a5ee"
+    },
+    "docs/qualification/phase-2d-parent-watchdog-verification-v1-20261009.json": {
+      "bytes": 320004,
+      "sha256": "c637c6fad6085ed703be6cb406f5071a4546321c53f00f466e36ecb14aecbf2e"
+    },
+    "docs/qualification/phase-2d-production-capture-verification-v1-20261008.json": {
+      "bytes": 185005,
+      "sha256": "c578291cd8595b89de2916519b5858ac4fcc295f800ee313cba96783b38aca62"
+    },
+    "docs/qualification/phase-2d-production-ownership-verification-v1-20261009.json": {
+      "bytes": 212375,
+      "sha256": "33dd73f8f8344c287618cb5dce0e244d6bc1f1e360b941ceaac75dca2b9801b6"
+    },
+    "docs/qualification/phase-2d-publication-verification-v1-20261010.json": {
+      "bytes": 156873,
+      "sha256": "a176ea843d7199d7733c3aea6545dc090c427be9f084a99d68176f4971edc746"
+    },
+    "docs/qualification/phase-2d-publication-verification-v2-20261010.json": {
+      "bytes": 158175,
+      "sha256": "2077ac6cd71fc0b7aa67ee67519cbd58b2b07c0124e7299e94e1828700a356d5"
+    },
+    "docs/qualification/phase-2d-retained-ownership-verification-v1-20261009.json": {
+      "bytes": 159218,
+      "sha256": "1eb11623a532802c61ff85b996ea4499a6e4d36086207003988b7ffa644799d6"
+    },
+    "docs/qualification/phase-2d-session-selection-v1-20261008.json": {
+      "bytes": 11688,
+      "sha256": "ade780071f57be32759a0c38ef518faf1119a065b6a5f219854d9b261d166a6a"
+    },
+    "docs/qualification/phase-2d-session-selection-verification-v1-20261008.json": {
+      "bytes": 7358,
+      "sha256": "2caec0558b7de0bccdcb2beac0f6c255cd46d805dd79167433c0ea7f3880c1cb"
+    },
+    "docs/qualification/phase-2d-source-checkpoint-verification-v1-20261009.json": {
+      "bytes": 46712,
+      "sha256": "4f32e1e056fd40a6fedc5196c30b7da87c8391a2568f244cb16069a38e8f9f73"
+    },
+    "docs/qualification/phase-2d-storage-closure-verification-v1-20261009.json": {
+      "bytes": 183508,
+      "sha256": "2230584e10652a13ca9d464cfd0c25fe4b4f2f8a9ae671e325b5fbe569da03da"
+    },
+    "docs/qualification/phase-2d-subscription-auth-boundary-verification-v1-20261009.json": {
+      "bytes": 206026,
+      "sha256": "e86058c79e687a6d6ffe4048dbc3391b92bf9fcf4e84210b7a0659ab633bedea"
+    },
+    "docs/qualification/phase-2d-subscription-route-source-evidence-v1-20261009.json": {
+      "bytes": 6792,
+      "sha256": "75f7769f57e30266abbc37681889c4a8c72d268f264f69bfbb1049775ea97067"
+    },
+    "docs/qualification/phase-2d-supervisor-verification-v1-20261008.json": {
+      "bytes": 123625,
+      "sha256": "5189ae2b4926031ff400de07c3d66c20070b958b9c3cd790fb8dc4424a24bfad"
+    },
+    "docs/qualification/phase-2d-syntax-capability-preparation-v1-20261010.json": {
+      "bytes": 153391,
+      "sha256": "c750eab5bb7055087506858809cadc572125c620ab103eabf70f51908b755a09"
+    },
+    "docs/qualification/phase-2d-syntax-pass-verification-v1-20261010.json": {
+      "bytes": 292908,
+      "sha256": "97b7afc75b186931f9d6e7b0798f76ed27c2002c55de6a118157f8674787d5d4"
+    },
+    "docs/qualification/phase-2d-syntax-result-verification-v1-20261010.json": {
+      "bytes": 278706,
+      "sha256": "a885ca32c74aa3a04dbb66b680247bfacb474bc107eb0347c4913e1d22f795cf"
+    },
+    "docs/qualification/phase-2d-timer-syntax-pass-verification-v1-20261010.json": {
+      "bytes": 164103,
+      "sha256": "2e4c61da5415e59f92d53841bd0b8aed31603e99c7d14f1865c18c1850d13c6c"
+    },
+    "pyproject.toml": {
+      "bytes": 920,
+      "sha256": "fd090ae3cbb2d5ccefbeb573ec60cfbb5c7c2bcfe10a6f94da3a4694419cfe03"
+    },
+    "scripts/phase_2d_storage_compatibility.py": {
+      "bytes": 3702,
+      "sha256": "7f7b635bb1465bd86d704c887b42ab3ee5916ea27681196f888a6ecd42c75bbf"
+    },
+    "src/crewshal/__init__.py": {
+      "bytes": 91,
+      "sha256": "c030996bda7c6b0e1a1b380e232b91f9586bfff7b56b6b652b2ba24dd6b47ad4"
+    },
+    "src/crewshal/__main__.py": {
+      "bytes": 56,
+      "sha256": "61e1b048145332e9aab85470bb2fa2bc1312e41dffa6cd26741319fbfe5443c1"
+    },
+    "src/crewshal/admission.py": {
+      "bytes": 31251,
+      "sha256": "80c8326af2e8d14aebcce228e3755d7ab3183b02dbf5a145fc89c9fb61742353"
+    },
+    "src/crewshal/app_server.py": {
+      "bytes": 25780,
+      "sha256": "f620060f6cfdf531609ae0d5814c21ed861dfada9fa766eb5a9659205eccbbb0"
+    },
+    "src/crewshal/bootstrap_helper.c": {
+      "bytes": 18849,
+      "sha256": "f75313202970cbc26bc57b1357c2ff831a367dda70d2956f6ff97d821e25a15d"
+    },
+    "src/crewshal/candidate.py": {
+      "bytes": 18178,
+      "sha256": "01c012c60512f64a83e97cb8af49919b79c2ed164205eb5a79c942c7f35ebfee"
+    },
+    "src/crewshal/cli.py": {
+      "bytes": 7017,
+      "sha256": "8ecd936c862da846969fc2da482c7f889d0174c208076301fc16e6353842d372"
+    },
+    "src/crewshal/contracts.py": {
+      "bytes": 11188,
+      "sha256": "c028ef9199672db2850dc3233d7debce71a0aa4b543c4143d05dc8f7a4eb8833"
+    },
+    "src/crewshal/discovery.py": {
+      "bytes": 13229,
+      "sha256": "b9ab698faa5951f9badf566b1fdd8cd3be7487f82fdc96acd6a246ef44aa1b2c"
+    },
+    "src/crewshal/dispatch.py": {
+      "bytes": 16573,
+      "sha256": "a3769e0c9754062760e67f7b498e3732a082cad71165c12dfada26f8fefddbd7"
+    },
+    "src/crewshal/durable.py": {
+      "bytes": 64320,
+      "sha256": "27046f6e191bf63dd16b7ebfbba94684cfe64ab2cecc403263a5eadf98bc9a27"
+    },
+    "src/crewshal/gates.py": {
+      "bytes": 5137,
+      "sha256": "06d841c18cbdde260486c94e91fa0f0f6ca17508ccd36e43778a3bbbec096baf"
+    },
+    "src/crewshal/integration.py": {
+      "bytes": 22347,
+      "sha256": "011140684270a0e54c0ddba03be16da1ccd6c2223ce2aaf0b787c170fba1536b"
+    },
+    "src/crewshal/linux_bootstrap.py": {
+      "bytes": 21013,
+      "sha256": "993323734cde8fdcc0f9db7a0ae833113cf902f2ee09d3c5059e27e3910b851d"
+    },
+    "src/crewshal/linux_bridge.py": {
+      "bytes": 41140,
+      "sha256": "ad3e8700810d6dd1c6042a802fc1d0d91bcc5c03fb098aa12b7537bd462e8cb0"
+    },
+    "src/crewshal/linux_envelope.py": {
+      "bytes": 17099,
+      "sha256": "9e9763496fa61e1e025365110a7c26b5e5211e0c9d5237775d1626cd3d1cc1bc"
+    },
+    "src/crewshal/linux_freeze.py": {
+      "bytes": 33653,
+      "sha256": "e01f55ccdbf475b536fcbd0fed1e254b85bcdc426b31f494e3ed8efc5b92bf76"
+    },
+    "src/crewshal/linux_inventory.py": {
+      "bytes": 12379,
+      "sha256": "db1cce7d9596cfb5a68afa7e9fd6ffa09ed7a87231aecf55cbdd5a95ee668372"
+    },
+    "src/crewshal/linux_parent.py": {
+      "bytes": 30736,
+      "sha256": "d115a46809d61a2d58802703680e8796cf970ece12e08fee4952cdf017d64872"
+    },
+    "src/crewshal/linux_production.py": {
+      "bytes": 95253,
+      "sha256": "dac61fae6e104bbb21b68b1ca211ed49ecdb8a3ebf7e0f98d2901675fc362c04"
+    },
+    "src/crewshal/linux_setup.py": {
+      "bytes": 89473,
+      "sha256": "5096e3aa914557a260b116a18e5b10d9c802be1fe30ae9448e9799df9f1e6916"
+    },
+    "src/crewshal/linux_storage.py": {
+      "bytes": 54965,
+      "sha256": "deb5963b6c87736079dddbbf506e6208681c73ab0d4fcdb9b2f41daa15100c62"
+    },
+    "src/crewshal/linux_teardown.py": {
+      "bytes": 22231,
+      "sha256": "8a041bc4f5fcd2b6ea94b476f9ec3cbd870e3090797ed13bfacb6df9aa85d68a"
+    },
+    "src/crewshal/linux_validator.py": {
+      "bytes": 46296,
+      "sha256": "55b350ab4bb792bec8f86331fd0163b398c905470aa6f0b4ce6571fd28b61e50"
+    },
+    "src/crewshal/model.py": {
+      "bytes": 6575,
+      "sha256": "3cbc9405e0c7fb5247a13562e72c8472c3edc0f3fc2407db2fd6c6c95fae25de"
+    },
+    "src/crewshal/qualification.py": {
+      "bytes": 3082,
+      "sha256": "772df20ee17ddd52023eb0b245d733e2db29d115b625703fd4c6d86026f5554a"
+    },
+    "src/crewshal/qualification_bundle.py": {
+      "bytes": 10798,
+      "sha256": "4a595fc100539d997ad9b5f5750b58cd5f14b0ca276a6cc1cc9de6596c1aae7b"
+    },
+    "src/crewshal/runtime.py": {
+      "bytes": 18863,
+      "sha256": "584bf3525f02e274ccd3240a083d0b8dbea54be42d64323b110bdeb2074c64d6"
+    },
+    "src/crewshal/runtime_batch.py": {
+      "bytes": 18513,
+      "sha256": "1c234fb4b2145329306f5ad68dcdf63ce1b400382414c0f69c83e6f76093d8e1"
+    },
+    "src/crewshal/state.py": {
+      "bytes": 3347,
+      "sha256": "856abbc9de6e630798736eab14ddc6062bc6768621edd8a0d9477f1f3fa7e5a3"
+    },
+    "src/crewshal/supervisor.py": {
+      "bytes": 35230,
+      "sha256": "4ec3238f5d2c9a8f68762c084ab241112a9b87d626023b5e6a18ab7b6e70a2f6"
+    },
+    "tests/__init__.py": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "tests/acceptance/__init__.py": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "tests/acceptance/test_phase_2a.py": {
+      "bytes": 16185,
+      "sha256": "e4c53627b3fc1be58467761b2c2002010e256f9e087e92fe9ba20837ed627695"
+    },
+    "tests/acceptance/test_phase_2b.py": {
+      "bytes": 33064,
+      "sha256": "a5db032b0e1ba98427bd95e726d70ac5e6c07039851553f8c98950496f9dbe40"
+    },
+    "tests/acceptance/test_phase_2c.py": {
+      "bytes": 7556,
+      "sha256": "297c20b81fd7e02a1eb6ea3ee24b1361b2a8f8caf0c53e4d4e17a73cea673d5d"
+    },
+    "tests/acceptance/test_phase_2c_boundary_observer.py": {
+      "bytes": 2418,
+      "sha256": "9381bae4be23774f757bce9bb1519838051fc9701462efde0ce6b097db0e2fe1"
+    },
+    "tests/acceptance/test_phase_2c_broker_environment.py": {
+      "bytes": 8567,
+      "sha256": "1cf85e584b2d3904e44dc52c0fd34bb16abc9329bb4298c497c6f94b5fccedd1"
+    },
+    "tests/acceptance/test_phase_2c_bundle.py": {
+      "bytes": 15764,
+      "sha256": "643f6936ab54a3a367a85f4626f9c3cd4bbe1c45c30c0b5ec2ab1d6b1500b91f"
+    },
+    "tests/acceptance/test_phase_2c_capture_snapshot.py": {
+      "bytes": 979,
+      "sha256": "4bc0e3033c973d0cfb49d09e049cde53c2f64dbf92833192614a25435c009e70"
+    },
+    "tests/acceptance/test_phase_2c_departed_observer.py": {
+      "bytes": 3694,
+      "sha256": "a701544f66e310e795489479a85adaab351d3fdad74b89e23bada29e03ec78be"
+    },
+    "tests/acceptance/test_phase_2c_lifecycle.py": {
+      "bytes": 5523,
+      "sha256": "1b0973b0672a35c1ec0167f95efc730b1909c73ffc07e63b449df6bb81f9853d"
+    },
+    "tests/acceptance/test_phase_2c_native_continuation.py": {
+      "bytes": 2258,
+      "sha256": "0d4c1195a113315f2f2365f09167db3774435252f66493236cd03f195a44fb36"
+    },
+    "tests/acceptance/test_phase_2c_native_readback.py": {
+      "bytes": 3120,
+      "sha256": "0a01f0bf7a40b8a02a99747848df3f308a3a1c605f148f54678a8300ee0c34f5"
+    },
+    "tests/acceptance/test_phase_2c_native_readback_v2.py": {
+      "bytes": 2125,
+      "sha256": "50126483808ad6c146405e038c5ec8e61de2a01e561186a9ecc3bd8fa3ef2d1d"
+    },
+    "tests/acceptance/test_phase_2c_network.py": {
+      "bytes": 8057,
+      "sha256": "911000a18c3a32a3b35c995decf05bd235cbd73238403dd11ef634d52e4c9b99"
+    },
+    "tests/acceptance/test_phase_2c_protocol.py": {
+      "bytes": 5975,
+      "sha256": "27fe2304c0bf14b1bbfcaf40ba46655a0fa512bce51cdf1132b96d190e1cb4a6"
+    },
+    "tests/acceptance/test_phase_2c_storage.py": {
+      "bytes": 8732,
+      "sha256": "85bd90041a86ec5143bbc79b1e7a54636508c59c2edb669fd371fc55cd1010e4"
+    },
+    "tests/acceptance/test_phase_2c_storage_observer.py": {
+      "bytes": 2836,
+      "sha256": "6f630e32bb1f1a23270313f0dea661985a3c20c1e0287e1bf7b9fa38e599aef3"
+    },
+    "tests/acceptance/test_phase_2c_substrate.py": {
+      "bytes": 6742,
+      "sha256": "de36c48b42fc89f8ddd0c27ff34485018c9ef4dd58256f281716fef4994b0c28"
+    },
+    "tests/acceptance/test_phase_2d.py": {
+      "bytes": 32642,
+      "sha256": "93f808d46ad2f59d9db21cfc3c462eda8d442891a5dcffeb21735188ed13e238"
+    },
+    "tests/acceptance/test_phase_2d_admission.py": {
+      "bytes": 25057,
+      "sha256": "5bc8ea8f5b1d96906f22b20a41b46213f4f40ec322b730c203149ee8174ee2cd"
+    },
+    "tests/acceptance/test_phase_2d_admission_collection.py": {
+      "bytes": 14475,
+      "sha256": "888c16aec76025a8c7cd5d75e060274dc7b7a9664e9e8fed1c47d2376a8310a4"
+    },
+    "tests/acceptance/test_phase_2d_app_server.py": {
+      "bytes": 19865,
+      "sha256": "54722219237ba68966e31112e996e4407ab3810dcecd75dbfd0ce940108de0c1"
+    },
+    "tests/acceptance/test_phase_2d_batch.py": {
+      "bytes": 7956,
+      "sha256": "10679206b79009d5dc498cf94fb30bb62737086ac21b065c39d82fc4e2e81e6c"
+    },
+    "tests/acceptance/test_phase_2d_batch_timer.py": {
+      "bytes": 30251,
+      "sha256": "c69b9dcaf28169383c82f9f85d62ba3569e61b87968226690d82c4d380c46236"
+    },
+    "tests/acceptance/test_phase_2d_bootstrap.py": {
+      "bytes": 23102,
+      "sha256": "76c3c02b8c8ed3e69ccc3ea5323c80f89e3518eafc90b4d7c5a711215293a6af"
+    },
+    "tests/acceptance/test_phase_2d_bridge.py": {
+      "bytes": 40861,
+      "sha256": "6187c5cae2e7196b5f90d2dd7b587c00b070cfd900e68fd55dc14e947ff4a211"
+    },
+    "tests/acceptance/test_phase_2d_capacity.py": {
+      "bytes": 10826,
+      "sha256": "686429e0bce07b6eeecde30b66433fbda4999d5d63732c8e499034e17c2215d1"
+    },
+    "tests/acceptance/test_phase_2d_dispatch.py": {
+      "bytes": 18658,
+      "sha256": "054701cb01b7be843efb34a1352f8affc76de11809db9318df34688149a0bdd8"
+    },
+    "tests/acceptance/test_phase_2d_envelope.py": {
+      "bytes": 22980,
+      "sha256": "05f8530992363e830e69f0040c41e01cc836e5d9e13d5b46bf454f790d3ba927"
+    },
+    "tests/acceptance/test_phase_2d_freeze.py": {
+      "bytes": 21458,
+      "sha256": "fdcdf6ab8d520962a7696668ce5fae9743c4686f53534319f98464668d2206ae"
+    },
+    "tests/acceptance/test_phase_2d_installation.py": {
+      "bytes": 56263,
+      "sha256": "99bb62f2481650b08771881eeb57154d4e48281b31cec2c6800c8ae50849d842"
+    },
+    "tests/acceptance/test_phase_2d_integration.py": {
+      "bytes": 32554,
+      "sha256": "ec067a6a82514ae84d31e92899861b5af55abc7212f4c6b62c805aeb4c2c1c08"
+    },
+    "tests/acceptance/test_phase_2d_inventory.py": {
+      "bytes": 17569,
+      "sha256": "c7e713ce161413cee029709916229014b407cdd191a1b44b89b53a0f40a0c664"
+    },
+    "tests/acceptance/test_phase_2d_parent.py": {
+      "bytes": 33941,
+      "sha256": "4f7cca745f1d9ccf92d1722f9264a5ecc0fcc4b857f4528474a27640b01ac625"
+    },
+    "tests/acceptance/test_phase_2d_production.py": {
+      "bytes": 60906,
+      "sha256": "ae435c6509f8f585864e48cc856f097142c01fe306f2d744bfeb798a1473099e"
+    },
+    "tests/acceptance/test_phase_2d_selection.py": {
+      "bytes": 9253,
+      "sha256": "07ad5bcc63f14ff729ebbaa4d17cd2fd25e6147690a8bcbef2cc905d27023053"
+    },
+    "tests/acceptance/test_phase_2d_setup.py": {
+      "bytes": 65812,
+      "sha256": "354ae0bcc6686a86bd53302b05f00b80b9eb754362e2aeffb7ef8bc299bb9b7b"
+    },
+    "tests/acceptance/test_phase_2d_storage.py": {
+      "bytes": 38745,
+      "sha256": "e819dcc20b614d79d72ed0a8895e865b71c980544f3a7c3cf52d1c27636177db"
+    },
+    "tests/acceptance/test_phase_2d_subscription.py": {
+      "bytes": 12850,
+      "sha256": "1c01e084917e65e3ea28c9b8af0e34f59e0e127bca871dee725b3869181cb226"
+    },
+    "tests/acceptance/test_phase_2d_supervisor.py": {
+      "bytes": 36386,
+      "sha256": "5c9347f3085199600ce6e5cbd9b2f80a99777159b53c6ba6813d24d9f09a2835"
+    },
+    "tests/acceptance/test_phase_2d_teardown.py": {
+      "bytes": 27799,
+      "sha256": "a1951b8f9bbdb9a4fa99ea1e2b8148e2f53626212b308253fd95fadfc97cef18"
+    },
+    "tests/acceptance/test_phase_2d_validator.py": {
+      "bytes": 31019,
+      "sha256": "2b53c06096717b8dd8098c17f1b70ff0ba6e4df7ab7945e254506d91ad8cf7ae"
+    }
+  },
+  "authority": {
+    "owner_instruction": "publish and prepare next session's prompt and files",
+    "publication_exception": "Commit/push preserved current source/evidence before full acceptance for this checkpoint only.",
+    "scope": "Current branch checkpoint, continuation and files; no operational/spend/release/reuse/Phase 2E authority."
+  },
+  "base_revision": "758079b9bcf8ad82d5863aaf5f6a096608acb942",
+  "blocked_capability": "Compatible effective admission that allows bounded ordinary WAL-index shared file mappings while bounding anonymous/dev-zero shmem and additional payload-created namespace filesystems; actual retained readback required.",
+  "branch": "codex/phase1-architecture",
+  "build_artifacts": {
+    ".gitignore": {
+      "bytes": 1,
+      "sha256": "684888c0ebb17f374298b65ee2807526c066094c701bcc7ebbe1c1095f494fc1"
+    },
+    "crewshal-0.12.0-py3-none-any.whl": {
+      "bytes": 212625,
+      "sha256": "752586ff0bff145be39685db9eabe3019a4855accee4ecc04bfacf3ecb8eb758"
+    },
+    "crewshal-0.12.0.tar.gz": {
+      "bytes": 200920,
+      "sha256": "04b1445055aa6e5b3bb70087b815cd2edd9cfec2fe2017262c6efe7ab1ab85fc"
+    }
+  },
+  "checks": {
+    "build": {
+      "command": "rtk proxy uv build --offline --python .venv/bin/python --out-dir /var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-2d-publication-pxquo6cb/build",
+      "compiler_invoked": false,
+      "exit": 0
+    },
+    "compatibility": {
+      "command": "rtk proxy /usr/bin/sandbox-exec -p '(version 1)(allow default)(deny network*)' /usr/bin/env -i HOME=/var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-2d-publication-pxquo6cb/source-home PATH=/usr/bin:/bin /Volumes/X10Pro/Crewshal/.venv/bin/python scripts/phase_2d_storage_compatibility.py",
+      "exit": 0,
+      "result": {
+        "abis": [
+          {
+            "cases": [
+              {
+                "decision": "deny",
+                "fd": 42,
+                "flags": 1,
+                "input_semantics": "bounded ordinary SQLite WAL index",
+                "seccomp_return": 327681
+              },
+              {
+                "decision": "deny",
+                "fd": 43,
+                "flags": 1,
+                "input_semantics": "dev-zero shmem",
+                "seccomp_return": 327681
+              },
+              {
+                "decision": "deny",
+                "fd": -1,
+                "flags": 33,
+                "input_semantics": "anonymous shared shmem",
+                "seccomp_return": 327681
+              },
+              {
+                "decision": "allow",
+                "fd": -1,
+                "flags": 34,
+                "input_semantics": "private anonymous mapping",
+                "seccomp_return": 2147418112
+              }
+            ],
+            "machine": "x86_64",
+            "program_bytes": 328,
+            "program_sha256": "d20f6518a030a1ad5f3ade8c22bac55f594227c06c552a127c84e92156919851"
+          },
+          {
+            "cases": [
+              {
+                "decision": "deny",
+                "fd": 42,
+                "flags": 1,
+                "input_semantics": "bounded ordinary SQLite WAL index",
+                "seccomp_return": 327681
+              },
+              {
+                "decision": "deny",
+                "fd": 43,
+                "flags": 1,
+                "input_semantics": "dev-zero shmem",
+                "seccomp_return": 327681
+              },
+              {
+                "decision": "deny",
+                "fd": -1,
+                "flags": 33,
+                "input_semantics": "anonymous shared shmem",
+                "seccomp_return": 327681
+              },
+              {
+                "decision": "allow",
+                "fd": -1,
+                "flags": 34,
+                "input_semantics": "private anonymous mapping",
+                "seccomp_return": 2147418112
+              }
+            ],
+            "machine": "aarch64",
+            "program_bytes": 328,
+            "program_sha256": "1417656d9d6e3117f6169cb38b13f0932b70fffa4b6b60c0b4859e761bbc6db6"
+          }
+        ],
+        "classification": "offline source incompatibility; installed behavior unknown",
+        "compatible": false,
+        "compiler_invoked": false,
+        "execution_allowed": false,
+        "helper_bytes": 18849,
+        "helper_sha256": "f75313202970cbc26bc57b1357c2ff831a367dda70d2956f6ff97d821e25a15d",
+        "kernel_filter_loaded": false,
+        "missing_capability": "Allow bounded ordinary file-backed WAL mappings while effectively bounding anonymous/dev-zero shmem and additional payload namespace filesystems.",
+        "runtime_verified": false,
+        "schema_version": 1
+      }
+    },
+    "diff": {
+      "command": "rtk proxy git diff --check",
+      "exit": 0
+    },
+    "format": {
+      "command": "rtk proxy .venv/bin/ruff format --check src tests scripts/phase_2d_storage_compatibility.py",
+      "exit": 0,
+      "output": "74 files already formatted\n"
+    },
+    "install": {
+      "command": "rtk proxy uv pip install --offline --python /var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-2d-publication-pxquo6cb/wheel-env/bin/python /var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-2d-publication-pxquo6cb/build/crewshal-0.12.0-py3-none-any.whl",
+      "exit": 0
+    },
+    "lint": {
+      "command": "rtk proxy .venv/bin/ruff check src tests scripts/phase_2d_storage_compatibility.py",
+      "exit": 0,
+      "output": "All checks passed!\n"
+    },
+    "manifest_and_links": {
+      "all_enumerated_inputs_exist_except_this_prewrite_ledger": true,
+      "distinct_hashed_repository_inputs": 177,
+      "local_markdown_links_checked": 82
+    },
+    "package_comparison": {
+      "byte_matches": true,
+      "dispatch_inputs": 26,
+      "implementation_sources_unchanged_since_blocked_ledger": 30,
+      "only_packaged_change_since_blocked_ledger": "src/crewshal/__init__.py version",
+      "packaged_sources": 31,
+      "phase_2d_test_modules_unchanged": 24,
+      "unique_test_ids_match": true,
+      "version": "0.12.0"
+    },
+    "smoke": {
+      "command": "rtk proxy /usr/bin/sandbox-exec -p '(version 1)(allow default)(deny network*)' /usr/bin/env -i HOME=/var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-2d-publication-pxquo6cb/wheel-home PATH=/usr/bin:/bin /var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-2d-publication-pxquo6cb/wheel-env/bin/crewshal --help",
+      "exit": 0,
+      "output": "usage: crewshal [-h] {init,show,validate} ...\n\nOffline project discovery\n\npositional arguments:\n  {init,show,validate}\n    init                discover, optionally correct/confirm, save externally\n    show                inspect stored model; does not refresh source validity\n    validate            refuse malformed or unsupported model records\n\noptions:\n  -h, --help            show this help message and exit\n"
+    },
+    "source": {
+      "command": "rtk proxy /usr/bin/sandbox-exec -p '(version 1)(allow default)(deny network*)' /usr/bin/env -i HOME=/var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-2d-publication-pxquo6cb/source-home PATH=/usr/bin:/bin /Volumes/X10Pro/Crewshal/.venv/bin/python /var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-2d-publication-pxquo6cb/discover.py /Volumes/X10Pro/Crewshal /Volumes/X10Pro/Crewshal/src/crewshal /var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-2d-publication-pxquo6cb/source-result.json",
+      "exit": 0,
+      "result": {
+        "dispatch_bound_sources": 26,
+        "dispatch_source_sha256": {
+          "admission.py": "80c8326af2e8d14aebcce228e3755d7ab3183b02dbf5a145fc89c9fb61742353",
+          "app_server.py": "f620060f6cfdf531609ae0d5814c21ed861dfada9fa766eb5a9659205eccbbb0",
+          "bootstrap_helper.c": "f75313202970cbc26bc57b1357c2ff831a367dda70d2956f6ff97d821e25a15d",
+          "candidate.py": "01c012c60512f64a83e97cb8af49919b79c2ed164205eb5a79c942c7f35ebfee",
+          "contracts.py": "c028ef9199672db2850dc3233d7debce71a0aa4b543c4143d05dc8f7a4eb8833",
+          "dispatch.py": "a3769e0c9754062760e67f7b498e3732a082cad71165c12dfada26f8fefddbd7",
+          "durable.py": "27046f6e191bf63dd16b7ebfbba94684cfe64ab2cecc403263a5eadf98bc9a27",
+          "gates.py": "06d841c18cbdde260486c94e91fa0f0f6ca17508ccd36e43778a3bbbec096baf",
+          "integration.py": "011140684270a0e54c0ddba03be16da1ccd6c2223ce2aaf0b787c170fba1536b",
+          "linux_bootstrap.py": "993323734cde8fdcc0f9db7a0ae833113cf902f2ee09d3c5059e27e3910b851d",
+          "linux_bridge.py": "ad3e8700810d6dd1c6042a802fc1d0d91bcc5c03fb098aa12b7537bd462e8cb0",
+          "linux_envelope.py": "9e9763496fa61e1e025365110a7c26b5e5211e0c9d5237775d1626cd3d1cc1bc",
+          "linux_freeze.py": "e01f55ccdbf475b536fcbd0fed1e254b85bcdc426b31f494e3ed8efc5b92bf76",
+          "linux_inventory.py": "db1cce7d9596cfb5a68afa7e9fd6ffa09ed7a87231aecf55cbdd5a95ee668372",
+          "linux_parent.py": "d115a46809d61a2d58802703680e8796cf970ece12e08fee4952cdf017d64872",
+          "linux_production.py": "dac61fae6e104bbb21b68b1ca211ed49ecdb8a3ebf7e0f98d2901675fc362c04",
+          "linux_setup.py": "5096e3aa914557a260b116a18e5b10d9c802be1fe30ae9448e9799df9f1e6916",
+          "linux_storage.py": "deb5963b6c87736079dddbbf506e6208681c73ab0d4fcdb9b2f41daa15100c62",
+          "linux_teardown.py": "8a041bc4f5fcd2b6ea94b476f9ec3cbd870e3090797ed13bfacb6df9aa85d68a",
+          "linux_validator.py": "55b350ab4bb792bec8f86331fd0163b398c905470aa6f0b4ce6571fd28b61e50",
+          "model.py": "3cbc9405e0c7fb5247a13562e72c8472c3edc0f3fc2407db2fd6c6c95fae25de",
+          "qualification.py": "772df20ee17ddd52023eb0b245d733e2db29d115b625703fd4c6d86026f5554a",
+          "qualification_bundle.py": "4a595fc100539d997ad9b5f5750b58cd5f14b0ca276a6cc1cc9de6596c1aae7b",
+          "runtime.py": "584bf3525f02e274ccd3240a083d0b8dbea54be42d64323b110bdeb2074c64d6",
+          "runtime_batch.py": "1c234fb4b2145329306f5ad68dcdf63ce1b400382414c0f69c83e6f76093d8e1",
+          "supervisor.py": "4ec3238f5d2c9a8f68762c084ab241112a9b87d626023b5e6a18ab7b6e70a2f6"
+        },
+        "environment": "empty; distinct fresh HOME",
+        "errors": 0,
+        "failures": 0,
+        "machine": "arm64",
+        "network": "OS denied",
+        "package": "/Volumes/X10Pro/Crewshal/src/crewshal",
+        "packaged_sources": {
+          "__init__.py": {
+            "bytes": 91,
+            "sha256": "c030996bda7c6b0e1a1b380e232b91f9586bfff7b56b6b652b2ba24dd6b47ad4"
+          },
+          "__main__.py": {
+            "bytes": 56,
+            "sha256": "61e1b048145332e9aab85470bb2fa2bc1312e41dffa6cd26741319fbfe5443c1"
+          },
+          "admission.py": {
+            "bytes": 31251,
+            "sha256": "80c8326af2e8d14aebcce228e3755d7ab3183b02dbf5a145fc89c9fb61742353"
+          },
+          "app_server.py": {
+            "bytes": 25780,
+            "sha256": "f620060f6cfdf531609ae0d5814c21ed861dfada9fa766eb5a9659205eccbbb0"
+          },
+          "bootstrap_helper.c": {
+            "bytes": 18849,
+            "sha256": "f75313202970cbc26bc57b1357c2ff831a367dda70d2956f6ff97d821e25a15d"
+          },
+          "candidate.py": {
+            "bytes": 18178,
+            "sha256": "01c012c60512f64a83e97cb8af49919b79c2ed164205eb5a79c942c7f35ebfee"
+          },
+          "cli.py": {
+            "bytes": 7017,
+            "sha256": "8ecd936c862da846969fc2da482c7f889d0174c208076301fc16e6353842d372"
+          },
+          "contracts.py": {
+            "bytes": 11188,
+            "sha256": "c028ef9199672db2850dc3233d7debce71a0aa4b543c4143d05dc8f7a4eb8833"
+          },
+          "discovery.py": {
+            "bytes": 13229,
+            "sha256": "b9ab698faa5951f9badf566b1fdd8cd3be7487f82fdc96acd6a246ef44aa1b2c"
+          },
+          "dispatch.py": {
+            "bytes": 16573,
+            "sha256": "a3769e0c9754062760e67f7b498e3732a082cad71165c12dfada26f8fefddbd7"
+          },
+          "durable.py": {
+            "bytes": 64320,
+            "sha256": "27046f6e191bf63dd16b7ebfbba94684cfe64ab2cecc403263a5eadf98bc9a27"
+          },
+          "gates.py": {
+            "bytes": 5137,
+            "sha256": "06d841c18cbdde260486c94e91fa0f0f6ca17508ccd36e43778a3bbbec096baf"
+          },
+          "integration.py": {
+            "bytes": 22347,
+            "sha256": "011140684270a0e54c0ddba03be16da1ccd6c2223ce2aaf0b787c170fba1536b"
+          },
+          "linux_bootstrap.py": {
+            "bytes": 21013,
+            "sha256": "993323734cde8fdcc0f9db7a0ae833113cf902f2ee09d3c5059e27e3910b851d"
+          },
+          "linux_bridge.py": {
+            "bytes": 41140,
+            "sha256": "ad3e8700810d6dd1c6042a802fc1d0d91bcc5c03fb098aa12b7537bd462e8cb0"
+          },
+          "linux_envelope.py": {
+            "bytes": 17099,
+            "sha256": "9e9763496fa61e1e025365110a7c26b5e5211e0c9d5237775d1626cd3d1cc1bc"
+          },
+          "linux_freeze.py": {
+            "bytes": 33653,
+            "sha256": "e01f55ccdbf475b536fcbd0fed1e254b85bcdc426b31f494e3ed8efc5b92bf76"
+          },
+          "linux_inventory.py": {
+            "bytes": 12379,
+            "sha256": "db1cce7d9596cfb5a68afa7e9fd6ffa09ed7a87231aecf55cbdd5a95ee668372"
+          },
+          "linux_parent.py": {
+            "bytes": 30736,
+            "sha256": "d115a46809d61a2d58802703680e8796cf970ece12e08fee4952cdf017d64872"
+          },
+          "linux_production.py": {
+            "bytes": 95253,
+            "sha256": "dac61fae6e104bbb21b68b1ca211ed49ecdb8a3ebf7e0f98d2901675fc362c04"
+          },
+          "linux_setup.py": {
+            "bytes": 89473,
+            "sha256": "5096e3aa914557a260b116a18e5b10d9c802be1fe30ae9448e9799df9f1e6916"
+          },
+          "linux_storage.py": {
+            "bytes": 54965,
+            "sha256": "deb5963b6c87736079dddbbf506e6208681c73ab0d4fcdb9b2f41daa15100c62"
+          },
+          "linux_teardown.py": {
+            "bytes": 22231,
+            "sha256": "8a041bc4f5fcd2b6ea94b476f9ec3cbd870e3090797ed13bfacb6df9aa85d68a"
+          },
+          "linux_validator.py": {
+            "bytes": 46296,
+            "sha256": "55b350ab4bb792bec8f86331fd0163b398c905470aa6f0b4ce6571fd28b61e50"
+          },
+          "model.py": {
+            "bytes": 6575,
+            "sha256": "3cbc9405e0c7fb5247a13562e72c8472c3edc0f3fc2407db2fd6c6c95fae25de"
+          },
+          "qualification.py": {
+            "bytes": 3082,
+            "sha256": "772df20ee17ddd52023eb0b245d733e2db29d115b625703fd4c6d86026f5554a"
+          },
+          "qualification_bundle.py": {
+            "bytes": 10798,
+            "sha256": "4a595fc100539d997ad9b5f5750b58cd5f14b0ca276a6cc1cc9de6596c1aae7b"
+          },
+          "runtime.py": {
+            "bytes": 18863,
+            "sha256": "584bf3525f02e274ccd3240a083d0b8dbea54be42d64323b110bdeb2074c64d6"
+          },
+          "runtime_batch.py": {
+            "bytes": 18513,
+            "sha256": "1c234fb4b2145329306f5ad68dcdf63ce1b400382414c0f69c83e6f76093d8e1"
+          },
+          "state.py": {
+            "bytes": 3347,
+            "sha256": "856abbc9de6e630798736eab14ddc6062bc6768621edd8a0d9477f1f3fa7e5a3"
+          },
+          "supervisor.py": {
+            "bytes": 35230,
+            "sha256": "4ec3238f5d2c9a8f68762c084ab241112a9b87d626023b5e6a18ab7b6e70a2f6"
+          }
+        },
+        "phase_2d_methods": 722,
+        "python": "3.12.15",
+        "seconds": 28.822031415998936,
+        "skipped": 0,
+        "system": "Darwin",
+        "test_ids_sha256": "d8e36c6709a3aba7d7f78ae2dbcb6a871d810b457a422a852ca5461c0e19b3d3",
+        "tests": 863,
+        "version": "0.12.0"
+      }
+    },
+    "types": {
+      "command": "rtk proxy .venv/bin/mypy",
+      "exit": 0,
+      "output": "Success: no issues found in 30 source files\n"
+    },
+    "venv": {
+      "command": "rtk proxy uv venv --offline --python .venv/bin/python /var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-2d-publication-pxquo6cb/wheel-env",
+      "exit": 0
+    },
+    "wheel": {
+      "command": "rtk proxy /usr/bin/sandbox-exec -p '(version 1)(allow default)(deny network*)' /usr/bin/env -i HOME=/var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-2d-publication-pxquo6cb/wheel-home PATH=/usr/bin:/bin /var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-2d-publication-pxquo6cb/wheel-env/bin/python /var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-2d-publication-pxquo6cb/discover.py /Volumes/X10Pro/Crewshal /var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-2d-publication-pxquo6cb/wheel-env/lib/python3.12/site-packages/crewshal /var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-2d-publication-pxquo6cb/wheel-result.json",
+      "exit": 0,
+      "result": {
+        "dispatch_bound_sources": 26,
+        "dispatch_source_sha256": {
+          "admission.py": "80c8326af2e8d14aebcce228e3755d7ab3183b02dbf5a145fc89c9fb61742353",
+          "app_server.py": "f620060f6cfdf531609ae0d5814c21ed861dfada9fa766eb5a9659205eccbbb0",
+          "bootstrap_helper.c": "f75313202970cbc26bc57b1357c2ff831a367dda70d2956f6ff97d821e25a15d",
+          "candidate.py": "01c012c60512f64a83e97cb8af49919b79c2ed164205eb5a79c942c7f35ebfee",
+          "contracts.py": "c028ef9199672db2850dc3233d7debce71a0aa4b543c4143d05dc8f7a4eb8833",
+          "dispatch.py": "a3769e0c9754062760e67f7b498e3732a082cad71165c12dfada26f8fefddbd7",
+          "durable.py": "27046f6e191bf63dd16b7ebfbba94684cfe64ab2cecc403263a5eadf98bc9a27",
+          "gates.py": "06d841c18cbdde260486c94e91fa0f0f6ca17508ccd36e43778a3bbbec096baf",
+          "integration.py": "011140684270a0e54c0ddba03be16da1ccd6c2223ce2aaf0b787c170fba1536b",
+          "linux_bootstrap.py": "993323734cde8fdcc0f9db7a0ae833113cf902f2ee09d3c5059e27e3910b851d",
+          "linux_bridge.py": "ad3e8700810d6dd1c6042a802fc1d0d91bcc5c03fb098aa12b7537bd462e8cb0",
+          "linux_envelope.py": "9e9763496fa61e1e025365110a7c26b5e5211e0c9d5237775d1626cd3d1cc1bc",
+          "linux_freeze.py": "e01f55ccdbf475b536fcbd0fed1e254b85bcdc426b31f494e3ed8efc5b92bf76",
+          "linux_inventory.py": "db1cce7d9596cfb5a68afa7e9fd6ffa09ed7a87231aecf55cbdd5a95ee668372",
+          "linux_parent.py": "d115a46809d61a2d58802703680e8796cf970ece12e08fee4952cdf017d64872",
+          "linux_production.py": "dac61fae6e104bbb21b68b1ca211ed49ecdb8a3ebf7e0f98d2901675fc362c04",
+          "linux_setup.py": "5096e3aa914557a260b116a18e5b10d9c802be1fe30ae9448e9799df9f1e6916",
+          "linux_storage.py": "deb5963b6c87736079dddbbf506e6208681c73ab0d4fcdb9b2f41daa15100c62",
+          "linux_teardown.py": "8a041bc4f5fcd2b6ea94b476f9ec3cbd870e3090797ed13bfacb6df9aa85d68a",
+          "linux_validator.py": "55b350ab4bb792bec8f86331fd0163b398c905470aa6f0b4ce6571fd28b61e50",
+          "model.py": "3cbc9405e0c7fb5247a13562e72c8472c3edc0f3fc2407db2fd6c6c95fae25de",
+          "qualification.py": "772df20ee17ddd52023eb0b245d733e2db29d115b625703fd4c6d86026f5554a",
+          "qualification_bundle.py": "4a595fc100539d997ad9b5f5750b58cd5f14b0ca276a6cc1cc9de6596c1aae7b",
+          "runtime.py": "584bf3525f02e274ccd3240a083d0b8dbea54be42d64323b110bdeb2074c64d6",
+          "runtime_batch.py": "1c234fb4b2145329306f5ad68dcdf63ce1b400382414c0f69c83e6f76093d8e1",
+          "supervisor.py": "4ec3238f5d2c9a8f68762c084ab241112a9b87d626023b5e6a18ab7b6e70a2f6"
+        },
+        "environment": "empty; distinct fresh HOME",
+        "errors": 0,
+        "failures": 0,
+        "machine": "arm64",
+        "network": "OS denied",
+        "package": "/private/var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-2d-publication-pxquo6cb/wheel-env/lib/python3.12/site-packages/crewshal",
+        "packaged_sources": {
+          "__init__.py": {
+            "bytes": 91,
+            "sha256": "c030996bda7c6b0e1a1b380e232b91f9586bfff7b56b6b652b2ba24dd6b47ad4"
+          },
+          "__main__.py": {
+            "bytes": 56,
+            "sha256": "61e1b048145332e9aab85470bb2fa2bc1312e41dffa6cd26741319fbfe5443c1"
+          },
+          "admission.py": {
+            "bytes": 31251,
+            "sha256": "80c8326af2e8d14aebcce228e3755d7ab3183b02dbf5a145fc89c9fb61742353"
+          },
+          "app_server.py": {
+            "bytes": 25780,
+            "sha256": "f620060f6cfdf531609ae0d5814c21ed861dfada9fa766eb5a9659205eccbbb0"
+          },
+          "bootstrap_helper.c": {
+            "bytes": 18849,
+            "sha256": "f75313202970cbc26bc57b1357c2ff831a367dda70d2956f6ff97d821e25a15d"
+          },
+          "candidate.py": {
+            "bytes": 18178,
+            "sha256": "01c012c60512f64a83e97cb8af49919b79c2ed164205eb5a79c942c7f35ebfee"
+          },
+          "cli.py": {
+            "bytes": 7017,
+            "sha256": "8ecd936c862da846969fc2da482c7f889d0174c208076301fc16e6353842d372"
+          },
+          "contracts.py": {
+            "bytes": 11188,
+            "sha256": "c028ef9199672db2850dc3233d7debce71a0aa4b543c4143d05dc8f7a4eb8833"
+          },
+          "discovery.py": {
+            "bytes": 13229,
+            "sha256": "b9ab698faa5951f9badf566b1fdd8cd3be7487f82fdc96acd6a246ef44aa1b2c"
+          },
+          "dispatch.py": {
+            "bytes": 16573,
+            "sha256": "a3769e0c9754062760e67f7b498e3732a082cad71165c12dfada26f8fefddbd7"
+          },
+          "durable.py": {
+            "bytes": 64320,
+            "sha256": "27046f6e191bf63dd16b7ebfbba94684cfe64ab2cecc403263a5eadf98bc9a27"
+          },
+          "gates.py": {
+            "bytes": 5137,
+            "sha256": "06d841c18cbdde260486c94e91fa0f0f6ca17508ccd36e43778a3bbbec096baf"
+          },
+          "integration.py": {
+            "bytes": 22347,
+            "sha256": "011140684270a0e54c0ddba03be16da1ccd6c2223ce2aaf0b787c170fba1536b"
+          },
+          "linux_bootstrap.py": {
+            "bytes": 21013,
+            "sha256": "993323734cde8fdcc0f9db7a0ae833113cf902f2ee09d3c5059e27e3910b851d"
+          },
+          "linux_bridge.py": {
+            "bytes": 41140,
+            "sha256": "ad3e8700810d6dd1c6042a802fc1d0d91bcc5c03fb098aa12b7537bd462e8cb0"
+          },
+          "linux_envelope.py": {
+            "bytes": 17099,
+            "sha256": "9e9763496fa61e1e025365110a7c26b5e5211e0c9d5237775d1626cd3d1cc1bc"
+          },
+          "linux_freeze.py": {
+            "bytes": 33653,
+            "sha256": "e01f55ccdbf475b536fcbd0fed1e254b85bcdc426b31f494e3ed8efc5b92bf76"
+          },
+          "linux_inventory.py": {
+            "bytes": 12379,
+            "sha256": "db1cce7d9596cfb5a68afa7e9fd6ffa09ed7a87231aecf55cbdd5a95ee668372"
+          },
+          "linux_parent.py": {
+            "bytes": 30736,
+            "sha256": "d115a46809d61a2d58802703680e8796cf970ece12e08fee4952cdf017d64872"
+          },
+          "linux_production.py": {
+            "bytes": 95253,
+            "sha256": "dac61fae6e104bbb21b68b1ca211ed49ecdb8a3ebf7e0f98d2901675fc362c04"
+          },
+          "linux_setup.py": {
+            "bytes": 89473,
+            "sha256": "5096e3aa914557a260b116a18e5b10d9c802be1fe30ae9448e9799df9f1e6916"
+          },
+          "linux_storage.py": {
+            "bytes": 54965,
+            "sha256": "deb5963b6c87736079dddbbf506e6208681c73ab0d4fcdb9b2f41daa15100c62"
+          },
+          "linux_teardown.py": {
+            "bytes": 22231,
+            "sha256": "8a041bc4f5fcd2b6ea94b476f9ec3cbd870e3090797ed13bfacb6df9aa85d68a"
+          },
+          "linux_validator.py": {
+            "bytes": 46296,
+            "sha256": "55b350ab4bb792bec8f86331fd0163b398c905470aa6f0b4ce6571fd28b61e50"
+          },
+          "model.py": {
+            "bytes": 6575,
+            "sha256": "3cbc9405e0c7fb5247a13562e72c8472c3edc0f3fc2407db2fd6c6c95fae25de"
+          },
+          "qualification.py": {
+            "bytes": 3082,
+            "sha256": "772df20ee17ddd52023eb0b245d733e2db29d115b625703fd4c6d86026f5554a"
+          },
+          "qualification_bundle.py": {
+            "bytes": 10798,
+            "sha256": "4a595fc100539d997ad9b5f5750b58cd5f14b0ca276a6cc1cc9de6596c1aae7b"
+          },
+          "runtime.py": {
+            "bytes": 18863,
+            "sha256": "584bf3525f02e274ccd3240a083d0b8dbea54be42d64323b110bdeb2074c64d6"
+          },
+          "runtime_batch.py": {
+            "bytes": 18513,
+            "sha256": "1c234fb4b2145329306f5ad68dcdf63ce1b400382414c0f69c83e6f76093d8e1"
+          },
+          "state.py": {
+            "bytes": 3347,
+            "sha256": "856abbc9de6e630798736eab14ddc6062bc6768621edd8a0d9477f1f3fa7e5a3"
+          },
+          "supervisor.py": {
+            "bytes": 35230,
+            "sha256": "4ec3238f5d2c9a8f68762c084ab241112a9b87d626023b5e6a18ab7b6e70a2f6"
+          }
+        },
+        "phase_2d_methods": 722,
+        "python": "3.12.15",
+        "seconds": 28.569721584033687,
+        "skipped": 0,
+        "system": "Darwin",
+        "test_ids_sha256": "d8e36c6709a3aba7d7f78ae2dbcb6a871d810b457a422a852ca5461c0e19b3d3",
+        "tests": 863,
+        "version": "0.12.0"
+      }
+    }
+  },
+  "date": "2026-10-10",
+  "development_corrections": [
+    "An initial document-preparation Python script had a missing separator. Parsing refused before file effects; corrected preparation succeeded."
+  ],
+  "environment": {
+    "build_install": "offline cache only, fresh virtual environment, wheel built from fresh sdist",
+    "machine": "arm64",
+    "python": "3.12.15",
+    "system": "Darwin",
+    "test_environment": "env -i, distinct fresh source/wheel HOME",
+    "test_network": "OS denied"
+  },
+  "graph": {
+    "edges": 207594,
+    "limitation": "Best-effort graph, no exhaustive completeness or compiler claim",
+    "nodes": 172928,
+    "project": "Volumes-X10Pro-Crewshal",
+    "status": "ready",
+    "tier": "Verify continuation; previously targeted source fallback for helper partial parse line 78"
+  },
+  "immutable_prior_ledgers": {
+    "count": 35,
+    "identities": {
+      "docs/qualification/phase-2d-admission-collection-verification-v1-20261008.json": {
+        "bytes": 201134,
+        "sha256": "0f70c4550bf904fa38a7d0663859b80ae7d6200da907321e8f410539a464dafe"
+      },
+      "docs/qualification/phase-2d-batch-preparation-v1-20261008.json": {
+        "bytes": 10353,
+        "sha256": "b08afc86a6146acce8c4947874b833f699d65495eac7bc3c7f2ebe4ed1ae6bd1"
+      },
+      "docs/qualification/phase-2d-batch-preparation-verification-v1-20261008.json": {
+        "bytes": 2446,
+        "sha256": "37bf9c8b201e82b4a9c0796038554af76ea86108db8a6ead306f7709c94c63b3"
+      },
+      "docs/qualification/phase-2d-batch-timer-verification-v1-20261010.json": {
+        "bytes": 164132,
+        "sha256": "0684b95a4bfd6b996dcc34159b58f0455f4935224f747c382e35f9d4b84d1542"
+      },
+      "docs/qualification/phase-2d-dispatch-preparation-verification-v1-20261008.json": {
+        "bytes": 190477,
+        "sha256": "e2a95bcd0d5aafb8d58eb348654d3b3a77e3f96c7b61a262c63622634d57a0ba"
+      },
+      "docs/qualification/phase-2d-effective-ownership-verification-v1-20261010.json": {
+        "bytes": 62918,
+        "sha256": "b8c0ef2c14a40bd3bc3df392f9efbb9e4c562bbc6bef8ea3edd87bb0669f7f42"
+      },
+      "docs/qualification/phase-2d-growth-verification-v1-20261010.json": {
+        "bytes": 168456,
+        "sha256": "8a38a004c4e7bf79f1ab15d1b3071bd08841264fbf729c539f1aa4b924fd1327"
+      },
+      "docs/qualification/phase-2d-installation-bootstrap-verification-v1-20261010.json": {
+        "bytes": 165093,
+        "sha256": "536491ffbdb61832a900d936ce7a4e1d7995a1f7593359abbb6c980fcfdde927"
+      },
+      "docs/qualification/phase-2d-installation-bootstrap-verification-v2-20261010.json": {
+        "bytes": 166470,
+        "sha256": "3a5f3fca43f26bd15ca3ea4a19110355742141c1028be2d202490cb211dde347"
+      },
+      "docs/qualification/phase-2d-linux-envelope-verification-v1-20261008.json": {
+        "bytes": 243941,
+        "sha256": "6743dfc4fc33fd6594b1979744a237d6e0ea7b726c90c7852c02693ecd4619a3"
+      },
+      "docs/qualification/phase-2d-linux-storage-owner-verification-v1-20261009.json": {
+        "bytes": 148854,
+        "sha256": "bc06a0df2fc14e9a4edc52ce51b12d3c85b66a92752aa315052fe91b1470314f"
+      },
+      "docs/qualification/phase-2d-native-admission-verification-v1-20261008.json": {
+        "bytes": 200933,
+        "sha256": "27d1d93b61d03158f79715288ab29f25c2b2cc607b3fdeb389b310fd2f20c0c9"
+      },
+      "docs/qualification/phase-2d-offline-continuity-20261008.json": {
+        "bytes": 172290,
+        "sha256": "9e330457c868085b7d73ef19b4c6535aa9ffed511bf9b811cd11bb476f934023"
+      },
+      "docs/qualification/phase-2d-owned-bootstrap-verification-v1-20261009.json": {
+        "bytes": 236965,
+        "sha256": "b4cc366d314941a58d39bd46b3ec8e0805567bddafe55ccc7aca2d6b0fe8dd92"
+      },
+      "docs/qualification/phase-2d-owned-setup-verification-v1-20261009.json": {
+        "bytes": 190775,
+        "sha256": "20f08a74cdea7916dc1aacb17834656a87212b4916af6bf861f45584e598bd4a"
+      },
+      "docs/qualification/phase-2d-owned-teardown-verification-v1-20261009.json": {
+        "bytes": 175800,
+        "sha256": "3d71e1fa7dfed0a2dbdb2a4b84a1aef8a6034d497193dd3fa85758ef9bea8062"
+      },
+      "docs/qualification/phase-2d-owned-views-verification-v1-20261009.json": {
+        "bytes": 315194,
+        "sha256": "89e7b69fcb0b1037a72d86d18a3d9a9e8b1072cc4cdfc20b3daa59d2de901b90"
+      },
+      "docs/qualification/phase-2d-owner-decisions-verification-v1-20261009.json": {
+        "bytes": 48166,
+        "sha256": "3fc657dbfe3aca47c499cfcb49c6b14dc1ae349a38836edce50f68bbc412a5ee"
+      },
+      "docs/qualification/phase-2d-parent-watchdog-verification-v1-20261009.json": {
+        "bytes": 320004,
+        "sha256": "c637c6fad6085ed703be6cb406f5071a4546321c53f00f466e36ecb14aecbf2e"
+      },
+      "docs/qualification/phase-2d-production-capture-verification-v1-20261008.json": {
+        "bytes": 185005,
+        "sha256": "c578291cd8595b89de2916519b5858ac4fcc295f800ee313cba96783b38aca62"
+      },
+      "docs/qualification/phase-2d-production-ownership-verification-v1-20261009.json": {
+        "bytes": 212375,
+        "sha256": "33dd73f8f8344c287618cb5dce0e244d6bc1f1e360b941ceaac75dca2b9801b6"
+      },
+      "docs/qualification/phase-2d-publication-verification-v1-20261010.json": {
+        "bytes": 156873,
+        "sha256": "a176ea843d7199d7733c3aea6545dc090c427be9f084a99d68176f4971edc746"
+      },
+      "docs/qualification/phase-2d-publication-verification-v2-20261010.json": {
+        "bytes": 158175,
+        "sha256": "2077ac6cd71fc0b7aa67ee67519cbd58b2b07c0124e7299e94e1828700a356d5"
+      },
+      "docs/qualification/phase-2d-retained-ownership-verification-v1-20261009.json": {
+        "bytes": 159218,
+        "sha256": "1eb11623a532802c61ff85b996ea4499a6e4d36086207003988b7ffa644799d6"
+      },
+      "docs/qualification/phase-2d-session-selection-v1-20261008.json": {
+        "bytes": 11688,
+        "sha256": "ade780071f57be32759a0c38ef518faf1119a065b6a5f219854d9b261d166a6a"
+      },
+      "docs/qualification/phase-2d-session-selection-verification-v1-20261008.json": {
+        "bytes": 7358,
+        "sha256": "2caec0558b7de0bccdcb2beac0f6c255cd46d805dd79167433c0ea7f3880c1cb"
+      },
+      "docs/qualification/phase-2d-source-checkpoint-verification-v1-20261009.json": {
+        "bytes": 46712,
+        "sha256": "4f32e1e056fd40a6fedc5196c30b7da87c8391a2568f244cb16069a38e8f9f73"
+      },
+      "docs/qualification/phase-2d-storage-closure-verification-v1-20261009.json": {
+        "bytes": 183508,
+        "sha256": "2230584e10652a13ca9d464cfd0c25fe4b4f2f8a9ae671e325b5fbe569da03da"
+      },
+      "docs/qualification/phase-2d-subscription-auth-boundary-verification-v1-20261009.json": {
+        "bytes": 206026,
+        "sha256": "e86058c79e687a6d6ffe4048dbc3391b92bf9fcf4e84210b7a0659ab633bedea"
+      },
+      "docs/qualification/phase-2d-subscription-route-source-evidence-v1-20261009.json": {
+        "bytes": 6792,
+        "sha256": "75f7769f57e30266abbc37681889c4a8c72d268f264f69bfbb1049775ea97067"
+      },
+      "docs/qualification/phase-2d-supervisor-verification-v1-20261008.json": {
+        "bytes": 123625,
+        "sha256": "5189ae2b4926031ff400de07c3d66c20070b958b9c3cd790fb8dc4424a24bfad"
+      },
+      "docs/qualification/phase-2d-syntax-capability-preparation-v1-20261010.json": {
+        "bytes": 153391,
+        "sha256": "c750eab5bb7055087506858809cadc572125c620ab103eabf70f51908b755a09"
+      },
+      "docs/qualification/phase-2d-syntax-pass-verification-v1-20261010.json": {
+        "bytes": 292908,
+        "sha256": "97b7afc75b186931f9d6e7b0798f76ed27c2002c55de6a118157f8674787d5d4"
+      },
+      "docs/qualification/phase-2d-syntax-result-verification-v1-20261010.json": {
+        "bytes": 278706,
+        "sha256": "a885ca32c74aa3a04dbb66b680247bfacb474bc107eb0347c4913e1d22f795cf"
+      },
+      "docs/qualification/phase-2d-timer-syntax-pass-verification-v1-20261010.json": {
+        "bytes": 164103,
+        "sha256": "2e4c61da5415e59f92d53841bd0b8aed31603e99c7d14f1865c18c1850d13c6c"
+      }
+    },
+    "unchanged": true
+  },
+  "incompatibility_classification": "Source-derived mismatch, not observed installed runtime failure.",
+  "limitations": [
+    "Offline tests do not qualify actual Linux confinement, creation/birth, kernel filter, filesystem/mount/network enforcement, credential absence, terminal transition or physical release.",
+    "Current C helper changed and uncompiled; previous consumed syntax checks cover different immutable bytes.",
+    "No ready installed-from-charge acceptance or full combined growth proof exists; bootstrap admission explicitly stays closed.",
+    "Original namespace native admission receipt is missing from new observer collection; admission=None is recorded rather than fabricated.",
+    "Finite installed parent/validator private-view caller remains incomplete.",
+    "No compiler/kernel/key/login/model/Jev/VMware/SSH/native/live operation; no operational batch was requested for incomplete incompatible profile.",
+    "Existing original dirty work preserved; final version/publish ceremony remains conditional on full Phase2D acceptance.",
+    "Publishing does not resolve the source-derived shared-mmap/SQLite WAL incompatibility or qualify Linux/live behavior.",
+    "All three frozen syntax invocations remain consumed; no compiler or kernel/runtime batch was run for this publication.",
+    "Historical ledgers are immutable boundaries: older package/version/uncommitted statements remain dated history.",
+    "All preserved current project changes are included in this checkpoint; publication does not authorize merge or registry release."
+  ],
+  "milestone": "Effective Phase 2D bounded ownership implementation and qualification",
+  "next_session": {
+    "exact_file_manifest": "docs/PHASE-2D-NEXT-SESSION-INPUTS-2026-10-10.json",
+    "initial_goal": "Resolve compatible effective shared-mapping/storage growth enforcement; finish installed parent/validator/admission chain before preparing exact approved Linux/live qualification.",
+    "prompt": "docs/PHASE-2D-NEXT-SESSION-2026-10-10.md"
+  },
+  "original_controls": {
+    "aggregate_memory_bytes": 805306368,
+    "aggregate_tasks": 128,
+    "allocated_disk_bytes": 8589934592,
+    "batch_seconds": 600,
+    "broker_memory_bytes": 67108864,
+    "broker_tasks": 16,
+    "candidate_bytes": 16777216,
+    "cpu": 1,
+    "cutoff_seconds": 570,
+    "fixed_reserve_seconds": 30,
+    "logical_disk_bytes": 8589934592,
+    "native_seconds_original_origin": 5,
+    "ordinary_retries": 0,
+    "recovery_grace_seconds": 1,
+    "resources_reusable": false,
+    "scratch_bytes": 33554432,
+    "startup_seconds": 120,
+    "storage_job_seconds_max": 30,
+    "swap_bytes": 0,
+    "worker_validator_observer_memory_bytes": 134217728,
+    "worker_validator_observer_tasks": 32
+  },
+  "previous_verification": {
+    "bytes": 62918,
+    "historical_claims_preserved": true,
+    "intentional_current_document_or_metadata_differences": [
+      "CHANGELOG.md",
+      "README.md",
+      "docs/DEVELOPMENT-PLAN.md",
+      "docs/HANDOFF.md",
+      "pyproject.toml",
+      "src/crewshal/__init__.py"
+    ],
+    "path": "docs/qualification/phase-2d-effective-ownership-verification-v1-20261010.json",
+    "sha256": "b8c0ef2c14a40bd3bc3df392f9efbb9e4c562bbc6bef8ea3edd87bb0669f7f42"
+  },
+  "private_evidence": {
+    "discovery_driver": "import hashlib\nimport json\nfrom pathlib import Path\nimport platform\nimport sys\nimport time\nimport unittest\n\nroot = Path(sys.argv[1]).resolve()\nexpected = Path(sys.argv[2]).resolve()\noutput = Path(sys.argv[3])\nimport crewshal\nfrom crewshal.dispatch import SOURCE_FILES\nactual = Path(crewshal.__file__).resolve().parent\nif actual != expected:\n    raise ValueError(f\"Wrong package: {actual}; expected {expected}\")\nidentities = {}\nfor path in sorted(actual.iterdir()):\n    if path.suffix in {\".py\", \".c\"}:\n        data = path.read_bytes()\n        identities[path.name] = {\"bytes\": len(data), \"sha256\": hashlib.sha256(data).hexdigest()}\nsource = root / \"src\" / \"crewshal\"\nfor name, identity in identities.items():\n    raw = (source/name).read_bytes()\n    if {\"bytes\":len(raw), \"sha256\":hashlib.sha256(raw).hexdigest()} != identity:\n        raise ValueError(f\"Packaged source differs: {name}\")\nsys.path.insert(0, str(root))\nsuite = unittest.defaultTestLoader.discover(str(root / \"tests\"), top_level_dir=str(root))\ndef cases(item):\n    if isinstance(item, unittest.TestSuite):\n        for nested in item:\n            yield from cases(nested)\n    else:\n        yield item\nids = [item.id() for item in cases(suite)]\nif len(ids) != len(set(ids)):\n    raise ValueError(\"Duplicate test IDs; discovery is not an independent count\")\nphase = sum(\".test_phase_2d\" in item for item in ids)\nstart = time.monotonic()\nresult = unittest.TextTestRunner(verbosity=1).run(suite)\nreport = {\"tests\":result.testsRun, \"phase_2d_methods\":phase, \"failures\":len(result.failures),\n          \"errors\":len(result.errors), \"skipped\":len(result.skipped), \"seconds\":time.monotonic()-start,\n          \"test_ids_sha256\":hashlib.sha256(\"\\n\".join(ids).encode()).hexdigest(),\n          \"package\":str(actual), \"version\":crewshal.__version__, \"packaged_sources\":identities,\n          \"dispatch_bound_sources\":len(SOURCE_FILES), \"dispatch_source_sha256\":{name:hashlib.sha256((actual/Path(name).name).read_bytes()).hexdigest() for name in SOURCE_FILES},\n          \"python\":platform.python_version(), \"system\":platform.system(), \"machine\":platform.machine(),\n          \"network\":\"OS denied\", \"environment\":\"empty; distinct fresh HOME\"}\noutput.write_text(json.dumps(report,indent=2,sort_keys=True)+\"\\n\")\nprint(json.dumps({k:v for k,v in report.items() if k not in {\"packaged_sources\"}},sort_keys=True))\nsys.exit(0 if result.wasSuccessful() else 1)\n",
+    "files": {
+      "compatibility-result.json": {
+        "bytes": 2412,
+        "sha256": "6055f74639fd30046295faa8bc8e2b1a2404274ceb85a4a445f38b0e89dae31e"
+      },
+      "discover.py": {
+        "bytes": 2400,
+        "sha256": "341bd63ee57cceef7dd0c0259e2d510d0dce7f10710fd445ac9af9c97e6898f3"
+      },
+      "source-result.json": {
+        "bytes": 7078,
+        "sha256": "663884b36858dd414430795dbe6eab4c36cd65bb493eaa57cb0818de3a55be4d"
+      },
+      "wheel-result.json": {
+        "bytes": 7178,
+        "sha256": "74b32b51e9e8e5167f0c27e2a3ba068884920c46f5dd741cdeb6bd48db5edd0d"
+      }
+    },
+    "retained_directory": "/var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-2d-publication-pxquo6cb"
+  },
+  "publication": {
+    "delivery_revision": "Commit containing this immutable ledger and the 0.12.0 checkpoint",
+    "receipt": "Verify actual delivery commit and matching remote branch after push; no self-referential commit hash is embedded.",
+    "required_delivery_commands": [
+      "rtk proxy git commit -m 'feat: checkpoint retained Phase 2D preparation'",
+      "rtk proxy git push origin codex/phase1-architecture",
+      "rtk proxy git rev-parse HEAD",
+      "rtk proxy git ls-remote --heads origin refs/heads/codex/phase1-architecture",
+      "rtk proxy git status --short"
+    ],
+    "verification_boundary": "Checks completed before commit. This ledger does not claim a future push succeeded."
+  },
+  "remaining_effective_gates": [
+    "Compatible complete logical/allocated growth enforcement including anonymous and additional namespace representations",
+    "Installed finite original parent entry and actual direct validator private mount/net/proc/PID-for-children view plus FD transfer",
+    "Original namespace native admission receipt transport/linkage",
+    "Exact installed helper/parent/root/loader/library/Codex/SQLite/VFS/authentication/tool/network/proc identities",
+    "Concrete separately approved compiler/Linux/live/subscription-exposure batch",
+    "All twenty original qualification cases twice and every actually enabled native file tool on one exact changed profile",
+    "Actual readonly frozen candidate, credential-free independent validator and forged/mutated/stale/omitted-capture refusal cases",
+    "Independently observed original terminal task/order/idle retained unknown outcome"
+  ],
+  "repository": "https://github.com/forera-ai/Crewshal.git",
+  "schema_version": 1,
+  "status": "Owner-authorized blocked source publication checkpoint; Phase 2D incomplete and source unqualified",
+  "version": "0.12.0"
+}

@@ -59,6 +59,39 @@ class StorageCapacityDomain(Record):
         return self
 
 
+class StorageInstallationCharge(Record):
+    """Upfront denial accounting, never physical installation authority.
+
+    The original observer consumes this charge before installation effects.
+    Unknown and observed terminal outcomes both retain the full reservation.
+    """
+
+    state: Literal["preparing", "retained"] = "preparing"
+    installation: Literal["unknown", "observed"] = "unknown"
+    memory_bytes: Literal[805306368] = 805306368
+    tasks: Literal[128] = 128
+    logical_bytes: Literal[8589934592] = 8589934592
+    allocated_bytes: Literal[8589934592] = 8589934592
+    owner: Digest
+    configuration: Digest
+    batch_started_monotonic: float
+
+    @field_validator("memory_bytes", "tasks", "logical_bytes", "allocated_bytes", mode="before")
+    @classmethod
+    def exact_capacity_integer(cls, value: object) -> object:
+        if type(value) is not int:
+            raise ValueError("fixed installation charges require exact integers")
+        return value
+
+    @model_validator(mode="after")
+    def installation_state(self) -> Self:
+        if not math.isfinite(self.batch_started_monotonic) or self.batch_started_monotonic <= 0:
+            raise ValueError("installation charge requires original finite positive origin")
+        if self.state == "preparing" and self.installation != "unknown":
+            raise ValueError("preparing charge cannot assert observed installation")
+        return self
+
+
 class Binding(Contract):
     model: Digest
     task: Digest

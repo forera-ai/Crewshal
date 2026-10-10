@@ -1,6 +1,7 @@
 """Current fresh owner fixtures; never fork, join a keyring or enter a namespace."""
 
 from contextlib import ExitStack
+import copy
 import errno
 import os
 import signal
@@ -60,7 +61,7 @@ class Phase2DStorage(unittest.TestCase):
         self.rows = (
             f"1 1 0:1 / / rw - rootfs rootfs rw\n"
             f"101 1 0:41 / {self.targets['upper']} rw - ecryptfs /lower rw\n"
-            f"100 1 7:0 / {self.targets['lower']} rw - ext4 /dev/loop0 rw\n"
+            f"100 1 7:0 / {self.targets['lower']} rw - ext4 /dev/loop0 rw,max_dir_size_kb=64\n"
         )
         self.mountinfo = self.proc / "self" / "mountinfo"
         self.mountinfo.write_text(self.rows)
@@ -334,6 +335,23 @@ class Phase2DStorage(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.owner.readback()
 
+    def test_lost_changed_or_duplicate_directory_limit_retains_original_handles(self):
+        for value in (
+            "",
+            ",max_dir_size_kb=65",
+            ",max_dir_size_kb=0",
+            ",max_dir_size_kb=64,max_dir_size_kb=64",
+        ):
+            with self.subTest(value=value):
+                self.mountinfo.write_text(self.rows.replace(",max_dir_size_kb=64", value))
+                with self.assertRaisesRegex(ValueError, "directory growth"):
+                    self.owner.readback()
+                for descriptor in self.owner.handles.values():
+                    self.original_fstat(descriptor)
+                self.assertTrue(self.backing.exists())
+        self.mountinfo.write_text(self.rows)
+        self.owner.readback()
+
     def test_ext4_cannot_use_host_block_device(self):
         self.mountinfo.write_text(self.rows.replace("100 1 7:0", "100 1 8:0"))
         with self.assertRaises(ValueError):
@@ -525,6 +543,47 @@ class Phase2DStorage(unittest.TestCase):
             self.owner.verify_retention(reservation)
         for descriptor in original.values():
             os.fstat(descriptor)
+        self.assertTrue(self.owner.handles)
+        self.assertTrue(self.backing.exists())
+
+    def test_owner_refuses_replaced_job_or_changed_timer_execution_binding(self):
+        reservation = self.retention_reservation()
+        for field in ("jobs", "execution_group", "batch_timer"):
+            with self.subTest(field=field):
+                if field == "jobs":
+                    self.owner.jobs = copy.copy(self.jobs)
+                else:
+                    setattr(self.jobs, field, object())
+                before = list(self.calls)
+                try:
+                    with self.assertRaises(ValueError):
+                        self.owner.verify_retention(reservation)
+                    self.assertEqual(self.calls, before)
+                    for descriptor in self.owner.handles.values():
+                        os.fstat(descriptor)
+                finally:
+                    self.owner.jobs = self.jobs
+                    if field != "jobs":
+                        delattr(self.jobs, field)
+
+    def test_retention_readback_cannot_switch_timer_or_execution_role(self):
+        reservation = self.retention_reservation()
+        readback = storage.BoundedStorageJobs(
+            self.jobs.observer,
+            self.jobs.group,
+            self.jobs.aggregate,
+            deadline=self.owner._retention_end,
+        )
+        self.owner.retention_readback_jobs = self.owner._retention_jobs = readback
+        self.owner.verify_retention(reservation)
+        for field in ("execution_group", "batch_timer"):
+            with self.subTest(field=field):
+                setattr(readback, field, object())
+                try:
+                    with self.assertRaises(ValueError):
+                        self.owner.verify_retention(reservation)
+                finally:
+                    setattr(readback, field, None)
         self.assertTrue(self.owner.handles)
         self.assertTrue(self.backing.exists())
 
@@ -720,7 +779,15 @@ class Phase2DStorageJobs(unittest.TestCase):
                 self.jobs.run(lambda: b"", set())
         fork.assert_not_called()
 
-    def simulate(self, payload=b"+observed", *, timeout=False, terminal=False, pidfd_failure=False):
+    def simulate(
+        self,
+        payload=b"+observed",
+        *,
+        timeout=False,
+        terminal=False,
+        pidfd_failure=False,
+        placement_refusal=False,
+    ):
         actual_pipe = os.pipe
         pairs = []
 
@@ -755,6 +822,16 @@ class Phase2DStorageJobs(unittest.TestCase):
 
         with ExitStack() as stack:
             stack.enter_context(patch.object(self.jobs, "_admit"))
+            if self.jobs.execution_group is not None:
+                stack.enter_context(
+                    patch.object(
+                        self.jobs,
+                        "_pin_creation_child",
+                        side_effect=ValueError("synthetic actual setup role mismatch")
+                        if placement_refusal
+                        else None,
+                    )
+                )
             stack.enter_context(patch.object(storage.os, "pipe2", create=True, side_effect=pipe2))
             stack.enter_context(patch.object(storage.os, "fork", side_effect=fork))
             stack.enter_context(
@@ -772,6 +849,29 @@ class Phase2DStorageJobs(unittest.TestCase):
         value, _ = self.simulate(terminal=True)
         self.assertEqual(value, b"observed")
         self.assertIsNone(self.jobs.pending)
+
+    def setup_job(self):
+        group = SimpleNamespace(identity=SimpleNamespace(relative_path="crewshal/session/setup"))
+        self.jobs = storage.BoundedStorageJobs(
+            self.observer, self.group, self.aggregate, time.monotonic() + 20, execution_group=group
+        )
+
+    def test_setup_placement_transport_is_consumed_before_result(self):
+        self.setup_job()
+        value, _ = self.simulate(payload=b"@+observed", terminal=True)
+        self.assertEqual(value, b"observed")
+
+    def test_placement_text_without_actual_setup_readback_is_refused(self):
+        self.setup_job()
+        with self.assertRaisesRegex(ValueError, "actual setup role mismatch"):
+            self.simulate(payload=b"@+observed", terminal=True, placement_refusal=True)
+        self.assertTrue(self.jobs.failed)
+
+    def test_absent_placement_ack_cannot_release_child_admission(self):
+        self.setup_job()
+        with self.assertRaisesRegex(ValueError, "placement acknowledgement"):
+            self.simulate(payload=b"+observed", terminal=True)
+        self.assertTrue(self.jobs.failed)
 
     def test_timeout_keeps_unreaped_pidfd_and_blocks_later_jobs(self):
         with self.assertRaises(ValueError):

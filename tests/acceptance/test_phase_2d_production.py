@@ -432,6 +432,7 @@ class Phase2DProduction(unittest.TestCase):
                 self.addCleanup(os.close, fd)
                 os.ftruncate(fd, size)
                 block = bytearray(1024)
+                block[:4] = production.EXT4_INODE_LIMITS[name].to_bytes(4, "little")
                 if valid:
                     block[56:58] = b"\x53\xef"
                 block[4:8] = (size // 4096 + int(wrong_size)).to_bytes(4, "little")
@@ -474,7 +475,31 @@ class Phase2DProduction(unittest.TestCase):
             with self.assertRaisesRegex(production.ProductionRefusal, "declared size differs"):
                 value.format_filesystems()
             self.assertTrue(value.failed)
+
+    def test_formatter_refuses_unknown_or_excess_inode_count_without_retry(self):
+        for count in (0, 10, production.EXT4_INODE_LIMITS["scratch.img"] + 1):
+            with self.subTest(count=count), self.formatter_fixture() as value:
+                os.pwrite(value.handles["scratch.img"], count.to_bytes(4, "little"), 1024)
+                with self.assertRaisesRegex(production.ProductionRefusal, "inode geometry"):
+                    value.format_filesystems()
+                self.assertTrue(value.failed)
+                self.assertEqual(value.jobs.run.call_count, 1)
+                os.fstat(value.handles["scratch.img"])
+                with self.assertRaisesRegex(ValueError, "no retry"):
+                    value.format_filesystems()
             self.assertEqual(value.jobs.run.call_count, 1)
+
+    def test_formatted_inode_bound_is_resampled_in_owned_kernel_readback(self):
+        with self.formatter_fixture() as value:
+            value.format_filesystems()
+            value._expected_loop = Mock(return_value=bytes(production.LOOP_INFO64.size))
+            with patch.object(production.fcntl, "ioctl"):
+                value._readback()
+                os.pwrite(value.handles["scratch.img"], (129).to_bytes(4, "little"), 1024)
+                with self.assertRaisesRegex(ValueError, "inode geometry"):
+                    value._readback()
+            os.fstat(value.handles["scratch.img"])
+            self.assertFalse(value.resources_reusable)
 
     def test_formatter_wrong_bytes_refuse_before_any_job(self):
         with self.formatter_fixture(wrong_hash=True) as value:
@@ -517,7 +542,18 @@ class Phase2DProduction(unittest.TestCase):
         self.assertEqual([call.args[0] for call in close.call_args_list], [7, 8, 9, 11])
         execute.assert_called_once_with(
             12,
-            ["/usr/sbin/mkfs.ext4", "-q", "-F", "-m", "0", "/proc/self/fd/3"],
+            [
+                "/usr/sbin/mkfs.ext4",
+                "-q",
+                "-F",
+                "-m",
+                "0",
+                "-b",
+                "4096",
+                "-N",
+                "128",
+                "/proc/self/fd/3",
+            ],
             {"MKE2FS_CONFIG": "/dev/null"},
         )
 
@@ -661,7 +697,10 @@ class Phase2DProduction(unittest.TestCase):
             _configuration=object(),
         )
         value.reservation = reservation
-        value.jobs = object()
+        # Role/timer objects are explicit unqualified data seams; no job runs.
+        value.jobs = SimpleNamespace(
+            execution_group=SimpleNamespace(identity=object()), batch_timer=object()
+        )
         captured = {}
 
         def construct(actual, **arguments):
@@ -680,6 +719,8 @@ class Phase2DProduction(unittest.TestCase):
         self.assertIs(readback.observer, reservation.observer)
         self.assertIs(readback.group, reservation.observer_group)
         self.assertIs(readback.aggregate, reservation.aggregate)
+        self.assertIs(readback.execution_group, value.jobs.execution_group)
+        self.assertIs(readback.batch_timer, value.jobs.batch_timer)
         self.assertEqual(readback.deadline, reservation.batch_started + 600)
         verify.assert_called_once_with(owner, reservation)
 
@@ -724,7 +765,7 @@ class Phase2DProduction(unittest.TestCase):
         self.assertTrue(value._auxiliary_complete)
         self.assertEqual(len(channel.expected), 6)
         self.assertEqual(
-            production.ROOT_COPY_BYTES + production.ADDITIONAL_BACKING_SIZES["native-auth.img"],
+            production.ROOT_COPY_BYTES + 3 * production.ADDITIONAL_BACKING_SIZES["native-auth.img"],
             1073741824,
         )
         self.assertEqual(production.ADDITIONAL_BACKING_SIZES["validator-scratch.img"], 33554432)
@@ -1019,6 +1060,7 @@ class Phase2DProduction(unittest.TestCase):
         reservation = SimpleNamespace(
             _configuration=object(),
             verify=Mock(side_effect=ValueError("synthetic claim refusal")),
+            verify_operational=Mock(side_effect=ValueError("synthetic claim refusal")),
         )
         jobs = SimpleNamespace(deadline=time.monotonic() + 20)
         with (
@@ -1154,6 +1196,23 @@ class Phase2DCreationChild(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.jobs.verify_creation_child()
 
+    def test_child_must_enter_original_setup_before_creation_handoff(self):
+        role = SimpleNamespace(identity=SimpleNamespace(relative_path="owned/setup"))
+        original = self.jobs
+        self.jobs = storage.BoundedStorageJobs(
+            self.observer, self.group, original.aggregate, original.deadline, execution_group=role
+        )
+        self.jobs.pending = original.pending
+        self.jobs._creation_child = original._creation_child
+        self.jobs._active_deadline = original._active_deadline
+        with self.assertRaisesRegex(ValueError, "role differs"):
+            self.jobs.verify_creation_child()
+        self.cgroup = b"0::/owned/setup\n"
+        self.assertEqual(self.jobs.verify_creation_child(), 999)
+        self.jobs.execution_group = copy.copy(role)
+        with self.assertRaisesRegex(ValueError, "execution role changed"):
+            self.jobs.verify_creation_child()
+
     def test_rebound_pidfd_or_added_thread_or_migrated_child_refuses(self):
         self.jobs.pending = (999, 124)
         with self.assertRaises(ValueError):
@@ -1175,6 +1234,71 @@ class Phase2DCreationChild(unittest.TestCase):
         self.jobs.deadline = time.monotonic() - 1
         with self.assertRaises(ValueError):
             self.jobs.verify_creation_child()
+
+
+class Phase2DFormatterCustody(unittest.TestCase):
+    """Fresh ordinary files; no formatter, resource or kernel operation."""
+
+    def setUp(self):
+        temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(temporary.cleanup)
+        self.root = Path(temporary.name)
+        self.path = self.root / "formatter"
+        self.path.write_bytes(b"explicit retained input")
+        self.original = os.open(self.path, os.O_RDONLY)
+        self.source = os.dup(self.original)
+        self.addCleanup(os.close, self.original)
+        self.addCleanup(os.close, self.source)
+        self.owner = object.__new__(production.OwnedBackingProduction)
+        self.owner.handles = {"domain-formatter": self.original}
+        self.owner._root_inputs = {"/usr/sbin/mkfs.ext4": self.source}
+        self.owner._domain_formatter_metadata = production._metadata(os.fstat(self.original))
+
+    def test_formatter_uses_same_actual_charged_readonly_input(self):
+        self.owner._verify_formatter_custody()
+        self.assertEqual(os.fstat(self.source).st_ino, os.fstat(self.original).st_ino)
+
+    def test_same_bytes_in_different_inode_cannot_reconstruct_formatter_custody(self):
+        other = self.root / "same-bytes"
+        other.write_bytes(self.path.read_bytes())
+        descriptor = os.open(other, os.O_RDONLY)
+        self.addCleanup(os.close, descriptor)
+        self.owner._root_inputs["/usr/sbin/mkfs.ext4"] = descriptor
+        with self.assertRaisesRegex(ValueError, "original charged readonly source"):
+            self.owner._verify_formatter_custody()
+        os.fstat(self.original)
+
+    def test_writable_alias_or_mutated_original_input_refuses(self):
+        writable = os.open(self.path, os.O_RDWR)
+        self.addCleanup(os.close, writable)
+        self.owner._root_inputs["/usr/sbin/mkfs.ext4"] = writable
+        with self.assertRaisesRegex(ValueError, "original charged readonly source"):
+            self.owner._verify_formatter_custody()
+        self.owner._root_inputs["/usr/sbin/mkfs.ext4"] = self.source
+        os.pwrite(writable, b"changed", 0)
+        with self.assertRaisesRegex(ValueError, "original charged readonly source"):
+            self.owner._verify_formatter_custody()
+        os.fstat(self.original)
+
+    def test_actual_installation_custody_refusal_cannot_be_restored_into_admission(self):
+        proof = object.__new__(production.EffectiveInstallation)
+        proof.failed = False
+        proof.production = object.__new__(production.OwnedBackingProduction)
+        proof.production.failed = False
+        from crewshal.linux_setup import OwnedStorageReservation
+
+        proof.reservation = object.__new__(OwnedStorageReservation)
+        proof.reservation._retain_installation_refusal = Mock()
+        proof._verify_custody = Mock(side_effect=ValueError("original custody refused"))
+        with self.assertRaisesRegex(ValueError, "original custody refused"):
+            proof.verify_custody()
+        self.assertTrue(proof.failed)
+        self.assertTrue(proof.production.failed)
+        del proof._verify_custody
+        with self.assertRaisesRegex(ValueError, "original actual installation custody differs"):
+            proof.verify_custody()
+        self.assertTrue(proof.failed)
+        proof.reservation._retain_installation_refusal.assert_called()
 
 
 if __name__ == "__main__":

@@ -490,7 +490,10 @@ class Phase2DSupervisor(unittest.TestCase):
         self.assertFalse(result.observation.stdout_complete)
         self.assertTrue(result.observation.stderr_complete)
         self.assertTrue(result.observation.tree_stopped)
-        self.assertGreaterEqual(result.observation.elapsed_seconds, 10)
+        self.assertEqual(result.observation.termination, "timeout")
+        self.assertGreaterEqual(result.observation.elapsed_seconds, 5)
+        self.assertLessEqual(result.observation.elapsed_seconds, 7)
+        self.assertEqual((self.group_path / "cgroup.kill").read_bytes(), b"1")
 
     def test_overflow_bounded_during_io_not_after_accumulation(self):
         sent = 0

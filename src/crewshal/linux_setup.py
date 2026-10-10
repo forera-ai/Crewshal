@@ -8,11 +8,16 @@ Inherited sealed data is configuration, not authority or containment evidence.
 from dataclasses import dataclass
 from datetime import datetime, timezone
 import fcntl
+import hashlib
 import math
 import os
 from pathlib import PurePosixPath
 import select
+import socket
+import re
+import resource
 import stat
+import struct
 import subprocess
 import sys
 import time
@@ -23,13 +28,18 @@ from crewshal.admission import (
     NamespaceIdentity,
     _aggregate_readback,
     _current_source,
+    _fields,
     _read,
     _stat_identity,
 )
 from crewshal.contracts import Digest, record_digest
 from crewshal.dispatch import DispatchConfiguration
 from crewshal.linux_bootstrap import ArmedDeadline, BootstrapPreparation, audit_linux_bootstrap
-from crewshal.linux_envelope import native_working_directory, prepare_linux_envelope
+from crewshal.linux_envelope import (
+    FILE_GROWTH_BYTES,
+    native_working_directory,
+    prepare_linux_envelope,
+)
 from crewshal.linux_inventory import (
     RetainedParentInventory,
     TrustedParentInventory,
@@ -43,14 +53,20 @@ from crewshal.linux_parent import (
     _move_self,
     _proc_root,
 )
-from crewshal.model import Contract
+from crewshal.model import Contract, digest
 from crewshal.supervisor import CgroupIdentity, OwnedCgroup, _counters
 
 CAPABILITIES = "00000000002801c0"
 CONTROL_BOUND = 262144
 
 if TYPE_CHECKING:
-    from crewshal.durable import LiveStorageCapacityClaim
+    from crewshal.linux_bridge import StoppedNativeBridge
+    from crewshal.linux_production import EffectiveInstallation
+    from crewshal.durable import (
+        CoordinatorStore,
+        LiveStorageCapacityClaim,
+        LiveStorageInstallationClaim,
+    )
     from crewshal.linux_storage import LinuxPhysicalOwner
 
 
@@ -73,6 +89,9 @@ class OwnedStorageReservation:
     Charges never become available again, including after refusal or expiry.
     """
 
+    _batch_timer: "OwnedBatchTimer"
+    _installation: "EffectiveInstallation"
+
     def __init__(
         self,
         observer: RetainedTrustedTask,
@@ -81,7 +100,7 @@ class OwnedStorageReservation:
         configuration: DispatchConfiguration,
         *,
         batch_started_monotonic: float,
-        capacity_claim: "LiveStorageCapacityClaim | None" = None,
+        capacity_claim: "LiveStorageCapacityClaim | LiveStorageInstallationClaim | None" = None,
     ):
         now = time.monotonic()
         if (
@@ -91,10 +110,16 @@ class OwnedStorageReservation:
             raise ValueError("original storage reservation batch origin required")
         if getattr(observer, "_setup_started", False) or hasattr(observer, "_storage_reservation"):
             raise ValueError("storage reservation precedes setup and is one-shot")
-        from crewshal.durable import LiveStorageCapacityClaim
+        from crewshal.durable import LiveStorageCapacityClaim, LiveStorageInstallationClaim
 
-        if type(capacity_claim) is not LiveStorageCapacityClaim:
+        if type(capacity_claim) not in (LiveStorageCapacityClaim, LiveStorageInstallationClaim):
             raise ValueError("original irreversible live capacity claim required before creation")
+        assert capacity_claim is not None
+        if (
+            type(capacity_claim) is LiveStorageInstallationClaim
+            and getattr(observer, "_installation_charge", None) is not capacity_claim
+        ):
+            raise ValueError("installation requires original observer's upfront charge")
         self._capacity_claim = capacity_claim
         self.observer, self.observer_group, self.aggregate = observer, observer_group, aggregate
         self._owners = (observer, observer_group, aggregate)
@@ -141,7 +166,7 @@ class OwnedStorageReservation:
         return self._configuration_digest
 
     @property
-    def capacity_claim(self) -> "LiveStorageCapacityClaim":
+    def capacity_claim(self) -> "LiveStorageCapacityClaim | LiveStorageInstallationClaim":
         return self._capacity_claim
 
     def __reduce__(self) -> tuple[object, ...]:
@@ -149,6 +174,86 @@ class OwnedStorageReservation:
 
     def verify(self) -> None:
         self._verify(None)
+
+    def verify_operational(self) -> None:
+        """Require the original independent batch timer before creation effects."""
+        timer = getattr(self, "_batch_timer", None)
+        if type(timer) is not OwnedBatchTimer:
+            raise ValueError(
+                "original independent batch timer required before operational creation"
+            )
+        timer.verify()
+        self.verify()
+        from crewshal.durable import LiveStorageInstallationClaim
+
+        if type(self._capacity_claim) is LiveStorageInstallationClaim and (
+            self._capacity_claim.record.state != "preparing"
+            or self._capacity_claim._terminal_attempted
+        ):
+            raise ValueError("installation preparation consumed; no retry or new work")
+
+    def verify_installation(self) -> None:
+        """Payload admission requires effective installation, never charge data.
+
+        The bootstrap path deliberately stays closed until a concrete retained
+        physical-domain/root/journal producer supplies complete combined growth
+        readback. Even an imported 'observed' record cannot supply that owner.
+        The existing preinstalled-domain path is unchanged.
+        """
+        self.verify()
+        from crewshal.durable import LiveStorageInstallationClaim
+
+        if type(self._capacity_claim) is LiveStorageInstallationClaim:
+            from crewshal.linux_production import EffectiveInstallation
+
+            proof = getattr(self, "_installation", None)
+            if type(proof) is not EffectiveInstallation or proof.reservation is not self:
+                raise ValueError(
+                    "effective installed physical-domain/root/journal growth readback unavailable"
+                )
+            if (
+                self._capacity_claim.record.state != "retained"
+                or self._capacity_claim.record.installation != "observed"
+                or not self._capacity_claim._terminal_attempted
+            ):
+                raise ValueError("original actual installation result not retained")
+            proof.require_effective_payload_growth()
+
+    def verify_output_admission(self) -> None:
+        """Bounded persistent output, never renewed installation preparation."""
+        from crewshal.linux_production import EffectiveInstallation
+        from crewshal.durable import LiveStorageInstallationClaim
+
+        self.verify()
+        proof = getattr(self, "_installation", None)
+        if type(proof) is not EffectiveInstallation or proof.reservation is not self:
+            raise ValueError("output requires original retained actual installation")
+        if (
+            type(self._capacity_claim) is not LiveStorageInstallationClaim
+            or self._capacity_claim.record.installation != "observed"
+        ):
+            raise ValueError("output requires observed installation")
+        proof.verify_custody()
+
+    def retain_unknown_installation(self) -> None:
+        """Keep original handles/charges and consume incomplete preparation."""
+        from crewshal.durable import LiveStorageInstallationClaim
+
+        if type(self._capacity_claim) is not LiveStorageInstallationClaim:
+            raise ValueError("unknown installation result requires original upfront claim")
+        self._capacity_claim.retain_unknown(self)
+
+    def _retain_installation_refusal(self, error: BaseException) -> None:
+        from crewshal.durable import LiveStorageInstallationClaim
+
+        if (
+            type(self._capacity_claim) is LiveStorageInstallationClaim
+            and not self._capacity_claim._terminal_attempted
+        ):
+            try:
+                self.retain_unknown_installation()
+            except BaseException as recording_error:
+                error.add_note(f"installation outcome remains unknown: {recording_error}")
 
     def verify_creation_job(self, jobs: object) -> None:
         """Permit only this producer's independently pinned active child.
@@ -168,6 +273,95 @@ class OwnedStorageReservation:
         self._verify(jobs.verify_creation_child())
 
     def _verify(self, creation_child: int | None) -> None:
+        if not time.monotonic() < self._batch_started + 600:
+            raise ValueError("original storage reservation batch deadline exhausted")
+        self._verify_identity()
+        sample = self.observer_group.sample()
+        expected = {self.observer.spec.pid}
+        timer = getattr(self, "_batch_timer", None)
+        if timer is not None:
+            if type(timer) is not OwnedBatchTimer:
+                raise ValueError("original retained batch timer differs")
+            timer.verify()
+            assert timer.task is not None
+            expected.add(timer.task.spec.pid)
+        production = getattr(self, "_production", None)
+        execution_group = getattr(getattr(production, "jobs", None), "execution_group", None)
+        if creation_child is not None and execution_group is None:
+            expected.add(creation_child)
+        if set(sample.direct_pids) != expected or not sample.populated:
+            raise ValueError("storage reservation requires the sole retained live observer")
+
+    def verify_idle_retention(self) -> None:
+        """Observe idle custody after the batch; never admit work or release.
+
+        This separate effect-free path does not relax live admission's cutoff.
+        It requires the original exited/reaped helper and independently stopped
+        operational roles, while preserving full charges and kernel unknowns.
+        """
+        self._verify_identity()
+        timer = getattr(self, "_batch_timer", None)
+        if type(timer) is not OwnedBatchTimer:
+            raise ValueError("idle retention requires original batch helper")
+        timer.verify_idle_retention()
+        owners = (getattr(self, "_production", None), self._storage_owner)
+        from crewshal.linux_production import OwnedBackingProduction
+        from crewshal.linux_storage import BoundedStorageJobs, LinuxPhysicalOwner
+
+        for owner in owners:
+            if owner is None:
+                continue
+            if (
+                not isinstance(owner, (OwnedBackingProduction, LinuxPhysicalOwner))
+                or type(owner) not in (OwnedBackingProduction, LinuxPhysicalOwner)
+                or owner.reservation is not self
+            ):
+                raise ValueError(
+                    "idle retention requires original concrete production/storage owner"
+                )
+            if type(owner) is OwnedBackingProduction and owner._owners != (self, owner.jobs):
+                raise ValueError("idle production owner/job identity differs")
+            if type(owner) is LinuxPhysicalOwner and (
+                owner.jobs is not owner._jobs
+                or owner.retention_readback_jobs is not owner._retention_jobs
+            ):
+                raise ValueError("idle storage owner/job identity differs")
+            for jobs in (
+                getattr(owner, "jobs", None),
+                getattr(owner, "retention_readback_jobs", None),
+            ):
+                if jobs is not None and (
+                    type(jobs) is not BoundedStorageJobs
+                    or jobs.observer is not self.observer
+                    or jobs.group is not self.observer_group
+                    or jobs.aggregate is not self.aggregate
+                    or jobs.execution_group is not timer.setup
+                    or jobs.batch_timer is not timer
+                    or jobs.pending is not None
+                    or jobs._creation_child is not None
+                ):
+                    raise ValueError("idle retention has unknown or changed operational job")
+        lifetime = self._setup_lifetime
+        if lifetime is not None and (
+            lifetime.storage_reservation is not self
+            or lifetime.observer_group is not self.observer_group
+            or lifetime.aggregate is not self.aggregate
+            or lifetime.wrapper is None
+            or lifetime.wrapper.poll() is None
+        ):
+            raise ValueError("idle retention has unknown or unreaped namespace wrapper")
+        sample = self.observer_group.sample()
+        if set(sample.direct_pids) != {self.observer.spec.pid} or not sample.populated:
+            raise ValueError("idle retention requires only the original observer")
+        # Resample after job/wrapper readback; neither a cached result nor an
+        # empty storage scan can supply this process gate or physical closure.
+        timer.verify_idle_retention()
+        self._verify_identity()
+        sample = self.observer_group.sample()
+        if set(sample.direct_pids) != {self.observer.spec.pid} or not sample.populated:
+            raise ValueError("idle observer repopulated during terminal readback")
+
+    def _verify_identity(self) -> None:
         self._capacity_claim.verify_reservation(self)
         capacity = self._capacity_claim.record
         if (
@@ -176,6 +370,13 @@ class OwnedStorageReservation:
             or capacity.batch_started_monotonic != self._origin
         ):
             raise ValueError("capacity claim differs from original observer/configuration/origin")
+        from crewshal.durable import LiveStorageInstallationClaim
+
+        if (
+            type(self._capacity_claim) is LiveStorageInstallationClaim
+            and getattr(self.observer, "_installation_charge", None) is not self._capacity_claim
+        ):
+            raise ValueError("installation charge lost original observer binding")
         if (
             any(
                 a is not b
@@ -200,17 +401,10 @@ class OwnedStorageReservation:
             or self.observer.spec.configuration != self._configuration_digest
         ):
             raise ValueError("retained storage reservation identity or configuration changed")
-        if not time.monotonic() < self._batch_started + 600:
-            raise ValueError("original storage reservation batch deadline exhausted")
         _current_source(self._configuration)
         _observer_placement(self.observer, self.observer_group, self.aggregate, ())
         _aggregate_readback(self.aggregate, self.observer_group)
         sample = self.observer_group.sample()
-        expected = {self.observer.spec.pid}
-        if creation_child is not None:
-            expected.add(creation_child)
-        if set(sample.direct_pids) != expected or not sample.populated:
-            raise ValueError("storage reservation requires the sole retained live observer")
         if (
             any(sample.memory_events[key] for key in ("max", "oom", "oom_kill"))
             or sample.pids_events["max"]
@@ -246,6 +440,504 @@ class OwnedStorageReservation:
         self.verify()
 
 
+def reserve_storage_installation(
+    store: "CoordinatorStore",
+    observer: RetainedTrustedTask,
+    observer_group: OwnedCgroup,
+    aggregate: OwnedCgroup,
+    configuration: DispatchConfiguration,
+    *,
+    batch_started_monotonic: float,
+) -> OwnedStorageReservation:
+    """One upfront original-owner charge; no storage effects or new origin.
+
+    Burn the observer attempt before verification/commit, so a failed commit,
+    missing/replaced journal or a fresh store cannot re-enter this attempt.
+    The committed claim is retained before reservation construction, including
+    constructor refusal. This permits preparation, never payload admission.
+    """
+    from crewshal.durable import CoordinatorStore
+
+    if type(store) is not CoordinatorStore or type(observer) is not RetainedTrustedTask:
+        raise ValueError("installation requires original concrete store and observer")
+    if (
+        hasattr(observer, "_installation_charge_attempted")
+        or hasattr(observer, "_storage_reservation")
+        or getattr(observer, "_setup_started", False)
+    ):
+        raise ValueError("original observer installation attempt consumed; no retry")
+    setattr(observer, "_installation_charge_attempted", True)
+    if (
+        not math.isfinite(batch_started_monotonic)
+        or not 0 < batch_started_monotonic <= time.monotonic() < batch_started_monotonic + 120
+    ):
+        raise ValueError("installation requires original unexpired startup origin")
+    _current_source(configuration)
+    _observer_placement(observer, observer_group, aggregate, ())
+    _aggregate_readback(aggregate, observer_group)
+    if observer.spec.configuration != record_digest(configuration):
+        raise ValueError("installation observer configuration differs")
+    scope = digest(prepare_linux_envelope(configuration).owned_root.encode())
+    claim = store.charge_storage_installation(
+        scope,
+        owner=record_digest(observer.spec),
+        configuration=record_digest(configuration),
+        batch_started_monotonic=batch_started_monotonic,
+    )
+    setattr(observer, "_installation_charge", claim)
+    try:
+        return OwnedStorageReservation(
+            observer,
+            observer_group,
+            aggregate,
+            configuration,
+            batch_started_monotonic=batch_started_monotonic,
+            capacity_claim=claim,
+        )
+    except BaseException as error:
+        # No creation has occurred, but the charge/attempt is still consumed.
+        # Journal failure cannot replace the original refusal or permit retry.
+        claim._terminal_attempted = True
+        try:
+            store._retain_unknown_installation(claim)
+        except BaseException as recording_error:
+            error.add_note(f"installation outcome remains unknown: {recording_error}")
+        raise
+
+
+class OwnedBatchTimer:
+    """Original observer's independent timer, charged to its existing role.
+
+    This unqualified source retains the actual helper/proc/pidfd/lifeline and
+    pinned operational groups. It never kills the observer or aggregate and
+    never releases storage. Missing, expired or changed readback denies creation.
+    """
+
+    resources_reusable: Literal[False] = False
+    operational_ready: Literal[False] = False
+
+    def __init__(
+        self,
+        reservation: OwnedStorageReservation,
+        setup: OwnedCgroup,
+        supervisor: OwnedCgroup,
+        worker: OwnedCgroup,
+        *,
+        validator: OwnedCgroup | None = None,
+    ):
+        if hasattr(reservation, "_batch_timer"):
+            raise ValueError("independent batch timer is one-shot; no retry or replacement")
+        self.reservation, self.setup, self.supervisor, self.worker = (
+            reservation,
+            setup,
+            supervisor,
+            worker,
+        )
+        self.validator = validator
+        self._owners = (reservation, setup, supervisor, worker, validator)
+        self._groups = tuple(group.identity for group in self.operational_groups)
+        self.origin_ns = int(reservation.batch_started_monotonic * 1_000_000_000)
+        self._origin = self.origin_ns
+        self.cutoff_ns = self.origin_ns + 570_000_000_000
+        self.end_ns = self.origin_ns + 600_000_000_000
+        self.lifeline = self.helper = -1
+        self._helper_identity: tuple[int, int, int] | None = None
+        self.lifeline_identity: tuple[int, int] | None = None
+        self.process: subprocess.Popen[bytes] | None = None
+        self.task: RetainedTrustedTask | None = None
+        self._birth: tuple[RetainedTrustedTask | None, subprocess.Popen[bytes] | None] = (
+            None,
+            None,
+        )
+        self._task_digest: Digest | None = None
+        self.failed = False
+        self.complete = False
+        # Pin before the first effect, including partial attachment failures.
+        setattr(reservation, "_batch_timer", self)
+
+    def __reduce__(self) -> tuple[object, ...]:
+        raise TypeError("live batch timer cannot be copied or exported")
+
+    @property
+    def operational_groups(self) -> tuple[OwnedCgroup, ...]:
+        groups = (self.setup, self.supervisor, self.worker)
+        return groups if self.validator is None else (*groups, self.validator)
+
+    def _verify_validator(self) -> None:
+        if self.validator is not None:
+            if (
+                type(self.validator) is not OwnedCgroup
+                or PurePosixPath(self.validator.identity.relative_path).name != "validator"
+                or self.validator.identity
+                in [
+                    group.identity
+                    for group in (
+                        self.setup,
+                        self.supervisor,
+                        self.worker,
+                        self.reservation.observer_group,
+                    )
+                ]
+            ):
+                raise ValueError("original independent validator role differs")
+            _aggregate_readback(self.reservation.aggregate, self.validator)
+            sample = self.validator.sample()
+            if any(sample.memory_events.values()) or any(sample.pids_events.values()):
+                raise ValueError("original validator has resource-refusal history")
+
+    def _verify_identity(self) -> None:
+        reservation = self.reservation
+        if (
+            any(
+                a is not b
+                for a, b in zip(
+                    self._owners,
+                    (reservation, self.setup, self.supervisor, self.worker, self.validator),
+                    strict=True,
+                )
+            )
+            or getattr(reservation, "_batch_timer", None) is not self
+            or self._groups != tuple(g.identity for g in self.operational_groups)
+            or self.origin_ns != self._origin
+            or self._origin != int(reservation.batch_started_monotonic * 1_000_000_000)
+            or self.cutoff_ns != self._origin + 570_000_000_000
+            or self.end_ns != self._origin + 600_000_000_000
+            or not self.complete
+            or self.task is None
+            or self.process is None
+            or self.task is not self._birth[0]
+            or self.process is not self._birth[1]
+            or record_digest(self.task.spec) != self._task_digest
+            or self.process.pid != self.task.spec.pid
+            or self.task.spec.parent_pid != reservation.observer.spec.pid
+            or self.task.spec.configuration != reservation.configuration
+            or self.task.spec.cgroup != reservation.observer_group.identity
+            or self.task.spec.namespaces != reservation.observer.spec.namespaces
+        ):
+            raise ValueError("original batch timer identity or operational cutoff differs")
+        self._verify_validator()
+        helper = os.fstat(self.helper)
+        lifeline = os.fstat(self.lifeline)
+        if (
+            self._helper_identity != (self.helper, helper.st_dev, helper.st_ino)
+            or not stat.S_ISREG(helper.st_mode)
+            or fcntl.fcntl(self.helper, fcntl.F_GETFL) & os.O_ACCMODE != os.O_RDONLY
+            or self.lifeline_identity != (lifeline.st_dev, lifeline.st_ino)
+            or not stat.S_ISFIFO(lifeline.st_mode)
+            or fcntl.fcntl(self.lifeline, fcntl.F_GETFL) & os.O_ACCMODE != os.O_WRONLY
+        ):
+            raise ValueError("original helper/lifeline descriptor custody differs")
+
+    def verify_idle_retention(self) -> None:
+        """Require independent original helper cessation and stopped roles.
+
+        This is process/accounting observation only. Original storage handles
+        and every kernel reference unknown remain retained, never reusable.
+        """
+        self._verify_identity()
+        assert self.task is not None and self.process is not None
+        if time.monotonic_ns() < self.end_ns:
+            raise ValueError("idle retention cannot replace the original live batch")
+        self.task.verify_handles()
+        root = _proc_root(self.task.spec.boot_id)
+        try:
+            if (
+                os.readlink(f"self/fd/{self.task.pidfd}", dir_fd=root) != "anon_inode:[pidfd]"
+                or not _terminal_task_exited(self.task)
+                or self.process.poll() is None
+                or _fields(_read(root, f"self/fdinfo/{self.task.pidfd}")).get("Pid") != "-1"
+            ):
+                raise ValueError("original batch helper exit/reap remains unknown")
+        finally:
+            os.close(root)
+        reservation = self.reservation
+        _observer_placement(
+            reservation.observer,
+            reservation.observer_group,
+            reservation.aggregate,
+            self.operational_groups,
+        )
+        _aggregate_readback(reservation.aggregate, reservation.observer_group)
+        _topology(reservation.aggregate, self.setup, self.supervisor, self.worker)
+        for group in self.operational_groups:
+            if (
+                group._read("cgroup.procs")
+                or _counters(group._read("cgroup.events"), {"populated"})["populated"] != 0
+            ):
+                raise ValueError("original operational role is not independently stopped")
+        self.task.verify_handles()
+
+    def verify(self) -> None:
+        self._verify_identity()
+        reservation = self.reservation
+        assert self.task is not None and self.process is not None
+        if self.failed or self.process.poll() is not None or time.monotonic_ns() >= self.cutoff_ns:
+            raise ValueError("original batch timer identity or operational cutoff differs")
+        _observer_placement(
+            reservation.observer,
+            reservation.observer_group,
+            reservation.aggregate,
+            self.operational_groups,
+        )
+        _aggregate_readback(reservation.aggregate, reservation.observer_group)
+        _topology(reservation.aggregate, self.setup, self.supervisor, self.worker)
+        self.task.verify(reservation.observer_group.identity)
+        info = os.fstat(self.lifeline)
+        if self.lifeline_identity != (info.st_dev, info.st_ino) or not stat.S_ISFIFO(info.st_mode):
+            raise ValueError("original batch observer lifeline differs")
+        if fcntl.fcntl(self.lifeline, fcntl.F_GETFL) & os.O_ACCMODE != os.O_WRONLY:
+            raise ValueError("original batch observer lifeline direction differs")
+        directory = os.open(
+            "fd", os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW, dir_fd=self.task.descriptor
+        )
+        try:
+            group_pairs = [("3", self.worker), ("4", self.supervisor), ("5", self.setup)]
+            lifeline_number, timer_number = ("6", "9")
+            if self.validator is not None:
+                group_pairs.append(("6", self.validator))
+                lifeline_number, timer_number = ("7", "10")
+            expected_fds = {
+                "0",
+                "1",
+                "2",
+                lifeline_number,
+                timer_number,
+                *(number for number, _ in group_pairs),
+            }
+            if set(os.listdir(directory)) != expected_fds:
+                raise ValueError("batch timer actual descriptor inventory differs")
+            for number, group in group_pairs:
+                actual = os.stat(number, dir_fd=directory)
+                if (actual.st_dev, actual.st_ino) != (group.identity.device, group.identity.inode):
+                    raise ValueError("batch timer operational group handle differs")
+                flags = int(_fields(_read(self.task.descriptor, f"fdinfo/{number}"))["flags"], 8)
+                if flags & os.O_ACCMODE != os.O_RDONLY:
+                    raise ValueError("batch timer operational directory direction differs")
+            if (
+                os.readlink(timer_number, dir_fd=directory) != "anon_inode:[timerfd]"
+                or os.readlink(lifeline_number, dir_fd=directory) != f"pipe:[{info.st_ino}]"
+                or int(
+                    _fields(_read(self.task.descriptor, f"fdinfo/{lifeline_number}"))["flags"], 8
+                )
+                & (os.O_ACCMODE | os.O_NONBLOCK)
+                != os.O_RDONLY
+            ):
+                raise ValueError("batch timer actual timer/lifeline handles differ")
+            for number in ("0", "1", "2"):
+                actual = os.stat(number, dir_fd=directory)
+                if not stat.S_ISCHR(actual.st_mode) or actual.st_rdev != os.makedev(1, 3):
+                    raise ValueError("batch timer stdio must be the verified null device")
+        finally:
+            os.close(directory)
+        before = time.monotonic_ns()
+        timer = _fields(_read(self.task.descriptor, f"fdinfo/{timer_number}"))
+        after = time.monotonic_ns()
+        match = re.fullmatch(r"\(([0-9]+), ([0-9]+)\)", timer.get("it_value", ""))
+        if match is None:
+            raise ValueError("batch timer remaining timer malformed")
+        seconds, nanos = map(int, match.groups())
+        remaining = seconds * 1_000_000_000 + nanos
+        if (
+            nanos >= 1_000_000_000
+            or remaining <= 0
+            or after < before
+            or timer.get("clockid") != "1"
+            or timer.get("ticks") != "0"
+            or timer.get("settime flags") != "01"
+            or timer.get("it_interval") != "(0, 0)"
+            or int(timer.get("flags", "0"), 8) & (os.O_ACCMODE | os.O_NONBLOCK | os.O_CLOEXEC)
+            != os.O_RDWR | os.O_NONBLOCK | os.O_CLOEXEC
+            or not before + remaining <= self.cutoff_ns <= after + remaining
+        ):
+            raise ValueError("batch timer effective deadline differs from original reserve")
+        self.task.verify(reservation.observer_group.identity)
+
+
+class BatchTimerRefusal(ValueError):
+    def __init__(self, reason: str, lifetime: OwnedBatchTimer):
+        super().__init__(reason)
+        self.lifetime = lifetime
+        self.resources_reusable = False
+        lifetime.reservation._retain_installation_refusal(self)
+
+
+def create_owned_batch_timer(
+    reservation: OwnedStorageReservation,
+    setup: OwnedCgroup,
+    supervisor: OwnedCgroup,
+    worker: OwnedCgroup,
+    preparation: BootstrapPreparation,
+    helper_descriptor: int,
+    *,
+    validator: OwnedCgroup | None = None,
+) -> OwnedBatchTimer:
+    """Unqualified finite creation; no compiler, installation or authority API.
+
+    The installed helper/loader and actual fork/FD/controller behavior must be
+    qualified in the separately approved batch. Retain every partial lifetime.
+    """
+    configuration = reservation._configuration
+    preparation = audit_linux_bootstrap(configuration, preparation)
+    reservation.verify()
+    _observer_placement(
+        reservation.observer,
+        reservation.observer_group,
+        reservation.aggregate,
+        (setup, supervisor, worker)
+        if validator is None
+        else (setup, supervisor, worker, validator),
+    )
+    _topology(reservation.aggregate, setup, supervisor, worker)
+    if preparation.policy.helper_binary is None or any(
+        group._read("cgroup.procs")
+        or _counters(group._read("cgroup.events"), {"populated"})["populated"]
+        for group in (
+            (setup, supervisor, worker)
+            if validator is None
+            else (setup, supervisor, worker, validator)
+        )
+    ):
+        raise ValueError("batch timer requires current helper and empty original operational roles")
+    if getattr(reservation.observer, "_setup_started", False):
+        raise ValueError("batch timer must precede operational setup")
+    lifetime = OwnedBatchTimer(reservation, setup, supervisor, worker, validator=validator)
+    capsule = reading = ready_read = ready_write = -1
+    startup_end = min(
+        time.monotonic() + 30, reservation.batch_started + 120, reservation.batch_started + 570
+    )
+    try:
+        lifetime._verify_validator()
+        lifetime.helper = os.dup(helper_descriptor)
+        before = os.fstat(lifetime.helper)
+        lifetime._helper_identity = (lifetime.helper, before.st_dev, before.st_ino)
+        if (
+            not stat.S_ISREG(before.st_mode)
+            or before.st_uid != 0
+            or before.st_mode & 0o022
+            or not before.st_mode & 0o111
+            or not 0 < before.st_size <= 134217728
+        ):
+            raise ValueError("batch timer requires the retained installed trusted helper")
+        sha = hashlib.sha256()
+        offset = 0
+        while offset < before.st_size:
+            if time.monotonic() >= startup_end:
+                raise ValueError("original batch timer startup deadline exhausted")
+            chunk = os.pread(lifetime.helper, min(65536, before.st_size - offset), offset)
+            if not chunk:
+                raise ValueError("installed batch helper read incomplete")
+            sha.update(chunk)
+            offset += len(chunk)
+        after = os.fstat(lifetime.helper)
+        keys = (
+            "st_dev",
+            "st_ino",
+            "st_mode",
+            "st_uid",
+            "st_gid",
+            "st_size",
+            "st_mtime_ns",
+            "st_ctime_ns",
+        )
+        if sha.hexdigest() != preparation.policy.helper_binary or any(
+            getattr(before, key) != getattr(after, key) for key in keys
+        ):
+            raise ValueError("installed batch timer helper bytes/identity differ")
+        add, get, seals = _seals()
+        capsule = getattr(os, "memfd_create")(
+            "crewshal-original-batch-origin",
+            getattr(os, "MFD_CLOEXEC") | getattr(os, "MFD_ALLOW_SEALING"),
+        )
+        if os.write(capsule, struct.pack("=Q", lifetime.origin_ns)) != 8:
+            raise ValueError("original batch origin write incomplete")
+        fcntl.fcntl(capsule, add, seals)
+        if fcntl.fcntl(capsule, get) != seals:
+            raise ValueError("original batch origin seal readback differs")
+        reading, lifetime.lifeline = getattr(os, "pipe2")(os.O_CLOEXEC)
+        info = os.fstat(lifetime.lifeline)
+        lifetime.lifeline_identity = (info.st_dev, info.st_ino)
+        ready_read, ready_write = getattr(os, "pipe2")(os.O_CLOEXEC | os.O_NONBLOCK)
+        inputs = (
+            worker.descriptor,
+            supervisor.descriptor,
+            setup.descriptor,
+            *((validator.descriptor,) if validator is not None else ()),
+            reading,
+            ready_write,
+            capsule,
+        )
+        mode = "--batch-timer-fds" if validator is None else "--batch-timer-validator-fds"
+        argv = ["/bin/crewshal-bootstrap", mode, *map(str, inputs)]
+        lifetime.process = subprocess.Popen(
+            argv,
+            executable=f"/proc/self/fd/{lifetime.helper}",
+            pass_fds=(*inputs, lifetime.helper),
+            stdin=subprocess.DEVNULL,
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+            env={},
+            cwd="/",
+            close_fds=True,
+        )
+        os.close(reading)
+        reading = -1
+        os.close(ready_write)
+        ready_write = -1
+        root = _proc_root(reservation.observer.spec.boot_id)
+        descriptor = pidfd = -1
+        try:
+            descriptor, pidfd = _attach(root, lifetime.process.pid)
+            pid, _, parent, ticks = _stat_identity(_read(descriptor, "stat"))
+            spec = TrustedTaskSpec(
+                configuration=reservation.configuration,
+                pid=pid,
+                parent_pid=parent,
+                start_ticks=ticks,
+                boot_id=reservation.observer.spec.boot_id,
+                cgroup=reservation.observer_group.identity,
+                namespaces=reservation.observer.spec.namespaces,
+                executable=preparation.policy.helper_binary,
+                argv=argv,
+                environment={},
+                capabilities=reservation.observer.spec.capabilities,
+                placement="outer_observer",
+                cwd="/",
+            )
+            lifetime.task = RetainedTrustedTask(descriptor, pidfd, spec)
+            lifetime._birth = (lifetime.task, lifetime.process)
+            lifetime._task_digest = record_digest(lifetime.task.spec)
+        finally:
+            for handle in (descriptor, pidfd, root):
+                if handle >= 0:
+                    os.close(handle)
+        raw = bytearray()
+        while True:
+            if time.monotonic() >= startup_end or lifetime.process.poll() is not None:
+                raise ValueError("original batch timer startup deadline exhausted")
+            if not select.select([ready_read], [], [], min(0.001, startup_end - time.monotonic()))[
+                0
+            ]:
+                continue
+            chunk = os.read(ready_read, 129)
+            raw.extend(chunk)
+            if len(raw) > 128:
+                raise ValueError("batch timer readiness exceeds bounded record")
+            if not chunk:
+                break
+        if raw != f"BATCH {lifetime.origin_ns} {lifetime.cutoff_ns} {lifetime.end_ns}\n".encode():
+            raise ValueError("batch timer readiness differs from original sealed origin")
+        lifetime.complete = True
+        reservation.verify_operational()
+        return lifetime
+    except BaseException as error:
+        lifetime.failed = True
+        raise BatchTimerRefusal(str(error), lifetime) from error
+    finally:
+        for handle in (capsule, reading, ready_read, ready_write):
+            if handle >= 0:
+                os.close(handle)
+
+
 class NamespaceSetupPreparation(Contract):
     configuration: Digest
     bootstrap: Digest
@@ -253,6 +945,8 @@ class NamespaceSetupPreparation(Contract):
     parent_executable: Digest
     namespace_argv: list[str]
     control_fds: dict[str, int]
+    validator_control: bool = False
+    bridge_control: bool = False
     setup_controls: dict[str, str]
     parent_inventory: TrustedParentInventory | None = None
     unresolved: list[str]
@@ -267,9 +961,13 @@ def prepare_namespace_setup(
     parent_executable: Digest,
     *,
     parent_inventory: TrustedParentInventory | None = None,
+    validator_control: bool = False,
+    bridge_control: bool = False,
 ) -> NamespaceSetupPreparation:
     """Passive trusted-parent fragment. It never substitutes for native argv."""
     bootstrap = audit_linux_bootstrap(configuration, bootstrap)
+    if bridge_control and not validator_control:
+        raise ValueError("original bridge requires independent validator control")
     if (
         parent_inventory is None
         and configuration.linux_envelope is not None
@@ -348,7 +1046,11 @@ def prepare_namespace_setup(
             "setup": 5,
             "supervisor": 6,
             "worker": 7,
+            **({"validator": 8} if validator_control else {}),
+            **({"bridge": 9} if bridge_control else {}),
         },
+        validator_control=validator_control,
+        bridge_control=bridge_control,
         setup_controls=dict(envelope.aggregate_controls),
         parent_inventory=parent_inventory,
         unresolved=[
@@ -368,6 +1070,8 @@ class InheritedControls(Contract):
     boot_id: str
     outer_namespaces: dict[str, NamespaceIdentity]
     groups: dict[str, CgroupIdentity]
+    batch_origin_ns: int | None = None
+    bridge_identity: NamespaceIdentity | None = None
 
 
 def _role_controls(group: OwnedCgroup) -> None:
@@ -454,6 +1158,7 @@ class OwnedNamespaceSetup:
     recovery_deadline: float | None = None
     physical_teardown_claimed: bool = False
     storage_reservation: OwnedStorageReservation | None = None
+    validator: OwnedCgroup | None = None
 
 
 class NamespaceSetupRefusal(ValueError):
@@ -477,19 +1182,28 @@ def create_namespace_setup(
     inventory: RetainedParentInventory | None = None,
     storage_reservation: OwnedStorageReservation | None = None,
     storage_owner: "LinuxPhysicalOwner | None" = None,
+    validator: OwnedCgroup | None = None,
+    bridge: "StoppedNativeBridge | None" = None,
 ) -> OwnedNamespaceSetup:
     """Unqualified source: fork wrapper/init inside setup, return observer outside.
 
     The root observer is single-threaded in a bounded aggregate sibling.
-    Setup holds only wrappers/init; the inherited child moves itself to the
+    The helper moves only its child into setup before namespace effects;
+    the observer never enters a stopped role. The inherited child moves to the
     supervisor before creating the watchdog. No child is migrated by numeric PID.
     """
+    if storage_reservation is not None:
+        # This check precedes wrapper/helper/native/watchdog/validator effects.
+        # A preparing or serialized installation result cannot cross it.
+        storage_reservation.verify_installation()
     expected = prepare_namespace_setup(
         configuration,
         bootstrap,
         preparation.parent_argv,
         preparation.parent_executable,
         parent_inventory=preparation.parent_inventory,
+        validator_control=validator is not None,
+        bridge_control=bridge is not None,
     )
     if preparation.parent_inventory is not None:
         if inventory is None or inventory.inventory != preparation.parent_inventory:
@@ -507,15 +1221,33 @@ def create_namespace_setup(
     ):
         raise ValueError("namespace setup requires current exact source/helper bindings")
     _current_source(configuration)
-    _observer_placement(observer, observer_group, aggregate, (setup, supervisor, worker))
+    operational = (
+        (setup, supervisor, worker) if validator is None else (setup, supervisor, worker, validator)
+    )
+    _observer_placement(observer, observer_group, aggregate, operational)
     if observer.spec.configuration != record_digest(configuration):
         raise ValueError("owned observer configuration differs")
     _aggregate_readback(aggregate, observer_group)
     observer_group.sample()
-    if observer_group._read("cgroup.procs").split() != [str(observer.spec.pid)]:
-        raise ValueError("bounded outer observer role must contain only observer")
+    observer_pids = {str(observer.spec.pid)}
+    timer = getattr(storage_reservation, "_batch_timer", None)
+    if timer is not None:
+        if type(timer) is not OwnedBatchTimer:
+            raise ValueError("namespace setup requires original batch timer")
+        timer.verify()
+        assert timer.task is not None
+        if (
+            timer.setup is not setup
+            or timer.supervisor is not supervisor
+            or timer.worker is not worker
+            or timer.validator is not validator
+        ):
+            raise ValueError("namespace setup batch timer operational roles differ")
+        observer_pids.add(str(timer.task.spec.pid))
+    if set(observer_group._read("cgroup.procs").split()) != observer_pids:
+        raise ValueError("bounded outer observer role must contain only original observer/timer")
     _topology(aggregate, setup, supervisor, worker)
-    for group in (setup, supervisor, worker):
+    for group in operational:
         if (
             group._read("cgroup.procs")
             or _counters(group._read("cgroup.events"), {"populated"})["populated"]
@@ -532,6 +1264,16 @@ def create_namespace_setup(
             or storage_reservation._configuration_digest != record_digest(configuration)
         ):
             raise ValueError("namespace setup storage reservation differs")
+    if validator is not None:
+        if (
+            type(validator) is not OwnedCgroup
+            or PurePosixPath(validator.identity.relative_path).name != "validator"
+            or validator.identity
+            in [group.identity for group in (aggregate, observer_group, setup, supervisor, worker)]
+        ):
+            raise ValueError("namespace setup original validator role differs")
+        _aggregate_readback(aggregate, validator)
+        validator.sample()
     namespace_fd: int | None = None
     if storage_owner is not None:
         from crewshal.linux_storage import LinuxPhysicalOwner
@@ -544,12 +1286,41 @@ def create_namespace_setup(
             raise ValueError("namespace setup requires its original concrete storage owner")
         storage_owner.verify_retention(storage_reservation)
         namespace_fd = storage_owner.handles["namespace"]
+    if validator is not None and namespace_fd is None:
+        raise ValueError("validator control requires original installed storage namespace")
+    if bridge is not None:
+        from crewshal.linux_bridge import StoppedNativeBridge
+
+        if (
+            type(bridge) is not StoppedNativeBridge
+            or storage_reservation is None
+            or getattr(storage_reservation._installation, "_bridge", None) is not bridge
+            or bridge.installation is not storage_reservation._installation
+            or validator is None
+            or namespace_fd is None
+        ):
+            raise ValueError("namespace setup requires original stopped-native bridge")
+        bridge._verify_original()
+        if (
+            bridge.child_channel.getsockopt(socket.SOL_SOCKET, socket.SO_TYPE)
+            != socket.SOCK_SEQPACKET
+        ):
+            raise ValueError("original bridge socket type differs")
     observer._setup_started = True
     controls = InheritedControls(
         configuration=configuration,
         bootstrap=bootstrap,
         setup=preparation,
         boot_id=observer.spec.boot_id,
+        batch_origin_ns=timer.origin_ns if type(timer) is OwnedBatchTimer else None,
+        bridge_identity=(
+            NamespaceIdentity(
+                device=os.fstat(bridge.child_channel.fileno()).st_dev,
+                inode=os.fstat(bridge.child_channel.fileno()).st_ino,
+            )
+            if bridge is not None
+            else None
+        ),
         outer_namespaces=observer.spec.namespaces,
         groups={
             name: group.identity
@@ -558,6 +1329,7 @@ def create_namespace_setup(
                 ("setup", setup),
                 ("supervisor", supervisor),
                 ("worker", worker),
+                *((("validator", validator),) if validator is not None else ()),
             )
         },
     )
@@ -570,54 +1342,61 @@ def create_namespace_setup(
         worker,
         observer_group,
         storage_reservation=storage_reservation,
+        validator=validator,
     )
     if storage_reservation is not None:
         storage_reservation._setup_lifetime = lifetime
     capsule = _capsule(controls)
     try:
-        try:
-            _move_self(setup)
-            observer.verify(setup.identity)
-            descriptors = (
-                capsule,
-                aggregate.descriptor,
-                setup.descriptor,
-                supervisor.descriptor,
-                worker.descriptor,
-                *((namespace_fd,) if namespace_fd is not None else ()),
-            )
-            lifetime.wrapper = subprocess.Popen(
-                [
-                    "/bin/crewshal-bootstrap",
-                    "--namespace-source-fds" if namespace_fd is not None else "--namespace-fds",
-                    *(str(descriptor) for descriptor in descriptors),
-                    "--",
-                    *preparation.namespace_argv,
-                ],
-                # argv[0] remains the fixed namespace identity, while the
-                # outer exec resolves the actual copied helper through custody.
-                # C normalizes only its named controls and closes this extra
-                # root FD before bwrap; it never reaches the namespace parent.
-                executable=(
-                    f"/proc/self/fd/{inventory.descriptor}/bin/crewshal-bootstrap"
-                    if inventory is not None
-                    else "/bin/crewshal-bootstrap"
-                ),
-                pass_fds=(
-                    (*descriptors, inventory.descriptor) if inventory is not None else descriptors
-                ),
-                stdin=subprocess.DEVNULL,
-                stdout=subprocess.DEVNULL,
-                stderr=subprocess.DEVNULL,
-                env={},
-                close_fds=True,
-                # The outer wrapper runs before bwrap constructs namespace-local
-                # candidate/scratch targets. Only bwrap's --chdir establishes the
-                # exact parent cwd; never require that path on the operator host.
-                cwd="/",
-            )
-        finally:
-            _move_self_to_observer(observer, observer_group)
+        descriptors = (
+            capsule,
+            aggregate.descriptor,
+            setup.descriptor,
+            supervisor.descriptor,
+            worker.descriptor,
+            *((validator.descriptor,) if validator is not None else ()),
+            *((bridge.child_channel.fileno(),) if bridge is not None else ()),
+            *((namespace_fd,) if namespace_fd is not None else ()),
+        )
+        lifetime.wrapper = subprocess.Popen(
+            [
+                "/bin/crewshal-bootstrap",
+                "--namespace-validator-bridge-source-fds"
+                if bridge is not None
+                else "--namespace-validator-source-fds"
+                if validator is not None
+                else "--namespace-source-fds"
+                if namespace_fd is not None
+                else "--namespace-fds",
+                *(str(descriptor) for descriptor in descriptors),
+                "--",
+                *preparation.namespace_argv,
+            ],
+            # argv[0] remains the fixed namespace identity, while the
+            # outer exec resolves the actual copied helper through custody.
+            # C normalizes only its named controls and closes this extra
+            # root FD before bwrap; it never reaches the namespace parent.
+            executable=(
+                f"/proc/self/fd/{inventory.descriptor}/bin/crewshal-bootstrap"
+                if inventory is not None
+                else "/bin/crewshal-bootstrap"
+            ),
+            pass_fds=(
+                (*descriptors, inventory.descriptor) if inventory is not None else descriptors
+            ),
+            stdin=subprocess.DEVNULL,
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+            env={},
+            close_fds=True,
+            # The outer wrapper runs before bwrap constructs namespace-local
+            # candidate/scratch targets. Only bwrap's --chdir establishes the
+            # exact parent cwd; never require that path on the operator host.
+            cwd="/",
+        )
+        # Only the helper child enters setup through its retained FD. The
+        # original observer never joins a role that terminal recovery stops.
+        _observer_placement(observer, observer_group, aggregate, operational)
         return lifetime
     except BaseException as error:
         raise NamespaceSetupRefusal(str(error), lifetime) from error
@@ -669,6 +1448,7 @@ def receive_namespace_controls() -> tuple[InheritedControls, dict[str, OwnedCgro
     """
     _, get, seals = _seals()
     groups: dict[str, OwnedCgroup] = {}
+    roles: tuple[str, ...] = ("aggregate", "setup", "supervisor", "worker")
     try:
         info = os.fstat(3)
         if (
@@ -681,7 +1461,17 @@ def receive_namespace_controls() -> tuple[InheritedControls, dict[str, OwnedCgro
         if len(raw) != info.st_size:
             raise ValueError("namespace control capsule read incomplete")
         controls = InheritedControls.model_validate_json(raw)
-        if set(controls.groups) != {"aggregate", "setup", "supervisor", "worker"}:
+        if controls.setup.validator_control:
+            roles += ("validator",)
+            if (
+                controls.batch_origin_ns is None
+                or not 0
+                < controls.batch_origin_ns
+                < time.monotonic_ns()
+                < controls.batch_origin_ns + 570_000_000_000
+            ):
+                raise ValueError("original validator batch origin unavailable or exhausted")
+        if set(controls.groups) != set(roles):
             raise ValueError("namespace control role inventory differs")
         if (
             prepare_namespace_setup(
@@ -690,12 +1480,14 @@ def receive_namespace_controls() -> tuple[InheritedControls, dict[str, OwnedCgro
                 controls.setup.parent_argv,
                 controls.setup.parent_executable,
                 parent_inventory=controls.setup.parent_inventory,
+                validator_control=controls.setup.validator_control,
+                bridge_control=controls.setup.bridge_control,
             )
             != controls.setup
         ):
             raise ValueError("inherited namespace preparation differs")
         _current_source(controls.configuration)
-        for number, name in enumerate(("aggregate", "setup", "supervisor", "worker"), 4):
+        for number, name in enumerate(roles, 4):
             expected = controls.groups[name]
             observed = os.fstat(number)
             if not stat.S_ISDIR(observed.st_mode) or (observed.st_dev, observed.st_ino) != (
@@ -705,13 +1497,23 @@ def receive_namespace_controls() -> tuple[InheritedControls, dict[str, OwnedCgro
                 raise ValueError("inherited group descriptor differs from retained identity")
             groups[name] = OwnedCgroup.attach_inherited(number, expected)
         _topology(groups["aggregate"], groups["setup"], groups["supervisor"], groups["worker"])
+        if "validator" in groups:
+            validator = groups["validator"]
+            if PurePosixPath(
+                validator.identity.relative_path
+            ).name != "validator" or validator.identity in [
+                groups[name].identity for name in roles[:-1]
+            ]:
+                raise ValueError("inherited original validator role differs")
+            _aggregate_readback(groups["aggregate"], validator)
+            validator.sample()
         return controls, groups
     except BaseException:
         for group in groups.values():
             group.close()
         raise
     finally:
-        for number in range(3, 8):
+        for number in range(3, 4 + len(roles)):
             os.close(number)
 
 
@@ -720,6 +1522,20 @@ class NamespaceParentRefusal(ValueError):
         super().__init__(reason)
         self.parent, self.groups = parent, groups
         self.resources_reusable = False
+
+
+def _set_namespace_file_growth_limit() -> None:
+    """Lower only the namespace parent before watchdog/native/tool inheritance.
+
+    The original observer and backing/formatting jobs must not inherit this
+    smaller payload limit. No retry or renewed deadline follows a refusal.
+    """
+    if sys.platform != "linux":
+        raise ValueError("Linux namespace file growth control unavailable")
+    limits = (FILE_GROWTH_BYTES, FILE_GROWTH_BYTES)
+    resource.setrlimit(resource.RLIMIT_FSIZE, limits)
+    if resource.getrlimit(resource.RLIMIT_FSIZE) != limits:
+        raise ValueError("namespace file growth limit installation differs")
 
 
 def enter_namespace_parent(
@@ -749,6 +1565,16 @@ def enter_namespace_parent(
     ):
         raise ValueError("namespace parent retained controls differ")
     _topology(groups["aggregate"], groups["setup"], groups["supervisor"], groups["worker"])
+    if "validator" in groups:
+        _aggregate_readback(groups["aggregate"], groups["validator"])
+        sample = groups["validator"].sample()
+        if (
+            sample.populated
+            or sample.direct_pids
+            or any(sample.memory_events.values())
+            or any(sample.pids_events.values())
+        ):
+            raise ValueError("namespace parent requires original empty validator role")
     if groups["supervisor"]._read("cgroup.procs") or groups["worker"].sample().populated:
         raise ValueError("namespace parent requires empty supervisor and worker")
     root = _proc_root(controls.boot_id)
@@ -788,6 +1614,7 @@ def enter_namespace_parent(
     try:
         if inventory is not None:
             inventory.verify_task_root(parent.descriptor)
+        _set_namespace_file_growth_limit()
         parent.verify(groups["setup"].identity)
         _move_self(groups["supervisor"])
         parent.verify(groups["supervisor"].identity)
@@ -834,11 +1661,15 @@ def _terminal_topology(lifetime: OwnedNamespaceSetup) -> None:
         "supervisor": lifetime.supervisor,
         "worker": lifetime.worker,
     }
+    if lifetime.validator is not None:
+        groups["validator"] = lifetime.validator
+    if set(groups) != set(lifetime.controls.groups):
+        raise ValueError("terminal retained role inventory differs")
     if any(group.identity != lifetime.controls.groups[name] for name, group in groups.items()):
         raise ValueError("terminal retained cgroup identities differ")
-    if len({(g.identity.device, g.identity.inode) for g in groups.values()}) != 4:
+    if len({(g.identity.device, g.identity.inode) for g in groups.values()}) != len(groups):
         raise ValueError("terminal owned roles must remain distinct")
-    for group in (lifetime.setup, lifetime.supervisor, lifetime.worker):
+    for group in tuple(groups.values())[1:]:
         group._verify()
         if PurePosixPath(group.identity.relative_path).parent != PurePosixPath(
             aggregate.identity.relative_path
@@ -883,7 +1714,12 @@ def terminal_namespace_setup(
         observer,
         lifetime.observer_group,
         lifetime.aggregate,
-        (lifetime.setup, lifetime.supervisor, lifetime.worker),
+        (
+            lifetime.setup,
+            lifetime.supervisor,
+            lifetime.worker,
+            *((lifetime.validator,) if lifetime.validator is not None else ()),
+        ),
     )
     if (
         host_parent.spec.cgroup != lifetime.supervisor.identity
@@ -914,6 +1750,8 @@ def terminal_namespace_setup(
             lifetime.recovery_deadline = min(lifetime.recovery_deadline, absolute_deadline)
         try:
             lifetime.worker.stop()
+            if lifetime.validator is not None:
+                lifetime.validator.stop()
         except (OSError, ValueError) as error:
             errors.append(str(error))
     empty = parent_exited = watchdog_exited = reaped = False
@@ -929,14 +1767,24 @@ def terminal_namespace_setup(
         try:
             sample = lifetime.worker.sample()
             worker_empty = not sample.populated and not sample.direct_pids
-            if first and worker_empty and not roles_stopped and not errors:
+            validator_empty = True
+            if lifetime.validator is not None:
+                validator_sample = lifetime.validator.sample()
+                validator_empty = (
+                    not validator_sample.populated and not validator_sample.direct_pids
+                )
+            if first and worker_empty and validator_empty and not roles_stopped and not errors:
                 lifetime.supervisor.stop()
                 lifetime.setup.stop()
                 roles_stopped = True
-            empty = worker_empty and all(
-                not group._read("cgroup.procs")
-                and _counters(group._read("cgroup.events"), {"populated"})["populated"] == 0
-                for group in (lifetime.supervisor, lifetime.setup)
+            empty = (
+                worker_empty
+                and validator_empty
+                and all(
+                    not group._read("cgroup.procs")
+                    and _counters(group._read("cgroup.events"), {"populated"})["populated"] == 0
+                    for group in (lifetime.supervisor, lifetime.setup)
+                )
             )
             parent_exited = _terminal_task_exited(host_parent)
             watchdog_exited = _terminal_task_exited(host_watchdog)

@@ -85,7 +85,30 @@ class Phase2DSetup(unittest.TestCase):
             "setup": self.setup_group,
             "supervisor": self.supervisor,
             "worker": self.worker,
+            **({"validator": self.validator} if hasattr(self, "validator") else {}),
         }
+
+    def add_validator(self):
+        path = self.f.aggregate_path / "validator"
+        path.mkdir()
+        self.validator_path = path
+        self.validator = self.f.group(path, "owned.slice/session.scope/validator", False)
+        path.joinpath("cgroup.procs").write_text("")
+        path.joinpath("cgroup.events").write_text("populated 0\nfrozen 0")
+        self.plan = setup.prepare_namespace_setup(
+            self.configuration,
+            self.preparation,
+            self.parent.spec.argv,
+            self.parent.spec.executable,
+            validator_control=True,
+        )
+        self.controls = self.controls.model_copy(
+            update={
+                "setup": self.plan,
+                "groups": {name: group.identity for name, group in self.groups.items()},
+                "batch_origin_ns": time.monotonic_ns() - 1_000_000_000,
+            }
+        )
 
     def cleanup_watchdog(self, lifetime):
         if lifetime.task is not None:
@@ -422,6 +445,48 @@ class Phase2DSetup(unittest.TestCase):
         self.assertTrue(result.watchdog_reaped)
         self.assertFalse(result.watchdog_exited)
 
+    def test_namespace_growth_installation_checks_actual_result_and_never_retries(self):
+        expected = (131072, 131072)
+        with (
+            patch.object(setup.sys, "platform", "linux"),
+            patch.object(setup.resource, "setrlimit") as lower,
+            patch.object(setup.resource, "getrlimit", return_value=expected),
+        ):
+            setup._set_namespace_file_growth_limit()
+        lower.assert_called_once_with(setup.resource.RLIMIT_FSIZE, expected)
+        with (
+            patch.object(setup.sys, "platform", "linux"),
+            patch.object(setup.resource, "setrlimit") as lower,
+            patch.object(setup.resource, "getrlimit", return_value=(131072, -1)),
+            self.assertRaisesRegex(ValueError, "installation differs"),
+        ):
+            setup._set_namespace_file_growth_limit()
+        lower.assert_called_once_with(setup.resource.RLIMIT_FSIZE, expected)
+
+    def test_growth_installation_refusal_retains_parent_before_migration(self):
+        bridge = self.bridge
+        bridge.parent_path = bridge.parent_path.rename(bridge.proc_root / str(os.getpid()))
+        bridge.parent_path.joinpath("cgroup").write_text(
+            f"0::/{self.setup_group.identity.relative_path}\n"
+        )
+        self.supervisor_path.joinpath("cgroup.procs").write_text("")
+        with (
+            bridge.kernel_proc(),
+            patch.object(
+                setup,
+                "_set_namespace_file_growth_limit",
+                side_effect=OSError("synthetic limit refusal"),
+            ) as growth,
+            patch.object(setup, "_move_self") as move,
+            self.assertRaises(setup.NamespaceParentRefusal) as caught,
+        ):
+            setup.enter_namespace_parent(self.controls, self.groups)
+        self.addCleanup(caught.exception.parent.close)
+        growth.assert_called_once_with()
+        move.assert_not_called()
+        os.fstat(caught.exception.parent.descriptor)
+        self.assertFalse(caught.exception.resources_reusable)
+
     def test_namespace_parent_derives_actual_pid_and_migrates_only_self(self):
         bridge = self.bridge
         bridge.parent_path = bridge.parent_path.rename(bridge.proc_root / str(os.getpid()))
@@ -437,8 +502,13 @@ class Phase2DSetup(unittest.TestCase):
             )
             self.supervisor_path.joinpath("cgroup.procs").write_text(str(os.getpid()))
 
-        with bridge.kernel_proc(), patch.object(setup, "_move_self", side_effect=migrate):
+        with (
+            bridge.kernel_proc(),
+            patch.object(setup, "_set_namespace_file_growth_limit") as growth,
+            patch.object(setup, "_move_self", side_effect=migrate),
+        ):
             parent = setup.enter_namespace_parent(self.controls, self.groups)
+        growth.assert_called_once_with()
         self.addCleanup(parent.close)
         self.assertEqual(parent.spec.pid, os.getpid())
         self.assertEqual(parent.spec.start_ticks, 123456)
@@ -453,11 +523,13 @@ class Phase2DSetup(unittest.TestCase):
         self.supervisor_path.joinpath("cgroup.procs").write_text("")
         with (
             bridge.kernel_proc(),
+            patch.object(setup, "_set_namespace_file_growth_limit") as growth,
             patch.object(setup, "_move_self") as move,
             self.assertRaisesRegex(ValueError, "differ"),
         ):
             setup.enter_namespace_parent(controls, self.groups)
         move.assert_not_called()
+        growth.assert_not_called()
 
     def test_parent_migration_failure_retains_identity_and_groups(self):
         bridge = self.bridge
@@ -468,6 +540,7 @@ class Phase2DSetup(unittest.TestCase):
         self.supervisor_path.joinpath("cgroup.procs").write_text("")
         with (
             bridge.kernel_proc(),
+            patch.object(setup, "_set_namespace_file_growth_limit"),
             patch.object(setup, "_move_self", side_effect=OSError("synthetic migration refusal")),
             self.assertRaises(setup.NamespaceParentRefusal) as caught,
         ):
@@ -493,7 +566,10 @@ class Phase2DSetup(unittest.TestCase):
         path = self.f.root / "sealed-controls"
         path.write_bytes(controls.model_dump_json().encode())
         descriptors = {3: os.open(path, os.O_RDONLY)}
-        for number, name in enumerate(("aggregate", "setup", "supervisor", "worker"), 4):
+        roles = ("aggregate", "setup", "supervisor", "worker")
+        if controls.setup.validator_control:
+            roles += ("validator",)
+        for number, name in enumerate(roles, 4):
             descriptors[number] = os.dup(self.groups[name].descriptor)
         if wrong_group:
             os.close(descriptors[7])
@@ -544,6 +620,38 @@ class Phase2DSetup(unittest.TestCase):
             {name: group.identity for name, group in groups.items()}, self.controls.groups
         )
         self.assertNotEqual(groups["worker"].descriptor, self.worker.descriptor)
+
+    def test_validator_transport_retains_distinct_actual_role_and_original_origin(self):
+        self.add_validator()
+        with self.control_transport() as descriptors:
+            controls, groups = setup.receive_namespace_controls()
+            self.assertEqual(descriptors, {})
+        for group in groups.values():
+            self.addCleanup(group.close)
+        self.assertEqual(controls.batch_origin_ns, self.controls.batch_origin_ns)
+        self.assertEqual(groups["validator"].identity, self.validator.identity)
+        self.assertNotEqual(groups["validator"].descriptor, self.validator.descriptor)
+
+    def test_missing_expired_or_future_validator_origin_refuses_and_closes_all_controls(self):
+        self.add_validator()
+        for origin in (
+            None,
+            0,
+            time.monotonic_ns() - 571_000_000_000,
+            time.monotonic_ns() + 1_000_000_000,
+        ):
+            with self.subTest(origin=origin):
+                controls = self.controls.model_copy(update={"batch_origin_ns": origin})
+                with self.control_transport(controls) as descriptors:
+                    with self.assertRaisesRegex(ValueError, "batch origin"):
+                        setup.receive_namespace_controls()
+                    self.assertEqual(descriptors, {})
+
+    def test_changed_validator_ceiling_refuses_inherited_role(self):
+        self.add_validator()
+        self.validator_path.joinpath("pids.max").write_text("128")
+        with self.control_transport(), self.assertRaisesRegex(ValueError, "controls differ"):
+            setup.receive_namespace_controls()
 
     def test_unsealed_control_record_refused_and_originals_closed(self):
         with (
@@ -604,6 +712,7 @@ class Phase2DSetup(unittest.TestCase):
         retained_namespace=False,
         wrong_owner=False,
         failed_owner=False,
+        forbid_observer_migration=False,
     ):
         self.external_observer()
         origin = time.monotonic() - 1
@@ -657,6 +766,8 @@ class Phase2DSetup(unittest.TestCase):
             return os.open(controls_path, os.O_RDONLY)
 
         def migrate(group):
+            if forbid_observer_migration:
+                raise AssertionError("retained observer must never enter stopped setup role")
             self.assertIs(group, self.setup_group)
             self.bridge.parent_path.joinpath("cgroup").write_text(
                 f"0::/{group.identity.relative_path}\n"
@@ -685,11 +796,18 @@ class Phase2DSetup(unittest.TestCase):
                 self.assertEqual(options["pass_fds"][-1], namespace_fd)
             self.assertEqual(options["env"], {})
             self.assertNotIn("preexec_fn", options)
-            self.parent.verify(self.setup_group.identity)
+            self.parent.verify(self.observer_group.identity)
             if fail_constructor:
                 raise OSError("synthetic Popen failure")
+            self.calls.append(("spawn_wrapper",))
             self.setup_path.joinpath("cgroup.procs").write_text("12345")
             self.setup_path.joinpath("cgroup.events").write_text("populated 1\nfrozen 0")
+            if fail_return:
+                # Independent readback catches observer mutation after child
+                # creation. No migration-back effect or second startup occurs.
+                self.bridge.parent_path.joinpath("cgroup").write_text(
+                    f"0::/{self.setup_group.identity.relative_path}\n"
+                )
             return self.f.child
 
         with (
@@ -722,6 +840,11 @@ class Phase2DSetup(unittest.TestCase):
         self.assertIs(lifetime.wrapper, self.f.child)
         self.assertIsNotNone(lifetime.storage_reservation._storage_owner)
 
+    def test_original_observer_never_enters_stoppable_setup(self):
+        lifetime = self.namespace(forbid_observer_migration=True)
+        self.assertIs(lifetime.wrapper, self.f.child)
+        self.parent.verify(self.observer_group.identity)
+
     def test_caller_owner_flag_cannot_supply_namespace_handoff(self):
         with self.assertRaisesRegex(ValueError, "original concrete storage owner"):
             self.namespace(reserve_storage=True, wrong_owner=True)
@@ -749,11 +872,12 @@ class Phase2DSetup(unittest.TestCase):
             fragment.index("execve(argv[9], argv + 9, environ)"),
         )
 
-    def test_outer_wrapper_is_born_in_setup_and_observer_returns(self):
+    def test_outer_wrapper_alone_enters_setup_and_observer_stays_outside(self):
         lifetime = self.namespace()
         self.assertIs(lifetime.wrapper, self.f.child)
-        self.assertEqual(self.calls[0], ("move_setup",))
-        self.assertEqual(self.calls[-1], ("return_observer",))
+        self.assertEqual(self.calls[-1], ("spawn_wrapper",))
+        self.assertNotIn(("move_setup",), self.calls)
+        self.assertNotIn(("return_observer",), self.calls)
         self.assertFalse(self.worker.sample().populated)
         self.assertFalse(lifetime.resources_reusable)
         self.assertTrue(self.parent._setup_started)
@@ -1043,7 +1167,7 @@ class Phase2DSetup(unittest.TestCase):
         reservation.verify()
         self.assertEqual(reservation.charges, setup.StorageCharges())
 
-    def test_wrapper_constructor_failure_returns_observer_and_retains_groups(self):
+    def test_wrapper_constructor_failure_leaves_observer_outside_and_retains_groups(self):
         with self.assertRaises(setup.NamespaceSetupRefusal) as caught:
             self.namespace(fail_constructor=True)
         self.parent.verify(self.parent.spec.cgroup)
@@ -1052,7 +1176,7 @@ class Phase2DSetup(unittest.TestCase):
         self.assertTrue(self.parent._setup_started)
         self.assertFalse(caught.exception.resources_reusable)
 
-    def test_observer_return_failure_retains_created_wrapper_without_worker_stop(self):
+    def test_post_constructor_observer_mutation_retains_wrapper_without_worker_stop(self):
         with (
             patch.object(self.worker, "stop") as stop,
             self.assertRaises(setup.NamespaceSetupRefusal) as caught,
@@ -1062,7 +1186,11 @@ class Phase2DSetup(unittest.TestCase):
         self.assertIs(caught.exception.lifetime.wrapper, self.f.child)
         self.assertFalse(caught.exception.resources_reusable)
 
-    def external_terminal(self, worker_stops=True, processes_exit=True):
+    def external_terminal(
+        self, worker_stops=True, processes_exit=True, *, validator=False, validator_stops=True
+    ):
+        if validator:
+            self.add_validator()
         host_parent = self.parent
         self.external_observer()
         # Keep a separately retained host-view parent handle. Synthetic PID
@@ -1091,6 +1219,7 @@ class Phase2DSetup(unittest.TestCase):
             self.supervisor,
             self.worker,
             self.observer_group,
+            validator=self.validator if validator else None,
         )
         self.setup_path.joinpath("cgroup.procs").write_text("12345")
         self.setup_path.joinpath("cgroup.events").write_text("populated 1\nfrozen 0")
@@ -1101,6 +1230,8 @@ class Phase2DSetup(unittest.TestCase):
         def role_stop(group, path, name):
             calls.append(name)
             self.assertFalse(self.worker.sample().populated)
+            if validator:
+                self.assertFalse(self.validator.sample().populated)
             group.stop_original()
             if processes_exit:
                 path.joinpath("cgroup.procs").write_text("")
@@ -1113,7 +1244,32 @@ class Phase2DSetup(unittest.TestCase):
 
         if processes_exit:
             wrapper.result = 0
+
+        def stop_validator():
+            calls.append("validator")
+            self.assertFalse(self.worker.sample().populated)
+            if validator_stops:
+                self.validator.stop_original()
+                self.validator_path.joinpath("cgroup.procs").write_text("")
+                self.validator_path.joinpath("cgroup.events").write_text("populated 0\nfrozen 0")
+            else:
+                raise OSError("synthetic validator stop refusal")
+
+        if validator:
+            self.validator_path.joinpath("cgroup.procs").write_text("88888")
+            self.validator_path.joinpath("cgroup.events").write_text("populated 1\nfrozen 0")
         with (
+            patch.object(
+                self.validator if validator else self.worker,
+                "stop_original",
+                self.validator.stop if validator else self.worker.stop,
+                create=True,
+            ),
+            patch.object(
+                self.validator if validator else self.worker,
+                "stop",
+                side_effect=stop_validator if validator else self.worker.stop,
+            ),
             patch.object(self.supervisor, "stop_original", self.supervisor.stop, create=True),
             patch.object(self.setup_group, "stop_original", self.setup_group.stop, create=True),
             patch.object(
@@ -1156,6 +1312,19 @@ class Phase2DSetup(unittest.TestCase):
         self.assertEqual(result.errors, ())
         self.assertFalse(result.resources_reusable)
         self.assertLessEqual(lifetime.recovery_deadline, time.monotonic())
+
+    def test_validator_tree_stops_after_worker_and_before_parent_roles(self):
+        _, result, calls = self.external_terminal(validator=True)
+        self.assertEqual(calls, ["validator", "supervisor", "setup"])
+        self.assertTrue(result.groups_empty)
+        self.assertEqual(result.errors, ())
+
+    def test_unknown_validator_tree_keeps_parent_roles_alive(self):
+        _, result, calls = self.external_terminal(validator=True, validator_stops=False)
+        self.assertEqual(calls, ["validator"])
+        self.assertFalse(result.groups_empty)
+        self.assertTrue(result.errors)
+        self.assertFalse(result.resources_reusable)
 
     def test_failed_worker_stop_keeps_supervisor_watchdog_and_setup_alive(self):
         _, result, calls = self.external_terminal(worker_stops=False)

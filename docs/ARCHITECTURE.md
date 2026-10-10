@@ -4,6 +4,8 @@ Date: 2026-10-02. Status: accepted as the initial implementation direction on 20
 
 ## Outcome and scope
 
+Accepted installation amendment, 2026-10-10: [ADR 0006](decisions/0006-upfront-installation-charge.md) permits one upfront fully charged installation reservation by the same original observer, with the original timer and ceilings. It preserves the installed-domain path and requires independently observed physical-domain/root/journal growth controls before native/validator admission. Charge data and finite preparation supply no readiness, runtime, release or reuse authority. [Current implementation boundary](PHASE-2D-INSTALLATION-BOOTSTRAP-2026-10-10.md).
+
 Test whether a corrected, human-confirmed project model reduces setup effort and supports consistent evidence when two coding runtimes exchange implementation and review responsibilities. Success must be measured against the [evaluation plan](../INITIAL-EVALUATION-PLAN.md); the design itself demonstrates no savings or security guarantee.
 
 Propose one local Python coordinator, passive discovery, versioned structured records, SQLite state and CLI subprocess adapters for Codex and Claude Code. No new model/tool loop, distributed scheduler, fixed agent organization, automatic merge, deployment or background autonomy. See [decision 0002](decisions/0002-minimal-architecture.md).

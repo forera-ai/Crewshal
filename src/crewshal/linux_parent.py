@@ -11,6 +11,7 @@ import os
 from pathlib import PurePosixPath
 import re
 import select
+import signal
 import stat
 import subprocess
 import sys
@@ -29,6 +30,7 @@ from crewshal.admission import (
     _fields,
     _read,
     _stat_identity,
+    _verify_file_growth_limit,
 )
 from crewshal.contracts import Digest, record_digest
 from crewshal.dispatch import DispatchConfiguration
@@ -45,6 +47,7 @@ from crewshal.linux_bootstrap import (
 from crewshal.model import Contract
 from crewshal.linux_envelope import native_working_directory
 from crewshal.supervisor import CgroupIdentity, OwnedCgroup, _counters
+from crewshal.supervisor import CapturedProcess
 
 
 class TrustedTaskSpec(Contract):
@@ -250,6 +253,10 @@ class RetainedTrustedTask:
             fields.get(k) != v for k, v in expected.items()
         ):
             raise ValueError("trusted task role, capabilities or thread identity differs")
+        if spec.placement == "namespace":
+            if int(spec.capabilities, 16) & (1 << 24):
+                raise ValueError("namespace task must not raise inherited hard file limits")
+            _verify_file_growth_limit(self.descriptor)
         if _read(self.descriptor, "cgroup").decode().strip() != f"0::/{group.relative_path}":
             raise ValueError("trusted task cgroup placement differs")
         _namespaces(self.descriptor, spec.namespaces)
@@ -519,6 +526,16 @@ def stage_namespace_parent(
     proc: RetainedProc | None = None
     in_handoff = False
     try:
+        bridge_channel = getattr(parent, "_bridge_channel", None)
+        if bridge_channel is not None:
+            from crewshal.linux_bridge import send_watchdog_bridge
+            from crewshal.linux_setup import OwnedWatchdogLifetime
+
+            lifetime = getattr(parent, "_watchdog_lifetime", None)
+            if type(lifetime) is not OwnedWatchdogLifetime or lifetime.observed is not watchdog:
+                raise ValueError("original armed bridge/watchdog custody differs")
+            send_watchdog_bridge(bridge_channel, lifetime)
+            check()
         try:
             _move_self(worker)
             parent.verify(worker.identity)
@@ -609,6 +626,12 @@ def stage_namespace_parent(
         # Keep the actual handoff in its original namespace parent. A later
         # freeze may not substitute another child, watchdog or role allocation.
         setattr(parent, "_native_handoff", (admitted, watchdog, worker, supervisor, aggregate))
+        if bridge_channel is not None:
+            from crewshal.linux_bridge import send_stopped_native_bridge
+
+            if type(lifetime) is not OwnedWatchdogLifetime:
+                raise ValueError("original bridge lifetime changed before stopped handoff")
+            send_stopped_native_bridge(bridge_channel, admitted, lifetime)
         return admitted
     except BaseException as error:
         # The same refusal uses one grace only; never recover the handoff twice.
@@ -644,3 +667,67 @@ def stage_namespace_parent(
         raise ParentBridgeRefusal(
             str(error), parent, watchdog, child, proc, refusal, (worker, supervisor, aggregate)
         ) from error
+
+
+def capture_namespace_native(
+    parent: RetainedTrustedTask, *, cancelled: Callable[[], bool]
+) -> CapturedProcess:
+    """Capture in the direct child's original parent, without a SQLite writer.
+
+    This operational source is usable only by a separately qualified installed
+    parent. Every effect remains inside the original native/watchdog deadline;
+    transport cannot renew the recovery grace or confer release authority.
+    """
+    from crewshal.linux_bridge import send_original_native_capture
+    from crewshal.linux_setup import OwnedWatchdogLifetime
+
+    if getattr(parent, "_native_capture_attempted", False):
+        raise ValueError("original namespace capture consumed; no retry")
+    setattr(parent, "_native_capture_attempted", True)
+    lifetime = getattr(parent, "_watchdog_lifetime", None)
+    anchor = getattr(parent, "_native_handoff", None)
+    channel = getattr(parent, "_bridge_channel", None)
+    if (
+        type(lifetime) is not OwnedWatchdogLifetime
+        or anchor is None
+        or type(anchor[0]) is not AdmittedNative
+        or channel is None
+    ):
+        raise ValueError("original namespace capture custody unavailable")
+    admitted = anchor[0]
+    lifetime.verify_native_binding(admitted)
+    observed = lifetime.observed
+    if observed is None:
+        raise ValueError("original armed native watchdog unavailable")
+    observed.check(admitted.worker, admitted.configuration)
+    admitted.proc.verify_stopped()
+    admitted.proc.read_configuration(admitted.configuration)
+    child = admitted.child
+    if child.stdin is None or child.stdout is None or child.stderr is None:
+        raise ValueError("original namespace stdio unavailable")
+    admitted.proc.verify_pipes(child.stdin.fileno(), child.stdout.fileno(), child.stderr.fileno())
+    observed.deadline.check(admitted.worker, admitted.configuration)
+    sender = getattr(signal, "pidfd_send_signal", None)
+    if sender is None:
+        raise ValueError("retained native pidfd signalling unavailable")
+    # No numeric PID, parsed receipt, caller flag or replacement parent can
+    # authorize this release of the stopped native child.
+    sender(admitted.proc.pidfd, signal.SIGCONT, None, 0)
+    captured = admitted.capture(cancelled=cancelled)
+    setattr(lifetime, "_native_capture", captured)
+    terminal = lifetime.terminal(
+        recovery_already_attempted=captured.observation.termination is not None
+    )
+    setattr(lifetime, "_native_terminal", terminal)
+    if (
+        terminal.errors
+        or not terminal.worker_empty
+        or not terminal.watchdog_exited
+        or not terminal.watchdog_reaped
+        or not captured.observation.tree_stopped
+        or captured.observation.exit_code is None
+    ):
+        raise ValueError("original native/watchdog terminal capture remains unknown")
+    lifetime.verify_native_terminal(admitted, captured.observation.exit_code)
+    send_original_native_capture(channel, lifetime)
+    return captured

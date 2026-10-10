@@ -7,10 +7,13 @@ Actual descriptor IO, bounded readback, copying and SQLite transactions are real
 from datetime import datetime, timezone
 import os
 from pathlib import Path
+import selectors
 import sqlite3
 import tempfile
 import unittest
 from unittest.mock import patch
+
+import crewshal.supervisor as supervisor
 
 from crewshal.contracts import Approval, Attempt, Binding, Evidence, Run, record_digest
 from crewshal.durable import Conflict
@@ -48,6 +51,29 @@ class FixtureClock:
     def __call__(self):
         self.value += self.step
         return self.value
+
+
+class FiniteFixtureExchange:
+    """Pure protocol seam; no native adapter or effective admission claim."""
+
+    def __init__(self, initial=b"initialize\n"):
+        self.initial = initial
+        self.protocol_completed = False
+        self.started = 0
+        self.received = []
+
+    def start(self):
+        self.started += 1
+        return self.initial
+
+    def feed(self, message):
+        self.received.append(message)
+        if message == b"ready\n":
+            return [b"turn\n"]
+        if message == b"completed\n":
+            self.protocol_completed = True
+            return [b"acknowledged\n"]
+        raise ValueError("malformed finite fixture protocol")
 
 
 class Phase2DSupervisor(unittest.TestCase):
@@ -95,6 +121,72 @@ class Phase2DSupervisor(unittest.TestCase):
             os.close(descriptor)
         self.descriptors.clear()
 
+    def test_inherited_group_duplicates_actual_fd_without_ambient_path(self):
+        with (
+            patch.object(supervisor, "_require_cgroup2") as filesystem,
+            patch.object(supervisor.os, "open", side_effect=AssertionError("ambient reopen")),
+            patch.object(supervisor.os, "fstat") as metadata,
+        ):
+            observed = self.group_path.stat()
+            metadata.return_value = type(
+                "RootOwnedFixture",
+                (),
+                dict(st_uid=0, st_mode=0o40755, st_dev=observed.st_dev, st_ino=observed.st_ino),
+            )()
+            inherited = OwnedCgroup.attach_inherited(self.group.descriptor, self.identity)
+        self.addCleanup(inherited.close)
+        filesystem.assert_called_once_with(self.group.descriptor)
+        self.assertNotEqual(inherited.descriptor, self.group.descriptor)
+        self.assertEqual(inherited.sample(), self.group.sample())
+
+    def test_inherited_ordinary_filesystem_refuses_before_duplicate(self):
+        with (
+            patch.object(supervisor, "_require_cgroup2", side_effect=ValueError("not cgroup2")),
+            patch.object(supervisor.os, "dup") as duplicate,
+            self.assertRaisesRegex(ValueError, "not cgroup2"),
+        ):
+            OwnedCgroup.attach_inherited(self.group.descriptor, self.identity)
+        duplicate.assert_not_called()
+
+    def test_inherited_worker_writable_group_refused(self):
+        observed = os.fstat(self.group.descriptor)
+        with (
+            patch.object(supervisor, "_require_cgroup2"),
+            patch.object(
+                supervisor.os,
+                "fstat",
+                return_value=type(
+                    "WritableFixture",
+                    (),
+                    dict(st_uid=0, st_mode=0o40777, st_dev=observed.st_dev, st_ino=observed.st_ino),
+                )(),
+            ),
+            self.assertRaisesRegex(ValueError, "write authority"),
+        ):
+            OwnedCgroup.attach_inherited(self.group.descriptor, self.identity)
+
+    def test_inherited_rebound_group_identity_refused(self):
+        observed = os.fstat(self.group.descriptor)
+        with (
+            patch.object(supervisor, "_require_cgroup2"),
+            patch.object(
+                supervisor.os,
+                "fstat",
+                return_value=type(
+                    "ReboundFixture",
+                    (),
+                    dict(
+                        st_uid=0,
+                        st_mode=0o40755,
+                        st_dev=observed.st_dev,
+                        st_ino=observed.st_ino + 1,
+                    ),
+                )(),
+            ),
+            self.assertRaisesRegex(ValueError, "identity changed"),
+        ):
+            OwnedCgroup.attach_inherited(self.group.descriptor, self.identity)
+
     def close_writer(self, descriptor):
         os.close(descriptor)
         self.descriptors.remove(descriptor)
@@ -129,6 +221,210 @@ class Phase2DSupervisor(unittest.TestCase):
     def patch_stop(self):
         self.group.stop_original = self.group.stop
         return patch.object(self.group, "stop", self.synthetic_stop)
+
+    def duplex_input(self):
+        reader, writer = os.pipe()
+        self.descriptors.add(reader)
+        os.set_blocking(reader, False)
+        stream = os.fdopen(writer, "wb", buffering=0)
+        self.addCleanup(stream.close)
+        return reader, stream
+
+    def finite_duplex(self, *, exit_after_eof=True):
+        reader, stream = self.duplex_input()
+        exchange = FiniteFixtureExchange()
+        state = {"input": bytearray(), "eof": False, "emitted": 0}
+        chunks = [b"rea", b"dy\n", b"comple", b"ted\n"]
+        self.clock = FixtureClock(0.01)
+        self.write("cgroup.events", "populated 1\nfrozen 0\n")
+
+        def poll():
+            try:
+                incoming = os.read(reader, 4096)
+            except BlockingIOError:
+                incoming = None
+            if incoming == b"":
+                state["eof"] = True
+                if exit_after_eof:
+                    if self.out_writer in self.descriptors:
+                        self.close_writer(self.out_writer)
+                    if self.err_writer in self.descriptors:
+                        self.close_writer(self.err_writer)
+                    self.write("cgroup.events", "populated 0\nfrozen 0\n")
+                    return 0
+            elif incoming:
+                state["input"].extend(incoming)
+            if state["emitted"] < 2 and b"initialize\n" in state["input"]:
+                os.write(self.out_writer, chunks[state["emitted"]])
+                state["emitted"] += 1
+            elif 2 <= state["emitted"] < 4 and b"turn\n" in state["input"]:
+                os.write(self.out_writer, chunks[state["emitted"]])
+                state["emitted"] += 1
+            return None
+
+        self.process = FixtureProcess(poll)
+        return reader, stream, exchange, state
+
+    def test_finite_duplex_delivers_final_pending_request_before_genuine_stdin_eof(self):
+        _, stream, exchange, state = self.finite_duplex()
+        result = self.capture(exchange=exchange, stdin_stream=stream)
+        self.assertEqual(state["input"], b"initialize\nturn\nacknowledged\n")
+        self.assertEqual(exchange.received, [b"ready\n", b"completed\n"])
+        self.assertTrue(exchange.protocol_completed)
+        self.assertTrue(state["eof"])
+        self.assertTrue(stream.closed)
+        self.assertEqual(result.stdout, b"ready\ncompleted\n")
+        self.assertTrue(result.observation.stdout_complete)
+        self.assertTrue(result.observation.stderr_complete)
+        self.assertTrue(result.observation.tree_stopped)
+        self.assertEqual(result.observation.exit_code, 0)
+        self.assertIsNone(result.observation.termination)
+        self.assertEqual((self.group_path / "cgroup.kill").read_bytes(), b"")
+
+    def test_finite_duplex_handles_nonblocking_partial_input_writes_and_chunked_output(self):
+        _, stream, exchange, state = self.finite_duplex()
+        descriptor = stream.fileno()
+        original_write = os.write
+        attempts = 0
+
+        def partial_write(fd, data):
+            nonlocal attempts
+            if fd == descriptor:
+                attempts += 1
+                if attempts == 1:
+                    raise BlockingIOError("synthetic temporarily full input pipe")
+                return original_write(fd, data[:2])
+            return original_write(fd, data)
+
+        with patch("crewshal.supervisor.os.write", partial_write):
+            result = self.capture(exchange=exchange, stdin_stream=stream)
+        self.assertGreater(attempts, 3)
+        self.assertEqual(state["input"], b"initialize\nturn\nacknowledged\n")
+        self.assertEqual(exchange.received, [b"ready\n", b"completed\n"])
+        self.assertTrue(state["eof"])
+        self.assertIsNone(result.observation.termination)
+
+    def test_protocol_completion_does_not_forge_native_exit_or_stream_eof(self):
+        _, stream, exchange, state = self.finite_duplex(exit_after_eof=False)
+        with self.patch_stop():
+            result = self.capture(exchange=exchange, stdin_stream=stream)
+        self.assertTrue(exchange.protocol_completed)
+        self.assertTrue(state["eof"])
+        self.assertEqual(result.observation.termination, "timeout")
+        self.assertFalse(result.observation.stdout_complete)
+        self.assertFalse(result.observation.stderr_complete)
+        self.assertEqual(result.observation.exit_code, -9)
+        self.assertGreaterEqual(result.observation.elapsed_seconds, 5)
+        self.assertLess(result.observation.elapsed_seconds, 6.1)
+        self.assertEqual((self.group_path / "cgroup.kill").read_bytes(), b"1")
+
+    def test_initial_cancellation_sends_no_duplex_input(self):
+        reader, stream = self.duplex_input()
+        self.process = FixtureProcess(lambda: None)
+        self.eof()
+        with self.patch_stop():
+            result = self.capture(
+                exchange=FiniteFixtureExchange(), stdin_stream=stream, cancelled=lambda: True
+            )
+        self.assertEqual(os.read(reader, 4096), b"")
+        self.assertTrue(stream.closed)
+        self.assertEqual(result.observation.termination, "cancelled")
+
+    def test_expired_original_origin_sends_no_duplex_input(self):
+        reader, stream = self.duplex_input()
+        self.clock.value = 5
+        self.process = FixtureProcess(lambda: None)
+        self.eof()
+        with self.patch_stop():
+            result = self.capture(exchange=FiniteFixtureExchange(), stdin_stream=stream)
+        self.assertEqual(os.read(reader, 4096), b"")
+        self.assertTrue(stream.closed)
+        self.assertEqual(result.observation.termination, "timeout")
+
+    def test_cancellation_at_input_readiness_sends_no_duplex_input(self):
+        reader, stream = self.duplex_input()
+        self.process = FixtureProcess(lambda: None)
+        self.eof()
+        selector = selectors.DefaultSelector()
+        original_select = selector.select
+        cancelled = False
+
+        def ready_then_cancel(timeout):
+            nonlocal cancelled
+            events = original_select(timeout)
+            cancelled = True
+            return events
+
+        with (
+            self.patch_stop(),
+            patch("crewshal.supervisor.selectors.DefaultSelector", return_value=selector),
+            patch.object(selector, "select", ready_then_cancel),
+        ):
+            result = self.capture(
+                exchange=FiniteFixtureExchange(),
+                stdin_stream=stream,
+                cancelled=lambda: cancelled,
+            )
+        self.assertEqual(os.read(reader, 4096), b"")
+        self.assertEqual(result.observation.termination, "cancelled")
+
+    def test_malformed_duplex_protocol_refuses_and_stops_within_recovery_grace(self):
+        reader, stream = self.duplex_input()
+        self.process = FixtureProcess(lambda: None)
+        self.eof(b"malformed\n")
+        selector = selectors.DefaultSelector()
+        original_select = selector.select
+
+        def output_before_input(timeout):
+            # Exercise refusal then input readiness in one returned event list.
+            return sorted(original_select(timeout), key=lambda event: event[0].data)
+
+        with (
+            self.patch_stop(),
+            patch("crewshal.supervisor.selectors.DefaultSelector", return_value=selector),
+            patch.object(selector, "select", output_before_input),
+        ):
+            result = self.capture(exchange=FiniteFixtureExchange(), stdin_stream=stream)
+        self.assertEqual(result.observation.termination, "refusal")
+        self.assertTrue(stream.closed)
+        self.assertEqual(os.read(reader, 4096), b"")
+        self.assertLess(result.observation.elapsed_seconds, 1.2)
+        self.assertEqual((self.group_path / "cgroup.kill").read_bytes(), b"1")
+
+    def test_duplex_stdin_alias_refuses_before_protocol_or_input(self):
+        stream = os.fdopen(os.dup(self.stdout), "wb", buffering=0)
+        self.addCleanup(stream.close)
+        exchange = FiniteFixtureExchange()
+        with self.assertRaisesRegex(ValueError, "separate retained stdin pipe"):
+            self.capture(exchange=exchange, stdin_stream=stream)
+        self.assertEqual(exchange.started, 0)
+        self.assertEqual((self.group_path / "cgroup.kill").read_bytes(), b"")
+
+    def test_oversized_initial_duplex_request_is_refused_before_any_input_write(self):
+        reader, stream = self.duplex_input()
+        self.process = FixtureProcess(lambda: None)
+        self.eof()
+        exchange = FiniteFixtureExchange(initial=b"x" * 65537)
+        with self.assertRaisesRegex(ValueError, "input.*bound"):
+            self.capture(exchange=exchange, stdin_stream=stream)
+        stream.close()
+        self.assertEqual(os.read(reader, 65537), b"")
+
+    def test_buffered_stdin_refuses_before_protocol_start_or_implicit_close_flush(self):
+        reader, writer = os.pipe()
+        self.descriptors.add(reader)
+        os.set_blocking(reader, False)
+        stream = os.fdopen(writer, "wb", buffering=4096)
+        self.addCleanup(stream.close)
+        stream.write(b"preexisting buffered bytes")
+        exchange = FiniteFixtureExchange()
+        with self.assertRaisesRegex(ValueError, "unbuffered"):
+            self.capture(exchange=exchange, stdin_stream=stream)
+        self.assertEqual(exchange.started, 0)
+        self.assertFalse(stream.closed)
+        with self.assertRaises(BlockingIOError):
+            os.read(reader, 4096)
+        self.assertEqual((self.group_path / "cgroup.kill").read_bytes(), b"")
 
     def test_complete_pipes_and_recursive_empty_readback_produce_capture(self):
         self.eof(b"literal native bytes\n", b"diagnostic")

@@ -127,12 +127,15 @@ class Phase2DStorage(unittest.TestCase):
             return 222
         if operation == 1:
             return 333
+        if operation == 5:
+            self.assertEqual(buffer.value, storage.PRIVATE_KEY_PERMISSIONS)
+            return 0
         if operation == 3:
             self.key = "revoked"
             return 0
         if self.key != "present":
             raise OSError(128 if self.key == "revoked" else 126, "synthetic key state")
-        description = b"keyring;0;0;3f030000;_ses\0"
+        description = b"keyring;0;0;003f0000;_ses\0"
         buffer.value = description[:-1]
         return len(description)
 
@@ -232,7 +235,7 @@ class Phase2DStorage(unittest.TestCase):
             storage._key_state(333)
 
     def test_private_ring_created_without_named_or_ambient_mutation(self):
-        self.assertEqual(self.calls[:3], [("keyctl", 0, -3), ("keyctl", 1, 0), ("keyctl", 6, 333)])
+        self.assertEqual(self.calls[:3], [("keyctl", 1, 0), ("keyctl", 5, 333), ("keyctl", 6, 333)])
         with self.assertRaises(ValueError):
             storage.AnonymousKeyring()
 
@@ -243,6 +246,72 @@ class Phase2DStorage(unittest.TestCase):
         ):
             storage.AnonymousKeyring.create()
         self.assertEqual(caught.exception.ring.serial, 333)
+
+    def test_private_ring_is_pinned_before_join_and_permissions(self):
+        reservation = SimpleNamespace(verify=Mock())
+        stages = []
+
+        def call(operation, serial=0, buffer=None, size=0):
+            ring = reservation._private_ring
+            self.assertEqual(ring.creator, os.getpid())
+            self.assertFalse(ring.complete)
+            stages.append(operation)
+            return self.keyctl(operation, serial, buffer, size)
+
+        with patch.object(storage, "_keyctl", side_effect=call):
+            ring = storage.AnonymousKeyring.create(reservation=reservation)
+        self.assertIs(reservation._private_ring, ring)
+        self.assertTrue(ring.complete)
+        self.assertEqual(stages, [1, 5, 6])
+        self.assertEqual(reservation.verify.call_count, 2)
+        with self.assertRaisesRegex(ValueError, "one-shot"):
+            storage.AnonymousKeyring.create(reservation=reservation)
+
+    def test_join_failure_retains_original_lifetime_and_never_cleans(self):
+        reservation = SimpleNamespace(verify=Mock())
+        with (
+            patch.object(
+                storage, "_keyctl", side_effect=OSError(12, "synthetic join refused")
+            ) as call,
+            self.assertRaises(storage.KeyringCreationRefusal) as caught,
+        ):
+            storage.AnonymousKeyring.create(reservation=reservation)
+        self.assertIs(caught.exception.ring, reservation._private_ring)
+        self.assertEqual(caught.exception.ring.serial, 0)
+        self.assertFalse(caught.exception.ring.complete)
+        call.assert_called_once_with(1)
+
+    def test_permission_failure_keeps_joined_ring_without_revoke_or_retry(self):
+        reservation = SimpleNamespace(verify=Mock())
+        with (
+            patch.object(
+                storage, "_keyctl", side_effect=[333, OSError(1, "synthetic permission refused")]
+            ) as call,
+            self.assertRaises(storage.KeyringCreationRefusal) as caught,
+        ):
+            storage.AnonymousKeyring.create(reservation=reservation)
+        self.assertIs(caught.exception.ring, reservation._private_ring)
+        self.assertEqual(caught.exception.ring.serial, 333)
+        self.assertFalse(caught.exception.ring.complete)
+        self.assertEqual(call.call_count, 2)
+
+    def test_default_possessor_permissions_cannot_establish_private_ring(self):
+        def describe(operation, serial=0, buffer=None, size=0):
+            raw = b"keyring;0;0;3f030000;_ses\0"
+            buffer.value = raw[:-1]
+            return len(raw)
+
+        with (
+            patch.object(storage, "_keyctl", side_effect=describe),
+            self.assertRaisesRegex(ValueError, "possessor/group/other"),
+        ):
+            storage._key_state(333)
+
+    def test_retention_rejects_reconstructed_private_ring_anchor(self):
+        reservation = self.retention_reservation()
+        reservation._private_ring = object()
+        with self.assertRaisesRegex(ValueError, "credential anchor"):
+            self.owner.verify_retention(reservation)
 
     def test_private_ring_cannot_be_claimed_twice(self):
         with self.assertRaises(ValueError):
@@ -286,7 +355,7 @@ class Phase2DStorage(unittest.TestCase):
                     self.owner.readback()
         self.loop_changes = {}
 
-    def test_only_enxio_means_loop_unbound(self):
+    def test_enxio_does_not_prove_loop_or_backing_release(self):
         with (
             patch.object(storage.fcntl, "ioctl", side_effect=OSError(errno.EPERM, "denied")),
             self.assertRaises(OSError),
@@ -294,7 +363,10 @@ class Phase2DStorage(unittest.TestCase):
             self.owner.readback()
         self.clear_mounts()
         self.loop_present = False
-        self.assertEqual(self.owner.readback().loops, {})
+        with self.assertRaisesRegex(ValueError, "loop.*release.*unknown"):
+            self.owner.readback()
+        self.assertTrue(self.backing.exists())
+        self.assertEqual(storage._identity(self.owner.handles["loop:loop"]), self.loop_identity)
 
     def test_backing_leaf_replacement_and_hardlink_refused(self):
         self.backing.rename(self.backing.with_suffix(".old"))
@@ -340,20 +412,121 @@ class Phase2DStorage(unittest.TestCase):
             self.owner.revoke_private_keyring(333, self.jobs.deadline)
         self.assertEqual(self.key, "present")
 
-    def test_synthetic_key_then_loop_then_pinned_leaf_order(self):
+    def test_successful_detach_with_rundown_status_retains_backing(self):
         self.clear_mounts()
         with self.synthetic_closed():
             self.owner.revoke_private_keyring(333, self.jobs.deadline)
             self.assertEqual(self.owner.readback().keyring_state, "revoked")
             loop = self.owner.readback().loops["loop"]
             self.owner.detach_loop(loop, self.jobs.deadline)
-            self.assertFalse(self.owner.readback().loops)
-            # Fixture unlinks only its own temporary backing; production closure
-            # remains unknown and cannot reach this path.
+            # Linux may return ENXIO in rundown before its last loop opener
+            # closes. Even a synthetic zero scan cannot turn it into release.
+            with self.assertRaisesRegex(ValueError, "loop.*release.*unknown"):
+                self.owner.readback()
             identity = self.owner.backing[self.backing.name]
-            self.owner.remove_backing(self.backing.name, identity, self.jobs.deadline)
-        self.assertFalse(self.backing.exists())
-        self.assertIsNone(self.owner.readback().extra_open_holders)
+            with self.assertRaisesRegex(ValueError, "loop.*release.*unknown"):
+                self.owner.remove_backing(self.backing.name, identity, self.jobs.deadline)
+        self.assertTrue(self.backing.exists())
+        self.assertEqual(self.key, "revoked")
+        self.assertTrue(self.owner.effects_failed)
+        self.original_fstat(self.owner.handles["loop:loop"])
+
+    def test_rundown_retains_deleted_open_backing(self):
+        self.clear_mounts()
+        with self.synthetic_closed():
+            self.owner.revoke_private_keyring(333, self.jobs.deadline)
+            loop = self.owner.readback().loops["loop"]
+            self.owner.detach_loop(loop, self.jobs.deadline)
+            self.backing.unlink()  # Only this test's temporary regular file.
+            with self.assertRaisesRegex(ValueError, "loop.*release.*unknown"):
+                self.owner.readback()
+        self.assertEqual(self.original_fstat(self.fds["backing"]).st_nlink, 0)
+        self.original_fstat(self.owner.handles["loop:loop"])
+
+    def test_detach_never_closes_loop_in_live_observer(self):
+        self.clear_mounts()
+        self.key = "revoked"
+        descriptor = self.owner.handles["loop:loop"]
+        # The final loop close may itself execute blocking release work. It
+        # cannot run in the observer outside its bounded syscall child.
+        with self.synthetic_closed(), patch.object(storage.os, "close", wraps=os.close) as closed:
+            self.owner.detach_loop(self.owner.initial.loops["loop"], self.jobs.deadline)
+        self.assertNotIn(descriptor, [call.args[0] for call in closed.call_args_list])
+        self.original_fstat(descriptor)
+        with self.assertRaisesRegex(ValueError, "loop.*release.*unknown"):
+            self.owner.readback()
+        self.original_fstat(self.fds["backing"])
+        self.assertTrue(self.backing.exists())
+
+    def retention_reservation(self):
+        # Reservation/kernel seams are synthetic here; the actual object and
+        # containment contract have separate fresh setup coverage.
+        self.jobs.group = object()
+        self.jobs.aggregate = object()
+        self.jobs.pending = None
+        self.jobs.failed = False
+        reservation = SimpleNamespace(
+            observer=self.jobs.observer,
+            observer_group=self.jobs.group,
+            aggregate=self.jobs.aggregate,
+            verify=Mock(),
+            _storage_owner=self.owner,
+            _private_ring=self.ring,
+        )
+        self.owner.reservation = reservation
+        return reservation
+
+    def test_retention_requires_same_live_owner_and_no_pending_job(self):
+        reservation = self.retention_reservation()
+        self.owner.verify_retention(reservation)
+        for change in ("token", "pending", "observer"):
+            with self.subTest(change=change):
+                if change == "token":
+                    argument = object()
+                else:
+                    argument = reservation
+                    if change == "pending":
+                        self.jobs.pending = (999, 999)
+                    else:
+                        self.jobs.observer = object()
+                try:
+                    with self.assertRaises(ValueError):
+                        self.owner.verify_retention(argument)
+                finally:
+                    self.jobs.pending = None
+                    self.jobs.observer = reservation.observer
+        self.assertTrue(self.owner.handles)
+        self.assertTrue(self.backing.exists())
+
+    def test_retention_rejects_backing_growth_above_original_logical_ceiling(self):
+        reservation = self.retention_reservation()
+        original = self.fstat
+
+        def oversized(descriptor):
+            info = original(descriptor)
+            if (info.st_dev, info.st_ino) == (
+                self.owner.backing[self.backing.name].device,
+                self.owner.backing[self.backing.name].inode,
+            ):
+                info.st_size = 8589934593
+            return info
+
+        with patch.object(storage.os, "fstat", side_effect=oversized):
+            with self.assertRaisesRegex(ValueError, "disk ceiling"):
+                self.owner.verify_retention(reservation)
+        self.assertTrue(self.owner.handles)
+        self.assertTrue(self.backing.exists())
+
+    def test_retention_rejects_missing_backing_handle_without_refund_or_close(self):
+        reservation = self.retention_reservation()
+        original = dict(self.owner.allowed_backing)
+        self.owner.allowed_backing.clear()
+        with self.assertRaisesRegex(ValueError, "inventory differs"):
+            self.owner.verify_retention(reservation)
+        for descriptor in original.values():
+            os.fstat(descriptor)
+        self.assertTrue(self.owner.handles)
+        self.assertTrue(self.backing.exists())
 
     def test_loop_cannot_detach_while_key_present(self):
         self.clear_mounts()

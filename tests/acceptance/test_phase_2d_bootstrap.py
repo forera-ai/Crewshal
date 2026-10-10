@@ -431,7 +431,7 @@ class Phase2DBootstrap(unittest.TestCase):
             self.stage()
 
     def test_bootstrap_source_and_C_bytes_bind_dispatch(self):
-        self.assertEqual(len(self.fixture.configuration.source_sha256), 21)
+        self.assertEqual(len(self.fixture.configuration.source_sha256), 23)
         self.assertEqual(
             self.fixture.configuration.source_sha256["bootstrap_helper.c"],
             digest(

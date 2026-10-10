@@ -277,6 +277,29 @@ class Phase2DAdmission(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "cwd differs"):
             self.admit()
 
+    def test_subscription_readback_requires_candidate_cwd(self):
+        from tests.acceptance.test_phase_2d_subscription import SubscriptionPreparation
+
+        fixture = SubscriptionPreparation()
+        fixture.setUp()
+        self.addCleanup(fixture.doCleanups)
+        configuration = fixture.configuration
+        self.write("cmdline", b"\0".join(x.encode() for x in configuration.native_argv) + b"\0")
+        self.write(
+            "environ",
+            b"\0".join(
+                f"{key}={value}".encode() for key, value in configuration.native_environment.items()
+            )
+            + b"\0",
+        )
+        (self.proc_path / "cwd").unlink()
+        (self.proc_path / "cwd").symlink_to("/candidate/owned")
+        self.proc.read_configuration(configuration)
+        (self.proc_path / "cwd").unlink()
+        (self.proc_path / "cwd").symlink_to("/scratch/checkout")
+        with self.assertRaisesRegex(ValueError, "cwd differs"):
+            self.proc.read_configuration(configuration)
+
     def test_namespace_replacement_refuses(self):
         (self.proc_path / "ns" / "net").unlink()
         (self.proc_path / "ns" / "net").symlink_to(self.executable)
@@ -407,6 +430,7 @@ class Phase2DAdmission(unittest.TestCase):
         self.out_writer.close()
         self.err_writer.close()
         self.child.result = 0
+        self.pid_writer.close()
         (self.worker_path / "cgroup.procs").write_text("")
         (self.worker_path / "cgroup.events").write_text("populated 0\nfrozen 0")
         with patch("crewshal.supervisor.time.monotonic", return_value=1.0):
@@ -414,6 +438,72 @@ class Phase2DAdmission(unittest.TestCase):
         self.assertEqual(capture.stdout, b"literal native output\n")
         self.assertTrue(capture.observation.tree_stopped)
         self.assertTrue(capture.observation.stdout_complete)
+
+    def test_empty_worker_and_exit_code_cannot_replace_retained_native_exit(self):
+        admitted = self.admit()
+        self.out_writer.close()
+        self.err_writer.close()
+        self.child.result = 0
+        (self.worker_path / "cgroup.procs").write_text("")
+        (self.worker_path / "cgroup.events").write_text("populated 0\nfrozen 0")
+        with (
+            patch("crewshal.supervisor.time.monotonic", return_value=1.0),
+            self.assertRaisesRegex(ValueError, "native exit"),
+        ):
+            admitted.capture(cancelled=lambda: False)
+        self.assertGreaterEqual(self.proc.pidfd, 0)
+        self.assertGreaterEqual(self.proc.descriptor, 0)
+
+    def test_terminal_native_handle_rebinding_refuses_ready_substitute(self):
+        for name in ("pidfd", "descriptor"):
+            with self.subTest(name=name):
+                admitted = self.admit()
+                original = getattr(self.proc, name)
+                if name == "pidfd":
+                    reader, writer = os.pipe()
+                    os.close(writer)
+                    substitute = reader
+                else:
+                    substitute = os.open(self.root, os.O_RDONLY | os.O_DIRECTORY)
+                try:
+                    setattr(self.proc, name, substitute)
+                    with self.assertRaisesRegex(ValueError, "descriptor changed"):
+                        admitted.verify_terminal(0)
+                finally:
+                    setattr(self.proc, name, original)
+                    os.close(substitute)
+
+    def test_native_exit_does_not_replace_reap_or_empty_worker(self):
+        admitted = self.admit()
+        self.pid_writer.close()
+        with self.assertRaisesRegex(ValueError, "exit/reap"):
+            admitted.verify_terminal(0)
+        self.child.result = 0
+        with self.assertRaisesRegex(ValueError, "repopulated"):
+            admitted.verify_terminal(0)
+        (self.worker_path / "cgroup.procs").write_text("")
+        (self.worker_path / "cgroup.events").write_text("populated 0\nfrozen 0")
+        admitted.verify_terminal(0)
+        with self.assertRaisesRegex(ValueError, "exit/reap"):
+            admitted.verify_terminal(1)
+
+    def test_terminal_capture_rechecks_changed_aggregate_after_native_exit(self):
+        admitted = self.admit()
+        self.pid_writer.close()
+        self.child.result = 0
+        (self.worker_path / "cgroup.procs").write_text("")
+        (self.worker_path / "cgroup.events").write_text("populated 0\nfrozen 0")
+        original = self.worker.sample
+
+        def mutate():
+            sample = original()
+            (self.aggregate_path / "memory.max").write_text("max")
+            return sample
+
+        with patch.object(self.worker, "sample", side_effect=mutate):
+            with self.assertRaisesRegex(ValueError, "aggregate controls"):
+                admitted.verify_terminal(0)
+        self.assertEqual((self.worker_path / "cgroup.kill").read_bytes(), b"")
 
     def test_mutated_configuration_after_admission_refuses_capture(self):
         admitted = self.admit()
@@ -442,7 +532,7 @@ class Phase2DAdmission(unittest.TestCase):
         ):
             with self.subTest(changes=changes), self.assertRaises(ValueError):
                 NativeAdmissionSpec.model_validate({**self.spec.model_dump(), **changes})
-        self.assertEqual(len(self.configuration.source_sha256), 21)
+        self.assertEqual(len(self.configuration.source_sha256), 23)
 
     def test_missing_or_reaped_child_cannot_supply_admission(self):
         self.child.result = 0

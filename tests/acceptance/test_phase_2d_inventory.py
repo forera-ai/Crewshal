@@ -5,8 +5,9 @@ import os
 from pathlib import Path
 import stat
 import tempfile
+from types import SimpleNamespace
 import unittest
-from unittest.mock import patch
+from unittest.mock import Mock, patch
 
 from crewshal import linux_inventory as inventory
 from crewshal import linux_setup as setup
@@ -15,6 +16,7 @@ from crewshal.dispatch import prepare_dispatch_configuration
 from crewshal.linux_bootstrap import bootstrap_policy, prepare_linux_bootstrap
 from crewshal.linux_envelope import LinuxEnvelopeBindings
 from crewshal.model import digest
+from crewshal.supervisor import CgroupIdentity
 from tests.acceptance import test_phase_2d_envelope as envelope_fixtures
 
 
@@ -320,3 +322,99 @@ class Phase2DInventory(unittest.TestCase):
                     inventory=retained,
                 )
         startup.assert_not_called()
+
+    def test_bound_setup_refuses_writable_retained_root_before_startup(self):
+        retained = self.retain()
+        plan = setup.prepare_namespace_setup(
+            self.configuration,
+            self.bootstrap,
+            self.spec.parent_argv,
+            digest(self.raw["/bin/trusted-parent"]),
+            parent_inventory=self.spec,
+        )
+        with (
+            self.synthetic_root_owner(),
+            patch("subprocess.Popen", side_effect=AssertionError("no startup")) as startup,
+        ):
+            with self.assertRaisesRegex(ValueError, "actual retained readonly root"):
+                setup.create_namespace_setup(
+                    None,
+                    None,
+                    None,
+                    None,
+                    None,
+                    None,
+                    self.configuration,
+                    self.bootstrap,
+                    plan,
+                    inventory=retained,
+                )
+        startup.assert_not_called()
+
+    def test_outer_exec_uses_actual_root_fd_without_forwarding_it_as_control(self):
+        # Kernel placement, readonly mount and Popen are explicit seams. Root
+        # enumeration/content/descriptor custody uses real fresh fixture files.
+        retained = self.retain()
+        plan = setup.prepare_namespace_setup(
+            self.configuration,
+            self.bootstrap,
+            self.spec.parent_argv,
+            digest(self.raw["/bin/trusted-parent"]),
+            parent_inventory=self.spec,
+        )
+        observer = SimpleNamespace(
+            spec=SimpleNamespace(
+                configuration=record_digest(self.configuration),
+                pid=os.getpid(),
+                boot_id="11111111-1111-1111-1111-111111111111",
+                namespaces={},
+            ),
+            verify=Mock(),
+        )
+        observer_group = SimpleNamespace(sample=Mock(), _read=lambda _: str(os.getpid()))
+        groups = []
+        opened = []
+        for index in range(4):
+            descriptor = os.open(self.root, os.O_RDONLY | os.O_DIRECTORY)
+            self.addCleanup(os.close, descriptor)
+            opened.append(descriptor)
+            identity = CgroupIdentity(
+                device=1, inode=index + 1, relative_path="synthetic/" + str(index)
+            )
+            groups.append(
+                SimpleNamespace(
+                    descriptor=descriptor,
+                    identity=identity,
+                    _read=lambda name: "" if name == "cgroup.procs" else "populated 0\nfrozen 0",
+                )
+            )
+        with (
+            self.synthetic_root_owner(),
+            patch.object(setup.os, "fstatvfs", return_value=SimpleNamespace(f_flag=os.ST_RDONLY)),
+            patch.object(setup, "_observer_placement"),
+            patch.object(setup, "_aggregate_readback"),
+            patch.object(setup, "_topology"),
+            patch.object(setup, "_move_self"),
+            patch.object(setup, "_move_self_to_observer"),
+            patch.object(setup, "_capsule", side_effect=lambda _: os.dup(retained.descriptor)),
+            patch.object(setup.subprocess, "Popen", return_value=object()) as launch,
+        ):
+            setup.create_namespace_setup(
+                observer,
+                observer_group,
+                *groups,
+                self.configuration,
+                self.bootstrap,
+                plan,
+                inventory=retained,
+            )
+        options = launch.call_args.kwargs
+        arguments = launch.call_args.args[0]
+        controls = tuple(int(number) for number in arguments[2:7])
+        self.assertEqual(
+            options["executable"], f"/proc/self/fd/{retained.descriptor}/bin/crewshal-bootstrap"
+        )
+        self.assertEqual(options["pass_fds"], (*controls, retained.descriptor))
+        self.assertNotIn(retained.descriptor, controls)
+        self.assertEqual(options["cwd"], "/")
+        self.assertEqual(arguments[0], "/bin/crewshal-bootstrap")

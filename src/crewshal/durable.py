@@ -6,7 +6,7 @@ from pathlib import Path
 import sqlite3
 import stat
 import tempfile
-from typing import Iterator, TypeVar
+from typing import Iterator, NoReturn, TypeVar
 
 from crewshal.contracts import (
     Approval,
@@ -16,6 +16,7 @@ from crewshal.contracts import (
     Evidence,
     Record,
     Run,
+    StorageCapacityDomain,
     Task,
     Usage,
     Verdict,
@@ -47,11 +48,50 @@ TYPES: dict[str, type[Contract]] = {
     "collection": CodexCollection,
     "supervision": SupervisionReceipt,
     "admission": NativeAdmissionRecord,
+    "storage_capacity": StorageCapacityDomain,
 }
 
 
 class Conflict(ValueError):
     """The expected version or run lease no longer belongs to this writer."""
+
+
+class LiveStorageCapacityClaim:
+    """Live journal binding for denial only; cannot recreate retained handles."""
+
+    _store: "CoordinatorStore"
+    _path: Path
+    _file_identity: tuple[int, int]
+    _payload: str
+    _reservation: object | None
+
+    def __init__(self) -> None:
+        raise ValueError("capacity claim requires its original committed store")
+
+    def __reduce__(self) -> NoReturn:
+        raise ValueError("capacity claim cannot be copied or exported")
+
+    @property
+    def record(self) -> StorageCapacityDomain:
+        # Exposed data cannot mutate this claim's retained snapshot.
+        return StorageCapacityDomain.model_validate_json(self._payload)
+
+    def verify(self) -> None:
+        self._store.verify_storage_capacity_claim(self)
+
+    def bind_reservation(self, reservation: object) -> None:
+        if reservation is None:
+            raise ValueError("live retained reservation required")
+        if self._reservation is not None:
+            raise ValueError("original capacity claim already binds a retained reservation")
+        # Bind before readback so a failed admission cannot reuse this live claim.
+        self._reservation = reservation
+        self.verify()
+
+    def verify_reservation(self, reservation: object) -> None:
+        if self._reservation is None or self._reservation is not reservation:
+            raise ValueError("capacity claim requires its original retained reservation")
+        self.verify()
 
 
 def private_path(path: Path) -> None:
@@ -71,6 +111,9 @@ def private_path(path: Path) -> None:
 
 class CoordinatorStore:
     def __init__(self, directory: Path, *, migrate: bool = False):
+        # A persisted denial record cannot mint a replacement live capability.
+        # Keep each original token strongly retained in its original store.
+        self._storage_capacity_claims: dict[str, LiveStorageCapacityClaim] = {}
         private_path(directory)
         directory.mkdir(parents=True, exist_ok=True, mode=0o700)
         private_path(directory)
@@ -94,6 +137,8 @@ class CoordinatorStore:
             self.path.as_uri() + "?mode=rw", uri=True, isolation_level=None, timeout=2
         )
         self.connection.row_factory = sqlite3.Row
+        info = self.path.stat()
+        self._capacity_store_identity = (info.st_dev, info.st_ino)
         try:
             self.connection.execute("PRAGMA synchronous=FULL")
             version = self.connection.execute("PRAGMA user_version").fetchone()[0]
@@ -302,6 +347,115 @@ class CoordinatorStore:
     def _create(self, kind: str, record: Record) -> None:
         with self.transaction():
             self._put(kind, record.id, record, 0)
+
+    def _storage_capacity(self, identifier: str) -> tuple[StorageCapacityDomain, int]:
+        record, version = self.get("storage_capacity", identifier, StorageCapacityDomain)
+        if record is None:
+            raise ValueError("missing installed capacity domain is unknown, not free")
+        rows = self.connection.execute(
+            "SELECT version,kind,payload FROM events WHERE record_id=? ORDER BY sequence",
+            (f"storage_capacity:{identifier}",),
+        ).fetchall()
+        if version not in (1, 2) or [row[0] for row in rows] != list(range(1, version + 1)):
+            raise ValueError("capacity journal is incomplete or has an unsupported transition")
+        history = []
+        for row in rows:
+            if row[1] != "storage_capacity":
+                raise ValueError("capacity journal kind differs")
+            item = StorageCapacityDomain.model_validate_json(row[2])
+            if item.id != identifier:
+                raise ValueError("capacity journal identity differs")
+            history.append(item)
+        row = self.connection.execute(
+            "SELECT payload FROM records WHERE id=?", (f"storage_capacity:{identifier}",)
+        ).fetchone()
+        if history[0].state != "installed" or history[-1] != record or rows[-1][2] != row[0]:
+            raise ValueError("capacity record and original installation journal disagree")
+        if version == 1 and record.state != "installed":
+            raise ValueError("capacity domain lacks its original installation record")
+        if version == 2:
+            original = history[0].model_dump()
+            current = record.model_dump()
+            for name in ("state", "owner", "configuration", "batch_started_monotonic"):
+                original.pop(name)
+                current.pop(name)
+            if record.state != "retained" or current != original:
+                raise ValueError("capacity domain was reset or its installation changed")
+        return record, version
+
+    def claim_storage_capacity(
+        self,
+        domain_id: str,
+        *,
+        expected_version: int,
+        installation: str,
+        owner: str,
+        configuration: str,
+        batch_started_monotonic: float,
+    ) -> LiveStorageCapacityClaim:
+        """Burn one preexisting installed domain before any storage effect.
+
+        There is deliberately no initialization, refund, retry or release API.
+        The real producer must independently bind this journal and installation
+        to its fixed physical capacity domain; record contents do not do that.
+        """
+        if type(expected_version) is not int or expected_version != 1:
+            raise Conflict("only the original installed capacity version can be claimed")
+        self._verify_capacity_store()
+        with self.transaction():
+            record, version = self._storage_capacity(domain_id)
+            if version != expected_version or record.state != "installed":
+                raise Conflict("capacity remains fully charged; no retry or reuse")
+            if record.installation != installation:
+                raise ValueError("capacity installation differs from exact installed domain")
+            retained = StorageCapacityDomain.model_validate(
+                {
+                    **record.model_dump(),
+                    "state": "retained",
+                    "owner": owner,
+                    "configuration": configuration,
+                    "batch_started_monotonic": batch_started_monotonic,
+                }
+            )
+            self._put("storage_capacity", domain_id, retained, expected_version)
+        # No claim object exists until the full synchronous transaction commits.
+        claim = object.__new__(LiveStorageCapacityClaim)
+        claim._store = self
+        claim._path = self.path
+        claim._file_identity = self._capacity_store_identity
+        claim._payload = retained.model_dump_json()
+        claim._reservation = None
+        self._storage_capacity_claims[domain_id] = claim
+        claim.verify()
+        return claim
+
+    def _verify_capacity_store(self) -> None:
+        private_path(self.path)
+        info = self.path.stat()
+        if (info.st_dev, info.st_ino) != self._capacity_store_identity:
+            raise ValueError("original capacity journal file was replaced")
+        if (
+            self.connection.execute("PRAGMA application_id").fetchone()[0] != APPLICATION_ID
+            or self.connection.execute("PRAGMA user_version").fetchone()[0] != SCHEMA_VERSION
+            or self.connection.execute("PRAGMA synchronous").fetchone()[0] != 2
+        ):
+            raise ValueError("capacity journal identity or full durability controls differ")
+
+    def verify_storage_capacity_claim(self, claim: LiveStorageCapacityClaim) -> None:
+        if type(claim) is not LiveStorageCapacityClaim or claim._store is not self:
+            raise ValueError("capacity claim requires its original live store")
+        if self._storage_capacity_claims.get(claim.record.id) is not claim:
+            raise ValueError("capacity claim is not the original minted live token")
+        if self.path != claim._path:
+            raise ValueError("capacity journal path changed")
+        self._verify_capacity_store()
+        info = self.path.stat()
+        if (info.st_dev, info.st_ino) != claim._file_identity:
+            raise ValueError("capacity journal identity changed")
+        with self.transaction():
+            record, version = self._storage_capacity(claim.record.id)
+            if version != 2 or record.model_dump_json() != claim._payload:
+                raise ValueError("original retained capacity claim no longer matches journal")
 
     def create_task(self, task: Task) -> None:
         self._create("task", task)

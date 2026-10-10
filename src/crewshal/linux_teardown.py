@@ -78,6 +78,8 @@ class PhysicalOwner(Protocol):
 
     def readback(self) -> PhysicalState: ...
 
+    def verify_retention(self, reservation: object) -> None: ...
+
     def unmount(self, mount: MountIdentity, deadline: float) -> None: ...
 
     def revoke_private_keyring(self, serial: int, deadline: float) -> None: ...
@@ -94,6 +96,16 @@ class PhysicalTeardownObservation:
     handles_released: bool
     errors: tuple[str, ...]
     # Observer/aggregate, exact qualification and the next live gate remain.
+    resources_reusable: Literal[False] = False
+
+
+@dataclass(frozen=True)
+class PhysicalRetentionObservation:
+    """Terminal retention evidence only; candidate/validator gates are separate."""
+
+    terminal_verified: bool
+    physical_release: Literal["unknown"] = "unknown"
+    errors: tuple[str, ...] = ()
     resources_reusable: Literal[False] = False
 
 
@@ -130,6 +142,15 @@ class OwnedPhysicalResources:
         self.started = False
         self.failure: tuple[str, ...] = ()
         self.resources_reusable = False
+        self.reservation = lifetime.storage_reservation
+        if self.reservation is not None:
+            if self.reservation.batch_started != batch_started_monotonic:
+                raise ValueError("retained storage reservation batch origin differs")
+            self.reservation.claim(lifetime)
+            # A failed constructor remains owned; never reconstruct it from
+            # terminal receipt data or drop the last handles on an exception.
+            self.reservation.retain(self)
+            owner.verify_retention(self.reservation)
         self.state = PhysicalState.model_validate_json(owner.readback().model_dump_json())
         state = self.state
         self.state_digest = record_digest(state)
@@ -142,8 +163,10 @@ class OwnedPhysicalResources:
             or not state.loops
             or not state.backing
             or state.keyring_state != "present"
-            or state.extra_mount_aliases != 0
-            or state.extra_open_holders != 0
+            or (
+                self.reservation is None
+                and (state.extra_mount_aliases != 0 or state.extra_open_holders != 0)
+            )
             or len(unmount_order) != len(set(unmount_order))
             or set(unmount_order) != set(state.mounts)
             or len({mount.mount_id for mount in state.mounts.values()}) != len(state.mounts)
@@ -269,6 +292,9 @@ def teardown_owned_physical_resources(
         )
     resources.started = True
     resources.lifetime.physical_teardown_claimed = True
+    if resources.reservation is not None:
+        resources.failure = ("retained storage reservation has no physical release authority",)
+        return PhysicalTeardownObservation(False, (), False, resources.failure)
     released: list[str] = []
     physical = False
     lifetime = resources.lifetime
@@ -287,7 +313,9 @@ def teardown_owned_physical_resources(
         if record_digest(lifetime.controls.configuration) != resources.configuration:
             raise ValueError("physical teardown configuration changed")
         resources._verify_handles()
-        terminal = terminal_namespace_setup(lifetime, observer, host_parent, host_watchdog)
+        terminal = terminal_namespace_setup(
+            lifetime, observer, host_parent, host_watchdog, absolute_deadline=deadline
+        )
         if terminal.errors or not all(
             (
                 terminal.groups_empty,
@@ -300,7 +328,11 @@ def teardown_owned_physical_resources(
                 "independent terminal parent/watchdog/wrapper and empty roles required"
             )
         observed = PhysicalState.model_validate_json(resources.owner.readback().model_dump_json())
-        if observed != expected:
+        if (
+            observed != expected
+            or observed.extra_mount_aliases != 0
+            or observed.extra_open_holders != 0
+        ):
             raise ValueError("physical ownership or release readback differs or remains unknown")
 
     try:
@@ -370,3 +402,92 @@ def teardown_owned_physical_resources(
     except (OSError, ValueError) as error:
         resources.failure = (str(error),)
         return PhysicalTeardownObservation(physical, tuple(released), False, resources.failure)
+
+
+def retain_owned_physical_resources(
+    resources: OwnedPhysicalResources,
+    observer: RetainedTrustedTask,
+    host_parent: RetainedTrustedTask,
+    host_watchdog: RetainedTrustedTask,
+) -> PhysicalRetentionObservation:
+    """One bounded terminal attempt, with no physical effects or handle release.
+
+    The live reservation must predate creation and retain the actual object.
+    Unknown kernel references remain unknown; every original reservation stays
+    charged, even when scans are empty. This does not authorize another job,
+    allocation, cleanup, retry, release, qualification or candidate acceptance.
+    """
+    if resources.started or resources.lifetime.physical_teardown_claimed:
+        return PhysicalRetentionObservation(False, errors=("storage terminal is one-shot",))
+    resources.started = True
+    resources.lifetime.physical_teardown_claimed = True
+    reservation = resources.reservation
+    try:
+        if reservation is None:
+            raise ValueError("original live storage reservation required")
+        owner_deadline = getattr(
+            resources.owner,
+            "retention_deadline",
+            getattr(resources.owner, "cleanup_deadline", None),
+        )
+        if not isinstance(owner_deadline, (int, float)) or not math.isfinite(owner_deadline):
+            raise ValueError("original bounded storage-owner deadline required")
+        deadline = min(resources.batch_started + 600, owner_deadline, time.monotonic() + 30)
+        resources.cleanup_deadline = deadline
+
+        def guard() -> None:
+            if time.monotonic() >= deadline:
+                raise ValueError("original batch/cleanup deadline exhausted")
+            if record_digest(resources.lifetime.controls.configuration) != resources.configuration:
+                raise ValueError("retained terminal configuration changed")
+            reservation.verify()
+            resources._verify_handles()
+            resources.owner.verify_retention(reservation)
+
+        guard()
+        terminal = terminal_namespace_setup(
+            resources.lifetime, observer, host_parent, host_watchdog, absolute_deadline=deadline
+        )
+        if terminal.errors or not all(
+            (
+                terminal.groups_empty,
+                terminal.parent_exited,
+                terminal.watchdog_exited,
+                terminal.wrapper_reaped,
+            )
+        ):
+            raise ValueError(
+                "independent terminal parent/watchdog/wrapper and empty roles required"
+            )
+        guard()
+        observed = resources.owner.readback()
+        expected = resources.state
+        if (
+            observed.namespace != expected.namespace
+            or observed.mounts != expected.mounts
+            or observed.private_keyring != expected.private_keyring
+            or observed.keyring_state != expected.keyring_state
+            or observed.loops != expected.loops
+            or observed.backing != expected.backing
+            or observed.extra_mount_aliases not in (0, None)
+            or observed.extra_open_holders not in (0, None)
+        ):
+            raise ValueError("retained storage changed or additional references were observed")
+        guard()
+        terminal = terminal_namespace_setup(
+            resources.lifetime, observer, host_parent, host_watchdog, absolute_deadline=deadline
+        )
+        if terminal.errors or not all(
+            (
+                terminal.groups_empty,
+                terminal.parent_exited,
+                terminal.watchdog_exited,
+                terminal.wrapper_reaped,
+            )
+        ):
+            raise ValueError("terminal roles changed during retained storage readback")
+        guard()
+        return PhysicalRetentionObservation(True)
+    except (OSError, ValueError) as error:
+        resources.failure = (str(error),)
+        return PhysicalRetentionObservation(False, errors=resources.failure)

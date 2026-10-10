@@ -2,6 +2,7 @@
 
 from pathlib import Path
 import tempfile
+import tomllib
 import unittest
 from unittest.mock import patch
 
@@ -12,9 +13,14 @@ from crewshal.linux_envelope import (
     LinuxEnvelopePreparation,
     audit_linux_envelope,
     prepare_linux_envelope,
+    native_working_directory,
 )
+from crewshal.app_server import AppServerProfile, SUBSCRIPTION_PERMISSIONS
+from crewshal.linux_bootstrap import bootstrap_policy, prepare_linux_bootstrap
+from crewshal.linux_setup import prepare_namespace_setup
 from crewshal.model import digest
 from crewshal.runtime_batch import PreparationSelection
+from crewshal.runtime_batch import REQUIREMENT
 
 
 class Phase2DEnvelope(unittest.TestCase):
@@ -56,6 +62,126 @@ class Phase2DEnvelope(unittest.TestCase):
         arguments = dict(task=self.task, binding=self.binding, linux_envelope=self.inputs)
         arguments.update(changes)
         return prepare_dispatch_configuration(self.selection, **arguments)
+
+    def subscription_configuration(self):
+        selection = PreparationSelection(
+            project="fresh",
+            session="subscription",
+            model="gpt-6.1-sol",
+            provider="openai",
+            destination="https://subscription.invalid/backend-api/codex",
+            billing_mode="subscription_quota",
+            credential_treatment="native_managed_private_home",
+        )
+        policy = bootstrap_policy(digest(b"synthetic unexecuted helper"))
+        bindings = LinuxEnvelopeBindings(
+            context=record_digest(selection), bootstrap_policy_sha256=record_digest(policy)
+        )
+        task = self.replace(self.task, requirement=REQUIREMENT)
+        binding = self.replace(self.binding, task=record_digest(task))
+        arguments = dict(task=task, binding=binding, linux_envelope=bindings)
+        draft = prepare_dispatch_configuration(selection, **arguments)
+        expected_config = {}
+        for index, argument in enumerate(draft.native_argv):
+            if argument != "-c":
+                continue
+            key, literal = draft.native_argv[index + 1].split("=", 1)
+            target = expected_config
+            parts = key.split(".")
+            for part in parts[:-1]:
+                target = target.setdefault(part, {})
+            target[parts[-1]] = tomllib.loads("value=" + literal)["value"]
+        profile = AppServerProfile(
+            model=selection.model,
+            requirement=REQUIREMENT,
+            account_reference="a" * 64,
+            expected_account={"type": "chatgpt", "email": None, "planType": "plus"},
+            thread_params={
+                "model": selection.model,
+                "modelProvider": "openai",
+                "cwd": "/candidate/owned",
+                "approvalPolicy": "never",
+                "ephemeral": True,
+            },
+            expected_thread={
+                "model": selection.model,
+                "modelProvider": "openai",
+                "cwd": "/candidate/owned",
+                "approvalPolicy": "never",
+                "approvalsReviewer": "user",
+                "sandbox": {
+                    "type": "workspaceWrite",
+                    "writableRoots": ["/scratch"],
+                    "networkAccess": False,
+                    "excludeSlashTmp": True,
+                    "excludeTmpdirEnvVar": True,
+                },
+            },
+            permission_profile=SUBSCRIPTION_PERMISSIONS,
+            expected_config=expected_config,
+        )
+        return prepare_dispatch_configuration(selection, app_server_profile=profile, **arguments)
+
+    def test_subscription_profile_survives_exact_envelope_recomputation(self):
+        configuration = self.subscription_configuration()
+        with patch("subprocess.Popen", side_effect=AssertionError("no startup")):
+            plan = prepare_linux_envelope(configuration)
+            self.assertEqual(audit_linux_envelope(configuration, plan), plan)
+        self.assertEqual(native_working_directory(configuration), "/candidate/owned")
+        self.assertEqual(
+            plan.native_argv[plan.native_argv.index("--chdir") + 1], "/candidate/owned"
+        )
+        self.assertEqual(plan.credential_input, "native_managed_private_home")
+        self.assertIsNone(plan.broker_argv)
+        self.assertFalse(plan.execution_allowed)
+        self.assertFalse(plan.profile_qualified)
+
+    def test_subscription_auth_mount_has_separate_owned_source_and_no_validator_binding(self):
+        plan = prepare_linux_envelope(self.subscription_configuration())
+        auth = next(m for m in plan.mounts["native"] if m.target == "/native-auth")
+        self.assertEqual(auth.source, plan.owned_root + "/native-auth")
+        self.assertFalse(auth.readonly)
+        for role in ("broker", "validator"):
+            self.assertFalse(any(m.target == "/native-auth" for m in plan.mounts[role]))
+        self.assertIn(
+            "private_native_auth_mount_identity_permissions_and_from_creation_accounting",
+            plan.unresolved,
+        )
+        self.assertIn(
+            "effective_native_auth_alias_proc_fd_and_inprocess_tool_denial", plan.unresolved
+        )
+        self.assertEqual(
+            plan.reserved_disk_bytes, prepare_linux_envelope(self.configuration).reserved_disk_bytes
+        )
+        self.assertEqual(
+            plan.worker_controls, prepare_linux_envelope(self.configuration).worker_controls
+        )
+        self.assertEqual(
+            plan.aggregate_controls, prepare_linux_envelope(self.configuration).aggregate_controls
+        )
+
+    def test_subscription_missing_profile_refuses_before_namespace_or_process_start(self):
+        configuration = self.subscription_configuration()
+        missing = self.replace(configuration, app_server_profile=None)
+        with patch("subprocess.Popen", side_effect=AssertionError("no startup")):
+            with self.assertRaises(ValueError):
+                prepare_linux_envelope(missing)
+
+    def test_subscription_namespace_parent_plan_binds_same_fixed_cwd(self):
+        configuration = self.subscription_configuration()
+        helper = digest(b"synthetic unexecuted helper")
+        bootstrap = prepare_linux_bootstrap(configuration, helper_binary=helper)
+        plan = prepare_namespace_setup(
+            configuration,
+            bootstrap,
+            ["/bin/owned-parent"],
+            digest(b"synthetic parent"),
+        )
+        self.assertEqual(
+            plan.namespace_argv[plan.namespace_argv.index("--chdir") + 1], "/candidate/owned"
+        )
+        self.assertIn("--unshare-net", plan.namespace_argv)
+        self.assertFalse(plan.execution_allowed)
 
     def test_preparation_has_no_startup_network_signal_or_repository_writes(self):
         with tempfile.TemporaryDirectory() as directory:

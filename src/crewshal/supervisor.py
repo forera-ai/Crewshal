@@ -7,13 +7,16 @@ authenticate authority or prove that processes cannot leave their cgroup.
 
 from dataclasses import dataclass
 from datetime import datetime, timezone
+import ctypes
 import os
+import io
+import platform
 from pathlib import Path, PurePosixPath
 import selectors
 import stat
 import sys
 import time
-from typing import TYPE_CHECKING, Annotated, Callable, Literal, Protocol, Self
+from typing import TYPE_CHECKING, Annotated, IO, Callable, Literal, Protocol, Self
 
 from pydantic import Field, field_validator, model_validator
 
@@ -32,7 +35,9 @@ from crewshal.model import Contract, digest
 from crewshal.runtime import ProcessObservation, STREAM_BYTES
 
 if TYPE_CHECKING:
+    from crewshal.app_server import AppServerExchange
     from crewshal.admission import AdmittedNative
+    from crewshal.linux_setup import OwnedWatchdogLifetime
     from crewshal.durable import CoordinatorStore
     from crewshal.dispatch import CodexDispatch
 
@@ -86,6 +91,23 @@ def _counters(raw: str, required: set[str]) -> dict[str, int]:
     return result
 
 
+def _require_cgroup2(descriptor: int) -> None:
+    """Read filesystem type from the actual FD, without exposing host paths.
+
+    The supported 64-bit Linux statfs ABI starts with a native long f_type.
+    Exact libc/kernel installation and inherited-FD behavior still require the
+    separately approved Linux qualification; this check grants no admission.
+    """
+    if sys.platform != "linux" or platform.machine() not in {"x86_64", "aarch64"}:
+        raise ValueError("supported Linux cgroup filesystem readback unavailable")
+    result = ctypes.create_string_buffer(256)
+    libc = ctypes.CDLL(None, use_errno=True)
+    if libc.fstatfs(ctypes.c_int(descriptor), ctypes.byref(result)) != 0:
+        raise OSError(ctypes.get_errno(), "retained cgroup filesystem readback failed")
+    if ctypes.c_long.from_buffer(result).value != 0x63677270:
+        raise ValueError("retained descriptor is not a cgroup2 filesystem")
+
+
 class OwnedCgroup:
     """Pinned directory FD; no path-based stop or PID/process-group guessing."""
 
@@ -98,6 +120,20 @@ class OwnedCgroup:
         except BaseException:
             self.close()
             raise
+
+    @classmethod
+    def attach_inherited(cls, descriptor: int, identity: CgroupIdentity) -> "OwnedCgroup":
+        """Duplicate a verified inherited kernel FD inside the copied root.
+
+        The original outer attachment checks recursive accounting mount options.
+        This receives that actual object, never recreates it from capsule/path
+        text, and never mounts the ambient host cgroup tree for the parent.
+        """
+        _require_cgroup2(descriptor)
+        info = os.fstat(descriptor)
+        if not stat.S_ISDIR(info.st_mode) or info.st_uid != 0 or info.st_mode & 0o022:
+            raise ValueError("inherited cgroup must exclude worker write authority")
+        return cls(descriptor, identity)
 
     @classmethod
     def attach(cls, identity: CgroupIdentity) -> "OwnedCgroup":
@@ -250,6 +286,8 @@ def capture_attached_process(
     started: datetime,
     started_monotonic: float,
     cancelled: Callable[[], bool],
+    exchange: "AppServerExchange | None" = None,
+    stdin_stream: IO[bytes] | None = None,
 ) -> CapturedProcess:
     """Capture supplied pipes; never start/retry a process or infer child identity.
 
@@ -269,6 +307,13 @@ def capture_attached_process(
         tree_stopped=False,
     )
     attached = time.monotonic()
+    if (exchange is None) != (stdin_stream is None):
+        raise ValueError("app-server exchange and retained stdin must be supplied together")
+    if stdin_stream is not None and (
+        type(stdin_stream) is not io.FileIO or not stdin_stream.writable()
+    ):
+        raise ValueError("app-server stdin must be retained unbuffered FileIO")
+    stdin_descriptor = stdin_stream.fileno() if stdin_stream is not None else None
     if started_monotonic > attached or stdout_descriptor == stderr_descriptor:
         raise ValueError("invalid launch clock or aliased capture descriptors")
     for descriptor in (stdout_descriptor, stderr_descriptor):
@@ -277,6 +322,12 @@ def capture_attached_process(
     pipe_info = [os.fstat(d) for d in (stdout_descriptor, stderr_descriptor)]
     if (pipe_info[0].st_dev, pipe_info[0].st_ino) == (pipe_info[1].st_dev, pipe_info[1].st_ino):
         raise ValueError("aliased native pipe descriptions")
+    if stdin_descriptor is not None:
+        info = os.fstat(stdin_descriptor)
+        if not stat.S_ISFIFO(info.st_mode) or (info.st_dev, info.st_ino) in {
+            (item.st_dev, item.st_ino) for item in pipe_info
+        }:
+            raise ValueError("app-server requires a separate retained stdin pipe")
     initial = group.sample()
     if _quota(initial):
         raise ValueError("fresh owned worker requires zero resource-refusal counters")
@@ -284,16 +335,28 @@ def capture_attached_process(
     eof = [False, False]
     overflow = False
     stop_error = False
-    termination: Literal["timeout", "cancelled", "quota", "signal", "interrupted"] | None = None
+    termination: (
+        Literal["timeout", "cancelled", "quota", "signal", "interrupted", "refusal"] | None
+    ) = None
     stopped_at: float | None = None
     final: CgroupSample | None = initial
     exit_code: int | None = None
     originals = [os.get_blocking(d) for d in (stdout_descriptor, stderr_descriptor)]
+    stdin_blocking = os.get_blocking(stdin_descriptor) if stdin_descriptor is not None else None
+    pending = bytearray()
+    written = 0
+    parsed = 0
     with selectors.DefaultSelector() as selector:
         try:
             for index, descriptor in enumerate((stdout_descriptor, stderr_descriptor)):
                 os.set_blocking(descriptor, False)
                 selector.register(descriptor, selectors.EVENT_READ, index)
+            if exchange is not None and stdin_descriptor is not None:
+                os.set_blocking(stdin_descriptor, False)
+                pending.extend(exchange.start())
+                if len(pending) > STREAM_BYTES:
+                    raise ValueError("app-server initial input exceeds capture bound")
+                selector.register(stdin_descriptor, selectors.EVENT_WRITE, 2)
             while True:
                 now = time.monotonic()
                 elapsed = now - started_monotonic
@@ -323,6 +386,17 @@ def capture_attached_process(
                         group.stop()
                     except (OSError, ValueError):
                         stop_error = True
+                if (
+                    stdin_stream is not None
+                    and not stdin_stream.closed
+                    and (
+                        termination is not None
+                        or (exchange is not None and exchange.protocol_completed and not pending)
+                    )
+                ):
+                    if stdin_descriptor is not None and stdin_descriptor in selector.get_map():
+                        selector.unregister(stdin_descriptor)
+                    stdin_stream.close()
                 tree_stopped = (
                     exit_code is not None
                     and final is not None
@@ -335,6 +409,36 @@ def capture_attached_process(
                     break
                 for key, _ in selector.select(0.01):
                     index = key.data
+                    if index == 2:
+                        if termination is not None:
+                            continue
+                        if cancelled():
+                            termination = termination or "cancelled"
+                            continue
+                        if _quota(group.sample()):
+                            termination = termination or "quota"
+                            continue
+                        if time.monotonic() - started_monotonic >= 5:
+                            termination = termination or "timeout"
+                            continue
+                        if not pending:
+                            selector.unregister(key.fd)
+                            continue
+                        try:
+                            count = os.write(key.fd, pending)
+                        except BlockingIOError:
+                            continue
+                        except BrokenPipeError:
+                            termination = termination or "interrupted"
+                            selector.unregister(key.fd)
+                            continue
+                        written += count
+                        del pending[:count]
+                        if written + len(pending) > STREAM_BYTES:
+                            termination = termination or "quota"
+                        if not pending:
+                            selector.unregister(key.fd)
+                        continue
                     try:
                         chunk = os.read(key.fd, min(4096, STREAM_BYTES - len(buffers[index]) + 1))
                     except BlockingIOError:
@@ -345,6 +449,26 @@ def capture_attached_process(
                         continue
                     remaining = STREAM_BYTES - len(buffers[index])
                     buffers[index].extend(chunk[:remaining])
+                    if index == 0 and exchange is not None and termination is None:
+                        try:
+                            while True:
+                                end = buffers[0].find(b"\n", parsed)
+                                if end < 0:
+                                    break
+                                messages = exchange.feed(bytes(buffers[0][parsed : end + 1]))
+                                parsed = end + 1
+                                for message in messages:
+                                    if written + len(pending) + len(message) > STREAM_BYTES:
+                                        raise ValueError("app-server input exceeds capture bound")
+                                    pending.extend(message)
+                                if (
+                                    pending
+                                    and stdin_descriptor is not None
+                                    and stdin_descriptor not in selector.get_map()
+                                ):
+                                    selector.register(stdin_descriptor, selectors.EVENT_WRITE, 2)
+                        except (ValueError, UnicodeError):
+                            termination = termination or "refusal"
                     if len(chunk) > remaining:
                         overflow = True
                         termination = termination or "quota"
@@ -361,6 +485,8 @@ def capture_attached_process(
         finally:
             for descriptor, blocking in zip((stdout_descriptor, stderr_descriptor), originals):
                 os.set_blocking(descriptor, blocking)
+            if stdin_stream is not None and not stdin_stream.closed and stdin_blocking is not None:
+                os.set_blocking(stdin_stream.fileno(), stdin_blocking)
     ended = datetime.now(timezone.utc)
     elapsed = time.monotonic() - started_monotonic
     if ended < started:
@@ -446,6 +572,7 @@ def collect_supervised_codex(
     frozen_target: Path,
     allowed_paths: list[str],
     admitted: "AdmittedNative | None" = None,
+    watchdog: "OwnedWatchdogLifetime | None" = None,
 ) -> tuple[CodexCollection, SupervisionReceipt]:
     """Bind independent supervision capture to existing collection atomically.
 
@@ -459,6 +586,18 @@ def collect_supervised_codex(
     dispatch = CodexDispatch.model_validate_json(dispatch.model_dump_json())
     request = dispatch.request
     configuration = dispatch.configuration
+    subscription = configuration.native_interface == "app_server_stdio"
+    if subscription and admitted is None:
+        raise ValueError("app-server collection requires retained admitted stdin")
+    if watchdog is not None and admitted is None:
+        raise ValueError("owned watchdog collection requires original admitted native")
+    if watchdog is not None or (
+        admitted is not None and (subscription or configuration.linux_envelope is not None)
+    ):
+        from crewshal.linux_setup import OwnedWatchdogLifetime
+
+        if type(watchdog) is not OwnedWatchdogLifetime:
+            raise ValueError("admitted collection requires original owned watchdog lifetime")
     if configuration.task_digest is None or configuration.launch_binding is None:
         raise ValueError("unbound dispatch configuration")
     with store.transaction():
@@ -494,17 +633,29 @@ def collect_supervised_codex(
                 preparation_digest=configuration.preparation_digest,
                 task=task,
                 binding=request.binding,
+                linux_envelope=configuration.linux_envelope,
+                app_server_profile=configuration.app_server_profile,
             )
             or request.identity.configuration != record_digest(configuration)
             or dispatch.qualification.configuration != request.identity.configuration
             or dispatch.task_digest != record_digest(task)
             or request.requirement != task.requirement
-            or request.requirement + "\n" != configuration.native_stdin
+            or (not subscription and request.requirement + "\n" != configuration.native_stdin)
+            or (
+                subscription
+                and (
+                    configuration.app_server_profile is None
+                    or request.requirement != configuration.app_server_profile.requirement
+                )
+            )
+            or request.identity.native_interface != configuration.native_interface
+            or request.identity.app_server_profile != configuration.app_server_profile
             or configuration.selection.provider != request.identity.provider
             or configuration.selection.model != request.identity.model
             or configuration.selection.destination is None
             or configuration.selection.billing_mode == "unresolved"
-            or configuration.selection.credential_treatment != "external_scoped_channel"
+            or configuration.selection.credential_treatment
+            != ("native_managed_private_home" if subscription else "external_scoped_channel")
             or dispatch.qualification.host_os != "linux"
             or dispatch.qualification.architecture != "aarch64"
             or dispatch.qualification.runtime != "codex-rust-v0.160.1"
@@ -554,9 +705,29 @@ def collect_supervised_codex(
             admission_fingerprint = record_digest(admission)
             store._artifact(admission_fingerprint, admission.model_dump_json().encode())
             store._put("admission", admission.id, admission, 0)
+            if watchdog is not None:
+                watchdog.verify_native_binding(admitted)
+                if hasattr(watchdog, "_collection_attempted"):
+                    raise ValueError("owned native collection is one-shot; no retry")
+                setattr(watchdog, "_collection_attempted", True)
             captured = admitted.capture(cancelled=cancelled)
+            if watchdog is not None:
+                setattr(watchdog, "_native_capture", captured)
             if record_digest(admitted.receipt) != admitted.receipt_digest:
                 raise ValueError("admitted receipt changed during capture")
+            if watchdog is not None and captured.observation.tree_stopped:
+                terminal = watchdog.terminal(
+                    recovery_already_attempted=captured.observation.termination is not None
+                )
+                if (
+                    terminal.errors
+                    or not terminal.worker_empty
+                    or not terminal.watchdog_exited
+                    or not terminal.watchdog_reaped
+                    or captured.observation.exit_code is None
+                ):
+                    raise ValueError("original watchdog terminal readback incomplete before freeze")
+                watchdog.verify_native_terminal(admitted, captured.observation.exit_code)
         else:
             captured = capture_attached_process(
                 process,
@@ -584,6 +755,15 @@ def collect_supervised_codex(
             stdout=captured.stdout,
             stderr=captured.stderr,
         )
+        if admitted is not None and collection.frozen is not None:
+            if watchdog is not None:
+                setattr(watchdog, "_frozen_collection", collection)
+            if captured.observation.exit_code is None:
+                raise ValueError("native exit missing after freeze")
+            if watchdog is not None:
+                watchdog.verify_native_terminal(admitted, captured.observation.exit_code)
+            else:
+                admitted.verify_terminal(captured.observation.exit_code)
         receipt = SupervisionReceipt(
             id=f"supervision:{digest(attempt.id.encode())}",
             run_id=run.id,

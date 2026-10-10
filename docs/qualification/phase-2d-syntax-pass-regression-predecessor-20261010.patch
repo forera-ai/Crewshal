@@ -1,0 +1,376 @@
+--- a/src/crewshal/admission.py
++++ b/src/crewshal/admission.py
+@@ -39,7 +39,6 @@
+     from crewshal.dispatch import CodexDispatch, DispatchConfiguration
+     from crewshal.durable import CoordinatorStore
+     from crewshal.integration import CodexCollection
+-    from crewshal.linux_setup import OwnedWatchdogLifetime
+ 
+ 
+ class NamespaceIdentity(Contract):
+@@ -136,7 +135,6 @@
+             os.close(self.descriptor)
+             raise
+         self.directory = os.fstat(self.descriptor)
+-        self.pidfd_identity = os.fstat(self.pidfd)
+ 
+     @classmethod
+     def attach(cls, spec: NativeAdmissionSpec) -> "RetainedProc":
+@@ -185,31 +183,12 @@
+                 os.close(handle)
+                 setattr(self, name, -1)
+ 
+-    def _verify_handles(self) -> None:
++    def verify_stopped(self) -> None:
++        if select.select([self.pidfd], [], [], 0)[0]:
++            raise ValueError("retained pidfd reports process exit")
+         current = os.fstat(self.descriptor)
+         if (current.st_dev, current.st_ino) != (self.directory.st_dev, self.directory.st_ino):
+             raise ValueError("retained proc descriptor changed")
+-        current = os.fstat(self.pidfd)
+-        if (current.st_dev, current.st_ino) != (
+-            self.pidfd_identity.st_dev,
+-            self.pidfd_identity.st_ino,
+-        ):
+-            raise ValueError("retained pidfd descriptor changed")
+-
+-    def verify_exited(self) -> None:
+-        # Production attach supplies an actual pidfd. Ordinary file seams are
+-        # only offline fixtures; readiness never proves storage reference closure.
+-        self._verify_handles()
+-        exited = bool(select.select([self.pidfd], [], [], 0)[0])
+-        self._verify_handles()
+-        if not exited:
+-            raise ValueError("retained pidfd has not observed native exit")
+-
+-    def verify_stopped(self) -> None:
+-        self._verify_handles()
+-        if select.select([self.pidfd], [], [], 0)[0]:
+-            raise ValueError("retained pidfd reports process exit")
+-        self._verify_handles()
+         if _stat_identity(_read(self.descriptor, "stat")) != (
+             self.spec.pid,
+             "T",
+@@ -446,7 +425,9 @@
+     started_monotonic: float
+     receipt_digest: Digest
+ 
+-    def _verify_binding(self) -> None:
++    def capture(self, *, cancelled: Callable[[], bool]) -> CapturedProcess:
++        # Trusted launcher must release the stopped child separately, after its
++        # exact authority/deadline/envelope gates. Receipt never authorizes that.
+         if record_digest(self.receipt) != self.receipt_digest:
+             raise ValueError("admitted receipt changed")
+         if (
+@@ -466,28 +447,6 @@
+         _aggregate_readback(self.aggregate, self.worker)
+         if self.child.pid != self.receipt.spec.pid:
+             raise ValueError("retained child handle changed")
+-
+-    def verify_terminal(self, expected_exit: int) -> None:
+-        """Immediate native/worker readback; no signal, wait, grace or release.
+-
+-        The watchdog, namespace parent and wrapper retain their separate gates.
+-        No native-exit observation supplies a storage or namespace closure oracle.
+-        """
+-        self._verify_binding()
+-        self.proc.verify_exited()
+-        result = self.child.poll()
+-        if result is None or result != expected_exit:
+-            raise ValueError("retained native exit/reap differs from capture")
+-        sample = self.worker.sample()
+-        if sample.populated or sample.direct_pids:
+-            raise ValueError("retained worker repopulated after native capture")
+-        self._verify_binding()
+-        self.proc.verify_exited()
+-
+-    def capture(self, *, cancelled: Callable[[], bool]) -> CapturedProcess:
+-        # Trusted launcher must release the stopped child separately, after its
+-        # exact authority/deadline/envelope gates. Receipt never authorizes that.
+-        self._verify_binding()
+         if self.child.stdout is None or self.child.stderr is None:
+             raise ValueError("retained child capture pipes missing")
+         exchange = None
+@@ -513,7 +472,7 @@
+             info = os.fstat(stream.fileno())
+             if (info.st_dev, info.st_ino) != (expected.device, expected.inode):
+                 raise ValueError("admitted capture pipe identity changed")
+-        captured = capture_attached_process(
++        return capture_attached_process(
+             self.child,
+             self.worker,
+             self.child.stdout.fileno(),
+@@ -524,11 +483,6 @@
+             exchange=exchange,
+             stdin_stream=stdin_stream,
+         )
+-        if captured.observation.tree_stopped:
+-            if captured.observation.exit_code is None:
+-                raise ValueError("native exit missing from terminal capture")
+-            self.verify_terminal(captured.observation.exit_code)
+-        return captured
+ 
+ 
+ def _current_source(configuration: "DispatchConfiguration") -> None:
+@@ -670,15 +624,11 @@
+     candidate: Path,
+     frozen_target: Path,
+     allowed_paths: list[str],
+-    watchdog: "OwnedWatchdogLifetime | None" = None,
+ ) -> tuple["CodexCollection", SupervisionReceipt]:
+     """Persist retained admission and supervised collection in one transaction.
+ 
+-    Linux/subscription collection requires the original watchdog lifetime. The
+-    earlier envelope-free portable seam remains offline observation data only.
+-    Capture uses only original owned stop/recovery; release/startup and outer
+-    terminal readback remain separate qualified launcher obligations. No launch,
+-    credential access or execution/spend authority is supplied here.
++    Release/startup remain separate, qualified launcher obligations. No signal,
++    launch, credential access or execution/spend authority is supplied here.
+     """
+     from crewshal.supervisor import collect_supervised_codex
+ 
+@@ -705,5 +655,4 @@
+         frozen_target=frozen_target,
+         allowed_paths=allowed_paths,
+         admitted=admitted,
+-        watchdog=watchdog,
+     )
+--- a/src/crewshal/supervisor.py
++++ b/src/crewshal/supervisor.py
+@@ -37,7 +37,6 @@
+ if TYPE_CHECKING:
+     from crewshal.app_server import AppServerExchange
+     from crewshal.admission import AdmittedNative
+-    from crewshal.linux_setup import OwnedWatchdogLifetime
+     from crewshal.durable import CoordinatorStore
+     from crewshal.dispatch import CodexDispatch
+ 
+@@ -572,7 +571,6 @@
+     frozen_target: Path,
+     allowed_paths: list[str],
+     admitted: "AdmittedNative | None" = None,
+-    watchdog: "OwnedWatchdogLifetime | None" = None,
+ ) -> tuple[CodexCollection, SupervisionReceipt]:
+     """Bind independent supervision capture to existing collection atomically.
+ 
+@@ -589,15 +587,6 @@
+     subscription = configuration.native_interface == "app_server_stdio"
+     if subscription and admitted is None:
+         raise ValueError("app-server collection requires retained admitted stdin")
+-    if watchdog is not None and admitted is None:
+-        raise ValueError("owned watchdog collection requires original admitted native")
+-    if watchdog is not None or (
+-        admitted is not None and (subscription or configuration.linux_envelope is not None)
+-    ):
+-        from crewshal.linux_setup import OwnedWatchdogLifetime
+-
+-        if type(watchdog) is not OwnedWatchdogLifetime:
+-            raise ValueError("admitted collection requires original owned watchdog lifetime")
+     if configuration.task_digest is None or configuration.launch_binding is None:
+         raise ValueError("unbound dispatch configuration")
+     with store.transaction():
+@@ -705,29 +694,9 @@
+             admission_fingerprint = record_digest(admission)
+             store._artifact(admission_fingerprint, admission.model_dump_json().encode())
+             store._put("admission", admission.id, admission, 0)
+-            if watchdog is not None:
+-                watchdog.verify_native_binding(admitted)
+-                if hasattr(watchdog, "_collection_attempted"):
+-                    raise ValueError("owned native collection is one-shot; no retry")
+-                setattr(watchdog, "_collection_attempted", True)
+             captured = admitted.capture(cancelled=cancelled)
+-            if watchdog is not None:
+-                setattr(watchdog, "_native_capture", captured)
+             if record_digest(admitted.receipt) != admitted.receipt_digest:
+                 raise ValueError("admitted receipt changed during capture")
+-            if watchdog is not None and captured.observation.tree_stopped:
+-                terminal = watchdog.terminal(
+-                    recovery_already_attempted=captured.observation.termination is not None
+-                )
+-                if (
+-                    terminal.errors
+-                    or not terminal.worker_empty
+-                    or not terminal.watchdog_exited
+-                    or not terminal.watchdog_reaped
+-                    or captured.observation.exit_code is None
+-                ):
+-                    raise ValueError("original watchdog terminal readback incomplete before freeze")
+-                watchdog.verify_native_terminal(admitted, captured.observation.exit_code)
+         else:
+             captured = capture_attached_process(
+                 process,
+@@ -755,15 +724,6 @@
+             stdout=captured.stdout,
+             stderr=captured.stderr,
+         )
+-        if admitted is not None and collection.frozen is not None:
+-            if watchdog is not None:
+-                setattr(watchdog, "_frozen_collection", collection)
+-            if captured.observation.exit_code is None:
+-                raise ValueError("native exit missing after freeze")
+-            if watchdog is not None:
+-                watchdog.verify_native_terminal(admitted, captured.observation.exit_code)
+-            else:
+-                admitted.verify_terminal(captured.observation.exit_code)
+         receipt = SupervisionReceipt(
+             id=f"supervision:{digest(attempt.id.encode())}",
+             run_id=run.id,
+--- a/src/crewshal/linux_setup.py
++++ b/src/crewshal/linux_setup.py
+@@ -19,7 +19,6 @@
+ from typing import TYPE_CHECKING, Literal
+ 
+ from crewshal.admission import (
+-    AdmittedNative,
+     NamespaceIdentity,
+     _aggregate_readback,
+     _current_source,
+@@ -818,10 +817,10 @@
+ 
+ 
+ def _terminal_task_exited(task: RetainedTrustedTask) -> bool:
+-    task.verify_handles()
+-    exited = bool(select.select([task.pidfd], [], [], 0)[0])
+-    task.verify_handles()
+-    return exited
++    info = os.fstat(task.descriptor)
++    if (info.st_dev, info.st_ino) != task.directory:
++        raise ValueError("terminal retained task identity changed")
++    return bool(select.select([task.pidfd], [], [], 0)[0])
+ 
+ 
+ def _terminal_topology(lifetime: OwnedNamespaceSetup) -> None:
+@@ -960,7 +959,6 @@
+ 
+     def __init__(self, parent: RetainedTrustedTask, worker: OwnedCgroup, supervisor: OwnedCgroup):
+         self.parent, self.worker, self.supervisor = parent, worker, supervisor
+-        self._owners = (parent, worker, supervisor)
+         self.process: subprocess.Popen[bytes] | None = None
+         self.task: RetainedTrustedTask | None = None
+         self.observed: ObservedWatchdog | None = None
+@@ -968,57 +966,6 @@
+         self.lifeline_identity: tuple[int, int] | None = None
+         self.recovery_deadline: float | None = None
+         self.resources_reusable = False
+-
+-    def verify_native_binding(self, admitted: AdmittedNative) -> None:
+-        """Read the actual original handoff before any collection/stop effect."""
+-        if (
+-            type(admitted) is not AdmittedNative
+-            or self._owners != (self.parent, self.worker, self.supervisor)
+-            or getattr(self.parent, "_watchdog_lifetime", None) is not self
+-            or self.observed is None
+-            or self.task is not self.observed.task
+-            or self.process is None
+-            or self.process.pid != self.task.spec.pid
+-            or self.parent.spec.configuration != record_digest(admitted.configuration)
+-            or self.task.spec.configuration != self.parent.spec.configuration
+-            or self.observed.deadline.configuration != self.parent.spec.configuration
+-            or self.observed.deadline.worker != self.worker.identity
+-            or self.observed.deadline.started != admitted.started
+-            or self.observed.deadline.started_monotonic != admitted.started_monotonic
+-        ):
+-            raise ValueError("original native/watchdog ownership missing or changed")
+-        anchor = getattr(self.parent, "_native_handoff", None)
+-        expected = (admitted, self.observed, self.worker, self.supervisor, admitted.aggregate)
+-        if (
+-            anchor is None
+-            or len(anchor) != len(expected)
+-            or any(actual is not required for actual, required in zip(anchor, expected))
+-        ):
+-            raise ValueError("original native handoff differs from freeze input")
+-        self.parent.verify(self.supervisor.identity)
+-
+-    def verify_native_terminal(self, admitted: AdmittedNative, expected_exit: int) -> None:
+-        """Read the original handoff before freeze while retaining a live parent.
+-
+-        This consumes no new grace, closes no handle and stops no process. The
+-        outer wrapper/setup and storage closure retain their separate gates.
+-        """
+-        self.verify_native_binding(admitted)
+-        admitted.verify_terminal(expected_exit)
+-        task, process = self.task, self.process
+-        if (
+-            task is None
+-            or process is None
+-            or not _terminal_task_exited(task)
+-            or process.poll() is None
+-        ):
+-            raise ValueError("original watchdog exit/reap remains unobserved")
+-        _aggregate_readback(admitted.aggregate, self.supervisor)
+-        _role_controls(self.supervisor)
+-        if self.supervisor._read("cgroup.procs").split() != [str(self.parent.spec.pid)]:
+-            raise ValueError("supervisor must retain only original parent before freeze")
+-        admitted.verify_terminal(expected_exit)
+-        self.parent.verify(self.supervisor.identity)
+ 
+     def terminal(self, *, recovery_already_attempted: bool = False) -> TerminalObservation:
+         """Close lifeline to stop, never disarm. Re-observation never resets grace.
+@@ -1110,7 +1057,6 @@
+         raise ValueError("watchdog creation requires an empty worker")
+     parent._watchdog_started = True
+     lifetime = OwnedWatchdogLifetime(parent, worker, supervisor)
+-    setattr(parent, "_watchdog_lifetime", lifetime)
+     reading = writing = ready_read = ready_write = -1
+     origin_bound = time.monotonic_ns()
+     started = datetime.now(timezone.utc)
+--- a/src/crewshal/linux_parent.py
++++ b/src/crewshal/linux_parent.py
+@@ -175,8 +175,6 @@
+             raise
+         info = os.fstat(self.descriptor)
+         self.directory = (info.st_dev, info.st_ino)
+-        info = os.fstat(self.pidfd)
+-        self.pidfd_identity = (info.st_dev, info.st_ino)
+         self._bridge_claimed = False
+         self._setup_started = False
+         self._watchdog_started = False
+@@ -206,17 +204,7 @@
+                 os.close(handle)
+                 setattr(self, name, -1)
+ 
+-    def verify_handles(self) -> None:
+-        directory = os.fstat(self.descriptor)
+-        pidfd = os.fstat(self.pidfd)
+-        if (directory.st_dev, directory.st_ino) != self.directory or (
+-            pidfd.st_dev,
+-            pidfd.st_ino,
+-        ) != self.pidfd_identity:
+-            raise ValueError("trusted task retained descriptor changed")
+-
+     def verify(self, group: CgroupIdentity) -> None:
+-        self.verify_handles()
+         spec = self.spec
+         info = os.fstat(self.descriptor)
+         pid, state, parent, start = _stat_identity(_read(self.descriptor, "stat"))
+@@ -268,7 +256,6 @@
+         if os.readlink("cwd", dir_fd=self.descriptor) != spec.cwd:
+             raise ValueError("trusted task cwd differs")
+         _image(self.descriptor, spec.executable)
+-        self.verify_handles()
+ 
+ 
+ @dataclass(frozen=True)
+@@ -606,9 +593,6 @@
+         )
+         in_handoff = False
+         check()
+-        # Keep the actual handoff in its original namespace parent. A later
+-        # freeze may not substitute another child, watchdog or role allocation.
+-        setattr(parent, "_native_handoff", (admitted, watchdog, worker, supervisor, aggregate))
+         return admitted
+     except BaseException as error:
+         # The same refusal uses one grace only; never recover the handoff twice.
+--- a/src/crewshal/linux_production.py
++++ b/src/crewshal/linux_production.py
+@@ -1133,8 +1133,7 @@
+             if bytes(raw) != self._expected_loop(name, os.fstat(self.handles[name])):
+                 raise ValueError("owned loop changed before mount")
+             for suffix in ("-lower", "-upper"):
+-                target = PurePosixPath(_view_path(self.root, role, suffix)).name
+-                os.mkdir(target, 0o700, dir_fd=parent)
++                os.mkdir(role + suffix, 0o700, dir_fd=parent)
+             lower_path, upper_path = self.mounts[role + "-lower"], self.mounts[role + "-upper"]
+             _mount_owned(f"/proc/self/fd/{loop}", lower_path, "ext4", None)
+             lower = os.open(lower_path, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW | os.O_CLOEXEC)

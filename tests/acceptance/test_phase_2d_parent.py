@@ -99,6 +99,24 @@ class Phase2DParent(unittest.TestCase):
     def write(self, path, name, value):
         path.joinpath(name).write_bytes(value.encode() if isinstance(value, str) else value)
 
+    def test_trusted_task_cwd_is_exact_readback_not_a_fixed_legacy_assumption(self):
+        self.parent_path.joinpath("cwd").unlink()
+        self.parent_path.joinpath("cwd").symlink_to("/candidate/owned")
+        with self.assertRaises(ValueError):
+            self.parent.verify(self.supervisor.identity)
+        self.parent.spec = bridge.TrustedTaskSpec.model_validate(
+            {
+                **self.parent.spec.model_dump(),
+                "cwd": "/candidate/owned",
+            }
+        )
+        self.parent.verify(self.supervisor.identity)
+
+    def test_trusted_task_cwd_cannot_admit_auth_or_arbitrary_root(self):
+        for cwd in ("/native-auth", "/", "/scratch", "/proc"):
+            with self.subTest(cwd=cwd), self.assertRaises(ValueError):
+                bridge.TrustedTaskSpec.model_validate({**self.parent.spec.model_dump(), "cwd": cwd})
+
     def task(self, pid, parent):
         path = self.f.root / ("trusted-parent" if parent else "trusted-watchdog")
         path.mkdir()

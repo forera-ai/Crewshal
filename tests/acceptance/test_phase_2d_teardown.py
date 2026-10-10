@@ -69,6 +69,11 @@ class SyntheticPhysicalOwner:
             observed.backing[name] = teardown.FileIdentity(device=info.st_dev, inode=info.st_ino)
         return observed
 
+    def verify_retention(self, reservation):
+        if getattr(self, "reservation", None) is not reservation:
+            raise ValueError("synthetic original reservation differs")
+        reservation.verify()
+
     def effect(self, name, operation):
         self.calls.append(name)
         if self.failure == name:
@@ -180,6 +185,210 @@ class Phase2DTeardown(unittest.TestCase):
             return teardown.teardown_owned_physical_resources(
                 self.resources, self.observer, self.parent, self.watchdog
             )
+
+    def prepare_retention(self):
+        # Fresh fake kernel/setup seams; no runtime creation or release is
+        # inferred from these ordinary temporary files and proc observations.
+        origin = time.monotonic() - 2
+        from tests.acceptance.test_phase_2d_setup import synthetic_capacity_claim
+
+        capacity = synthetic_capacity_claim(
+            self, self.f.f.root, self.observer, self.f.configuration, origin
+        )
+        reservation = setup.OwnedStorageReservation(
+            self.observer,
+            self.lifetime.observer_group,
+            self.lifetime.aggregate,
+            self.f.configuration,
+            batch_started_monotonic=origin,
+            capacity_claim=capacity,
+        )
+        self.lifetime.storage_reservation = reservation
+        reservation._setup_lifetime = self.lifetime
+        self.owner.reservation = reservation
+        self.owner.cleanup_deadline = time.monotonic() + 20
+        self.owner.state.extra_mount_aliases = None
+        self.owner.state.extra_open_holders = None
+        handle = os.open(self.owner.path, os.O_RDONLY)
+        try:
+            self.resources = self.retain(
+                storage_fds={self.owner.path.name: handle},
+                batch_started_monotonic=origin,
+            )
+        finally:
+            os.close(handle)
+        return reservation
+
+    def run_retention(self, ready=True):
+        with patch.object(setup, "_terminal_task_exited", return_value=ready):
+            return teardown.retain_owned_physical_resources(
+                self.resources,
+                self.observer,
+                self.parent,
+                self.watchdog,
+            )
+
+    def test_retained_terminal_unknowns_keep_all_handles_and_full_charges(self):
+        reservation = self.prepare_retention()
+        handles = dict(self.resources.descriptors)
+        result = self.run_retention()
+        self.assertTrue(result.terminal_verified)
+        self.assertEqual(result.physical_release, "unknown")
+        self.assertFalse(result.resources_reusable)
+        self.assertEqual(self.owner.calls, [])
+        self.assertEqual(self.resources.descriptors, handles)
+        for descriptor in handles.values():
+            os.fstat(descriptor)
+        self.assertTrue(self.owner.path.exists())
+        self.assertEqual(reservation.charges.logical_bytes, 8589934592)
+        self.assertEqual(reservation.charges.allocated_bytes, 8589934592)
+        self.assertEqual(reservation.charges.memory_bytes, 805306368)
+        self.assertEqual(reservation.charges.tasks, 128)
+        self.assertIsNone(self.resources.state.extra_mount_aliases)
+        self.assertIsNone(self.resources.state.extra_open_holders)
+
+    def test_retention_never_authorizes_retry_or_later_teardown(self):
+        self.prepare_retention()
+        first = self.run_retention()
+        deadline = self.resources.cleanup_deadline
+        grace = self.lifetime.recovery_deadline
+        second = self.run_retention()
+        release = self.run_teardown()
+        self.assertTrue(first.terminal_verified)
+        self.assertFalse(second.terminal_verified)
+        self.assertFalse(release.physical_released)
+        self.assertEqual(self.owner.calls, [])
+        self.assertEqual(self.resources.cleanup_deadline, deadline)
+        self.assertEqual(self.lifetime.recovery_deadline, grace)
+
+    def test_effect_free_retention_uses_fixed_readback_end_after_creation_deadline(self):
+        reservation = self.prepare_retention()
+        self.owner.cleanup_deadline = time.monotonic() - 1
+        self.owner.retention_deadline = reservation.batch_started + 600
+        before = time.monotonic()
+        result = self.run_retention()
+        self.assertTrue(result.terminal_verified)
+        self.assertGreater(self.resources.cleanup_deadline, before)
+        self.assertLessEqual(self.resources.cleanup_deadline, time.monotonic() + 30)
+        self.assertLessEqual(self.resources.cleanup_deadline, reservation.batch_started + 600)
+        self.assertLess(self.owner.cleanup_deadline, before)
+        self.assertEqual(self.owner.calls, [])
+
+    def test_readback_deadline_never_renews_physical_effect_deadline(self):
+        self.prepare_retention()
+        self.owner.cleanup_deadline = time.monotonic() - 1
+        self.owner.retention_deadline = self.resources.batch_started + 600
+        result = self.run_teardown()
+        self.assertFalse(result.physical_released)
+        self.assertEqual(self.owner.calls, [])
+        self.resources._verify_handles()
+
+    def test_expired_retention_deadline_cannot_restart_terminal_reserve(self):
+        self.prepare_retention()
+        self.owner.retention_deadline = time.monotonic() - 1
+        result = self.run_retention()
+        self.assertFalse(result.terminal_verified)
+        self.assertEqual(self.owner.calls, [])
+        self.resources._verify_handles()
+
+    def test_retained_inventory_with_unknowns_cannot_enter_release_path(self):
+        self.prepare_retention()
+        result = self.run_teardown()
+        self.assertFalse(result.physical_released)
+        self.assertEqual(self.owner.calls, [])
+        self.resources._verify_handles()
+
+    def test_retention_without_original_reservation_fails_without_effect(self):
+        result = self.run_retention()
+        self.assertFalse(result.terminal_verified)
+        self.assertEqual(self.owner.calls, [])
+
+    def test_surviving_terminal_role_blocks_retention_without_effect(self):
+        self.prepare_retention()
+        result = self.run_retention(False)
+        self.assertFalse(result.terminal_verified)
+        self.assertEqual(self.owner.calls, [])
+        self.resources._verify_handles()
+
+    def test_delayed_alias_or_loop_rebinding_blocks_retained_terminal(self):
+        for change in ("alias", "loop", "deleted-open"):
+            with self.subTest(change=change):
+                # Each variant has an independently built lifetime and files.
+                fresh = Phase2DTeardown()
+                fresh.setUp()
+                try:
+                    fresh.prepare_retention()
+                    if change == "alias":
+                        fresh.owner.state.extra_mount_aliases = 1
+                    elif change == "deleted-open":
+                        fresh.owner.state.extra_open_holders = 1
+                    else:
+                        fresh.owner.state.loops["loop"].size_limit += 1
+                    result = fresh.run_retention()
+                    self.assertFalse(result.terminal_verified)
+                    self.assertEqual(fresh.owner.calls, [])
+                    fresh.resources._verify_handles()
+                finally:
+                    fresh.doCleanups()
+
+    def test_owner_readback_expiry_retains_charge_and_all_descriptors(self):
+        reservation = self.prepare_retention()
+        readback = self.owner.readback
+        clock = time.monotonic()
+        self.owner.cleanup_deadline = clock + 1
+
+        def expire():
+            value = readback()
+            clock_patch.start()
+            return value
+
+        clock_patch = patch.object(teardown.time, "monotonic", return_value=clock + 2)
+        try:
+            with patch.object(self.owner, "readback", side_effect=expire):
+                result = self.run_retention()
+        finally:
+            clock_patch.stop()
+        self.assertFalse(result.terminal_verified)
+        self.assertEqual(reservation.charges.allocated_bytes, 8589934592)
+        self.resources._verify_handles()
+        self.assertEqual(self.owner.calls, [])
+
+    def test_role_repopulation_during_storage_readback_refuses_retained_terminal(self):
+        self.prepare_retention()
+        readback = self.owner.readback
+
+        def repopulate():
+            value = readback()
+            self.f.f.worker_path.joinpath("cgroup.procs").write_text("12345")
+            self.f.f.worker_path.joinpath("cgroup.events").write_text("populated 1\nfrozen 0")
+            return value
+
+        with patch.object(self.owner, "readback", side_effect=repopulate):
+            result = self.run_retention()
+        self.assertFalse(result.terminal_verified)
+        self.assertEqual(self.owner.calls, [])
+        self.resources._verify_handles()
+
+    def test_terminal_recovery_cannot_extend_owner_cleanup_deadline(self):
+        self.prepare_retention()
+        self.lifetime.recovery_deadline = None
+        start = time.monotonic()
+        self.owner.cleanup_deadline = start + 0.25
+        clock = [start]
+
+        def tick(seconds):
+            clock[0] += seconds
+
+        with (
+            patch.object(teardown.time, "monotonic", side_effect=lambda: clock[0]),
+            patch.object(setup.time, "sleep", side_effect=tick),
+        ):
+            result = self.run_retention(False)
+        self.assertFalse(result.terminal_verified)
+        self.assertLessEqual(clock[0], self.owner.cleanup_deadline)
+        self.assertLessEqual(self.lifetime.recovery_deadline, self.owner.cleanup_deadline)
+        self.assertEqual(self.owner.calls, [])
+        self.resources._verify_handles()
 
     def test_concrete_owner_deadline_never_restarts_cleanup_reserve(self):
         self.owner.cleanup_deadline = time.monotonic() + 2

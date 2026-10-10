@@ -7,8 +7,10 @@ channel and effective controls. Native argv is never safe to run on the host.
 import json
 from pathlib import Path
 from typing import Literal
+from pydantic import JsonValue
 
 from crewshal.contracts import Attempt, Binding, Digest, Task, record_digest
+from crewshal.app_server import AppServerProfile, SUBSCRIPTION_STARTUP_SETTINGS, _leaves
 from crewshal.integration import scope_digest
 from crewshal.linux_envelope import LinuxEnvelopeBindings
 from crewshal.model import Contract, digest
@@ -24,6 +26,7 @@ from crewshal.runtime_batch import (
 
 # These inputs are package source, not repository instructions or imported code.
 SOURCE_FILES = (
+    "app_server.py",
     "dispatch.py",
     "admission.py",
     "linux_envelope.py",
@@ -33,6 +36,7 @@ SOURCE_FILES = (
     "linux_inventory.py",
     "linux_teardown.py",
     "linux_storage.py",
+    "linux_production.py",
     "bootstrap_helper.c",
     "supervisor.py",
     "runtime.py",
@@ -46,6 +50,29 @@ SOURCE_FILES = (
     "qualification.py",
     "qualification_bundle.py",
 )
+
+
+def _toml_override(value: JsonValue) -> str:
+    """Render fixed CLI values; path keys containing periods require inline tables."""
+    if isinstance(value, dict):
+        return (
+            "{"
+            + ",".join(f"{json.dumps(key)}={_toml_override(item)}" for key, item in value.items())
+            + "}"
+        )
+    if isinstance(value, (str, int)):
+        return json.dumps(value, ensure_ascii=True)
+    raise ValueError("native configuration supports only fixed TOML scalar/table values")
+
+
+def _expanded_settings(settings: dict[str, JsonValue]) -> dict[str, object]:
+    result: dict[str, object] = {}
+    for key, value in settings.items():
+        if isinstance(value, dict):
+            result.update(_leaves(dict(value), key))
+        else:
+            result[key] = value
+    return result
 
 
 class DispatchLimits(Contract):
@@ -82,8 +109,12 @@ class DispatchConfiguration(Contract):
     native_argv: list[str]
     native_stdin: str
     native_environment: dict[str, str]
+    native_interface: Literal["exec_jsonl", "app_server_stdio"] = "exec_jsonl"
+    app_server_profile: AppServerProfile | None = None
     proxy_argv: list[str] | None
-    proxy_credential_input: Literal["separate_broker_stdin"] = "separate_broker_stdin"
+    proxy_credential_input: Literal["separate_broker_stdin", "native_managed_private_home"] = (
+        "separate_broker_stdin"
+    )
     validator_argv: list[str]
     limits: DispatchLimits
     linux_envelope: LinuxEnvelopeBindings | None = None
@@ -99,6 +130,7 @@ def prepare_dispatch_configuration(
     task: Task | None = None,
     binding: Binding | None = None,
     linux_envelope: LinuxEnvelopeBindings | None = None,
+    app_server_profile: AppServerProfile | None = None,
 ) -> DispatchConfiguration:
     """Compile prospective data before qualification, including current source bytes.
 
@@ -107,6 +139,21 @@ def prepare_dispatch_configuration(
     The configuration digest must be bound by a fresh exact qualification later.
     """
     selection = PreparationSelection.model_validate_json(selection.model_dump_json())
+    subscription = selection.credential_treatment == "native_managed_private_home"
+    if app_server_profile is not None:
+        app_server_profile = AppServerProfile.model_validate_json(
+            app_server_profile.model_dump_json()
+        )
+    if subscription:
+        if selection.billing_mode != "subscription_quota" or selection.provider != "openai":
+            raise ValueError("managed native authentication requires OpenAI subscription selection")
+        if app_server_profile is not None and (
+            app_server_profile.model != selection.model
+            or app_server_profile.requirement != REQUIREMENT
+        ):
+            raise ValueError("app-server profile differs from selected model/task")
+    elif app_server_profile is not None:
+        raise ValueError("app-server profile requires managed subscription selection")
     if linux_envelope is not None:
         linux_envelope = LinuxEnvelopeBindings.model_validate_json(linux_envelope.model_dump_json())
         if linux_envelope.context != record_digest(selection):
@@ -141,7 +188,7 @@ def prepare_dispatch_configuration(
     ]
     # Fixed internal transport provider; the selected real provider stays explicit
     # in selection/attempt identity. CLI options are literals, never shell text.
-    settings: dict[str, str | int | bool] = {
+    settings: dict[str, JsonValue] = {
         "approval_policy": "never",
         "model_provider": "crewshal",
         "model_providers.crewshal.name": "crewshal",
@@ -150,6 +197,7 @@ def prepare_dispatch_configuration(
         "model_providers.crewshal.requires_openai_auth": False,
         "model_providers.crewshal.request_max_retries": 0,
         "model_providers.crewshal.stream_max_retries": 0,
+        "features.unbounded_connection_retries": False,
         "features.shell_snapshot": False,
         "project_doc_max_bytes": 0,
         "features.sqlite": False,
@@ -177,9 +225,27 @@ def prepare_dispatch_configuration(
         "features.skip_host_skill_discovery": True,
         "allow_login_shell": False,
     }
+    if subscription:
+        native = ["/opt/codex/bin/codex", "app-server", "--listen", "stdio://", "--strict-config"]
+        settings = {
+            key: value
+            for key, value in settings.items()
+            if not (key == "model_provider" or key.startswith("model_providers.crewshal."))
+        }
+        settings.update(SUBSCRIPTION_STARTUP_SETTINGS)
+        settings["model"] = selection.model
+        if selection.destination is not None:
+            settings["model_providers.openai.base_url"] = selection.destination
+        if app_server_profile is not None:
+            projected = _leaves(dict(app_server_profile.expected_config))
+            if json.dumps(projected, sort_keys=True) != json.dumps(
+                _expanded_settings(settings), sort_keys=True
+            ):
+                raise ValueError("app-server readback must bind every startup override")
     for key, value in settings.items():
-        native.extend(["-c", f"{key}={json.dumps(value, ensure_ascii=True)}"])
-    native.append("-")
+        native.extend(["-c", f"{key}={_toml_override(value)}"])
+    if not subscription:
+        native.append("-")
     reader = _Reader(Path(__file__).parent)
     return DispatchConfiguration(
         selection=selection,
@@ -188,10 +254,12 @@ def prepare_dispatch_configuration(
         launch_binding=binding,
         source_sha256={name: digest(reader.read(name)) for name in SOURCE_FILES},
         native_argv=native,
-        native_stdin=REQUIREMENT + "\n",
+        native_stdin="" if subscription else REQUIREMENT + "\n",
+        native_interface="app_server_stdio" if subscription else "exec_jsonl",
+        app_server_profile=app_server_profile,
         native_environment={
-            "HOME": "/scratch",
-            "CODEX_HOME": "/scratch",
+            "HOME": "/native-auth" if subscription else "/scratch",
+            "CODEX_HOME": "/native-auth" if subscription else "/scratch",
             "GIT_CONFIG_NOSYSTEM": "1",
             "GIT_CONFIG_GLOBAL": "/input/empty-global-instructions",
             "GIT_CONFIG_COUNT": "1",
@@ -209,10 +277,13 @@ def prepare_dispatch_configuration(
                 "--upstream-url",
                 selection.destination,
             ]
-            if selection.destination is not None
+            if selection.destination is not None and not subscription
             else None
         ),
         validator_argv=["/bin/python3", "-I", "-B", "/input/check_fixture.py", "/candidate/owned"],
+        proxy_credential_input=(
+            "native_managed_private_home" if subscription else "separate_broker_stdin"
+        ),
         limits=DispatchLimits(),
         linux_envelope=linux_envelope,
     )
@@ -258,13 +329,19 @@ def prepare_codex_dispatch(
         task=task,
         binding=current,
         linux_envelope=configuration.linux_envelope,
+        app_server_profile=configuration.app_server_profile,
     ):
         raise ValueError("dispatch configuration or current source/preparation bytes differ")
     if (
         selected.provider is None
         or selected.destination is None
         or selected.billing_mode == "unresolved"
-        or selected.credential_treatment != "external_scoped_channel"
+        or selected.credential_treatment
+        != (
+            "native_managed_private_home"
+            if configuration.native_interface == "app_server_stdio"
+            else "external_scoped_channel"
+        )
     ):
         raise ValueError("dispatch preparation requires explicit per-session route choices")
     task = Task.model_validate_json(task.model_dump_json())
@@ -273,10 +350,17 @@ def prepare_codex_dispatch(
     reader = _Reader(bundle)
     manifest = _json(reader.read("initial-manifest.json"))
     template = _json(reader.read("dispatch-template.json"))
+    subscription = configuration.native_interface == "app_server_stdio"
+    if subscription and (
+        configuration.app_server_profile is None
+        or configuration.app_server_profile.expected_account_id is None
+    ):
+        raise ValueError("app-server dispatch requires independently bound account identity")
     if not isinstance(template, dict) or (
-        template.get("task_stdin") != configuration.native_stdin
+        template.get("task_stdin") != (None if subscription else configuration.native_stdin)
         or template.get("validator_argv") != configuration.validator_argv
-        or template.get("native_tail") != configuration.native_argv[:19]
+        or template.get("native_tail") != configuration.native_argv[: 5 if subscription else 19]
+        or (subscription and template.get("task_turn_text") != REQUIREMENT)
     ):
         raise ValueError("dispatch template differs from pinned native/check interface")
     from crewshal.candidate import FrozenCandidate
@@ -286,9 +370,18 @@ def prepare_codex_dispatch(
         identity.configuration != record_digest(configuration)
         or identity.provider != selected.provider
         or identity.model != selected.model
+        or identity.native_interface != configuration.native_interface
+        or identity.app_server_profile != configuration.app_server_profile
         or current.candidate != record_digest(initial)
         or current.scope != scope_digest(["README.md"])
-        or task.requirement + "\n" != configuration.native_stdin
+        or (not subscription and task.requirement + "\n" != configuration.native_stdin)
+        or (
+            subscription
+            and (
+                configuration.app_server_profile is None
+                or task.requirement != configuration.app_server_profile.requirement
+            )
+        )
         or len(task.checks) != 1
         or task.checks[0].argv != configuration.validator_argv
         or task.checks[0].cwd != "."

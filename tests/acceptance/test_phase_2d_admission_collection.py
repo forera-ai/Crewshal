@@ -35,6 +35,7 @@ class Phase2DAdmissionCollection(unittest.TestCase):
         self.native.out_writer.close()
         self.native.err_writer.close()
         self.native.child.result = exit_code
+        self.native.pid_writer.close()
         (self.native.worker_path / "cgroup.procs").write_text("")
         (self.native.worker_path / "cgroup.events").write_text("populated 0\nfrozen 0")
 
@@ -246,6 +247,7 @@ class Phase2DAdmissionCollection(unittest.TestCase):
         self.native.out_writer.write(self.fixture.raw)
         self.native.err_writer.close()
         self.native.child.result = 0
+        self.native.pid_writer.close()
         (self.native.worker_path / "cgroup.events").write_text("populated 0\nfrozen 0")
         (self.native.worker_path / "cgroup.procs").write_text("")
         self.supervisor.clock = supervisor_fixtures.FixtureClock(0.5)
@@ -264,6 +266,32 @@ class Phase2DAdmissionCollection(unittest.TestCase):
         self.assertEqual(
             self.store.connection.execute("SELECT COUNT(*) FROM events").fetchone()[0], before
         )
+
+    def test_worker_repopulation_during_freeze_refuses_records_and_retains_copy(self):
+        from crewshal import integration
+
+        self.terminal()
+        original = integration.freeze_candidate
+
+        def mutate(*args, **kwargs):
+            frozen = original(*args, **kwargs)
+            (self.native.worker_path / "cgroup.procs").write_text("777")
+            (self.native.worker_path / "cgroup.events").write_text("populated 1\nfrozen 0")
+            return frozen
+
+        with patch.object(integration, "freeze_candidate", side_effect=mutate):
+            with self.assertRaisesRegex(ValueError, "repopulated"):
+                self.collect()
+        for kind, contract in (
+            ("admission", NativeAdmissionRecord),
+            ("supervision", SupervisionReceipt),
+            ("collection", CodexCollection),
+            ("evidence", Evidence),
+        ):
+            self.assertEqual(self.store.records(kind, contract), [])
+        self.assertTrue(self.fixture.frozen.exists())
+        self.assertEqual(self.store.get("run", "run", Run)[0].state, "ready")
+        self.assertEqual(self.store.get("attempt", "worker", Attempt)[0].state, "acknowledged")
 
     def test_closed_receipt_record_rejects_authority_and_unknown_fields(self):
         self.terminal()

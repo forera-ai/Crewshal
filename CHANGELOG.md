@@ -1,5 +1,58 @@
 # Changelog
 
+## 0.11.0 — 2026-10-10
+
+- Publish the owner-authorized compatible Phase 2D source checkpoint: accepted retained ownership, irreversible capacity accounting, official subscription preparation, bounded production custody, owned roots/views and candidate/terminal capture corrections. Preserve all prior immutable evidence.
+- Synchronize package metadata and document the explicit instruction to commit/push before full acceptance and continue the same milestone. The preceding source round passes 649 complete / 508 Phase 2D offline tests; the additional frozen C syntax check passes.
+- Effective installed capacity/growth, readonly frozen-volume/validator, batch timer and exact Linux/live acceptance remain unfinished. Source is unqualified. Publication grants no execution, spend, release, reuse or 2E authority.
+
+## Unreleased — Phase 2D additional syntax pass and terminal capture, 2026-10-10
+
+- Record the owner's installed-capability confirmation and explicit additional-check approval. One bounded additional Ubuntu syntax check passes the unchanged frozen 8011 C bytes; retain both consumed markers/results. No executable installation, helper/native/model execution, further host probe or broader authority follows.
+- Require retained native-exit/reap and fresh original control readback; bind Linux/subscription freeze to its actual original watchdog/parent handoff and resample after copy. Reconstructed owners, missing exits, changed handles/controls and repopulation refuse while copied bytes and unknown handles remain retained. Forward the original watchdog through the admitted-collection wrapper; preserve the earlier envelope-free offline-data seam without readiness or authority.
+- Correct canonical auth and validator mount directory creation. Fresh ordinary-directory regression reproduces the former absent target, without any kernel mount. Final reproducible source/package evidence and continuation are in PHASE-2D-SYNTAX-PASS-2026-10-10.md and its ledger.
+- Effective 2D capacity/growth, readonly frozen-volume/validator, batch timer, installed identity and Linux/live acceptance remain incomplete. Original controls and accepted decisions persist. Version stays 0.10.0; no commit/push before complete acceptance, no 2E. Earlier October 10 refusal/pending-capability statements are dated history.
+
+## Unreleased — Phase 2D syntax refusal and retained candidate root, 2026-10-10
+
+- Execute only the owner-approved one-shot frozen syntax transport. Noninteractive sudo refuses with a password-required diagnostic before compilation; retain the failed marker/output and record no retry, password retrieval, host authorization change or broader runtime authority. Compiler compatibility remains unknown.
+- Pin one original no-follow root FD throughout preparation/freeze and independently reject root replacement before capture/copy and after copy. One deterministic regression has two subcases that fail preceding source; final source passes 499 Phase 2D / 640 complete offline tests, with full evidence and exact continuation in the new guide/ledger.
+- Keep installed capacity/growth, actual frozen candidate/validator, terminal timer, installed identities and Linux/live gates unfinished. Accepted policies and original controls remain unchanged; version stays 0.10.0, no commit/push before full acceptance, no 2E.
+
+## Unreleased — Phase 2D owned filesystem/view source, 2026-10-09
+
+- Add retained private anonymous key preparation, copied-root production, fixed-FD ext4 formatting and acknowledged ext4/eCryptfs mount custody. Include fixed native-auth and validator volumes inside original allowances; execute setup through the actual retained readonly-root FD. Preserve all partial ownership and refuse retry, release, reuse or readiness claims.
+- Keep effect-free terminal readback within the fixed batch deadline without renewing original creation/physical teardown bounds. Correct candidate ancestor-symlink capture and enumeration with retained relative directory FDs; refuse leaf metadata mutation before reading bytes.
+- Record 498 Phase 2D / 639 complete offline tests, denied-network editable/fresh-wheel checks, lint/format 64 files, strict types 27 modules and 28 packaged / 23 dispatch-bound sources. Prepare one concrete frozen syntax-only Ubuntu compiler batch and bounded client; approval remains pending and no operational action ran. Installed capacity/growth, frozen candidate/validator, terminal timer, exact installed identities and Linux/live acceptance remain incomplete. Version stays 0.10.0; commit/push follows full 2D acceptance, no 2E.
+
+## Unreleased — Phase 2D irreversible capacity and partial creation custody, 2026-10-09
+
+- Require a complete synchronous installed-to-retained journal claim before reservation/creation. Deny absent domains, restart, copied live tokens, concurrent second claims, journal replacement/reset and missing events without refund or a new schema. Keep original full charges and exact live owner/configuration/origin binding; no initializer or release API is added.
+- Add fixed acknowledged actual-FD custody for partial namespace/backing/loop creation, independent retained child pidfd/proc/role readback and bounded child loop observations. Keep all unknown/failed handles and no retry/host cleanup/readiness/reuse. Correct subscription profile/cwd propagation and keep native authentication outside scratch/candidate aliases; C helper remains uncompiled.
+- Record 442 Phase 2D / 583 complete offline tests, focused 86, static/build/fresh denied-network installed-wheel checks and 28 packaged / 23 dispatch-bound sources. Fixed installed physical capacity/root/growth and exact Linux/live qualification remain unfinished; no new owner decision is requested. Version remains 0.10.0, uncommitted, with commit/push conditional on full Phase 2D acceptance; no operational actions, metered fallback or 2E.
+
+## Unreleased — Phase 2D official subscription preparation, 2026-10-09
+
+- Record accepted ADR 0005 for the official subscription interface and only vendor authentication recovery within the original five-second attempt. Keep HTTP-only transport, disabled unbounded connection retries, zero ordinary request/stream retries, one thread/turn and no metered fallback.
+- Add a finite six-request stdio exchange with complete startup readback/origin binding, account/thread/turn linkage and adversarial refusal. Bind its source/profile to dispatch, admission and runtime normalization. Add retained stdin identity and bounded nonblocking duplex capture; protocol completion never substitutes for actual terminal observations. Refuse buffered input, post-refusal writes, cancellation/deadline input and missing account identity.
+- Preserve the stock read-only helper directory through restricted default reads and exact authentication/config-file masks. Render the whole filesystem policy as a TOML inline table so filename periods cannot become wrong CLI keys. Actual helper aliases, fresh private home, credential separation and all installed Linux controls still require qualification. Fresh offline/build/wheel checks are recorded in the new verification; package stays 0.10.0, uncommitted, publication/live/release gated, no 2E.
+
+## Unreleased — Phase 2D accepted retention and bounded ownership, 2026-10-09
+
+- Record accepted ADR 0004: unknown storage release may be a retained terminal outcome after the other original live gates pass. Add a live one-shot reservation/source handoff with full original charges, strong constructor-failure ownership and an effect-free terminal path. Preserve all storage handles, unknowns, deadlines and no-reuse/no-retry rules; explicitly deny physical release for this retained reservation.
+- Correct incompatible observer admission to 134217728 bytes/32 tasks. Independently review and fix missing backing handles, partial owner lifetime, recovery beyond the absolute cleanup deadline and stale terminal readback after storage observation. Effective from-creation production, persistent ownership/accounting and total disk enforcement remain unqualified.
+- Prepare one concrete material subscription-interface decision with commit-pinned official source evidence. The current API-key-only proxy lacks the required subscription lifecycle; no metered fallback, custom gateway or model loop is proposed. Final offline/build/wheel results are recorded in the retained ownership verification. Package stays 0.10.0, uncommitted; publication and real candidate/validator acceptance remain gated, no 2E.
+
+## Unreleased — Phase 2D confirmed decisions and loop close ordering, 2026-10-09
+
+- Record the owner's loop-FD ordering amendment, existing Ubuntu authorization and subscription-only billing. Restore existing SSH access and perform read-only substrate admission; no model call, installation or kernel storage effect. Account usage percentages are shared snapshots, not a hard per-task quota.
+- Reject an observer-side final loop close during review: the close can itself enter blocking kernel release outside the bounded job. Preserve retained FDs and unknown release; add a regression that fails the discarded candidate and passes final source. Final coverage is 334 Phase 2D / 475 complete offline tests; focused storage/teardown 74. Static/build/fresh-wheel checks pass. A bounded sole holder from creation, final completion and operational Linux/live acceptance remain missing. Consolidate the remaining requirement decision and completion gates; package stays 0.10.0, uncommitted, publication gated, no 2E.
+
+## Unreleased — Phase 2D retained storage closure correction, 2026-10-09
+
+- Refuse ambiguous loop `ENXIO` as unknown final release; retain backing and handles even after successful synthetic detach or pathname deletion. Correct two prior expectations and add one fresh deleted-open regression: 333 Phase 2D / 474 complete offline tests, focused storage/teardown 73. Preserve original limits, admission, teardown order and deadlines; no positive closure signal is introduced.
+- Record the upstream loop last-close incompatibility, missing effective reference confinement/trusted handoff and the smallest loop-FD ownership decision. Current kernel/installed-parent/effective-control/Linux/live gates remain open. Historical evidence remains immutable; package stays 0.10.0, uncommitted. Publication remains gated by the resumed exact prompt; no compiler, runtime/kernel/credential/spend/target-host operation or 2E.
+
 Versions follow semantic versioning. Remote branch publication is distinct from a package-registry release; no registry release has occurred.
 
 ## 0.10.0 — 2026-10-09

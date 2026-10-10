@@ -1,0 +1,13 @@
+# ADR 0004: Retained terminal storage for the Phase 2D pilot
+
+Status: accepted by the owner on 2026-10-09. The owner answered “1- approved. 2- unblock it with a bounded ownership mechanism.” This accepts the retained-terminal clause proposed in [the completion decision](../PHASE-2D-COMPLETION-DECISION-2026-10-09.md) and instructs its implementation. It does not approve a runtime batch or establish qualification.
+
+A Phase 2D attempt may finish with retained storage when kernel reference closure is unknown, provided independently observed worker/supervisor/setup termination and the frozen candidate/credential-free validator evidence satisfy their original gates. Record physical release as unknown, retain and charge every remaining resource/reservation, prohibit backing removal and all resource reuse, and deny further allocation when retained reservations leave insufficient capacity. Retention alone never grants cleanup, release, retry or publication authority. All original ceilings, origins, grace periods and deadlines remain unchanged.
+
+Use the original bounded observer and aggregate to retain actual namespace, private anonymous keyring, ext4/eCryptfs, owned loops, backing files and partial job ownership. Reserve the full original shared allowance before creation, including both logical and allocated storage. Keep strong live ownership through constructor failures and terminal readback. No serialized receipt, caller flag, hash, empty scan, absent pathname or process exit supplies release or reconstructs this ownership.
+
+Retention performs no physical teardown. Positive physical release still requires independent completion/exclusion evidence and the accepted teardown order, including the earlier approval for final owned loop closure inside loop detach. This pilot's retained outcome does not exercise that close. Taskless namespaces, deleted-open/mapped/socket-passed/asynchronous references, additional/delayed loops and concurrent mutation remain unknown or positive blockers; none become inferred zero.
+
+The original twenty qualification cases and historical v18 evidence remain immutable. A changed prospective profile must explicitly record this acceptance amendment and independently qualify all remaining cases and effective retained ownership/accounting. Offline source tests do not retroactively pass cleanup or complete Phase 2D. No new observer, capacity, retry, kernel-assisted release oracle, host cleanup, metered API, custom model loop or Phase 2E is authorized.
+
+Implementation and remaining capability limits: [retention boundary](../PHASE-2D-RETAINED-OWNERSHIP-2026-10-09.md). The separate proposed subscription-interface decision is [here](../PHASE-2D-SUBSCRIPTION-ROUTE-DECISION-2026-10-09.md).

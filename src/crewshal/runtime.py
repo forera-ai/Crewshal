@@ -10,6 +10,7 @@ from typing import TYPE_CHECKING, Annotated, Literal, Self
 from pydantic import Field, ValidationError, model_validator
 
 from crewshal.contracts import Attempt, Binding, Claim, Digest, Identifier, Provider, Usage
+from crewshal.app_server import AppServerExchange, AppServerProfile
 from crewshal.model import Contract, digest
 from crewshal.qualification_bundle import _json
 
@@ -27,11 +28,22 @@ class CodexIdentity(Contract):
     provider: Provider
     model: Identifier
     configuration: Digest
+    native_interface: Literal["exec_jsonl", "app_server_stdio"] = "exec_jsonl"
+    app_server_profile: AppServerProfile | None = None
 
     @model_validator(mode="after")
     def canonical(self) -> Self:
         if self.model.strip() != self.model or not self.model.strip():
             raise ValueError("model identity must be canonical")
+        if self.native_interface == "app_server_stdio":
+            if (
+                self.app_server_profile is None
+                or self.app_server_profile.model != self.model
+                or self.provider != "openai"
+            ):
+                raise ValueError("app-server identity requires exact subscription profile")
+        elif self.app_server_profile is not None:
+            raise ValueError("legacy exec identity cannot carry app-server profile")
         return self
 
 
@@ -207,6 +219,44 @@ def normalize_codex(
         return result("failed")
     if not stdout.endswith(b"\n"):
         return result("incomplete_capture")
+    if identity.native_interface == "app_server_stdio":
+        profile = identity.app_server_profile
+        if profile is None or profile.expected_account_id is None:
+            return result("identity_unavailable")
+        try:
+            exchange = AppServerExchange.from_profile(profile)
+            exchange.start()
+            events = []
+            rpc_claims: list[Claim] = []
+            for sequence, line in enumerate(stdout.splitlines(keepends=True)):
+                exchange.feed(line)
+                data = _json(line)
+                if not isinstance(data, dict):
+                    raise ValueError("app-server event must be an object")
+                kind = str(data.get("method", "rpc.response"))
+                events.append(
+                    NativeEvent(attempt_id=attempt.id, sequence=sequence, type=kind, payload=data)
+                )
+                if data.get("method") == "turn/completed":
+                    params = data.get("params")
+                    if not isinstance(params, dict) or not isinstance(params.get("turn"), dict):
+                        raise ValueError("missing terminal turn")
+                    for item in params["turn"].get("items", []):
+                        if not isinstance(item, dict):
+                            raise ValueError("malformed terminal item")
+                        if item.get("type") == "agentMessage" and isinstance(item.get("text"), str):
+                            rpc_claims.append(
+                                Claim(
+                                    id=f"native:{digest(attempt.id.encode())}:{sequence}:{len(rpc_claims)}",
+                                    attempt_id=attempt.id,
+                                    report=item["text"],
+                                )
+                            )
+            if not exchange.protocol_completed:
+                return result("malformed")
+            return result("completed", events=events, claims=rpc_claims)
+        except (ValueError, TypeError, UnicodeError, RecursionError):
+            return result("malformed")
     normalized: list[NativeEvent] = []
     claims: list[Claim] = []
     usage: Usage | None = None
@@ -392,6 +442,10 @@ def prepare_codex_request(
         or attempt.runtime_result != "unknown"
         or attempt.provider != identity.provider
         or attempt.model != identity.model
+        or (
+            identity.app_server_profile is not None
+            and (identity.app_server_profile.requirement != task.requirement)
+        )
     ):
         raise ValueError("task, attempt or provider/model identity is stale or unresolved")
     return CodexRequest(

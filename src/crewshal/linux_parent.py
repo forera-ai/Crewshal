@@ -17,7 +17,7 @@ import sys
 import time
 from typing import Callable, Literal
 
-from pydantic import Field
+from pydantic import Field, model_validator
 
 from crewshal.admission import (
     AdmittedNative,
@@ -43,6 +43,7 @@ from crewshal.linux_bootstrap import (
     stage_retained_bootstrap,
 )
 from crewshal.model import Contract
+from crewshal.linux_envelope import native_working_directory
 from crewshal.supervisor import CgroupIdentity, OwnedCgroup, _counters
 
 
@@ -61,9 +62,19 @@ class TrustedTaskSpec(Contract):
     argv: list[str]
     environment: dict[str, str]
     capabilities: str = Field(pattern=r"^[0-9a-f]{16}$")
+    # Outer observer paths are not namespace-local native/parent paths. Actual
+    # namespace-parent/watchdog/worker admission still requires its exact route.
+    cwd: Literal["/", "/scratch/checkout", "/candidate/owned"] = "/scratch/checkout"
+    placement: Literal["namespace", "outer_observer"] = "namespace"
     execution_allowed: Literal[False] = False
     spend_authorized: Literal[False] = False
     profile_qualified: Literal[False] = False
+
+    @model_validator(mode="after")
+    def exact_trusted_cwd(self) -> "TrustedTaskSpec":
+        if (self.placement == "outer_observer") != (self.cwd == "/"):
+            raise ValueError("outer observer cwd differs from namespace-local task cwd")
+        return self
 
 
 def _proc_root(boot_id: str) -> int:
@@ -164,6 +175,8 @@ class RetainedTrustedTask:
             raise
         info = os.fstat(self.descriptor)
         self.directory = (info.st_dev, info.st_ino)
+        info = os.fstat(self.pidfd)
+        self.pidfd_identity = (info.st_dev, info.st_ino)
         self._bridge_claimed = False
         self._setup_started = False
         self._watchdog_started = False
@@ -193,7 +206,17 @@ class RetainedTrustedTask:
                 os.close(handle)
                 setattr(self, name, -1)
 
+    def verify_handles(self) -> None:
+        directory = os.fstat(self.descriptor)
+        pidfd = os.fstat(self.pidfd)
+        if (directory.st_dev, directory.st_ino) != self.directory or (
+            pidfd.st_dev,
+            pidfd.st_ino,
+        ) != self.pidfd_identity:
+            raise ValueError("trusted task retained descriptor changed")
+
     def verify(self, group: CgroupIdentity) -> None:
+        self.verify_handles()
         spec = self.spec
         info = os.fstat(self.descriptor)
         pid, state, parent, start = _stat_identity(_read(self.descriptor, "stat"))
@@ -242,9 +265,10 @@ class RetainedTrustedTask:
             values[key] = value
         if entries[-1] != b"" or values != spec.environment:
             raise ValueError("trusted task environment differs")
-        if os.readlink("cwd", dir_fd=self.descriptor) != "/scratch/checkout":
+        if os.readlink("cwd", dir_fd=self.descriptor) != spec.cwd:
             raise ValueError("trusted task cwd differs")
         _image(self.descriptor, spec.executable)
+        self.verify_handles()
 
 
 @dataclass(frozen=True)
@@ -449,6 +473,8 @@ def stage_namespace_parent(
         or watchdog.task.spec.namespaces != spec.namespaces
         or watchdog.task.spec.boot_id != spec.boot_id
         or watchdog.task.spec.pid == spec.pid
+        or spec.cwd != native_working_directory(configuration)
+        or watchdog.task.spec.cwd != spec.cwd
         or worker.identity == supervisor.identity
         or set(outer_namespaces) != set(spec.namespaces)
         or any(outer_namespaces[k] == spec.namespaces[k] for k in ("mnt", "net", "pid"))
@@ -515,7 +541,7 @@ def stage_namespace_parent(
                 stdin=subprocess.PIPE,
                 stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE,
-                cwd="/scratch/checkout",
+                cwd=native_working_directory(configuration),
                 env=configuration.native_environment.copy(),
                 close_fds=True,
                 bufsize=0,
@@ -580,6 +606,9 @@ def stage_namespace_parent(
         )
         in_handoff = False
         check()
+        # Keep the actual handoff in its original namespace parent. A later
+        # freeze may not substitute another child, watchdog or role allocation.
+        setattr(parent, "_native_handoff", (admitted, watchdog, worker, supervisor, aggregate))
         return admitted
     except BaseException as error:
         # The same refusal uses one grace only; never recover the handoff twice.

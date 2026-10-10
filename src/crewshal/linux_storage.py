@@ -20,13 +20,14 @@ import stat
 import struct
 import sys
 import time
-from typing import Callable, Literal
+from typing import Callable, Literal, Protocol
 
-from crewshal.admission import NamespaceIdentity, _read, _stat_identity
+from crewshal.admission import NamespaceIdentity, _fields, _read, _stat_identity
 from crewshal.contracts import record_digest
 from crewshal.dispatch import DispatchConfiguration
 from crewshal.linux_envelope import prepare_linux_envelope
 from crewshal.linux_parent import RetainedTrustedTask, _proc_root
+from crewshal.linux_setup import OwnedStorageReservation
 from crewshal.linux_teardown import FileIdentity, LoopIdentity, MountIdentity, PhysicalState
 from crewshal.supervisor import OwnedCgroup
 
@@ -34,6 +35,7 @@ from crewshal.supervisor import OwnedCgroup
 LOOP_GET_STATUS64 = 0x4C05
 LOOP_CLR_FD = 0x4C01
 LOOP_INFO64 = struct.Struct("=QQQQQIIII64s64s32sQQ")
+PRIVATE_KEY_PERMISSIONS = 0x003F0000  # KEY_USR_ALL; no possessor/group/other authority.
 
 
 # UAPI dev_t is new_encode_dev(), not the libc dev_t layout in st_dev.
@@ -131,8 +133,8 @@ def _key_state(serial: int) -> Literal["present", "revoked", "unknown"]:
     parts = buffer.raw[: size - 1].decode("ascii").split(";")
     if len(parts) != 5 or parts[:3] != ["keyring", "0", "0"] or parts[4] != "_ses":
         raise ValueError("retained anonymous root keyring identity differs")
-    if not re.fullmatch(r"[0-9a-f]{8}", parts[3]):
-        raise ValueError("invalid private keyring permission readback")
+    if parts[3] != "003f0000":
+        raise ValueError("private keyring must exclude possessor/group/other authority")
     return "present"
 
 
@@ -148,32 +150,50 @@ class AnonymousKeyring:
     creator: int
     previous: int
     claimed: bool
+    complete: bool
 
     def __init__(self) -> None:
         raise ValueError("private keyring cannot be reconstructed from a serial")
 
     @classmethod
-    def create(cls) -> "AnonymousKeyring":
-        # GET_KEYRING_ID with create=0: do not instantiate an ambient ring.
-        try:
-            previous = _keyctl(0, -3)
-        except OSError as error:
-            if error.errno != 126:  # ENOKEY
-                raise
-            previous = 0
-        serial = _keyctl(1)  # JOIN_SESSION_KEYRING(NULL)
+    def create(cls, *, reservation: OwnedStorageReservation | None = None) -> "AnonymousKeyring":
+        # Even GET_KEYRING_ID(@s, create=0) can install a user-session ring when
+        # none is attached. Never inspect or mutate that ambient ring. A NULL
+        # name creates a fresh anonymous ring directly in the original task.
         ring = object.__new__(cls)
-        ring.serial, ring.creator, ring.previous = serial, os.getpid(), previous
+        ring.serial, ring.creator, ring.previous = 0, os.getpid(), 0
         ring.claimed = False
+        ring.complete = False
+        if reservation is not None:
+            if hasattr(reservation, "_private_ring"):
+                raise ValueError("private keyring production is one-shot; no retry")
+            # The original observer credentials retain the kernel anchor; pin
+            # this exact lifetime before joining, including a failed syscall.
+            setattr(reservation, "_private_ring", ring)
+            reservation.verify()
         try:
-            observed = _key_state(serial)
-        except (OSError, ValueError):
+            ring.serial = _keyctl(1)  # JOIN_SESSION_KEYRING(NULL), no named lookup.
+            if ring.serial <= 0:
+                raise ValueError("new anonymous keyring identity unavailable")
+            _keyctl(5, ring.serial, ctypes.c_void_p(PRIVATE_KEY_PERMISSIONS))
+            observed = _key_state(ring.serial)
+            if observed != "present":
+                raise ValueError("new private keyring remains unknown")
+            if reservation is not None:
+                reservation.verify()
+        except BaseException:
             raise KeyringCreationRefusal(ring) from None
-        if serial <= 0 or serial == previous or observed != "present":
-            # Unknown newly created state is retained; do not attempt cleanup of
-            # a serial whose ownership was not independently established.
-            raise KeyringCreationRefusal(ring)
+        ring.complete = True
         return ring
+
+
+class RetainedCreationTransfer(Protocol):
+    """Parent-owned actual-FD custody, never a readiness/authority callback."""
+
+    @property
+    def descriptor(self) -> int: ...
+
+    def pump(self) -> None: ...
 
 
 class BoundedStorageJobs:
@@ -193,8 +213,79 @@ class BoundedStorageJobs:
     ):
         self.observer, self.group, self.aggregate = observer, group, aggregate
         self.deadline = deadline
+        self._active_deadline: float | None = None
         self.pending: tuple[int, int] | None = None
+        self._creation_child: tuple[int, int, int, int, int, int] | None = None
         self.failed = False
+
+    def _pin_creation_child(self) -> None:
+        if self.pending is None or self._creation_child is not None:
+            raise ValueError("original pending creation child required")
+        pid, pidfd = self.pending
+        root = _proc_root(self.observer.spec.boot_id)
+        descriptor = -1
+        try:
+            descriptor = os.open(
+                str(pid),
+                os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW | os.O_CLOEXEC,
+                dir_fd=root,
+            )
+            info = os.fstat(descriptor)
+            observed, state, parent, start = _stat_identity(_read(descriptor, "stat"))
+            if observed != pid or parent != os.getpid() or start <= 0 or state not in ("R", "S"):
+                raise ValueError("creation child parent/start/liveness differs")
+            self._creation_child = (pid, pidfd, descriptor, start, info.st_dev, info.st_ino)
+            descriptor = -1
+            self.verify_creation_child()
+        finally:
+            if descriptor >= 0:
+                os.close(descriptor)
+            os.close(root)
+
+    def verify_creation_child(self) -> int:
+        """Actual retained pidfd/proc identity, never a numeric-PID permission."""
+        if self.failed or self._creation_child is None:
+            raise ValueError("original live creation child unavailable")
+        pid, pidfd, descriptor, start, device, inode = self._creation_child
+        if (
+            self.pending != (pid, pidfd)
+            or self._active_deadline is None
+            or self._active_deadline > self.deadline
+            or time.monotonic() >= self._active_deadline
+        ):
+            raise ValueError("original creation child/deadline differs")
+        root = _proc_root(self.observer.spec.boot_id)
+        try:
+            actual = _fields(_read(root, f"self/fdinfo/{pidfd}")).get("Pid")
+            info = os.fstat(descriptor)
+            observed, state, parent, ticks = _stat_identity(_read(descriptor, "stat"))
+            fields = _fields(_read(descriptor, "status"))
+            if (
+                actual != str(pid)
+                or select.select([pidfd], [], [], 0)[0]
+                or (info.st_dev, info.st_ino) != (device, inode)
+                or (observed, parent, ticks) != (pid, os.getpid(), start)
+                or state not in ("R", "S")
+                or any(
+                    fields.get(key) != value
+                    for key, value in {
+                        "Pid": str(pid),
+                        "Tgid": str(pid),
+                        "PPid": str(os.getpid()),
+                        "TracerPid": "0",
+                        "Threads": "1",
+                        "NoNewPrivs": "1",
+                        "Uid": "0 0 0 0",
+                        "Gid": "0 0 0 0",
+                    }.items()
+                )
+                or _read(descriptor, "cgroup").decode().strip()
+                != f"0::/{self.group.identity.relative_path}"
+            ):
+                raise ValueError("retained creation child proc/pidfd/role differs")
+        finally:
+            os.close(root)
+        return pid
 
     def _admit(self) -> None:
         if self.failed or self.pending is not None:
@@ -220,9 +311,22 @@ class BoundedStorageJobs:
         ):
             raise ValueError("storage observer/aggregate original ceilings differ")
 
-    def run(self, action: Callable[[], bytes], keep: set[int]) -> bytes:
-        self._admit()
-        read_end, write_end = getattr(os, "pipe2")(os.O_CLOEXEC | os.O_NONBLOCK)
+    def run(
+        self,
+        action: Callable[[], bytes],
+        keep: set[int],
+        *,
+        transfer: RetainedCreationTransfer | None = None,
+        _format_output: bool = False,
+    ) -> bytes:
+        try:
+            self._admit()
+            job_deadline = min(self.deadline, time.monotonic() + 30)
+            self._active_deadline = job_deadline
+            read_end, write_end = getattr(os, "pipe2")(os.O_CLOEXEC | os.O_NONBLOCK)
+        except BaseException:
+            self.failed = True
+            raise
         try:
             admit_read, admit_write = getattr(os, "pipe2")(os.O_CLOEXEC | os.O_NONBLOCK)
         except BaseException:
@@ -249,7 +353,7 @@ class BoundedStorageJobs:
                 libc = ctypes.CDLL(None, use_errno=True)
                 if libc.prctl(1, int(signal.SIGKILL), 0, 0, 0) != 0 or os.getppid() != parent_pid:
                     os._exit(1)
-                remaining = self.deadline - time.monotonic()
+                remaining = job_deadline - time.monotonic()
                 if (
                     remaining <= 0
                     or not select.select([admit_read], [], [], remaining)[0]
@@ -266,16 +370,27 @@ class BoundedStorageJobs:
                         except OSError as error:
                             if error.errno != errno.EBADF:
                                 raise
+                if _format_output:
+                    null = os.open("/dev/null", os.O_RDONLY | os.O_CLOEXEC)
+                    os.dup2(null, 0)
+                    if null != 0:
+                        os.close(null)
+                    os.dup2(write_end, 1)
+                    os.dup2(write_end, 2)
                 result = action()
+                if _format_output:
+                    raise ValueError("fixed formatter must exec; returned action refuses")
                 if len(result) > 65535:
                     raise ValueError("storage response exceeds fixed stream bound")
                 payload = b"+" + result
             except BaseException:
+                if _format_output:
+                    os._exit(1)
                 payload = b"-unknown storage syscall/readback failure"
             try:
                 offset = 0
                 while offset < len(payload):
-                    remaining = self.deadline - time.monotonic()
+                    remaining = job_deadline - time.monotonic()
                     if remaining <= 0 or not select.select([], [write_end], [], remaining)[1]:
                         os._exit(1)
                     offset += os.write(write_end, payload[offset:])
@@ -289,23 +404,35 @@ class BoundedStorageJobs:
         try:
             pidfd = getattr(os, "pidfd_open")(pid, 0)
             self.pending = (pid, pidfd)
-            if time.monotonic() >= self.deadline or os.write(admit_write, b"1") != 1:
+            if transfer is not None or _format_output:
+                self._pin_creation_child()
+            if time.monotonic() >= job_deadline or os.write(admit_write, b"1") != 1:
                 raise ValueError("retained storage child admission deadline exhausted")
             os.close(admit_write)
             admit_write = -1
             output = bytearray()
             eof = False
             while not eof:
-                remaining = self.deadline - time.monotonic()
-                if remaining <= 0 or not select.select([read_end], [], [], remaining)[0]:
+                remaining = job_deadline - time.monotonic()
+                readers = [read_end]
+                if transfer is not None:
+                    readers.append(transfer.descriptor)
+                ready = select.select(readers, [], [], max(0.0, remaining))[0]
+                if remaining <= 0 or not ready:
                     raise ValueError("original storage cleanup deadline exhausted")
+                if transfer is not None and transfer.descriptor in ready:
+                    # The child remains blocked at its handoff until actual
+                    # descriptors have been retained and checked by the parent.
+                    transfer.pump()
+                if read_end not in ready:
+                    continue
                 chunk = os.read(read_end, 65537 - len(output))
                 if not chunk:
                     eof = True
                 output.extend(chunk)
                 if len(output) > 65536:
                     raise ValueError("storage response exceeds fixed stream bound")
-            remaining = max(0.0, self.deadline - time.monotonic())
+            remaining = max(0.0, job_deadline - time.monotonic())
             if not select.select([pidfd], [], [], remaining)[0]:
                 raise ValueError("storage child terminal readback unavailable")
             observed, status = os.waitpid(pid, os.WNOHANG)
@@ -314,13 +441,22 @@ class BoundedStorageJobs:
             os.close(pidfd)
             pidfd = -1
             self.pending = None
+            self._active_deadline = None
+            if self._creation_child is not None:
+                os.close(self._creation_child[2])
+                self._creation_child = None
             reaped = True
             if (
                 not os.WIFEXITED(status)
                 or os.WEXITSTATUS(status) != 0
-                or time.monotonic() >= self.deadline
+                or time.monotonic() >= job_deadline
             ):
                 raise ValueError("storage child failed or original deadline exhausted")
+            if _format_output:
+                # Successful trusted-program transport is not a filesystem
+                # claim. The producer separately reads the actual superblock,
+                # owned loop and mount before using a formatted filesystem.
+                return bytes(output)
             if not output.startswith(b"+"):
                 raise ValueError("storage child reported unknown readback")
             # Command exit/status is transport only. Caller independently
@@ -333,6 +469,10 @@ class BoundedStorageJobs:
                 if select.select([pidfd], [], [], 0)[0] and os.waitpid(pid, os.WNOHANG)[0] == pid:
                     os.close(pidfd)
                     self.pending = None
+                    self._active_deadline = None
+                    if self._creation_child is not None:
+                        os.close(self._creation_child[2])
+                        self._creation_child = None
             elif not reaped:
                 # No numeric PID signal. Child has finite pipe output and may
                 # remain unreaped; retain the child PID solely for future audit.
@@ -366,8 +506,35 @@ class LinuxPhysicalOwner:
         ring: AnonymousKeyring,
         jobs: BoundedStorageJobs,
         batch_started_monotonic: float,
+        reservation: OwnedStorageReservation | None = None,
+        retention_readback_jobs: BoundedStorageJobs | None = None,
     ):
         now = time.monotonic()
+        self.reservation = reservation
+        self.retention_readback_jobs = retention_readback_jobs
+        self._retention_jobs = retention_readback_jobs
+        self._retention_end = batch_started_monotonic + 600
+        if reservation is not None:
+            reservation.pin_storage_owner(self)
+            if (
+                reservation.observer is not jobs.observer
+                or reservation.observer_group is not jobs.group
+                or reservation.aggregate is not jobs.aggregate
+                or reservation.configuration != record_digest(configuration)
+                or reservation.batch_started != batch_started_monotonic
+            ):
+                raise ValueError("storage owner requires its original live reservation")
+        if retention_readback_jobs is not None and (
+            reservation is None
+            or type(retention_readback_jobs) is not BoundedStorageJobs
+            or retention_readback_jobs.observer is not jobs.observer
+            or retention_readback_jobs.group is not jobs.group
+            or retention_readback_jobs.aggregate is not jobs.aggregate
+            or retention_readback_jobs.deadline != self._retention_end
+            or retention_readback_jobs.failed
+            or retention_readback_jobs.pending is not None
+        ):
+            raise ValueError("retention readback requires original observer and absolute batch end")
         if (
             not math.isfinite(batch_started_monotonic)
             or not 0 < batch_started_monotonic <= now
@@ -376,6 +543,7 @@ class LinuxPhysicalOwner:
             raise ValueError("original batch origin and bounded cleanup reserve required")
         if (
             ring.claimed
+            or not ring.complete
             or ring.creator != os.getpid()
             or ring.serial <= 0
             or ring.serial == ring.previous
@@ -414,6 +582,8 @@ class LinuxPhysicalOwner:
         self.effects_failed = False
         self.initial: PhysicalState | None = None
         self.allowed_backing = dict(backing_fds)
+        self._backing_handles = dict(backing_fds)
+        self._backing_bound = False
         self.pid = os.getpid()
         try:
             for name, descriptor in {
@@ -441,21 +611,86 @@ class LinuxPhysicalOwner:
             raise StorageOwnerRefusal(self) from None
 
     def bind_backing_handles(self, descriptors: dict[str, int]) -> None:
+        if self._backing_bound:
+            raise ValueError("retained backing descriptor transfer is one-shot")
         if set(descriptors) != set(self.backing):
             raise ValueError("complete retained backing descriptor transfer required")
         for name, fd in descriptors.items():
             if _identity(fd) != self.backing[name]:
                 raise ValueError("transferred backing descriptor identity differs")
         self.allowed_backing = dict(descriptors)
+        self._backing_handles = dict(descriptors)
+        self._backing_bound = True
 
     @property
     def cleanup_deadline(self) -> float:
         return self.jobs.deadline
 
+    @property
+    def retention_deadline(self) -> float:
+        # Physical effects keep their original cleanup job and deadline. The
+        # accepted effect-free terminal path uses only separately pinned readback
+        # jobs, fixed at the original batch end; it never renews an effect job.
+        return self._retention_end if self._retention_jobs is not None else self.cleanup_deadline
+
+    def verify_retention(self, reservation: object) -> None:
+        """Check live retained ownership, never infer physical reference release."""
+        if (
+            self.reservation is None
+            or reservation is not self.reservation
+            or self.reservation._storage_owner is not self
+        ):
+            raise ValueError("storage owner lacks its original live reservation")
+        if getattr(self.reservation, "_private_ring", None) is not self.ring:
+            raise ValueError("storage owner lacks its original private credential anchor")
+        self.reservation.verify()
+        if (
+            self.pid != os.getpid()
+            or self.jobs.observer is not self.reservation.observer
+            or self.jobs.group is not self.reservation.observer_group
+            or self.jobs.aggregate is not self.reservation.aggregate
+            or self.jobs.failed
+            or self.jobs.pending is not None
+        ):
+            raise ValueError("storage owner job remains unknown or ownership changed")
+        if self.retention_readback_jobs is not None and (
+            self.retention_readback_jobs.failed or self.retention_readback_jobs.pending is not None
+        ):
+            raise ValueError("storage owner readback job remains unknown")
+        self._verify()
+        if (
+            self.initial is None
+            or self.backing != self.initial.backing
+            or set(self.allowed_backing) != set(self.backing)
+            or self.allowed_backing != self._backing_handles
+        ):
+            raise ValueError("retained backing descriptor inventory differs")
+        # Count every owned backing at full logical/allocated size; the retained
+        # reservation is never reduced to measured usage or pathname presence.
+        logical = allocated = 0
+        for name, descriptor in self.allowed_backing.items():
+            info = os.fstat(descriptor)
+            if _identity(descriptor) != self.backing[name] or not stat.S_ISREG(info.st_mode):
+                raise ValueError("retained backing identity changed")
+            logical += info.st_size
+            allocated += info.st_blocks * 512
+        if max(logical, allocated) > 8589934592:
+            raise ValueError("retained backing exceeds original disk ceiling")
+
     def _verify(self) -> None:
         initial_digest = record_digest(self.initial) if self.initial is not None else None
         if (
-            self.jobs.deadline != self._deadline
+            self.retention_readback_jobs is not self._retention_jobs
+            or (
+                self._retention_jobs is not None
+                and (
+                    self._retention_jobs.observer is not self.jobs.observer
+                    or self._retention_jobs.group is not self.jobs.group
+                    or self._retention_jobs.aggregate is not self.jobs.aggregate
+                    or self._retention_jobs.deadline != self._retention_end
+                )
+            )
+            or self.jobs.deadline != self._deadline
             or self.mount_targets != self._mount_targets
             or (self._initial_digest is not None and initial_digest != self._initial_digest)
             or self._ring_identity != (self.ring.serial, self.ring.creator, self.ring.previous)
@@ -502,7 +737,10 @@ class LinuxPhysicalOwner:
             fcntl.ioctl(fd, LOOP_GET_STATUS64, raw, True)
         except OSError as error:
             if error.errno == errno.ENXIO:
-                return None
+                # GET_STATUS64 also returns ENXIO during rundown, while an
+                # owned open loop file can still retain the backing reference.
+                # No status-only observation certifies final release here.
+                raise ValueError("owned loop final release remains unknown") from error
             raise
         values = LOOP_INFO64.unpack(raw)
         backing = FileIdentity(device=_loop_device(values[0]), inode=values[1])
@@ -675,7 +913,8 @@ class LinuxPhysicalOwner:
 
     def readback(self) -> PhysicalState:
         self._verify()
-        raw = self.jobs.run(
+        readback_jobs = self.retention_readback_jobs or self.jobs
+        raw = readback_jobs.run(
             lambda: self._readback().model_dump_json().encode(), set(self.handles.values())
         )
         return PhysicalState.model_validate_json(raw)

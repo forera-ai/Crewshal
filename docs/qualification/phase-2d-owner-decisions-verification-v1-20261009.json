@@ -1,0 +1,765 @@
+{
+  "accepted_final_change": "Earlier ENXIO correction preserved exactly; new regression rejects an unbounded observer-side final-loop close and retains backing, remaining FDs and unknown release.",
+  "artifact_hashes": {
+    "docs/PHASE-2D-COMPLETION-DECISION-2026-10-09.md": {
+      "bytes": 13423,
+      "sha256": "248a94bbf858bc1241900f7f6fe7221388ad490b0423a90f7dc6dd51361834cc"
+    },
+    "tests/acceptance/test_phase_2d_storage.py": {
+      "bytes": 28426,
+      "sha256": "9878a1ffe33b1b5996b8715b757bde44f66d0c3cfb0ed3ad5bd38deb6b609261"
+    }
+  },
+  "authority": {
+    "billing": "Owner requires subscription models. Codex first; selected gpt-6.1-sol persists. No metered API, purchased credits, reset consumption, Jev, custom gateway or custom model loop.",
+    "loop_order": "Owner confirmed final owned loop FD closure within loop-detach stage, with independent identity/non-rebinding/completion; approval alone supplies no proof.",
+    "remaining_gate": "Positive physical release remains mandatory. Proposed retained-terminal amendment is unanswered. Concrete runtime/execution/quota batch is not yet prepared or authorized.",
+    "ubuntu": "Owner authorized existing running local Ubuntu use. Existing SSH authentication restored; read-only prerequisite checks only."
+  },
+  "base_revision": "8e010b5ca2dd3298268132613f8ad17ff9db07c6",
+  "blocking_incompatibility": {
+    "completion": "No verified per-object final-reference destruction/non-rebinding witness supplied by the current accepted readbacks; empty scans, ENXIO, close success, paths, caller flags/hashes never certify release.",
+    "final_close": "Existing bounded per-job fork retains the observer's loop duplicate. Child closure cannot be final. Closing the parent duplicate after job reap can itself enter blocking kernel release outside the child's deadline.",
+    "required_handoff": "A bounded sole owner must retain the potentially final storage reference from creation; this is not supplied by the current constructor/per-job owner.",
+    "scope": "Task-directed current-profile incompatibility, not an exhaustive impossibility claim about Linux."
+  },
+  "branch": "codex/phase1-architecture",
+  "build_artifacts": {
+    ".gitignore": {
+      "bytes": 1,
+      "sha256": "684888c0ebb17f374298b65ee2807526c066094c701bcc7ebbe1c1095f494fc1"
+    },
+    "crewshal-0.10.0-py3-none-any.whl": {
+      "bytes": 119870,
+      "sha256": "f3cb10da9136bd4a22a6de2bf71434fa9820406d4f3d117bc5718c8ed05f9edf"
+    },
+    "crewshal-0.10.0.tar.gz": {
+      "bytes": 109811,
+      "sha256": "0b189eb6cc62dec157623d8128d7bb27cd8ad99452b6908c4b8ded9bd24e7a6e"
+    }
+  },
+  "committed": false,
+  "continuity": {
+    "all_other_inputs_byte_equal": true,
+    "baseline_input_count": 821,
+    "byte_equal_inputs": 814,
+    "hashes_prove_only_byte_continuity": true,
+    "ignored_generated_metadata_changes": {
+      "src/crewshal.egg-info/PKG-INFO": {
+        "baseline": {
+          "bytes": 17555,
+          "sha256": "c7b254a583f31edebfd8d2b2032d839a2417a755e051c31717874ce5d98f7d2b"
+        },
+        "current": {
+          "bytes": 18220,
+          "sha256": "68b6495288b33218d4dcb4cd20fba6b9a34abf0a5d5d256c2c44acc3d5a35a00"
+        }
+      }
+    },
+    "immutable_prior_boundary_hashes": {
+      "docs/PHASE-2D-STORAGE-CLOSURE-BLOCKER-2026-10-09.md": "c31f15d2d033009ae17b68ec3803e8653802207db55e934118546fcbcdae65a7",
+      "docs/qualification/phase-2d-storage-closure-verification-v1-20261009.json": "2230584e10652a13ca9d464cfd0c25fe4b4f2f8a9ae671e325b5fbe569da03da"
+    },
+    "intentionally_modified": {
+      "CHANGELOG.md": {
+        "baseline": {
+          "bytes": 33808,
+          "sha256": "09507b0036717da6d79a3a9db80348fe3df4bce8b299c815ebafeec7a6274acc"
+        },
+        "current": {
+          "bytes": 35740,
+          "sha256": "401dd7e080b2b9434608d6cb71b3ca273aa2ca3aabcdc6ec991ffd32e828b8da"
+        }
+      },
+      "README.md": {
+        "baseline": {
+          "bytes": 16923,
+          "sha256": "03c1ae60d42bf5828e6ff8060d52c016fc3b92fb0497b86f55ec5f792ac08cfb"
+        },
+        "current": {
+          "bytes": 17588,
+          "sha256": "d7f54fe7cf68cf76c4a40db095d6a4d75950029cbebb879e0df2a2f2477012a5"
+        }
+      },
+      "docs/DEVELOPMENT-PLAN.md": {
+        "baseline": {
+          "bytes": 45921,
+          "sha256": "4eb91f7f6f5d7c6c89307f0378c121f901d41d11f2cda720458f1cbc2dfd7310"
+        },
+        "current": {
+          "bytes": 47688,
+          "sha256": "5248c711aeae6040ee78d4133231b71cd2ab49fb6b9ba96ba5e103ebde987c92"
+        }
+      },
+      "docs/HANDOFF.md": {
+        "baseline": {
+          "bytes": 297162,
+          "sha256": "fd6fac0d20205cd5bc97837bd5ae772e0193703be5bf1e97d7349b4d1a83d9fc"
+        },
+        "current": {
+          "bytes": 304392,
+          "sha256": "ec4b92b55a036e7f7b5927e2341479d6f3320e2897690bda3efd645426ae5e5c"
+        }
+      },
+      "src/crewshal/linux_storage.py": {
+        "baseline": {
+          "bytes": 35124,
+          "sha256": "f354f5f4a477b0e6c0b53c9fce4f2f072e167c87f4f2a81a6adfb3bba08343f5"
+        },
+        "current": {
+          "bytes": 35413,
+          "sha256": "701222f93fafd759c46ee9f2ecd9e0da5944a0dce522c798fcdf11cda304581f"
+        }
+      },
+      "tests/acceptance/test_phase_2d_storage.py": {
+        "baseline": {
+          "bytes": 26476,
+          "sha256": "b83892a0d03be33ba0b7ab08412a1015b97db11eee1f25cbc35c3a9369dc92d9"
+        },
+        "current": {
+          "bytes": 28426,
+          "sha256": "9878a1ffe33b1b5996b8715b757bde44f66d0c3cfb0ed3ad5bd38deb6b609261"
+        }
+      }
+    }
+  },
+  "date": "2026-10-09",
+  "development_failures": [
+    "Initial isolated unittest discovery excluded repository tests imports; rerun with explicit trusted repository path, then use standard env-empty denied-network discovery.",
+    "Initial candidate format check required formatting linux_storage.py.",
+    "Candidate offline pass did not expose blocking kernel close; source review rejected it.",
+    "Initial regression overcounted unrelated proc-file closes; corrected to identify only the pinned loop FD and verified fail on rejected candidate/pass on final source."
+  ],
+  "document_checks": {
+    "local_guide_links": [
+      "../src/crewshal/linux_storage.py",
+      "../tests/acceptance/test_phase_2d_storage.py",
+      "PHASE-2D-STORAGE-CLOSURE-BLOCKER-2026-10-09.md"
+    ],
+    "phase_2d_methods": 334
+  },
+  "environment": {
+    "platform": "macOS-27.2-arm64-arm-64bit",
+    "python": "3.12.15 (main, Sep 30 2026, 22:04:19) [Clang 21.0.0 (clang-2100.3.34.2)]",
+    "test_isolation": "Fresh HOME, env -i, denied network; kernel/child seams synthetic"
+  },
+  "final_verification": {
+    "commands": [
+      {
+        "status": "fulfilled",
+        "value": {
+          "chunk_id": "cfb13a",
+          "cmd": "rtk proxy .venv/bin/ruff check src tests scripts/audit_phase_2c_bundle.py scripts/prepare_phase_2d_batch.py",
+          "exit_code": 0,
+          "original_token_count": 5,
+          "output": "All checks passed!\n",
+          "wall_time_seconds": 0.795621583
+        }
+      },
+      {
+        "status": "fulfilled",
+        "value": {
+          "chunk_id": "b5a09b",
+          "cmd": "rtk proxy .venv/bin/ruff format --check src tests scripts/audit_phase_2c_bundle.py scripts/prepare_phase_2d_batch.py",
+          "exit_code": 0,
+          "original_token_count": 7,
+          "output": "61 files already formatted\n",
+          "wall_time_seconds": 0.606106625
+        }
+      },
+      {
+        "status": "fulfilled",
+        "value": {
+          "chunk_id": "cff709",
+          "cmd": "rtk proxy .venv/bin/mypy",
+          "original_token_count": 0,
+          "output": "",
+          "session_id": 26131,
+          "wall_time_seconds": 1.001481042
+        }
+      },
+      {
+        "status": "fulfilled",
+        "value": {
+          "chunk_id": "78a84d",
+          "cmd": "rtk proxy env -i PATH=/usr/bin:/bin HOME=/var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-2d-owner-decisions-0nbxutny/final-home PYTHONDONTWRITEBYTECODE=1 /usr/bin/sandbox-exec -p '(version 1)(allow default)(deny network*)' /Volumes/X10Pro/Crewshal/.venv/bin/python -m unittest discover -s tests -t .",
+          "original_token_count": 0,
+          "output": "",
+          "session_id": 73158,
+          "wall_time_seconds": 1.001287166
+        }
+      },
+      {
+        "status": "fulfilled",
+        "value": {
+          "chunk_id": "16d371",
+          "cmd": "rtk proxy uv build --offline --quiet --out-dir /var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-2d-owner-decisions-0nbxutny/final-build",
+          "original_token_count": 0,
+          "output": "",
+          "session_id": 2243,
+          "wall_time_seconds": 1.001534
+        }
+      },
+      {
+        "status": "fulfilled",
+        "value": {
+          "chunk_id": "7e3526",
+          "cmd": "rtk proxy uv venv --python /Volumes/X10Pro/Crewshal/.venv/bin/python /var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-2d-owner-decisions-0nbxutny/final-wheel-env",
+          "exit_code": 0,
+          "original_token_count": 82,
+          "output": "Using CPython 3.12.15 interpreter at: .venv/bin/python\nCreating virtual environment at: /var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-2d-owner-decisions-0nbxutny/final-wheel-env\nActivate with: source /var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-2d-owner-decisions-0nbxutny/final-wheel-env/bin/activate\n",
+          "wall_time_seconds": 0.023113209
+        }
+      }
+    ],
+    "completions": [
+      {
+        "status": "fulfilled",
+        "value": {
+          "chunk_id": "64f39b",
+          "cmd": "rtk proxy .venv/bin/mypy",
+          "exit_code": 0,
+          "original_token_count": 11,
+          "output": "Success: no issues found in 25 source files\n",
+          "wall_time_seconds": 3.75e-06
+        }
+      },
+      {
+        "status": "fulfilled",
+        "value": {
+          "chunk_id": "50ab3b",
+          "cmd": "rtk proxy env -i PATH=/usr/bin:/bin HOME=/var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-2d-owner-decisions-0nbxutny/final-home PYTHONDONTWRITEBYTECODE=1 /usr/bin/sandbox-exec -p '(version 1)(allow default)(deny network*)' /Volumes/X10Pro/Crewshal/.venv/bin/python -m unittest discover -s tests -t .",
+          "exit_code": 0,
+          "original_token_count": 144,
+          "output": "...........................................................................................................................................................................................................................................................................................................................................................................................................................................................................................\n----------------------------------------------------------------------\nRan 475 tests in 14.712s\n\nOK\n",
+          "wall_time_seconds": 7.583e-06
+        }
+      },
+      {
+        "status": "fulfilled",
+        "value": {
+          "chunk_id": "942b3c",
+          "cmd": "rtk proxy uv build --offline --quiet --out-dir /var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-2d-owner-decisions-0nbxutny/final-build",
+          "exit_code": 0,
+          "original_token_count": 0,
+          "output": "",
+          "wall_time_seconds": 4.667e-06
+        }
+      }
+    ],
+    "counts": {
+      "complete": 475,
+      "dispatch_bound_sources": 21,
+      "focused_storage_teardown": 74,
+      "mypy_modules": 25,
+      "packaged_sources": 26,
+      "phase_2d": 334,
+      "ruff_python_files": 61
+    },
+    "dependency_install": {
+      "chunk_id": "a231c0",
+      "cmd": "rtk proxy uv pip install --offline --require-hashes --python /var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-2d-owner-decisions-0nbxutny/final-wheel-env/bin/python -r requirements-dev.lock",
+      "exit_code": 0,
+      "original_token_count": 103,
+      "output": "Using Python 3.12.15 environment at: /private/var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-2d-owner-decisions-0nbxutny/final-wheel-env\nResolved 9 packages in 22ms\nInstalled 9 packages in 35ms\n + annotated-types==0.8.0\n + mypy==1.18.2\n + mypy-extensions==1.1.0\n + pathspec==1.1.1\n + pydantic==2.12.5\n + pydantic-core==2.41.5\n + ruff==0.14.1\n + typing-extensions==4.16.0\n + typing-inspection==0.4.4\n",
+      "wall_time_seconds": 0.125354666
+    },
+    "physical_released": false,
+    "reproduction_package_check_script": "/var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-2d-owner-decisions-0nbxutny/package_check.py",
+    "resources_reusable": false,
+    "runtime_verified": false,
+    "source_sha256": "701222f93fafd759c46ee9f2ecd9e0da5944a0dce522c798fcdf11cda304581f",
+    "wheel_checks": [
+      {
+        "status": "fulfilled",
+        "value": {
+          "chunk_id": "38dec3",
+          "cmd": "rtk proxy env -i PATH=/usr/bin:/bin HOME=/var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-2d-owner-decisions-0nbxutny/final-wheel-home PYTHONDONTWRITEBYTECODE=1 /usr/bin/sandbox-exec -p '(version 1)(allow default)(deny network*)' /var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-2d-owner-decisions-0nbxutny/final-wheel-env/bin/python -m unittest discover -s tests -t .",
+          "original_token_count": 1,
+          "output": ".",
+          "session_id": 1691,
+          "wall_time_seconds": 1.001526917
+        }
+      },
+      {
+        "status": "fulfilled",
+        "value": {
+          "chunk_id": "9004dc",
+          "cmd": "rtk proxy env -i PATH=/usr/bin:/bin HOME=/var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-2d-owner-decisions-0nbxutny/final-wheel-home PYTHONDONTWRITEBYTECODE=1 /usr/bin/sandbox-exec -p '(version 1)(allow default)(deny network*)' /var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-2d-owner-decisions-0nbxutny/final-wheel-env/bin/python /var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-2d-owner-decisions-0nbxutny/package_check.py",
+          "exit_code": 0,
+          "original_token_count": 599,
+          "output": "{\"dispatch_sources\": 21, \"packaged_sources\": 26, \"python\": \"3.12.15 (main, Sep 30 2026, 22:04:19) [Clang 21.0.0 (clang-2100.3.34.2)]\", \"source_sha256\": {\"__init__.py\": \"e247a13fadd84550409266e7b2986b70b9ace1e8b3e527000ad8caccc43769f8\", \"__main__.py\": \"61e1b048145332e9aab85470bb2fa2bc1312e41dffa6cd26741319fbfe5443c1\", \"admission.py\": \"3ad8f13d014b35f50b6d1da8885abc07e091574f349bc7dad37920530dbc751d\", \"bootstrap_helper.c\": \"8ddeb82f62b417302de6e6873401414ce783aa8b8368b7dc4272a9f5a301a8d7\", \"candidate.py\": \"98d830994c6d16746e707e60276abd1975c3d8dd5f0d96d4885d8cbf0a944fce\", \"cli.py\": \"8ecd936c862da846969fc2da482c7f889d0174c208076301fc16e6353842d372\", \"contracts.py\": \"53d1c7630b7401e76d25d940a8ef89f103ddef2d66ff02980fc90c6fbc588f88\", \"discovery.py\": \"b9ab698faa5951f9badf566b1fdd8cd3be7487f82fdc96acd6a246ef44aa1b2c\", \"dispatch.py\": \"d80628388e681c6ec6cbcecb082698346ed5d4d1751759b9ddccdb1c4424250b\", \"durable.py\": \"2e45f19e67071055c5f746824257d22176ba26328b4f27d88ee635b654193ef7\", \"gates.py\": \"06d841c18cbdde260486c94e91fa0f0f6ca17508ccd36e43778a3bbbec096baf\", \"integration.py\": \"662bf94ae65773eafa4b50d75be928b1d072a78f15fd710f946a453c12845b6c\", \"linux_bootstrap.py\": \"5d40c825ed429188699d9cc358a65622a5e333e9bb3253d53dd19a00cc0589f7\", \"linux_envelope.py\": \"a3d47f71b30e28192f9d7a8a1c9071ecefa7ee3a9fc3342df3f85ff2cbc6988a\", \"linux_inventory.py\": \"db1cce7d9596cfb5a68afa7e9fd6ffa09ed7a87231aecf55cbdd5a95ee668372\", \"linux_parent.py\": \"0fc3e8b12560955b1c38c07369f58a9fad4251eb1fd20e8474eae01da967d1e2\", \"linux_setup.py\": \"6008eb2e438dadf5dd10f282ed48c31084f9ea21e3c5b567fe3f9402924a7127\", \"linux_storage.py\": \"701222f93fafd759c46ee9f2ecd9e0da5944a0dce522c798fcdf11cda304581f\", \"linux_teardown.py\": \"a7ec245a8cadb64cd859948afaa2ada421f936ab5138e2742ee9e4e0b7296bae\", \"model.py\": \"3cbc9405e0c7fb5247a13562e72c8472c3edc0f3fc2407db2fd6c6c95fae25de\", \"qualification.py\": \"772df20ee17ddd52023eb0b245d733e2db29d115b625703fd4c6d86026f5554a\", \"qualification_bundle.py\": \"4a595fc100539d997ad9b5f5750b58cd5f14b0ca276a6cc1cc9de6596c1aae7b\", \"runtime.py\": \"d00f4624826ee02225a5608602e074ce90301765b8595aee60943158659ed15a\", \"runtime_batch.py\": \"aca68f6f4949ea6c9cf06be6fcab94c1f4923f6f4185bbfbc1b3dc430f4da18d\", \"state.py\": \"856abbc9de6e630798736eab14ddc6062bc6768621edd8a0d9477f1f3fa7e5a3\", \"supervisor.py\": \"575328e2529e21487c8c3b9df4913772ac4fc68497a7e6c209da463333f1ba6b\"}, \"version\": \"0.10.0\"}\n",
+          "wall_time_seconds": 0.506772792
+        }
+      },
+      {
+        "status": "fulfilled",
+        "value": {
+          "chunk_id": "3c94bd",
+          "cmd": "rtk proxy env -i PATH=/usr/bin:/bin HOME=/var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-2d-owner-decisions-0nbxutny/final-wheel-home PYTHONDONTWRITEBYTECODE=1 /usr/bin/sandbox-exec -p '(version 1)(allow default)(deny network*)' /var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-2d-owner-decisions-0nbxutny/final-wheel-env/bin/python -m unittest tests.acceptance.test_phase_2d_storage tests.acceptance.test_phase_2d_teardown",
+          "original_token_count": 13,
+          "output": ".................................................",
+          "session_id": 77286,
+          "wall_time_seconds": 1.001509292
+        }
+      }
+    ],
+    "wheel_completions": [
+      {
+        "status": "fulfilled",
+        "value": {
+          "chunk_id": "a51a88",
+          "cmd": "rtk proxy env -i PATH=/usr/bin:/bin HOME=/var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-2d-owner-decisions-0nbxutny/final-wheel-home PYTHONDONTWRITEBYTECODE=1 /usr/bin/sandbox-exec -p '(version 1)(allow default)(deny network*)' /var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-2d-owner-decisions-0nbxutny/final-wheel-env/bin/python -m unittest discover -s tests -t .",
+          "exit_code": 0,
+          "original_token_count": 144,
+          "output": "..........................................................................................................................................................................................................................................................................................................................................................................................................................................................................................\n----------------------------------------------------------------------\nRan 475 tests in 18.546s\n\nOK\n",
+          "wall_time_seconds": 6.75e-06
+        }
+      },
+      {
+        "status": "fulfilled",
+        "value": {
+          "chunk_id": "b93138",
+          "cmd": "rtk proxy env -i PATH=/usr/bin:/bin HOME=/var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-2d-owner-decisions-0nbxutny/final-wheel-home PYTHONDONTWRITEBYTECODE=1 /usr/bin/sandbox-exec -p '(version 1)(allow default)(deny network*)' /var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-2d-owner-decisions-0nbxutny/final-wheel-env/bin/python -m unittest tests.acceptance.test_phase_2d_storage tests.acceptance.test_phase_2d_teardown",
+          "exit_code": 0,
+          "original_token_count": 31,
+          "output": ".........................\n----------------------------------------------------------------------\nRan 74 tests in 1.607s\n\nOK\n",
+          "wall_time_seconds": 6.25e-06
+        }
+      }
+    ],
+    "wheel_install": {
+      "chunk_id": "b38345",
+      "cmd": "rtk proxy uv pip install --offline --no-deps --python /var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-2d-owner-decisions-0nbxutny/final-wheel-env/bin/python /var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-2d-owner-decisions-0nbxutny/final-build/crewshal-0.10.0-py3-none-any.whl",
+      "exit_code": 0,
+      "original_token_count": 98,
+      "output": "Using Python 3.12.15 environment at: /private/var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-2d-owner-decisions-0nbxutny/final-wheel-env\nResolved 1 package in 3ms\nPrepared 1 package in 9ms\nInstalled 1 package in 2ms\n + crewshal==0.10.0 (from file:///var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-2d-owner-decisions-0nbxutny/final-build/crewshal-0.10.0-py3-none-any.whl)\n",
+      "wall_time_seconds": 8.208e-06
+    }
+  },
+  "graph": {
+    "final_checks": [
+      {
+        "status": "fulfilled",
+        "value": {
+          "content": [
+            {
+              "text": "{\"name\":\"detach_loop\",\"qualified_name\":\"Volumes-X10Pro-Crewshal.src.crewshal.linux_storage.LinuxPhysicalOwner.detach_loop\",\"label\":\"Method\",\"file_path\":\"/Volumes/X10Pro/Crewshal/src/crewshal/linux_storage.py\",\"start_line\":732,\"end_line\":740,\"source\":\"    def detach_loop(self, loop: LoopIdentity, deadline: float) -> None:\\n        def release() -> None:\\n            state = self._readback()\\n            names = [n for n, identity in state.loops.items() if identity == loop]\\n            if state.mounts or state.keyring_state != \\\"revoked\\\" or len(names) != 1:\\n                raise ValueError(\\\"loop detach requires absent mounts and observed revoked key\\\")\\n            fcntl.ioctl(self.handles[\\\"loop:\\\" + names[0]], LOOP_CLR_FD, 0)\\n\\n        self._effect(\\\"loop:\\\" + str(loop.rdev), deadline, release)\\n\",\"callers\":0,\"callees\":2}",
+              "type": "text"
+            }
+          ],
+          "isError": false,
+          "structuredContent": {
+            "callees": 2,
+            "callers": 0,
+            "end_line": 740,
+            "file_path": "/Volumes/X10Pro/Crewshal/src/crewshal/linux_storage.py",
+            "label": "Method",
+            "name": "detach_loop",
+            "qualified_name": "Volumes-X10Pro-Crewshal.src.crewshal.linux_storage.LinuxPhysicalOwner.detach_loop",
+            "source": "    def detach_loop(self, loop: LoopIdentity, deadline: float) -> None:\n        def release() -> None:\n            state = self._readback()\n            names = [n for n, identity in state.loops.items() if identity == loop]\n            if state.mounts or state.keyring_state != \"revoked\" or len(names) != 1:\n                raise ValueError(\"loop detach requires absent mounts and observed revoked key\")\n            fcntl.ioctl(self.handles[\"loop:\" + names[0]], LOOP_CLR_FD, 0)\n\n        self._effect(\"loop:\" + str(loop.rdev), deadline, release)\n",
+            "start_line": 732
+          }
+        }
+      },
+      {
+        "status": "fulfilled",
+        "value": {
+          "content": [
+            {
+              "text": "{\"project\":\"Volumes-X10Pro-Crewshal\",\"signal\":\"best_effort\",\"indexed_at\":\"2026-10-09T12:08:16Z\",\"metadata\":{\"generation\":\"2026-10-09T12:08:16Z\",\"index_mode\":\"full\",\"recorded_at\":\"2026-10-09T12:09:46Z\",\"recording_status\":\"complete\",\"ignored_files_stored\":1,\"ignored_files_total\":1,\"hash_records_complete\":true,\"coverage_version\":3,\"generation_matches\":true},\"paths\":[{\"requested_path\":\"src/crewshal/linux_storage.py\",\"path\":\"src/crewshal/linux_storage.py\",\"status\":\"no_recorded_issue\",\"freshness\":\"metadata_match\",\"recommended_action\":\"use_graph_with_best_effort_caveat\",\"coverage\":[]},{\"requested_path\":\"src/crewshal/linux_teardown.py\",\"path\":\"src/crewshal/linux_teardown.py\",\"status\":\"no_recorded_issue\",\"freshness\":\"metadata_match\",\"recommended_action\":\"use_graph_with_best_effort_caveat\",\"coverage\":[]},{\"requested_path\":\"tests/acceptance/test_phase_2d_storage.py\",\"path\":\"tests/acceptance/test_phase_2d_storage.py\",\"status\":\"no_recorded_issue\",\"freshness\":\"metadata_match\",\"recommended_action\":\"use_graph_with_best_effort_caveat\",\"coverage\":[]},{\"requested_path\":\"tests/acceptance/test_phase_2d_teardown.py\",\"path\":\"tests/acceptance/test_phase_2d_teardown.py\",\"status\":\"no_recorded_issue\",\"freshness\":\"metadata_match\",\"recommended_action\":\"use_graph_with_best_effort_caveat\",\"coverage\":[]},{\"requested_path\":\"docs/PHASE-2D-COMPLETION-DECISION-2026-10-09.md\",\"path\":\"docs/PHASE-2D-COMPLETION-DECISION-2026-10-09.md\",\"status\":\"no_recorded_issue\",\"freshness\":\"metadata_match\",\"recommended_action\":\"use_graph_with_best_effort_caveat\",\"coverage\":[]},{\"requested_path\":\"docs/HANDOFF.md\",\"path\":\"docs/HANDOFF.md\",\"status\":\"no_recorded_issue\",\"freshness\":\"metadata_match\",\"recommended_action\":\"use_graph_with_best_effort_caveat\",\"coverage\":[]},{\"requested_path\":\"docs/DEVELOPMENT-PLAN.md\",\"path\":\"docs/DEVELOPMENT-PLAN.md\",\"status\":\"no_recorded_issue\",\"freshness\":\"metadata_match\",\"recommended_action\":\"use_graph_with_best_effort_caveat\",\"coverage\":[]},{\"requested_path\":\"README.md\",\"path\":\"README.md\",\"status\":\"no_recorded_issue\",\"freshness\":\"metadata_match\",\"recommended_action\":\"use_graph_with_best_effort_caveat\",\"coverage\":[]},{\"requested_path\":\"CHANGELOG.md\",\"path\":\"CHANGELOG.md\",\"status\":\"no_recorded_issue\",\"freshness\":\"metadata_match\",\"recommended_action\":\"use_graph_with_best_effort_caveat\",\"coverage\":[]}],\"scopes\":[{\"requested_scope\":\"src/crewshal/linux_storage.py\",\"scope\":\"src/crewshal/linux_storage.py\",\"total\":0,\"has_more\":false,\"entries\":[],\"status\":\"no_recorded_issue\"},{\"requested_scope\":\"src/crewshal/linux_teardown.py\",\"scope\":\"src/crewshal/linux_teardown.py\",\"total\":0,\"has_more\":false,\"entries\":[],\"status\":\"no_recorded_issue\"}],\"caveat\":\"Best-effort signal only. No recorded issue does not prove graph or source completeness; read flagged source and qualify claims when metadata is changed or unavailable.\"}",
+              "type": "text"
+            }
+          ],
+          "isError": false,
+          "structuredContent": {
+            "caveat": "Best-effort signal only. No recorded issue does not prove graph or source completeness; read flagged source and qualify claims when metadata is changed or unavailable.",
+            "indexed_at": "2026-10-09T12:08:16Z",
+            "metadata": {
+              "coverage_version": 3,
+              "generation": "2026-10-09T12:08:16Z",
+              "generation_matches": true,
+              "hash_records_complete": true,
+              "ignored_files_stored": 1,
+              "ignored_files_total": 1,
+              "index_mode": "full",
+              "recorded_at": "2026-10-09T12:09:46Z",
+              "recording_status": "complete"
+            },
+            "paths": [
+              {
+                "coverage": [],
+                "freshness": "metadata_match",
+                "path": "src/crewshal/linux_storage.py",
+                "recommended_action": "use_graph_with_best_effort_caveat",
+                "requested_path": "src/crewshal/linux_storage.py",
+                "status": "no_recorded_issue"
+              },
+              {
+                "coverage": [],
+                "freshness": "metadata_match",
+                "path": "src/crewshal/linux_teardown.py",
+                "recommended_action": "use_graph_with_best_effort_caveat",
+                "requested_path": "src/crewshal/linux_teardown.py",
+                "status": "no_recorded_issue"
+              },
+              {
+                "coverage": [],
+                "freshness": "metadata_match",
+                "path": "tests/acceptance/test_phase_2d_storage.py",
+                "recommended_action": "use_graph_with_best_effort_caveat",
+                "requested_path": "tests/acceptance/test_phase_2d_storage.py",
+                "status": "no_recorded_issue"
+              },
+              {
+                "coverage": [],
+                "freshness": "metadata_match",
+                "path": "tests/acceptance/test_phase_2d_teardown.py",
+                "recommended_action": "use_graph_with_best_effort_caveat",
+                "requested_path": "tests/acceptance/test_phase_2d_teardown.py",
+                "status": "no_recorded_issue"
+              },
+              {
+                "coverage": [],
+                "freshness": "metadata_match",
+                "path": "docs/PHASE-2D-COMPLETION-DECISION-2026-10-09.md",
+                "recommended_action": "use_graph_with_best_effort_caveat",
+                "requested_path": "docs/PHASE-2D-COMPLETION-DECISION-2026-10-09.md",
+                "status": "no_recorded_issue"
+              },
+              {
+                "coverage": [],
+                "freshness": "metadata_match",
+                "path": "docs/HANDOFF.md",
+                "recommended_action": "use_graph_with_best_effort_caveat",
+                "requested_path": "docs/HANDOFF.md",
+                "status": "no_recorded_issue"
+              },
+              {
+                "coverage": [],
+                "freshness": "metadata_match",
+                "path": "docs/DEVELOPMENT-PLAN.md",
+                "recommended_action": "use_graph_with_best_effort_caveat",
+                "requested_path": "docs/DEVELOPMENT-PLAN.md",
+                "status": "no_recorded_issue"
+              },
+              {
+                "coverage": [],
+                "freshness": "metadata_match",
+                "path": "README.md",
+                "recommended_action": "use_graph_with_best_effort_caveat",
+                "requested_path": "README.md",
+                "status": "no_recorded_issue"
+              },
+              {
+                "coverage": [],
+                "freshness": "metadata_match",
+                "path": "CHANGELOG.md",
+                "recommended_action": "use_graph_with_best_effort_caveat",
+                "requested_path": "CHANGELOG.md",
+                "status": "no_recorded_issue"
+              }
+            ],
+            "project": "Volumes-X10Pro-Crewshal",
+            "scopes": [
+              {
+                "entries": [],
+                "has_more": false,
+                "requested_scope": "src/crewshal/linux_storage.py",
+                "scope": "src/crewshal/linux_storage.py",
+                "status": "no_recorded_issue",
+                "total": 0
+              },
+              {
+                "entries": [],
+                "has_more": false,
+                "requested_scope": "src/crewshal/linux_teardown.py",
+                "scope": "src/crewshal/linux_teardown.py",
+                "status": "no_recorded_issue",
+                "total": 0
+              }
+            ],
+            "signal": "best_effort"
+          }
+        }
+      }
+    ],
+    "limitations": "Best-effort only. Dynamic owner calls were not resolved as inbound edges; an intermediate os.close edge was misresolved. Exact source/snippets and final diff are authoritative for material claims; no negative completeness inferred.",
+    "project": "Volumes-X10Pro-Crewshal",
+    "tier": "Verify"
+  },
+  "limitations": [
+    "No real compiler/fork/Popen/helper/native or kernel-storage/cgroup operation exercised.",
+    "Tests use fresh regular files/FDs and synthetic kernel/process seams; C remains uncompiled package data.",
+    "No provider/model/API/Jev request, credential recovery, installation, OS upgrade, host cleanup, droplet, release or 2E.",
+    "Trusted parent/root/helper/library/FD installation, effective controls, observer/aggregate lifetime, exact changed-profile qualification and separate live implementation/check remain unresolved."
+  ],
+  "milestone": "Phase 2D completion preparation: confirmed decisions and bounded-final-close incompatibility",
+  "next_prompt_record": "docs/PHASE-2D-COMPLETION-DECISION-2026-10-09.md",
+  "original_controls": {
+    "aggregate_memory_bytes": 805306368,
+    "aggregate_tasks": 128,
+    "batch_seconds": 600,
+    "broker_memory_bytes": 67108864,
+    "broker_tasks": 16,
+    "candidate_bytes": 16777216,
+    "capture_seconds": 10,
+    "constraints": "Original admission and terminal watchdog/parent/wrapper readback; upper/key/loop/backing ordering; no retry/ambient keyring/lazy-force unmount/host block-device cleanup.",
+    "cpu_count": 1,
+    "disk_allocated_bytes": 8589934592,
+    "disk_logical_bytes": 8589934592,
+    "fixed_cleanup_reserve_seconds": 30,
+    "recovery_grace_seconds": 1,
+    "role_memory_bytes": 134217728,
+    "role_tasks": 32,
+    "scratch_bytes": 33554432,
+    "startup_seconds": 120,
+    "stream_bytes": 65536,
+    "swap_bytes": 0,
+    "worker_origin_seconds": 5
+  },
+  "owner_decision": "May verified retained storage be an explicit Phase 2D terminal outcome after other live gates pass, with unknown physical release, all resources charged, no unlink/reuse/retry and unchanged ceilings? Unanswered; strict release gate remains.",
+  "primary_source_evidence": {
+    "acquisition": "Public unauthenticated source as data only; raw.githubusercontent.com/torvalds/linux/<commit>/<path>. Not vendor-kernel identity.",
+    "claims": [
+      "loop final release invokes __loop_clr_fd; status/unbound publication precedes backing fput.",
+      "__fput may sleep, invokes file release, then drops file access before dentry/mount references and final file free.",
+      "lease_open_conflict observes inode read/write counts, not every reference to a file or inode/path."
+    ],
+    "sources": {
+      "block/bdev.c": {
+        "bytes": 36000,
+        "sha256": "178ebda8f20a718cb3d6258dce5b4f1bba77bd3c44d691a21087368d4f219ea5"
+      },
+      "drivers/block/loop.c": {
+        "bytes": 59782,
+        "sha256": "c4efa222c5b390747198070d5e0f2cbf7b3ac875b0fc127f110fa10f3a370fd7"
+      },
+      "fs/file_table.c": {
+        "bytes": 16018,
+        "sha256": "1b42d47387a6635c73bdf61363425a23fcdb5496fe2ca665f7ccb03e541b1454"
+      },
+      "fs/locks.c": {
+        "bytes": 82852,
+        "sha256": "306a5eaabb72ff5a57e4c4107c33bd5a7bff6553ef247d7301256ce0623c7b40"
+      }
+    },
+    "upstream_commit": "028ef9c96e96197026887c0f092424679298aae8"
+  },
+  "pushed": false,
+  "read_only_ubuntu": {
+    "caveats": [
+      "PATH absence is bounded to the observed user's PATH; not exhaustive installation discovery.",
+      "No matching separate module files does not imply lack of built-in/loaded support.",
+      "Read-only substrate admission is not execution-profile qualification.",
+      "Transport address, username and authentication material omitted."
+    ],
+    "controllers": [
+      "cpuset",
+      "cpu",
+      "io",
+      "memory",
+      "hugetlb",
+      "pids",
+      "rdma",
+      "misc",
+      "dmem"
+    ],
+    "environment": {
+      "architecture": "aarch64",
+      "distribution": "Ubuntu 24.04.5 LTS",
+      "kernel": "7.0.0-38-generic",
+      "uid": 1000
+    },
+    "executables_absent_from_path": [
+      "rtk",
+      "codex",
+      "claude",
+      "ecryptfs-add-passphrase"
+    ],
+    "executables_present": [
+      "bwrap",
+      "systemd-run",
+      "setpriv",
+      "gcc",
+      "python3",
+      "ssh"
+    ],
+    "module_glob_found": {
+      "ecryptfs": false,
+      "ext4": false,
+      "loop": false
+    },
+    "observed_filesystems": [
+      "ext4",
+      "ecryptfs"
+    ]
+  },
+  "rejected_candidate": {
+    "build": [
+      {
+        "status": "fulfilled",
+        "value": {
+          "chunk_id": "7d383d",
+          "cmd": "rtk proxy uv build --offline --quiet --out-dir /var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-2d-owner-decisions-0nbxutny/build",
+          "original_token_count": 0,
+          "output": "",
+          "session_id": 64606,
+          "wall_time_seconds": 1.002417667
+        }
+      },
+      {
+        "status": "fulfilled",
+        "value": {
+          "chunk_id": "dee796",
+          "cmd": "rtk proxy uv venv --python /Volumes/X10Pro/Crewshal/.venv/bin/python /var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-2d-owner-decisions-0nbxutny/wheel-env",
+          "exit_code": 0,
+          "original_token_count": 79,
+          "output": "Using CPython 3.12.15 interpreter at: .venv/bin/python\nCreating virtual environment at: /var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-2d-owner-decisions-0nbxutny/wheel-env\nActivate with: source /var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-2d-owner-decisions-0nbxutny/wheel-env/bin/activate\n",
+          "wall_time_seconds": 0.003992208
+        }
+      }
+    ],
+    "build_completion": {
+      "chunk_id": "010383",
+      "exit_code": 0,
+      "original_token_count": 0,
+      "output": "",
+      "wall_time_seconds": 5.916e-06
+    },
+    "completions": [
+      {
+        "status": "fulfilled",
+        "value": {
+          "chunk_id": "436ec2",
+          "cmd": "rtk proxy .venv/bin/mypy",
+          "exit_code": 0,
+          "original_token_count": 11,
+          "output": "Success: no issues found in 25 source files\n",
+          "wall_time_seconds": 6.083e-06
+        }
+      },
+      {
+        "status": "fulfilled",
+        "value": {
+          "chunk_id": "bc35fb",
+          "cmd": "rtk proxy env -i PATH=/usr/bin:/bin HOME=/var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-2d-owner-decisions-0nbxutny/home PYTHONDONTWRITEBYTECODE=1 /usr/bin/sandbox-exec -p '(version 1)(allow default)(deny network*)' /Volumes/X10Pro/Crewshal/.venv/bin/python -m unittest discover -s tests -t .",
+          "exit_code": 0,
+          "original_token_count": 145,
+          "output": "..............................................................................................................................................................................................................................................................................................................................................................................................................................................................................................\n----------------------------------------------------------------------\nRan 478 tests in 14.068s\n\nOK\n",
+          "wall_time_seconds": 5.458e-06
+        }
+      }
+    ],
+    "offline_only_checks": [
+      {
+        "status": "fulfilled",
+        "value": {
+          "chunk_id": "bfb7ab",
+          "cmd": "rtk proxy .venv/bin/ruff check src tests scripts/audit_phase_2c_bundle.py scripts/prepare_phase_2d_batch.py",
+          "exit_code": 0,
+          "original_token_count": 5,
+          "output": "All checks passed!\n",
+          "wall_time_seconds": 0.965602875
+        }
+      },
+      {
+        "status": "fulfilled",
+        "value": {
+          "chunk_id": "4360ab",
+          "cmd": "rtk proxy .venv/bin/ruff format --check src tests scripts/audit_phase_2c_bundle.py scripts/prepare_phase_2d_batch.py",
+          "exit_code": 0,
+          "original_token_count": 7,
+          "output": "61 files already formatted\n",
+          "wall_time_seconds": 0.794260959
+        }
+      },
+      {
+        "status": "fulfilled",
+        "value": {
+          "chunk_id": "a65544",
+          "cmd": "rtk proxy .venv/bin/mypy",
+          "original_token_count": 0,
+          "output": "",
+          "session_id": 19739,
+          "wall_time_seconds": 1.001772708
+        }
+      },
+      {
+        "status": "fulfilled",
+        "value": {
+          "chunk_id": "f7be42",
+          "cmd": "rtk proxy env -i PATH=/usr/bin:/bin HOME=/var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-2d-owner-decisions-0nbxutny/home PYTHONDONTWRITEBYTECODE=1 /usr/bin/sandbox-exec -p '(version 1)(allow default)(deny network*)' /Volumes/X10Pro/Crewshal/.venv/bin/python -m unittest discover -s tests -t .",
+          "original_token_count": 0,
+          "output": "",
+          "session_id": 56131,
+          "wall_time_seconds": 1.001650084
+        }
+      }
+    ],
+    "qualification": false,
+    "regression_against_rejected_candidate": {
+      "chunk_id": "a84d00",
+      "cmd": "rtk proxy env -i PATH=/usr/bin:/bin HOME=/var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-2d-owner-decisions-0nbxutny/wheel-home PYTHONDONTWRITEBYTECODE=1 /usr/bin/sandbox-exec -p '(version 1)(allow default)(deny network*)' /var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-2d-owner-decisions-0nbxutny/wheel-env/bin/python -m unittest tests.acceptance.test_phase_2d_storage.Phase2DStorage.test_detach_never_closes_loop_in_live_observer",
+      "exit_code": 1,
+      "original_token_count": 181,
+      "output": "F\n======================================================================\nFAIL: test_detach_never_closes_loop_in_live_observer (tests.acceptance.test_phase_2d_storage.Phase2DStorage.test_detach_never_closes_loop_in_live_observer)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/Volumes/X10Pro/Crewshal/tests/acceptance/test_phase_2d_storage.py\", line 385, in test_detach_never_closes_loop_in_live_observer\n    self.assertNotIn(descriptor, [call.args[0] for call in closed.call_args_list])\nAssertionError: 9 unexpectedly found in [11, 11, 9]\n\n----------------------------------------------------------------------\nRan 1 test in 0.018s\n\nFAILED (failures=1)\n",
+      "wall_time_seconds": 0.27248675
+    },
+    "review_result": "Rejected: final close in live observer can block outside bounded child. Removed before final boundary.",
+    "source_sha256": "270af7957ebe77dd5ff85a6797d4c5c1eea445e7ab4e463b44305a8775e3aaee",
+    "wheel_checks": [
+      {
+        "status": "fulfilled",
+        "value": {
+          "chunk_id": "1d9038",
+          "cmd": "rtk proxy env -i PATH=/usr/bin:/bin HOME=/var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-2d-owner-decisions-0nbxutny/wheel-home PYTHONDONTWRITEBYTECODE=1 /usr/bin/sandbox-exec -p '(version 1)(allow default)(deny network*)' /var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-2d-owner-decisions-0nbxutny/wheel-env/bin/python -m unittest discover -s tests -t .",
+          "original_token_count": 0,
+          "output": "",
+          "session_id": 31225,
+          "wall_time_seconds": 1.001635834
+        }
+      },
+      {
+        "status": "fulfilled",
+        "value": {
+          "chunk_id": "8fe170",
+          "cmd": "rtk proxy env -i PATH=/usr/bin:/bin HOME=/var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-2d-owner-decisions-0nbxutny/wheel-home PYTHONDONTWRITEBYTECODE=1 /usr/bin/sandbox-exec -p '(version 1)(allow default)(deny network*)' /var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-2d-owner-decisions-0nbxutny/wheel-env/bin/python /var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-2d-owner-decisions-0nbxutny/package_check.py",
+          "exit_code": 0,
+          "original_token_count": 599,
+          "output": "{\"dispatch_sources\": 21, \"packaged_sources\": 26, \"python\": \"3.12.15 (main, Sep 30 2026, 22:04:19) [Clang 21.0.0 (clang-2100.3.34.2)]\", \"source_sha256\": {\"__init__.py\": \"e247a13fadd84550409266e7b2986b70b9ace1e8b3e527000ad8caccc43769f8\", \"__main__.py\": \"61e1b048145332e9aab85470bb2fa2bc1312e41dffa6cd26741319fbfe5443c1\", \"admission.py\": \"3ad8f13d014b35f50b6d1da8885abc07e091574f349bc7dad37920530dbc751d\", \"bootstrap_helper.c\": \"8ddeb82f62b417302de6e6873401414ce783aa8b8368b7dc4272a9f5a301a8d7\", \"candidate.py\": \"98d830994c6d16746e707e60276abd1975c3d8dd5f0d96d4885d8cbf0a944fce\", \"cli.py\": \"8ecd936c862da846969fc2da482c7f889d0174c208076301fc16e6353842d372\", \"contracts.py\": \"53d1c7630b7401e76d25d940a8ef89f103ddef2d66ff02980fc90c6fbc588f88\", \"discovery.py\": \"b9ab698faa5951f9badf566b1fdd8cd3be7487f82fdc96acd6a246ef44aa1b2c\", \"dispatch.py\": \"d80628388e681c6ec6cbcecb082698346ed5d4d1751759b9ddccdb1c4424250b\", \"durable.py\": \"2e45f19e67071055c5f746824257d22176ba26328b4f27d88ee635b654193ef7\", \"gates.py\": \"06d841c18cbdde260486c94e91fa0f0f6ca17508ccd36e43778a3bbbec096baf\", \"integration.py\": \"662bf94ae65773eafa4b50d75be928b1d072a78f15fd710f946a453c12845b6c\", \"linux_bootstrap.py\": \"5d40c825ed429188699d9cc358a65622a5e333e9bb3253d53dd19a00cc0589f7\", \"linux_envelope.py\": \"a3d47f71b30e28192f9d7a8a1c9071ecefa7ee3a9fc3342df3f85ff2cbc6988a\", \"linux_inventory.py\": \"db1cce7d9596cfb5a68afa7e9fd6ffa09ed7a87231aecf55cbdd5a95ee668372\", \"linux_parent.py\": \"0fc3e8b12560955b1c38c07369f58a9fad4251eb1fd20e8474eae01da967d1e2\", \"linux_setup.py\": \"6008eb2e438dadf5dd10f282ed48c31084f9ea21e3c5b567fe3f9402924a7127\", \"linux_storage.py\": \"270af7957ebe77dd5ff85a6797d4c5c1eea445e7ab4e463b44305a8775e3aaee\", \"linux_teardown.py\": \"a7ec245a8cadb64cd859948afaa2ada421f936ab5138e2742ee9e4e0b7296bae\", \"model.py\": \"3cbc9405e0c7fb5247a13562e72c8472c3edc0f3fc2407db2fd6c6c95fae25de\", \"qualification.py\": \"772df20ee17ddd52023eb0b245d733e2db29d115b625703fd4c6d86026f5554a\", \"qualification_bundle.py\": \"4a595fc100539d997ad9b5f5750b58cd5f14b0ca276a6cc1cc9de6596c1aae7b\", \"runtime.py\": \"d00f4624826ee02225a5608602e074ce90301765b8595aee60943158659ed15a\", \"runtime_batch.py\": \"aca68f6f4949ea6c9cf06be6fcab94c1f4923f6f4185bbfbc1b3dc430f4da18d\", \"state.py\": \"856abbc9de6e630798736eab14ddc6062bc6768621edd8a0d9477f1f3fa7e5a3\", \"supervisor.py\": \"575328e2529e21487c8c3b9df4913772ac4fc68497a7e6c209da463333f1ba6b\"}, \"version\": \"0.10.0\"}\n",
+          "wall_time_seconds": 0.659012458
+        }
+      }
+    ],
+    "wheel_completion": {
+      "chunk_id": "fb524b",
+      "exit_code": 0,
+      "original_token_count": 145,
+      "output": "..............................................................................................................................................................................................................................................................................................................................................................................................................................................................................................\n----------------------------------------------------------------------\nRan 478 tests in 18.321s\n\nOK\n",
+      "wall_time_seconds": 5.916e-06
+    }
+  },
+  "repository": "forera-ai/Crewshal",
+  "reproduction": "Create a new private proof directory/fresh HOME and wheel environment; run final commands in order with RTK, empty inherited environment and denied network for tests; hash-locked offline dependencies. Rebuild from final source. Historical fixture drivers are data, not launchers. Replace ephemeral proof paths; no need for prior build/test artifacts.",
+  "reproduction_package_check_script": "import hashlib\nimport json\nfrom pathlib import Path\nimport sys\nimport tomllib\n\nimport crewshal\nfrom crewshal.dispatch import SOURCE_FILES\n\nrepo = Path(\"/Volumes/X10Pro/Crewshal\")\npackage = Path(crewshal.__file__).parent\nassert not package.is_relative_to(repo / \"src\")\nsources = sorted(p for p in (repo / \"src/crewshal\").iterdir() if p.suffix in (\".py\", \".c\"))\nfor source in sources:\n    assert source.read_bytes() == (package / source.name).read_bytes(), source.name\nassert crewshal.__version__ == tomllib.loads((repo / \"pyproject.toml\").read_text())[\"project\"][\"version\"] == \"0.10.0\"\nprint(json.dumps({\"version\": crewshal.__version__, \"python\": sys.version, \"packaged_sources\": len(sources), \"dispatch_sources\": len(SOURCE_FILES), \"source_sha256\": {p.name: hashlib.sha256(p.read_bytes()).hexdigest() for p in sources}}, sort_keys=True))\n",
+  "schema_version": 1,
+  "status": "blocked_requirement_decision; not_phase_2d_complete",
+  "subscription_usage": {
+    "account_scope": "Shared desktop account; guest account identity not established.",
+    "five_hour_remaining_percent": 41,
+    "five_hour_used_percent": 59,
+    "limitations": [
+      "Not per-task attribution or a hard cap; concurrent use/reset may invalidate deltas.",
+      "Unknown guest/account/window continuity cannot be inferred from desktop values.",
+      "No credit purchase/reset/API fallback. No model request executed."
+    ],
+    "official_auth_url": "https://learn.chatgpt.com/docs/auth",
+    "primary_resets_at": 1791548622,
+    "secondary_resets_at": 1791969062,
+    "source": "mcp__codex_app__get_usage_limits, current desktop account; read-only",
+    "weekly_remaining_percent": 25,
+    "weekly_used_percent": 75
+  },
+  "version": "0.10.0"
+}

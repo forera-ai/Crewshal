@@ -3,3 +3,5 @@ docs/qualification/phase-2c-discovery-admission-v1-runner.txt whitespace=-blank-
 docs/qualification/phase-2c-discovery-admission-v1-transport.txt whitespace=-blank-at-eof
 docs/qualification/phase-2c-discovery-admission-v2-runner.txt whitespace=-blank-at-eof
 docs/qualification/phase-2c-discovery-admission-v2-transport.txt whitespace=-blank-at-eof
+# This immutable diff includes the single-space prefixes required for blank context lines.
+docs/qualification/phase-2d-syntax-pass-regression-predecessor-20261010.patch whitespace=-blank-at-eol

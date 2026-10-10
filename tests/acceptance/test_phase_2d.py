@@ -25,6 +25,7 @@ from crewshal.candidate import (
     validator_evidence,
 )
 from crewshal.discovery import discover
+from crewshal import candidate as candidate_source
 from crewshal.durable import CoordinatorStore
 from crewshal.model import model_digest
 from crewshal.qualification import (
@@ -686,6 +687,104 @@ class Phase2D(unittest.TestCase):
         with patch("crewshal.candidate.os.fstat", side_effect=fstat):
             prepare_candidate(self.source, self.candidate, ["dirty.txt"])
         self.assertEqual((self.candidate / "dirty.txt").read_bytes(), b"uncommitted original\n")
+
+    def test_ancestor_swap_during_candidate_capture_never_reads_outside_root(self):
+        nested = self.source / "nested"
+        nested.mkdir()
+        (nested / "doc.txt").write_bytes(b"allowed fixture")
+        outside = self.root / "outside"
+        outside.mkdir()
+        (outside / "doc.txt").write_bytes(b"excluded synthetic bait")
+        lstat = Path.lstat
+        stat_call = os.stat
+        changed = False
+
+        def swap():
+            nonlocal changed
+            changed = True
+            nested.rename(self.source / "old-nested")
+            nested.symlink_to(outside, target_is_directory=True)
+
+        def race(path, *args, **options):
+            nonlocal changed
+            info = lstat(path, *args, **options)
+            if path == nested and not changed:
+                swap()
+            return info
+
+        def fd_race(path, *args, **options):
+            info = stat_call(path, *args, **options)
+            if path == "nested" and "dir_fd" in options and not changed:
+                swap()
+            return info
+
+        with (
+            patch.object(
+                Path, "lstat", side_effect=lambda *args, **kw: race(*args, **kw), autospec=True
+            ),
+            patch.object(candidate_source.os, "stat", side_effect=fd_race),
+        ):
+            with self.assertRaises((ValueError, OSError)):
+                candidate_source._entry(self.source, "nested/doc.txt")
+
+    def test_leaf_mutation_between_stat_and_open_refuses_before_read(self):
+        original = os.open
+        reads = []
+        fdopen = os.fdopen
+
+        def opening(path, flags, *args, **kwargs):
+            if path == "dirty.txt" and "dir_fd" in kwargs:
+                (self.source / "dirty.txt").chmod(0o755)
+            return original(path, flags, *args, **kwargs)
+
+        class CheckedFile:
+            def __init__(self, descriptor, mode):
+                self.file = fdopen(descriptor, mode)
+
+            def __enter__(self):
+                return self
+
+            def __exit__(self, *args):
+                self.file.close()
+
+            def fileno(self):
+                return self.file.fileno()
+
+            def read(self, size):
+                reads.append(size)
+                return self.file.read(size)
+
+        with (
+            patch.object(candidate_source.os, "open", side_effect=opening),
+            patch.object(candidate_source.os, "fdopen", side_effect=CheckedFile),
+        ):
+            with self.assertRaisesRegex(ValueError, "changed during open"):
+                candidate_source._entry(self.source, "dirty.txt")
+        self.assertEqual(reads, [])
+
+    def test_replaced_root_directory_refuses_prepare_and_freeze(self):
+        target_path = candidate_source._target
+        for operation in ("prepare", "freeze"):
+            with self.subTest(operation=operation):
+                source = self.root / (operation + "-root")
+                source.mkdir()
+                (source / "doc.txt").write_bytes(b"approved fixture bytes")
+                target = self.root / (operation + "-target")
+
+                def replace_root(original, destination):
+                    result = target_path(original, destination)
+                    source.rename(self.root / (operation + "-original"))
+                    source.mkdir()
+                    (source / "doc.txt").write_bytes(b"excluded replacement fixture")
+                    return result
+
+                with patch.object(candidate_source, "_target", side_effect=replace_root):
+                    with self.assertRaisesRegex(ValueError, "source root changed"):
+                        if operation == "prepare":
+                            prepare_candidate(source, target, ["doc.txt"])
+                        else:
+                            freeze_candidate(source, target, tree_stopped=True)
+                self.assertFalse(target.exists())
 
     def test_remaining_capture_and_required_configuration_refusals(self):
         self.assertEqual(self.normalize(exit_code=None).status, "incomplete_capture")

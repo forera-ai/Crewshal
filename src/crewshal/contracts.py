@@ -1,6 +1,7 @@
 """Closed Phase 2B records. Parsing a record never grants authority."""
 
 from datetime import datetime
+import math
 from typing import Annotated, Literal, Self
 
 from pydantic import Field, field_validator, model_validator
@@ -16,6 +17,46 @@ Provider = Annotated[str, Field(pattern=r"^[a-z0-9][a-z0-9.-]*$")]
 class Record(Contract):
     schema_version: Literal[1] = 1
     id: Identifier
+
+
+class StorageCapacityDomain(Record):
+    """Installed-domain data and irreversible denial, never storage authority.
+
+    An installed record must originate from a separately qualified producer.
+    Parsing, inserting or hashing this record proves no available capacity.
+    """
+
+    installation: Digest
+    state: Literal["installed", "retained"]
+    memory_bytes: Literal[805306368] = 805306368
+    tasks: Literal[128] = 128
+    logical_bytes: Literal[8589934592] = 8589934592
+    allocated_bytes: Literal[8589934592] = 8589934592
+    owner: Digest | None = None
+    configuration: Digest | None = None
+    batch_started_monotonic: float | None = None
+
+    @field_validator("memory_bytes", "tasks", "logical_bytes", "allocated_bytes", mode="before")
+    @classmethod
+    def exact_capacity_integer(cls, value: object) -> object:
+        if type(value) is not int:
+            raise ValueError("fixed capacity charges require exact integers")
+        return value
+
+    @model_validator(mode="after")
+    def capacity_state(self) -> Self:
+        fields = (self.owner, self.configuration, self.batch_started_monotonic)
+        if self.state == "installed":
+            if any(value is not None for value in fields):
+                raise ValueError("installed-domain data cannot claim an owner")
+        elif (
+            any(value is None for value in fields)
+            or self.batch_started_monotonic is None
+            or not math.isfinite(self.batch_started_monotonic)
+            or self.batch_started_monotonic <= 0
+        ):
+            raise ValueError("retained capacity requires exact owner and original origin")
+        return self
 
 
 class Binding(Contract):

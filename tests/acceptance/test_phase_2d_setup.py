@@ -1,8 +1,10 @@
 """Fresh setup/lifetime fixtures; constructors and Linux effects are synthetic."""
 
 from contextlib import contextmanager
+import copy
 import os
 from pathlib import Path
+import pickle
 import subprocess
 import time
 from types import SimpleNamespace
@@ -13,6 +15,32 @@ from crewshal import linux_setup as setup
 from crewshal.linux_parent import TrustedTaskSpec
 from crewshal.supervisor import OwnedCgroup
 from tests.acceptance import test_phase_2d_parent as parent_fixtures
+from tests.acceptance import test_phase_2d_envelope as envelope_fixtures
+
+
+def synthetic_capacity_claim(test, root, observer, configuration, origin):
+    """Fresh journal data only: never an observed installed pool or availability."""
+    from crewshal.contracts import StorageCapacityDomain, record_digest
+    from crewshal.durable import CoordinatorStore
+    from crewshal.model import digest
+
+    store = CoordinatorStore(root / "capacity-state")
+    test.addCleanup(store.close)
+    installed = StorageCapacityDomain(
+        id="fixed-synthetic-installed-domain",
+        installation=digest(b"synthetic independently unqualified installation"),
+        state="installed",
+    )
+    with store.transaction():
+        store._put("storage_capacity", installed.id, installed, 0)
+    return store.claim_storage_capacity(
+        installed.id,
+        expected_version=1,
+        installation=installed.installation,
+        owner=record_digest(observer.spec),
+        configuration=record_digest(configuration),
+        batch_started_monotonic=origin,
+    )
 
 
 class Phase2DSetup(unittest.TestCase):
@@ -68,6 +96,31 @@ class Phase2DSetup(unittest.TestCase):
                 os.close(handle)
                 setattr(lifetime, name, -1)
 
+    def test_subscription_namespace_preparation_preserves_profile_and_fixed_parent_cwd(self):
+        fixture = envelope_fixtures.Phase2DEnvelope()
+        fixture.setUp()
+        self.addCleanup(fixture.doCleanups)
+        configuration = fixture.subscription_configuration()
+        from crewshal.linux_bootstrap import prepare_linux_bootstrap
+        from crewshal.model import digest
+
+        bootstrap = prepare_linux_bootstrap(
+            configuration, helper_binary=digest(b"synthetic unexecuted helper")
+        )
+        plan = setup.prepare_namespace_setup(
+            configuration,
+            bootstrap,
+            self.parent.spec.argv,
+            self.parent.spec.executable,
+        )
+        self.assertEqual(
+            plan.namespace_argv[plan.namespace_argv.index("--chdir") + 1], "/candidate/owned"
+        )
+        self.assertIn("/native-auth", plan.namespace_argv)
+        self.assertEqual(plan.setup_controls, self.plan.setup_controls)
+        self.assertFalse(plan.execution_allowed)
+        self.assertFalse(plan.profile_qualified)
+
     @contextmanager
     def synthetic_popen(self, callback):
         test = self
@@ -99,12 +152,24 @@ class Phase2DSetup(unittest.TestCase):
     def watchdog(self, acknowledgement=None, callback=None):
         bridge = self.bridge
         bridge.watchdog_path = bridge.watchdog_path.rename(bridge.proc_root / "54321")
+        reader, writer = os.pipe()
+        self.addCleanup(os.close, reader)
+        self.addCleanup(os.close, writer)
+        self.watch_exit_write = writer
+
+        def watchdog_pidfd(pid, flags):
+            if pid != 54321:
+                raise ValueError("synthetic watchdog attachment PID differs")
+            handle = os.dup(reader)
+            bridge.proc_root.joinpath("self/fdinfo", str(handle)).write_text(f"Pid: {pid}\n")
+            return handle
 
         def construct(argv, options):
             numbers = [int(x) for x in argv[-3:]]
             self.assertEqual(set(options["pass_fds"]), set(numbers))
             self.assertNotIn("preexec_fn", options)
             self.assertEqual(options["env"], {})
+            self.assertEqual(options["cwd"], setup.native_working_directory(self.configuration))
             self.assertTrue(options["close_fds"])
             self.assertEqual(options["stdin"], subprocess.DEVNULL)
             self.assertEqual(argv[:2], ["/bin/setpriv", "--reuid=0"])
@@ -154,6 +219,7 @@ class Phase2DSetup(unittest.TestCase):
 
         with (
             bridge.kernel_proc(),
+            patch.object(setup.os, "pidfd_open", side_effect=watchdog_pidfd, create=True),
             self.synthetic_popen(construct),
             patch.object(setup.os, "pipe2", side_effect=self.pipe2, create=True),
             patch.object(setup.os, "write", side_effect=recording_write),
@@ -171,14 +237,8 @@ class Phase2DSetup(unittest.TestCase):
             except setup.WatchdogSetupRefusal as error:
                 self.addCleanup(self.cleanup_watchdog, error.lifetime)
                 raise
-        # Give the synthetic watchdog an independent pidfd event channel;
-        # the underlying parent fixture intentionally shares one for readback.
-        reader, writer = os.pipe()
-        self.addCleanup(os.close, reader)
-        self.addCleanup(os.close, writer)
-        os.close(lifetime.task.pidfd)
-        lifetime.task.pidfd = os.dup(reader)
-        self.watch_exit_write = writer
+        # The watchdog's independent event channel is retained from attachment;
+        # no live task handle is replaced after its original constructor.
         bridge.watchdog = lifetime.observed
         self.addCleanup(self.cleanup_watchdog, lifetime)
         return lifetime
@@ -208,6 +268,19 @@ class Phase2DSetup(unittest.TestCase):
         for argv in ([], ["relative"], ["/opt/codex/bin/codex"], ["/bin/crewshal-bootstrap"]):
             with self.subTest(argv=argv), self.assertRaises(ValueError):
                 setup.prepare_namespace_setup(self.configuration, self.preparation, argv, "1" * 64)
+
+    def test_only_setup_parent_projects_owned_source_views(self):
+        envelope = setup.prepare_linux_envelope(self.configuration)
+        fragment = ["--bind", envelope.owned_root, envelope.owned_root]
+        command = self.plan.namespace_argv
+        self.assertEqual(sum(command[i : i + 3] == fragment for i in range(len(command))), 1)
+        self.assertFalse(
+            any(
+                mount.target == envelope.owned_root
+                for mounts in envelope.mounts.values()
+                for mount in mounts
+            )
+        )
 
     def test_watchdog_creation_observes_owned_fds_before_worker(self):
         lifetime = self.watchdog()
@@ -440,7 +513,11 @@ class Phase2DSetup(unittest.TestCase):
             def close(self, number):
                 real_os.close(descriptors.pop(number))
 
-        def attach(identity):
+        def attach(number, identity):
+            self.assertEqual(
+                (os.fstat(descriptors[number]).st_dev, os.fstat(descriptors[number]).st_ino),
+                (identity.device, identity.inode),
+            )
             group = next(group for group in self.groups.values() if group.identity == identity)
             return OwnedCgroup(group.descriptor, identity)
 
@@ -448,7 +525,7 @@ class Phase2DSetup(unittest.TestCase):
             patch.object(setup, "os", DescriptorView()),
             patch.object(setup, "_seals", return_value=(10001, 10002, 15)),
             patch.object(setup.fcntl, "fcntl", return_value=seals),
-            patch.object(OwnedCgroup, "attach", side_effect=attach),
+            patch.object(OwnedCgroup, "attach_inherited", side_effect=attach),
         ):
             try:
                 yield descriptors
@@ -506,7 +583,7 @@ class Phase2DSetup(unittest.TestCase):
     def external_observer(self):
         path = self.f.aggregate_path / "observer"
         path.mkdir()
-        group = self.f.group(path, "owned.slice/session.scope/observer", True)
+        group = self.f.group(path, "owned.slice/session.scope/observer", False)
         self.observer_group = group
         path.joinpath("cgroup.procs").write_text(str(os.getpid()))
         old = self.parent.spec
@@ -518,8 +595,35 @@ class Phase2DSetup(unittest.TestCase):
         )
         return group, old
 
-    def namespace(self, fail_constructor=False, fail_return=False):
+    def namespace(
+        self,
+        fail_constructor=False,
+        fail_return=False,
+        *,
+        reserve_storage=False,
+        retained_namespace=False,
+        wrong_owner=False,
+        failed_owner=False,
+    ):
         self.external_observer()
+        origin = time.monotonic() - 1
+        capacity = (
+            synthetic_capacity_claim(self, self.f.root, self.parent, self.configuration, origin)
+            if reserve_storage
+            else None
+        )
+        reservation = (
+            setup.OwnedStorageReservation(
+                self.parent,
+                self.observer_group,
+                self.aggregate,
+                self.configuration,
+                batch_started_monotonic=origin,
+                capacity_claim=capacity,
+            )
+            if reserve_storage
+            else None
+        )
         self.supervisor_path.joinpath("cgroup.procs").write_text("")
         self.supervisor_path.joinpath("cgroup.events").write_text("populated 0\nfrozen 0")
         self.plan = setup.prepare_namespace_setup(
@@ -527,6 +631,26 @@ class Phase2DSetup(unittest.TestCase):
         )
         controls_path = self.f.root / "synthetic-capsule"
         controls_path.write_text("synthetic sealed data")
+        owner = None
+        namespace_fd = None
+        if retained_namespace or wrong_owner:
+            from crewshal.linux_storage import LinuxPhysicalOwner
+
+            # Explicit owner/namespace seam. This does not create a namespace,
+            # ring, mount or operational storage-owner qualification.
+            owner = object() if wrong_owner else object.__new__(LinuxPhysicalOwner)
+            if not wrong_owner:
+                namespace_fd = os.open(controls_path, os.O_RDONLY)
+                self.addCleanup(os.close, namespace_fd)
+                owner.handles = {"namespace": namespace_fd}
+                if reservation is not None:
+                    reservation._storage_owner = owner
+
+        def verify_owner(actual, actual_reservation):
+            self.assertIs(actual, owner)
+            self.assertIs(actual_reservation, reservation)
+            if failed_owner:
+                raise ValueError("synthetic owner verification refused")
 
         def capsule(controls):
             self.captured_controls = controls
@@ -549,9 +673,16 @@ class Phase2DSetup(unittest.TestCase):
             observer.verify(observer.spec.cgroup)
 
         def construct(argv, options):
-            self.assertEqual(argv[:2], ["/bin/crewshal-bootstrap", "--namespace-fds"])
-            self.assertEqual(tuple(int(value) for value in argv[2:7]), options["pass_fds"])
-            self.assertEqual(argv[7:9], ["--", "/usr/bin/bwrap"])
+            count = 6 if retained_namespace else 5
+            mode = "--namespace-source-fds" if retained_namespace else "--namespace-fds"
+            self.assertEqual(argv[:2], ["/bin/crewshal-bootstrap", mode])
+            self.assertEqual(
+                tuple(int(value) for value in argv[2 : count + 2]), options["pass_fds"]
+            )
+            self.assertEqual(argv[count + 2 : count + 4], ["--", "/usr/bin/bwrap"])
+            self.assertEqual(options["cwd"], "/")
+            if retained_namespace:
+                self.assertEqual(options["pass_fds"][-1], namespace_fd)
             self.assertEqual(options["env"], {})
             self.assertNotIn("preexec_fn", options)
             self.parent.verify(self.setup_group.identity)
@@ -566,6 +697,11 @@ class Phase2DSetup(unittest.TestCase):
             patch.object(setup, "_move_self", side_effect=migrate),
             patch.object(setup, "_move_self_to_observer", side_effect=returning),
             self.synthetic_popen(construct),
+            patch(
+                "crewshal.linux_storage.LinuxPhysicalOwner.verify_retention",
+                autospec=True,
+                side_effect=verify_owner,
+            ),
         ):
             return setup.create_namespace_setup(
                 self.parent,
@@ -577,7 +713,41 @@ class Phase2DSetup(unittest.TestCase):
                 self.configuration,
                 self.preparation,
                 self.plan,
+                storage_reservation=reservation,
+                storage_owner=owner,
             )
+
+    def test_original_retained_namespace_fd_handed_to_wrapper(self):
+        lifetime = self.namespace(reserve_storage=True, retained_namespace=True)
+        self.assertIs(lifetime.wrapper, self.f.child)
+        self.assertIsNotNone(lifetime.storage_reservation._storage_owner)
+
+    def test_caller_owner_flag_cannot_supply_namespace_handoff(self):
+        with self.assertRaisesRegex(ValueError, "original concrete storage owner"):
+            self.namespace(reserve_storage=True, wrong_owner=True)
+        self.assertFalse(getattr(self.parent, "_setup_started", False))
+
+    def test_retained_owner_requires_original_reservation_before_wrapper(self):
+        with self.assertRaisesRegex(ValueError, "original concrete storage owner"):
+            self.namespace(retained_namespace=True)
+        self.assertFalse(getattr(self.parent, "_setup_started", False))
+
+    def test_failed_owner_readback_never_starts_wrapper(self):
+        with self.assertRaisesRegex(ValueError, "owner verification refused"):
+            self.namespace(reserve_storage=True, retained_namespace=True, failed_owner=True)
+        self.assertEqual(self.calls, [])
+        self.assertFalse(getattr(self.parent, "_setup_started", False))
+
+    def test_c_source_enters_typed_namespace_then_closes_handle_before_bwrap(self):
+        source = Path("src/crewshal/bootstrap_helper.c").read_text()
+        self.assertIn("ioctl(original[i], NS_GET_NSTYPE) != CLONE_NEWNS", source)
+        self.assertIn("fs.f_type != NSFS_MAGIC", source)
+        self.assertIn("fs.f_type != CGROUP2_SUPER_MAGIC", source)
+        fragment = source[source.index('strcmp(argv[1], "--namespace-source-fds")') :]
+        self.assertLess(
+            fragment.index("setns(8, CLONE_NEWNS) || close(8)"),
+            fragment.index("execve(argv[9], argv + 9, environ)"),
+        )
 
     def test_outer_wrapper_is_born_in_setup_and_observer_returns(self):
         lifetime = self.namespace()
@@ -588,6 +758,290 @@ class Phase2DSetup(unittest.TestCase):
         self.assertFalse(lifetime.resources_reusable)
         self.assertTrue(self.parent._setup_started)
         self.assertEqual(lifetime.controls, self.captured_controls)
+
+    def test_storage_reservation_before_setup_retains_full_original_charges(self):
+        lifetime = self.namespace(reserve_storage=True)
+        reservation = lifetime.storage_reservation
+        self.assertIsNotNone(reservation)
+        self.assertEqual(reservation.charges, setup.StorageCharges())
+        reservation.claim(lifetime)
+        resource = object()
+        reservation.retain(resource)
+        self.assertIs(reservation._retained, resource)
+        self.assertIs(reservation._lifetime, lifetime)
+        self.assertEqual(reservation.charges.logical_bytes, 8589934592)
+        self.assertEqual(reservation.charges.allocated_bytes, 8589934592)
+        self.assertEqual(reservation.charges.memory_bytes, 805306368)
+        self.assertEqual(reservation.charges.tasks, 128)
+        self.assertEqual(self.observer_group._read("memory.max"), "134217728")
+        self.assertEqual(self.observer_group._read("pids.max"), "32")
+        self.assertFalse(lifetime.resources_reusable)
+        with self.assertRaisesRegex(ValueError, "one-shot"):
+            reservation.claim(lifetime)
+        with self.assertRaisesRegex(ValueError, "exactly one"):
+            reservation.retain(object())
+
+    def test_missing_or_serialized_capacity_cannot_mint_reservation(self):
+        self.external_observer()
+        origin = time.monotonic() - 1
+        with self.assertRaisesRegex(ValueError, "live capacity claim required"):
+            setup.OwnedStorageReservation(
+                self.parent,
+                self.observer_group,
+                self.aggregate,
+                self.configuration,
+                batch_started_monotonic=origin,
+            )
+        capacity = synthetic_capacity_claim(
+            self, self.f.root, self.parent, self.configuration, origin
+        )
+        with self.assertRaisesRegex(ValueError, "live capacity claim required"):
+            setup.OwnedStorageReservation(
+                self.parent,
+                self.observer_group,
+                self.aggregate,
+                self.configuration,
+                batch_started_monotonic=origin,
+                capacity_claim=capacity.record,
+            )
+        self.assertFalse(hasattr(self.parent, "_storage_reservation"))
+
+    def test_second_observer_object_cannot_reuse_original_capacity_claim(self):
+        lifetime = self.namespace(reserve_storage=True)
+        original = lifetime.storage_reservation
+        duplicate_observer = copy.copy(self.parent)
+        del duplicate_observer._storage_reservation
+        duplicate_observer._setup_started = False
+        with self.assertRaisesRegex(ValueError, "already binds"):
+            setup.OwnedStorageReservation(
+                duplicate_observer,
+                self.observer_group,
+                self.aggregate,
+                self.configuration,
+                batch_started_monotonic=original.batch_started,
+                capacity_claim=original._capacity_claim,
+            )
+        self.assertEqual(original.charges, setup.StorageCharges())
+        self.assertIs(original._capacity_claim._reservation, original)
+
+    def test_missing_capacity_journal_refuses_live_reservation_without_refund(self):
+        lifetime = self.namespace(reserve_storage=True)
+        reservation = lifetime.storage_reservation
+        reservation._capacity_claim._path.unlink()
+        with self.assertRaises((OSError, ValueError)):
+            reservation.verify()
+        self.assertEqual(reservation.charges, setup.StorageCharges())
+
+    def test_creation_exception_requires_exact_producer_and_independent_child_binding(self):
+        from crewshal.linux_storage import BoundedStorageJobs
+
+        lifetime = self.namespace(reserve_storage=True)
+        reservation = lifetime.storage_reservation
+        jobs = BoundedStorageJobs(
+            self.parent, self.observer_group, self.aggregate, time.monotonic() + 20
+        )
+        path = self.f.aggregate_path / "observer" / "cgroup.procs"
+        path.write_text(f"{os.getpid()}\n999\n")
+        with self.assertRaisesRegex(ValueError, "sole retained live observer"):
+            reservation.verify()
+        with self.assertRaisesRegex(ValueError, "original retained producer"):
+            reservation.verify_creation_job(jobs)
+        reservation._production = SimpleNamespace(jobs=jobs)
+        with self.assertRaisesRegex(ValueError, "live creation child unavailable"):
+            reservation.verify_creation_job(jobs)
+        with patch.object(jobs, "verify_creation_child", return_value=999):
+            reservation.verify_creation_job(jobs)
+            path.write_text(f"{os.getpid()}\n999\n1000\n")
+            with self.assertRaisesRegex(ValueError, "sole retained live observer"):
+                reservation.verify_creation_job(jobs)
+        self.assertEqual(reservation.charges, setup.StorageCharges())
+
+    def test_another_job_cannot_borrow_producer_exception(self):
+        from crewshal.linux_storage import BoundedStorageJobs
+
+        lifetime = self.namespace(reserve_storage=True)
+        reservation = lifetime.storage_reservation
+        original = BoundedStorageJobs(
+            self.parent, self.observer_group, self.aggregate, time.monotonic() + 20
+        )
+        reservation._production = SimpleNamespace(jobs=original)
+        reconstructed = BoundedStorageJobs(
+            self.parent, self.observer_group, self.aggregate, original.deadline
+        )
+        with self.assertRaisesRegex(ValueError, "original retained producer"):
+            reservation.verify_creation_job(reconstructed)
+        reservation.verify()
+
+    def test_reservation_constructor_failure_stays_charged_and_one_shot(self):
+        self.external_observer()
+        origin = time.monotonic() - 1
+        capacity = synthetic_capacity_claim(
+            self, self.f.root, self.parent, self.configuration, origin
+        )
+        self.observer_group._read("memory.max")
+        path = self.f.aggregate_path / "observer"
+        path.joinpath("memory.max").write_text("805306368")
+        with self.assertRaisesRegex(ValueError, "controls differ"):
+            setup.OwnedStorageReservation(
+                self.parent,
+                self.observer_group,
+                self.aggregate,
+                self.configuration,
+                batch_started_monotonic=origin,
+                capacity_claim=capacity,
+            )
+
+        reservation = self.parent._storage_reservation
+        self.assertEqual(reservation.charges, setup.StorageCharges())
+        path.joinpath("memory.max").write_text("134217728")
+        with self.assertRaisesRegex(ValueError, "one-shot"):
+            setup.OwnedStorageReservation(
+                self.parent,
+                self.observer_group,
+                self.aggregate,
+                self.configuration,
+                batch_started_monotonic=time.monotonic() - 1,
+            )
+
+    def test_partial_storage_owner_is_retained_even_when_handoff_verification_fails(self):
+        lifetime = self.namespace(reserve_storage=True)
+        reservation = lifetime.storage_reservation
+        partial_owner = object()
+        with patch.object(reservation, "verify", side_effect=ValueError("synthetic refusal")):
+            with self.assertRaisesRegex(ValueError, "synthetic refusal"):
+                reservation.pin_storage_owner(partial_owner)
+        self.assertIs(reservation._storage_owner, partial_owner)
+        self.assertEqual(reservation.charges, setup.StorageCharges())
+        with self.assertRaisesRegex(ValueError, "one-shot"):
+            reservation.pin_storage_owner(object())
+
+    def test_reservation_requires_original_origin_and_precedes_setup(self):
+        self.external_observer()
+        for origin in (
+            float("nan"),
+            float("inf"),
+            time.monotonic() + 10,
+            time.monotonic() - 601,
+            0,
+        ):
+            with self.subTest(origin=origin), self.assertRaisesRegex(ValueError, "batch origin"):
+                setup.OwnedStorageReservation(
+                    self.parent,
+                    self.observer_group,
+                    self.aggregate,
+                    self.configuration,
+                    batch_started_monotonic=origin,
+                )
+        self.parent._setup_started = True
+        with self.assertRaisesRegex(ValueError, "precedes setup"):
+            setup.OwnedStorageReservation(
+                self.parent,
+                self.observer_group,
+                self.aggregate,
+                self.configuration,
+                batch_started_monotonic=time.monotonic() - 1,
+            )
+
+    def test_reservation_changed_controls_and_origin_refuse_without_refund(self):
+        lifetime = self.namespace(reserve_storage=True)
+        reservation = lifetime.storage_reservation
+        path = self.f.aggregate_path / "observer"
+        path.joinpath("pids.max").write_text("33")
+        with self.assertRaisesRegex(ValueError, "controls differ"):
+            reservation.verify()
+        self.assertEqual(reservation.charges, setup.StorageCharges())
+        path.joinpath("pids.max").write_text("32")
+        reservation._batch_started += 1
+        with self.assertRaisesRegex(ValueError, "identity or configuration"):
+            reservation.verify()
+        self.assertEqual(reservation.charges, setup.StorageCharges())
+
+    def test_reservation_configuration_mutation_refuses_before_claim(self):
+        lifetime = self.namespace(reserve_storage=True)
+        reservation = lifetime.storage_reservation
+        self.configuration.native_stdin += "changed"
+        with self.assertRaisesRegex(ValueError, "identity or configuration"):
+            reservation.claim(lifetime)
+        with self.assertRaisesRegex(ValueError, "one-shot"):
+            reservation.claim(lifetime)
+        self.assertEqual(reservation.charges, setup.StorageCharges())
+
+    def test_reservation_cannot_claim_a_reconstructed_lifetime(self):
+        lifetime = self.namespace(reserve_storage=True)
+        reservation = lifetime.storage_reservation
+        reconstructed = setup.OwnedNamespaceSetup(
+            lifetime.wrapper,
+            lifetime.controls,
+            lifetime.aggregate,
+            lifetime.setup,
+            lifetime.supervisor,
+            lifetime.worker,
+            lifetime.observer_group,
+            storage_reservation=reservation,
+        )
+        with self.assertRaisesRegex(ValueError, "original namespace lifetime"):
+            reservation.claim(reconstructed)
+        with self.assertRaisesRegex(ValueError, "one-shot"):
+            reservation.claim(lifetime)
+
+    def test_retained_resource_is_kept_even_when_verification_refuses(self):
+        lifetime = self.namespace(reserve_storage=True)
+        reservation = lifetime.storage_reservation
+        reservation.claim(lifetime)
+        resource = object()
+        self.f.aggregate_path.joinpath("pids.max").write_text("129")
+        with self.assertRaises(ValueError):
+            reservation.retain(resource)
+        self.assertIs(reservation._retained, resource)
+        self.assertEqual(reservation.charges, setup.StorageCharges())
+
+    def test_wrapper_refusal_preserves_preexisting_storage_reservation(self):
+        with self.assertRaises(setup.NamespaceSetupRefusal) as caught:
+            self.namespace(fail_constructor=True, reserve_storage=True)
+        lifetime = caught.exception.lifetime
+        reservation = lifetime.storage_reservation
+        self.assertIs(self.parent._storage_reservation, reservation)
+        self.assertIs(reservation._setup_lifetime, lifetime)
+        self.assertEqual(reservation.charges, setup.StorageCharges())
+        reservation.verify()
+        with self.assertRaisesRegex(ValueError, "one-shot"):
+            setup.OwnedStorageReservation(
+                self.parent,
+                self.observer_group,
+                self.aggregate,
+                self.configuration,
+                batch_started_monotonic=reservation.batch_started,
+            )
+
+    def test_storage_reservation_charge_or_handle_mutation_refused(self):
+        lifetime = self.namespace(reserve_storage=True)
+        reservation = lifetime.storage_reservation
+        reservation._charges = setup.StorageCharges(logical_bytes=0)
+        with self.assertRaisesRegex(ValueError, "identity or configuration"):
+            reservation.verify()
+        self.assertEqual(reservation.charges, setup.StorageCharges())
+        reservation._charges = setup.StorageCharges()
+        old_handle = self.observer_group.descriptor
+        duplicate = os.dup(old_handle)
+        try:
+            self.observer_group.descriptor = duplicate
+            with self.assertRaisesRegex(ValueError, "identity or configuration"):
+                reservation.verify()
+        finally:
+            self.observer_group.descriptor = old_handle
+            os.close(duplicate)
+
+    def test_live_storage_reservation_cannot_be_copied_or_exported(self):
+        lifetime = self.namespace(reserve_storage=True)
+        reservation = lifetime.storage_reservation
+        for operation in (copy.copy, copy.deepcopy, pickle.dumps):
+            with (
+                self.subTest(operation=operation.__name__),
+                self.assertRaisesRegex(TypeError, "cannot be copied or exported"),
+            ):
+                operation(reservation)
+        reservation.verify()
+        self.assertEqual(reservation.charges, setup.StorageCharges())
 
     def test_wrapper_constructor_failure_returns_observer_and_retains_groups(self):
         with self.assertRaises(setup.NamespaceSetupRefusal) as caught:
@@ -754,3 +1208,68 @@ class Phase2DSetup(unittest.TestCase):
         self.assertEqual(admitted.proc.spec.start_ticks, self.f.spec.start_ticks)
         self.assertFalse(admitted.receipt.execution_allowed)
         self.assertEqual(self.worker.sample().direct_pids, [12345])
+
+    def native_terminal_fixture(self):
+        reader, writer = os.pipe()
+        self.addCleanup(os.close, reader)
+        self.addCleanup(os.close, writer)
+        parent = setup.RetainedTrustedTask(self.parent.descriptor, reader, self.parent.spec)
+        self.addCleanup(parent.close)
+        self.parent = self.bridge.parent = parent
+        self.parent_exit_writer = writer
+        lifetime = self.watchdog()
+        admitted = self.bridge.stage()
+        self.addCleanup(admitted.proc.close)
+        return lifetime, admitted
+
+    def native_exited_fixture(self):
+        lifetime, admitted = self.native_terminal_fixture()
+        os.write(self.f.pid_writer.fileno(), b"synthetic native exit readiness")
+        self.f.child.result = 0
+        self.f.worker_path.joinpath("cgroup.procs").write_text("")
+        self.f.worker_path.joinpath("cgroup.events").write_text("populated 0\nfrozen 0")
+        self.supervisor_path.joinpath("cgroup.procs").write_text(str(os.getpid()))
+        return lifetime, admitted
+
+    def test_freeze_gate_requires_original_native_and_watchdog_exit_then_live_parent(self):
+        lifetime, admitted = self.native_exited_fixture()
+        self.bridge.owned.watchdog.result = 0
+        with self.assertRaisesRegex(ValueError, "watchdog exit/reap"):
+            lifetime.verify_native_terminal(admitted, 0)
+        os.write(self.watch_exit_write, b"synthetic watchdog exit readiness")
+        lifetime.verify_native_terminal(admitted, 0)
+        self.parent.verify(self.supervisor.identity)
+        self.assertIsNone(lifetime.recovery_deadline)
+        self.assertGreaterEqual(lifetime.lifeline, 0)
+        self.assertEqual(self.worker._read("cgroup.kill"), "")
+        self.assertFalse(lifetime.resources_reusable)
+        os.write(self.parent_exit_writer, b"synthetic parent exit readiness")
+        with self.assertRaisesRegex(ValueError, "liveness differs"):
+            lifetime.verify_native_terminal(admitted, 0)
+
+    def test_freeze_gate_rejects_reconstructed_watchdog_lifetime_and_handoff(self):
+        lifetime, admitted = self.native_terminal_fixture()
+        reconstructed = setup.OwnedWatchdogLifetime(self.parent, self.worker, self.supervisor)
+        reconstructed.task, reconstructed.process = lifetime.task, lifetime.process
+        reconstructed.observed = lifetime.observed
+        with self.assertRaisesRegex(ValueError, "ownership"):
+            reconstructed.verify_native_binding(admitted)
+        original = self.parent._native_handoff
+        self.parent._native_handoff = tuple([*original[:-1], object()])
+        with self.assertRaisesRegex(ValueError, "handoff differs"):
+            lifetime.verify_native_binding(admitted)
+        self.parent._native_handoff = original
+        lifetime.verify_native_binding(admitted)
+
+    def test_freeze_gate_refuses_rebound_watchdog_descriptor_and_extra_supervisor_task(self):
+        lifetime, admitted = self.native_exited_fixture()
+        self.bridge.owned.watchdog.result = 0
+        os.write(self.watch_exit_write, b"synthetic watchdog exit readiness")
+        original = lifetime.task.pidfd
+        lifetime.task.pidfd = admitted.proc.pidfd
+        with self.assertRaisesRegex(ValueError, "descriptor changed"):
+            lifetime.verify_native_terminal(admitted, 0)
+        lifetime.task.pidfd = original
+        self.supervisor_path.joinpath("cgroup.procs").write_text(f"{os.getpid()}\n777")
+        with self.assertRaisesRegex(ValueError, "only original parent"):
+            lifetime.verify_native_terminal(admitted, 0)

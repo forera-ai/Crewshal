@@ -8,6 +8,7 @@ Inherited sealed data is configuration, not authority or containment evidence.
 from dataclasses import dataclass
 from datetime import datetime, timezone
 import fcntl
+import math
 import os
 from pathlib import PurePosixPath
 import select
@@ -15,9 +16,10 @@ import stat
 import subprocess
 import sys
 import time
-from typing import Literal
+from typing import TYPE_CHECKING, Literal
 
 from crewshal.admission import (
+    AdmittedNative,
     NamespaceIdentity,
     _aggregate_readback,
     _current_source,
@@ -27,7 +29,7 @@ from crewshal.admission import (
 from crewshal.contracts import Digest, record_digest
 from crewshal.dispatch import DispatchConfiguration
 from crewshal.linux_bootstrap import ArmedDeadline, BootstrapPreparation, audit_linux_bootstrap
-from crewshal.linux_envelope import prepare_linux_envelope
+from crewshal.linux_envelope import native_working_directory, prepare_linux_envelope
 from crewshal.linux_inventory import (
     RetainedParentInventory,
     TrustedParentInventory,
@@ -46,6 +48,202 @@ from crewshal.supervisor import CgroupIdentity, OwnedCgroup, _counters
 
 CAPABILITIES = "00000000002801c0"
 CONTROL_BOUND = 262144
+
+if TYPE_CHECKING:
+    from crewshal.durable import LiveStorageCapacityClaim
+    from crewshal.linux_storage import LinuxPhysicalOwner
+
+
+@dataclass(frozen=True)
+class StorageCharges:
+    """Irreversible reservation of the original shared allowance, not extra capacity."""
+
+    memory_bytes: int = 805306368
+    tasks: int = 128
+    logical_bytes: int = 8589934592
+    allocated_bytes: int = 8589934592
+
+
+class OwnedStorageReservation:
+    """One live observer's retained full reservation; no receipt-based reconstruction.
+
+    Trusted setup must mint this before storage creation and keep this exact
+    object throughout the lifetime. This source contract cannot prove an absent
+    producer's from-creation confinement or grant Linux execution authority.
+    Charges never become available again, including after refusal or expiry.
+    """
+
+    def __init__(
+        self,
+        observer: RetainedTrustedTask,
+        observer_group: OwnedCgroup,
+        aggregate: OwnedCgroup,
+        configuration: DispatchConfiguration,
+        *,
+        batch_started_monotonic: float,
+        capacity_claim: "LiveStorageCapacityClaim | None" = None,
+    ):
+        now = time.monotonic()
+        if (
+            not math.isfinite(batch_started_monotonic)
+            or not 0 < batch_started_monotonic <= now < batch_started_monotonic + 600
+        ):
+            raise ValueError("original storage reservation batch origin required")
+        if getattr(observer, "_setup_started", False) or hasattr(observer, "_storage_reservation"):
+            raise ValueError("storage reservation precedes setup and is one-shot")
+        from crewshal.durable import LiveStorageCapacityClaim
+
+        if type(capacity_claim) is not LiveStorageCapacityClaim:
+            raise ValueError("original irreversible live capacity claim required before creation")
+        self._capacity_claim = capacity_claim
+        self.observer, self.observer_group, self.aggregate = observer, observer_group, aggregate
+        self._owners = (observer, observer_group, aggregate)
+        self._configuration = configuration
+        self._configuration_digest = record_digest(configuration)
+        self._observer_digest = record_digest(observer.spec)
+        self._group_digest = record_digest(observer_group.identity)
+        self._aggregate_digest = record_digest(aggregate.identity)
+        self._batch_started = batch_started_monotonic
+        self._origin = batch_started_monotonic
+        self._handles = (
+            observer.descriptor,
+            observer.pidfd,
+            observer_group.descriptor,
+            aggregate.descriptor,
+        )
+        self._charges = StorageCharges()
+        self._claim_attempted = False
+        self._setup_lifetime: OwnedNamespaceSetup | None = None
+        self._lifetime: OwnedNamespaceSetup | None = None
+        self._retained: object | None = None
+        self._storage_owner: object | None = None
+        # Install before verification: even a refused admission burns this
+        # observer's reservation, with no refund or later reconstructed attempt.
+        setattr(observer, "_storage_reservation", self)
+        capacity_claim.bind_reservation(self)
+        self.verify()
+
+    @property
+    def charges(self) -> StorageCharges:
+        # A refused or tampered live token cannot publish a smaller reservation.
+        return StorageCharges()
+
+    @property
+    def batch_started_monotonic(self) -> float:
+        return self._batch_started
+
+    @property
+    def batch_started(self) -> float:
+        return self._batch_started
+
+    @property
+    def configuration(self) -> Digest:
+        return self._configuration_digest
+
+    @property
+    def capacity_claim(self) -> "LiveStorageCapacityClaim":
+        return self._capacity_claim
+
+    def __reduce__(self) -> tuple[object, ...]:
+        raise TypeError("live storage reservation cannot be copied or exported")
+
+    def verify(self) -> None:
+        self._verify(None)
+
+    def verify_creation_job(self, jobs: object) -> None:
+        """Permit only this producer's independently pinned active child.
+
+        Ordinary reservation verification still requires the observer alone.
+        Caller PID sets or a transport message cannot grant this exception.
+        """
+        from crewshal.linux_storage import BoundedStorageJobs
+
+        production = getattr(self, "_production", None)
+        if (
+            type(jobs) is not BoundedStorageJobs
+            or production is None
+            or production.jobs is not jobs
+        ):
+            raise ValueError("creation readback requires original retained producer/job")
+        self._verify(jobs.verify_creation_child())
+
+    def _verify(self, creation_child: int | None) -> None:
+        self._capacity_claim.verify_reservation(self)
+        capacity = self._capacity_claim.record
+        if (
+            capacity.owner != self._observer_digest
+            or capacity.configuration != self._configuration_digest
+            or capacity.batch_started_monotonic != self._origin
+        ):
+            raise ValueError("capacity claim differs from original observer/configuration/origin")
+        if (
+            any(
+                a is not b
+                for a, b in zip(
+                    self._owners, (self.observer, self.observer_group, self.aggregate), strict=True
+                )
+            )
+            or getattr(self.observer, "_storage_reservation", None) is not self
+            or self._charges != StorageCharges()
+            or self._batch_started != self._origin
+            or self._handles
+            != (
+                self.observer.descriptor,
+                self.observer.pidfd,
+                self.observer_group.descriptor,
+                self.aggregate.descriptor,
+            )
+            or record_digest(self._configuration) != self._configuration_digest
+            or record_digest(self.observer.spec) != self._observer_digest
+            or record_digest(self.observer_group.identity) != self._group_digest
+            or record_digest(self.aggregate.identity) != self._aggregate_digest
+            or self.observer.spec.configuration != self._configuration_digest
+        ):
+            raise ValueError("retained storage reservation identity or configuration changed")
+        if not time.monotonic() < self._batch_started + 600:
+            raise ValueError("original storage reservation batch deadline exhausted")
+        _current_source(self._configuration)
+        _observer_placement(self.observer, self.observer_group, self.aggregate, ())
+        _aggregate_readback(self.aggregate, self.observer_group)
+        sample = self.observer_group.sample()
+        expected = {self.observer.spec.pid}
+        if creation_child is not None:
+            expected.add(creation_child)
+        if set(sample.direct_pids) != expected or not sample.populated:
+            raise ValueError("storage reservation requires the sole retained live observer")
+        if (
+            any(sample.memory_events[key] for key in ("max", "oom", "oom_kill"))
+            or sample.pids_events["max"]
+        ):
+            raise ValueError("storage reservation observer has resource-refusal history")
+
+    def claim(self, lifetime: "OwnedNamespaceSetup") -> None:
+        if self._claim_attempted:
+            raise ValueError("storage reservation claim is one-shot; no retry")
+        self._claim_attempted = True
+        self.verify()
+        if (
+            self._setup_lifetime is not lifetime
+            or lifetime.storage_reservation is not self
+            or lifetime.observer_group is not self.observer_group
+            or lifetime.aggregate is not self.aggregate
+            or record_digest(lifetime.controls.configuration) != self._configuration_digest
+        ):
+            raise ValueError("storage reservation requires its original namespace lifetime")
+        self._lifetime = lifetime
+
+    def retain(self, resource: object) -> None:
+        if self._lifetime is None or self._retained is not None:
+            raise ValueError("claimed storage reservation retains exactly one resource lifetime")
+        self._retained = resource
+        self.verify()
+
+    def pin_storage_owner(self, owner: object) -> None:
+        """Own constructor refusals before descriptor acquisition/readback."""
+        if self._storage_owner is not None:
+            raise ValueError("storage owner handoff is one-shot; no reconstruction")
+        self._storage_owner = owner
+        self.verify()
 
 
 class NamespaceSetupPreparation(Contract):
@@ -99,6 +297,9 @@ def prepare_namespace_setup(
         # The shm overmount must follow bwrap's fresh /dev, as in the envelope.
         if mount.target != "/dev/shm":
             command += ["--ro-bind" if mount.readonly else "--bind", mount.source, mount.target]
+    # Only this privileged setup parent needs source views for later role
+    # sandboxes. Their separately constructed roots do not project this view.
+    command += ["--bind", envelope.owned_root, envelope.owned_root]
     command += [
         "--proc",
         "/proc",
@@ -112,7 +313,7 @@ def prepare_namespace_setup(
         "--die-with-parent",
         "--clearenv",
         "--chdir",
-        "/scratch/checkout",
+        native_working_directory(configuration),
     ]
     for mount in envelope.mounts["native"]:
         if mount.target == "/dev/shm":
@@ -252,6 +453,7 @@ class OwnedNamespaceSetup:
     resources_reusable: Literal[False] = False
     recovery_deadline: float | None = None
     physical_teardown_claimed: bool = False
+    storage_reservation: OwnedStorageReservation | None = None
 
 
 class NamespaceSetupRefusal(ValueError):
@@ -273,6 +475,8 @@ def create_namespace_setup(
     preparation: NamespaceSetupPreparation,
     *,
     inventory: RetainedParentInventory | None = None,
+    storage_reservation: OwnedStorageReservation | None = None,
+    storage_owner: "LinuxPhysicalOwner | None" = None,
 ) -> OwnedNamespaceSetup:
     """Unqualified source: fork wrapper/init inside setup, return observer outside.
 
@@ -291,6 +495,10 @@ def create_namespace_setup(
         if inventory is None or inventory.inventory != preparation.parent_inventory:
             raise ValueError("bound setup requires its retained trusted root inventory")
         inventory.verify()
+        if not os.fstatvfs(inventory.descriptor).f_flag & os.ST_RDONLY:
+            raise ValueError("bound setup requires actual retained readonly root mount")
+    elif inventory is not None:
+        raise ValueError("retained root requires exact bound parent inventory")
     if (
         expected != preparation
         or bootstrap.policy.helper_binary is None
@@ -303,7 +511,7 @@ def create_namespace_setup(
     if observer.spec.configuration != record_digest(configuration):
         raise ValueError("owned observer configuration differs")
     _aggregate_readback(aggregate, observer_group)
-    _role_controls(observer_group)
+    observer_group.sample()
     if observer_group._read("cgroup.procs").split() != [str(observer.spec.pid)]:
         raise ValueError("bounded outer observer role must contain only observer")
     _topology(aggregate, setup, supervisor, worker)
@@ -315,6 +523,27 @@ def create_namespace_setup(
             raise ValueError("owned namespace setup requires empty fresh role groups")
     if getattr(observer, "_setup_started", False):
         raise ValueError("namespace setup is one-shot; no retry or reset")
+    if storage_reservation is not None:
+        storage_reservation.verify()
+        if (
+            storage_reservation.observer is not observer
+            or storage_reservation.observer_group is not observer_group
+            or storage_reservation.aggregate is not aggregate
+            or storage_reservation._configuration_digest != record_digest(configuration)
+        ):
+            raise ValueError("namespace setup storage reservation differs")
+    namespace_fd: int | None = None
+    if storage_owner is not None:
+        from crewshal.linux_storage import LinuxPhysicalOwner
+
+        if (
+            type(storage_owner) is not LinuxPhysicalOwner
+            or storage_reservation is None
+            or storage_reservation._storage_owner is not storage_owner
+        ):
+            raise ValueError("namespace setup requires its original concrete storage owner")
+        storage_owner.verify_retention(storage_reservation)
+        namespace_fd = storage_owner.handles["namespace"]
     observer._setup_started = True
     controls = InheritedControls(
         configuration=configuration,
@@ -333,38 +562,59 @@ def create_namespace_setup(
         },
     )
     lifetime = OwnedNamespaceSetup(
-        None, controls, aggregate, setup, supervisor, worker, observer_group
+        None,
+        controls,
+        aggregate,
+        setup,
+        supervisor,
+        worker,
+        observer_group,
+        storage_reservation=storage_reservation,
     )
+    if storage_reservation is not None:
+        storage_reservation._setup_lifetime = lifetime
     capsule = _capsule(controls)
     try:
         try:
             _move_self(setup)
             observer.verify(setup.identity)
+            descriptors = (
+                capsule,
+                aggregate.descriptor,
+                setup.descriptor,
+                supervisor.descriptor,
+                worker.descriptor,
+                *((namespace_fd,) if namespace_fd is not None else ()),
+            )
             lifetime.wrapper = subprocess.Popen(
                 [
                     "/bin/crewshal-bootstrap",
-                    "--namespace-fds",
-                    str(capsule),
-                    str(aggregate.descriptor),
-                    str(setup.descriptor),
-                    str(supervisor.descriptor),
-                    str(worker.descriptor),
+                    "--namespace-source-fds" if namespace_fd is not None else "--namespace-fds",
+                    *(str(descriptor) for descriptor in descriptors),
                     "--",
                     *preparation.namespace_argv,
                 ],
+                # argv[0] remains the fixed namespace identity, while the
+                # outer exec resolves the actual copied helper through custody.
+                # C normalizes only its named controls and closes this extra
+                # root FD before bwrap; it never reaches the namespace parent.
+                executable=(
+                    f"/proc/self/fd/{inventory.descriptor}/bin/crewshal-bootstrap"
+                    if inventory is not None
+                    else "/bin/crewshal-bootstrap"
+                ),
                 pass_fds=(
-                    capsule,
-                    aggregate.descriptor,
-                    setup.descriptor,
-                    supervisor.descriptor,
-                    worker.descriptor,
+                    (*descriptors, inventory.descriptor) if inventory is not None else descriptors
                 ),
                 stdin=subprocess.DEVNULL,
                 stdout=subprocess.DEVNULL,
                 stderr=subprocess.DEVNULL,
                 env={},
                 close_fds=True,
-                cwd="/scratch/checkout",
+                # The outer wrapper runs before bwrap constructs namespace-local
+                # candidate/scratch targets. Only bwrap's --chdir establishes the
+                # exact parent cwd; never require that path on the operator host.
+                cwd="/",
             )
         finally:
             _move_self_to_observer(observer, observer_group)
@@ -453,7 +703,7 @@ def receive_namespace_controls() -> tuple[InheritedControls, dict[str, OwnedCgro
                 expected.inode,
             ):
                 raise ValueError("inherited group descriptor differs from retained identity")
-            groups[name] = OwnedCgroup.attach(expected)
+            groups[name] = OwnedCgroup.attach_inherited(number, expected)
         _topology(groups["aggregate"], groups["setup"], groups["supervisor"], groups["worker"])
         return controls, groups
     except BaseException:
@@ -528,6 +778,7 @@ def enter_namespace_parent(
             argv=controls.setup.parent_argv,
             environment={},
             capabilities=CAPABILITIES,
+            cwd=native_working_directory(controls.configuration),
         )
         parent = RetainedTrustedTask(descriptor, pidfd, spec)
     finally:
@@ -567,10 +818,10 @@ class NamespaceTerminalObservation:
 
 
 def _terminal_task_exited(task: RetainedTrustedTask) -> bool:
-    info = os.fstat(task.descriptor)
-    if (info.st_dev, info.st_ino) != task.directory:
-        raise ValueError("terminal retained task identity changed")
-    return bool(select.select([task.pidfd], [], [], 0)[0])
+    task.verify_handles()
+    exited = bool(select.select([task.pidfd], [], [], 0)[0])
+    task.verify_handles()
+    return exited
 
 
 def _terminal_topology(lifetime: OwnedNamespaceSetup) -> None:
@@ -613,6 +864,7 @@ def terminal_namespace_setup(
     host_watchdog: RetainedTrustedTask,
     *,
     recovery_already_attempted: bool = False,
+    absolute_deadline: float | None = None,
 ) -> NamespaceTerminalObservation:
     """External recovery after parent loss; pinned groups only, one grace.
 
@@ -621,6 +873,12 @@ def terminal_namespace_setup(
     Worker emptiness must be observed before stopping supervisor or setup. Mount,
     key and backing resources remain retained and cannot be reused from this.
     """
+    if absolute_deadline is not None and (
+        not math.isfinite(absolute_deadline) or time.monotonic() >= absolute_deadline
+    ):
+        return NamespaceTerminalObservation(
+            False, False, False, False, ("original terminal deadline exhausted",)
+        )
     _observer_placement(
         observer,
         lifetime.observer_group,
@@ -640,6 +898,8 @@ def terminal_namespace_setup(
         or host_parent.spec.executable != lifetime.controls.setup.parent_executable
         or host_parent.spec.argv != lifetime.controls.setup.parent_argv
         or host_parent.spec.capabilities != CAPABILITIES
+        or host_parent.spec.cwd != native_working_directory(lifetime.controls.configuration)
+        or host_watchdog.spec.cwd != host_parent.spec.cwd
         or host_watchdog.spec.argv != ["/bin/crewshal-bootstrap", "--watchdog"]
         or host_watchdog.spec.capabilities != "0" * 16
         or host_parent.spec.namespaces != host_watchdog.spec.namespaces
@@ -650,6 +910,8 @@ def terminal_namespace_setup(
     first = lifetime.recovery_deadline is None
     if first:
         lifetime.recovery_deadline = time.monotonic() + (0 if recovery_already_attempted else 1)
+        if absolute_deadline is not None:
+            lifetime.recovery_deadline = min(lifetime.recovery_deadline, absolute_deadline)
         try:
             lifetime.worker.stop()
         except (OSError, ValueError) as error:
@@ -657,7 +919,13 @@ def terminal_namespace_setup(
     empty = parent_exited = watchdog_exited = reaped = False
     roles_stopped = False
     assert lifetime.recovery_deadline is not None
+    deadline = lifetime.recovery_deadline
+    if absolute_deadline is not None:
+        deadline = min(deadline, absolute_deadline)
     while True:
+        if absolute_deadline is not None and time.monotonic() >= absolute_deadline:
+            errors.append("original terminal deadline exhausted")
+            break
         try:
             sample = lifetime.worker.sample()
             worker_empty = not sample.populated and not sample.direct_pids
@@ -678,9 +946,10 @@ def terminal_namespace_setup(
         except (OSError, ValueError) as error:
             errors.append(str(error))
             break
-        if time.monotonic() >= lifetime.recovery_deadline:
+        remaining = deadline - time.monotonic()
+        if remaining <= 0:
             break
-        time.sleep(0.001)
+        time.sleep(min(0.001, remaining))
     return NamespaceTerminalObservation(
         empty, parent_exited, watchdog_exited, reaped, tuple(errors)
     )
@@ -691,6 +960,7 @@ class OwnedWatchdogLifetime:
 
     def __init__(self, parent: RetainedTrustedTask, worker: OwnedCgroup, supervisor: OwnedCgroup):
         self.parent, self.worker, self.supervisor = parent, worker, supervisor
+        self._owners = (parent, worker, supervisor)
         self.process: subprocess.Popen[bytes] | None = None
         self.task: RetainedTrustedTask | None = None
         self.observed: ObservedWatchdog | None = None
@@ -698,6 +968,57 @@ class OwnedWatchdogLifetime:
         self.lifeline_identity: tuple[int, int] | None = None
         self.recovery_deadline: float | None = None
         self.resources_reusable = False
+
+    def verify_native_binding(self, admitted: AdmittedNative) -> None:
+        """Read the actual original handoff before any collection/stop effect."""
+        if (
+            type(admitted) is not AdmittedNative
+            or self._owners != (self.parent, self.worker, self.supervisor)
+            or getattr(self.parent, "_watchdog_lifetime", None) is not self
+            or self.observed is None
+            or self.task is not self.observed.task
+            or self.process is None
+            or self.process.pid != self.task.spec.pid
+            or self.parent.spec.configuration != record_digest(admitted.configuration)
+            or self.task.spec.configuration != self.parent.spec.configuration
+            or self.observed.deadline.configuration != self.parent.spec.configuration
+            or self.observed.deadline.worker != self.worker.identity
+            or self.observed.deadline.started != admitted.started
+            or self.observed.deadline.started_monotonic != admitted.started_monotonic
+        ):
+            raise ValueError("original native/watchdog ownership missing or changed")
+        anchor = getattr(self.parent, "_native_handoff", None)
+        expected = (admitted, self.observed, self.worker, self.supervisor, admitted.aggregate)
+        if (
+            anchor is None
+            or len(anchor) != len(expected)
+            or any(actual is not required for actual, required in zip(anchor, expected))
+        ):
+            raise ValueError("original native handoff differs from freeze input")
+        self.parent.verify(self.supervisor.identity)
+
+    def verify_native_terminal(self, admitted: AdmittedNative, expected_exit: int) -> None:
+        """Read the original handoff before freeze while retaining a live parent.
+
+        This consumes no new grace, closes no handle and stops no process. The
+        outer wrapper/setup and storage closure retain their separate gates.
+        """
+        self.verify_native_binding(admitted)
+        admitted.verify_terminal(expected_exit)
+        task, process = self.task, self.process
+        if (
+            task is None
+            or process is None
+            or not _terminal_task_exited(task)
+            or process.poll() is None
+        ):
+            raise ValueError("original watchdog exit/reap remains unobserved")
+        _aggregate_readback(admitted.aggregate, self.supervisor)
+        _role_controls(self.supervisor)
+        if self.supervisor._read("cgroup.procs").split() != [str(self.parent.spec.pid)]:
+            raise ValueError("supervisor must retain only original parent before freeze")
+        admitted.verify_terminal(expected_exit)
+        self.parent.verify(self.supervisor.identity)
 
     def terminal(self, *, recovery_already_attempted: bool = False) -> TerminalObservation:
         """Close lifeline to stop, never disarm. Re-observation never resets grace.
@@ -773,6 +1094,7 @@ def create_owned_watchdog(
         or parent.spec.cgroup != supervisor.identity
         or parent.spec.configuration != record_digest(configuration)
         or parent.spec.capabilities != CAPABILITIES
+        or parent.spec.cwd != native_working_directory(configuration)
     ):
         raise ValueError("watchdog requires the retained namespace parent's exact role")
     _aggregate_readback(aggregate, worker)
@@ -788,6 +1110,7 @@ def create_owned_watchdog(
         raise ValueError("watchdog creation requires an empty worker")
     parent._watchdog_started = True
     lifetime = OwnedWatchdogLifetime(parent, worker, supervisor)
+    setattr(parent, "_watchdog_lifetime", lifetime)
     reading = writing = ready_read = ready_write = -1
     origin_bound = time.monotonic_ns()
     started = datetime.now(timezone.utc)
@@ -824,7 +1147,7 @@ def create_owned_watchdog(
             stdin=subprocess.DEVNULL,
             stdout=subprocess.DEVNULL,
             stderr=subprocess.DEVNULL,
-            cwd="/scratch/checkout",
+            cwd=native_working_directory(configuration),
             env={},
             close_fds=True,
         )
@@ -851,6 +1174,7 @@ def create_owned_watchdog(
                 argv=preparation.watchdog_argv,
                 environment={},
                 capabilities="0" * 16,
+                cwd=native_working_directory(configuration),
             )
             lifetime.task = RetainedTrustedTask(descriptor, pidfd, spec)
         finally:

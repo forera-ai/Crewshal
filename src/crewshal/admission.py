@@ -39,6 +39,7 @@ if TYPE_CHECKING:
     from crewshal.dispatch import CodexDispatch, DispatchConfiguration
     from crewshal.durable import CoordinatorStore
     from crewshal.integration import CodexCollection
+    from crewshal.linux_setup import OwnedWatchdogLifetime
 
 
 class NamespaceIdentity(Contract):
@@ -135,6 +136,7 @@ class RetainedProc:
             os.close(self.descriptor)
             raise
         self.directory = os.fstat(self.descriptor)
+        self.pidfd_identity = os.fstat(self.pidfd)
 
     @classmethod
     def attach(cls, spec: NativeAdmissionSpec) -> "RetainedProc":
@@ -183,12 +185,31 @@ class RetainedProc:
                 os.close(handle)
                 setattr(self, name, -1)
 
-    def verify_stopped(self) -> None:
-        if select.select([self.pidfd], [], [], 0)[0]:
-            raise ValueError("retained pidfd reports process exit")
+    def _verify_handles(self) -> None:
         current = os.fstat(self.descriptor)
         if (current.st_dev, current.st_ino) != (self.directory.st_dev, self.directory.st_ino):
             raise ValueError("retained proc descriptor changed")
+        current = os.fstat(self.pidfd)
+        if (current.st_dev, current.st_ino) != (
+            self.pidfd_identity.st_dev,
+            self.pidfd_identity.st_ino,
+        ):
+            raise ValueError("retained pidfd descriptor changed")
+
+    def verify_exited(self) -> None:
+        # Production attach supplies an actual pidfd. Ordinary file seams are
+        # only offline fixtures; readiness never proves storage reference closure.
+        self._verify_handles()
+        exited = bool(select.select([self.pidfd], [], [], 0)[0])
+        self._verify_handles()
+        if not exited:
+            raise ValueError("retained pidfd has not observed native exit")
+
+    def verify_stopped(self) -> None:
+        self._verify_handles()
+        if select.select([self.pidfd], [], [], 0)[0]:
+            raise ValueError("retained pidfd reports process exit")
+        self._verify_handles()
         if _stat_identity(_read(self.descriptor, "stat")) != (
             self.spec.pid,
             "T",
@@ -221,6 +242,8 @@ class RetainedProc:
                 raise ValueError("native capabilities must be empty")
 
     def read_configuration(self, configuration: "DispatchConfiguration") -> dict[str, Digest]:
+        from crewshal.linux_envelope import native_working_directory
+
         argv = _read(self.descriptor, "cmdline")
         environment = _read(self.descriptor, "environ")
         expected_argv = b"\0".join(part.encode() for part in configuration.native_argv) + b"\0"
@@ -237,7 +260,7 @@ class RetainedProc:
             values[key] = value
         if values != configuration.native_environment:
             raise ValueError("native initial environment differs from bound dispatch")
-        if os.readlink("cwd", dir_fd=self.descriptor) != "/scratch/checkout":
+        if os.readlink("cwd", dir_fd=self.descriptor) != native_working_directory(configuration):
             raise ValueError("native cwd differs from dispatch")
         if _read(self.descriptor, "cgroup").decode("ascii").strip() != (
             f"0::/{self.spec.worker.relative_path}"
@@ -376,6 +399,7 @@ class NativeAdmissionReceipt(Contract):
     aggregate_controls: dict[str, str]
     stdout_pipe: NamespaceIdentity
     stderr_pipe: NamespaceIdentity
+    stdin_pipe: NamespaceIdentity | None = None
     started: datetime
     started_monotonic: Annotated[float, Field(ge=0, allow_inf_nan=False)]
     execution_allowed: Literal[False] = False
@@ -390,6 +414,8 @@ class NativeAdmissionReceipt(Contract):
             raise ValueError("admission receipt requires aware launch clock")
         if self.stdout_pipe == self.stderr_pipe:
             raise ValueError("admission receipt requires distinct capture pipes")
+        if self.stdin_pipe is not None and self.stdin_pipe in (self.stdout_pipe, self.stderr_pipe):
+            raise ValueError("admission receipt requires distinct native stdin")
         return self
 
 
@@ -420,9 +446,7 @@ class AdmittedNative:
     started_monotonic: float
     receipt_digest: Digest
 
-    def capture(self, *, cancelled: Callable[[], bool]) -> CapturedProcess:
-        # Trusted launcher must release the stopped child separately, after its
-        # exact authority/deadline/envelope gates. Receipt never authorizes that.
+    def _verify_binding(self) -> None:
         if record_digest(self.receipt) != self.receipt_digest:
             raise ValueError("admitted receipt changed")
         if (
@@ -442,8 +466,46 @@ class AdmittedNative:
         _aggregate_readback(self.aggregate, self.worker)
         if self.child.pid != self.receipt.spec.pid:
             raise ValueError("retained child handle changed")
+
+    def verify_terminal(self, expected_exit: int) -> None:
+        """Immediate native/worker readback; no signal, wait, grace or release.
+
+        The watchdog, namespace parent and wrapper retain their separate gates.
+        No native-exit observation supplies a storage or namespace closure oracle.
+        """
+        self._verify_binding()
+        self.proc.verify_exited()
+        result = self.child.poll()
+        if result is None or result != expected_exit:
+            raise ValueError("retained native exit/reap differs from capture")
+        sample = self.worker.sample()
+        if sample.populated or sample.direct_pids:
+            raise ValueError("retained worker repopulated after native capture")
+        self._verify_binding()
+        self.proc.verify_exited()
+
+    def capture(self, *, cancelled: Callable[[], bool]) -> CapturedProcess:
+        # Trusted launcher must release the stopped child separately, after its
+        # exact authority/deadline/envelope gates. Receipt never authorizes that.
+        self._verify_binding()
         if self.child.stdout is None or self.child.stderr is None:
             raise ValueError("retained child capture pipes missing")
+        exchange = None
+        stdin_stream = None
+        if self.configuration.native_interface == "app_server_stdio":
+            from crewshal.app_server import AppServerExchange
+
+            profile = self.configuration.app_server_profile
+            if profile is None or self.receipt.stdin_pipe is None or self.child.stdin is None:
+                raise ValueError("admitted app-server profile/stdin missing")
+            info = os.fstat(self.child.stdin.fileno())
+            if (info.st_dev, info.st_ino) != (
+                self.receipt.stdin_pipe.device,
+                self.receipt.stdin_pipe.inode,
+            ):
+                raise ValueError("admitted stdin pipe identity changed")
+            exchange = AppServerExchange.from_profile(profile)
+            stdin_stream = self.child.stdin
         for stream, expected in (
             (self.child.stdout, self.receipt.stdout_pipe),
             (self.child.stderr, self.receipt.stderr_pipe),
@@ -451,7 +513,7 @@ class AdmittedNative:
             info = os.fstat(stream.fileno())
             if (info.st_dev, info.st_ino) != (expected.device, expected.inode):
                 raise ValueError("admitted capture pipe identity changed")
-        return capture_attached_process(
+        captured = capture_attached_process(
             self.child,
             self.worker,
             self.child.stdout.fileno(),
@@ -459,7 +521,14 @@ class AdmittedNative:
             started=self.started,
             started_monotonic=self.started_monotonic,
             cancelled=cancelled,
+            exchange=exchange,
+            stdin_stream=stdin_stream,
         )
+        if captured.observation.tree_stopped:
+            if captured.observation.exit_code is None:
+                raise ValueError("native exit missing from terminal capture")
+            self.verify_terminal(captured.observation.exit_code)
+        return captured
 
 
 def _current_source(configuration: "DispatchConfiguration") -> None:
@@ -477,6 +546,7 @@ def _current_source(configuration: "DispatchConfiguration") -> None:
         configuration.selection,
         preparation_digest=configuration.preparation_digest,
         linux_envelope=configuration.linux_envelope,
+        app_server_profile=configuration.app_server_profile,
     )
     expected = DispatchConfiguration.model_validate(
         {
@@ -558,6 +628,10 @@ def admit_native_process(
         aggregate_controls=controls,
         argv=values["argv"],
         initial_environment=values["initial_environment"],
+        stdin_pipe=NamespaceIdentity(
+            device=os.fstat(child.stdin.fileno()).st_dev,
+            inode=os.fstat(child.stdin.fileno()).st_ino,
+        ),
         stdout_pipe=NamespaceIdentity(
             device=os.fstat(child.stdout.fileno()).st_dev,
             inode=os.fstat(child.stdout.fileno()).st_ino,
@@ -596,11 +670,15 @@ def collect_admitted_codex(
     candidate: Path,
     frozen_target: Path,
     allowed_paths: list[str],
+    watchdog: "OwnedWatchdogLifetime | None" = None,
 ) -> tuple["CodexCollection", SupervisionReceipt]:
     """Persist retained admission and supervised collection in one transaction.
 
-    Release/startup remain separate, qualified launcher obligations. No signal,
-    launch, credential access or execution/spend authority is supplied here.
+    Linux/subscription collection requires the original watchdog lifetime. The
+    earlier envelope-free portable seam remains offline observation data only.
+    Capture uses only original owned stop/recovery; release/startup and outer
+    terminal readback remain separate qualified launcher obligations. No launch,
+    credential access or execution/spend authority is supplied here.
     """
     from crewshal.supervisor import collect_supervised_codex
 
@@ -627,4 +705,5 @@ def collect_admitted_codex(
         frozen_target=frozen_target,
         allowed_paths=allowed_paths,
         admitted=admitted,
+        watchdog=watchdog,
     )

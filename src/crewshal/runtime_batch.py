@@ -4,7 +4,7 @@ import json
 import os
 from pathlib import Path
 import stat
-from typing import Literal
+from typing import Literal, cast
 from urllib.parse import urlsplit
 
 from pydantic import Field, field_validator, model_validator
@@ -54,7 +54,9 @@ class PreparationSelection(Contract):
     provider: Provider | None = None
     destination: str | None = Field(default=None, max_length=2048)
     billing_mode: Literal["unresolved", "api_metered", "subscription_quota"] = "unresolved"
-    credential_treatment: Literal["unresolved", "external_scoped_channel"] = "unresolved"
+    credential_treatment: Literal[
+        "unresolved", "external_scoped_channel", "native_managed_private_home"
+    ] = "unresolved"
 
     @field_validator("project", "session", "model")
     @classmethod
@@ -248,6 +250,7 @@ def prepare_runtime_batch(
         "required_native_configuration": {
             "request_max_retries": 0,
             "stream_max_retries": 0,
+            "unbounded_connection_retries": False,
             "inherited_configuration": False,
             "hooks": False,
             "plugins": False,
@@ -279,6 +282,28 @@ def prepare_runtime_batch(
     }
     if selection is not None:
         dispatch["requested_selection"] = selection.model_dump()
+        if selection.credential_treatment == "native_managed_private_home":
+            if selection.billing_mode != "subscription_quota" or selection.provider != "openai":
+                raise ValueError(
+                    "managed native authentication requires OpenAI subscription selection"
+                )
+            cast(list[str], dispatch["mechanisms"])[-1] = (
+                "official Codex app-server managed subscription stdio"
+            )
+            dispatch["native_tail"] = [
+                "/opt/codex/bin/codex",
+                "app-server",
+                "--listen",
+                "stdio://",
+                "--strict-config",
+            ]
+            dispatch["task_stdin"] = None
+            dispatch["task_turn_text"] = REQUIREMENT
+            dispatch["native_auth_home"] = "/native-auth"
+            dispatch["managed_auth_recovery"] = "vendor_only_within_original_deadline"
+            cast(dict[str, bool | int], dispatch["required_native_configuration"])[
+                "supports_websockets"
+            ] = False
     payloads = {
         "input/check_fixture.py": CHECK_SOURCE,
         "input/expected-README.md": AFTER,

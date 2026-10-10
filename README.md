@@ -10,7 +10,11 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
-Local package version: **0.10.0**. See [CHANGELOG.md](CHANGELOG.md) for version history.
+Local package version: **0.11.0**. See [CHANGELOG.md](CHANGELOG.md) for version history.
+
+The owner authorized publishing the current verified 2D source and continuing development on October 10. [Version 0.11.0 checkpoint, authority and continuation](docs/PHASE-2D-CHECKPOINT-2026-10-10.md) supersedes the earlier conditional publication statements for this checkpoint only. Phase 2D remains incomplete and source unqualified; branch publication supplies no runtime, release or reuse authority.
+
+The preceding 0.10.0 source round implements accepted retention, official subscription preparation and owned filesystem/root/view production. [The latest October 10 record](docs/PHASE-2D-SYNTAX-PASS-2026-10-10.md) records the explicitly approved additional Ubuntu syntax check: unchanged 8011 C bytes pass, with empty stdout/stderr; both attempts remain consumed. Source tightens retained native/watchdog/parent readback before and after freeze and fixes canonical auth/validator mount directory creation. Reproduced false-stop, absent-target and concurrent-repopulation paths now refuse; complete source verification is in the linked ledger. Installed physical capacity/journal/growth, actual owned readonly frozen-view/validator and terminal timer mechanics, installed identities and exact Linux/live qualification remain unfinished. Phase 2D is incomplete and source unqualified. Syntax success supplies no broader runtime authority; commit/push follows full acceptance.
 
 **Phases 0, 1, 2A, 2B and 2C complete.** Passive discovery, confirmed project models, private SQLite state, recovery contracts and deterministic evidence gates are implemented. Published 0.9.0 has **141 offline tests**. The 0.10.0 source checkpoint adds **332 Phase 2D offline methods** (473 complete tests); its required live gate remains incomplete. See [the checkpoint, current prompt and required inputs](docs/PHASE-2D-SOURCE-CHECKPOINT-2026-10-09.md) and [storage-owner evidence](docs/PHASE-2D-LINUX-STORAGE-OWNER.md).
 

@@ -85,7 +85,9 @@ class LinuxEnvelopePreparation(Contract):
     native_argv: list[str]
     broker_argv: list[str] | None
     validator_argv: list[str]
-    credential_input: Literal["separate_broker_stdin"] = "separate_broker_stdin"
+    credential_input: Literal["separate_broker_stdin", "native_managed_private_home"] = (
+        "separate_broker_stdin"
+    )
     storage_mechanism: Literal["private_keyring_ext4_ecryptfs"] = "private_keyring_ext4_ecryptfs"
     storage_reservations: dict[str, int]
     reserved_disk_bytes: int
@@ -174,6 +176,18 @@ def _role_argv(
     return argv + command
 
 
+def native_working_directory(
+    configuration: "DispatchConfiguration",
+) -> Literal["/scratch/checkout", "/candidate/owned"]:
+    """Exact route cwd data, never a filesystem or process observation."""
+    if configuration.native_interface == "app_server_stdio":
+        profile = configuration.app_server_profile
+        if profile is None or profile.thread_params.get("cwd") != "/candidate/owned":
+            raise ValueError("subscription envelope requires the exact fixed task profile/cwd")
+        return "/candidate/owned"
+    return "/scratch/checkout"
+
+
 def prepare_linux_envelope(configuration: "DispatchConfiguration") -> LinuxEnvelopePreparation:
     """Compile only data from current exact dispatch and explicit context bindings.
 
@@ -194,6 +208,7 @@ def prepare_linux_envelope(configuration: "DispatchConfiguration") -> LinuxEnvel
         configuration.selection,
         preparation_digest=configuration.preparation_digest,
         linux_envelope=bindings,
+        app_server_profile=configuration.app_server_profile,
     )
     expected = DispatchConfiguration.model_validate(
         {
@@ -204,6 +219,7 @@ def prepare_linux_envelope(configuration: "DispatchConfiguration") -> LinuxEnvel
     )
     if configuration != expected:
         raise ValueError("Linux envelope dispatch or current source bytes differ")
+    cwd = native_working_directory(configuration)
     if configuration.launch_binding is not None and (
         configuration.launch_binding.task != configuration.task_digest
     ):
@@ -240,6 +256,13 @@ def prepare_linux_envelope(configuration: "DispatchConfiguration") -> LinuxEnvel
             ),
         ],
     }
+    subscription = configuration.native_interface == "app_server_stdio"
+    if subscription:
+        # Prospective only. The producer must retain/account this separate private
+        # representation from creation. Never alias it beneath tool-writable roots.
+        mounts["native"].append(
+            EnvelopeMount(source=root + "/native-auth", target="/native-auth", readonly=False)
+        )
     # Bind /dev/shm after --dev, rather than hiding it under the later dev mount.
     native = _role_argv(
         mounts["native"],
@@ -247,7 +270,7 @@ def prepare_linux_envelope(configuration: "DispatchConfiguration") -> LinuxEnvel
         configuration.native_argv,
         configuration.native_environment,
         network_denied=False,
-        cwd="/scratch/checkout",
+        cwd=cwd,
     )
     broker = (
         _role_argv(
@@ -351,6 +374,15 @@ def prepare_linux_envelope(configuration: "DispatchConfiguration") -> LinuxEnvel
             "separate_owner_execution_and_spend_gate",
         ]
     )
+    if subscription:
+        unresolved.extend(
+            [
+                "private_native_auth_mount_identity_permissions_and_from_creation_accounting",
+                "effective_native_auth_alias_proc_fd_and_inprocess_tool_denial",
+                "fresh_native_home_no_preloaded_dotenv_and_stock_arg0_helper_view",
+                "managed_subscription_http_refresh_route_and_account_quota_readback",
+            ]
+        )
     return LinuxEnvelopePreparation(
         configuration=record_digest(configuration),
         bindings=bindings,
@@ -374,6 +406,7 @@ def prepare_linux_envelope(configuration: "DispatchConfiguration") -> LinuxEnvel
         native_argv=native,
         broker_argv=broker,
         validator_argv=validator,
+        credential_input=configuration.proxy_credential_input,
         storage_reservations=reservations,
         reserved_disk_bytes=reserved,
         checkpoint=BootstrapCheckpoint(),

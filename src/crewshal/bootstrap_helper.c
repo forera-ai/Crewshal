@@ -9,17 +9,22 @@
 #include <errno.h>
 #include <fcntl.h>
 #include <limits.h>
+#include <linux/magic.h>
+#include <linux/nsfs.h>
 #include <poll.h>
 #include <signal.h>
+#include <sched.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <sys/prctl.h>
+#include <sys/ioctl.h>
 #include <sys/ptrace.h>
 #include <sys/stat.h>
 #include <sys/syscall.h>
 #include <sys/timerfd.h>
+#include <sys/vfs.h>
 #include <time.h>
 #include <unistd.h>
 
@@ -31,8 +36,10 @@ extern char **environ;
  * A failure refuses; the owning parent retains recovery responsibility.
  */
 static int control_fds(char **numbers, int count, int namespace_setup) {
-    int original[5], retained[5];
+    int original[6], retained[6];
     struct stat st;
+    struct statfs fs;
+    if (count < 1 || count > 6) return 125;
     for (int i = 0; i < count; ++i) {
         char *end;
         errno = 0;
@@ -47,7 +54,13 @@ static int control_fds(char **numbers, int count, int namespace_setup) {
                 int seals = F_SEAL_WRITE | F_SEAL_GROW | F_SEAL_SHRINK | F_SEAL_SEAL;
                 if (!S_ISREG(st.st_mode) || st.st_size <= 0 || st.st_size > 262144 ||
                     fcntl(original[i], F_GET_SEALS) != seals) return 125;
-            } else if (!S_ISDIR(st.st_mode)) return 125;
+            } else if (i == 5) {
+                if (!S_ISREG(st.st_mode) || fstatfs(original[i], &fs) ||
+                    fs.f_type != NSFS_MAGIC ||
+                    ioctl(original[i], NS_GET_NSTYPE) != CLONE_NEWNS) return 125;
+            } else if (!S_ISDIR(st.st_mode) || st.st_uid != 0 ||
+                       (st.st_mode & 0022) || fstatfs(original[i], &fs) ||
+                       fs.f_type != CGROUP2_SUPER_MAGIC) return 125;
         } else {
             int expected = i == 0 ? (O_WRONLY | O_NONBLOCK) :
                            i == 1 ? O_RDONLY : (O_WRONLY | O_NONBLOCK);
@@ -142,12 +155,27 @@ int main(int argc, char **argv) {
         execve(argv[8], argv + 8, environ);
         return 125;
     }
+    if (argc >= 11 && strcmp(argv[1], "--namespace-source-fds") == 0) {
+        if (strcmp(argv[8], "--") || strcmp(argv[9], "/usr/bin/bwrap") ||
+            control_fds(argv + 2, 6, 1)) return 125;
+        /* Enter only the original retained storage namespace. Do not forward
+         * its handle to the setup parent, native process or code tools.
+         */
+        if (setns(8, CLONE_NEWNS) || close(8)) return 125;
+        execve(argv[9], argv + 9, environ);
+        return 125;
+    }
     if (argc == 2 && strcmp(argv[1], "--watchdog") == 0) return watchdog();
     if (argc < 4 || strcmp(argv[1], "--exec") != 0 ||
         strcmp(argv[2], "/opt/codex/bin/codex") != 0) return 125;
     pid_t parent = getppid();
     if (parent <= 1 || prctl(PR_SET_PDEATHSIG, SIGKILL) || getppid() != parent) return 125;
-    if (chdir("/scratch/checkout") || syscall(SYS_close_range, 3U, ~0U, 0U) < 0) return 125;
+    /* Preserve the route's exact cwd across exec; app-server's single fixed
+     * task uses the candidate root. Admission independently verifies this.
+     */
+    const char *cwd = strcmp(argv[3], "app-server") == 0 ?
+                      "/candidate/owned" : "/scratch/checkout";
+    if (chdir(cwd) || syscall(SYS_close_range, 3U, ~0U, 0U) < 0) return 125;
     /* Helper exec already completed Popen's errpipe handshake. This stop does
      * not deadlock its constructor as a stopped Python preexec_fn would.
      */

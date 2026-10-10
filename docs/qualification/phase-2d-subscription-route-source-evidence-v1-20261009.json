@@ -1,0 +1,166 @@
+{
+  "base_revision": "8e010b5ca2dd3298268132613f8ad17ff9db07c6",
+  "current_official_documentation": {
+    "observations": [
+      "stdio JSONL initialization/thread/turn interface",
+      "managed ChatGPT device-code login",
+      "account rate-limit readback",
+      "experimental external ChatGPT tokens require host-owned lifecycle",
+      "app-server command and WebSocket documented experimental and unsupported for production workloads"
+    ],
+    "url": "https://learn.chatgpt.com/docs/app-server",
+    "version_pinned": false
+  },
+  "effects": {
+    "compiler": false,
+    "credential_access": false,
+    "kernel_mutation": false,
+    "native_startup": false,
+    "provider_or_model_call": false,
+    "ssh_or_target_host_operations": false
+  },
+  "files": [
+    {
+      "bytes": 10349,
+      "line_count": 342,
+      "observations": [
+        {
+          "finding": "Fixed 1024-byte stack buffer includes bearer prefix.",
+          "lines": [
+            8,
+            9
+          ]
+        },
+        {
+          "finding": "Token validator permits ASCII alphanumeric, hyphen and underscore only; period is rejected.",
+          "lines": [
+            206,
+            218
+          ]
+        }
+      ],
+      "path": "codex-rs/responses-api-proxy/src/read_api_key.rs",
+      "sha256": "fc338d516d5d00239001dbd1f7ed358993e25d08bc6f34b3dfa4bb3f715b0f71",
+      "url": "https://raw.githubusercontent.com/openai/codex/d27764b82f7118f674371e6d6e76271d9d606edb/codex-rs/responses-api-proxy/src/read_api_key.rs"
+    },
+    {
+      "bytes": 8659,
+      "line_count": 275,
+      "observations": [
+        {
+          "finding": "Startup reads a stdin bearer credential and fixes the upstream URL.",
+          "lines": [
+            73,
+            87
+          ]
+        },
+        {
+          "finding": "Inbound requests limited to POST /v1/responses.",
+          "lines": [
+            170,
+            178
+          ]
+        },
+        {
+          "finding": "Upstream forwarding replaces Authorization and Host and copies other incoming headers.",
+          "lines": [
+            196,
+            227
+          ]
+        }
+      ],
+      "path": "codex-rs/responses-api-proxy/src/lib.rs",
+      "sha256": "092e92662b9a564f98bd5ee157c09348465288a1656adcd5eb34d555dc551c1f",
+      "url": "https://raw.githubusercontent.com/openai/codex/d27764b82f7118f674371e6d6e76271d9d606edb/codex-rs/responses-api-proxy/src/lib.rs"
+    },
+    {
+      "bytes": 6549,
+      "line_count": 110,
+      "observations": [
+        {
+          "finding": "Documented privileged API-key stdin use case.",
+          "lines": [
+            31,
+            40
+          ]
+        },
+        {
+          "finding": "Documented proxy options and fixed bearer authentication; no managed subscription login interface.",
+          "lines": [
+            70,
+            80
+          ]
+        }
+      ],
+      "path": "codex-rs/responses-api-proxy/README.md",
+      "sha256": "e109f86c0acac8c829fe38f168d0a13dbab3b7d4d2e25bce25a0483046ac9517",
+      "url": "https://raw.githubusercontent.com/openai/codex/d27764b82f7118f674371e6d6e76271d9d606edb/codex-rs/responses-api-proxy/README.md"
+    },
+    {
+      "bytes": 31061,
+      "line_count": 775,
+      "observations": [
+        {
+          "finding": "requires_openai_auth controls use of native OpenAI API-key or ChatGPT login authentication.",
+          "lines": [
+            184,
+            190
+          ]
+        },
+        {
+          "finding": "Native ChatGPT authentication chooses ChatGPT Codex backend by default.",
+          "lines": [
+            421,
+            439
+          ]
+        }
+      ],
+      "path": "codex-rs/model-provider-info/src/lib.rs",
+      "sha256": "941a8ec0e8be4b45080cac3df3d052999a4cb104811575634b1a9ed510690958",
+      "url": "https://raw.githubusercontent.com/openai/codex/d27764b82f7118f674371e6d6e76271d9d606edb/codex-rs/model-provider-info/src/lib.rs"
+    },
+    {
+      "bytes": 118938,
+      "line_count": 3135,
+      "observations": [
+        {
+          "finding": "Native auth constructor supports in-memory externally managed ChatGPT tokens with account identity.",
+          "lines": [
+            847,
+            863
+          ]
+        }
+      ],
+      "path": "codex-rs/login/src/auth/manager.rs",
+      "sha256": "01cb49b1cca566dddc47def60b52848da0717c7de6a33d8b7160b6fc4cafd881",
+      "url": "https://raw.githubusercontent.com/openai/codex/d27764b82f7118f674371e6d6e76271d9d606edb/codex-rs/login/src/auth/manager.rs"
+    }
+  ],
+  "limitations": [
+    "Public source read as data, not executed.",
+    "Source support is not installed CLI/account support or credential qualification.",
+    "JWT rejection does not assert that every subscription credential is a JWT.",
+    "No broader impossibility result about subscription access.",
+    "Current documentation is not proof of pinned interface behavior.",
+    "Architecture amendment pending owner; no live authority.",
+    "Source ranges are one-based raw-file lines; browser extracted-page numbering is different."
+  ],
+  "purpose": "Public-source identity and exact pinned proxy incompatibility; proposed native subscription replacement only.",
+  "recorded_date": "2026-10-09",
+  "reproduction_command": "rtk proxy .venv/bin/python - <<'PY'\nimport hashlib,json,urllib.request\nfrom pathlib import Path\nrecord=json.loads(Path('docs/qualification/phase-2d-subscription-route-source-evidence-v1-20261009.json').read_text())\nref=json.load(urllib.request.urlopen('https://api.github.com/repos/openai/codex/git/ref/tags/'+record['upstream_tag'],timeout=20))['object']\nobserved=[dict(ref)]\nwhile ref['type']=='tag':\n    ref=json.load(urllib.request.urlopen(ref['url'],timeout=20))['object']\n    observed.append(dict(ref))\nassert observed==record['tag_resolution']\nassert ref['type']=='commit' and ref['sha']==record['upstream_commit']\nfor item in record['files']:\n    data=urllib.request.urlopen(item['url'],timeout=20).read()\n    assert hashlib.sha256(data).hexdigest()==item['sha256']\n    assert len(data)==item['bytes']\n    assert len(data.decode('utf-8').splitlines())==item['line_count']\nprint('tag resolution and five public whole-source identities match; no fetched code executed')\nPY",
+  "schema_version": 1,
+  "tag_resolution": [
+    {
+      "sha": "c3e23d4c4385619ecec78408766e46b7fa7dd9ad",
+      "type": "tag",
+      "url": "https://api.github.com/repos/openai/codex/git/tags/c3e23d4c4385619ecec78408766e46b7fa7dd9ad"
+    },
+    {
+      "sha": "d27764b82f7118f674371e6d6e76271d9d606edb",
+      "type": "commit",
+      "url": "https://api.github.com/repos/openai/codex/git/commits/d27764b82f7118f674371e6d6e76271d9d606edb"
+    }
+  ],
+  "upstream_commit": "d27764b82f7118f674371e6d6e76271d9d606edb",
+  "upstream_tag": "rust-v0.160.1"
+}

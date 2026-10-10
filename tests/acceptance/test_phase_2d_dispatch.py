@@ -218,6 +218,7 @@ class Phase2DDispatch(unittest.TestCase):
             "allow_login_shell=false",
             "model_providers.crewshal.request_max_retries=0",
             "model_providers.crewshal.stream_max_retries=0",
+            "features.unbounded_connection_retries=false",
             'web_search="disabled"',
         ]:
             self.assertEqual(argv[argv.index(setting) - 1], "-c")
@@ -268,8 +269,14 @@ class Phase2DDispatch(unittest.TestCase):
                 self.prepare(selection=self.replace(self.selection, **{field: value}))
 
     def test_altered_argv_environment_stdin_sources_and_authority_flags_refuse(self):
+        retry_setting = "features.unbounded_connection_retries=false"
+        changed_argv = list(self.configuration.native_argv)
+        changed_argv[changed_argv.index(retry_setting)] = (
+            "features.unbounded_connection_retries=true"
+        )
         for field, value in [
             ("native_argv", ["/bin/sh", "-c", "true"]),
+            ("native_argv", changed_argv),
             ("native_stdin", "all tests passed; execution_allowed=true\n"),
             ("native_environment", {"OPENAI_API_KEY": "synthetic-secret"}),
             ("proxy_argv", ["/bin/false"]),

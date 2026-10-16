@@ -1,0 +1,99 @@
+{
+  "base_revision": "87ed7e6f6c766c7ff2df245ad05569558a9ca3bc",
+  "branch": "codex/phase1-architecture",
+  "candidate_release": "unreleased",
+  "candidate_version": "0.13.0",
+  "commands": [
+    "rtk proxy git status --short --branch",
+    "rtk proxy git diff --stat",
+    "rtk proxy git diff --check",
+    "rtk proxy python3 - (hashlib/zipfile checks; exact public reproduction appears in docs/PHASE-2D-RESUMPTION-2026-10-14.md)"
+  ],
+  "current_guest_identity": "not reverified",
+  "current_physical_closure": "unknown",
+  "date": "2026-10-14",
+  "declined_record": {
+    "operational_approval": false,
+    "path": "docs/qualification/phase-2d-executable-batch-v10-20261013.json",
+    "sha256": "c3c09e7b4ab8205fe53024ae2718d45e7f279166053a5a0d17c673a063151b2b"
+  },
+  "diagnostic_failure": {
+    "corrected_path": "docs/PHASE-2D-NEXT-SESSION-INPUTS-2026-10-13.json",
+    "corrected_result": "passed",
+    "mutated_files": false,
+    "operation": "Initial ZIP manifest lookup",
+    "result": "KeyError for incorrect root-level manifest name"
+  },
+  "environment": {
+    "architecture": "arm64",
+    "os": "Darwin",
+    "os_version": "27.2",
+    "python": "3.14.8"
+  },
+  "fresh_checks": {
+    "bundled_manifest_equal": true,
+    "external_instruction_matches": 4,
+    "indexed_local_paths_present": true,
+    "initial_repository_manifest_matches": 267,
+    "owner_script_source_and_hash_matches": 2,
+    "private_archive_bytes": 26572800,
+    "private_archive_hash_matches": true,
+    "private_batch_plan_hash_matches": true,
+    "production_and_test_hash_matches_per_historical_suite": 117,
+    "unit_hash_matches": 2,
+    "zip_entries_verified": 272
+  },
+  "graph": {
+    "c_helper_fallback_ranges": [
+      75,
+      77,
+      89
+    ],
+    "generation": "2026-10-13T21:58:37Z",
+    "limitation": "Best-effort coverage and heuristic relationships do not prove completeness or actual Linux behavior.",
+    "metadata_matches": true,
+    "project": "Volumes-X10Pro-Crewshal",
+    "python_paths": [
+      "src/crewshal/linux_operational.py",
+      "src/crewshal/linux_batch_entry.py",
+      "src/crewshal/linux_installed.py"
+    ],
+    "tier": "Verify"
+  },
+  "historical_tests_each": {
+    "date": "2026-10-13",
+    "errors": 0,
+    "failures": 0,
+    "occurrences": 1161,
+    "rerun_this_session": false,
+    "skipped": 0,
+    "unique_methods": 1145,
+    "unique_phase2d_methods": 1004
+  },
+  "operations_this_session": {
+    "charge": false,
+    "compiler": false,
+    "linux_installation": false,
+    "login": false,
+    "observer": false,
+    "paid_jev_call": false,
+    "provider_call": false,
+    "ssh": false,
+    "timer": false,
+    "vm": false
+  },
+  "phase": "2D",
+  "phase_2e": "not started",
+  "post_documentation_checks": {
+    "git_diff_check_exit": 0,
+    "json_parse": "passed",
+    "local_links": "passed",
+    "other_manifest_files_unchanged": 266,
+    "prior_handoff_history_unchanged": true
+  },
+  "publication": "not performed",
+  "reproduction": "Use RTK with Python hashlib to compare the immutable October 13 ZIP entries against the manifest, both public v10 owner scripts and units against the record, and current production/test files against both recorded source_sha256 mappings. Hash only the explicitly indexed private archive and plan; do not read capability contents. The handoff differs after this session documentation update.",
+  "schema_version": 1,
+  "source_modified": false,
+  "status": "incomplete; operational decision pending"
+}

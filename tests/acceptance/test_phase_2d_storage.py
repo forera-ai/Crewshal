@@ -3,6 +3,7 @@
 from contextlib import ExitStack
 import copy
 import errno
+import json
 import os
 import signal
 import stat
@@ -75,6 +76,7 @@ class Phase2DStorage(unittest.TestCase):
             self.fds[name] = os.open(path, os.O_RDONLY)
             self.addCleanup(os.close, self.fds[name])
         self.original_fstat = os.fstat
+        original_readlink = os.readlink
         self.loop_identity = storage._identity(self.fds["loop"])
         self.directory_identity = storage._identity(self.fds["directory"])
         self.key = "present"
@@ -85,7 +87,15 @@ class Phase2DStorage(unittest.TestCase):
         self.addCleanup(self.stack.close)
         self.stack.enter_context(patch.object(storage.os, "fstat", side_effect=self.fstat))
         self.stack.enter_context(
-            patch.object(storage.os, "readlink", return_value=owned + "/backing")
+            patch.object(
+                storage.os,
+                "readlink",
+                side_effect=lambda value, *args, **kwargs: (
+                    owned + "/backing"
+                    if os.fspath(value).startswith(("/proc/self/fd/", "self/fd/"))
+                    else original_readlink(value, *args, **kwargs)
+                ),
+            )
         )
         self.stack.enter_context(
             patch.object(
@@ -204,6 +214,66 @@ class Phase2DStorage(unittest.TestCase):
         self.assertEqual(observed.keyring_state, "present")
         self.assertIsNone(observed.extra_open_holders)
         self.assertIsNone(observed.extra_mount_aliases)
+
+    def lane_growth_readback(self, name, inodes, *, bad_magic=False, bad_size=False):
+        from crewshal.linux_setup import OwnedStorageReservation
+
+        # This synthetic reservation supplies only the operational type branch.
+        # Namespace entry remains a mocked seam; this creates no live proof.
+        self.owner.reservation = object.__new__(OwnedStorageReservation)
+        target = self.root / name
+        if self.backing != target:
+            self.backing.rename(target)
+            self.backing = target
+        block = bytearray(1024)
+        block[:4] = inodes.to_bytes(4, "little")
+        block[4:8] = (8191 if bad_size else 8192).to_bytes(4, "little")
+        block[24:28] = (2).to_bytes(4, "little")
+        block[56:58] = b"\0\0" if bad_magic else b"\x53\xef"
+        with self.backing.open("r+b") as stream:
+            stream.truncate(33554432)
+            stream.seek(1024)
+            stream.write(block)
+        identity = storage._identity(self.fds["backing"])
+        self.owner.backing = {name: identity}
+        self.owner.allowed_backing = {name: self.fds["backing"]}
+        self.owner._backing_handles = dict(self.owner.allowed_backing)
+        self.owner.initial = None
+        with patch.object(self.owner, "_enter"):
+            return self.owner._readback()
+
+    def test_all_fifteen_lane_backings_keep_full_identity_and_bounded_geometry(self):
+        for lane in ("qualification-1", "qualification-2", "live"):
+            for role, limit in storage.EXT4_INODE_LIMITS.items():
+                if role == "physical-domain.img":
+                    continue
+                name = lane + "--" + role
+                with self.subTest(name=name):
+                    observed = self.lane_growth_readback(name, limit)
+                    self.assertEqual(set(observed.backing), {name})
+                    self.assertEqual(observed.loops["loop"].backing_name, name)
+
+    def test_lane_prefix_does_not_relax_inode_size_or_magic_checks(self):
+        for role, limit in storage.EXT4_INODE_LIMITS.items():
+            if role == "physical-domain.img":
+                continue
+            for changes in ({"inodes": limit + 1}, {"bad_size": True}, {"bad_magic": True}):
+                with (
+                    self.subTest(role=role, changes=changes),
+                    self.assertRaisesRegex(ValueError, "inode geometry|declared size|superblock"),
+                ):
+                    self.lane_growth_readback("live--" + role, **({"inodes": limit} | changes))
+
+    def test_unknown_lane_role_or_missing_image_suffix_stays_refused(self):
+        for name in (
+            "other--scratch.img",
+            "live--unknown.img",
+            "live--scratch",
+            "live--qualification-1--scratch.img",
+            "unknown.img",
+        ):
+            with self.subTest(name=name), self.assertRaises(ValueError):
+                self.lane_growth_readback(name, 64)
 
     def test_empty_reference_scan_never_authorizes_effects(self):
         with (
@@ -329,6 +399,75 @@ class Phase2DStorage(unittest.TestCase):
             self.owner.readback()
         # Avoid closing caller FD in cleanup; restore actual privately held FD.
         self.owner.handles["namespace"] = self.saved_namespace
+
+    def test_child_entry_uses_retained_handles_after_parent_proofs_close(self):
+        self.owner.reservation = SimpleNamespace(_configuration=self.f.configuration)
+        descriptor = os.open(self.backing, os.O_RDONLY)
+        os.close(descriptor)
+        with patch(
+            "crewshal.linux_charged_build.verify_observer_configuration",
+            side_effect=lambda *_: os.fstat(descriptor),
+        ) as parent_proof:
+            self.owner._enter()
+        parent_proof.assert_not_called()
+        self.assertEqual(self.calls[-1], "setns")
+
+    def test_parent_readback_requires_original_proofs_before_child_admission(self):
+        self.owner.reservation = SimpleNamespace(_configuration=self.f.configuration)
+        descriptor = os.open(self.backing, os.O_RDONLY)
+        os.close(descriptor)
+        before = len(self.jobs.calls)
+        with patch(
+            "crewshal.linux_charged_build.verify_observer_configuration",
+            side_effect=lambda *_: os.fstat(descriptor),
+        ) as parent_proof:
+            with self.assertRaises(OSError) as caught:
+                self.owner.readback()
+        self.assertEqual(caught.exception.errno, errno.EBADF)
+        parent_proof.assert_called_once()
+        self.assertEqual(len(self.jobs.calls), before)
+
+    def test_child_entry_rejects_replaced_namespace_before_setns(self):
+        self.calls.clear()
+        self.owner.handles["namespace"] = self.fds["backing"]
+        try:
+            with self.assertRaisesRegex(ValueError, "descriptor replaced"):
+                self.owner._enter()
+            self.assertNotIn("setns", self.calls)
+        finally:
+            self.owner.handles["namespace"] = self.saved_namespace
+
+    def test_parent_effect_requires_original_proofs_before_child_admission(self):
+        self.owner.reservation = SimpleNamespace(_configuration=self.f.configuration)
+        before = len(self.jobs.calls)
+        with patch(
+            "crewshal.linux_charged_build.verify_observer_configuration",
+            side_effect=OSError(errno.EBADF, "closed parent proof"),
+        ) as parent_proof:
+            with self.assertRaises(OSError):
+                self.owner.unmount(self.owner.initial.mounts["upper"], self.jobs.deadline)
+        parent_proof.assert_called_once()
+        self.assertEqual(len(self.jobs.calls), before)
+        self.assertTrue(self.owner.effects_failed)
+
+    def test_child_entry_rejects_changed_frozen_keyring(self):
+        self.calls.clear()
+        self.ring.serial += 1
+        with self.assertRaisesRegex(ValueError, "keyring"):
+            self.owner._enter()
+        self.assertNotIn("setns", self.calls)
+
+    def test_child_entry_requires_actual_namespace_after_entry(self):
+        original_stat = os.stat
+
+        def observe(path, *args, **kwargs):
+            if path == "self/ns/mnt":
+                return self.original_fstat(self.fds["backing"])
+            return original_stat(path, *args, **kwargs)
+
+        with patch.object(storage.os, "stat", side_effect=observe):
+            with self.assertRaisesRegex(ValueError, "namespace identity differs"):
+                self.owner._enter()
 
     def test_mount_replacement_same_target_refused(self):
         self.mountinfo.write_text(self.rows.replace("101 1", "102 1"))
@@ -484,6 +623,7 @@ class Phase2DStorage(unittest.TestCase):
         self.jobs.pending = None
         self.jobs.failed = False
         reservation = SimpleNamespace(
+            _configuration=self.f.configuration,
             observer=self.jobs.observer,
             observer_group=self.jobs.group,
             aggregate=self.jobs.aggregate,
@@ -493,6 +633,49 @@ class Phase2DStorage(unittest.TestCase):
         )
         self.owner.reservation = reservation
         return reservation
+
+    def startup_storage_owner(self, *, past_boundary=False):
+        from crewshal.linux_setup import OwnedStorageReservation, OwnedBatchTimer
+
+        origin = time.monotonic() - 40
+        reservation = object.__new__(OwnedStorageReservation)
+        reservation._configuration = self.f.configuration
+        reservation._configuration_digest = record_digest(self.f.configuration)
+        reservation._batch_started = origin
+        reservation.observer = self.jobs.observer
+        reservation.observer_group = object()
+        reservation.aggregate = object()
+        timer = object.__new__(OwnedBatchTimer)
+        timer.setup = SimpleNamespace(identity=object())
+        reservation._batch_timer = timer
+        jobs = storage.BoundedStorageJobs(
+            reservation.observer,
+            reservation.observer_group,
+            reservation.aggregate,
+            origin + 120 + (0.1 if past_boundary else 0),
+            execution_group=timer.setup,
+            batch_timer=timer,
+        )
+        ring = storage.AnonymousKeyring.create()
+        with (
+            patch.object(OwnedStorageReservation, "pin_storage_owner"),
+            patch("crewshal.linux_charged_build.verify_observer_configuration"),
+            patch.object(storage.LinuxPhysicalOwner, "readback", return_value=self.owner.initial),
+        ):
+            owner = self.retain(
+                reservation=reservation, jobs=jobs, ring=ring, batch_started_monotonic=origin
+            )
+        self.addCleanup(self.close_owner, owner)
+        return owner, origin
+
+    def test_operational_storage_owner_accepts_the_original_startup_boundary(self):
+        owner, origin = self.startup_storage_owner()
+        self.assertEqual(owner.cleanup_deadline, origin + 120)
+        self.assertEqual(owner.jobs.deadline, origin + 120)
+
+    def test_operational_storage_owner_rejects_a_deadline_after_original_startup(self):
+        with self.assertRaisesRegex(ValueError, "original batch origin"):
+            self.startup_storage_owner(past_boundary=True)
 
     def test_retention_requires_same_live_owner_and_no_pending_job(self):
         reservation = self.retention_reservation()
@@ -751,6 +934,28 @@ class Phase2DStorageJobs(unittest.TestCase):
             self.jobs.run(lambda: b"", set())
         fork.assert_not_called()
 
+    def test_active_job_deadline_does_not_restart_within_the_startup_window(self):
+        self.jobs.deadline = 220.0
+        self.jobs._active_deadline = 130.0
+        with patch.object(storage.time, "monotonic", return_value=100.0):
+            self.assertEqual(self.jobs.original_job_deadline, 130.0)
+        with patch.object(storage.time, "monotonic", return_value=110.0):
+            self.assertEqual(self.jobs.original_job_deadline, 130.0)
+        with patch.object(storage.time, "monotonic", return_value=130.0):
+            with self.assertRaisesRegex(ValueError, "active storage job"):
+                _ = self.jobs.original_job_deadline
+
+    def test_active_job_requires_a_finite_unexpired_bound_within_thirty_seconds(self):
+        self.jobs.deadline = 220.0
+        for value in (None, float("nan"), float("inf"), 100.0, 130.01, 221.0):
+            with (
+                self.subTest(value=value),
+                patch.object(storage.time, "monotonic", return_value=100.0),
+            ):
+                self.jobs._active_deadline = value
+                with self.assertRaises(ValueError):
+                    _ = self.jobs.original_job_deadline
+
     def test_existing_pending_child_refuses_retry(self):
         self.jobs.pending = (999, 123)
         with patch.object(storage.os, "fork") as fork, self.assertRaises(ValueError):
@@ -837,7 +1042,7 @@ class Phase2DStorageJobs(unittest.TestCase):
             stack.enter_context(
                 patch.object(storage.os, "pidfd_open", create=True, side_effect=pidfd)
             )
-            stack.enter_context(patch.object(storage.select, "select", side_effect=selected))
+            stack.enter_context(patch.object(storage, "_wait_ready", side_effect=selected))
             stack.enter_context(patch.object(storage.os, "waitpid", return_value=(999, 0)))
             kill = stack.enter_context(
                 patch.object(storage.signal, "pidfd_send_signal", create=True)
@@ -849,6 +1054,91 @@ class Phase2DStorageJobs(unittest.TestCase):
         value, _ = self.simulate(terminal=True)
         self.assertEqual(value, b"observed")
         self.assertIsNone(self.jobs.pending)
+
+    def test_child_failure_reports_source_without_arguments_or_private_paths(self):
+        try:
+            storage._leaf("/private/account-token")
+        except ValueError as error:
+            raw = storage._storage_failure_bytes(error)
+        self.assertLessEqual(len(raw), 512)
+        self.assertNotIn(b"private", raw)
+        self.assertNotIn(b"account-token", raw)
+        report = storage.StorageChildRefusal(raw).public_detail()
+        self.assertEqual(report["type"], "ValueError")
+        self.assertEqual(report["source"], "linux_storage.py")
+        self.assertIsInstance(report["line"], int)
+        self.assertIsNone(report["errno"])
+
+    def test_actual_closed_fd_failure_preserves_errno_and_source(self):
+        try:
+            storage._identity(-1)
+        except OSError as error:
+            raw = storage._storage_failure_bytes(error)
+        detail = storage.StorageChildRefusal(raw).public_detail()
+        self.assertEqual(detail["type"], "OSError")
+        self.assertEqual(detail["errno"], errno.EBADF)
+        self.assertEqual(detail["source"], "linux_storage.py")
+
+    def test_foreign_source_and_unknown_error_name_do_not_enter_public_detail(self):
+        class SecretAccountError(Exception):
+            pass
+
+        try:
+            raise SecretAccountError("private account metadata")
+        except SecretAccountError as error:
+            raw = storage._storage_failure_bytes(error)
+        self.assertNotIn(b"SecretAccount", raw)
+        self.assertNotIn(b"metadata", raw)
+        self.assertEqual(
+            storage.StorageChildRefusal(raw).public_detail(),
+            {"type": "BaseException", "source": None, "line": None, "errno": None},
+        )
+
+    def test_failure_parser_rejects_extra_malformed_or_unbounded_child_data(self):
+        valid = {"type": "OSError", "source": "linux_storage.py", "line": 20, "errno": 9}
+        for changes in (
+            {"message": "private"},
+            {"type": "UnknownError"},
+            {"type": []},
+            {"source": "/private/linux_storage.py"},
+            {"source": "x" * 81 + ".py"},
+            {"line": True},
+            {"line": 0},
+            {"line": 1000001},
+            {"source": None},
+            {"errno": True},
+            {"errno": -1},
+            {"errno": 4096},
+        ):
+            with self.subTest(changes=changes), self.assertRaises(ValueError):
+                storage.StorageChildRefusal(
+                    storage.STORAGE_FAILURE_PREFIX + json.dumps(valid | changes).encode()
+                )
+        for raw in (
+            b"-unknown",
+            storage.STORAGE_FAILURE_PREFIX + b"[]",
+            storage.STORAGE_FAILURE_PREFIX + b"{} trailing",
+            b"-" * 513,
+        ):
+            with self.subTest(raw=raw[:40]), self.assertRaises(ValueError):
+                storage.StorageChildRefusal(raw)
+
+    def test_child_failure_transport_stays_failed_after_positive_reaping(self):
+        raw = storage._storage_failure_bytes(OSError(errno.EIO, "private operation"))
+        with self.assertRaises(storage.StorageChildRefusal) as caught:
+            self.simulate(payload=raw, terminal=True)
+        self.assertEqual(caught.exception.public_detail()["errno"], errno.EIO)
+        self.assertTrue(self.jobs.failed)
+        self.assertIsNone(self.jobs.pending)
+        with patch.object(storage.os, "fork") as fork, self.assertRaises(ValueError):
+            self.jobs.run(lambda: b"", set())
+        fork.assert_not_called()
+
+    def test_failure_public_detail_cannot_mutate_retained_coordinates(self):
+        failure = storage.StorageChildRefusal(storage._storage_failure_bytes(ValueError("secret")))
+        detail = failure.public_detail()
+        detail["source"] = "/private"
+        self.assertIsNone(failure.public_detail()["source"])
 
     def setup_job(self):
         group = SimpleNamespace(identity=SimpleNamespace(relative_path="crewshal/session/setup"))

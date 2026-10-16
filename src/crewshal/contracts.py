@@ -92,6 +92,24 @@ class StorageInstallationCharge(Record):
         return self
 
 
+class BuildDerivationRecord(Record):
+    """Persistent evidence cannot reconstruct the original live derivation."""
+
+    original_charge_id: Identifier
+    original_observer: Digest
+    initial_configuration: Digest
+    final_configuration: Digest
+    recipe: Digest
+    source: Digest
+    helper_binary: Digest
+    policy_source: Digest | None = None
+    policy_binary: Digest | None = None
+    storage_audit: Digest | None = None
+    outputs: dict[str, tuple[int, int]] = Field(default_factory=dict)
+    processes: dict[str, tuple[int, int, int, int]] = Field(default_factory=dict)
+    storage_objects: dict[str, tuple[int, int, int]] = Field(default_factory=dict)
+
+
 class Binding(Contract):
     model: Digest
     task: Digest

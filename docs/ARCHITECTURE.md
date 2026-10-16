@@ -4,6 +4,12 @@ Date: 2026-10-02. Status: accepted as the initial implementation direction on 20
 
 ## Outcome and scope
 
+Current development order, 2026-10-15: [accepted ADR 0007](decisions/0007-core-development-before-platform-qualification.md) unblocks Phase 2D software development.
+Complete core coordination and runtime contracts before platform adaptation.
+Use deterministic external fixtures to verify the production coordinator workflow.
+Platform containment and live qualification remain separate, deferred requirements for operational use.
+The earlier Linux-first ordering below describes the prior execution plan where ADR 0007 supersedes it.
+
 Accepted installation amendment, 2026-10-10: [ADR 0006](decisions/0006-upfront-installation-charge.md) permits one upfront fully charged installation reservation by the same original observer, with the original timer and ceilings. It preserves the installed-domain path and requires independently observed physical-domain/root/journal growth controls before native/validator admission. Charge data and finite preparation supply no readiness, runtime, release or reuse authority. [Current implementation boundary](PHASE-2D-INSTALLATION-BOOTSTRAP-2026-10-10.md).
 
 Test whether a corrected, human-confirmed project model reduces setup effort and supports consistent evidence when two coding runtimes exchange implementation and review responsibilities. Success must be measured against the [evaluation plan](../INITIAL-EVALUATION-PLAN.md); the design itself demonstrates no savings or security guarantee.

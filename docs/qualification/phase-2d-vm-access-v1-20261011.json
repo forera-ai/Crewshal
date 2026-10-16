@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "observed_utc": "2026-10-11T17:07:47Z",
+  "base_revision": "87ed7e6f6c766c7ff2df245ad05569558a9ca3bc",
+  "branch": "codex/phase1-architecture",
+  "classification": "Read-only VMware host discovery. No operational acceptance.",
+  "transport": {
+    "source": "The existing private project syntax-review SSH argument array.",
+    "address_published": false,
+    "authentication_material_read": false,
+    "batch_mode": true,
+    "strict_host_key_checking": true,
+    "connect_timeout_seconds": 10,
+    "client_timeout_seconds": 20,
+    "historical_clients_executed": false,
+    "historical_compiler_attempts_repeated": false
+  },
+  "host": {
+    "kernel": "7.0.0-38-generic",
+    "architecture": "aarch64",
+    "os": "Ubuntu 24.04.5 LTS",
+    "virtualization": "vmware",
+    "mem_total_kib": 6038312,
+    "version_signature": "Ubuntu 7.0.0-38.38~24.04.4-generic 7.0.14",
+    "ipv4_forwarding": 0,
+    "run_mode": "0755",
+    "run_uid": 0,
+    "run_gid": 0,
+    "btf_vmlinux_bytes": 8204331,
+    "lsm": "lockdown,capability,landlock,yama,apparmor,ima,evm",
+    "cgroup_controllers": "cpuset cpu io memory hugetlb pids rdma misc dmem",
+    "configuration": {
+      "CONFIG_MEMCG": "y",
+      "CONFIG_SHMEM": "y",
+      "CONFIG_SLUB": "y",
+      "CONFIG_ECRYPT_FS": "y",
+      "CONFIG_SECURITY_APPARMOR_EXPORT_BINARY": "y"
+    },
+    "packages": {
+      "apparmor": "4.0.1really4.0.1-0ubuntu0.24.04.8",
+      "bubblewrap": "0.9.0-1ubuntu0.3",
+      "gcc": "4:13.2.0-7ubuntu1",
+      "linux-image-7.0.0-38-generic": "7.0.0-38.38~24.04.4",
+      "python3.12": "3.12.3-1ubuntu0.17"
+    }
+  },
+  "present_tools": [
+    "/usr/bin/gcc",
+    "/usr/bin/python3",
+    "/usr/bin/bwrap",
+    "/usr/sbin/nft",
+    "/usr/sbin/ip",
+    "/usr/sbin/mkfs.ext4",
+    "/usr/sbin/losetup",
+    "/usr/sbin/aa-status",
+    "/usr/sbin/apparmor_parser"
+  ],
+  "root_access": {
+    "command": "/usr/bin/sudo -n /usr/bin/true",
+    "exit_status": 1,
+    "diagnostic": "sudo: a password is required",
+    "owner_selected_remedy": "Enable password-free sudo for the existing SSH user",
+    "remedy_verified": false
+  },
+  "missing_readback": {
+    "paths": [
+      "/sys/kernel/slab/ext4_inode_cache/object_size",
+      "/sys/kernel/slab/ext4_inode_cache/slab_size"
+    ],
+    "diagnostic": "Permission denied",
+    "required_capability": "Root read access. Actual inode geometry must fit both original storage ceilings."
+  },
+  "retained_preparation_input": {
+    "path": "/tmp/crewshal-native-input-v1/codex-package-aarch64-unknown-linux-musl.tar.gz",
+    "bytes": 150931915,
+    "uid": 1000,
+    "gid": 1000,
+    "mode": "0644",
+    "hash_verified": false,
+    "installed_root_readable": false
+  },
+  "limitations": [
+    "The first tool-location command used /usr/bin/command and failed. A corrected shell builtin located the tools.",
+    "Package configuration and executable presence do not establish effective installed enforcement.",
+    "Root access, actual slab geometry, installed inputs, and provider transport remain unverified.",
+    "No compiler, filesystem mutation, policy load, authentication, model request, or subscription request ran.",
+    "The twenty Linux cases and live acceptance remain incomplete."
+  ]
+}

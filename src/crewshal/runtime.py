@@ -408,12 +408,8 @@ def prepare_codex_request(
     launcher/authority record and profile reproduction are intentionally pending;
     this API cannot use qualification as permission or replay a fixture driver.
     """
-    from crewshal.contracts import Task, record_digest
     from crewshal.qualification import Qualification, QualificationIdentity, assess_qualification
 
-    task = Task.model_validate_json(task.model_dump_json())
-    attempt = Attempt.model_validate_json(attempt.model_dump_json())
-    current = Binding.model_validate_json(current.model_dump_json())
     identity = CodexIdentity.model_validate_json(identity.model_dump_json())
     current_qualification = QualificationIdentity.model_validate_json(
         current_qualification.model_dump_json()
@@ -432,6 +428,23 @@ def prepare_codex_request(
         or current_qualification.configuration != identity.configuration
     ):
         raise ValueError("runtime/configuration/platform differs from qualified profile")
+    return prepare_codex_contract(task, attempt, current, identity)
+
+
+def prepare_codex_contract(
+    task: "Task", attempt: Attempt, current: Binding, identity: CodexIdentity
+) -> CodexRequest:
+    """Build inert first-runtime data without platform qualification or launch authority.
+
+    The qualified dispatch path retains its separate qualification checks.
+    This function supplies no execution, configuration, or permission fallback.
+    """
+    from crewshal.contracts import Task, record_digest
+
+    task = Task.model_validate_json(task.model_dump_json())
+    attempt = Attempt.model_validate_json(attempt.model_dump_json())
+    current = Binding.model_validate_json(current.model_dump_json())
+    identity = CodexIdentity.model_validate_json(identity.model_dump_json())
     if (
         attempt.binding != current
         or current.task != record_digest(task)

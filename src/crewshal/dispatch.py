@@ -34,6 +34,22 @@ SOURCE_FILES = (
     "linux_parent.py",
     "linux_setup.py",
     "linux_inventory.py",
+    "linux_installed.py",
+    "linux_parent_entry.py",
+    "linux_payload_storage.py",
+    "linux_schedule.py",
+    "linux_operational.py",
+    "linux_network.py",
+    "linux_qualification.py",
+    "linux_qualification_fixture.py",
+    "linux_charged_build.py",
+    "linux_fixture_inputs.py",
+    "linux_batch.py",
+    "linux_batch_entry.py",
+    "linux_auth.py",
+    "linux_attempt.py",
+    "linux_early_timer.py",
+    "linux_compiler_volume.py",
     "linux_teardown.py",
     "linux_storage.py",
     "linux_production.py",
@@ -104,6 +120,7 @@ class DispatchLimits(Contract):
 
 class DispatchConfiguration(Contract):
     schema_version: Literal[1] = 1
+    lane_id: Literal["qualification-1", "qualification-2", "live"] | None = None
     selection: PreparationSelection
     preparation_digest: Digest | None
     task_digest: Digest | None
@@ -134,6 +151,7 @@ def prepare_dispatch_configuration(
     binding: Binding | None = None,
     linux_envelope: LinuxEnvelopeBindings | None = None,
     app_server_profile: AppServerProfile | None = None,
+    lane_id: Literal["qualification-1", "qualification-2", "live"] | None = None,
 ) -> DispatchConfiguration:
     """Compile prospective data before qualification, including current source bytes.
 
@@ -251,6 +269,7 @@ def prepare_dispatch_configuration(
         native.append("-")
     reader = _Reader(Path(__file__).parent)
     return DispatchConfiguration(
+        lane_id=lane_id,
         selection=selection,
         preparation_digest=preparation_digest,
         task_digest=record_digest(task) if task is not None else None,
@@ -333,6 +352,7 @@ def prepare_codex_dispatch(
         binding=current,
         linux_envelope=configuration.linux_envelope,
         app_server_profile=configuration.app_server_profile,
+        lane_id=configuration.lane_id,
     ):
         raise ValueError("dispatch configuration or current source/preparation bytes differ")
     if (

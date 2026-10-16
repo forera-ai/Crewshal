@@ -1,0 +1,207 @@
+{
+  "branch": "codex/phase1-architecture",
+  "date": "2026-10-16",
+  "delivery_revision": "The commit containing this input index.",
+  "files": [
+    {
+      "bytes": 7760,
+      "path": "AGENTS.md",
+      "sha256": "ed7b4175bc9c68faaa1d2f9ce43734982374a4780281d4b049af8967464e1b96"
+    },
+    {
+      "bytes": 28202,
+      "path": "README.md",
+      "sha256": "706edabf4d64ffba5fb744d288fb9a05c74b447f09756fab53dc8f77071f79b8"
+    },
+    {
+      "bytes": 57430,
+      "path": "CHANGELOG.md",
+      "sha256": "40283cdd89766d1864d75a42e057e2ee8e8e3cbb799ae8cbcfe1a36552d35b0e"
+    },
+    {
+      "bytes": 920,
+      "path": "pyproject.toml",
+      "sha256": "03225d0cff60b2153eed073e344413b7776de02e6d758d504b1b77fe440dd5d1"
+    },
+    {
+      "bytes": 16775,
+      "path": "requirements-dev.lock",
+      "sha256": "cc15312627f6235586f0a0655e272fb245563782d88283f57e1159af7dffbc00"
+    },
+    {
+      "bytes": 406566,
+      "path": "docs/HANDOFF.md",
+      "sha256": "3344e302488a16adbee3a543c4d17f2a3508049ca873db33ea2bbb01829ba94a"
+    },
+    {
+      "bytes": 58797,
+      "path": "docs/DEVELOPMENT-PLAN.md",
+      "sha256": "8751a41100d93979188f3f5ccbdb779f46f1023a4004da2125cd9bc052791483"
+    },
+    {
+      "bytes": 18875,
+      "path": "docs/ARCHITECTURE.md",
+      "sha256": "b1059de8a036fcf5161f89eb99aa1960b1a1eefee445b738b853abd6b7a88621"
+    },
+    {
+      "bytes": 7328,
+      "path": "docs/decisions/0001-name-and-repository.md",
+      "sha256": "cecb3ecb8df79bff668af4f6374197a8f01867f80a31f1f9a83afacf3479fe47"
+    },
+    {
+      "bytes": 3910,
+      "path": "docs/decisions/0002-minimal-architecture.md",
+      "sha256": "d3a95bba05c6a27fef00f417e093d6496aa37f0fc064c679c67590f4556e8d98"
+    },
+    {
+      "bytes": 11609,
+      "path": "docs/decisions/0003-direct-linux-qualification.md",
+      "sha256": "dcd11ac51fc39fe62523dd7a2d351ef24cc902357203a55e34758f56a29ccf99"
+    },
+    {
+      "bytes": 2748,
+      "path": "docs/decisions/0004-retained-terminal-storage.md",
+      "sha256": "09883c39b2a7b52a198bbc5ab7e3e3e6840d7425e3d706dfdf3cc92714c67817"
+    },
+    {
+      "bytes": 3214,
+      "path": "docs/decisions/0005-official-subscription-pilot.md",
+      "sha256": "fd2cc19b5317307ca20510cd9a0bc60fd5874ae41a74b090fa0431091cdd4e53"
+    },
+    {
+      "bytes": 2544,
+      "path": "docs/decisions/0006-upfront-installation-charge.md",
+      "sha256": "d794f8d7d5b8f38eb04b4e4ff1fb837100b6964abe79bfe1610ef35e5f0bf629"
+    },
+    {
+      "bytes": 4907,
+      "path": "docs/decisions/0007-core-development-before-platform-qualification.md",
+      "sha256": "ade9437cbda53d723d9d42e1250ee40546e338582b0747404b7fafeea3169a8c"
+    },
+    {
+      "bytes": 7819,
+      "path": "docs/PHASE-2D-SOFTWARE-COMPLETION-2026-10-16.md",
+      "sha256": "86c3ea8946a317467942a4e884421aefeeda954b561981dc7c4b5db0b5bc27d1"
+    },
+    {
+      "bytes": 12546,
+      "path": "docs/qualification/phase-2d-software-verification-20261016.json",
+      "sha256": "bf09356f0db3746925fc3ef51c66bec48dae628332bcea6d41fa1d31f6e40d91"
+    },
+    {
+      "bytes": 3347,
+      "path": "docs/PHASE-2E-NEXT-SESSION-2026-10-16.md",
+      "sha256": "94a2ca7352bbfa6060a560d3d4d7e3009e7d58b4460cb142a2be63c1fa9e3282"
+    },
+    {
+      "bytes": 6575,
+      "path": "src/crewshal/model.py",
+      "sha256": "3cbc9405e0c7fb5247a13562e72c8472c3edc0f3fc2407db2fd6c6c95fae25de"
+    },
+    {
+      "bytes": 11857,
+      "path": "src/crewshal/contracts.py",
+      "sha256": "ed308d86b9b77fec5e9943677bf1d4b59ef0e16edb7fec25e8b334016bada437"
+    },
+    {
+      "bytes": 13229,
+      "path": "src/crewshal/discovery.py",
+      "sha256": "b9ab698faa5951f9badf566b1fdd8cd3be7487f82fdc96acd6a246ef44aa1b2c"
+    },
+    {
+      "bytes": 3347,
+      "path": "src/crewshal/state.py",
+      "sha256": "856abbc9de6e630798736eab14ddc6062bc6768621edd8a0d9477f1f3fa7e5a3"
+    },
+    {
+      "bytes": 19390,
+      "path": "src/crewshal/runtime.py",
+      "sha256": "643f2fbc7b1aec2c627bb00925b108be5db9fbe95525a1ccb9289073570067d2"
+    },
+    {
+      "bytes": 33246,
+      "path": "src/crewshal/integration.py",
+      "sha256": "7db88fb29b9711938e3c449c3a334ec7f13efc56151f720f171a5c942bcfcde7"
+    },
+    {
+      "bytes": 18963,
+      "path": "src/crewshal/candidate.py",
+      "sha256": "e667919ff4ec6d043de6a1c00f9cb1683de5843cb28f8813b25fb4b75d948bc4"
+    },
+    {
+      "bytes": 66353,
+      "path": "src/crewshal/durable.py",
+      "sha256": "702f7b2b940e64ca4c16c4e785fa09d8608ce023c2830c4606b29342ae96d2f4"
+    },
+    {
+      "bytes": 5137,
+      "path": "src/crewshal/gates.py",
+      "sha256": "06d841c18cbdde260486c94e91fa0f0f6ca17508ccd36e43778a3bbbec096baf"
+    },
+    {
+      "bytes": 17248,
+      "path": "src/crewshal/dispatch.py",
+      "sha256": "939b607f3a0f2b829ce73b0f0fce4ac861a448dd985cb2325429b5a390b48641"
+    },
+    {
+      "bytes": 27753,
+      "path": "src/crewshal/app_server.py",
+      "sha256": "62e0227245b69bb0900c6bfd566b7b79bbeb90038c82372b541e7534acd7b78d"
+    },
+    {
+      "bytes": 35230,
+      "path": "src/crewshal/supervisor.py",
+      "sha256": "4ec3238f5d2c9a8f68762c084ab241112a9b87d626023b5e6a18ab7b6e70a2f6"
+    },
+    {
+      "bytes": 3082,
+      "path": "src/crewshal/qualification.py",
+      "sha256": "772df20ee17ddd52023eb0b245d733e2db29d115b625703fd4c6d86026f5554a"
+    },
+    {
+      "bytes": 16185,
+      "path": "tests/acceptance/test_phase_2a.py",
+      "sha256": "e4c53627b3fc1be58467761b2c2002010e256f9e087e92fe9ba20837ed627695"
+    },
+    {
+      "bytes": 33064,
+      "path": "tests/acceptance/test_phase_2b.py",
+      "sha256": "a5db032b0e1ba98427bd95e726d70ac5e6c07039851553f8c98950496f9dbe40"
+    },
+    {
+      "bytes": 32642,
+      "path": "tests/acceptance/test_phase_2d.py",
+      "sha256": "93f808d46ad2f59d9db21cfc3c462eda8d442891a5dcffeb21735188ed13e238"
+    },
+    {
+      "bytes": 19696,
+      "path": "tests/acceptance/test_phase_2d_core.py",
+      "sha256": "ccc356bf4245afe2cb23158ad53484daa00b3788b64379c2d6483cfbff72a0c0"
+    },
+    {
+      "bytes": 36171,
+      "path": "tests/acceptance/test_phase_2d_integration.py",
+      "sha256": "982a1a04ff7a96fa94f4e7317784a933909d864758f97440abf637a9cab39892"
+    },
+    {
+      "bytes": 18658,
+      "path": "tests/acceptance/test_phase_2d_dispatch.py",
+      "sha256": "054701cb01b7be843efb34a1352f8affc76de11809db9318df34688149a0bdd8"
+    },
+    {
+      "bytes": 24268,
+      "path": "tests/acceptance/test_phase_2d_app_server.py",
+      "sha256": "6ce75889a78cab590201c0834368e9bbbf1f17f9ab4f5261beb6712bad192829"
+    }
+  ],
+  "hash_policy": "Hashes describe this checkpoint. Preserve and inspect later changes.",
+  "next_prompt": "docs/PHASE-2E-NEXT-SESSION-2026-10-16.md",
+  "operational_execution_allowed": false,
+  "phase": "2E software",
+  "platform_and_live_qualification": "Deferred separately under ADR 0007.",
+  "private_inputs_required": false,
+  "purpose": "Exact starting context; this index is not a standalone build or fixture bundle.",
+  "requires_existing_checkout": true,
+  "schema_version": 1,
+  "version": "0.14.0"
+}

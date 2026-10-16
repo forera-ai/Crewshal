@@ -2,6 +2,10 @@
 
 Date: 2026-10-02. Status: **accepted as initial direction** on 2026-10-02 through the owner's instruction to continue to the next step; execution qualification and evaluation-spend gates remain. Consumer: architecture reviewer and implementer.
 
+Development-order amendment, 2026-10-15: [accepted ADR 0007](0007-core-development-before-platform-qualification.md) moves platform qualification after core development.
+The coordinator architecture and operational qualification requirements remain applicable.
+The revised Phase 2D software gate does not require a live Linux run.
+
 ## Context
 
 Existing coding runtimes and orchestration tools already cover much of the original product vision. Crewshal must test confirmed repository adaptation and portable evidence with minimal new machinery. Runtime security and cost behavior are not established by documentation.

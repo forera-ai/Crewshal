@@ -348,6 +348,33 @@ def validator_evidence(
         raise ValueError("validator command or identity differs from approved definition")
     if credential_free is not True or network_disabled is not True:
         raise ValueError("validator requires separate credential-free denied-network authority")
+    return _validator_evidence_record(
+        binding,
+        approved,
+        observation,
+        stdout,
+        stderr,
+        evidence_id=evidence_id,
+        run_id=run_id,
+        attempt_id=attempt_id,
+    )
+
+
+def _validator_evidence_record(
+    binding: Binding,
+    approved: CheckDefinition,
+    observation: ProcessObservation,
+    stdout: bytes,
+    stderr: bytes,
+    *,
+    evidence_id: str,
+    run_id: str,
+    attempt_id: str,
+) -> Evidence:
+    """Construct bounded data after the caller verifies its original containment."""
+    binding = Binding.model_validate_json(binding.model_dump_json())
+    approved = CheckDefinition.model_validate_json(approved.model_dump_json())
+    observation = ProcessObservation.model_validate_json(observation.model_dump_json())
     if (
         not observation.stdout_complete
         or not observation.stderr_complete

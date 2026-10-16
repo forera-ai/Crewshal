@@ -57,6 +57,7 @@ class LinuxEnvelopeBindings(Contract):
     storage_policy_sha256: Digest | None = None
     deadline_policy_sha256: Digest | None = None
     bootstrap_policy_sha256: Digest | None = None
+    build_recipe_sha256: Digest | None = None
     recovery_policy_sha256: Digest | None = None
     credential_design_sha256: Digest | None = None
     financial_treatment_sha256: Digest | None = None
@@ -237,6 +238,7 @@ def prepare_linux_envelope(configuration: "DispatchConfiguration") -> LinuxEnvel
         preparation_digest=configuration.preparation_digest,
         linux_envelope=bindings,
         app_server_profile=configuration.app_server_profile,
+        lane_id=configuration.lane_id,
     )
     expected = DispatchConfiguration.model_validate(
         {
@@ -253,8 +255,11 @@ def prepare_linux_envelope(configuration: "DispatchConfiguration") -> LinuxEnvel
     ):
         raise ValueError("Linux envelope task and launch binding differ")
 
-    root = "/run/crewshal-2d-" + bindings.context
-    vendor = root + "/readonly-root"
+    installation_root = "/run/crewshal-2d-" + bindings.context
+    root = installation_root
+    if configuration.lane_id is not None:
+        root += "/lanes/" + configuration.lane_id
+    vendor = installation_root + "/readonly-root"
     empty = vendor + "/input/empty-global-instructions"
     readonly = [EnvelopeMount(source=vendor, target="/", readonly=True)]
     masks = [

@@ -1100,6 +1100,8 @@ class Phase2DCombinedGrowthSource(unittest.TestCase):
         self.proof = object.__new__(production.EffectiveInstallation)
         self.owner = SimpleNamespace(
             handles={"readonly-projection": 203},
+            reservation=SimpleNamespace(),
+            _sizes=Mock(return_value=dict(production.ALL_BACKING_SIZES)),
             _domain_readback_child=Mock(return_value=bytes(production.LOOP_INFO64.size)),
             _readback=Mock(return_value=bytes(5 * production.LOOP_INFO64.size)),
             projected_inventory=SimpleNamespace(verify=Mock()),
@@ -1110,6 +1112,7 @@ class Phase2DCombinedGrowthSource(unittest.TestCase):
             },
         )
         self.proof.production = self.owner
+        self.proof.reservation = self.owner.reservation
         self.namespace = SimpleNamespace(device=1, inode=2)
         self.state = SimpleNamespace(
             namespace=self.namespace,
@@ -1145,7 +1148,7 @@ class Phase2DCombinedGrowthSource(unittest.TestCase):
             patch.object(
                 production,
                 "_filesystem_magic",
-                side_effect=lambda fd: 0xEF53 if fd < 70 else 0xF15F,
+                side_effect=lambda fd: 0xEF53 if fd in self.geometry and fd != 203 else 0xF15F,
             )
         )
 
@@ -1155,7 +1158,7 @@ class Phase2DCombinedGrowthSource(unittest.TestCase):
         result = json.loads(self.proof._readback_child())
         self.assertLessEqual(result["logical_bound"], 8589934592)
         self.assertEqual(result["logical_bound"], result["allocated_bound"])
-        self.assertGreater(result["logical_bound"], 6 * 1073741824)
+        self.assertEqual(result["logical_bound"], 6341787648)
         self.assertEqual(set(result["role_geometry"]), set(production.ROLE_UIDS))
         self.owner.projected_inventory.verify.assert_called_once()
         self.proof.physical._readback.assert_called_once()
@@ -1170,6 +1173,65 @@ class Phase2DCombinedGrowthSource(unittest.TestCase):
             self.proof._readback_child()
         self.state.keyring_state = "present"
         self.state.loops.pop("candidate.img")
+        with self.assertRaisesRegex(ValueError, "kernel readback differs"):
+            self.proof._readback_child()
+
+    def test_compiler_boolean_cannot_supply_retained_storage_custody(self):
+        self.owner.reservation._compiler_storage = True
+        with self.assertRaisesRegex(ValueError, "compiler"):
+            self.proof._readback_child()
+
+    def test_original_compiler_terms_remain_separate_in_both_ledgers(self):
+        import json
+        from crewshal.linux_operational import RetainedCompilerStorage
+
+        compiler = object.__new__(RetainedCompilerStorage)
+        compiler.reservation = self.owner.reservation
+        self.owner.reservation._compiler_storage = compiler
+        with patch.object(RetainedCompilerStorage, "verify") as verify:
+            result = json.loads(self.proof._readback_child())
+        verify.assert_called_once()
+        self.assertEqual(result["logical_bound"], 6341787648 + 167772160)
+        self.assertEqual(result["allocated_bound"], 6341787648 + 50331648)
+
+    def test_three_lanes_charge_all_fifteen_geometries_without_enlarging_original_domain(self):
+        import json
+
+        self.owner.reservation._lane_contexts = (object(), object(), object())
+        self.owner._sizes.return_value = dict(production.LANE_BACKING_SIZES)
+        self.owner.mounts = {
+            role + suffix: "/run/original/lanes/" + role + suffix
+            for role in (name.removesuffix(".img") for name in production.LANE_BACKING_SIZES)
+            for suffix in ("-lower", "-upper")
+        }
+        self.state.backing = dict.fromkeys(production.LANE_BACKING_SIZES)
+        self.state.loops = dict.fromkeys(production.LANE_BACKING_SIZES)
+        self.state.mounts = dict(self.owner.mounts)
+        for index, (name, size) in enumerate(production.LANE_BACKING_SIZES.items()):
+            role = name.removesuffix(".img")
+            lower, upper = 1000 + index, 2000 + index
+            self.owner.handles["mounted:" + role + "-lower"] = lower
+            self.owner.handles["mounted:" + role + "-upper"] = upper
+            uid = production._role_uid(role)
+            self.metadata[upper] = SimpleNamespace(st_uid=uid, st_gid=uid, st_mode=0o40700)
+            self.geometry[lower] = SimpleNamespace(
+                f_bsize=4096,
+                f_frsize=4096,
+                f_blocks=size // 4096,
+                f_files=production.EXT4_INODE_LIMITS[production._image_geometry_name(name)],
+            )
+        result = json.loads(self.proof._readback_child())
+        self.assertEqual(result["logical_bound"], 7415529472)
+        self.assertEqual(result["allocated_bound"], 7415529472)
+        self.assertEqual(len(result["role_geometry"]), 15)
+        self.assertEqual(8589934592 - result["logical_bound"], 1174405120)
+        self.assertEqual(production.PHYSICAL_DOMAIN_BYTES, 1073741824)
+        self.geometry[203].f_flag = os.ST_RDONLY
+        self.state.keyring_state = "unknown"
+        with self.assertRaisesRegex(ValueError, "kernel readback differs"):
+            self.proof._readback_child()
+        self.state.keyring_state = "present"
+        self.state.loops.pop("qualification-1--candidate.img")
         with self.assertRaisesRegex(ValueError, "kernel readback differs"):
             self.proof._readback_child()
 

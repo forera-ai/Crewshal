@@ -1,0 +1,414 @@
+{
+  "base_revision": "87ed7e6f6c766c7ff2df245ad05569558a9ca3bc",
+  "branch": "codex/phase1-architecture",
+  "candidate_release": "unreleased",
+  "candidate_version": "0.13.0",
+  "combined_reserved_bytes_each": 85899345920,
+  "current_work": "The timer/lane cycle correction passes 47 focused checks and both fresh 1170-test suites. Exact v15 operational approval remains pending.",
+  "date": "2026-10-14",
+  "execution_results": [
+    {
+      "actual_device_login": "not run",
+      "actual_live_turn": "not run",
+      "actual_qualification": "not run",
+      "batch": "v10",
+      "cause": "collect2: fatal error: cannot find 'ld'",
+      "commands": {
+        "0": {
+          "exit": 0,
+          "index": 0,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 110,
+          "stdout_sha256": "a9e91a9cb295563d5459b31eb6b4bef56a30412388b4f812f1f020ea85fcace9"
+        },
+        "1": {
+          "exit": 0,
+          "index": 1,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 86,
+          "stdout_sha256": "c54ebdc31423603f0ec6f7ae652c109a5d53855cf03bf27d92a15cec32c141aa"
+        },
+        "2": {
+          "exit": 0,
+          "index": 2,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "3": {
+          "exit": 0,
+          "index": 3,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "4": {
+          "exit": 0,
+          "index": 4,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 729,
+          "stdout_sha256": "10fc311d190e722e9f0d7680c3754925c6aa61b8d469079dd5f16cd1d87687df"
+        },
+        "5": {
+          "exit": 0,
+          "index": 5,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      "forwarding_restored": true,
+      "guest_generation": 7,
+      "journal_sha256": "e3198e2ce4740bea0b33033933a1c4af4286d67f922d7e8c821dd000545c9cd3",
+      "new_full_charge": true,
+      "observer_pid": 9103,
+      "owner_approval": {
+        "answer": "Approve the exact v10 exception and batch",
+        "question_id": "call_4874a8faaa0a40d7a3c84aa156e9292a"
+      },
+      "record": "docs/qualification/phase-2d-executable-batch-v10-20261013.json",
+      "record_sha256": "c3c09e7b4ab8205fe53024ae2718d45e7f279166053a5a0d17c673a063151b2b",
+      "status": "refused with original custody",
+      "timer_pid": 9105
+    },
+    {
+      "actual_device_login": "not run",
+      "actual_live_turn": "not run",
+      "actual_qualification": "not run",
+      "batch": "v11",
+      "cause": "AppArmor rejected --include and exited 1.",
+      "commands": {
+        "0": {
+          "exit": 0,
+          "index": 0,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 110,
+          "stdout_sha256": "32c0b6b83a4e7db45acf64c66e0f000abe848da3e0b7a49df4752b318902daa6"
+        },
+        "1": {
+          "exit": 0,
+          "index": 1,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 86,
+          "stdout_sha256": "c54ebdc31423603f0ec6f7ae652c109a5d53855cf03bf27d92a15cec32c141aa"
+        },
+        "2": {
+          "exit": 0,
+          "index": 2,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "3": {
+          "exit": 0,
+          "index": 3,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "4": {
+          "exit": 0,
+          "index": 4,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 729,
+          "stdout_sha256": "d32116da1e8d255dc757c9c2870fb30977623eb07128407e37b43ae48c5f8394"
+        },
+        "5": {
+          "exit": 0,
+          "index": 5,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      "forwarding_restored": true,
+      "guest_generation": 8,
+      "journal_sha256": "77cc95aadca699017f5340a03f302287dfd724aa8f5684b66e08952926d589bd",
+      "new_full_charge": true,
+      "observer_pid": 9813,
+      "owner_approval": {
+        "answer": "Approve the exact v11 exception and batch",
+        "question_id": "call_2c6125b6adc24057811ba147b865a70e"
+      },
+      "record": "docs/qualification/phase-2d-executable-batch-v11-20261014.json",
+      "record_sha256": "e3fe682d97c51b99cb9d5f69b1c8818ee4fbf41aebb8385565657015a0fb1678",
+      "status": "refused with original custody",
+      "timer_pid": null
+    },
+    {
+      "actual_device_login": "not run",
+      "actual_live_turn": "not run",
+      "actual_qualification": "not run",
+      "batch": "v12",
+      "cause": "AppArmor treated - as a filename and exited 2.",
+      "commands": {
+        "0": {
+          "exit": 0,
+          "index": 0,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 110,
+          "stdout_sha256": "1e0c935b1db0946acc7fefaffbc2bc6ebf844867a457992978f3d39c093ea6fe"
+        },
+        "1": {
+          "exit": 0,
+          "index": 1,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 86,
+          "stdout_sha256": "c54ebdc31423603f0ec6f7ae652c109a5d53855cf03bf27d92a15cec32c141aa"
+        },
+        "2": {
+          "exit": 0,
+          "index": 2,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "3": {
+          "exit": 0,
+          "index": 3,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "4": {
+          "exit": 0,
+          "index": 4,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 729,
+          "stdout_sha256": "31f336c5b02eef0ecf0bf3c6f8ddd623cbc5f7fccb3fff05d3e0bc8d0b241e11"
+        },
+        "5": {
+          "exit": 0,
+          "index": 5,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      "forwarding_restored": true,
+      "guest_generation": 9,
+      "journal_sha256": "88983dd3a0105decd851426a41975915237434a24d5c83fada89879c511c90c7",
+      "new_full_charge": true,
+      "observer_pid": 10540,
+      "owner_approval": {
+        "answer": "Approve the exact v12 exception and batch",
+        "question_id": "call_cef478dd93b34f6facb72fa40d88c4ef"
+      },
+      "record": "docs/qualification/phase-2d-executable-batch-v12-20261014.json",
+      "record_sha256": "ef3a31cc5569d0556bf6212dbf3af16fcfa75982aa18ea59966aef5984347411",
+      "status": "refused with original custody",
+      "timer_pid": null
+    },
+    {
+      "actual_device_login": "not run",
+      "actual_live_turn": "not run",
+      "actual_qualification": "not run",
+      "batch": "v13",
+      "cause": "Read-only remount refused with EBUSY. The original deleted formatter directory remains open.",
+      "commands": {
+        "0": {
+          "exit": 0,
+          "index": 0,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 110,
+          "stdout_sha256": "f5d23a1261905fea56468e2bdf6642a49775e9f305e2cb530249932259738d7d"
+        },
+        "1": {
+          "exit": 0,
+          "index": 1,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 86,
+          "stdout_sha256": "c54ebdc31423603f0ec6f7ae652c109a5d53855cf03bf27d92a15cec32c141aa"
+        },
+        "2": {
+          "exit": 0,
+          "index": 2,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "3": {
+          "exit": 0,
+          "index": 3,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "4": {
+          "exit": 0,
+          "index": 4,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 726,
+          "stdout_sha256": "3524387e4cc56031fd8a5a60862a003b339f79e7be5caaeb363f00e0ee34afea"
+        },
+        "5": {
+          "exit": 0,
+          "index": 5,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      "forwarding_restored": true,
+      "guest_generation": 10,
+      "journal_sha256": "52731130c6819aa6338e1137e0da3c6669e0c2c37e92229e0eb651c17f9179d6",
+      "new_full_charge": true,
+      "observer_pid": 11616,
+      "outputs": {
+        "crewshal-bootstrap": {
+          "bytes": 669328,
+          "sha256": "ab3a0bec59dfcb16d5469b10e027c54697dc47b43309bf121261fb846b01d576"
+        },
+        "policy.binary": {
+          "bytes": 7348,
+          "sha256": "5a9ded6dc15a10b869cbbbcbc852cd5606532b8f117f9202c97adde1945f2ae6"
+        },
+        "storage-audit.json": {
+          "bytes": 3537,
+          "sha256": "ad78dfa709dedd7bb849abff1af6d587de57dc1af8fbeced3ddb4274c9eac8f3"
+        }
+      },
+      "owner_approval": {
+        "answer": "Approve the exact v13 exception and batch",
+        "question_id": "call_16eb0dc7fc9c4c6ab90ca9994cd21d5c",
+        "record_sha256": "21e81d89f9a4eee0f80b34015bbfd3f3dbb176a55ffd03f19564102a94412e4b"
+      },
+      "record": "docs/qualification/phase-2d-executable-batch-v13-20261014.json",
+      "record_sha256": "21e81d89f9a4eee0f80b34015bbfd3f3dbb176a55ffd03f19564102a94412e4b",
+      "status": "refused with original custody"
+    },
+    {
+      "actual_device_login": "not run",
+      "actual_live_turn": "not run",
+      "actual_qualification": "not run",
+      "batch": "v14",
+      "cause": "The timer, lane, reservation, and build derivation verification calls form a cycle.",
+      "commands": {
+        "0": {
+          "exit": 0,
+          "index": 0,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 110,
+          "stdout_sha256": "5f29961208649a66ff41ad2f67a56cda7d55bdf42897bf748fe51398ed6fe256"
+        },
+        "1": {
+          "exit": 0,
+          "index": 1,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 86,
+          "stdout_sha256": "c54ebdc31423603f0ec6f7ae652c109a5d53855cf03bf27d92a15cec32c141aa"
+        },
+        "2": {
+          "exit": 0,
+          "index": 2,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "3": {
+          "exit": 0,
+          "index": 3,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "4": {
+          "exit": 0,
+          "index": 4,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 725,
+          "stdout_sha256": "6f59e342f1623809d8e76ca18c5d8eba6c2d65c8e8b10f6be8b101466e2411f7"
+        },
+        "5": {
+          "exit": 0,
+          "index": 5,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      "compiler_volume_readonly": true,
+      "forwarding_restored": true,
+      "guest_generation": 11,
+      "journal_sha256": "8d5ef5d267aeeeab11f2ab94e5770a8289aaf9ff7a598dd25561d4ef057f743b",
+      "new_full_charge": true,
+      "observer_pid": 12352,
+      "outputs": {
+        "crewshal-bootstrap": {
+          "bytes": 669328,
+          "sha256": "ab3a0bec59dfcb16d5469b10e027c54697dc47b43309bf121261fb846b01d576"
+        },
+        "lost+found": {
+          "directory": true,
+          "entries": [],
+          "nlink": 2
+        },
+        "policy.binary": {
+          "bytes": 7348,
+          "sha256": "5a9ded6dc15a10b869cbbbcbc852cd5606532b8f117f9202c97adde1945f2ae6"
+        },
+        "storage-audit.json": {
+          "bytes": 3537,
+          "sha256": "ad78dfa709dedd7bb849abff1af6d587de57dc1af8fbeced3ddb4274c9eac8f3"
+        }
+      },
+      "owner_approval": {
+        "answer": "Approve the exact v14 exception and batch",
+        "question_id": "call_53e28ca7c914448db803ace076b2a7ec",
+        "record_sha256": "9bcee7bbf4e9822e3c52f84bf33158d3d8d153b93e001a7ca069154f6306a7cb"
+      },
+      "prestart_verifier_correction": {
+        "final_observer_unit_sha256": "41ab12634a6da8178c89516256cb22373a1f33e8795cd3369d9dc09e9b3d0521",
+        "problem": "The local verifier used the archive unit hash for the final installed unit.",
+        "resolution": "Readback verified the exact four appended bindings from the approved preparation script before the observer started. No frozen input or installed unit changed.",
+        "result": "All 227 inputs, both derived final units, nine prior journals, original custody, and actual common controls passed."
+      },
+      "record": "docs/qualification/phase-2d-executable-batch-v14-20261014.json",
+      "record_sha256": "9bcee7bbf4e9822e3c52f84bf33158d3d8d153b93e001a7ca069154f6306a7cb",
+      "status": "refused with original custody"
+    }
+  ],
+  "full_charges_now": 10,
+  "missing_dated_private_paths": 12,
+  "phase": "2D",
+  "phase_2e": "not started",
+  "physical_closure": "unknown",
+  "public_inputs_verified_initially": {
+    "external_instructions": 4,
+    "repository_files": 271,
+    "zip_entries": 276
+  },
+  "publication": "not performed",
+  "recovered_private_archive_matches_v10": true,
+  "schema_version": 1
+}

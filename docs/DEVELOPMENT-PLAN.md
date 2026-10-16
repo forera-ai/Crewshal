@@ -1,8 +1,34 @@
 # Crewshal phased development and acceptance plan
 
+## Current software checkpoint — 2026-10-16
+
+Phase 2D software complete; platform and live qualification deferred.
+[The completion report](PHASE-2D-SOFTWARE-COMPLETION-2026-10-16.md) maps all nine software conditions to fresh evidence.
+Source and installed-wheel suites each pass 1,248 occurrences.
+Operational execution admission remains closed.
+Phase 2E is the next software milestone in a separate session.
+Use [its prompt](PHASE-2E-NEXT-SESSION-2026-10-16.md) and [exact input index](PHASE-2E-INPUTS-2026-10-16.json).
+Earlier active or blocked status entries describe dated history.
+
+## Current owner instruction — Phase 2D development is unblocked, 2026-10-15
+
+The owner instructed: "unblock phase 2D and continue with the plan and focus ONLY on developing based on plan."
+[Accepted ADR 0007](decisions/0007-core-development-before-platform-qualification.md) records this change to development order and software acceptance.
+Phase 2D is active for first-runtime integration and the platform-independent coordinator workflow.
+Develop the actual production code and verify it through deterministic external runtime and validator fixtures.
+Linux adaptation, containment qualification, and live conformance are separate deferred work.
+They do not block software development or the revised Phase 2D software checkpoint.
+Operational execution admission remains closed, and historical qualification results remain unchanged.
+The unused v29 approval cannot resume Linux work automatically.
+[The current prompt](PHASE-2D-CORE-NEXT-SESSION-2026-10-15.md) supplies the implementation task and exact starting inputs.
+Earlier statements that defer all of Phase 2D or require Linux acceptance before software publication are superseded by this instruction.
+
 Owner declaration recorded: 2026-10-02. Consumer: owner and each implementation/test session. Status: initial bounded delivery plan; refine from evidence without silently weakening gates.
 
 ## Operating contract
+
+The following operational continuation paragraphs preserve earlier history.
+ADR 0007 and the current software acceptance section govern active development.
 
 Current publication/continuation: the owner requested “publish and prepare next session's prompt and files.” [The 0.12.0 blocked source checkpoint](PHASE-2D-EFFECTIVE-OWNERSHIP-CHECKPOINT-2026-10-10.md) records this explicit exception to earlier full-acceptance-before-publication statements for this checkpoint only. [Next-session prompt and exact inputs](PHASE-2D-NEXT-SESSION-2026-10-10.md) continue the same effective Phase 2D milestone. Source remains unqualified, all effective/Linux/live gates and closed installation admission remain unchanged, and publication supplies no operational/spend/release/reuse/Phase 2E authority. Earlier status paragraphs are dated history.
 
@@ -35,14 +61,58 @@ A milestone has four parts: plan the concrete change; implement only its scope; 
 | 2A | Installable Python foundation and passive discovery → correction → confirmed model | 1 | Offline acceptance suite and CLI workflow below; no command execution or runtime writes | Complete; 12 offline acceptance cases, wheel install and static checks passed on 2026-10-02; see HANDOFF.md |
 | 2B | Durable state, pure gates and trusted evidence contracts | 2A | Crash/recovery fixtures, forged/stale evidence rejection, explicit unavailable/waiver states; deterministic suite | Complete; 21 offline acceptance cases, 33-case complete suite and installed-wheel/static checks passed on 2026-10-02; see HANDOFF.md |
 | 2C | Reuse decision and execution-environment qualification | 2B | Existing execution seams assessed against frozen cases; chosen substrate passes containment probes; denied boundaries documented | Complete; one complete v18 Linux aarch64 profile passes all twenty original cases twice and both native file tools. Original limits unchanged; current cleanup observed. Windows/macOS runtime qualification unknown. See PHASE-2C-COMPLETION-ASSESSMENT.md |
-| 2D | First real runtime and deterministic checks | 2C passed | Bounded live implementation produces candidate and coordinator-captured evidence; fake/offline adapter regressions pass; ADR 0004 allows qualified retained terminal storage with full charges and no reuse; ADR 0006 permits upfront charged installation preparation only | Incomplete; 558 Phase 2D / 699 complete offline methods pass. Pushed 0.11.0 source checkpoint and consumed syntax check do not supply qualification; subsequent source is uncommitted. Effective capacity/growth installation, readonly frozen-volume/validator, installed identities and exact Linux/live acceptance remain open |
-| 2E | Second runtime, independent review and full vertical slice | 2D | Both role assignments work on the same confirmed model; provider independence, disagreement/remediation and no-review low-risk path verified | Planned; live authorization needed |
+| 2D | First-runtime integration and core software workflow | Existing 2A–2C software and accepted ADR 0007 | Actual coordinator workflow passes fresh deterministic runtime/validator fixtures, candidate and evidence integrity, refusal/recovery cases, complete offline suite, and installed-package checks | Software complete on 2026-10-16; platform and live qualification deferred separately |
+| 2E | Second runtime, independent review and full vertical slice | Revised 2D software acceptance | Both role assignments, provider identity rules, disagreement/remediation, and the low-risk no-review path pass deterministic source integration checks | Planned as the next software milestone; platform and live qualification remain separate |
 | 3A | Frozen comparative evaluation package | 2E | Legally usable corpus, task/rubric/threshold/baseline/version manifests; four-stack coverage or prospective amendment; owner spend approval | Planned; evaluation gate |
 | 3B | Calibration and protocol corrections | 3A | Development corpus runs with complete accounting; failures preserved; amended protocol frozen before hold-outs | Planned |
 | 3C | Sealed evaluation and owner product decision | 3B | Frozen held-out execution, blind quality assessment, baseline comparison and unknown/failed-run accounting; GO/MODIFY/ABANDON decision | Planned |
 | 4 | Conditional release readiness and delivery | Owner GO after 3C | Reproducible package/install, supported-platform CI, security/support limits, license/dependency review, release authorization | Conditional |
 
-The proposed first slice is Python/TypeScript discovery and separately qualified Linux execution. Four-stack evaluation remains the target; expanding to Swift/.NET or amending the protocol must precede hold-out exposure. Do not convert a two-stack pilot into a four-stack portability claim.
+The core software slice targets confirmed Python and TypeScript project adaptation.
+Platform execution qualification follows core development under ADR 0007.
+It remains required before dependent live evaluation or supported-platform claims.
+Four-stack evaluation remains the target; any protocol amendment must precede hold-out exposure.
+
+## Active Phase 2D software acceptance — 2026-10-15
+
+Complete the first-runtime integration and coordinator workflow through existing interfaces.
+Use actual production coordination, candidate capture, durable state, normalization, evidence, and verdict code.
+Use deterministic fixtures only for external runtime and validator effects.
+Do not mock the coordinator under test or insert handcrafted success records.
+
+Acceptance requires these observable results:
+
+1. A fresh confirmed project model and approved task enter the existing first-runtime contract.
+2. The external runtime fixture produces a changed disposable candidate through the production integration path.
+3. Capture preserves the original checkout and records the initial and resulting candidate identities.
+4. Separate validation results reference the exact frozen candidate and approved check definitions.
+5. The actual evidence and verdict rules require current decisions, valid scope, and all required checks.
+6. Forged claims, malformed output, stale bindings, candidate mutation, failed checks, and missing evidence cannot produce success.
+7. Cancellation, timeout, refusal, and restart preserve explicit outcomes without an implicit retry.
+8. Fresh fixtures and durable state reproduce the workflow without historical VM objects or private access material.
+9. Relevant regressions, the complete offline suite, static checks, and fresh installed-package checks pass.
+
+Record environment, revision, commands, results, and limitations.
+Finish production behavior before updating completion status.
+If existing code already satisfies a condition, keep its evidence and implement the remaining behavior.
+Do not add a replacement framework, isolation system, second-runtime adapter, or model tool loop.
+Keep operational execution admission closed and preserve platform-specific refusal checks.
+
+The permitted completion status is "Phase 2D software complete; platform and live qualification deferred."
+Do not claim an operational runtime, qualified platform, or historical live pass from fixture results.
+After software acceptance, perform the standing publication ceremony and stop before Phase 2E.
+Deferred Linux qualification does not block that source checkpoint.
+
+## Deferred platform and live qualification
+
+Resume this work only after core development and a later explicit owner instruction.
+Preserve the existing Linux implementation, evidence, resource charges, custody, and unknowns.
+Adapt and qualify the intended platforms before their production use or support claims.
+Retain the required real-runtime, containment, independent validation, and live conformance checks for that work.
+Do not run v29 or another operational exception batch during core development.
+Do not access VMware, SSH, credentials, or private VM inputs for this software milestone.
+Paid evaluation and release retain their existing owner gates.
+
 
 ## 2A — completed specification
 
@@ -66,9 +136,19 @@ Required delivery: implement `tests.acceptance.test_phase_2a` (or record an equa
 
 **2C:** define a repeatable qualification harness before probes. First freeze cases and behavior-test or record limitations of existing Orchestrate/Orka seams; documentation alone cannot decide equivalence. Use synthetic no-model payloads to attempt external reads/writes, symlink escapes, unauthorized network, credential inheritance, injected hooks/MCP/config and descendant-process escape. Record OS, image/substrate/tool versions, exact grant and results. No host secrets in fixtures. Test unsafe/missing qualification keeps writes blocked. Credential mediation still needs a tested accepted design; do not assume a container supplies it. If any mandatory boundary fails, preserve a denied execution profile and stop for remediation.
 
-**2D:** offline contract tests use recorded/synthetic event streams for malformed output, missing identity, timeouts, cancellation, quota/refusal and stale evidence. Separately, an owner-approved tightly budgeted live run must use a qualified profile, preserve the original checkout, produce a frozen candidate, run approved checks in a credential-free validator and reject mutation/false completion. Live logs stay private; public evidence is sanitized. Passing mocks does not qualify the real runtime.
+**2D software:** apply the active nine-condition software acceptance section above and ADR 0007.
+Use recorded or synthetic external streams to test the actual production workflow and its failure behavior.
+Real implementation runs and platform containment checks belong to deferred operational qualification.
+Their missing evidence does not block source completion.
+Keep live logs private when that later work is authorized.
+Fixture results do not qualify a real runtime.
 
-**2E:** offline suite verifies independent provider identity, unavailable review blocking, scope/risk escalation, conflict handling and revalidation after remediation. Approved bounded live cases swap Codex/Claude Code roles against the same confirmed model and exhibit revision-bound review/evidence. A distinct session alone does not establish independence. Ordinary/high-risk and low-risk workflows exercise their different gates. Never automatically merge the candidate.
+**2E software:** verify independent provider identity, unavailable review blocking, scope escalation, conflict handling, and revalidation after remediation.
+Use deterministic external adapter fixtures for both role assignments against the same confirmed project model.
+A distinct session alone does not establish independence.
+Exercise the different ordinary-risk, high-risk, and low-risk gates through production code.
+Real role-swapping trials remain deferred live conformance work.
+Never automatically merge the candidate.
 
 **3A–3C:** use the original [evaluation plan](../INITIAL-EVALUATION-PLAN.md). Freeze legal provenance, repository/task digests, runtime/provider/model/toolchain versions, baseline conformance, seeds/order/cache policy, blinded rubric, thresholds, failure accounting and budget before runs. Calibration amendments carry reasons and versions; never tune against already exposed sealed tasks. Summaries distinguish actual/estimated/quota accounting and report unsupported combinations. Final completion requires an owner decision, not favorable selected demos.
 

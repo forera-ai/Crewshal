@@ -10,7 +10,6 @@ import hashlib
 import os
 from pathlib import PurePosixPath
 import re
-import select
 import signal
 import stat
 import subprocess
@@ -20,6 +19,7 @@ from typing import Callable, Literal
 
 from pydantic import Field, model_validator
 
+from crewshal.admission import _wait_ready
 from crewshal.admission import (
     AdmittedNative,
     NativeAdmissionSpec,
@@ -225,7 +225,7 @@ class RetainedTrustedTask:
         pid, state, parent, start = _stat_identity(_read(self.descriptor, "stat"))
         if (
             (info.st_dev, info.st_ino) != self.directory
-            or select.select([self.pidfd], [], [], 0)[0]
+            or _wait_ready([self.pidfd], [], [], 0)[0]
             or (pid, parent, start) != (spec.pid, spec.parent_pid, spec.start_ticks)
             or spec.pid <= 1
             or spec.start_ticks <= 0
@@ -536,6 +536,17 @@ def stage_namespace_parent(
                 raise ValueError("original armed bridge/watchdog custody differs")
             send_watchdog_bridge(bridge_channel, lifetime)
             check()
+        probes = getattr(parent, "_qualification_probes", None)
+        if probes is not None:
+            from crewshal.linux_qualification import OriginalQualificationProbes
+
+            if (
+                type(probes) is not OriginalQualificationProbes
+                or probes.watchdog.observed is not watchdog
+            ):
+                raise ValueError("original qualification probe custody differs")
+            probes.cancel_before_native()
+            check()
         try:
             _move_self(worker)
             parent.verify(worker.identity)
@@ -582,7 +593,7 @@ def stage_namespace_parent(
                 pid, state, parent_pid, start = _stat_identity(_read(descriptor, "stat"))
                 if (pid, parent_pid) != (child.pid, spec.pid):
                     raise ValueError("new helper PID/parent differs")
-                if select.select([pidfd], [], [], 0)[0] or state not in ("R", "S", "t"):
+                if _wait_ready([pidfd], [], [], 0)[0] or state not in ("R", "S", "t"):
                     raise ValueError("helper exited or failed to reach its initial trace stop")
                 if state == "t":
                     break
@@ -729,5 +740,122 @@ def capture_namespace_native(
     ):
         raise ValueError("original native/watchdog terminal capture remains unknown")
     lifetime.verify_native_terminal(admitted, captured.observation.exit_code)
+    probes = getattr(parent, "_qualification_probes", None)
+    if probes is not None:
+        from crewshal.linux_qualification import OriginalQualificationProbes
+
+        if type(probes) is not OriginalQualificationProbes:
+            raise ValueError("original qualification capture custody differs")
+        probes.finish_deadline(captured)
     send_original_native_capture(channel, lifetime)
     return captured
+
+
+def run_installed_namespace_parent(*, cancelled: Callable[[], bool]) -> None:
+    """Run the finite installed parent from its original sealed inherited controls."""
+    from crewshal.linux_bridge import receive_validator_views, retain_parent_bridge
+    from crewshal.linux_bootstrap import LinuxTrace
+    from crewshal.linux_envelope import prepare_linux_envelope
+    from crewshal.linux_inventory import RetainedParentInventory
+    from crewshal.linux_installed import retain_installed_images
+    from crewshal.linux_setup import (
+        create_owned_watchdog,
+        enter_namespace_parent,
+        receive_namespace_controls,
+        receive_namespace_policy,
+        receive_namespace_network,
+    )
+    from crewshal.linux_validator import create_validator_child, create_validator_watchdog
+
+    controls, groups = receive_namespace_controls()
+    policy = receive_namespace_policy(controls)
+    network = receive_namespace_network(controls)
+    inventory_spec = controls.setup.parent_inventory
+    if (
+        inventory_spec is None
+        or not controls.setup.bridge_control
+        or not controls.setup.validator_control
+        or controls.batch_origin_ns is None
+    ):
+        raise ValueError(
+            "installed parent requires original inventory, bridge and validator controls"
+        )
+    origin = controls.batch_origin_ns
+
+    def check() -> None:
+        if cancelled() or time.monotonic_ns() >= origin + 570_000_000_000:
+            raise ValueError("installed parent cancelled or original batch cutoff expired")
+
+    check()
+    envelope = prepare_linux_envelope(controls.configuration)
+    path = next(mount.source for mount in envelope.mounts["native"] if mount.target == "/")
+    descriptor = os.open(path, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW | os.O_CLOEXEC)
+    try:
+        inventory = RetainedParentInventory(descriptor, inventory_spec)
+    finally:
+        os.close(descriptor)
+    inventory.verify_clean_current_mount(path)
+    parent = enter_namespace_parent(controls, groups, inventory=inventory)
+    # These actual owners remain on the original live parent through refusal.
+    setattr(parent, "_installed_inventory", inventory)
+    setattr(parent, "_installed_groups", groups)
+    setattr(parent, "_installed_controls", controls)
+    setattr(parent, "_apparmor_export", policy)
+    setattr(parent, "_provider_network", network)
+    retain_installed_images(parent, inventory).verify()
+    retain_parent_bridge(parent, controls)
+    check()
+    watchdog = create_owned_watchdog(
+        parent,
+        groups["worker"],
+        groups["supervisor"],
+        groups["aggregate"],
+        controls.configuration,
+        controls.bootstrap,
+    )
+    observed = watchdog.observed
+    native = inventory_spec.root.get("/opt/codex/bin/codex")
+    if observed is None or native is None or native.sha256 is None:
+        raise ValueError("installed original watchdog or native image identity is missing")
+    probes = None
+    if controls.configuration.lane_id in ("qualification-1", "qualification-2"):
+        from crewshal.linux_qualification import OriginalQualificationProbes
+
+        probes = OriginalQualificationProbes(parent, watchdog)
+    admitted_native = stage_namespace_parent(
+        parent,
+        controls.outer_namespaces,
+        observed,
+        groups["worker"],
+        groups["supervisor"],
+        groups["aggregate"],
+        controls.configuration,
+        controls.bootstrap,
+        LinuxTrace(policy=policy),
+        native.sha256,
+        cancelled=cancelled,
+    )
+    retain_installed_images(admitted_native.proc, inventory).verify()
+    if probes is not None:
+        probes.start_deadline_after_native(admitted_native)
+    capture_namespace_native(parent, cancelled=cancelled)
+    check()
+    attempt = receive_validator_views(parent, controls, inventory, groups)
+    create_validator_watchdog(attempt, controls.bootstrap)
+    admitted = create_validator_child(
+        attempt, controls.bootstrap, LinuxTrace(policy=policy), cancelled=cancelled
+    )
+    if admitted.attempt.proc is None:
+        raise ValueError("installed validator retained proc is missing")
+    retain_installed_images(admitted.attempt.proc, inventory).verify()
+    from crewshal.linux_bridge import send_stopped_validator_bridge, send_original_validator_capture
+
+    send_stopped_validator_bridge(parent, admitted)
+    admitted.resume()
+    captured = admitted.capture(cancelled=cancelled)
+    setattr(attempt, "_captured_process", captured)
+    send_original_validator_capture(parent, admitted, captured)
+    check()
+    from crewshal.linux_bridge import wait_original_parent_completion
+
+    wait_original_parent_completion(parent, controls)

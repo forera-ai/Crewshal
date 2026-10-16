@@ -10,7 +10,7 @@ arg0 helper grant and effective file/proc/FD denial independently.
 import json
 from typing import Literal, Self
 
-from pydantic import ConfigDict, JsonValue, model_validator
+from pydantic import ConfigDict, Field, JsonValue, model_validator
 
 from crewshal import __version__
 from crewshal.contracts import Digest
@@ -104,6 +104,22 @@ def _validate_profile(profile: "AppServerProfile") -> None:
     _string(account["planType"])
     if profile.expected_account_id is not None:
         _string(profile.expected_account_id)
+    if profile.qualification_accounts:
+        if set(profile.qualification_accounts) != {"qualification-1", "qualification-2"}:
+            raise AppServerProtocolError("both fixed qualification account expectations required")
+        for expectation in profile.qualification_accounts.values():
+            if (
+                expectation.account
+                != {
+                    "type": "chatgpt",
+                    "email": "phase2d-synthetic@example.invalid",
+                    "planType": "plus",
+                }
+                or expectation.account_id != "crewshal-phase2d-synthetic"
+            ):
+                raise AppServerProtocolError(
+                    "qualification account expectations must remain synthetic"
+                )
     params = profile.thread_params
     allowed = {
         "model",
@@ -184,6 +200,13 @@ def _validate_profile(profile: "AppServerProfile") -> None:
         raise AppServerProtocolError("configuration exceeds protocol bound")
 
 
+class QualificationAccountExpectation(Contract):
+    """Synthetic metadata supplies no live credential or account continuity."""
+
+    account: dict[str, JsonValue]
+    account_id: str
+
+
 class AppServerProfile(Contract):
     """Declarative input, never launch permission or credential-denial evidence."""
 
@@ -198,6 +221,7 @@ class AppServerProfile(Contract):
     permission_profile: dict[str, JsonValue]
     expected_config: dict[str, JsonValue]
     expected_account_id: str | None = None
+    qualification_accounts: dict[str, QualificationAccountExpectation] = Field(default_factory=dict)
 
     @model_validator(mode="after")
     def supported(self) -> Self:
@@ -221,11 +245,23 @@ def _constant(value: str) -> object:
 class AppServerExchange:
     """One initialize/config/account/quota/thread/turn exchange, without I/O or retries."""
 
-    def __init__(self, profile: AppServerProfile) -> None:
+    def __init__(self, profile: AppServerProfile, *, lane_id: str | None = None) -> None:
         AppServerProfile.model_validate_json(profile.model_dump_json())
         _validate_profile(profile)
         self._profile = profile
         self._snapshot = _encode(profile.model_dump(mode="json"))
+        if lane_id not in (None, "qualification-1", "qualification-2", "live"):
+            raise AppServerProtocolError("undeclared app-server lane refused")
+        self._lane_id = lane_id
+        self._account = dict(profile.expected_account)
+        self._account_id = profile.expected_account_id
+        if lane_id in ("qualification-1", "qualification-2"):
+            expectation = profile.qualification_accounts.get(lane_id)
+            if expectation is None:
+                raise AppServerProtocolError("frozen synthetic account expectation missing")
+            self._account = dict(expectation.account)
+            self._account_id = expectation.account_id
+        self._account_snapshot = (_encode(self._account), self._account_id, lane_id)
         self._started = False
         self._failed = False
         self._next = 1
@@ -241,8 +277,8 @@ class AppServerExchange:
         self._auth_recovering = False
 
     @classmethod
-    def from_profile(cls, profile: AppServerProfile) -> Self:
-        return cls(profile)
+    def from_profile(cls, profile: AppServerProfile, *, lane_id: str | None = None) -> Self:
+        return cls(profile, lane_id=lane_id)
 
     @property
     def protocol_completed(self) -> bool:
@@ -261,6 +297,8 @@ class AppServerExchange:
             raise AppServerProtocolError("exchange already refused")
         if _encode(self._profile.model_dump(mode="json")) != self._snapshot:
             raise AppServerProtocolError("configuration changed during exchange")
+        if (_encode(self._account), self._account_id, self._lane_id) != self._account_snapshot:
+            raise AppServerProtocolError("frozen lane account expectation changed during exchange")
 
     def _message(self, method: str, params: object, request_id: int | None = None) -> bytes:
         data: dict[str, object] = {"method": method, "params": params}
@@ -369,7 +407,7 @@ class AppServerExchange:
             output = (self._message("account/read", {"refreshToken": False}, 3),)
         elif phase == 3:
             if result.get("requiresOpenaiAuth") is not True or not _same(
-                result.get("account"), self._profile.expected_account
+                result.get("account"), self._account
             ):
                 raise AppServerProtocolError("subscription metadata mismatch")
             output = (
@@ -384,10 +422,7 @@ class AppServerExchange:
             )
         elif phase == 4:
             self._quota(result)
-            if (
-                self._profile.expected_account_id is not None
-                and result.get("accountId") != self._profile.expected_account_id
-            ):
+            if self._account_id is not None and result.get("accountId") != self._account_id:
                 raise AppServerProtocolError("quota account reference unavailable or changed")
             if result.get("ordinaryUsageAllowed") is False:
                 raise AppServerProtocolError("backend refuses ordinary usage")
@@ -504,7 +539,7 @@ class AppServerExchange:
         if method == "account/updated":
             if (
                 params.get("authMode") != "chatgpt"
-                or params.get("planType") != self._profile.expected_account["planType"]
+                or params.get("planType") != self._account["planType"]
             ):
                 raise AppServerProtocolError("account context changed or unavailable")
             return

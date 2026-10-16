@@ -9,12 +9,12 @@ and concurrent host mutation remain explicit unknowns, never released storage.
 import ctypes
 import errno
 import fcntl
+import json
 import math
 import os
 from pathlib import PurePosixPath
 import platform
 import re
-import select
 import signal
 import stat
 import struct
@@ -22,6 +22,7 @@ import sys
 import time
 from typing import Callable, Literal, Protocol
 
+from crewshal.admission import _wait_ready
 from crewshal.admission import NamespaceIdentity, _fields, _read, _stat_identity
 from crewshal.contracts import record_digest
 from crewshal.dispatch import DispatchConfiguration
@@ -43,6 +44,90 @@ LOOP_GET_STATUS64 = 0x4C05
 LOOP_CLR_FD = 0x4C01
 LOOP_INFO64 = struct.Struct("=QQQQQIIII64s64s32sQQ")
 PRIVATE_KEY_PERMISSIONS = 0x003F0000  # KEY_USR_ALL; no possessor/group/other authority.
+STORAGE_FAILURE_PREFIX = b"-crewshal-storage-failure-v1:"
+_FAILURE_TYPES = frozenset(
+    {
+        "BaseException",
+        "ValueError",
+        "OSError",
+        "RuntimeError",
+        "TypeError",
+        "AssertionError",
+        "AttributeError",
+        "KeyError",
+        "IndexError",
+        "OverflowError",
+        "MemoryError",
+        "FileNotFoundError",
+        "PermissionError",
+        "BlockingIOError",
+        "NotADirectoryError",
+        "IsADirectoryError",
+        "ProcessLookupError",
+    }
+)
+
+
+def _storage_failure_bytes(error: BaseException) -> bytes:
+    """Return bounded source coordinates without exception text or local values."""
+    trace = error.__traceback__
+    while trace is not None and trace.tb_next is not None:
+        trace = trace.tb_next
+    source = None
+    line = None
+    if trace is not None:
+        module = trace.tb_frame.f_globals.get("__name__", "")
+        if isinstance(module, str) and re.fullmatch(r"crewshal\.[a-z_]{1,80}", module):
+            name = module.removeprefix("crewshal.") + ".py"
+            if PurePosixPath(trace.tb_frame.f_code.co_filename).name == name:
+                source, line = name, trace.tb_lineno
+    code = error.errno if isinstance(error, OSError) else None
+    if type(code) is not int or not 0 <= code <= 4095:
+        code = None
+    detail = {
+        "type": type(error).__name__ if type(error).__name__ in _FAILURE_TYPES else "BaseException",
+        "source": source,
+        "line": line,
+        "errno": code,
+    }
+    return STORAGE_FAILURE_PREFIX + json.dumps(detail, separators=(",", ":")).encode("ascii")
+
+
+class StorageChildRefusal(ValueError):
+    """Retain untrusted child failure coordinates; never accept a child result."""
+
+    def __init__(self, payload: bytes):
+        if not payload.startswith(STORAGE_FAILURE_PREFIX) or len(payload) > 512:
+            raise ValueError("storage child reported unknown readback")
+        try:
+            detail = json.loads(payload[len(STORAGE_FAILURE_PREFIX) :].decode("ascii"))
+        except (ValueError, UnicodeError) as error:
+            raise ValueError("storage child reported unknown readback") from error
+        if (
+            not isinstance(detail, dict)
+            or set(detail) != {"type", "source", "line", "errno"}
+            or not isinstance(detail["type"], str)
+            or detail["type"] not in _FAILURE_TYPES
+            or not (
+                detail["errno"] is None
+                or type(detail["errno"]) is int
+                and 0 <= detail["errno"] <= 4095
+            )
+            or not (
+                detail["source"] is None
+                and detail["line"] is None
+                or isinstance(detail["source"], str)
+                and re.fullmatch(r"[a-z_]{1,80}\.py", detail["source"])
+                and type(detail["line"]) is int
+                and 0 < detail["line"] <= 1000000
+            )
+        ):
+            raise ValueError("storage child reported unknown readback")
+        self._detail = tuple(detail[key] for key in ("type", "source", "line", "errno"))
+        super().__init__("storage child reported unknown readback")
+
+    def public_detail(self) -> dict[str, object]:
+        return dict(zip(("type", "source", "line", "errno"), self._detail, strict=True))
 
 
 # UAPI dev_t is new_encode_dev(), not the libc dev_t layout in st_dev.
@@ -240,6 +325,18 @@ class BoundedStorageJobs:
         self._creation_child: tuple[int, int, int, int, int, int] | None = None
         self.failed = False
 
+    @property
+    def original_job_deadline(self) -> float:
+        deadline = self._active_deadline
+        now = time.monotonic()
+        if (
+            deadline is None
+            or not math.isfinite(deadline)
+            or not now < deadline <= min(self.deadline, now + 30)
+        ):
+            raise ValueError("original active storage job deadline unavailable")
+        return deadline
+
     def _pin_creation_child(self) -> None:
         if self.pending is None or self._creation_child is not None:
             raise ValueError("original pending creation child required")
@@ -289,7 +386,7 @@ class BoundedStorageJobs:
             fields = _fields(_read(descriptor, "status"))
             if (
                 actual != str(pid)
-                or select.select([pidfd], [], [], 0)[0]
+                or _wait_ready([pidfd], [], [], 0)[0]
                 or (info.st_dev, info.st_ino) != (device, inode)
                 or (observed, parent, ticks) != (pid, os.getpid(), start)
                 or state not in ("R", "S")
@@ -341,8 +438,10 @@ class BoundedStorageJobs:
                 reservation.verify()
             else:
                 reservation.verify_operational()
+            lane_contexts = getattr(reservation, "_lane_contexts", ())
+            original_setups = (self.batch_timer.setup, *(lane.setup for lane in lane_contexts))
             if (
-                self.execution_group is not self.batch_timer.setup
+                not any(self.execution_group is setup for setup in original_setups)
                 or self.observer is not reservation.observer
                 or self.group is not reservation.observer_group
                 or self.aggregate is not reservation.aggregate
@@ -372,9 +471,22 @@ class BoundedStorageJobs:
         ):
             raise ValueError("original storage execution role changed")
         if self.execution_group is not None:
+            expected_name = "setup"
+            if self.batch_timer is not None:
+                early_roles = getattr(self.batch_timer, "_early_roles", None)
+                if early_roles is not None:
+                    from crewshal.linux_early_timer import verify_early_timer_roles
+
+                    verify_early_timer_roles(self.batch_timer)
+                    if self.execution_group is early_roles[0]:
+                        expected_name = "setup--qualification-1"
+                for lane in getattr(self.batch_timer.reservation, "_lane_contexts", ()):
+                    if self.execution_group is lane.setup:
+                        lane.verify_handles()
+                        expected_name = "setup--" + lane.lane_id
             if (
                 self.execution_group is self.group
-                or PurePosixPath(self.execution_group.identity.relative_path).name != "setup"
+                or PurePosixPath(self.execution_group.identity.relative_path).name != expected_name
             ):
                 raise ValueError("storage creation requires distinct original setup role")
             _aggregate_readback(self.aggregate, self.execution_group)
@@ -444,7 +556,7 @@ class BoundedStorageJobs:
                 remaining = job_deadline - time.monotonic()
                 if (
                     remaining <= 0
-                    or not select.select([admit_read], [], [], remaining)[0]
+                    or not _wait_ready([admit_read], [], [], remaining)[0]
                     or os.read(admit_read, 2) != b"1"
                 ):
                     os._exit(1)
@@ -471,15 +583,15 @@ class BoundedStorageJobs:
                 if len(result) > 65535:
                     raise ValueError("storage response exceeds fixed stream bound")
                 payload = b"+" + result
-            except BaseException:
+            except BaseException as error:
                 if _format_output:
                     os._exit(1)
-                payload = b"-unknown storage syscall/readback failure"
+                payload = _storage_failure_bytes(error)
             try:
                 offset = 0
                 while offset < len(payload):
                     remaining = job_deadline - time.monotonic()
-                    if remaining <= 0 or not select.select([], [write_end], [], remaining)[1]:
+                    if remaining <= 0 or not _wait_ready([], [write_end], [], remaining)[1]:
                         os._exit(1)
                     offset += os.write(write_end, payload[offset:])
                 os._exit(0)
@@ -496,7 +608,7 @@ class BoundedStorageJobs:
                 remaining = job_deadline - time.monotonic()
                 if (
                     remaining <= 0
-                    or not select.select([read_end], [], [], remaining)[0]
+                    or not _wait_ready([read_end], [], [], remaining)[0]
                     or os.read(read_end, 1) != b"@"
                 ):
                     raise ValueError("original storage child placement acknowledgement unavailable")
@@ -513,7 +625,7 @@ class BoundedStorageJobs:
                 readers = [read_end]
                 if transfer is not None:
                     readers.append(transfer.descriptor)
-                ready = select.select(readers, [], [], max(0.0, remaining))[0]
+                ready = _wait_ready(readers, [], [], max(0.0, remaining))[0]
                 if remaining <= 0 or not ready:
                     raise ValueError("original storage cleanup deadline exhausted")
                 if transfer is not None and transfer.descriptor in ready:
@@ -529,7 +641,7 @@ class BoundedStorageJobs:
                 if len(output) > 65536:
                     raise ValueError("storage response exceeds fixed stream bound")
             remaining = max(0.0, job_deadline - time.monotonic())
-            if not select.select([pidfd], [], [], remaining)[0]:
+            if not _wait_ready([pidfd], [], [], remaining)[0]:
                 raise ValueError("storage child terminal readback unavailable")
             observed, status = os.waitpid(pid, os.WNOHANG)
             if observed != pid:
@@ -554,7 +666,7 @@ class BoundedStorageJobs:
                 # owned loop and mount before using a formatted filesystem.
                 return bytes(output)
             if not output.startswith(b"+"):
-                raise ValueError("storage child reported unknown readback")
+                raise StorageChildRefusal(bytes(output))
             # Command exit/status is transport only. Caller independently
             # re-observes kernel state before accepting a physical transition.
             return bytes(output[1:])
@@ -564,7 +676,7 @@ class BoundedStorageJobs:
                 self._batch_timer.reservation._retain_installation_refusal(error)
             if pidfd >= 0:
                 getattr(signal, "pidfd_send_signal")(pidfd, signal.SIGKILL)
-                if select.select([pidfd], [], [], 0)[0] and os.waitpid(pid, os.WNOHANG)[0] == pid:
+                if _wait_ready([pidfd], [], [], 0)[0] and os.waitpid(pid, os.WNOHANG)[0] == pid:
                     os.close(pidfd)
                     self.pending = None
                     self._active_deadline = None
@@ -646,10 +758,13 @@ class LinuxPhysicalOwner:
             or retention_readback_jobs.pending is not None
         ):
             raise ValueError("retention readback requires original observer and absolute batch end")
+        deadline_limit = min(now + 30, batch_started_monotonic + 600)
+        if type(reservation) is OwnedStorageReservation:
+            deadline_limit = batch_started_monotonic + 120
         if (
             not math.isfinite(batch_started_monotonic)
             or not 0 < batch_started_monotonic <= now
-            or not now < jobs.deadline <= min(now + 30, batch_started_monotonic + 600)
+            or not now < jobs.deadline <= deadline_limit
         ):
             raise ValueError("original batch origin and bounded cleanup reserve required")
         if (
@@ -661,8 +776,9 @@ class LinuxPhysicalOwner:
         ):
             raise ValueError("unclaimed newly created private anonymous keyring required")
         root = prepare_linux_envelope(configuration).owned_root
-        if jobs.observer.spec.configuration != record_digest(configuration):
-            raise ValueError("storage observer configuration differs")
+        from crewshal.linux_charged_build import verify_observer_configuration
+
+        verify_observer_configuration(jobs.observer, configuration)
         for target in mounts.values():
             path = PurePosixPath(target)
             if (
@@ -673,7 +789,12 @@ class LinuxPhysicalOwner:
                 or "\x00" in target
             ):
                 raise ValueError("storage mount must stay inside exact owned session root")
-        if not mounts or len(mounts) > 16 or not loop_fds or len(loop_fds) > 16:
+        mount_limit = (
+            30
+            if reservation is not None and getattr(reservation, "_lane_contexts", None) is not None
+            else 16
+        )
+        if not mounts or len(mounts) > mount_limit or not loop_fds or len(loop_fds) > 16:
             raise ValueError("bounded owned mount/loop inventory required")
         if not backing_fds or len(backing_fds) > 16:
             raise ValueError("bounded owned backing inventory required")
@@ -789,6 +910,14 @@ class LinuxPhysicalOwner:
             raise ValueError("retained backing exceeds original disk ceiling")
 
     def _verify(self) -> None:
+        self._verify_custody()
+        from crewshal.linux_charged_build import verify_observer_configuration
+
+        if self.reservation is not None:
+            verify_observer_configuration(self.jobs.observer, self.reservation._configuration)
+
+    def _verify_custody(self) -> None:
+        """Check frozen bindings and handles retained by each admitted child."""
         initial_digest = record_digest(self.initial) if self.initial is not None else None
         if (
             self.jobs is not self._jobs
@@ -819,7 +948,14 @@ class LinuxPhysicalOwner:
             or (self._initial_digest is not None and initial_digest != self._initial_digest)
             or self._ring_identity != (self.ring.serial, self.ring.creator, self.ring.previous)
             or not self.ring.claimed
-            or self.jobs.observer.spec.configuration != self.configuration
+            or (
+                self.reservation is None
+                and self.jobs.observer.spec.configuration != self.configuration
+            )
+            or (
+                self.reservation is not None
+                and record_digest(self.reservation._configuration) != self.configuration
+            )
         ):
             raise ValueError("retained private keyring or observer configuration changed")
         if set(self.handles) != set(self.identities):
@@ -843,7 +979,9 @@ class LinuxPhysicalOwner:
             raise ValueError("owned backing directory permits untrusted mutation")
 
     def _enter(self) -> None:
-        self._verify()
+        # The parent verifies original build and observer proofs before job
+        # admission. The child has closed those unrelated proof descriptors.
+        self._verify_custody()
         if not hasattr(os, "setns"):
             raise ValueError("qualified Linux mount namespace entry unavailable")
         os.setns(self.handles["namespace"], 0x20000)
@@ -1010,9 +1148,16 @@ class LinuxPhysicalOwner:
             if (loop := self._loop(name)) is not None
         }
         for name, descriptor in self._backing_handles.items():
-            if name in EXT4_INODE_LIMITS:
+            geometry_name = name
+            if "--" in name:
+                from crewshal.linux_production import _image_geometry_name
+
+                if not name.endswith(".img"):
+                    raise ValueError("operational storage owner has an unknown growth slot")
+                geometry_name = _image_geometry_name(name)
+            if geometry_name in EXT4_INODE_LIMITS:
                 _verify_ext4_growth(
-                    os.pread(descriptor, 1024, 1024), name, os.fstat(descriptor).st_size
+                    os.pread(descriptor, 1024, 1024), geometry_name, os.fstat(descriptor).st_size
                 )
             elif type(self.reservation) is OwnedStorageReservation:
                 raise ValueError("operational storage owner has an unknown growth slot")
@@ -1088,6 +1233,7 @@ class LinuxPhysicalOwner:
             return b""
 
         try:
+            self._verify()
             self.jobs.run(guarded, set(self.handles.values()))
         except BaseException:
             self.effects_failed = True

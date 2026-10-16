@@ -264,7 +264,7 @@ class Phase2DBatchTimer(unittest.TestCase):
             group.joinpath("cgroup.events").write_text("populated 0\nfrozen 0\n")
         # Original retained proc/pidfd metadata remains real ordinary files;
         # Linux pidfd termination/reap/clock are explicitly synthetic here.
-        original_select = setup.select.select
+        original_select = setup._wait_ready
 
         def exited(readers, writers, errors, timeout):
             if readers == [self.task.pidfd]:
@@ -273,7 +273,7 @@ class Phase2DBatchTimer(unittest.TestCase):
 
         with (
             patch.object(setup, "_proc_root", side_effect=lambda _: os.open(root, os.O_RDONLY)),
-            patch.object(setup.select, "select", side_effect=exited),
+            patch.object(setup, "_wait_ready", side_effect=exited),
             patch.object(setup.time, "monotonic_ns", return_value=self.timer.end_ns + 1),
             patch.object(
                 setup.time, "monotonic", return_value=self.reservation.batch_started + 601
@@ -306,7 +306,7 @@ class Phase2DBatchTimer(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "exit/reap"):
                 self.reservation.verify_idle_retention()
             self.timer.process.poll = lambda: 0
-            with patch.object(setup.select, "select", return_value=([], [], [])):
+            with patch.object(setup, "_wait_ready", return_value=([], [], [])):
                 with self.assertRaisesRegex(ValueError, "exit/reap"):
                     self.reservation.verify_idle_retention()
 

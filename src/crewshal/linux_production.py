@@ -16,13 +16,13 @@ import os
 from pathlib import PurePosixPath
 import platform
 import resource
-import select
 import socket
 import stat
 import sys
 import time
 from typing import TYPE_CHECKING, Literal, NoReturn
 
+from crewshal.admission import _wait_ready
 from crewshal.linux_envelope import (
     DIRECTORY_GROWTH_KIB,
     EXT4_INODE_LIMITS,
@@ -36,6 +36,7 @@ from crewshal.linux_inventory import (
     helper_library_inventory_digest,
     root_inventory_digest,
     _metadata,
+    _discard_completed_pages,
 )
 from crewshal.contracts import record_digest
 from crewshal.linux_setup import OwnedStorageReservation
@@ -55,6 +56,10 @@ MS_REC_PRIVATE = 0x4000 | 0x40000
 LOOP_CTL_GET_FREE = 0x4C82
 LOOP_SET_FD = 0x4C00
 LOOP_SET_STATUS64 = 0x4C04
+LOOP_SET_DIRECT_IO = 0x4C08
+LOOP_SET_BLOCK_SIZE = 0x4C09
+BLKSSZGET = 0x1268
+LO_FLAGS_DIRECT_IO = 16
 BACKING_SIZES = {"scratch.img": 33554432, "candidate.img": 16777216}
 # Authentication stays inside the original 1 GiB prepared allowance. The other
 # two images consume the existing validator-scratch/frozen-candidate allowances.
@@ -65,7 +70,11 @@ ADDITIONAL_BACKING_SIZES = {
 }
 ALL_BACKING_SIZES = {**BACKING_SIZES, **ADDITIONAL_BACKING_SIZES}
 PHYSICAL_DOMAIN_BYTES = 1073741824
-ROOT_COPY_BYTES = 1073741824 - 3 * ADDITIONAL_BACKING_SIZES["native-auth.img"]
+ROOT_COPY_BYTES = 469762048
+LANE_IDS = ("qualification-1", "qualification-2", "live")
+LANE_BACKING_SIZES = {
+    lane + "--" + name: size for lane in LANE_IDS for name, size in ALL_BACKING_SIZES.items()
+}
 ROLE_UIDS = {
     "scratch": 65534,
     "candidate": 65534,
@@ -76,11 +85,35 @@ ROLE_UIDS = {
 
 if TYPE_CHECKING:
     from crewshal.durable import InstallationJournalGrowth
+    from crewshal.linux_payload_storage import RetainedPayloadStorage
+
+
+def _role_parts(role: str) -> tuple[str | None, str]:
+    lane, separator, base = role.partition("--")
+    if not separator:
+        lane, base = "", role
+    if (lane and lane not in LANE_IDS) or base not in ROLE_UIDS:
+        raise ValueError("fixed owned filesystem role required")
+    return lane or None, base
+
+
+def _image_geometry_name(name: str) -> str:
+    if name == "physical-domain.img":
+        return name
+    _, role = _role_parts(name.removesuffix(".img"))
+    return role + ".img"
+
+
+def _role_uid(role: str) -> int:
+    return ROLE_UIDS[_role_parts(role)[1]]
 
 
 def _view_path(root: str, role: str, suffix: str) -> str:
+    lane, role = _role_parts(role)
     if role not in ROLE_UIDS or suffix not in {"-lower", "-upper"}:
         raise ValueError("fixed owned filesystem view required")
+    if lane is not None:
+        root += "/lanes/" + lane
     target = (
         role
         if suffix == "-upper" and role in {"native-auth", "validator-candidate"}
@@ -340,6 +373,9 @@ def _copy_root_files(
         raise ValueError("copied root requires bounded 4096-byte allocation geometry")
     directories = {"/": destination}
     opened: list[int] = []
+    # Keep the existing directory allowance and count actual file allocation,
+    # including filesystem block-map metadata, against the original ceiling.
+    copied_allocated = len(inventory.root) * 4096
     try:
         for path, entry in sorted(
             inventory.root.items(), key=lambda item: (item[0].count("/"), item[0])
@@ -387,6 +423,8 @@ def _copy_root_files(
                                 raise ValueError("root copy incomplete")
                             position += written
                         offset += len(chunk)
+                        _discard_completed_pages(source, offset, sizes[path])
+                        _discard_completed_pages(descriptor, offset, sizes[path], sync_written=True)
                     if (
                         _metadata(before) != _metadata(os.fstat(source))
                         or sha.hexdigest() != entry.sha256
@@ -395,10 +433,8 @@ def _copy_root_files(
                     os.fchmod(descriptor, entry.mode)
                     os.fsync(descriptor)
                     copied = os.fstat(descriptor)
-                    if (
-                        copied.st_size != sizes[path]
-                        or copied.st_blocks * 512 > (sizes[path] + 4095) // 4096 * 4096
-                    ):
+                    copied_allocated += copied.st_blocks * 512
+                    if copied.st_size != sizes[path] or copied_allocated > ROOT_COPY_BYTES:
                         raise ValueError("root file exceeds original copy accounting")
                 finally:
                     os.close(descriptor)
@@ -455,10 +491,10 @@ class _CreationChannel:
     def transfer(self, name: str, descriptor: int) -> None:
         if self.child is None:
             raise ValueError("retained child transport unavailable")
-        deadline = self.production.deadline
+        deadline = min(self.production.deadline, self.production.jobs.original_job_deadline)
         # The following state changes are child's private fork copy only.
         remaining = deadline - time.monotonic()
-        if remaining <= 0 or not select.select([], [self.child], [], remaining)[1]:
+        if remaining <= 0 or not _wait_ready([], [self.child], [], remaining)[1]:
             raise ValueError("original creation deadline exhausted")
         message = name.encode("ascii")
         if self.child.sendmsg(
@@ -466,7 +502,7 @@ class _CreationChannel:
         ) != len(message):
             raise ValueError("actual FD custody transfer refused")
         remaining = deadline - time.monotonic()
-        if remaining <= 0 or not select.select([self.child], [], [], remaining)[0]:
+        if remaining <= 0 or not _wait_ready([self.child], [], [], remaining)[0]:
             raise ValueError("original custody acknowledgement deadline exhausted")
         if self.child.recv(2) != b"1":
             raise ValueError("actual parent custody acknowledgement refused")
@@ -508,7 +544,7 @@ class _CreationChannel:
         production.handles[name] = descriptor
         production._verify_transferred(name, descriptor)
         production.verify()
-        if not select.select([], [self.parent], [], 0)[1] or self.parent.send(b"1") != 1:
+        if not _wait_ready([], [self.parent], [], 0)[1] or self.parent.send(b"1") != 1:
             raise ValueError("bounded custody acknowledgement refused")
         self.position += 1
 
@@ -550,7 +586,12 @@ class OwnedBackingProduction:
         self.deadline = jobs.deadline
         self._deadline = jobs.deadline
         self.root = prepare_linux_envelope(reservation._configuration).owned_root
+        self._lane_contexts = getattr(reservation, "_lane_contexts", None)
         try:
+            if reservation._configuration.lane_id is not None:
+                raise ValueError(
+                    "storage production requires the original installation configuration"
+                )
             reservation.verify_operational()
             if getattr(reservation, "capacity_claim", None) is None:
                 raise ValueError("production requires its original durable capacity claim")
@@ -561,9 +602,7 @@ class OwnedBackingProduction:
                 or jobs.observer.spec.pid != os.getpid()
                 or jobs.execution_group is not reservation._batch_timer.setup
                 or jobs.batch_timer is not reservation._batch_timer
-                or not time.monotonic()
-                < jobs.deadline
-                <= min(time.monotonic() + 30, reservation.batch_started + 120)
+                or not time.monotonic() < jobs.deadline <= reservation.batch_started + 120
             ):
                 raise ValueError("production requires original bounded retained observer/job")
             if (directory_fd is None) == (installation_parent_fd is None):
@@ -585,6 +624,19 @@ class OwnedBackingProduction:
     def __reduce__(self) -> NoReturn:
         raise TypeError("live production cannot be copied or exported")
 
+    def _sizes(self, subset: str = "all") -> dict[str, int]:
+        source = {
+            "all": ALL_BACKING_SIZES,
+            "primary": BACKING_SIZES,
+            "auxiliary": ADDITIONAL_BACKING_SIZES,
+        }[subset]
+        contexts = getattr(self.reservation, "_lane_contexts", None)
+        if hasattr(self, "_lane_contexts") and contexts is not self._lane_contexts:
+            raise ValueError("original storage lane layout changed")
+        if contexts is None:
+            return dict(source)
+        return {lane + "--" + name: size for lane in LANE_IDS for name, size in source.items()}
+
     def _directory(self, descriptor: int) -> tuple[int, int]:
         info = os.fstat(descriptor)
         path = os.readlink(f"/proc/self/fd/{descriptor}")
@@ -603,10 +655,12 @@ class OwnedBackingProduction:
             not stat.S_ISDIR(info.st_mode)
             or info.st_uid != 0
             or info.st_gid != 0
-            or stat.S_IMODE(info.st_mode) != 0o700
+            or stat.S_IMODE(info.st_mode) not in {0o700, 0o755}
             or os.readlink(f"/proc/self/fd/{descriptor}") != str(PurePosixPath(self.root).parent)
         ):
-            raise ValueError("original root-owned private installation parent required")
+            raise ValueError(
+                "original root-owned installation parent without outside write access required"
+            )
         return info.st_dev, info.st_ino
 
     def prepare_directory(self) -> None:
@@ -1028,7 +1082,7 @@ class OwnedBackingProduction:
             # No potentially blocking ioctl in the observer. SET_FD in the
             # bounded child atomically refuses any attached/rundown loop.
             # GET_FREE/ENXIO never proves release or authorizes host cleanup.
-        elif name in ALL_BACKING_SIZES:
+        elif name in self._sizes():
             parent = self.handles["directory"]
             linked = os.stat(name, dir_fd=parent, follow_symlinks=False)
             if (
@@ -1041,6 +1095,23 @@ class OwnedBackingProduction:
                 or (info.st_dev, info.st_ino) == self.directory_identity
             ):
                 raise ValueError("new backing FD independent readback differs")
+        elif name.startswith("lane-root:"):
+            lane = name.removeprefix("lane-root:")
+            if getattr(self.reservation, "_lane_contexts", None) is None or lane not in (
+                "lanes",
+                *LANE_IDS,
+            ):
+                raise ValueError("original approved lane directory required")
+            path = self.root + "/lanes" + ("" if lane == "lanes" else "/" + lane)
+            if (
+                not stat.S_ISDIR(info.st_mode)
+                or info.st_uid != 0
+                or info.st_gid != 0
+                or stat.S_IMODE(info.st_mode) != 0o700
+                or info.st_dev != os.fstat(self.handles["root-parent"]).st_dev
+                or os.readlink(f"/proc/self/fd/{descriptor}") != path
+            ):
+                raise ValueError("actual original lane directory custody differs")
         elif name == "readonly-root":
             if (
                 not stat.S_ISDIR(info.st_mode)
@@ -1064,13 +1135,7 @@ class OwnedBackingProduction:
                 raise ValueError("actual readonly-root projection identity differs")
         elif name in {
             "mounted:" + role + suffix
-            for role in (
-                "scratch",
-                "candidate",
-                "native-auth",
-                "validator-scratch",
-                "validator-candidate",
-            )
+            for role in (image.removesuffix(".img") for image in self._sizes())
             for suffix in ("-lower", "-upper")
         }:
             target = name.removeprefix("mounted:")
@@ -1107,7 +1172,7 @@ class OwnedBackingProduction:
             self.channel.expected = (
                 [] if getattr(self, "_domain_complete", False) else ["namespace", "loop-control"]
             )
-            for name in BACKING_SIZES:
+            for name in self._sizes("primary"):
                 self.channel.expected.extend([name, "loop:" + name])
             reply = self.jobs.run(
                 self._create_child,
@@ -1128,7 +1193,7 @@ class OwnedBackingProduction:
             ):
                 raise ValueError("complete actual FD custody handoff unavailable")
             expected = bytearray()
-            for name, size in BACKING_SIZES.items():
+            for name, size in self._sizes("primary").items():
                 backing = os.fstat(self.handles[name])
                 if backing.st_size != size or backing.st_blocks * 512 > size:
                     raise ValueError("owned backing exceeds fixed logical/allocated size")
@@ -1153,7 +1218,7 @@ class OwnedBackingProduction:
             _namespace_is_private()
             control = os.open("/dev/loop-control", os.O_RDWR | os.O_CLOEXEC | os.O_NOFOLLOW)
             self.channel.transfer("loop-control", control)
-        self._create_images(BACKING_SIZES, self.channel, control)
+        self._create_images(self._sizes("primary"), self.channel, control)
         return b"partial-objects-created"
 
     def _create_images(
@@ -1203,6 +1268,21 @@ class OwnedBackingProduction:
             0,
         )
         fcntl.ioctl(loop, LOOP_SET_STATUS64, raw)
+        if name == "physical-domain.img":
+            # Keep the original loop and backing. Require effective direct I/O
+            # before formatting so this large domain cannot duplicate its cache.
+            fcntl.ioctl(loop, LOOP_SET_BLOCK_SIZE, 4096)
+            fcntl.ioctl(loop, LOOP_SET_DIRECT_IO, 1)
+            block = bytearray(4)
+            fcntl.ioctl(loop, BLKSSZGET, block, True)
+            if int.from_bytes(block, sys.byteorder) != 4096:
+                raise ValueError("original physical domain block size differs")
+            observed = bytearray(LOOP_INFO64.size)
+            fcntl.ioctl(loop, LOOP_GET_STATUS64, observed, True)
+            expected = list(LOOP_INFO64.unpack(raw))
+            expected[8] = LO_FLAGS_DIRECT_IO
+            if bytes(observed) != LOOP_INFO64.pack(*expected):
+                raise ValueError("original physical domain direct I/O readback differs")
 
     def create_auxiliary_backings(self) -> None:
         """One finite set for private auth, fresh validator and frozen candidate.
@@ -1224,7 +1304,7 @@ class OwnedBackingProduction:
             channel = self._auxiliary_channel
             channel.open()
             channel.expected = [
-                slot for name in ADDITIONAL_BACKING_SIZES for slot in (name, "loop:" + name)
+                slot for name in self._sizes("auxiliary") for slot in (name, "loop:" + name)
             ]
             assert channel.child is not None
             reply = self.jobs.run(
@@ -1238,11 +1318,10 @@ class OwnedBackingProduction:
                 transfer=channel,
             )
             self.verify()
-            if reply != b"auxiliary-backings-created" or channel.position != 6:
+            if reply != b"auxiliary-backings-created" or channel.position != len(channel.expected):
                 raise ValueError("auxiliary actual FD custody incomplete")
             expected = b"".join(
-                self._expected_loop(name, os.fstat(self.handles[name]))
-                for name in ALL_BACKING_SIZES
+                self._expected_loop(name, os.fstat(self.handles[name])) for name in self._sizes()
             )
             if self.jobs.run(self._readback, set(self.handles.values())) != expected:
                 raise ValueError("auxiliary owned loop/backing kernel identity differs")
@@ -1255,7 +1334,7 @@ class OwnedBackingProduction:
     def _create_auxiliary_child(self) -> bytes:
         _enter_owned_namespace(self.handles["namespace"])
         self._create_images(
-            ADDITIONAL_BACKING_SIZES, self._auxiliary_channel, self.handles["loop-control"]
+            self._sizes("auxiliary"), self._auxiliary_channel, self.handles["loop-control"]
         )
         return b"auxiliary-backings-created"
 
@@ -1456,7 +1535,9 @@ class OwnedBackingProduction:
                 raise ValueError("copied formatter bytes/identity differ")
             self._ext4_metadata: dict[str, bytes] = {}
             sizes = (
-                ALL_BACKING_SIZES if getattr(self, "_auxiliary_complete", False) else BACKING_SIZES
+                self._sizes()
+                if getattr(self, "_auxiliary_complete", False)
+                else self._sizes("primary")
             )
             for name in sizes:
                 self._format_name = name
@@ -1470,7 +1551,7 @@ class OwnedBackingProduction:
                 # status. Ext4's magic and declared byte geometry must fit the
                 # original image. Full feature/loader/mount qualification follows.
                 block = os.pread(self.handles[name], 1024, 1024)
-                _verify_ext4_growth(block, name, sizes[name])
+                _verify_ext4_growth(block, _image_geometry_name(name), sizes[name])
                 self._ext4_metadata[name] = block
             self.verify()
         except BaseException as error:
@@ -1508,7 +1589,7 @@ class OwnedBackingProduction:
                 "-b",
                 "4096",
                 "-N",
-                str(EXT4_INODE_LIMITS[name]),
+                str(EXT4_INODE_LIMITS[_image_geometry_name(name)]),
                 "/proc/self/fd/3",
             ],
             {"MKE2FS_CONFIG": "/dev/null"},
@@ -1529,7 +1610,9 @@ class OwnedBackingProduction:
             or self.failed
             or set(getattr(self, "_ext4_metadata", {}))
             != set(
-                ALL_BACKING_SIZES if getattr(self, "_auxiliary_complete", False) else BACKING_SIZES
+                self._sizes()
+                if getattr(self, "_auxiliary_complete", False)
+                else self._sizes("primary")
             )
         ):
             raise ValueError("encrypted mounts require original formatted backings; no retry")
@@ -1552,7 +1635,11 @@ class OwnedBackingProduction:
                 raise ValueError("mounts require original complete private key custody")
             keys._verify()
             self._mount_channel.open()
-            self._mount_channel.expected = ["mounted:" + target for target in self.mounts]
+            self._mount_channel.expected = (
+                ["lane-root:" + name for name in ("lanes", *LANE_IDS)]
+                if getattr(self.reservation, "_lane_contexts", None) is not None
+                else []
+            ) + ["mounted:" + target for target in self.mounts]
             assert self._mount_channel.child is not None
             reply = self.jobs.run(
                 self._mount_views_child,
@@ -1568,7 +1655,7 @@ class OwnedBackingProduction:
             self.verify()
             keys._verify()
             if reply != b"encrypted-views-mounted" or self._mount_channel.position != len(
-                self.mounts
+                self._mount_channel.expected
             ):
                 raise ValueError("encrypted view custody transfer incomplete")
             for role in roles:
@@ -1578,8 +1665,8 @@ class OwnedBackingProduction:
                     raise ValueError("retained encrypted view filesystem changed")
                 info = os.fstat(upper)
                 if (
-                    info.st_uid != ROLE_UIDS[role]
-                    or info.st_gid != ROLE_UIDS[role]
+                    info.st_uid != _role_uid(role)
+                    or info.st_gid != _role_uid(role)
                     or stat.S_IMODE(info.st_mode) != 0o700
                 ):
                     raise ValueError("actual encrypted role root permissions differ")
@@ -1591,6 +1678,22 @@ class OwnedBackingProduction:
     def _mount_views_child(self) -> bytes:
         _enter_owned_namespace(self.handles["namespace"])
         parent = self.handles["root-parent"]
+        lane_parents: dict[str, int] = {}
+        if getattr(self.reservation, "_lane_contexts", None) is not None:
+            os.mkdir("lanes", 0o700, dir_fd=parent)
+            container = os.open(
+                "lanes", os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW | os.O_CLOEXEC, dir_fd=parent
+            )
+            self._mount_channel.transfer("lane-root:lanes", container)
+            for lane in LANE_IDS:
+                os.mkdir(lane, 0o700, dir_fd=container)
+                descriptor = os.open(
+                    lane,
+                    os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW | os.O_CLOEXEC,
+                    dir_fd=container,
+                )
+                self._mount_channel.transfer("lane-root:" + lane, descriptor)
+                lane_parents[lane] = descriptor
         options = f"ecryptfs_sig={self._keys.signature},ecryptfs_cipher=aes,ecryptfs_key_bytes=32,ecryptfs_mount_auth_tok_only"
         for role in (
             name.removesuffix("-lower") for name in self.mounts if name.endswith("-lower")
@@ -1603,7 +1706,10 @@ class OwnedBackingProduction:
                 raise ValueError("owned loop changed before mount")
             for suffix in ("-lower", "-upper"):
                 target = PurePosixPath(_view_path(self.root, role, suffix)).name
-                os.mkdir(target, 0o700, dir_fd=parent)
+                role_lane = _role_parts(role)[0]
+                os.mkdir(
+                    target, 0o700, dir_fd=parent if role_lane is None else lane_parents[role_lane]
+                )
             lower_path, upper_path = self.mounts[role + "-lower"], self.mounts[role + "-upper"]
             _mount_owned(
                 f"/proc/self/fd/{loop}",
@@ -1613,16 +1719,16 @@ class OwnedBackingProduction:
             )
             lower = os.open(lower_path, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW | os.O_CLOEXEC)
             self._mount_channel.transfer("mounted:" + role + "-lower", lower)
-            if role == "native-auth":
+            if _role_parts(role)[1] == "native-auth":
                 _mount_owned(lower_path, upper_path, "ecryptfs", options, native_auth=True)
             else:
                 _mount_owned(lower_path, upper_path, "ecryptfs", options)
             upper = os.open(upper_path, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW | os.O_CLOEXEC)
             self._mount_channel.transfer("mounted:" + role + "-upper", upper)
-            if role == "scratch":
+            if _role_parts(role)[1] == "scratch":
                 os.mkdir("checkout", 0o700, dir_fd=upper)
                 os.chown("checkout", 65534, 65534, dir_fd=upper, follow_symlinks=False)
-            os.fchown(upper, ROLE_UIDS[role], ROLE_UIDS[role])
+            os.fchown(upper, _role_uid(role), _role_uid(role))
             os.fchmod(upper, 0o700)
         return b"encrypted-views-mounted"
 
@@ -1631,7 +1737,7 @@ class OwnedBackingProduction:
         if (
             self.failed
             or not hasattr(self, "_mount_channel")
-            or self._mount_channel.position != len(self.mounts)
+            or self._mount_channel.position != len(self._mount_channel.expected)
             or set(self.mounts)
             != {
                 role + suffix
@@ -1671,6 +1777,22 @@ class OwnedBackingProduction:
         owner.verify_retention(self.reservation)
         return owner
 
+    def retain_payload_storage(
+        self,
+        apparmor_namespace: int,
+        compiled_policy: bytes,
+        roles: tuple[tuple[str, str], ...],
+        aggregate_proc: int,
+        sysfs: int,
+        inode_cache: int,
+    ) -> "RetainedPayloadStorage":
+        """Retain exact reviewed inputs and current compatible enforcement."""
+        from crewshal.linux_payload_storage import RetainedPayloadStorage
+
+        return RetainedPayloadStorage.retain(
+            self, apparmor_namespace, compiled_policy, roles, aggregate_proc, sysfs, inode_cache
+        )
+
     def complete_installation(self) -> "EffectiveInstallation":
         """Consume preparation through actual original-object readback only.
 
@@ -1694,8 +1816,8 @@ class OwnedBackingProduction:
                 or not getattr(self, "_domain_complete", False)
                 or not getattr(self, "_auxiliary_complete", False)
                 or not hasattr(self, "projected_inventory")
-                or self._mount_channel.position != 10
-                or set(self._ext4_metadata) != set(ALL_BACKING_SIZES)
+                or self._mount_channel.position != len(self._mount_channel.expected)
+                or set(self._ext4_metadata) != set(self._sizes())
                 or type(self.reservation._storage_owner) is not LinuxPhysicalOwner
             ):
                 raise ValueError("actual complete original installation custody unavailable")
@@ -1721,6 +1843,7 @@ class OwnedBackingProduction:
             )
             proof._jobs = proof.jobs
             proof._readback_jobs = proof.physical.retention_readback_jobs
+            proof._compiler_storage = getattr(self.reservation, "_compiler_storage", None)
             if proof._readback_jobs is None:
                 raise ValueError("original bounded storage readback jobs unavailable")
             # This smaller inherited limit covers all later original setup,
@@ -1756,11 +1879,11 @@ class OwnedBackingProduction:
             backing.st_ino,
             0,
             0,
-            PHYSICAL_DOMAIN_BYTES if name == "physical-domain.img" else ALL_BACKING_SIZES[name],
+            PHYSICAL_DOMAIN_BYTES if name == "physical-domain.img" else self._sizes()[name],
             os.minor(os.fstat(self.handles["loop:" + name]).st_rdev),
             0,
             0,
-            0,
+            LO_FLAGS_DIRECT_IO if name == "physical-domain.img" else 0,
             bytes(64),
             bytes(64),
             bytes(32),
@@ -1771,16 +1894,18 @@ class OwnedBackingProduction:
     def _readback(self) -> bytes:
         """Potentially blocking kernel observations only in the bounded job."""
         result = bytearray()
-        for name, size in ALL_BACKING_SIZES.items():
+        for name, size in self._sizes().items():
             if name not in self.handles:
-                if name in BACKING_SIZES:
+                if name in self._sizes("primary"):
                     raise ValueError("original owned backing custody missing")
                 continue
             backing = os.fstat(self.handles[name])
             if backing.st_size != size or backing.st_blocks * 512 > size:
                 raise ValueError("owned backing exceeds fixed logical/allocated size")
             if name in getattr(self, "_ext4_metadata", {}):
-                _verify_ext4_growth(os.pread(self.handles[name], 1024, 1024), name, size)
+                _verify_ext4_growth(
+                    os.pread(self.handles[name], 1024, 1024), _image_geometry_name(name), size
+                )
             loop = self.handles["loop:" + name]
             raw = bytearray(LOOP_INFO64.size)
             fcntl.ioctl(loop, LOOP_GET_STATUS64, raw, True)
@@ -1816,6 +1941,7 @@ class EffectiveInstallation:
     _input_metadata: dict[str, tuple[int, ...]]
     _jobs: BoundedStorageJobs
     _readback_jobs: BoundedStorageJobs | None
+    _compiler_storage: object | None
 
     def __init__(self) -> None:
         raise ValueError("installation proof requires original producer readback")
@@ -1823,26 +1949,94 @@ class EffectiveInstallation:
     def __reduce__(self) -> NoReturn:
         raise TypeError("actual installation custody cannot be copied or exported")
 
-    def require_effective_payload_growth(self) -> NoReturn:
-        """Keep admission closed at the observed stock-runtime incompatibility.
+    def require_effective_payload_growth(self) -> None:
+        """Require original compatible enforcement and independent readback.
 
-        Retained volume/journal arithmetic is necessary but cannot establish a
-        bound for anonymous shmem and additional payload namespace filesystems.
-        The current shared-mmap denial also denies the pinned app-server's WAL
-        index. No compatible independently retained enforcement is implemented.
-        This refusal must be replaced by actual compatible readback, never a
-        caller flag, parsed policy, successful command or imported journal row.
+        The frozen review binds the actual kernel and vendor source builds.
+        Current policy exports and readonly installed files must still match.
+        Shared anonymous mapping and zero-device exclusions remain separate
+        actual trace-stop checks. No imported observation can replace custody.
         """
-        self.verify()
-        error = ValueError(
-            "effective payload storage admission closed: MAP_SHARED denial conflicts "
-            "with stock app-server SQLite WAL; compatible shmem/namespace growth "
-            "enforcement unavailable"
-        )
-        self.failed = True
-        self.production.failed = True
-        self.reservation._retain_installation_refusal(error)
-        raise error
+        from crewshal.linux_payload_storage import RetainedPayloadStorage
+
+        try:
+            self.verify()
+            storage = getattr(self.production, "_payload_storage", None)
+            if (
+                type(storage) is not RetainedPayloadStorage
+                or storage.production is not self.production
+            ):
+                raise ValueError(
+                    "effective payload storage admission closed: MAP_SHARED denial conflicts "
+                    "with stock app-server SQLite WAL without retained compatible enforcement"
+                )
+            keep = {
+                *self._handles.values(),
+                *self._inputs.values(),
+                *self.physical.handles.values(),
+                *self.physical._backing_handles.values(),
+                self.production.projected_inventory.descriptor,
+                storage.policy.namespace,
+                storage.policy.raw_export,
+                storage.kernel.aggregate,
+                storage.kernel.proc,
+                storage.kernel.sysfs,
+                storage.kernel.inode_cache,
+                *(value.descriptor for value in storage.files.values()),
+            }
+            compiler = getattr(self.reservation, "_compiler_storage", None)
+            if compiler is not None:
+                from crewshal.linux_operational import RetainedCompilerStorage
+
+                if (
+                    type(compiler) is not RetainedCompilerStorage
+                    or compiler.reservation is not self.reservation
+                ):
+                    raise ValueError("original compiler storage custody differs")
+                keep.update(compiler._handles.values())
+            raw = self.jobs.run(self._payload_growth_readback_child, keep)
+            self.verify_custody()
+            actual = json.loads(raw)
+            if (
+                actual["audit"] != record_digest(storage.audit)
+                or actual["kernel"] != storage.kernel.original.kernel_btf_sha256
+                or actual["policy"] != storage.audit.policy_binary_sha256
+                or not 0 < actual["logical_bound"] <= 8589934592
+                or not 0 < actual["allocated_bound"] <= 8589934592
+            ):
+                raise ValueError("independent compatible payload growth readback differs")
+            self.payload_storage_readback = raw
+        except BaseException as error:
+            self.failed = True
+            self.production.failed = True
+            self.reservation._retain_installation_refusal(error)
+            raise
+
+    def _payload_growth_readback_child(self) -> bytes:
+        from crewshal.linux_payload_storage import RetainedPayloadStorage
+
+        storage = getattr(self.production, "_payload_storage", None)
+        if type(storage) is not RetainedPayloadStorage or storage.production is not self.production:
+            raise ValueError("original compatible enforcement producer differs")
+        actual = storage.check()
+        base = json.loads(self._readback_child())
+        # Original fixed temporary metadata allowance already includes the
+        # 128 *262144 exception reserve. Do not add tasks or a fresh allowance.
+        logical = base["logical_bound"] + actual.conditional_scaffold_logical_bytes
+        allocated = base["allocated_bound"] + actual.original_memory_max
+        if logical > 8589934592 or allocated > 8589934592:
+            raise ValueError("compatible scaffold growth exceeds original disk ceiling")
+        return json.dumps(
+            {
+                "audit": record_digest(storage.audit),
+                "kernel": actual.kernel_btf_sha256,
+                "policy": storage.audit.policy_binary_sha256,
+                "logical_bound": logical,
+                "allocated_bound": allocated,
+            },
+            sort_keys=True,
+            separators=(",", ":"),
+        ).encode()
 
     def verify_custody(self) -> None:
         try:
@@ -1885,6 +2079,7 @@ class EffectiveInstallation:
             or self.jobs.deadline != reservation.batch_started + 570
             or self.physical.retention_readback_jobs is not self._readback_jobs
             or type(reservation.capacity_claim) is not LiveStorageInstallationClaim
+            or getattr(reservation, "_compiler_storage", None) is not self._compiler_storage
             or not self.growth.payload_bound
         ):
             raise ValueError("original actual installation custody differs")
@@ -1914,26 +2109,51 @@ class EffectiveInstallation:
 
     def verify_registered_job(self, jobs: BoundedStorageJobs) -> None:
         from crewshal.linux_freeze import OriginalVolumeFreeze
+        from crewshal.linux_network import OwnedProviderNetworks
 
-        frozen = getattr(self, "_freeze", None)
-        if type(frozen) is OriginalVolumeFreeze and jobs is frozen.jobs:
-            frozen.verify_registered_job(jobs)
+        networks = getattr(self.reservation, "_provider_networks", None)
+        if type(networks) is OwnedProviderNetworks and jobs in (
+            networks.jobs,
+            networks.readback_jobs,
+        ):
+            self.verify_custody()
+            networks.verify_registered_job(jobs)
             return
+
+        scopes = (self, *getattr(self.reservation, "_lane_contexts", ()))
+        for scope in scopes:
+            frozen = getattr(scope, "_freeze", None)
+            if type(frozen) is OriginalVolumeFreeze and jobs is frozen.jobs:
+                frozen.verify_registered_job(jobs)
+                return
         if jobs is not self._jobs and jobs is not self._readback_jobs:
             raise ValueError("installed work requires original bounded readback job")
         self.verify_custody()
 
     def verify_registered_action(self, jobs: BoundedStorageJobs, action: object) -> None:
         from crewshal.linux_freeze import OriginalVolumeFreeze
+        from crewshal.linux_network import OwnedProviderNetworks
 
-        frozen = getattr(self, "_freeze", None)
-        if type(frozen) is OriginalVolumeFreeze and jobs is frozen.jobs:
-            frozen.verify_registered_action(jobs, action)
+        networks = getattr(self.reservation, "_provider_networks", None)
+        if type(networks) is OwnedProviderNetworks and jobs in (
+            networks.jobs,
+            networks.readback_jobs,
+        ):
+            self.verify_custody()
+            networks.verify_registered_action(jobs, action)
             return
+
+        scopes = (self, *getattr(self.reservation, "_lane_contexts", ()))
+        for scope in scopes:
+            frozen = getattr(scope, "_freeze", None)
+            if type(frozen) is OriginalVolumeFreeze and jobs is frozen.jobs:
+                frozen.verify_registered_action(jobs, action)
+                return
         # No caller flag can turn an arbitrary action into post-installation
         # preparation. The only retained jobs are effect-free exact source methods.
         allowed = (
             (self._jobs, self, EffectiveInstallation._readback_child),
+            (self._jobs, self, EffectiveInstallation._payload_growth_readback_child),
             (self._readback_jobs, self.physical, LinuxPhysicalOwner._readback_bytes),
         )
         if not any(
@@ -1961,18 +2181,19 @@ class EffectiveInstallation:
             self.physical.initial is None
             or physical.namespace != self.physical.initial.namespace
             or physical.keyring_state != "present"
-            or set(physical.backing) != set(ALL_BACKING_SIZES)
-            or set(physical.loops) != set(ALL_BACKING_SIZES)
+            or set(physical.backing) != set(owner._sizes())
+            or set(physical.loops) != set(owner._sizes())
             or set(physical.mounts) != set(owner.mounts)
         ):
             raise ValueError("actual complete installation kernel readback differs")
         role_geometry = {}
-        for role, uid in ROLE_UIDS.items():
+        for name, size in owner._sizes().items():
+            role = name.removesuffix(".img")
+            uid = _role_uid(role)
             lower = owner.handles["mounted:" + role + "-lower"]
             upper = owner.handles["mounted:" + role + "-upper"]
             info = os.fstat(upper)
             actual = os.fstatvfs(lower)
-            size = ALL_BACKING_SIZES[role + ".img"]
             if (
                 _filesystem_magic(lower) != 0xEF53
                 or _filesystem_magic(upper) != 0xF15F
@@ -1982,7 +2203,7 @@ class EffectiveInstallation:
                 or actual.f_bsize != 4096
                 or actual.f_frsize != 4096
                 or not 0 < actual.f_blocks * 4096 <= size
-                or not 11 <= actual.f_files <= EXT4_INODE_LIMITS[role + ".img"]
+                or not 11 <= actual.f_files <= EXT4_INODE_LIMITS[_image_geometry_name(name)]
                 or actual.f_files * (131072 + 65536) > size
             ):
                 raise ValueError("actual role filesystem growth bound differs")
@@ -1997,14 +2218,31 @@ class EffectiveInstallation:
             + 2 * ROOT_COPY_BYTES
             + PHYSICAL_DOMAIN_BYTES
             + EXT4_INODE_LIMITS["physical-domain.img"] * (131072 + 65536)
-            + 3 * sum(ALL_BACKING_SIZES.values())
-            + 16777216
+            + 3 * sum(owner._sizes().values())
+            + (3 if getattr(owner.reservation, "_lane_contexts", None) is not None else 1)
+            * 16777216
             + 1073741824
-            + 16777216
+            + (3 if getattr(owner.reservation, "_lane_contexts", None) is not None else 1)
+            * 16777216
             + 128 * 262144
         )
         if bound > 8589934592:
             raise ValueError("complete retained growth exceeds original disk ceiling")
+        logical_bound = allocated_bound = bound
+        compiler = getattr(getattr(self, "reservation", None), "_compiler_storage", None)
+        if compiler is not None:
+            from crewshal.linux_operational import RetainedCompilerStorage
+
+            if (
+                type(compiler) is not RetainedCompilerStorage
+                or compiler.reservation is not self.reservation
+            ):
+                raise ValueError("original compiler storage custody differs")
+            compiler.verify()
+            logical_bound += compiler.logical_bytes
+            allocated_bound += compiler.allocated_bytes
+            if max(logical_bound, allocated_bound) > 8589934592:
+                raise ValueError("retained compiler growth exceeds original disk ceiling")
         return json.dumps(
             {
                 "domain_loop": domain.hex(),
@@ -2012,8 +2250,8 @@ class EffectiveInstallation:
                 "physical": physical.model_dump(),
                 "role_geometry": role_geometry,
                 "root_flags": geometry.f_flag,
-                "logical_bound": bound,
-                "allocated_bound": bound,
+                "logical_bound": logical_bound,
+                "allocated_bound": allocated_bound,
             },
             sort_keys=True,
             separators=(",", ":"),
@@ -2038,6 +2276,16 @@ class EffectiveInstallation:
             *self.physical._backing_handles.values(),
             self.production.projected_inventory.descriptor,
         }
+        compiler = getattr(self.reservation, "_compiler_storage", None)
+        if compiler is not None:
+            from crewshal.linux_operational import RetainedCompilerStorage
+
+            if (
+                type(compiler) is not RetainedCompilerStorage
+                or compiler.reservation is not self.reservation
+            ):
+                raise ValueError("original compiler storage custody differs")
+            keep.update(compiler._handles.values())
         raw = self.jobs.run(self._readback_child, keep)
         self.verify_custody()
         actual = json.loads(raw)
@@ -2046,7 +2294,7 @@ class EffectiveInstallation:
             or actual["role_loops"]
             != b"".join(
                 self.production._expected_loop(name, os.fstat(self._handles[name]))
-                for name in ALL_BACKING_SIZES
+                for name in self.production._sizes()
             ).hex()
             or actual["logical_bound"] > 8589934592
             or actual["allocated_bound"] > 8589934592

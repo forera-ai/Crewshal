@@ -12,7 +12,6 @@ import os
 import platform
 from pathlib import Path
 import re
-import select
 import signal
 import stat
 import struct
@@ -21,6 +20,7 @@ import sys
 import time
 from typing import Callable, Literal, Protocol
 
+from crewshal.admission import _wait_ready
 from crewshal.admission import (
     AdmittedNative,
     NativeAdmissionSpec,
@@ -35,6 +35,12 @@ from crewshal.admission import (
 from crewshal.contracts import Digest, record_digest
 from crewshal.dispatch import DispatchConfiguration
 from crewshal.linux_envelope import prepare_linux_envelope
+from crewshal.linux_payload_storage import (
+    PROFILE_NAMES,
+    RetainedAppArmorExport,
+    _require_filesystem,
+    PROCFS_MAGIC,
+)
 from crewshal.model import Contract, digest
 from crewshal.qualification_bundle import _Reader
 from crewshal.supervisor import CgroupIdentity, OwnedCgroup
@@ -49,13 +55,14 @@ def payload_storage_filter(machine: str) -> bytes:
     """Exact native-ABI kernel program required at the retained exec stop.
 
     This is control data, not enforcement. Compat/x32 calls cannot select a
-    different syscall namespace. Shared mappings (including dev/zero and
-    MAP_SHARED|MAP_ANONYMOUS) cannot create unlinked sparse shmem inodes.
-    Private mappings, bounded file writes and stdio remain available.
+    different syscall namespace. Shared anonymous mappings cannot create sparse
+    shmem inodes. The installed AppArmor role separately denies zero devices.
+    Ordinary shared file mappings remain available for SQLite WAL.
     """
+    numbers: tuple[int, ...]
     if machine == "x86_64":
         arch = 0xC000003E
-        numbers = (319, 29, 30, 265, 188, 189, 190, 259, 250, 248, 249)
+        numbers = (319, 29, 30, 265, 188, 189, 190, 259, 133, 250, 248, 249)
     elif machine == "aarch64":
         arch = 0xC00000B7
         numbers = (279, 194, 196, 37, 5, 6, 7, 33, 219, 217, 218)
@@ -73,8 +80,9 @@ def payload_storage_filter(machine: str) -> bytes:
         instructions.extend(((0x15, 0, 1, number), (0x06, 0, 0, 0x50001)))
     instructions.extend(
         (
-            (0x15, 0, 5, 9 if machine == "x86_64" else 222),
+            (0x15, 0, 6, 9 if machine == "x86_64" else 222),
             (0x20, 0, 0, 40),  # seccomp_data.args[3], flags low word
+            (0x45, 0, 4, 0x20),  # MAP_ANONYMOUS
             (0x54, 0, 0, 3),  # MAP_TYPE
             (0x15, 1, 0, 1),  # MAP_SHARED
             (0x15, 0, 1, 3),  # MAP_SHARED_VALIDATE
@@ -249,6 +257,8 @@ class TraceDriver(Protocol):
 
     def verify_storage_filter(self, pid: int) -> None: ...
 
+    def verify_storage_policy(self, proc: int, role: Literal["native", "validator"]) -> None: ...
+
     def queue_stop(self, pidfd: int) -> None: ...
 
     def verify_stop_delivery(self, pid: int, sender: int) -> None: ...
@@ -259,12 +269,22 @@ class TraceDriver(Protocol):
 class LinuxTrace:
     """64-bit Linux ptrace/pidfd source; constructing it grants no startup gate."""
 
-    def __init__(self) -> None:
+    policy: RetainedAppArmorExport | None
+
+    def __init__(self, *, policy: RetainedAppArmorExport | None = None) -> None:
         if sys.platform != "linux" or ctypes.sizeof(ctypes.c_void_p) != 8:
             raise ValueError("64-bit Linux bootstrap tracing unavailable")
         self.libc: ctypes.CDLL = ctypes.CDLL(None, use_errno=True)
         self.libc.ptrace.argtypes = [ctypes.c_uint, ctypes.c_int, ctypes.c_void_p, ctypes.c_void_p]
         self.libc.ptrace.restype = ctypes.c_long
+        self.policy = policy
+
+    def verify_storage_policy(self, proc: int, role: Literal["native", "validator"]) -> None:
+        if type(self.policy) is not RetainedAppArmorExport:
+            raise ValueError("original loaded AppArmor policy custody unavailable")
+        _require_filesystem(proc, PROCFS_MAGIC)
+        label = PROFILE_NAMES[0] if role == "native" else PROFILE_NAMES[3]
+        self.policy.check_process(proc, label)
 
     def _call(self, request: int, pid: int, data: ctypes.c_void_p) -> None:
         if self.libc.ptrace(request, pid, None, data) == -1:
@@ -364,7 +384,7 @@ def _traced(proc: RetainedProc, child: subprocess.Popen[bytes]) -> None:
     if (current.st_dev, current.st_ino) != (
         proc.directory.st_dev,
         proc.directory.st_ino,
-    ) or select.select([proc.pidfd], [], [], 0)[0]:
+    ) or _wait_ready([proc.pidfd], [], [], 0)[0]:
         raise ValueError("retained bootstrap proc/pidfd changed or exited")
     if child.pid != spec.pid or spec.parent_pid != os.getpid():
         raise ValueError("bootstrap must retain its own direct Popen child")
@@ -482,12 +502,15 @@ def stage_retained_bootstrap(
         finally:
             helper_proc.close()
         check()
+        driver.verify_storage_policy(proc.descriptor, "native")
+        driver.verify_storage_filter(child.pid)
         driver.options(child.pid)
         driver.continue_exec(child.pid)  # Only trusted helper code may run here.
         wait_stop(exec_status)
         if driver.exec_pid(child.pid) != child.pid:
             raise ValueError("bootstrap exec changed retained thread/PID identity")
         _traced(proc, child)
+        driver.verify_storage_policy(proc.descriptor, "native")
         driver.verify_storage_filter(child.pid)
         proc.read_configuration(configuration)
         proc.verify_pipes(child.stdin.fileno(), child.stdout.fileno(), child.stderr.fileno())

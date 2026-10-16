@@ -51,6 +51,8 @@ class Phase2DOriginalVolumeFreeze(unittest.TestCase):
             production=self.production,
             reservation=SimpleNamespace(_retain_installation_refusal=Mock()),
         )
+        self.owner.lifetime = SimpleNamespace(lane_context=None)
+        self.owner.projection_root = str(self.owned)
         self.sequence = []
         self.transferred = []
         self.owner.transfer = SimpleNamespace(transfer=self.transfer)
@@ -144,6 +146,41 @@ class Phase2DOriginalVolumeFreeze(unittest.TestCase):
         self.assertEqual((self.source / "README.md").read_bytes(), b"bounded original bytes\n")
         self.assertEqual(os.fstat(self.owner.volume).st_mode & 0o777, 0o700)
         self.assertGreaterEqual(self.owner._verify_terminal_kernel.call_count, 2)
+
+    def test_lane_freeze_job_keeps_exact_lane_projection_parent_fd(self):
+        lane = self.owned / "lanes" / "live"
+        lane.mkdir(parents=True)
+        selected = self.open_directory(lane)
+        self.production.handles["lane-root:live"] = selected
+        self.owner.lifetime.lane_context = SimpleNamespace(lane_id="live")
+        self.owner.lifetime.worker = SimpleNamespace(descriptor=self.owner.source)
+        self.owner.lifetime.supervisor = SimpleNamespace(descriptor=self.owner.source)
+        self.owner.parent.descriptor = self.owner.parent.pidfd = self.owner.source
+        self.owner.native = self.owner.watchdog = SimpleNamespace(
+            descriptor=self.owner.source, pidfd=self.owner.source
+        )
+        self.owner.host_proc = self.owner.source
+        self.owner.verify_custody = Mock()
+        captured = []
+
+        def bounded_job(action, keep, **_):
+            captured.append(keep)
+            raise ValueError("synthetic finite job refusal")
+
+        self.owner.jobs.run.side_effect = bounded_job
+        with (
+            patch(
+                "crewshal.linux_freeze._FreezeTransfer",
+                return_value=SimpleNamespace(
+                    stage=0, child=SimpleNamespace(fileno=lambda: self.owner.source)
+                ),
+            ),
+            self.assertRaisesRegex(FreezeRefusal, "finite job refusal"),
+        ):
+            self.owner.freeze()
+        self.assertIn(selected, captured[0])
+        self.assertNotIn(self.production.handles["root-parent"], captured[0])
+        self.assertTrue(self.owner.failed)
 
     def test_custody_precedes_file_write_and_readonly_remount(self):
         with self.synthetic_kernel():
@@ -311,9 +348,7 @@ class Phase2DOriginalVolumeFreeze(unittest.TestCase):
         self.owner.host_proc = self.owner.source
         stack.enter_context(patch("crewshal.linux_freeze._role_controls"))
         stack.enter_context(patch("crewshal.linux_freeze._read", return_value=b"Pid:\t-1\n"))
-        stack.enter_context(
-            patch("crewshal.linux_freeze.select.select", return_value=([19], [], []))
-        )
+        stack.enter_context(patch("crewshal.linux_freeze._wait_ready", return_value=([19], [], [])))
         return stack
 
     def test_terminal_requires_native_watchdog_and_only_original_parent(self):
@@ -326,7 +361,7 @@ class Phase2DOriginalVolumeFreeze(unittest.TestCase):
     def test_unknown_watchdog_terminal_refuses_even_with_empty_worker(self):
         with (
             self.terminal_fixture(),
-            patch("crewshal.linux_freeze.select.select", return_value=([], [], [])),
+            patch("crewshal.linux_freeze._wait_ready", return_value=([], [], [])),
             self.assertRaisesRegex(ValueError, "watchdog terminal"),
         ):
             self.owner._verify_terminal_kernel()

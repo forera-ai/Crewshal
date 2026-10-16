@@ -8,7 +8,10 @@ import hashlib
 import os
 from pathlib import PurePosixPath
 import stat
-from typing import Literal
+import sys
+from types import MappingProxyType
+from typing import Literal, Mapping, TypeAlias
+from weakref import WeakKeyDictionary
 
 from pydantic import Field
 
@@ -179,6 +182,42 @@ def _metadata(info: os.stat_result) -> tuple[int, ...]:
     )
 
 
+def _discard_completed_pages(
+    descriptor: int, consumed: int, size: int, *, sync_written: bool = False
+) -> None:
+    """Advise completed file pages after bounded scans and copies.
+
+    The hint does not close a handle or establish available capacity.
+    Actual role memory and refusal counters remain mandatory readback.
+    """
+    window = 4_194_304
+    if sys.platform != "linux" or size <= 0 or consumed <= 0:
+        return
+    if consumed > size:
+        raise ValueError("file cache checkpoint exceeds the original file bound")
+    remainder = consumed % window
+    if remainder == 0:
+        start, length = consumed - window, window
+    elif consumed == size:
+        start, length = consumed - remainder, remainder
+    else:
+        return
+    page = os.sysconf("SC_PAGE_SIZE")
+    if page <= 0 or window % page:
+        raise ValueError("file cache checkpoint requires known page geometry")
+    length = (length + page - 1) // page * page
+    if sync_written:
+        os.fdatasync(descriptor)
+    os.posix_fadvise(descriptor, start, length, os.POSIX_FADV_DONTNEED)
+
+
+HashContext: TypeAlias = tuple[int, tuple[int, int], str, tuple[str, str | None]]
+VerifiedHashes: TypeAlias = Mapping[str, tuple[tuple[int, ...], str]]
+_READONLY_HASHES: WeakKeyDictionary[
+    "RetainedParentInventory", tuple[HashContext, VerifiedHashes]
+] = WeakKeyDictionary()
+
+
 class RetainedParentInventory:
     """Read-only pinned copied root. Caller owns its mount and qualification.
 
@@ -188,11 +227,16 @@ class RetainedParentInventory:
     still require independent Linux qualification.
     """
 
+    _clean_mount: tuple[str, str | None]
+
     def __init__(self, descriptor: int, inventory: TrustedParentInventory):
         self.inventory = audit_parent_inventory(inventory)
         self.descriptor = os.dup(descriptor)
         info = os.fstat(self.descriptor)
         self.identity = (info.st_dev, info.st_ino)
+        self._inventory_payload = self.inventory.model_dump_json()
+        self._verified_hashes: VerifiedHashes = {}
+        self._hash_context: HashContext | None = None
         if not stat.S_ISDIR(info.st_mode):
             self.close()
             raise ValueError("trusted inventory requires retained root directory")
@@ -201,6 +245,45 @@ class RetainedParentInventory:
         if self.descriptor >= 0:
             os.close(self.descriptor)
             self.descriptor = -1
+        _READONLY_HASHES.pop(self, None)
+
+    def verify_clean_current_mount(self, path: str) -> None:
+        """Require a clean readonly source mount in the current namespace."""
+        from crewshal.admission import _fields, _read
+
+        _path(path)
+        root = os.open("/proc", os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW | os.O_CLOEXEC)
+        try:
+            mount_id = _fields(_read(root, f"self/fdinfo/{self.descriptor}")).get("mnt_id")
+            rows = _read(root, "self/mountinfo").decode("ascii").splitlines()
+            found = []
+            for row in rows:
+                before, separator, after = row.partition(" - ")
+                fields = before.split()
+                if not separator or len(fields) < 6 or len(after.split()) != 3:
+                    raise ValueError("installed parent root mount inventory malformed")
+                if fields[4].startswith(path + "/"):
+                    raise ValueError("installed parent copied-root source has an overmount")
+                if fields[0] == mount_id:
+                    found.append(fields)
+            info = os.fstat(self.descriptor)
+            device = f"{os.major(info.st_dev)}:{os.minor(info.st_dev)}"
+            if (
+                len(found) != 1
+                or found[0][4] != path
+                or found[0][2] != device
+                or "ro" not in found[0][5].split(",")
+                or not os.fstatvfs(self.descriptor).f_flag & os.ST_RDONLY
+                or (info.st_dev, info.st_ino) != self.identity
+                or os.readlink(f"/proc/self/fd/{self.descriptor}") != path
+            ):
+                raise ValueError("installed parent copied-root current mount differs")
+            previous = getattr(self, "_clean_mount", (path, mount_id))
+            if previous != (path, mount_id):
+                raise ValueError("installed parent copied-root mount identity changed")
+            self._clean_mount = (path, mount_id)
+        finally:
+            os.close(root)
 
     def verify_task_root(self, proc_descriptor: int) -> None:
         """Compare kernel task root to retained copied-root identity, not PID text."""
@@ -210,8 +293,25 @@ class RetainedParentInventory:
 
     def verify(self) -> None:
         info = os.fstat(self.descriptor)
-        if (info.st_dev, info.st_ino) != self.identity:
+        if (
+            info.st_dev,
+            info.st_ino,
+        ) != self.identity or self.inventory.model_dump_json() != self._inventory_payload:
             raise ValueError("retained inventory root identity changed")
+        immutable = hasattr(self, "_clean_mount")
+        context = None
+        if immutable:
+            self.verify_clean_current_mount(self._clean_mount[0])
+            context = (self.descriptor, self.identity, self._inventory_payload, self._clean_mount)
+        registered = _READONLY_HASHES.get(self)
+        if (self._hash_context is not None or registered is not None) and (
+            registered is None
+            or context != self._hash_context
+            or context != registered[0]
+            or self._verified_hashes is not registered[1]
+        ):
+            raise ValueError("original readonly inventory hash context changed")
+        fresh_hashes: dict[str, tuple[tuple[int, ...], str]] = {}
         seen: dict[str, RootEntry] = {}
         total = 0
 
@@ -252,18 +352,35 @@ class RetainedParentInventory:
                         if stat.S_ISDIR(opened.st_mode):
                             visit(handle, child, depth + 1)
                         elif stat.S_ISREG(opened.st_mode) and opened.st_nlink == 1:
-                            sha = hashlib.sha256()
-                            while chunk := os.read(handle, 65536):
-                                total += len(chunk)
-                                if total > 1073741824:
-                                    raise ValueError(
-                                        "copied root exceeds prepared storage reservation"
-                                    )
-                                sha.update(chunk)
+                            total += opened.st_size
+                            if total > 1073741824:
+                                raise ValueError("copied root exceeds prepared storage reservation")
+                            metadata = _metadata(opened)
+                            previous = self._verified_hashes.get(child) if immutable else None
+                            if immutable and not os.fstatvfs(handle).f_flag & os.ST_RDONLY:
+                                raise ValueError("original inventoried file mount became writable")
+                            if previous is not None:
+                                if previous[0] != metadata:
+                                    raise ValueError("original readonly inventory file changed")
+                                file_digest = previous[1]
+                            else:
+                                sha = hashlib.sha256()
+                                actual_size = 0
+                                while chunk := os.read(handle, 65536):
+                                    actual_size += len(chunk)
+                                    if actual_size > opened.st_size:
+                                        raise ValueError("inventoried file grew during readback")
+                                    sha.update(chunk)
+                                    _discard_completed_pages(handle, actual_size, opened.st_size)
+                                if actual_size != opened.st_size:
+                                    raise ValueError("inventoried file ended during readback")
+                                file_digest = sha.hexdigest()
+                            if immutable:
+                                fresh_hashes[child] = (metadata, file_digest)
                             seen[child] = RootEntry(
                                 kind="file",
                                 mode=stat.S_IMODE(opened.st_mode),
-                                sha256=sha.hexdigest(),
+                                sha256=file_digest,
                             )
                         else:
                             raise ValueError(
@@ -283,3 +400,16 @@ class RetainedParentInventory:
         visit(self.descriptor, "/", 0)
         if seen != self.inventory.root:
             raise ValueError("copied root contents differ from exact trusted inventory")
+        if immutable:
+            self.verify_clean_current_mount(self._clean_mount[0])
+            if context != (
+                self.descriptor,
+                self.identity,
+                self._inventory_payload,
+                self._clean_mount,
+            ):
+                raise ValueError("original readonly inventory mount changed during readback")
+            self._verified_hashes = MappingProxyType(fresh_hashes)
+            self._hash_context = context
+            assert context is not None
+            _READONLY_HASHES[self] = (context, self._verified_hashes)

@@ -12,7 +12,6 @@ import math
 import os
 from pathlib import PurePosixPath
 import re
-import select
 import signal
 import stat
 import subprocess
@@ -21,6 +20,7 @@ from typing import Annotated, Callable, Literal, NoReturn, Self
 
 from pydantic import Field, model_validator
 
+from crewshal.admission import _wait_ready
 from crewshal.admission import (
     AdmittedNative,
     NamespaceIdentity,
@@ -41,13 +41,19 @@ from crewshal.linux_bootstrap import (
     TraceDriver,
     audit_linux_bootstrap,
 )
-from crewshal.linux_inventory import RetainedParentInventory
+from crewshal.linux_inventory import (
+    RetainedParentInventory,
+    RootEntry,
+    TrustedParentInventory,
+    audit_parent_inventory,
+)
 from crewshal.linux_parent import (
     ObservedWatchdog,
     RetainedTrustedTask,
     TrustedTaskSpec,
     _attach,
     _proc_root,
+    _move_self,
 )
 from crewshal.linux_production import _filesystem_magic
 from crewshal.linux_setup import (
@@ -69,6 +75,53 @@ VALIDATOR_UID = 65531
 VALIDATOR_CWD = "/candidate/owned"
 
 
+class ValidatorToolchain(Contract):
+    schema_version: Literal[1] = 1
+    argv: list[str]
+    files: dict[str, RootEntry]
+
+
+def validator_toolchain(inventory: TrustedParentInventory, argv: list[str]) -> ValidatorToolchain:
+    """Bind fixed check, Python, loader, libraries, and standard library source."""
+    inventory = audit_parent_inventory(inventory)
+    if argv != ["/bin/python3", "-I", "-B", "/input/check_fixture.py", "/candidate/owned"]:
+        raise ValueError("validator toolchain requires the exact fixed check argv")
+    names = {argv[0], argv[3]}
+    names.update(
+        name for name in inventory.root if name.startswith(("/lib/", "/lib64/", "/usr/lib/"))
+    )
+    if any(
+        inventory.root.get(name, RootEntry(kind="directory", mode=0)).kind != "file"
+        for name in (argv[0], argv[3])
+    ):
+        raise ValueError("validator executable and check source must be inventoried real files")
+    return ValidatorToolchain(
+        argv=list(argv), files={name: inventory.root[name] for name in sorted(names)}
+    )
+
+
+def validator_toolchain_digest(
+    inventory: TrustedParentInventory, validator_argv: list[str]
+) -> Digest:
+    return record_digest(validator_toolchain(inventory, validator_argv))
+
+
+def verify_validator_toolchain_images(images: object, validator_argv: list[str]) -> None:
+    """Read original stopped mappings and match the declared immutable closure."""
+    from crewshal.linux_installed import RetainedInstalledImages
+
+    if (
+        type(images) is not RetainedInstalledImages
+        or type(images.task) is not RetainedValidatorProc
+    ):
+        raise ValueError("validator toolchain requires its original mapped-image owner")
+    images.verify()
+    toolchain = validator_toolchain(images.root.inventory, validator_argv)
+    if any(mapping[0] not in toolchain.files for mapping in images.mappings.values()):
+        raise ValueError("actual validator mapping is outside the fixed toolchain closure")
+    images.verify()
+
+
 def _identity(descriptor: int) -> tuple[int, int]:
     info = os.fstat(descriptor)
     return info.st_dev, info.st_ino
@@ -86,6 +139,7 @@ class ValidatorAdmissionSpec(Contract):
     aggregate: CgroupIdentity
     namespaces: dict[str, NamespaceIdentity]
     executable_sha256: Digest
+    pid_for_children: NamespaceIdentity | None = None
     uid: Literal[65531] = 65531
     gid: Literal[65531] = 65531
     execution_allowed: Literal[False] = False
@@ -96,7 +150,13 @@ class ValidatorAdmissionSpec(Contract):
         if (
             PurePosixPath(self.validator.relative_path).parent
             != PurePosixPath(self.aggregate.relative_path)
-            or PurePosixPath(self.validator.relative_path).name != "validator"
+            or PurePosixPath(self.validator.relative_path).name
+            not in {
+                "validator",
+                "validator--qualification-1",
+                "validator--qualification-2",
+                "validator--live",
+            }
             or self.validator.device != self.aggregate.device
             or self.validator.inode == self.aggregate.inode
             or self.pid == self.parent_pid
@@ -146,14 +206,14 @@ class RetainedValidatorProc:
 
     def verify_exited(self) -> None:
         self.verify_handles()
-        if not select.select([self.pidfd], [], [], 0)[0]:
+        if not _wait_ready([self.pidfd], [], [], 0)[0]:
             raise ValueError("retained validator pidfd exit unobserved")
         self.verify_handles()
 
     def verify_state(self, *, traced: bool) -> None:
         self.verify_handles()
         spec = self.spec
-        if select.select([self.pidfd], [], [], 0)[0] or _stat_identity(
+        if _wait_ready([self.pidfd], [], [], 0)[0] or _stat_identity(
             _read(self.descriptor, "stat")
         ) != (spec.pid, "t" if traced else "T", spec.parent_pid, spec.start_ticks):
             raise ValueError("validator PID/start/parent/stopped state differs")
@@ -319,6 +379,7 @@ class ValidatorAttempt:
     resumed: bool
     watchdog_started: bool
     recovery_attempted: bool
+    child_started: bool
     child: subprocess.Popen[bytes] | None
     proc: RetainedValidatorProc | None
     watchdog: OwnedWatchdogLifetime
@@ -467,114 +528,153 @@ class ValidatorAttempt:
 
     def _verify_view(self, proc: RetainedValidatorProc) -> None:
         self.verify()
-        if any(
-            proc.spec.namespaces[name] == self.parent.spec.namespaces[name]
-            or proc.spec.namespaces[name] == self.controls.outer_namespaces[name]
-            for name in ("mnt", "net")
-        ):
-            raise ValueError("validator mount/network namespace is not distinct")
+        verify_validator_private_view(
+            proc,
+            self.parent,
+            self.controls.outer_namespaces,
+            self.inventory,
+            self.frozen_fd,
+            self.scratch_fd,
+        )
+
+
+def verify_validator_private_view(
+    proc: RetainedValidatorProc,
+    parent: RetainedTrustedTask,
+    outer_namespaces: dict[str, NamespaceIdentity],
+    inventory: RetainedParentInventory,
+    frozen_fd: int,
+    scratch_fd: int,
+) -> None:
+    """Read actual namespace, root, mount, device and network controls."""
+    proc.verify_handles()
+    if proc.spec.pid_for_children is None:
+        raise ValueError("validator distinct PID-for-children namespace is missing")
+    if any(
+        proc.spec.namespaces[name] == parent.spec.namespaces[name]
+        or proc.spec.namespaces[name] == outer_namespaces[name]
+        for name in ("mnt", "net")
+    ):
+        raise ValueError("validator mount/network namespace is not distinct")
+    if (
+        proc.spec.namespaces["pid"] == outer_namespaces["pid"]
+        or proc.spec.namespaces["user"] != parent.spec.namespaces["user"]
+    ):
+        raise ValueError("validator PID/user namespace identity differs")
+    if proc.spec.pid_for_children is not None:
+        observed = os.stat("ns/pid_for_children", dir_fd=proc.descriptor)
+        parent_children = os.stat("ns/pid_for_children", dir_fd=parent.descriptor)
+        identity = NamespaceIdentity(device=observed.st_dev, inode=observed.st_ino)
         if (
-            proc.spec.namespaces["pid"] == self.controls.outer_namespaces["pid"]
-            or proc.spec.namespaces["user"] != self.parent.spec.namespaces["user"]
+            identity != proc.spec.pid_for_children
+            or identity == proc.spec.namespaces["pid"]
+            or (observed.st_dev, observed.st_ino)
+            == (parent_children.st_dev, parent_children.st_ino)
         ):
-            raise ValueError("validator PID/user namespace identity differs")
-        root = os.open("root", os.O_RDONLY | os.O_DIRECTORY | os.O_CLOEXEC, dir_fd=proc.descriptor)
-        try:
-            if (
-                _identity(root) != self.inventory.identity
-                or not os.fstatvfs(root).f_flag & os.ST_RDONLY
-            ):
-                raise ValueError("validator actual root differs from readonly runtime")
-            for path, descriptor, readonly in (
-                ("candidate/owned", self.frozen_fd, True),
-                ("scratch", self.scratch_fd, False),
-            ):
-                opened = os.open(
-                    path, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW | os.O_CLOEXEC, dir_fd=root
-                )
-                try:
-                    if (
-                        _identity(opened) != _identity(descriptor)
-                        or bool(os.fstatvfs(opened).f_flag & os.ST_RDONLY) != readonly
-                    ):
-                        raise ValueError("validator actual candidate/scratch mount differs")
-                finally:
-                    os.close(opened)
-            devices = os.open(
-                "dev", os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW | os.O_CLOEXEC, dir_fd=root
+            raise ValueError("validator PID-for-children namespace is not distinct")
+    root = os.open("root", os.O_RDONLY | os.O_DIRECTORY | os.O_CLOEXEC, dir_fd=proc.descriptor)
+    try:
+        if _identity(root) != inventory.identity or not os.fstatvfs(root).f_flag & os.ST_RDONLY:
+            raise ValueError("validator actual root differs from readonly runtime")
+        for path, descriptor, readonly in (
+            ("candidate/owned", frozen_fd, True),
+            ("scratch", scratch_fd, False),
+        ):
+            opened = os.open(
+                path, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW | os.O_CLOEXEC, dir_fd=root
             )
             try:
-                authority = os.fstat(devices)
                 if (
-                    authority.st_uid != 0
-                    or authority.st_gid != 0
-                    or authority.st_mode & 0o022
-                    or set(os.listdir(devices)) != {"null", "shm"}
+                    _identity(opened) != _identity(descriptor)
+                    or bool(os.fstatvfs(opened).f_flag & os.ST_RDONLY) != readonly
                 ):
-                    raise ValueError("validator device inventory or write authority differs")
-                null = os.stat("null", dir_fd=devices, follow_symlinks=False)
-                if not stat.S_ISCHR(null.st_mode) or null.st_rdev != os.makedev(1, 3):
-                    raise ValueError("validator device must be the actual null device")
-                shm = os.open(
-                    "shm",
-                    os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW | os.O_CLOEXEC,
-                    dir_fd=devices,
-                )
-                original_shm = -1
-                try:
-                    original_shm = os.open(
-                        "dev/shm",
-                        os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW | os.O_CLOEXEC,
-                        dir_fd=self.inventory.descriptor,
-                    )
-                    if (
-                        _identity(shm) != _identity(original_shm)
-                        or not os.fstatvfs(shm).f_flag & os.ST_RDONLY
-                        or os.listdir(shm)
-                    ):
-                        raise ValueError(
-                            "validator shm differs from original empty readonly inventory"
-                        )
-                finally:
-                    if original_shm >= 0:
-                        os.close(original_shm)
-                    os.close(shm)
+                    raise ValueError("validator actual candidate/scratch mount differs")
             finally:
-                os.close(devices)
+                os.close(opened)
+        devices = os.open(
+            "dev", os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW | os.O_CLOEXEC, dir_fd=root
+        )
+        try:
+            authority = os.fstat(devices)
+            if (
+                authority.st_uid != 0
+                or authority.st_gid != 0
+                or authority.st_mode & 0o022
+                or set(os.listdir(devices)) != {"null", "shm"}
+            ):
+                raise ValueError("validator device inventory or write authority differs")
+            null = os.stat("null", dir_fd=devices, follow_symlinks=False)
+            if not stat.S_ISCHR(null.st_mode) or null.st_rdev != os.makedev(1, 3):
+                raise ValueError("validator device must be the actual null device")
+            shm = os.open(
+                "shm",
+                os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW | os.O_CLOEXEC,
+                dir_fd=devices,
+            )
+            original_shm = -1
+            try:
+                original_shm = os.open(
+                    "dev/shm",
+                    os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW | os.O_CLOEXEC,
+                    dir_fd=inventory.descriptor,
+                )
+                if (
+                    _identity(shm) != _identity(original_shm)
+                    or not os.fstatvfs(shm).f_flag & os.ST_RDONLY
+                    or os.listdir(shm)
+                ):
+                    raise ValueError("validator shm differs from original empty readonly inventory")
+            finally:
+                if original_shm >= 0:
+                    os.close(original_shm)
+                os.close(shm)
         finally:
-            os.close(root)
-        required = {"/": "ro", VALIDATOR_CWD: "ro", "/scratch": "rw", "/dev/shm": "ro"}
-        allowed = {
-            *required,
-            "/proc",
-            "/dev",
-            "/proc/sys",
-            "/proc/sysrq-trigger",
-            "/proc/irq",
-            "/proc/bus",
-            "/proc/kcore",
-        }
-        found: dict[str, list[str]] = {}
-        for row in _read(proc.descriptor, "mountinfo").decode("ascii").splitlines():
-            before, separator, after = row.partition(" - ")
-            fields = before.split()
-            if not separator or len(fields) < 6 or len(after.split()) != 3:
-                raise ValueError("validator actual mount inventory malformed")
-            path = fields[4]
-            if path not in allowed or path in found:
-                raise ValueError("validator has an extra/covered mount or authentication view")
-            found[path] = fields[5].split(",")
-            if path not in {"/proc", "/dev", "/scratch"} and "ro" not in found[path]:
-                raise ValueError("validator extra storage is writable")
-        if any(mode not in found.get(path, []) for path, mode in required.items()):
-            raise ValueError("validator readonly/candidate/scratch/shm mount controls differ")
-        network_devices = _read(proc.descriptor, "net/dev").decode("ascii").splitlines()
-        interfaces = [line.split(":", 1)[0].strip() for line in network_devices if ":" in line]
-        if interfaces != ["lo"] or len(_read(proc.descriptor, "net/route").splitlines()) != 1:
-            raise ValueError("validator network has non-loopback interfaces or routes")
-        for row in _read(proc.descriptor, "net/if_inet6").decode("ascii").splitlines():
-            if len(row.split()) != 6 or row.split()[-1] != "lo":
-                raise ValueError("validator IPv6 interface differs")
+            os.close(devices)
+    finally:
+        os.close(root)
+    required = {
+        "/": "ro",
+        VALIDATOR_CWD: "ro",
+        "/scratch": "rw",
+        "/dev/shm": "ro",
+        "/dev": "ro",
+        "/dev/null": "ro",
+    }
+    allowed = {
+        *required,
+        "/proc",
+        "/dev",
+        "/proc/sys",
+        "/proc/sysrq-trigger",
+        "/proc/irq",
+        "/proc/bus",
+        "/proc/kcore",
+    }
+    found: dict[str, list[str]] = {}
+    for row in _read(proc.descriptor, "mountinfo").decode("ascii").splitlines():
+        before, separator, after = row.partition(" - ")
+        fields = before.split()
+        if not separator or len(fields) < 6 or len(after.split()) != 3:
+            raise ValueError("validator actual mount inventory malformed")
+        path = fields[4]
+        if path not in allowed or path in found:
+            raise ValueError("validator has an extra/covered mount or authentication view")
+        found[path] = fields[5].split(",")
+        if path == "/proc" and (
+            after.split()[0] != "proc" or "hidepid=2" not in after.split()[2].split(",")
+        ):
+            raise ValueError("validator private proc access controls differ")
+        if path not in {"/proc", "/dev", "/scratch"} and "ro" not in found[path]:
+            raise ValueError("validator extra storage is writable")
+    if any(mode not in found.get(path, []) for path, mode in required.items()):
+        raise ValueError("validator readonly/candidate/scratch/shm mount controls differ")
+    network_devices = _read(proc.descriptor, "net/dev").decode("ascii").splitlines()
+    interfaces = [line.split(":", 1)[0].strip() for line in network_devices if ":" in line]
+    if interfaces != ["lo"] or len(_read(proc.descriptor, "net/route").splitlines()) != 1:
+        raise ValueError("validator network has non-loopback interfaces or routes")
+    for row in _read(proc.descriptor, "net/if_inet6").decode("ascii").splitlines():
+        if len(row.split()) != 6 or row.split()[-1] != "lo":
+            raise ValueError("validator IPv6 interface differs")
 
 
 def prepare_validator_attempt(
@@ -622,6 +722,7 @@ def prepare_validator_attempt(
     attempt.watchdog_started = False
     attempt.admitted = None
     attempt.recovery_attempted = False
+    attempt.child_started = False
     attempt.child = None
     attempt.proc = None
     attempt.watchdog = OwnedWatchdogLifetime(parent, validator, supervisor)
@@ -766,7 +867,7 @@ def create_validator_watchdog(
                 or lifetime.process.poll() is not None
             ):
                 raise ValueError("validator watchdog startup exhausted original attempt bound")
-            if not select.select([ready_read], [], [], 0.001)[0]:
+            if not _wait_ready([ready_read], [], [], 0.001)[0]:
                 continue
             chunk = os.read(ready_read, 81)
             acknowledgement.extend(chunk)
@@ -1026,6 +1127,8 @@ def stage_retained_validator(
         executed = (EXEC_EVENT << 16) | (int(signal.SIGTRAP) << 8) | 0x7F
         wait_stop(stop)
         proc.verify_state(traced=True)
+        driver.verify_storage_policy(proc.descriptor, "validator")
+        driver.verify_storage_filter(child.pid)
         driver.verify_stop_delivery(child.pid, child.pid)
         sample = attempt.validator.sample()
         if not sample.populated or sample.direct_pids != [child.pid]:
@@ -1050,6 +1153,7 @@ def stage_retained_validator(
         if driver.exec_pid(child.pid) != child.pid:
             raise ValueError("validator exec changed retained PID/thread")
         proc.verify_state(traced=True)
+        driver.verify_storage_policy(proc.descriptor, "validator")
         driver.verify_storage_filter(child.pid)
         proc.read_configuration(attempt.configuration, attempt.configuration.validator_argv)
         proc.verify_pipes(child)
@@ -1092,4 +1196,122 @@ def stage_retained_validator(
         attempt.failed = True
         # No new timer origin and no ordinary retry. Caller must retain the
         # original lifetime and perform its sole bounded terminal recovery.
+        raise ValidatorRefusal(str(error), attempt) from error
+
+
+def create_validator_child(
+    attempt: ValidatorAttempt,
+    preparation: BootstrapPreparation,
+    driver: TraceDriver,
+    *,
+    cancelled: Callable[[], bool],
+) -> AdmittedValidator:
+    """Create one direct helper with retained private-view FDs and its original timer."""
+    if getattr(attempt, "child_started", False):
+        raise ValidatorRefusal("validator child creation consumed; no retry", attempt)
+    attempt.child_started = True
+    try:
+        attempt.verify(watchdog=True)
+        root_path = getattr(attempt.inventory, "_clean_mount", None)
+        if root_path is None:
+            raise ValueError("validator requires original clean current copied-root mount")
+        attempt.inventory.verify_clean_current_mount(root_path[0])
+        if attempt.validator.sample().populated:
+            raise ValueError("validator role is not empty before direct child birth")
+        command = attempt.configuration.validator_argv
+        entry = attempt.inventory.inventory.root.get(command[0])
+        if entry is None or entry.kind != "file" or entry.sha256 is None:
+            raise ValueError("validator executable is absent from installed root inventory")
+        null = os.open("/dev/null", os.O_RDWR | os.O_NOFOLLOW | os.O_CLOEXEC)
+        attempt.descriptors.append(null)
+        shm = os.open(
+            "dev/shm",
+            os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW | os.O_CLOEXEC,
+            dir_fd=attempt.inventory.descriptor,
+        )
+        attempt.descriptors.append(shm)
+        handles = (attempt.inventory.descriptor, attempt.frozen_fd, attempt.scratch_fd, null, shm)
+        try:
+            _move_self(attempt.validator)
+            attempt.parent.verify(attempt.validator.identity)
+            if attempt.validator.sample().direct_pids != [attempt.parent.spec.pid]:
+                raise ValueError("validator birth requires sole original parent")
+            observed = attempt.watchdog.observed
+            if observed is None:
+                raise ValueError("validator original armed watchdog is missing")
+            observed.check(attempt.validator, attempt.configuration)
+            if cancelled():
+                raise ValueError("validator creation cancelled")
+            attempt.child = subprocess.Popen(
+                [
+                    "/bin/crewshal-bootstrap",
+                    "--validator-view-fds",
+                    *(str(fd) for fd in handles),
+                    "--",
+                    *command,
+                ],
+                pass_fds=handles,
+                stdin=subprocess.PIPE,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                env={},
+                close_fds=True,
+                bufsize=0,
+            )
+        finally:
+            _move_self(attempt.supervisor)
+            attempt.parent.verify(attempt.supervisor.identity)
+        child = attempt.child
+        root = _proc_root(attempt.parent.spec.boot_id)
+        descriptor = pidfd = -1
+        try:
+            descriptor, pidfd = _attach(root, child.pid)
+            attempt.descriptors.extend((descriptor, pidfd))
+            while True:
+                attempt.verify(watchdog=True)
+                pid, state, parent_pid, ticks = _stat_identity(_read(descriptor, "stat"))
+                if (
+                    (pid, parent_pid) != (child.pid, attempt.parent.spec.pid)
+                    or _wait_ready([pidfd], [], [], 0)[0]
+                    or state not in ("R", "S", "t")
+                    or cancelled()
+                ):
+                    raise ValueError("validator direct helper failed before its initial stop")
+                if state == "t":
+                    break
+                time.sleep(0.001)
+            namespaces = {}
+            for name in ("mnt", "net", "pid", "user", "pid_for_children"):
+                info = os.stat("ns/" + name, dir_fd=descriptor)
+                namespaces[name] = NamespaceIdentity(device=info.st_dev, inode=info.st_ino)
+            proc = RetainedValidatorProc(
+                descriptor,
+                pidfd,
+                ValidatorAdmissionSpec(
+                    configuration=attempt._configuration,
+                    pid=pid,
+                    parent_pid=parent_pid,
+                    start_ticks=ticks,
+                    boot_id=attempt.parent.spec.boot_id,
+                    validator=attempt.validator.identity,
+                    aggregate=attempt.aggregate.identity,
+                    namespaces={
+                        name: identity
+                        for name, identity in namespaces.items()
+                        if name != "pid_for_children"
+                    },
+                    pid_for_children=namespaces["pid_for_children"],
+                    executable_sha256=entry.sha256,
+                ),
+            )
+            attempt.proc = proc
+        finally:
+            os.close(root)
+        attempt.inventory.verify_clean_current_mount(root_path[0])
+        return stage_retained_validator(
+            attempt, child, proc, preparation, driver, cancelled=cancelled
+        )
+    except BaseException as error:
+        attempt.failed = True
+        # The original watchdog remains armed. Its sole recovery stays with the caller.
         raise ValidatorRefusal(str(error), attempt) from error

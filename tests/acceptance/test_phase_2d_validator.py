@@ -24,6 +24,7 @@ from crewshal.linux_validator import (
     ValidatorRefusal,
     attach_traced_validator,
     create_validator_watchdog,
+    create_validator_child,
     prepare_validator_attempt,
     stage_retained_validator,
 )
@@ -39,6 +40,7 @@ class ValidatorTrace:
         self.events = [bootstrap_fixtures.STOP, bootstrap_fixtures.EXEC, bootstrap_fixtures.STOP]
         self.exec_identity = test.fixture.child.pid
         self.filter_available = True
+        self.policy_available = True
 
     def wait(self, pid):
         event = self.events.pop(0)
@@ -64,6 +66,12 @@ class ValidatorTrace:
         self.calls.append("kernel_filter")
         if not self.filter_available:
             raise ValueError("synthetic kernel filter unavailable")
+
+    def verify_storage_policy(self, descriptor, role):
+        self.calls.append("kernel_policy")
+        self.test.assertEqual(role, "validator")
+        if not self.policy_available:
+            raise ValueError("synthetic loaded policy unavailable")
 
     def queue_stop(self, pidfd):
         self.calls.append("queue_stop")
@@ -127,6 +135,118 @@ class Phase2DValidator(unittest.TestCase):
         attempt.verify_view = Mock()
         self.driver = ValidatorTrace(self)
 
+    def validator_child_fixture(self):
+        f, attempt = self.fixture, self.attempt
+        directory = f.root / "validator-view-root"
+        (directory / "dev" / "shm").mkdir(parents=True)
+        root = os.open(directory, os.O_RDONLY | os.O_DIRECTORY)
+        self.addCleanup(os.close, root)
+        attempt.inventory = SimpleNamespace(
+            descriptor=root,
+            inventory=SimpleNamespace(
+                root={
+                    f.configuration.validator_argv[0]: SimpleNamespace(
+                        kind="file", sha256=self.spec.executable_sha256
+                    )
+                }
+            ),
+        )
+        attempt.inventory._clean_mount = ("/synthetic-root", "1")
+        attempt.inventory.verify_clean_current_mount = Mock()
+        attempt.descriptors = []
+        attempt.frozen_fd = attempt.scratch_fd = root
+        attempt.supervisor = SimpleNamespace(identity=object())
+        attempt.parent.spec.boot_id = self.spec.boot_id
+        attempt.watchdog.observed.check = Mock()
+        attempt.child_started = False
+        info = os.stat("ns/pid", dir_fd=f.proc.descriptor)
+        (f.proc_path / "ns" / "pid_for_children").symlink_to(f.proc_path / "ns" / "pid")
+        initial = self.validator.sample().model_copy(update={"populated": False, "direct_pids": []})
+        self.validator.sample = Mock(
+            side_effect=[initial, initial.model_copy(update={"direct_pids": [os.getpid()]})]
+        )
+
+        def cleanup():
+            if attempt.proc is not None:
+                attempt.proc.close()
+            for fd in attempt.descriptors:
+                os.close(fd)
+
+        self.addCleanup(cleanup)
+        return info
+
+    def test_direct_validator_creation_passes_only_original_view_fds_without_preexec(self):
+        self.validator_child_fixture()
+        attempt, f = self.attempt, self.fixture
+        events = []
+        expected = object()
+        with (
+            patch(
+                "crewshal.linux_validator._move_self",
+                side_effect=lambda group: events.append(group),
+            ),
+            patch("crewshal.linux_validator.subprocess.Popen", return_value=f.child) as start,
+            patch(
+                "crewshal.linux_validator._proc_root",
+                side_effect=lambda boot: os.dup(f.proc.descriptor),
+            ),
+            patch(
+                "crewshal.linux_validator._attach",
+                side_effect=lambda root, pid: (
+                    os.dup(f.proc.descriptor),
+                    os.dup(f.pid_reader.fileno()),
+                ),
+            ),
+            patch("crewshal.linux_validator._wait_ready", return_value=([], [], [])),
+            patch(
+                "crewshal.linux_validator.stage_retained_validator", return_value=expected
+            ) as stage,
+        ):
+            self.assertIs(
+                create_validator_child(
+                    attempt, self.bootstrap.preparation, self.driver, cancelled=lambda: False
+                ),
+                expected,
+            )
+        self.assertEqual(events, [attempt.validator, attempt.supervisor])
+        self.assertEqual(
+            start.call_args.args[0][:2], ["/bin/crewshal-bootstrap", "--validator-view-fds"]
+        )
+        self.assertEqual(len(start.call_args.kwargs["pass_fds"]), 5)
+        self.assertNotIn("preexec_fn", start.call_args.kwargs)
+        self.assertEqual(start.call_args.kwargs["env"], {})
+        self.assertEqual(stage.call_args.args[1], f.child)
+        self.assertIsNotNone(attempt.proc.spec.pid_for_children)
+        with self.assertRaisesRegex(ValidatorRefusal, "consumed"):
+            create_validator_child(
+                attempt, self.bootstrap.preparation, self.driver, cancelled=lambda: False
+            )
+
+    def test_direct_validator_failed_birth_restores_parent_and_retains_view_fds(self):
+        self.validator_child_fixture()
+        attempt = self.attempt
+        events = []
+        with (
+            patch(
+                "crewshal.linux_validator._move_self",
+                side_effect=lambda group: events.append(group),
+            ),
+            patch(
+                "crewshal.linux_validator.subprocess.Popen",
+                side_effect=OSError("synthetic birth failure"),
+            ),
+        ):
+            with self.assertRaisesRegex(ValidatorRefusal, "birth failure"):
+                create_validator_child(
+                    attempt, self.bootstrap.preparation, self.driver, cancelled=lambda: False
+                )
+        self.assertEqual(events, [attempt.validator, attempt.supervisor])
+        self.assertTrue(attempt.failed)
+        self.assertTrue(attempt.child_started)
+        self.assertEqual(len(attempt.descriptors), 2)
+        for fd in attempt.descriptors:
+            os.fstat(fd)
+
     def argv(self, argv):
         self.fixture.write("cmdline", b"\0".join(x.encode() for x in argv) + b"\0")
 
@@ -162,6 +282,11 @@ class Phase2DValidator(unittest.TestCase):
 
     def test_exec_filter_precedes_queue_detach_and_exact_direct_child_is_retained(self):
         admitted = self.stage()
+        self.assertEqual(self.driver.calls.count("kernel_policy"), 2)
+        self.assertEqual(self.driver.calls.count("kernel_filter"), 2)
+        self.assertLess(
+            self.driver.calls.index("kernel_policy"), self.driver.calls.index("options")
+        )
         self.attempt.watchdog.observed.claim.assert_called_once_with(
             self.validator, self.fixture.configuration
         )
@@ -191,6 +316,16 @@ class Phase2DValidator(unittest.TestCase):
         os.fstat(self.proc.descriptor)
         os.fstat(self.proc.pidfd)
 
+    def test_missing_loaded_policy_refuses_before_initial_helper_resume(self):
+        self.driver.policy_available = False
+        with self.assertRaisesRegex(ValidatorRefusal, "loaded policy unavailable"):
+            self.stage()
+        self.assertTrue(self.attempt.failed)
+        self.assertNotIn("options", self.driver.calls)
+        self.assertNotIn("continue", self.driver.calls)
+        os.fstat(self.proc.descriptor)
+        os.fstat(self.proc.pidfd)
+
     def test_wrapper_or_arbitrary_pid_cannot_replace_original_direct_child(self):
         with self.assertRaisesRegex(ValidatorRefusal, "ownership differs"):
             self.stage(child=SimpleNamespace(pid=self.spec.pid))
@@ -201,7 +336,7 @@ class Phase2DValidator(unittest.TestCase):
         self.driver.exec_identity += 1
         with self.assertRaisesRegex(ValidatorRefusal, "PID/thread"):
             self.stage()
-        self.assertNotIn("kernel_filter", self.driver.calls)
+        self.assertEqual(self.driver.calls.count("kernel_filter"), 1)
         self.assertNotIn("detach", self.driver.calls)
 
     def test_extra_inherited_fd_refuses_before_helper_continue(self):
@@ -570,6 +705,18 @@ class Phase2DValidator(unittest.TestCase):
         }
         attempt.parent.spec.namespaces = {**unrelated, "user": self.spec.namespaces["user"]}
         attempt.controls = SimpleNamespace(outer_namespaces=unrelated)
+        parent_proc = self.fixture.root / "validator-parent-proc"
+        (parent_proc / "ns").mkdir(parents=True)
+        (parent_proc / "ns" / "pid_for_children").symlink_to(self.fixture.proc_path / "ns" / "pid")
+        attempt.parent.descriptor = os.open(parent_proc, os.O_RDONLY | os.O_DIRECTORY)
+        self.addCleanup(os.close, attempt.parent.descriptor)
+        children = self.fixture.proc_path / "ns" / "pid_for_children"
+        children.write_bytes(b"synthetic distinct namespace")
+        observed = children.stat()
+        self.proc.spec.pid_for_children = NamespaceIdentity(
+            device=observed.st_dev, inode=observed.st_ino
+        )
+        self.proc._spec_digest = record_digest(self.proc.spec)
         self.fixture.write(
             "mountinfo",
             "\n".join(
@@ -580,8 +727,9 @@ class Phase2DValidator(unittest.TestCase):
                         ("/candidate/owned", "ro"),
                         ("/scratch", "rw"),
                         ("/dev/shm", "ro"),
-                        ("/dev", "rw"),
-                        ("/proc", "rw"),
+                        ("/dev", "ro"),
+                        ("/dev/null", "ro"),
+                        ("/proc", "rw,hidepid=2"),
                     ),
                     1,
                 )

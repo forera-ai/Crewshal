@@ -1,5 +1,16 @@
 # Crewshal project instructions
 
+## Human communication — owner rule, 2026-10-11
+
+Use [ASD-STE100](https://www.asd-ste100.org/) for all human-readable explanations and decision requests in this project.
+Apply this rule to chat replies, progress reports, documentation, handoffs, and approval requests.
+Use complete sentences and the active voice. Give each word one meaning.
+Keep procedural sentences at 20 words or fewer. Keep descriptive sentences at 25 words or fewer.
+Use approved general words and consistent project technical names.
+Keep code, commands, paths, identifiers, and exact diagnostic text unchanged.
+This rule takes priority over conflicting compression and style skills.
+Preserve dated records. Apply this rule to new text and text changed for current work.
+
 ## Repository identity — owner update, 2026-10-08
 
 Crewshal is owned and maintained by [forera-ai](https://github.com/forera-ai). The canonical repository is [forera-ai/Crewshal](https://github.com/forera-ai/Crewshal); this checkout uses `origin` at `https://github.com/forera-ai/Crewshal.git` for fetch and push. Use this identity for future repository links and publishing. Earlier `prooshani/Crewshal` references in dated records describe historical ownership and are not current remote instructions. The transfer does not change execution/spend authority. Following the owner’s October 8 copyright correction, the current project notice is `Copyright 2026 forera.ai and contributors.` This supersedes the earlier preservation instruction for the current notice; dated records remain historical.

@@ -12,7 +12,6 @@ import hashlib
 import math
 import os
 from pathlib import PurePosixPath
-import select
 import socket
 import re
 import resource
@@ -22,7 +21,9 @@ import subprocess
 import sys
 import time
 from typing import TYPE_CHECKING, Literal
+from copy import deepcopy
 
+from crewshal.admission import _wait_ready
 from crewshal.admission import (
     AdmittedNative,
     NamespaceIdentity,
@@ -60,6 +61,9 @@ CAPABILITIES = "00000000002801c0"
 CONTROL_BOUND = 262144
 
 if TYPE_CHECKING:
+    from crewshal.linux_early_timer import RetainedEarlyTimerRuntime
+    from crewshal.linux_payload_storage import RetainedAppArmorExport
+    from crewshal.linux_network import OwnedProviderNetworks
     from crewshal.linux_bridge import StoppedNativeBridge
     from crewshal.linux_production import EffectiveInstallation
     from crewshal.durable import (
@@ -91,6 +95,7 @@ class OwnedStorageReservation:
 
     _batch_timer: "OwnedBatchTimer"
     _installation: "EffectiveInstallation"
+    _lane_contexts: tuple["RetainedLaneSetup", ...]
 
     def __init__(
         self,
@@ -125,6 +130,7 @@ class OwnedStorageReservation:
         self._owners = (observer, observer_group, aggregate)
         self._configuration = configuration
         self._configuration_digest = record_digest(configuration)
+        self._charge_configuration_digest = self._configuration_digest
         self._observer_digest = record_digest(observer.spec)
         self._group_digest = record_digest(observer_group.identity)
         self._aggregate_digest = record_digest(aggregate.identity)
@@ -341,13 +347,21 @@ class OwnedStorageReservation:
                     or jobs._creation_child is not None
                 ):
                     raise ValueError("idle retention has unknown or changed operational job")
-        lifetime = self._setup_lifetime
-        if lifetime is not None and (
-            lifetime.storage_reservation is not self
-            or lifetime.observer_group is not self.observer_group
-            or lifetime.aggregate is not self.aggregate
-            or lifetime.wrapper is None
-            or lifetime.wrapper.poll() is None
+        lifetimes = (
+            tuple(context.setup_lifetime for context in self._lane_contexts)
+            if hasattr(self, "_lane_contexts")
+            else (self._setup_lifetime,)
+        )
+        if any(
+            lifetime is not None
+            and (
+                lifetime.storage_reservation is not self
+                or lifetime.observer_group is not self.observer_group
+                or lifetime.aggregate is not self.aggregate
+                or lifetime.wrapper is None
+                or lifetime.wrapper.poll() is None
+            )
+            for lifetime in lifetimes
         ):
             raise ValueError("idle retention has unknown or unreaped namespace wrapper")
         sample = self.observer_group.sample()
@@ -366,7 +380,7 @@ class OwnedStorageReservation:
         capacity = self._capacity_claim.record
         if (
             capacity.owner != self._observer_digest
-            or capacity.configuration != self._configuration_digest
+            or capacity.configuration != self._charge_configuration_digest
             or capacity.batch_started_monotonic != self._origin
         ):
             raise ValueError("capacity claim differs from original observer/configuration/origin")
@@ -398,9 +412,15 @@ class OwnedStorageReservation:
             or record_digest(self.observer.spec) != self._observer_digest
             or record_digest(self.observer_group.identity) != self._group_digest
             or record_digest(self.aggregate.identity) != self._aggregate_digest
-            or self.observer.spec.configuration != self._configuration_digest
+            or self.observer.spec.configuration != self._charge_configuration_digest
         ):
             raise ValueError("retained storage reservation identity or configuration changed")
+        if self._configuration_digest != self._charge_configuration_digest:
+            from crewshal.linux_charged_build import verify_observer_configuration
+
+            verify_observer_configuration(self.observer, self._configuration)
+        elif getattr(self, "_build_derivation", None) is not None:
+            raise ValueError("original helper derivation lost its final configuration")
         _current_source(self._configuration)
         _observer_placement(self.observer, self.observer_group, self.aggregate, ())
         _aggregate_readback(self.aggregate, self.observer_group)
@@ -412,6 +432,26 @@ class OwnedStorageReservation:
             raise ValueError("storage reservation observer has resource-refusal history")
 
     def claim(self, lifetime: "OwnedNamespaceSetup") -> None:
+        context = lifetime.lane_context
+        if context is not None:
+            if type(context) is not RetainedLaneSetup or context.claim_attempted:
+                raise ValueError("original lane storage claim consumed; no retry")
+            context.claim_attempted = True
+            self.verify()
+            context.verify_handles()
+            if (
+                context.reservation is not self
+                or context.setup_lifetime is not lifetime
+                or lifetime.storage_reservation is not self
+                or lifetime.observer_group is not self.observer_group
+                or lifetime.aggregate is not self.aggregate
+                or lifetime.controls.configuration is not context.configuration
+            ):
+                raise ValueError("storage claim requires its original lane lifetime")
+            context.claimed_lifetime = lifetime
+            return
+        if hasattr(self, "_lane_contexts"):
+            raise ValueError("declared installation cannot claim a singular lifetime")
         if self._claim_attempted:
             raise ValueError("storage reservation claim is one-shot; no retry")
         self._claim_attempted = True
@@ -427,6 +467,21 @@ class OwnedStorageReservation:
         self._lifetime = lifetime
 
     def retain(self, resource: object) -> None:
+        contexts = getattr(self, "_lane_contexts", None)
+        if contexts is not None:
+            lifetime = getattr(resource, "lifetime", None)
+            context = getattr(lifetime, "lane_context", None)
+            if (
+                type(context) is not RetainedLaneSetup
+                or not any(owner is context for owner in contexts)
+                or context.claimed_lifetime is not lifetime
+                or context._retained is not None
+            ):
+                raise ValueError("original claimed lane retains one resource lifetime")
+            context._retained = resource
+            self.verify()
+            context.verify_handles()
+            return
         if self._lifetime is None or self._retained is not None:
             raise ValueError("claimed storage reservation retains exactly one resource lifetime")
         self._retained = resource
@@ -505,6 +560,156 @@ def reserve_storage_installation(
         raise
 
 
+LANE_IDS = ("qualification-1", "qualification-2", "live")
+LANE_ROLES = ("setup", "supervisor", "worker", "validator")
+
+
+class RetainedLaneSetup:
+    """Retain one declared slot under the original observer, charge and timer."""
+
+    reservation: OwnedStorageReservation
+    lane_id: str
+    setup: OwnedCgroup
+    supervisor: OwnedCgroup
+    worker: OwnedCgroup
+    validator: OwnedCgroup
+    setup_lifetime: "OwnedNamespaceSetup | None"
+    claimed_lifetime: "OwnedNamespaceSetup | None"
+    setup_attempted: bool
+    claim_attempted: bool
+    _groups: tuple[OwnedCgroup, ...]
+    _identities: tuple[Digest, ...]
+    _handles: tuple[int, ...]
+    _reservation: OwnedStorageReservation
+    _lane_id: str
+    _registry: tuple["RetainedLaneSetup", ...]
+    _configuration: DispatchConfiguration
+    _configuration_digest: Digest
+    _retained: object | None
+
+    def __init__(self) -> None:
+        raise ValueError("lane setup requires original predeclared retained roles")
+
+    def __reduce__(self) -> tuple[object, ...]:
+        raise TypeError("original lane setup cannot be copied or exported")
+
+    @property
+    def timer(self) -> "OwnedBatchTimer":
+        timer = getattr(self.reservation, "_batch_timer", None)
+        if type(timer) is not OwnedBatchTimer or not any(
+            context is self for context in timer.lanes or ()
+        ):
+            raise ValueError("lane requires the one original complete-role batch timer")
+        return timer
+
+    @property
+    def configuration(self) -> DispatchConfiguration:
+        return self._configuration
+
+    def verify_handles(self) -> None:
+        self._verify_role_handles()
+        self.reservation._verify_identity()
+
+    def _verify_role_handles(self) -> None:
+        """Verify lane custody without reentering the reservation's timer proof."""
+        registered = getattr(self.reservation, "_lane_contexts", None)
+        if (
+            self.reservation is not self._reservation
+            or self.lane_id != self._lane_id
+            or self.configuration.lane_id != self.lane_id
+            or record_digest(self.configuration) != self._configuration_digest
+            or type(registered) is not tuple
+            or registered is not self._registry
+            or len(registered) != 3
+            or tuple(context.lane_id for context in registered) != LANE_IDS
+            or not any(context is self for context in registered)
+            or self._groups != (self.setup, self.supervisor, self.worker, self.validator)
+            or self._identities != tuple(record_digest(group.identity) for group in self._groups)
+            or self._handles != tuple(group.descriptor for group in self._groups)
+        ):
+            raise ValueError("original declared lane context or role handles changed")
+        for role, group in zip(LANE_ROLES, self._groups, strict=True):
+            group._verify()
+            if PurePosixPath(group.identity.relative_path).name != role + "--" + self.lane_id:
+                raise ValueError("original lane role name differs")
+            _aggregate_readback(self.reservation.aggregate, group)
+            if role in ("setup", "supervisor"):
+                _role_controls(group)
+            else:
+                sample = group.sample()
+                if any(sample.memory_events.values()) or any(sample.pids_events.values()):
+                    raise ValueError("original lane has resource-refusal history")
+
+
+def reserve_lane_setups(
+    reservation: OwnedStorageReservation,
+    groups: dict[str, dict[str, OwnedCgroup]],
+) -> tuple[RetainedLaneSetup, ...]:
+    """Pin exactly three disjoint role sets before the original timer or installation."""
+    if (
+        type(reservation) is not OwnedStorageReservation
+        or hasattr(reservation, "_lane_contexts")
+        or hasattr(reservation, "_lane_inputs")
+        or (
+            hasattr(reservation, "_batch_timer")
+            and getattr(reservation._batch_timer, "_early_roles", None) is None
+        )
+        or getattr(reservation.observer, "_setup_started", False)
+        or tuple(groups) != LANE_IDS
+        or any(tuple(roles) != LANE_ROLES for roles in groups.values())
+    ):
+        raise ValueError("original three-lane declaration missing, repeated or reordered")
+    reservation.verify()
+    setattr(reservation, "_lane_inputs", groups)
+    contexts: list[RetainedLaneSetup] = []
+    setattr(reservation, "_partial_lane_contexts", contexts)
+    for lane_id, roles in groups.items():
+        context = object.__new__(RetainedLaneSetup)
+        context.reservation = context._reservation = reservation
+        context.lane_id = context._lane_id = lane_id
+        payload = deepcopy(reservation._configuration.model_dump(mode="json"))
+        payload["lane_id"] = lane_id
+        context._configuration = DispatchConfiguration.model_validate(payload)
+        context._configuration_digest = record_digest(context._configuration)
+        context._retained = None
+        context.setup, context.supervisor, context.worker, context.validator = (
+            roles[role] for role in LANE_ROLES
+        )
+        context._groups = (context.setup, context.supervisor, context.worker, context.validator)
+        context._identities = tuple(record_digest(group.identity) for group in context._groups)
+        context._handles = tuple(group.descriptor for group in context._groups)
+        context.setup_lifetime = context.claimed_lifetime = None
+        context.setup_attempted = context.claim_attempted = False
+        contexts.append(context)
+    retained = tuple(contexts)
+    # Keep each supplied original group before any later independent readback.
+    setattr(reservation, "_lane_contexts", retained)
+    for context in retained:
+        context._registry = retained
+    identities = [
+        (group.identity.device, group.identity.inode)
+        for context in retained
+        for group in context._groups
+    ]
+    if len(set(identities)) != 12 or any(
+        identity
+        in (
+            (reservation.aggregate.identity.device, reservation.aggregate.identity.inode),
+            (reservation.observer_group.identity.device, reservation.observer_group.identity.inode),
+        )
+        for identity in identities
+    ):
+        raise ValueError("original lane roles are not disjoint")
+    for context in retained:
+        context.verify_handles()
+    timer = getattr(reservation, "_batch_timer", None)
+    if timer is not None:
+        from crewshal.linux_early_timer import bind_early_timer_lanes
+
+        bind_early_timer_lanes(timer, retained, groups)
+    return retained
+
+
 class OwnedBatchTimer:
     """Original observer's independent timer, charged to its existing role.
 
@@ -515,6 +720,10 @@ class OwnedBatchTimer:
 
     resources_reusable: Literal[False] = False
     operational_ready: Literal[False] = False
+    _early_runtime: "RetainedEarlyTimerRuntime"
+    _early_source: int
+    _early_origin: int
+    _early_transport: dict[str, int]
 
     def __init__(
         self,
@@ -524,6 +733,9 @@ class OwnedBatchTimer:
         worker: OwnedCgroup,
         *,
         validator: OwnedCgroup | None = None,
+        lanes: tuple[RetainedLaneSetup, ...] | None = None,
+        early_groups: dict[str, dict[str, OwnedCgroup]] | None = None,
+        early_broker: OwnedCgroup | None = None,
     ):
         if hasattr(reservation, "_batch_timer"):
             raise ValueError("independent batch timer is one-shot; no retry or replacement")
@@ -534,6 +746,34 @@ class OwnedBatchTimer:
             worker,
         )
         self.validator = validator
+        self.lanes = lanes
+        self._lane_owners = lanes
+        self._early_roles: tuple[OwnedCgroup, ...] | None = None
+        if early_groups is not None:
+            if (
+                lanes is not None
+                or tuple(early_groups) != LANE_IDS
+                or any(tuple(roles) != LANE_ROLES for roles in early_groups.values())
+                or type(early_broker) is not OwnedCgroup
+                or (setup, supervisor, worker, validator)
+                != tuple(early_groups[LANE_IDS[0]][role] for role in LANE_ROLES)
+            ):
+                raise ValueError("early batch timer requires the exact original role mapping")
+            self._early_inputs = early_groups
+            self._early_mapping = early_groups
+            self._early_roles = tuple(
+                early_groups[lane][role] for lane in LANE_IDS for role in LANE_ROLES
+            ) + (early_broker,)
+            self._early_role_owners = self._early_roles
+            self._early_handles = tuple(group.descriptor for group in self._early_roles)
+            self._early_configuration = reservation.configuration
+        if lanes is not None and (
+            getattr(reservation, "_lane_contexts", None) is not lanes
+            or len(lanes) != 3
+            or (setup, supervisor, worker, validator)
+            != (lanes[0].setup, lanes[0].supervisor, lanes[0].worker, lanes[0].validator)
+        ):
+            raise ValueError("batch timer requires original declared lane tuple")
         self._owners = (reservation, setup, supervisor, worker, validator)
         self._groups = tuple(group.identity for group in self.operational_groups)
         self.origin_ns = int(reservation.batch_started_monotonic * 1_000_000_000)
@@ -560,10 +800,28 @@ class OwnedBatchTimer:
 
     @property
     def operational_groups(self) -> tuple[OwnedCgroup, ...]:
+        if self._early_roles is not None:
+            return self._early_roles
+        if self.lanes is not None:
+            return tuple(group for context in self.lanes for group in context._groups)
         groups = (self.setup, self.supervisor, self.worker)
         return groups if self.validator is None else (*groups, self.validator)
 
     def _verify_validator(self) -> None:
+        if self._early_roles is not None:
+            from crewshal.linux_early_timer import verify_early_timer_roles
+
+            verify_early_timer_roles(self)
+            return
+        if self.lanes is not None:
+            if (
+                self.lanes is not self._lane_owners
+                or getattr(self.reservation, "_lane_contexts", None) is not self.lanes
+            ):
+                raise ValueError("original batch lane tuple changed")
+            for context in self.lanes:
+                context.verify_handles()
+            return
         if self.validator is not None:
             if (
                 type(self.validator) is not OwnedCgroup
@@ -610,12 +868,24 @@ class OwnedBatchTimer:
             or record_digest(self.task.spec) != self._task_digest
             or self.process.pid != self.task.spec.pid
             or self.task.spec.parent_pid != reservation.observer.spec.pid
-            or self.task.spec.configuration != reservation.configuration
+            or self.task.spec.configuration
+            != (
+                self._early_configuration
+                if self._early_roles is not None
+                else reservation.configuration
+            )
             or self.task.spec.cgroup != reservation.observer_group.identity
             or self.task.spec.namespaces != reservation.observer.spec.namespaces
         ):
             raise ValueError("original batch timer identity or operational cutoff differs")
         self._verify_validator()
+        if self._early_roles is not None:
+            from crewshal.linux_early_timer import _RUNTIMES
+
+            runtime = _RUNTIMES.get(self)
+            if runtime is None or runtime is not getattr(self, "_early_runtime", None):
+                raise ValueError("original early timer runtime custody differs")
+            runtime.verify()
         helper = os.fstat(self.helper)
         lifeline = os.fstat(self.lifeline)
         if (
@@ -682,6 +952,12 @@ class OwnedBatchTimer:
         _aggregate_readback(reservation.aggregate, reservation.observer_group)
         _topology(reservation.aggregate, self.setup, self.supervisor, self.worker)
         self.task.verify(reservation.observer_group.identity)
+        if self._early_roles is not None:
+            from crewshal.linux_early_timer import verify_early_timer_readback
+
+            verify_early_timer_readback(self)
+            self.task.verify(reservation.observer_group.identity)
+            return
         info = os.fstat(self.lifeline)
         if self.lifeline_identity != (info.st_dev, info.st_ino) or not stat.S_ISFIFO(info.st_mode):
             raise ValueError("original batch observer lifeline differs")
@@ -696,6 +972,24 @@ class OwnedBatchTimer:
             if self.validator is not None:
                 group_pairs.append(("6", self.validator))
                 lifeline_number, timer_number = ("7", "10")
+            if self.lanes is not None:
+                group_pairs = [
+                    (str(number), group)
+                    for number, group in enumerate(
+                        (
+                            group
+                            for context in self.lanes
+                            for group in (
+                                context.worker,
+                                context.supervisor,
+                                context.setup,
+                                context.validator,
+                            )
+                        ),
+                        3,
+                    )
+                ]
+                lifeline_number, timer_number = ("15", "18")
             expected_fds = {
                 "0",
                 "1",
@@ -770,6 +1064,7 @@ def create_owned_batch_timer(
     helper_descriptor: int,
     *,
     validator: OwnedCgroup | None = None,
+    lanes: tuple[RetainedLaneSetup, ...] | None = None,
 ) -> OwnedBatchTimer:
     """Unqualified finite creation; no compiler, installation or authority API.
 
@@ -779,28 +1074,31 @@ def create_owned_batch_timer(
     configuration = reservation._configuration
     preparation = audit_linux_bootstrap(configuration, preparation)
     reservation.verify()
+    operational: tuple[OwnedCgroup, ...] = (
+        (setup, supervisor, worker) if validator is None else (setup, supervisor, worker, validator)
+    )
+    if lanes is not None:
+        if getattr(reservation, "_lane_contexts", None) is not lanes:
+            raise ValueError("batch timer requires original lane declaration")
+        operational = tuple(group for context in lanes for group in context._groups)
     _observer_placement(
         reservation.observer,
         reservation.observer_group,
         reservation.aggregate,
-        (setup, supervisor, worker)
-        if validator is None
-        else (setup, supervisor, worker, validator),
+        operational,
     )
     _topology(reservation.aggregate, setup, supervisor, worker)
     if preparation.policy.helper_binary is None or any(
         group._read("cgroup.procs")
         or _counters(group._read("cgroup.events"), {"populated"})["populated"]
-        for group in (
-            (setup, supervisor, worker)
-            if validator is None
-            else (setup, supervisor, worker, validator)
-        )
+        for group in operational
     ):
         raise ValueError("batch timer requires current helper and empty original operational roles")
     if getattr(reservation.observer, "_setup_started", False):
         raise ValueError("batch timer must precede operational setup")
-    lifetime = OwnedBatchTimer(reservation, setup, supervisor, worker, validator=validator)
+    lifetime = OwnedBatchTimer(
+        reservation, setup, supervisor, worker, validator=validator, lanes=lanes
+    )
     capsule = reading = ready_read = ready_write = -1
     startup_end = min(
         time.monotonic() + 30, reservation.batch_started + 120, reservation.batch_started + 570
@@ -867,6 +1165,23 @@ def create_owned_batch_timer(
             capsule,
         )
         mode = "--batch-timer-fds" if validator is None else "--batch-timer-validator-fds"
+        if lanes is not None:
+            inputs = (
+                *(
+                    group.descriptor
+                    for context in lanes
+                    for group in (
+                        context.worker,
+                        context.supervisor,
+                        context.setup,
+                        context.validator,
+                    )
+                ),
+                reading,
+                ready_write,
+                capsule,
+            )
+            mode = "--batch-timer-lanes-fds"
         argv = ["/bin/crewshal-bootstrap", mode, *map(str, inputs)]
         lifetime.process = subprocess.Popen(
             argv,
@@ -914,9 +1229,7 @@ def create_owned_batch_timer(
         while True:
             if time.monotonic() >= startup_end or lifetime.process.poll() is not None:
                 raise ValueError("original batch timer startup deadline exhausted")
-            if not select.select([ready_read], [], [], min(0.001, startup_end - time.monotonic()))[
-                0
-            ]:
+            if not _wait_ready([ready_read], [], [], min(0.001, startup_end - time.monotonic()))[0]:
                 continue
             chunk = os.read(ready_read, 129)
             raw.extend(chunk)
@@ -940,6 +1253,7 @@ def create_owned_batch_timer(
 
 class NamespaceSetupPreparation(Contract):
     configuration: Digest
+    lane_id: Literal["qualification-1", "qualification-2", "live"] | None = None
     bootstrap: Digest
     parent_argv: list[str]
     parent_executable: Digest
@@ -947,6 +1261,8 @@ class NamespaceSetupPreparation(Contract):
     control_fds: dict[str, int]
     validator_control: bool = False
     bridge_control: bool = False
+    policy_control: bool = False
+    network_control: bool = False
     setup_controls: dict[str, str]
     parent_inventory: TrustedParentInventory | None = None
     unresolved: list[str]
@@ -963,11 +1279,17 @@ def prepare_namespace_setup(
     parent_inventory: TrustedParentInventory | None = None,
     validator_control: bool = False,
     bridge_control: bool = False,
+    policy_control: bool = False,
+    network_control: bool = False,
 ) -> NamespaceSetupPreparation:
     """Passive trusted-parent fragment. It never substitutes for native argv."""
     bootstrap = audit_linux_bootstrap(configuration, bootstrap)
     if bridge_control and not validator_control:
         raise ValueError("original bridge requires independent validator control")
+    if policy_control and not bridge_control:
+        raise ValueError("loaded policy control requires original bridge and validator")
+    if network_control and not policy_control:
+        raise ValueError("retained provider network requires loaded policy control")
     if (
         parent_inventory is None
         and configuration.linux_envelope is not None
@@ -998,13 +1320,16 @@ def prepare_namespace_setup(
     # Only this privileged setup parent needs source views for later role
     # sandboxes. Their separately constructed roots do not project this view.
     command += ["--bind", envelope.owned_root, envelope.owned_root]
+    if configuration.lane_id is not None:
+        vendor = next(mount.source for mount in envelope.mounts["native"] if mount.target == "/")
+        command += ["--ro-bind", vendor, vendor]
     command += [
         "--proc",
         "/proc",
         "--dev",
         "/dev",
         "--unshare-pid",
-        "--unshare-net",
+        *([] if network_control else ["--unshare-net"]),
         "--unshare-ipc",
         "--unshare-uts",
         "--new-session",
@@ -1036,6 +1361,7 @@ def prepare_namespace_setup(
     ]
     return NamespaceSetupPreparation(
         configuration=record_digest(configuration),
+        lane_id=configuration.lane_id,
         bootstrap=record_digest(bootstrap),
         parent_argv=list(parent_argv),
         parent_executable=parent_executable,
@@ -1048,9 +1374,14 @@ def prepare_namespace_setup(
             "worker": 7,
             **({"validator": 8} if validator_control else {}),
             **({"bridge": 9} if bridge_control else {}),
+            **({"apparmor_namespace": 10, "compiled_policy": 11} if policy_control else {}),
+            **({"provider_network": 12} if network_control else {}),
+            **({"apparmor_export": 13} if network_control else {}),
         },
         validator_control=validator_control,
         bridge_control=bridge_control,
+        policy_control=policy_control,
+        network_control=network_control,
         setup_controls=dict(envelope.aggregate_controls),
         parent_inventory=parent_inventory,
         unresolved=[
@@ -1072,6 +1403,16 @@ class InheritedControls(Contract):
     groups: dict[str, CgroupIdentity]
     batch_origin_ns: int | None = None
     bridge_identity: NamespaceIdentity | None = None
+    apparmor_namespace: NamespaceIdentity | None = None
+    compiled_policy_sha256: Digest | None = None
+    apparmor_roles: list[tuple[str, str, NamespaceIdentity]] | None = None
+    provider_network: NamespaceIdentity | None = None
+    apparmor_export: NamespaceIdentity | None = None
+
+
+def _validator_role_name(configuration: DispatchConfiguration) -> str:
+    lane = configuration.lane_id
+    return "validator" if lane is None else "validator--" + lane
 
 
 def _role_controls(group: OwnedCgroup) -> None:
@@ -1143,6 +1484,125 @@ def _capsule(controls: InheritedControls) -> int:
         raise
 
 
+def _compiled_policy_capsule(raw: bytes) -> int:
+    from crewshal.linux_payload_storage import POLICY_LIMIT
+
+    if not raw or len(raw) > POLICY_LIMIT:
+        raise ValueError("compiled policy capsule exceeds its original bound")
+    add, get, seals = _seals()
+    descriptor = getattr(os, "memfd_create")(
+        "crewshal-original-compiled-policy",
+        getattr(os, "MFD_ALLOW_SEALING") | getattr(os, "MFD_CLOEXEC"),
+    )
+    try:
+        offset = 0
+        while offset < len(raw):
+            written = os.write(descriptor, raw[offset:])
+            if written <= 0:
+                raise ValueError("compiled policy capsule write incomplete")
+            offset += written
+        fcntl.fcntl(descriptor, add, seals)
+        if fcntl.fcntl(descriptor, get) != seals:
+            raise ValueError("compiled policy capsule seals differ")
+        readonly = os.open(f"/proc/self/fd/{descriptor}", os.O_RDONLY | os.O_CLOEXEC)
+        if fcntl.fcntl(readonly, get) != seals:
+            os.close(readonly)
+            raise ValueError("readonly compiled policy capsule seals differ")
+        return readonly
+    finally:
+        os.close(descriptor)
+
+
+_NAMESPACE_POLICIES: dict[
+    int, tuple[InheritedControls, list[int], "RetainedAppArmorExport | None"]
+] = {}
+
+
+def receive_namespace_policy(controls: InheritedControls) -> "RetainedAppArmorExport":
+    """Retain actual fixed policy inputs once. Refusal retains every opened handle."""
+    from crewshal.linux_payload_storage import POLICY_LIMIT, PROFILE_NAMES, RetainedAppArmorExport
+
+    if not controls.setup.policy_control or id(controls) in _NAMESPACE_POLICIES:
+        raise ValueError("original namespace policy inputs unavailable or consumed")
+    retained: list[int] = []
+    _NAMESPACE_POLICIES[id(controls)] = controls, retained, None
+    try:
+        namespace = os.dup(10)
+        retained.append(namespace)
+        capsule = os.dup(11)
+        retained.append(capsule)
+        raw_export = os.dup(13) if controls.setup.network_control else -1
+        if raw_export >= 0:
+            retained.append(raw_export)
+        _, get, seals = _seals()
+        info = os.fstat(capsule)
+        identity = controls.apparmor_namespace
+        observed = os.fstat(namespace)
+        if (
+            identity is None
+            or not stat.S_ISDIR(observed.st_mode)
+            or (observed.st_dev, observed.st_ino) != (identity.device, identity.inode)
+            or fcntl.fcntl(namespace, fcntl.F_GETFL) & os.O_ACCMODE != os.O_RDONLY
+            or not stat.S_ISREG(info.st_mode)
+            or info.st_uid != 0
+            or not 0 < info.st_size <= POLICY_LIMIT
+            or fcntl.fcntl(capsule, fcntl.F_GETFL) & os.O_ACCMODE != os.O_RDONLY
+            or fcntl.fcntl(capsule, get) != seals
+        ):
+            raise ValueError("original readonly sealed policy inputs differ")
+        raw = os.pread(capsule, info.st_size + 1, 0)
+        roles = controls.apparmor_roles
+        if (
+            len(raw) != info.st_size
+            or digest(raw) != controls.compiled_policy_sha256
+            or roles is None
+            or tuple(name for name, _, _ in roles) != PROFILE_NAMES
+        ):
+            raise ValueError("original complete compiled policy or role inventory differs")
+        role_names = tuple((name, directory) for name, directory, _ in roles)
+        if raw_export >= 0:
+            observed_export = os.fstat(raw_export)
+            original_export = controls.apparmor_export
+            if original_export is None or (observed_export.st_dev, observed_export.st_ino) != (
+                original_export.device,
+                original_export.inode,
+            ):
+                raise ValueError("original readonly AppArmor export identity changed")
+            policy = RetainedAppArmorExport.retain_inherited(namespace, raw, role_names, raw_export)
+        else:
+            policy = RetainedAppArmorExport.retain(namespace, raw, role_names)
+        if tuple(identity for _, _, identity in policy.roles) != tuple(
+            (identity.device, identity.inode) for _, _, identity in roles
+        ):
+            raise ValueError("original AppArmor role directory identity changed")
+        _NAMESPACE_POLICIES[id(controls)] = controls, retained, policy
+        return policy
+    finally:
+        for descriptor in (10, 11):
+            os.close(descriptor)
+        if controls.setup.network_control:
+            os.close(13)
+
+
+_PARENT_NETWORKS: dict[int, tuple[InheritedControls, int]] = {}
+
+
+def receive_namespace_network(controls: InheritedControls) -> int:
+    from crewshal.linux_network import _net_namespace
+
+    if not controls.setup.network_control or id(controls) in _PARENT_NETWORKS:
+        raise ValueError("original parent provider network unavailable or consumed")
+    descriptor = os.dup(12)
+    _PARENT_NETWORKS[id(controls)] = controls, descriptor
+    try:
+        expected = controls.provider_network
+        if expected is None or _net_namespace(descriptor) != (expected.device, expected.inode):
+            raise ValueError("original parent provider network identity differs")
+        return descriptor
+    finally:
+        os.close(12)
+
+
 @dataclass
 class OwnedNamespaceSetup:
     wrapper: subprocess.Popen[bytes] | None
@@ -1159,6 +1619,7 @@ class OwnedNamespaceSetup:
     physical_teardown_claimed: bool = False
     storage_reservation: OwnedStorageReservation | None = None
     validator: OwnedCgroup | None = None
+    lane_context: RetainedLaneSetup | None = None
 
 
 class NamespaceSetupRefusal(ValueError):
@@ -1166,6 +1627,70 @@ class NamespaceSetupRefusal(ValueError):
         super().__init__(reason)
         self.lifetime = lifetime
         self.resources_reusable = False
+
+
+def retained_setup_scope(
+    reservation: OwnedStorageReservation,
+    lifetime: OwnedNamespaceSetup | None = None,
+    *,
+    context: RetainedLaneSetup | None = None,
+) -> OwnedStorageReservation | RetainedLaneSetup:
+    """Select original custody. A lane name or receipt cannot select its owner."""
+    if lifetime is not None:
+        selected = getattr(lifetime, "lane_context", None)
+        if context is not None and selected is not context:
+            raise ValueError("original namespace lane context differs")
+        context = selected
+    contexts = getattr(reservation, "_lane_contexts", None)
+    groups: tuple[OwnedCgroup, OwnedCgroup, OwnedCgroup, OwnedCgroup | None]
+    if contexts is not None:
+        if (
+            type(context) is not RetainedLaneSetup
+            or context.reservation is not reservation
+            or not any(item is context for item in contexts)
+        ):
+            raise ValueError("original retained lane context required")
+        context.verify_handles()
+        from crewshal.linux_schedule import OwnedThreeLaneSchedule
+
+        schedule = getattr(reservation, "_lane_schedule", None)
+        if type(schedule) is not OwnedThreeLaneSchedule:
+            raise ValueError("original lane schedule is unavailable")
+        schedule.require_active(context, lifetime=lifetime)
+        scope: OwnedStorageReservation | RetainedLaneSetup = context
+        configuration = context.configuration
+        groups = context.setup, context.supervisor, context.worker, context.validator
+    else:
+        if context is not None:
+            raise ValueError("undeclared lane context cannot select original custody")
+        scope = reservation
+        configuration = reservation._configuration
+        timer = reservation._batch_timer
+        groups = timer.setup, timer.supervisor, timer.worker, timer.validator
+    if lifetime is not None and (
+        getattr(scope, "setup_lifetime" if context is not None else "_setup_lifetime", None)
+        is not lifetime
+        or lifetime.storage_reservation is not reservation
+        or lifetime.controls.configuration != configuration
+        or lifetime.aggregate is not reservation.aggregate
+        or (lifetime.setup, lifetime.supervisor, lifetime.worker, lifetime.validator) != groups
+        or lifetime.observer_group is not reservation.observer_group
+    ):
+        raise ValueError("original namespace lifetime or retained lane roles differ")
+    return scope
+
+
+def retained_lane_handle(lifetime: OwnedNamespaceSetup, name: str) -> str:
+    """Use the exact declared lane for an original installed volume handle."""
+    context = getattr(lifetime, "lane_context", None)
+    if context is None:
+        return "mounted:" + name
+    if (
+        type(context) is not RetainedLaneSetup
+        or lifetime.controls.configuration is not context.configuration
+    ):
+        raise ValueError("original installed lane handle context differs")
+    return "mounted:" + context.lane_id + "--" + name
 
 
 def create_namespace_setup(
@@ -1184,6 +1709,9 @@ def create_namespace_setup(
     storage_owner: "LinuxPhysicalOwner | None" = None,
     validator: OwnedCgroup | None = None,
     bridge: "StoppedNativeBridge | None" = None,
+    lane_context: RetainedLaneSetup | None = None,
+    policy: "RetainedAppArmorExport | None" = None,
+    networks: "OwnedProviderNetworks | None" = None,
 ) -> OwnedNamespaceSetup:
     """Unqualified source: fork wrapper/init inside setup, return observer outside.
 
@@ -1192,6 +1720,30 @@ def create_namespace_setup(
     the observer never enters a stopped role. The inherited child moves to the
     supervisor before creating the watchdog. No child is migrated by numeric PID.
     """
+    schedule = None
+    if lane_context is not None:
+        from crewshal.linux_schedule import OwnedThreeLaneSchedule
+
+        schedule = getattr(storage_reservation, "_lane_schedule", None)
+        if (
+            type(lane_context) is not RetainedLaneSetup
+            or type(schedule) is not OwnedThreeLaneSchedule
+            or lane_context.reservation is not storage_reservation
+            or configuration is not lane_context.configuration
+            or (setup, supervisor, worker, validator)
+            != (
+                lane_context.setup,
+                lane_context.supervisor,
+                lane_context.worker,
+                lane_context.validator,
+            )
+            or lane_context.setup_attempted
+        ):
+            raise ValueError("namespace setup requires original unused active lane")
+        schedule.require_active(lane_context)
+        lane_context.verify_handles()
+    elif configuration.lane_id is not None or getattr(storage_reservation, "_lane_contexts", None):
+        raise ValueError("three-lane installation requires its exact active context")
     if storage_reservation is not None:
         # This check precedes wrapper/helper/native/watchdog/validator effects.
         # A preparing or serialized installation result cannot cross it.
@@ -1204,6 +1756,8 @@ def create_namespace_setup(
         parent_inventory=preparation.parent_inventory,
         validator_control=validator is not None,
         bridge_control=bridge is not None,
+        policy_control=policy is not None,
+        network_control=networks is not None,
     )
     if preparation.parent_inventory is not None:
         if inventory is None or inventory.inventory != preparation.parent_inventory:
@@ -1221,12 +1775,18 @@ def create_namespace_setup(
     ):
         raise ValueError("namespace setup requires current exact source/helper bindings")
     _current_source(configuration)
-    operational = (
+    operational: tuple[OwnedCgroup, ...] = (
         (setup, supervisor, worker) if validator is None else (setup, supervisor, worker, validator)
     )
     _observer_placement(observer, observer_group, aggregate, operational)
-    if observer.spec.configuration != record_digest(configuration):
-        raise ValueError("owned observer configuration differs")
+    observer_configuration = (
+        storage_reservation._configuration
+        if lane_context is not None and storage_reservation is not None
+        else configuration
+    )
+    from crewshal.linux_charged_build import verify_observer_configuration
+
+    verify_observer_configuration(observer, observer_configuration)
     _aggregate_readback(aggregate, observer_group)
     observer_group.sample()
     observer_pids = {str(observer.spec.pid)}
@@ -1236,7 +1796,10 @@ def create_namespace_setup(
             raise ValueError("namespace setup requires original batch timer")
         timer.verify()
         assert timer.task is not None
-        if (
+        if lane_context is not None:
+            if lane_context.timer is not timer:
+                raise ValueError("namespace setup lane timer differs")
+        elif (
             timer.setup is not setup
             or timer.supervisor is not supervisor
             or timer.worker is not worker
@@ -1253,7 +1816,7 @@ def create_namespace_setup(
             or _counters(group._read("cgroup.events"), {"populated"})["populated"]
         ):
             raise ValueError("owned namespace setup requires empty fresh role groups")
-    if getattr(observer, "_setup_started", False):
+    if lane_context is None and getattr(observer, "_setup_started", False):
         raise ValueError("namespace setup is one-shot; no retry or reset")
     if storage_reservation is not None:
         storage_reservation.verify()
@@ -1261,13 +1824,17 @@ def create_namespace_setup(
             storage_reservation.observer is not observer
             or storage_reservation.observer_group is not observer_group
             or storage_reservation.aggregate is not aggregate
-            or storage_reservation._configuration_digest != record_digest(configuration)
+            or (
+                lane_context is None
+                and storage_reservation._configuration_digest != record_digest(configuration)
+            )
         ):
             raise ValueError("namespace setup storage reservation differs")
     if validator is not None:
         if (
             type(validator) is not OwnedCgroup
-            or PurePosixPath(validator.identity.relative_path).name != "validator"
+            or PurePosixPath(validator.identity.relative_path).name
+            != _validator_role_name(configuration)
             or validator.identity
             in [group.identity for group in (aggregate, observer_group, setup, supervisor, worker)]
         ):
@@ -1294,8 +1861,14 @@ def create_namespace_setup(
         if (
             type(bridge) is not StoppedNativeBridge
             or storage_reservation is None
-            or getattr(storage_reservation._installation, "_bridge", None) is not bridge
+            or getattr(
+                lane_context if lane_context is not None else storage_reservation._installation,
+                "_bridge",
+                None,
+            )
+            is not bridge
             or bridge.installation is not storage_reservation._installation
+            or getattr(bridge, "lane_context", None) is not lane_context
             or validator is None
             or namespace_fd is None
         ):
@@ -1306,7 +1879,21 @@ def create_namespace_setup(
             != socket.SOCK_SEQPACKET
         ):
             raise ValueError("original bridge socket type differs")
+    network_fd: int | None = None
+    if networks is not None:
+        from crewshal.linux_network import OwnedProviderNetworks
+
+        if (
+            type(networks) is not OwnedProviderNetworks
+            or networks.reservation is not storage_reservation
+            or lane_context is None
+        ):
+            raise ValueError("original installed provider network owner required")
+        networks.readback()
+        network_fd = networks.namespaces[lane_context.lane_id]
     observer._setup_started = True
+    if lane_context is not None:
+        lane_context.setup_attempted = True
     controls = InheritedControls(
         configuration=configuration,
         bootstrap=bootstrap,
@@ -1319,6 +1906,34 @@ def create_namespace_setup(
                 inode=os.fstat(bridge.child_channel.fileno()).st_ino,
             )
             if bridge is not None
+            else None
+        ),
+        apparmor_namespace=(
+            NamespaceIdentity(
+                device=policy.namespace_identity[0], inode=policy.namespace_identity[1]
+            )
+            if policy is not None
+            else None
+        ),
+        compiled_policy_sha256=digest(policy.expected_binary) if policy is not None else None,
+        apparmor_export=(
+            NamespaceIdentity(
+                device=policy.raw_export_identity[0], inode=policy.raw_export_identity[1]
+            )
+            if policy is not None and network_fd is not None
+            else None
+        ),
+        apparmor_roles=(
+            [
+                (name, directory, NamespaceIdentity(device=identity[0], inode=identity[1]))
+                for name, directory, identity in policy.roles
+            ]
+            if policy is not None
+            else None
+        ),
+        provider_network=(
+            NamespaceIdentity(device=os.fstat(network_fd).st_dev, inode=os.fstat(network_fd).st_ino)
+            if network_fd is not None
             else None
         ),
         outer_namespaces=observer.spec.namespaces,
@@ -1343,11 +1958,28 @@ def create_namespace_setup(
         observer_group,
         storage_reservation=storage_reservation,
         validator=validator,
+        lane_context=lane_context,
     )
-    if storage_reservation is not None:
+    if lane_context is not None:
+        lane_context.setup_lifetime = lifetime
+        assert schedule is not None
+        schedule.bind_lifetime(lane_context, lifetime)
+    elif storage_reservation is not None:
         storage_reservation._setup_lifetime = lifetime
     capsule = _capsule(controls)
+    policy_capsule = -1
     try:
+        if policy is not None:
+            from crewshal.linux_payload_storage import RetainedAppArmorExport, PROFILE_NAMES
+
+            if (
+                type(policy) is not RetainedAppArmorExport
+                or tuple(name for name, _, _ in policy.roles) != PROFILE_NAMES
+            ):
+                raise ValueError("original complete loaded AppArmor policy custody required")
+            policy.check_policy()
+            policy_capsule = _compiled_policy_capsule(policy.expected_binary)
+            setattr(lifetime, "_apparmor_export", policy)
         descriptors = (
             capsule,
             aggregate.descriptor,
@@ -1357,11 +1989,18 @@ def create_namespace_setup(
             *((validator.descriptor,) if validator is not None else ()),
             *((bridge.child_channel.fileno(),) if bridge is not None else ()),
             *((namespace_fd,) if namespace_fd is not None else ()),
+            *((policy.namespace, policy_capsule) if policy is not None else ()),
+            *((network_fd,) if network_fd is not None else ()),
+            *((policy.raw_export,) if network_fd is not None and policy is not None else ()),
         )
         lifetime.wrapper = subprocess.Popen(
             [
                 "/bin/crewshal-bootstrap",
-                "--namespace-validator-bridge-source-fds"
+                "--namespace-validator-bridge-policy-export-network-source-fds"
+                if network_fd is not None
+                else "--namespace-validator-bridge-policy-source-fds"
+                if policy is not None
+                else "--namespace-validator-bridge-source-fds"
                 if bridge is not None
                 else "--namespace-validator-source-fds"
                 if validator is not None
@@ -1402,6 +2041,8 @@ def create_namespace_setup(
         raise NamespaceSetupRefusal(str(error), lifetime) from error
     finally:
         os.close(capsule)
+        if policy_capsule >= 0:
+            os.close(policy_capsule)
 
 
 def _move_self_to_observer(observer: RetainedTrustedTask, group: OwnedCgroup) -> None:
@@ -1482,6 +2123,8 @@ def receive_namespace_controls() -> tuple[InheritedControls, dict[str, OwnedCgro
                 parent_inventory=controls.setup.parent_inventory,
                 validator_control=controls.setup.validator_control,
                 bridge_control=controls.setup.bridge_control,
+                policy_control=controls.setup.policy_control,
+                network_control=controls.setup.network_control,
             )
             != controls.setup
         ):
@@ -1499,11 +2142,9 @@ def receive_namespace_controls() -> tuple[InheritedControls, dict[str, OwnedCgro
         _topology(groups["aggregate"], groups["setup"], groups["supervisor"], groups["worker"])
         if "validator" in groups:
             validator = groups["validator"]
-            if PurePosixPath(
-                validator.identity.relative_path
-            ).name != "validator" or validator.identity in [
-                groups[name].identity for name in roles[:-1]
-            ]:
+            if PurePosixPath(validator.identity.relative_path).name != _validator_role_name(
+                controls.configuration
+            ) or validator.identity in [groups[name].identity for name in roles[:-1]]:
                 raise ValueError("inherited original validator role differs")
             _aggregate_readback(groups["aggregate"], validator)
             validator.sample()
@@ -1588,6 +2229,10 @@ def enter_namespace_parent(
         for name in controls.outer_namespaces:
             observed = os.stat("ns/" + name, dir_fd=descriptor)
             namespaces[name] = NamespaceIdentity(device=observed.st_dev, inode=observed.st_ino)
+        if controls.setup.network_control and namespaces["net"] != controls.provider_network:
+            raise ValueError(
+                "actual parent provider network differs from original retained namespace"
+            )
         if any(
             namespaces[name] == controls.outer_namespaces[name] for name in ("mnt", "net", "pid")
         ):
@@ -1646,7 +2291,7 @@ class NamespaceTerminalObservation:
 
 def _terminal_task_exited(task: RetainedTrustedTask) -> bool:
     task.verify_handles()
-    exited = bool(select.select([task.pidfd], [], [], 0)[0])
+    exited = bool(_wait_ready([task.pidfd], [], [], 0)[0])
     task.verify_handles()
     return exited
 
@@ -2036,7 +2681,7 @@ def create_owned_watchdog(
                 or lifetime.process.poll() is not None
             ):
                 raise ValueError("watchdog startup exhausted original five-second bound")
-            readable = select.select([ready_read], [], [], 0.001)[0]
+            readable = _wait_ready([ready_read], [], [], 0.001)[0]
             if not readable:
                 continue
             chunk = os.read(ready_read, 81)

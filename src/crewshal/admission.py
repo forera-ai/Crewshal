@@ -7,6 +7,7 @@ Admission is a bounded snapshot. It grants no authority and releases no process.
 
 from dataclasses import dataclass
 from datetime import datetime
+import errno
 import fcntl
 import hashlib
 import math
@@ -18,7 +19,7 @@ import stat
 import subprocess
 import sys
 import time
-from typing import TYPE_CHECKING, Annotated, Callable, Literal, Self
+from typing import TYPE_CHECKING, Annotated, Callable, Literal, Protocol, Self, TypeVar
 
 from pydantic import Field, model_validator
 
@@ -41,6 +42,54 @@ if TYPE_CHECKING:
     from crewshal.durable import CoordinatorStore
     from crewshal.integration import CodexCollection
     from crewshal.linux_setup import OwnedWatchdogLifetime
+
+
+class _Pollable(Protocol):
+    def fileno(self) -> int: ...
+
+
+_ReadFD = TypeVar("_ReadFD", bound=int | _Pollable)
+_WriteFD = TypeVar("_WriteFD", bound=int | _Pollable)
+_ErrorFD = TypeVar("_ErrorFD", bound=int | _Pollable)
+
+
+def _wait_ready(
+    readers: list[_ReadFD],
+    writers: list[_WriteFD],
+    errors: list[_ErrorFD],
+    timeout: float | None = None,
+) -> tuple[list[_ReadFD], list[_WriteFD], list[_ErrorFD]]:
+    """Wait on retained handles without the select descriptor-number ceiling."""
+    if timeout is not None and (not math.isfinite(timeout) or timeout < 0):
+        raise ValueError("descriptor wait timeout must be finite and nonnegative")
+    reading = [(value, value if isinstance(value, int) else value.fileno()) for value in readers]
+    writing = [(value, value if isinstance(value, int) else value.fileno()) for value in writers]
+    exceptional = [(value, value if isinstance(value, int) else value.fileno()) for value in errors]
+    descriptors = [fd for _, fd in reading + writing + exceptional]
+    if any(fd < 0 for fd in descriptors):
+        raise ValueError("descriptor wait requires nonnegative handles")
+    if all(fd < 1024 for fd in descriptors):
+        return select.select(readers, writers, errors, timeout)
+    poller = select.poll()
+    masks: dict[int, int] = {}
+    for pairs, mask in (
+        (reading, select.POLLIN),
+        (writing, select.POLLOUT),
+        (exceptional, select.POLLPRI),
+    ):
+        for _, fd in pairs:
+            masks[fd] = masks.get(fd, 0) | mask
+    for fd, mask in masks.items():
+        poller.register(fd, mask)
+    events = dict(poller.poll(None if timeout is None else math.ceil(timeout * 1000)))
+    if any(event & select.POLLNVAL for event in events.values()):
+        raise OSError(errno.EBADF, "retained descriptor wait found a closed handle")
+    terminal = select.POLLHUP | select.POLLERR
+    return (
+        [value for value, fd in reading if events.get(fd, 0) & (select.POLLIN | terminal)],
+        [value for value, fd in writing if events.get(fd, 0) & (select.POLLOUT | terminal)],
+        [value for value, fd in exceptional if events.get(fd, 0) & select.POLLPRI],
+    )
 
 
 class NamespaceIdentity(Contract):
@@ -120,7 +169,7 @@ def _fields(raw: bytes) -> dict[str, str]:
         key, separator, value = line.partition(":")
         if not separator or not key or key in result:
             raise ValueError("malformed or duplicate proc field")
-        result[key] = value.strip()
+        result[key] = " ".join(value.split()) if key in {"Uid", "Gid", "Groups"} else value.strip()
     return result
 
 
@@ -216,14 +265,14 @@ class RetainedProc:
         # Production attach supplies an actual pidfd. Ordinary file seams are
         # only offline fixtures; readiness never proves storage reference closure.
         self._verify_handles()
-        exited = bool(select.select([self.pidfd], [], [], 0)[0])
+        exited = bool(_wait_ready([self.pidfd], [], [], 0)[0])
         self._verify_handles()
         if not exited:
             raise ValueError("retained pidfd has not observed native exit")
 
     def verify_stopped(self) -> None:
         self._verify_handles()
-        if select.select([self.pidfd], [], [], 0)[0]:
+        if _wait_ready([self.pidfd], [], [], 0)[0]:
             raise ValueError("retained pidfd reports process exit")
         self._verify_handles()
         if _stat_identity(_read(self.descriptor, "stat")) != (
@@ -304,14 +353,16 @@ class RetainedProc:
                 not stat.S_ISREG(info.st_mode)
                 or info.st_uid == self.spec.native_uid
                 or info.st_mode & 0o022
-                or info.st_size > 134217728
+                # The copied image consumes prepared storage. Its file length
+                # does not equal the worker's unchanged resident memory limit.
+                or info.st_size > 1073741824
             ):
                 raise ValueError("native executable authority or size differs")
             sha = hashlib.sha256()
             total = 0
             while chunk := os.read(executable, 65536):
                 total += len(chunk)
-                if total > 134217728:
+                if total > 1073741824:
                     raise ValueError("native executable exceeds bound")
                 sha.update(chunk)
             after = os.fstat(executable)
@@ -525,7 +576,7 @@ class AdmittedNative:
                 self.receipt.stdin_pipe.inode,
             ):
                 raise ValueError("admitted stdin pipe identity changed")
-            exchange = AppServerExchange.from_profile(profile)
+            exchange = AppServerExchange.from_profile(profile, lane_id=self.configuration.lane_id)
             stdin_stream = self.child.stdin
         for stream, expected in (
             (self.child.stdout, self.receipt.stdout_pipe),
@@ -571,6 +622,7 @@ def _current_source(configuration: "DispatchConfiguration") -> None:
         preparation_digest=configuration.preparation_digest,
         linux_envelope=configuration.linux_envelope,
         app_server_profile=configuration.app_server_profile,
+        lane_id=configuration.lane_id,
     )
     expected = DispatchConfiguration.model_validate(
         {

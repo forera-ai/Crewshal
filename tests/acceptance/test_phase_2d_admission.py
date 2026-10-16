@@ -5,9 +5,13 @@ Every fixture is new and contains no credentials or prior qualification artifact
 """
 
 from datetime import datetime, timezone
+import errno
+import fcntl
+import hashlib
 import os
 from pathlib import Path
 import subprocess
+import socket
 import tempfile
 import unittest
 from unittest.mock import patch
@@ -17,11 +21,70 @@ from crewshal.admission import (
     NamespaceIdentity,
     RetainedProc,
     admit_native_process,
+    _wait_ready,
 )
 from crewshal.contracts import record_digest
 from crewshal.model import digest
 from crewshal.supervisor import CgroupIdentity, OwnedCgroup
 from tests.acceptance import test_phase_2d_dispatch as dispatch_fixtures
+
+
+class HighDescriptorReadiness(unittest.TestCase):
+    def test_high_pipe_descriptors_preserve_read_write_and_handle_custody(self):
+        read, write = os.pipe()
+        self.addCleanup(os.close, read)
+        self.addCleanup(os.close, write)
+        high_read = fcntl.fcntl(read, fcntl.F_DUPFD_CLOEXEC, 1475)
+        high_write = fcntl.fcntl(write, fcntl.F_DUPFD_CLOEXEC, 1475)
+        self.addCleanup(os.close, high_read)
+        self.addCleanup(os.close, high_write)
+        flags = fcntl.fcntl(high_read, fcntl.F_GETFD)
+        with patch("crewshal.admission.select.select", side_effect=AssertionError("low FD API")):
+            self.assertEqual(_wait_ready([high_read], [high_write], [], 0), ([], [high_write], []))
+            os.write(high_write, b"original bytes")
+            self.assertEqual(_wait_ready([high_read], [], [], 0), ([high_read], [], []))
+            self.assertEqual(os.read(high_read, 100), b"original bytes")
+        self.assertEqual(fcntl.fcntl(high_read, fcntl.F_GETFD), flags)
+        self.assertEqual(os.fstat(high_read).st_ino, os.fstat(read).st_ino)
+
+    def test_high_socket_objects_keep_identity_duplicates_and_eof_readiness(self):
+        first, peer = socket.socketpair()
+        self.addCleanup(first.close)
+        self.addCleanup(peer.close)
+        high = socket.socket(fileno=fcntl.fcntl(first.fileno(), fcntl.F_DUPFD_CLOEXEC, 1475))
+        self.addCleanup(high.close)
+        peer.sendall(b"socket bytes")
+        ready, writable, errors = _wait_ready([high, high], [high], [], 0)
+        self.assertEqual(len(ready), 2)
+        self.assertIs(ready[0], high)
+        self.assertIs(ready[1], high)
+        self.assertEqual(writable, [high])
+        self.assertEqual(errors, [])
+        self.assertEqual(high.recv(100), b"socket bytes")
+        peer.close()
+        self.assertEqual(_wait_ready([high], [], [], 0)[0], [high])
+        self.assertEqual(high.recv(1), b"")
+
+    def test_closed_high_descriptor_refuses_with_bad_descriptor_error(self):
+        read, write = os.pipe()
+        self.addCleanup(os.close, read)
+        self.addCleanup(os.close, write)
+        high = fcntl.fcntl(read, fcntl.F_DUPFD_CLOEXEC, 1475)
+        os.close(high)
+        with self.assertRaises(OSError) as error:
+            _wait_ready([high], [], [], 0)
+        self.assertEqual(error.exception.errno, errno.EBADF)
+
+    def test_high_descriptor_timeout_stays_finite_and_nonnegative(self):
+        read, write = os.pipe()
+        self.addCleanup(os.close, read)
+        self.addCleanup(os.close, write)
+        high = fcntl.fcntl(read, fcntl.F_DUPFD_CLOEXEC, 1475)
+        self.addCleanup(os.close, high)
+        for timeout in (-1, float("nan"), float("inf")):
+            with self.subTest(timeout=timeout), self.assertRaises(ValueError):
+                _wait_ready([high], [], [], timeout)
+        self.assertEqual(_wait_ready([high], [], [], 0.001), ([], [], []))
 
 
 class SyntheticChild(subprocess.Popen):
@@ -40,6 +103,29 @@ class SyntheticChild(subprocess.Popen):
 
 
 class Phase2DAdmission(unittest.TestCase):
+    def test_copied_native_image_can_exceed_worker_resident_memory_limit(self):
+        # An executable's file length does not equal its resident memory use.
+        # Use a real sparse file and bounded reads, without launching that file.
+        size = 134217729
+        self.executable.chmod(0o755)
+        with self.executable.open("wb") as output:
+            output.truncate(size)
+        self.executable.chmod(0o555)
+        sha = hashlib.sha256()
+        with self.executable.open("rb") as source:
+            while chunk := source.read(65536):
+                sha.update(chunk)
+        self.proc.spec.executable_sha256 = sha.hexdigest()
+        self.proc.read_configuration(self.configuration)
+        self.assertEqual(self.configuration.limits.worker_memory_bytes, 134217728)
+        self.assertEqual(self.configuration.limits.logical_disk_bytes, 8589934592)
+        self.executable.chmod(0o755)
+        with self.executable.open("wb") as output:
+            output.truncate(1073741825)
+        self.executable.chmod(0o555)
+        with self.assertRaisesRegex(ValueError, "authority or size"):
+            self.proc.read_configuration(self.configuration)
+
     def setUp(self):
         preparation = dispatch_fixtures.Phase2DDispatch()
         preparation.setUp()
@@ -557,7 +643,7 @@ class Phase2DAdmission(unittest.TestCase):
         ):
             with self.subTest(changes=changes), self.assertRaises(ValueError):
                 NativeAdmissionSpec.model_validate({**self.spec.model_dump(), **changes})
-        self.assertEqual(len(self.configuration.source_sha256), 26)
+        self.assertEqual(len(self.configuration.source_sha256), 42)
 
     def test_missing_or_reaped_child_cannot_supply_admission(self):
         self.child.result = 0
@@ -592,3 +678,21 @@ class Phase2DAdmission(unittest.TestCase):
         (self.aggregate_path / "memory.max").write_text("max")
         with self.assertRaisesRegex(ValueError, "aggregate controls"):
             admitted.capture(cancelled=lambda: False)
+
+
+class KernelIdentityWhitespaceTests(unittest.TestCase):
+    def test_kernel_tabs_preserve_every_identity_value(self):
+        from crewshal.admission import _fields
+
+        self.assertEqual(
+            _fields(
+                b"Uid:\t0\t0\t0\t0\nGid:\t65534\t0\t65534\t65534\nGroups:\t7  9 \nName:\ta  b\n"
+            ),
+            {"Uid": "0 0 0 0", "Gid": "65534 0 65534 65534", "Groups": "7 9", "Name": "a  b"},
+        )
+
+    def test_duplicate_numeric_fields_remain_invalid(self):
+        from crewshal.admission import _fields
+
+        with self.assertRaises(ValueError):
+            _fields(b"Uid:\t0\t0\t0\t0\nUid:\t0 0 0 0\n")

@@ -1,0 +1,3129 @@
+{
+  "apparmor_revision_continuation": {
+    "actual_progress": {
+      "actual_device_login": "not run",
+      "actual_live_turn": "not run",
+      "actual_qualification": "not run",
+      "fixture_seed_and_readback": "returned before policy open",
+      "installed_policy_open": "passed before the new bounded policy-load child",
+      "memory": {
+        "/sys/fs/cgroup/crewshal.slice/crewshal-2d.slice/crewshal-2d-20261015v24.slice": {
+          "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+          "memory.max": "805306368\n",
+          "memory.peak": "121405440\n",
+          "pids.events": "max 0\n"
+        },
+        "/sys/fs/cgroup/crewshal.slice/crewshal-2d.slice/crewshal-2d-20261015v24.slice/crewshal-2d-20261015v24-observer.service": {
+          "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+          "memory.max": "134217728\n",
+          "memory.peak": "93913088\n",
+          "pids.events": "max 0\n"
+        }
+      }
+    },
+    "after_fix": {
+      "errors": 0,
+      "failures": 0,
+      "focused_tests": 41,
+      "installed_tests": 1220,
+      "skipped": 0,
+      "source_tests": 1220
+    },
+    "automatic_retries": 0,
+    "before_fix": {
+      "errors": 2,
+      "failures": 0,
+      "new_regression_methods": 2
+    },
+    "correction": "Use the existing RetainedAppArmorExport._revision reader at all four operational AppArmor revision sites. It handles EAGAIN after nonempty bounded data, checks AppArmorfs, and validates the revision. Keep the generic proc reader unchanged. Preserve comparison of before and after revisions.",
+    "counter_resets": 0,
+    "exact_existing_reader_probe": {
+      "compilers_executed": false,
+      "existing_exact_reader_revision": 269,
+      "policy_loaded": false
+    },
+    "existing_combined_reserved_bytes_each": 188978561024,
+    "failure": {
+      "errno": 11,
+      "line": 157,
+      "location": "First AppArmor namespace revision read before policy loading.",
+      "observer_pid": 29199,
+      "original_public_refusal": {
+        "execution_allowed": false,
+        "failure_causes": [
+          {
+            "errno": null,
+            "line": 1704,
+            "source": "linux_operational.py",
+            "type": "OperationalRefusal"
+          },
+          {
+            "errno": null,
+            "line": 669,
+            "source": "linux_storage.py",
+            "type": "StorageChildRefusal"
+          }
+        ],
+        "failure_errno": null,
+        "failure_line": 1704,
+        "failure_source": "linux_operational.py",
+        "failure_type": "OperationalRefusal",
+        "phase": "2D",
+        "reusable": false,
+        "schema_version": 1,
+        "stage": "refused_with_original_custody",
+        "storage_child_failure": {
+          "errno": 11,
+          "line": 157,
+          "source": "admission.py",
+          "type": "BlockingIOError"
+        }
+      },
+      "source": "admission.py",
+      "type": "BlockingIOError"
+    },
+    "kernel_source": "https://github.com/torvalds/linux/blob/v7.0/security/apparmor/apparmorfs.c#L584",
+    "new_aggregate": "crewshal-2d-20261015v25.slice",
+    "new_observer": "crewshal-2d-20261015v25-observer.service",
+    "outputs": {
+      "crewshal-bootstrap": {
+        "bytes": 669328,
+        "sha256": "ab3a0bec59dfcb16d5469b10e027c54697dc47b43309bf121261fb846b01d576"
+      },
+      "lost+found": {
+        "directory": true,
+        "entries": [],
+        "nlink": 2
+      },
+      "policy.binary": {
+        "bytes": 7348,
+        "sha256": "5a9ded6dc15a10b869cbbbcbc852cd5606532b8f117f9202c97adde1945f2ae6"
+      },
+      "storage-audit.json": {
+        "bytes": 3537,
+        "sha256": "ad78dfa709dedd7bb849abff1af6d587de57dc1af8fbeced3ddb4274c9eac8f3"
+      }
+    },
+    "physical_closure": "unknown",
+    "proposal": "docs/PHASE-2D-APPARMOR-REVISION-CONTINUATION-2026-10-15.md",
+    "proposed_combined_reserved_bytes_each": 197568495616,
+    "proposed_nominal_memory_charge_bytes": 18522046464,
+    "proposed_nominal_tasks": 2944,
+    "read_only_interface_probe": {
+      "first_read": "269\n",
+      "operation": "fresh read-only interface; no policy load",
+      "second_read": {
+        "errno": 11,
+        "type": "BlockingIOError"
+      }
+    },
+    "retained_custody": {
+      "common_limits_equal": true,
+      "common_memory_events": "low 0\nhigh 0\nmax 7410\noom 1\noom_kill 1\noom_group_kill 0\nsock_throttled 0\n",
+      "common_memory_events_local": "low 0\nhigh 0\nmax 5715\noom 1\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+      "current_journal_fd_identities_equal": 19,
+      "forwarding": 0,
+      "original_charge_snapshots_verified": 22,
+      "original_observer_custody_loss": 24610
+    },
+    "twenty_second_journal_sha256": "bb950808571b86b3b030b4c8d344353784745f0894554d95536c5ac7b7c059e9",
+    "v27_approval": {
+      "answer": "Approve the exact v27 exception and batch",
+      "approval_date": "2026-10-15",
+      "question_id": "call_f68783ab804d4dadb1787fa44c41d81f",
+      "record_sha256": "1b427675e9e78da5390316f9f234d308cd304654d33cfcd0d284ae90cf8c5914"
+    }
+  },
+  "base_revision": "87ed7e6f6c766c7ff2df245ad05569558a9ca3bc",
+  "branch": "codex/phase1-architecture",
+  "candidate_release": "unreleased",
+  "candidate_version": "0.13.0",
+  "child_failure_diagnostic_continuation": {
+    "actual_progress": {
+      "actual_device_login": "not run",
+      "actual_live_turn": "not run",
+      "actual_qualification": "not run",
+      "domain_loop": {
+        "block_size": 4096,
+        "status": [
+          66306,
+          1055015,
+          0,
+          0,
+          1073741824,
+          107,
+          0,
+          0,
+          16
+        ],
+        "target": "/dev/loop107"
+      },
+      "observer_memory_current": 61251584,
+      "observer_memory_events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+      "observer_memory_peak": 94113792,
+      "observer_pids_events": "max 0\n"
+    },
+    "after_fix": {
+      "errors": 0,
+      "failures": 0,
+      "focused_tests": 215,
+      "installed_tests": 1204,
+      "skipped": 0,
+      "source_tests": 1204
+    },
+    "automatic_retries": 0,
+    "before_fix": {
+      "error_records_including_subtests": 19,
+      "failures": 0,
+      "method": "Fresh tests against the preceding installed v23 package lack the diagnostic interface.",
+      "tests": 7
+    },
+    "correction": "A failed storage child emits at most 512 bytes of typed failure coordinates. It excludes exception messages, local values, full paths, and unknown exception class names. Strict parent parsing retains a refusal. The original observer exposes these untrusted coordinates in its denial record. No diagnostic grants admission or success.",
+    "counter_resets": 0,
+    "eighteenth_journal_sha256": "b4e485e6f9c458d699a69f76d2b907bac715620fa18c9358010723b78f6b1747",
+    "existing_combined_reserved_bytes_each": 154618822656,
+    "failure": {
+      "diagnostic": "storage child reported unknown readback",
+      "internal_diagnostic": "Unavailable. The preceding FD correction did not resolve actual initial readback. No additional cause is claimed.",
+      "line": 572,
+      "observer_pid": 25399,
+      "source": "linux_storage.py",
+      "verified_parent_frames": [
+        "LinuxPhysicalOwner.__init__",
+        "LinuxPhysicalOwner.readback",
+        "BoundedStorageJobs.run"
+      ]
+    },
+    "new_aggregate": "crewshal-2d-20261015v21.slice",
+    "new_observer": "crewshal-2d-20261015v21-observer.service",
+    "outputs": {
+      "crewshal-bootstrap": {
+        "bytes": 669328,
+        "sha256": "ab3a0bec59dfcb16d5469b10e027c54697dc47b43309bf121261fb846b01d576"
+      },
+      "lost+found": {
+        "directory": true,
+        "entries": [],
+        "nlink": 2
+      },
+      "policy.binary": {
+        "bytes": 7348,
+        "sha256": "5a9ded6dc15a10b869cbbbcbc852cd5606532b8f117f9202c97adde1945f2ae6"
+      },
+      "storage-audit.json": {
+        "bytes": 3537,
+        "sha256": "ad78dfa709dedd7bb849abff1af6d587de57dc1af8fbeced3ddb4274c9eac8f3"
+      }
+    },
+    "physical_closure": "unknown",
+    "proposal": "docs/PHASE-2D-CHILD-FAILURE-CONTINUATION-2026-10-15.md",
+    "proposed_combined_reserved_bytes_each": 163208757248,
+    "proposed_nominal_memory_charge_bytes": 15300820992,
+    "proposed_nominal_tasks": 2432,
+    "remaining_actual_cause": "unknown; next failed child must report source, line, type, and errno when available",
+    "retained_custody": {
+      "common_limits_equal": true,
+      "common_memory_events": "low 0\nhigh 0\nmax 4492\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+      "common_memory_events_local": "low 0\nhigh 0\nmax 2797\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+      "current_journal_fd_identities_equal": 16,
+      "forwarding": 0,
+      "original_charge_snapshots_verified": 18
+    },
+    "v23_approval": {
+      "answer": "Approve the exact v23 exception and batch",
+      "question_id": "call_959e21a81ecf4fa7b4e77f13b4ffedc7",
+      "record_sha256": "ad1b63004d7922bd5fcbf162307bb0374c23f3dda01f43bb3e1c03f1a04024a3"
+    }
+  },
+  "combined_reserved_bytes_each": 197568495616,
+  "current_proposal": "docs/qualification/phase-2d-executable-batch-v29-20261015.json",
+  "current_proposal_sha256": "638cf90f32188dfb024eae2810fe79c547c138a6b41bfcc494bcdb107546b4cd",
+  "current_work": "Phase 2D core software development is active and unblocked under accepted ADR 0007. Platform and live qualification are deferred separately.",
+  "date": "2026-10-15",
+  "development_order_decision": "docs/decisions/0007-core-development-before-platform-qualification.md",
+  "execution_results": [
+    {
+      "actual_device_login": "not run",
+      "actual_live_turn": "not run",
+      "actual_qualification": "not run",
+      "batch": "v10",
+      "cause": "collect2: fatal error: cannot find 'ld'",
+      "commands": {
+        "0": {
+          "exit": 0,
+          "index": 0,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 110,
+          "stdout_sha256": "a9e91a9cb295563d5459b31eb6b4bef56a30412388b4f812f1f020ea85fcace9"
+        },
+        "1": {
+          "exit": 0,
+          "index": 1,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 86,
+          "stdout_sha256": "c54ebdc31423603f0ec6f7ae652c109a5d53855cf03bf27d92a15cec32c141aa"
+        },
+        "2": {
+          "exit": 0,
+          "index": 2,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "3": {
+          "exit": 0,
+          "index": 3,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "4": {
+          "exit": 0,
+          "index": 4,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 729,
+          "stdout_sha256": "10fc311d190e722e9f0d7680c3754925c6aa61b8d469079dd5f16cd1d87687df"
+        },
+        "5": {
+          "exit": 0,
+          "index": 5,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      "forwarding_restored": true,
+      "guest_generation": 7,
+      "journal_sha256": "e3198e2ce4740bea0b33033933a1c4af4286d67f922d7e8c821dd000545c9cd3",
+      "new_full_charge": true,
+      "observer_pid": 9103,
+      "owner_approval": {
+        "answer": "Approve the exact v10 exception and batch",
+        "question_id": "call_4874a8faaa0a40d7a3c84aa156e9292a"
+      },
+      "record": "docs/qualification/phase-2d-executable-batch-v10-20261013.json",
+      "record_sha256": "c3c09e7b4ab8205fe53024ae2718d45e7f279166053a5a0d17c673a063151b2b",
+      "status": "refused with original custody",
+      "timer_pid": 9105
+    },
+    {
+      "actual_device_login": "not run",
+      "actual_live_turn": "not run",
+      "actual_qualification": "not run",
+      "batch": "v11",
+      "cause": "AppArmor rejected --include and exited 1.",
+      "commands": {
+        "0": {
+          "exit": 0,
+          "index": 0,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 110,
+          "stdout_sha256": "32c0b6b83a4e7db45acf64c66e0f000abe848da3e0b7a49df4752b318902daa6"
+        },
+        "1": {
+          "exit": 0,
+          "index": 1,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 86,
+          "stdout_sha256": "c54ebdc31423603f0ec6f7ae652c109a5d53855cf03bf27d92a15cec32c141aa"
+        },
+        "2": {
+          "exit": 0,
+          "index": 2,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "3": {
+          "exit": 0,
+          "index": 3,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "4": {
+          "exit": 0,
+          "index": 4,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 729,
+          "stdout_sha256": "d32116da1e8d255dc757c9c2870fb30977623eb07128407e37b43ae48c5f8394"
+        },
+        "5": {
+          "exit": 0,
+          "index": 5,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      "forwarding_restored": true,
+      "guest_generation": 8,
+      "journal_sha256": "77cc95aadca699017f5340a03f302287dfd724aa8f5684b66e08952926d589bd",
+      "new_full_charge": true,
+      "observer_pid": 9813,
+      "owner_approval": {
+        "answer": "Approve the exact v11 exception and batch",
+        "question_id": "call_2c6125b6adc24057811ba147b865a70e"
+      },
+      "record": "docs/qualification/phase-2d-executable-batch-v11-20261014.json",
+      "record_sha256": "e3fe682d97c51b99cb9d5f69b1c8818ee4fbf41aebb8385565657015a0fb1678",
+      "status": "refused with original custody",
+      "timer_pid": null
+    },
+    {
+      "actual_device_login": "not run",
+      "actual_live_turn": "not run",
+      "actual_qualification": "not run",
+      "batch": "v12",
+      "cause": "AppArmor treated - as a filename and exited 2.",
+      "commands": {
+        "0": {
+          "exit": 0,
+          "index": 0,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 110,
+          "stdout_sha256": "1e0c935b1db0946acc7fefaffbc2bc6ebf844867a457992978f3d39c093ea6fe"
+        },
+        "1": {
+          "exit": 0,
+          "index": 1,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 86,
+          "stdout_sha256": "c54ebdc31423603f0ec6f7ae652c109a5d53855cf03bf27d92a15cec32c141aa"
+        },
+        "2": {
+          "exit": 0,
+          "index": 2,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "3": {
+          "exit": 0,
+          "index": 3,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "4": {
+          "exit": 0,
+          "index": 4,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 729,
+          "stdout_sha256": "31f336c5b02eef0ecf0bf3c6f8ddd623cbc5f7fccb3fff05d3e0bc8d0b241e11"
+        },
+        "5": {
+          "exit": 0,
+          "index": 5,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      "forwarding_restored": true,
+      "guest_generation": 9,
+      "journal_sha256": "88983dd3a0105decd851426a41975915237434a24d5c83fada89879c511c90c7",
+      "new_full_charge": true,
+      "observer_pid": 10540,
+      "owner_approval": {
+        "answer": "Approve the exact v12 exception and batch",
+        "question_id": "call_cef478dd93b34f6facb72fa40d88c4ef"
+      },
+      "record": "docs/qualification/phase-2d-executable-batch-v12-20261014.json",
+      "record_sha256": "ef3a31cc5569d0556bf6212dbf3af16fcfa75982aa18ea59966aef5984347411",
+      "status": "refused with original custody",
+      "timer_pid": null
+    },
+    {
+      "actual_device_login": "not run",
+      "actual_live_turn": "not run",
+      "actual_qualification": "not run",
+      "batch": "v13",
+      "cause": "Read-only remount refused with EBUSY. The original deleted formatter directory remains open.",
+      "commands": {
+        "0": {
+          "exit": 0,
+          "index": 0,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 110,
+          "stdout_sha256": "f5d23a1261905fea56468e2bdf6642a49775e9f305e2cb530249932259738d7d"
+        },
+        "1": {
+          "exit": 0,
+          "index": 1,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 86,
+          "stdout_sha256": "c54ebdc31423603f0ec6f7ae652c109a5d53855cf03bf27d92a15cec32c141aa"
+        },
+        "2": {
+          "exit": 0,
+          "index": 2,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "3": {
+          "exit": 0,
+          "index": 3,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "4": {
+          "exit": 0,
+          "index": 4,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 726,
+          "stdout_sha256": "3524387e4cc56031fd8a5a60862a003b339f79e7be5caaeb363f00e0ee34afea"
+        },
+        "5": {
+          "exit": 0,
+          "index": 5,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      "forwarding_restored": true,
+      "guest_generation": 10,
+      "journal_sha256": "52731130c6819aa6338e1137e0da3c6669e0c2c37e92229e0eb651c17f9179d6",
+      "new_full_charge": true,
+      "observer_pid": 11616,
+      "outputs": {
+        "crewshal-bootstrap": {
+          "bytes": 669328,
+          "sha256": "ab3a0bec59dfcb16d5469b10e027c54697dc47b43309bf121261fb846b01d576"
+        },
+        "policy.binary": {
+          "bytes": 7348,
+          "sha256": "5a9ded6dc15a10b869cbbbcbc852cd5606532b8f117f9202c97adde1945f2ae6"
+        },
+        "storage-audit.json": {
+          "bytes": 3537,
+          "sha256": "ad78dfa709dedd7bb849abff1af6d587de57dc1af8fbeced3ddb4274c9eac8f3"
+        }
+      },
+      "owner_approval": {
+        "answer": "Approve the exact v13 exception and batch",
+        "question_id": "call_16eb0dc7fc9c4c6ab90ca9994cd21d5c",
+        "record_sha256": "21e81d89f9a4eee0f80b34015bbfd3f3dbb176a55ffd03f19564102a94412e4b"
+      },
+      "record": "docs/qualification/phase-2d-executable-batch-v13-20261014.json",
+      "record_sha256": "21e81d89f9a4eee0f80b34015bbfd3f3dbb176a55ffd03f19564102a94412e4b",
+      "status": "refused with original custody"
+    },
+    {
+      "actual_device_login": "not run",
+      "actual_live_turn": "not run",
+      "actual_qualification": "not run",
+      "batch": "v14",
+      "cause": "The timer, lane, reservation, and build derivation verification calls form a cycle.",
+      "commands": {
+        "0": {
+          "exit": 0,
+          "index": 0,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 110,
+          "stdout_sha256": "5f29961208649a66ff41ad2f67a56cda7d55bdf42897bf748fe51398ed6fe256"
+        },
+        "1": {
+          "exit": 0,
+          "index": 1,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 86,
+          "stdout_sha256": "c54ebdc31423603f0ec6f7ae652c109a5d53855cf03bf27d92a15cec32c141aa"
+        },
+        "2": {
+          "exit": 0,
+          "index": 2,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "3": {
+          "exit": 0,
+          "index": 3,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "4": {
+          "exit": 0,
+          "index": 4,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 725,
+          "stdout_sha256": "6f59e342f1623809d8e76ca18c5d8eba6c2d65c8e8b10f6be8b101466e2411f7"
+        },
+        "5": {
+          "exit": 0,
+          "index": 5,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      "compiler_volume_readonly": true,
+      "forwarding_restored": true,
+      "guest_generation": 11,
+      "journal_sha256": "8d5ef5d267aeeeab11f2ab94e5770a8289aaf9ff7a598dd25561d4ef057f743b",
+      "new_full_charge": true,
+      "observer_pid": 12352,
+      "outputs": {
+        "crewshal-bootstrap": {
+          "bytes": 669328,
+          "sha256": "ab3a0bec59dfcb16d5469b10e027c54697dc47b43309bf121261fb846b01d576"
+        },
+        "lost+found": {
+          "directory": true,
+          "entries": [],
+          "nlink": 2
+        },
+        "policy.binary": {
+          "bytes": 7348,
+          "sha256": "5a9ded6dc15a10b869cbbbcbc852cd5606532b8f117f9202c97adde1945f2ae6"
+        },
+        "storage-audit.json": {
+          "bytes": 3537,
+          "sha256": "ad78dfa709dedd7bb849abff1af6d587de57dc1af8fbeced3ddb4274c9eac8f3"
+        }
+      },
+      "owner_approval": {
+        "answer": "Approve the exact v14 exception and batch",
+        "question_id": "call_53e28ca7c914448db803ace076b2a7ec",
+        "record_sha256": "9bcee7bbf4e9822e3c52f84bf33158d3d8d153b93e001a7ca069154f6306a7cb"
+      },
+      "prestart_verifier_correction": {
+        "final_observer_unit_sha256": "41ab12634a6da8178c89516256cb22373a1f33e8795cd3369d9dc09e9b3d0521",
+        "problem": "The local verifier used the archive unit hash for the final installed unit.",
+        "resolution": "Readback verified the exact four appended bindings from the approved preparation script before the observer started. No frozen input or installed unit changed.",
+        "result": "All 227 inputs, both derived final units, nine prior journals, original custody, and actual common controls passed."
+      },
+      "record": "docs/qualification/phase-2d-executable-batch-v14-20261014.json",
+      "record_sha256": "9bcee7bbf4e9822e3c52f84bf33158d3d8d153b93e001a7ca069154f6306a7cb",
+      "status": "refused with original custody"
+    },
+    {
+      "actual_device_login": "not run",
+      "actual_live_turn": "not run",
+      "actual_qualification": "not run",
+      "batch": "v15",
+      "cause": "select refused descriptors above 1023 during child admission and terminal cleanup.",
+      "commands": {
+        "0": {
+          "exit": 0,
+          "index": 0,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 110,
+          "stdout_sha256": "a609ed7099995d3eb2464d6623b37fa00aa11c507500e58748ed276809fe8781"
+        },
+        "1": {
+          "exit": 0,
+          "index": 1,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 86,
+          "stdout_sha256": "c54ebdc31423603f0ec6f7ae652c109a5d53855cf03bf27d92a15cec32c141aa"
+        },
+        "2": {
+          "exit": 0,
+          "index": 2,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "3": {
+          "exit": 0,
+          "index": 3,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "4": {
+          "exit": 0,
+          "index": 4,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 885,
+          "stdout_sha256": "b089c2cfed352803983675fbf76f9f56b9849f36f53ab4c9c629ca78db0495c2"
+        },
+        "5": {
+          "exit": 0,
+          "index": 5,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      "compiler_volume_readonly": true,
+      "date": "2026-10-15",
+      "final_lanes_bound": true,
+      "forwarding_restored": true,
+      "guest_generation": 12,
+      "journal_sha256": "917ba2832e26af663221aa37bad8895221a30cf274ccdba89c48ad46148052c6",
+      "new_full_charge": true,
+      "observer_pid": 13731,
+      "original_child_pid": 13791,
+      "original_child_pidfd": 1476,
+      "original_child_state": "Z (zombie)",
+      "outputs": {
+        "crewshal-bootstrap": {
+          "bytes": 669328,
+          "sha256": "ab3a0bec59dfcb16d5469b10e027c54697dc47b43309bf121261fb846b01d576"
+        },
+        "lost+found": {
+          "directory": true,
+          "entries": [],
+          "nlink": 2
+        },
+        "policy.binary": {
+          "bytes": 7348,
+          "sha256": "5a9ded6dc15a10b869cbbbcbc852cd5606532b8f117f9202c97adde1945f2ae6"
+        },
+        "storage-audit.json": {
+          "bytes": 3537,
+          "sha256": "ad78dfa709dedd7bb849abff1af6d587de57dc1af8fbeced3ddb4274c9eac8f3"
+        }
+      },
+      "owner_approval": {
+        "answer": "Approve the exact v15 exception and batch",
+        "approval_date": "2026-10-15",
+        "question_id": "call_e9cf5e010b04402dbef0c64c59999fe8",
+        "record_sha256": "71d41d82dd99a8f0541e54eff7c6878d8362199e544d4b52e404d29f7e9ce5a8"
+      },
+      "record": "docs/qualification/phase-2d-executable-batch-v15-20261014.json",
+      "record_sha256": "71d41d82dd99a8f0541e54eff7c6878d8362199e544d4b52e404d29f7e9ce5a8",
+      "status": "refused with original custody"
+    },
+    {
+      "actual_device_login": "not run",
+      "actual_live_turn": "not run",
+      "actual_qualification": "not run",
+      "batch": "v16",
+      "cause": "Retained compiler proof incorrectly required the shared setup role to remain empty during an admitted storage child.",
+      "commands": {
+        "0": {
+          "exit": 0,
+          "index": 0,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 110,
+          "stdout_sha256": "da73ca32e1a6f74747de080349e8881035ca19dcea4ce7aadd765b48921a9af5"
+        },
+        "1": {
+          "exit": 0,
+          "index": 1,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 86,
+          "stdout_sha256": "c54ebdc31423603f0ec6f7ae652c109a5d53855cf03bf27d92a15cec32c141aa"
+        },
+        "2": {
+          "exit": 0,
+          "index": 2,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "3": {
+          "exit": 0,
+          "index": 3,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "4": {
+          "exit": 0,
+          "index": 4,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 815,
+          "stdout_sha256": "97a8dd5f11ed5faa4ed40bc0e06871b491aef8cd3631a4933960b6226b2ca0e0"
+        },
+        "5": {
+          "exit": 0,
+          "index": 5,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      "compiler_volume_readonly": true,
+      "date": "2026-10-15",
+      "directory_handoff_completed": false,
+      "final_lanes_bound": true,
+      "forwarding_restored": true,
+      "guest_generation": 13,
+      "high_descriptor_polling_passed": true,
+      "installation_root_created": true,
+      "installation_root_entries": [],
+      "journal_sha256": "cf6588e7a5ac6e0a7a79027b2ba35c82915aa6cef69db1e9390091596b351ff4",
+      "new_full_charge": true,
+      "observer_pid": 14430,
+      "original_child_pid": 14490,
+      "original_child_pidfd": 1476,
+      "original_child_state": "Z (zombie)",
+      "outputs": {
+        "crewshal-bootstrap": {
+          "bytes": 669328,
+          "sha256": "ab3a0bec59dfcb16d5469b10e027c54697dc47b43309bf121261fb846b01d576"
+        },
+        "lost+found": {
+          "directory": true,
+          "entries": [],
+          "nlink": 2
+        },
+        "policy.binary": {
+          "bytes": 7348,
+          "sha256": "5a9ded6dc15a10b869cbbbcbc852cd5606532b8f117f9202c97adde1945f2ae6"
+        },
+        "storage-audit.json": {
+          "bytes": 3537,
+          "sha256": "ad78dfa709dedd7bb849abff1af6d587de57dc1af8fbeced3ddb4274c9eac8f3"
+        }
+      },
+      "owner_approval": {
+        "answer": "Approve the exact v16 exception and batch",
+        "approval_date": "2026-10-15",
+        "question_id": "call_829645bbbc8a47c48456a158097d153f",
+        "record_sha256": "9de749bc97ec0437f3bb61894dee2d586d8ea14ce00f21245f7856aa381374b3"
+      },
+      "record": "docs/qualification/phase-2d-executable-batch-v16-20261015.json",
+      "record_sha256": "9de749bc97ec0437f3bb61894dee2d586d8ea14ce00f21245f7856aa381374b3",
+      "status": "refused with original custody"
+    },
+    {
+      "actual_device_login": "not run",
+      "actual_live_turn": "not run",
+      "actual_qualification": "not run",
+      "batch": "v17",
+      "cause": "The frozen root inventory omits the required real /usr/sbin/mkfs.ext4 file. The separately pinned formatter is /usr/sbin/mke2fs.",
+      "commands": {
+        "0": {
+          "exit": 0,
+          "index": 0,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 110,
+          "stdout_sha256": "b67d1468388dd26e018577c5ab7654ac1af8dbdc59aac7f6476be877e150ce5d"
+        },
+        "1": {
+          "exit": 0,
+          "index": 1,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 86,
+          "stdout_sha256": "c54ebdc31423603f0ec6f7ae652c109a5d53855cf03bf27d92a15cec32c141aa"
+        },
+        "2": {
+          "exit": 0,
+          "index": 2,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "3": {
+          "exit": 0,
+          "index": 3,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "4": {
+          "exit": 0,
+          "index": 4,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 814,
+          "stdout_sha256": "e3153074ce8b57a74f3f4443211b5704963acf96ca7307be9bd6bcd784130151"
+        },
+        "5": {
+          "exit": 0,
+          "index": 5,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      "compiler_volume_readonly": true,
+      "date": "2026-10-15",
+      "diagnostic_correction": "The preliminary inventory-digest diagnosis was incorrect. Exact source line 736 identifies the missing formatter entry. No operational retry followed that diagnosis.",
+      "directory_handoff_completed": true,
+      "failure": {
+        "diagnostic": "physical domain requires bound formatter input",
+        "line": 736,
+        "source": "linux_production.py",
+        "type": "ValueError"
+      },
+      "final_lanes_bound": true,
+      "forwarding_restored": true,
+      "guest_generation": 14,
+      "high_descriptor_polling_passed": true,
+      "journal_sha256": "74d8aa6278824cd50212a0c9fe009094b6970bd641ff5369d7d7c9100a90a09a",
+      "new_full_charge": true,
+      "observer_pid": 15078,
+      "outputs": {
+        "crewshal-bootstrap": {
+          "bytes": 669328,
+          "sha256": "ab3a0bec59dfcb16d5469b10e027c54697dc47b43309bf121261fb846b01d576"
+        },
+        "lost+found": {
+          "directory": true,
+          "entries": [],
+          "nlink": 2
+        },
+        "policy.binary": {
+          "bytes": 7348,
+          "sha256": "5a9ded6dc15a10b869cbbbcbc852cd5606532b8f117f9202c97adde1945f2ae6"
+        },
+        "storage-audit.json": {
+          "bytes": 3537,
+          "sha256": "ad78dfa709dedd7bb849abff1af6d587de57dc1af8fbeced3ddb4274c9eac8f3"
+        }
+      },
+      "owner_approval": {
+        "answer": "Approve the exact v17 exception and batch",
+        "approval_date": "2026-10-15",
+        "question_id": "call_7fe4ef431bac4ecf91c4c9e70ea38647",
+        "record_sha256": "ed1a59430c0d52eb4a3157e6f1e6552772d4c82c0873431125c720c21866339c"
+      },
+      "record": "docs/qualification/phase-2d-executable-batch-v17-20261015.json",
+      "record_sha256": "ed1a59430c0d52eb4a3157e6f1e6552772d4c82c0873431125c720c21866339c",
+      "status": "refused with original custody"
+    },
+    {
+      "actual_device_login": "not run",
+      "actual_live_turn": "not run",
+      "actual_qualification": "not run",
+      "batch": "v18",
+      "cause": "The root copier compares actual allocated blocks with rounded data bytes only. The first complete file has one additional block of filesystem metadata.",
+      "commands": {
+        "0": {
+          "exit": 0,
+          "index": 0,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 110,
+          "stdout_sha256": "d7466fee2c01adeef5c253b2f9f322c7cf3ee1b343b2254899de8f3253e9c5a3"
+        },
+        "1": {
+          "exit": 0,
+          "index": 1,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 86,
+          "stdout_sha256": "c54ebdc31423603f0ec6f7ae652c109a5d53855cf03bf27d92a15cec32c141aa"
+        },
+        "2": {
+          "exit": 0,
+          "index": 2,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "3": {
+          "exit": 0,
+          "index": 3,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "4": {
+          "exit": 0,
+          "index": 4,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 812,
+          "stdout_sha256": "26445f879cb0d576c6b9fa22a402c41df99af70980c388873ca3aac758e9b7bd"
+        },
+        "5": {
+          "exit": 0,
+          "index": 5,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      "compiler_volume_readonly": true,
+      "date": "2026-10-15",
+      "diagnostic_limit": "The child suppresses its internal exception text. Read-only partial-file data and the exact frozen copier establish that its allocation condition fails.",
+      "final_lanes_bound": true,
+      "forwarding_restored": true,
+      "guest_generation": 15,
+      "journal_sha256": "b28e2c2bd2446caf7b428ce24a7662d0e8b4878a2689ff8f6be81f1d23a0e967",
+      "new_full_charge": true,
+      "observer_pid": 19621,
+      "original_failure": {
+        "diagnostic": "storage child reported unknown readback",
+        "line": 572,
+        "source": "linux_storage.py",
+        "type": "ValueError"
+      },
+      "outputs": {
+        "crewshal-bootstrap": {
+          "bytes": 669328,
+          "sha256": "ab3a0bec59dfcb16d5469b10e027c54697dc47b43309bf121261fb846b01d576"
+        },
+        "lost+found": {
+          "directory": true,
+          "entries": [],
+          "nlink": 2
+        },
+        "policy.binary": {
+          "bytes": 7348,
+          "sha256": "5a9ded6dc15a10b869cbbbcbc852cd5606532b8f117f9202c97adde1945f2ae6"
+        },
+        "storage-audit.json": {
+          "bytes": 3537,
+          "sha256": "ad78dfa709dedd7bb849abff1af6d587de57dc1af8fbeced3ddb4274c9eac8f3"
+        }
+      },
+      "owner_approval": {
+        "answer": "Approve the exact v18 exception and batch",
+        "approval_date": "2026-10-15",
+        "question_id": "call_92bf24b234614ca9a11384c4de7dbd3f",
+        "record_sha256": "4955286ea54809f52ee63db3565614071a4bbede5d20fdff0410afa42fac0bee"
+      },
+      "partial_file": {
+        "blocks": 3152,
+        "extent_count": 1,
+        "extent_data_bytes": 1609728,
+        "extents": [
+          [
+            0,
+            2097152,
+            1609728,
+            0,
+            0,
+            4097,
+            0,
+            0,
+            0
+          ]
+        ],
+        "flags": 0,
+        "sha256": "01c006568543d6b6ab9f0a57dd44b9d779d1edc437a5f5d2db0215887c19dbeb",
+        "size": 1609176,
+        "xattrs": []
+      },
+      "physical_domain_prepared": true,
+      "primary_and_auxiliary_backings_created": true,
+      "record": "docs/qualification/phase-2d-executable-batch-v18-20261015.json",
+      "record_sha256": "4955286ea54809f52ee63db3565614071a4bbede5d20fdff0410afa42fac0bee",
+      "root_copy": "partial retained",
+      "status": "refused with original custody"
+    },
+    {
+      "actual_device_login": "not run",
+      "actual_live_turn": "not run",
+      "actual_qualification": "not run",
+      "apparmor_compilation_started": false,
+      "batch": "v19",
+      "c_compilation_started": false,
+      "cause": "The original observer holds an exclusive journal lock. A separate SQLite read connection cannot inspect it.",
+      "commands": {
+        "0": {
+          "exit": 0,
+          "index": 0,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 110,
+          "stdout_sha256": "4d440c30d5da089aedc4e1ca9ffae07dcc8b67949930241bbe71a5adebf6742f"
+        },
+        "1": {
+          "exit": 1,
+          "index": 1,
+          "stderr_bytes": 159,
+          "stderr_sha256": "b15d039b2480f90e2519b3af2f46e018c13566d2a8406764924589e5a5be030c",
+          "stdout_bytes": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "5": {
+          "exit": 0,
+          "index": 5,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      "date": "2026-10-15",
+      "failure": {
+        "diagnostic": "database is locked",
+        "line": 208,
+        "source": "phase_2d_owner_capabilities_copy_accounting_v16.py",
+        "type": "sqlite3.OperationalError"
+      },
+      "forwarding_restored": true,
+      "guest_generation": 16,
+      "new_full_charge": false,
+      "new_input_created": false,
+      "new_storage_created": false,
+      "new_unit_created": false,
+      "observer_started": false,
+      "owner_approval": {
+        "answer": "Approve the exact v19 exception and batch",
+        "approval_date": "2026-10-15",
+        "question_id": "call_debeb7e4e366432091198bd2e42a321e",
+        "record_sha256": "ea0ebe4df2f6eb027d5a6ebe6d50422a0f7f7152d1fd17b76153dc25b66d5540"
+      },
+      "record": "docs/qualification/phase-2d-executable-batch-v19-20261015.json",
+      "record_sha256": "ea0ebe4df2f6eb027d5a6ebe6d50422a0f7f7152d1fd17b76153dc25b66d5540",
+      "status": "owner preparation refused before new charge",
+      "uploaded_archive_retained": true
+    },
+    {
+      "actual_device_login": "not run",
+      "actual_live_turn": "not run",
+      "actual_qualification": "not run",
+      "batch": "v20",
+      "cause": "The final original resource check refused observer memory.max history. The cache helper skips completed files at or below 4 MiB.",
+      "commands": {
+        "0": {
+          "exit": 0,
+          "index": 0,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 110,
+          "stdout_sha256": "911b2c3b3d646e5fe963cca0cfd13080eb563a5db3ce2eb3a14d96ff60a017f2"
+        },
+        "1": {
+          "exit": 0,
+          "index": 1,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 86,
+          "stdout_sha256": "c54ebdc31423603f0ec6f7ae652c109a5d53855cf03bf27d92a15cec32c141aa"
+        },
+        "2": {
+          "exit": 0,
+          "index": 2,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "3": {
+          "exit": 0,
+          "index": 3,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "4": {
+          "exit": 0,
+          "index": 4,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 808,
+          "stdout_sha256": "8308ba6c28b86067d61dd4455da9c51e69efa1d380cc02be4ab415132984098b"
+        },
+        "5": {
+          "exit": 0,
+          "index": 5,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      "date": "2026-10-15",
+      "failure": {
+        "diagnostic": "aggregate has resource-refusal history",
+        "line": 458,
+        "source": "admission.py",
+        "type": "ValueError"
+      },
+      "forwarding_restored": true,
+      "guest_generation": 17,
+      "journal_sha256": "2e3bfe9fa80de0a3da1cdfd10afcbbfb7b09dfa30d3dc68f6d84fc2e10a556b1",
+      "new_full_charge": true,
+      "observer_pid": 20701,
+      "outputs": {
+        "crewshal-bootstrap": {
+          "bytes": 669328,
+          "sha256": "ab3a0bec59dfcb16d5469b10e027c54697dc47b43309bf121261fb846b01d576"
+        },
+        "lost+found": {
+          "directory": true,
+          "entries": [],
+          "nlink": 2
+        },
+        "policy.binary": {
+          "bytes": 7348,
+          "sha256": "5a9ded6dc15a10b869cbbbcbc852cd5606532b8f117f9202c97adde1945f2ae6"
+        },
+        "storage-audit.json": {
+          "bytes": 3537,
+          "sha256": "ad78dfa709dedd7bb849abff1af6d587de57dc1af8fbeced3ddb4274c9eac8f3"
+        }
+      },
+      "owner_approval": {
+        "answer": "Approve the exact v20 replacement and batch",
+        "approval_date": "2026-10-15",
+        "question_id": "call_b118c8ab94d04978bfa602386f8f17e4",
+        "record_sha256": "51a2efcf91168fdd46857cd75ca5f5a69590621dc4150a81c71eaf593d1b6f1d"
+      },
+      "owner_snapshot_preparation_passed": true,
+      "physical_domain_prepared": true,
+      "record": "docs/qualification/phase-2d-executable-batch-v20-20261015.json",
+      "record_sha256": "51a2efcf91168fdd46857cd75ca5f5a69590621dc4150a81c71eaf593d1b6f1d",
+      "resource_snapshot": {
+        ".": {
+          "memory.current": "803463168\n",
+          "memory.events": "low 0\nhigh 0\nmax 1684\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+          "memory.events.local": "low 0\nhigh 0\nmax 850\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+          "memory.max": "805306368\n",
+          "memory.peak": "805306368\n",
+          "pids.current": "29\n",
+          "pids.events": "max 0\n",
+          "pids.max": "128\n"
+        },
+        "crewshal-2d-20261015v17.slice": {
+          "memory.current": "252903424\n",
+          "memory.events": "low 0\nhigh 0\nmax 834\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+          "memory.events.local": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+          "memory.max": "805306368\n",
+          "memory.peak": "255750144\n",
+          "pids.current": "2\n",
+          "pids.events": "max 0\n",
+          "pids.max": "128\n"
+        },
+        "crewshal-2d-20261015v17.slice/crewshal-2d-20261015v17-observer.service": {
+          "memory.current": "133201920\n",
+          "memory.events": "low 0\nhigh 0\nmax 834\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+          "memory.events.local": "low 0\nhigh 0\nmax 834\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+          "memory.max": "134217728\n",
+          "memory.peak": "134217728\n",
+          "pids.current": "2\n",
+          "pids.events": "max 0\n",
+          "pids.max": "32\n"
+        }
+      },
+      "retained_root_fds": [
+        2437,
+        2439
+      ],
+      "retained_trace": [
+        {
+          "function": "OwnedBackingProduction.copy_root",
+          "line": -1
+        },
+        {
+          "function": "OwnedBackingProduction.verify",
+          "line": -1
+        },
+        {
+          "function": "OwnedStorageReservation.verify",
+          "line": -1
+        },
+        {
+          "function": "OwnedStorageReservation._verify",
+          "line": -1
+        },
+        {
+          "function": "OwnedStorageReservation._verify_identity",
+          "line": -1
+        },
+        {
+          "function": "verify_observer_configuration",
+          "line": -1
+        },
+        {
+          "function": "RetainedBuildDerivation.verify",
+          "line": -1
+        },
+        {
+          "function": "OwnedBatchTimer.verify",
+          "line": -1
+        },
+        {
+          "function": "OwnedBatchTimer._verify_identity",
+          "line": -1
+        },
+        {
+          "function": "OwnedBatchTimer._verify_validator",
+          "line": -1
+        },
+        {
+          "function": "verify_early_timer_roles",
+          "line": -1
+        },
+        {
+          "function": "_aggregate_readback",
+          "line": -1
+        }
+      ],
+      "root_entries": 1163,
+      "root_file_bytes": 349238362,
+      "root_missing_entries": 0,
+      "root_wrong_modes_or_extra": 0,
+      "status": "refused with original custody"
+    },
+    {
+      "actual_device_login": "not run",
+      "actual_live_turn": "not run",
+      "actual_qualification": "not run",
+      "backing_cached_bytes": 127778816,
+      "backing_dirty_bytes": 61440,
+      "backing_writeback_bytes": 0,
+      "batch": "v21",
+      "cache_diagnostic_limit": "The first zero-length range query was invalid for whole-file measurement. The retained corrected query uses each actual file size. Both records remain local.",
+      "cause": "The original physical-domain loop backing image retains a second data cache. Completed upper root files have no cached pages, but the image retains 127778816 cached bytes. The observer again reaches 128 MiB.",
+      "commands": {
+        "0": {
+          "exit": 0,
+          "index": 0,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 110,
+          "stdout_sha256": "c17e7e226d814f45f917f5d46c45e31d2a262b9ad25b18cf9d1a09cdbffaa61f"
+        },
+        "1": {
+          "exit": 0,
+          "index": 1,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 86,
+          "stdout_sha256": "c54ebdc31423603f0ec6f7ae652c109a5d53855cf03bf27d92a15cec32c141aa"
+        },
+        "2": {
+          "exit": 0,
+          "index": 2,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "3": {
+          "exit": 0,
+          "index": 3,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "4": {
+          "exit": 0,
+          "index": 4,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 808,
+          "stdout_sha256": "7dd108bc764706aed652b6eb6724cdd97bd90d27e69eaac4cf7237331778bac1"
+        },
+        "5": {
+          "exit": 0,
+          "index": 5,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      "common_parent_resources": {
+        "cgroup.procs": "",
+        "memory.current": "797417472\n",
+        "memory.events": "low 0\nhigh 0\nmax 3779\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+        "memory.events.local": "low 0\nhigh 0\nmax 2084\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+        "memory.max": "805306368\n",
+        "memory.peak": "805306368\n",
+        "memory.stat": "anon 591511552\nfile 178335744\nkernel 27455488\nkernel_stack 32768\npagetables 2736128\nsec_pagetables 0\npercpu 2118336\nsock 0\nvmalloc 0\nshmem 114688\nzswap 0\nzswapped 0\nfile_mapped 438272\nfile_dirty 122880\nfile_writeback 0\nswapcached 0\nanon_thp 239075328\nfile_thp 0\nshmem_thp 0\ninactive_anon 0\nactive_anon 591675392\ninactive_file 177623040\nactive_file 663552\nunevictable 0\nslab_reclaimable 17361800\nslab_unreclaimable 5016552\nslab 22378352\nhugetlb 0\nworkingset_refault_anon 0\nworkingset_refault_file 261\nworkingset_activate_anon 0\nworkingset_activate_file 9\nworkingset_restore_anon 0\nworkingset_restore_file 0\nworkingset_nodereclaim 0\npgdemote_kswapd 0\npgdemote_direct 0\npgdemote_khugepaged 0\npgdemote_proactive 0\npgpromote_success 0\npgscan 297744\npgsteal 297685\npswpin 0\npswpout 0\npgscan_kswapd 0\npgscan_direct 297225\npgscan_khugepaged 519\npgscan_proactive 0\npgsteal_kswapd 0\npgsteal_direct 297171\npgsteal_khugepaged 514\npgsteal_proactive 0\npgfault 881249\npgmajfault 2498\npgrefill 5138\npgactivate 51\npgdeactivate 2\npglazyfree 0\npglazyfreed 0\nswpin_zero 0\nswpout_zero 0\nzswpin 0\nzswpout 0\nzswpwb 0\nthp_fault_alloc 424\nthp_collapse_alloc 101\nthp_swpout 0\nthp_swpout_fallback 0\nnuma_pages_migrated 0\nnuma_pte_updates 0\nnuma_hint_faults 0\n",
+        "pids.current": "31\n",
+        "pids.events": "max 0\n",
+        "pids.max": "128\n"
+      },
+      "copied_root_cache_bytes": 0,
+      "date": "2026-10-15",
+      "failure": {
+        "diagnostic": "aggregate has resource-refusal history",
+        "line": 458,
+        "source": "admission.py",
+        "type": "ValueError"
+      },
+      "forwarding_restored": true,
+      "guest_generation": 18,
+      "journal_sha256": "60a50e20eb1242227224a1dc3ae1c4c2b2f8384658adf6b0c9f1d1d3fe26c747",
+      "new_full_charge": true,
+      "observer_pid": 21410,
+      "observer_resources": {
+        "cgroup.procs": "21410\n21413\n",
+        "memory.current": "126971904\n",
+        "memory.events": "low 0\nhigh 0\nmax 861\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+        "memory.events.local": "low 0\nhigh 0\nmax 861\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+        "memory.max": "134217728\n",
+        "memory.peak": "134217728\n",
+        "memory.stat": "anon 49561600\nfile 75632640\nkernel 1662976\nkernel_stack 16384\npagetables 270336\nsec_pagetables 0\npercpu 192\nsock 0\nvmalloc 0\nshmem 8192\nzswap 0\nzswapped 0\nfile_mapped 12288\nfile_dirty 20480\nfile_writeback 0\nswapcached 0\nanon_thp 14680064\nfile_thp 0\nshmem_thp 0\ninactive_anon 0\nactive_anon 49676288\ninactive_file 75599872\nactive_file 32768\nunevictable 0\nslab_reclaimable 900784\nslab_unreclaimable 469760\nslab 1370544\nhugetlb 0\nworkingset_refault_anon 0\nworkingset_refault_file 115\nworkingset_activate_anon 0\nworkingset_activate_file 0\nworkingset_restore_anon 0\nworkingset_restore_file 0\nworkingset_nodereclaim 0\npgdemote_kswapd 0\npgdemote_direct 0\npgdemote_khugepaged 0\npgdemote_proactive 0\npgpromote_success 0\npgscan 55907\npgsteal 55901\npswpin 0\npswpout 0\npgscan_kswapd 0\npgscan_direct 55907\npgscan_khugepaged 0\npgscan_proactive 0\npgsteal_kswapd 0\npgsteal_direct 55901\npgsteal_khugepaged 0\npgsteal_proactive 0\npgfault 295675\npgmajfault 0\npgrefill 1197\npgactivate 6\npgdeactivate 0\npglazyfree 0\npglazyfreed 0\nswpin_zero 0\nswpout_zero 0\nzswpin 0\nzswpout 0\nzswpwb 0\nthp_fault_alloc 11\nthp_collapse_alloc 8\nthp_swpout 0\nthp_swpout_fallback 0\nnuma_pages_migrated 0\nnuma_pte_updates 0\nnuma_hint_faults 0\n",
+        "pids.current": "2\n",
+        "pids.events": "max 0\n",
+        "pids.max": "32\n"
+      },
+      "outputs": {
+        "crewshal-bootstrap": {
+          "bytes": 669328,
+          "sha256": "ab3a0bec59dfcb16d5469b10e027c54697dc47b43309bf121261fb846b01d576"
+        },
+        "lost+found": {
+          "directory": true,
+          "entries": [],
+          "nlink": 2
+        },
+        "policy.binary": {
+          "bytes": 7348,
+          "sha256": "5a9ded6dc15a10b869cbbbcbc852cd5606532b8f117f9202c97adde1945f2ae6"
+        },
+        "storage-audit.json": {
+          "bytes": 3537,
+          "sha256": "ad78dfa709dedd7bb849abff1af6d587de57dc1af8fbeced3ddb4274c9eac8f3"
+        }
+      },
+      "owner_approval": {
+        "answer": "Approve the exact v21 exception and batch",
+        "approval_date": "2026-10-15",
+        "question_id": "call_bc66a65f46274e4c81da6b973757b554",
+        "record_sha256": "0629f34bd651d8c374f578f14ed9647048d9e7bf6be1f57b7bb6e116fe41ca61"
+      },
+      "record": "docs/qualification/phase-2d-executable-batch-v21-20261015.json",
+      "record_sha256": "0629f34bd651d8c374f578f14ed9647048d9e7bf6be1f57b7bb6e116fe41ca61",
+      "status": "refused with original custody"
+    },
+    {
+      "actual_device_login": "not run",
+      "actual_live_turn": "not run",
+      "actual_progress": {
+        "actual_device_login": "not run",
+        "actual_live_turn": "not run",
+        "actual_qualification": "not run",
+        "domain_loop": {
+          "block_size": 4096,
+          "status": [
+            66306,
+            1054712,
+            0,
+            0,
+            1073741824,
+            90,
+            0,
+            0,
+            16
+          ],
+          "target": "/dev/loop90"
+        },
+        "full_root_copy_and_encrypted_view_setup": "The original path reached handoff_storage_owner after these operations. Initial storage-owner readback refused.",
+        "observer_memory_current": 68124672,
+        "observer_memory_events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+        "observer_memory_peak": 93712384,
+        "observer_pids_events": "max 0\n"
+      },
+      "actual_qualification": "not run",
+      "batch": "v22",
+      "cause": {
+        "diagnostic": "storage child reported unknown readback",
+        "internal_diagnostic": "The child suppresses its exception. The frozen call chain closes compiler proof FDs before calling full parent derivation verification. A closed-FD regression reproduces EBADF. The original child exception remains unavailable.",
+        "line": 572,
+        "observer_pid": 24610,
+        "source": "linux_storage.py",
+        "verified_parent_frames": [
+          "LinuxPhysicalOwner.__init__",
+          "LinuxPhysicalOwner.readback",
+          "BoundedStorageJobs.run"
+        ]
+      },
+      "commands": {
+        "0": {
+          "exit": 0,
+          "index": 0,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 110,
+          "stdout_sha256": "70587829e9e79677ab23a5516ba77194678f45924ecf7be1445bad1e9fc73220"
+        },
+        "1": {
+          "exit": 0,
+          "index": 1,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 86,
+          "stdout_sha256": "c54ebdc31423603f0ec6f7ae652c109a5d53855cf03bf27d92a15cec32c141aa"
+        },
+        "2": {
+          "exit": 0,
+          "index": 2,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "3": {
+          "exit": 0,
+          "index": 3,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "4": {
+          "exit": 0,
+          "index": 4,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 810,
+          "stdout_sha256": "b9b288d39c731f44bcc32dcbd2c039ba387339864f4a761d5e57f88c13d835a2"
+        },
+        "5": {
+          "exit": 0,
+          "index": 5,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      "forwarding_restored": true,
+      "guest_generation": 19,
+      "journal_sha256": "af55d1977f10462513cb044b6b53816d4485a20d8af496300bd396a24adcec5c",
+      "new_full_charge": true,
+      "observer_pid": 24610,
+      "owner_approval": {
+        "answer": "Approve the exact v22 exception and batch",
+        "question_id": "call_807403eaee394f0d9ba3280ad9067850",
+        "record_sha256": "9473b455ddbd02253e07b6f1b2b2a789ebd2b05d96c98741a25a7ebc31039d0c"
+      },
+      "record": "docs/qualification/phase-2d-executable-batch-v22-20261015.json",
+      "record_sha256": "9473b455ddbd02253e07b6f1b2b2a789ebd2b05d96c98741a25a7ebc31039d0c",
+      "retained_custody": {
+        "common_limits_equal": true,
+        "common_memory_events": "low 0\nhigh 0\nmax 4084\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+        "common_memory_events_local": "low 0\nhigh 0\nmax 2389\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+        "fifteen_current_journal_fd_identities_equal": true,
+        "forwarding": 0,
+        "seventeen_original_charge_snapshots_verified": true
+      },
+      "status": "refused with original custody",
+      "timer_pid": 24612
+    },
+    {
+      "actual_device_login": "not run",
+      "actual_live_turn": "not run",
+      "actual_progress": {
+        "actual_device_login": "not run",
+        "actual_live_turn": "not run",
+        "actual_qualification": "not run",
+        "domain_loop": {
+          "block_size": 4096,
+          "status": [
+            66306,
+            1055015,
+            0,
+            0,
+            1073741824,
+            107,
+            0,
+            0,
+            16
+          ],
+          "target": "/dev/loop107"
+        },
+        "observer_memory_current": 61251584,
+        "observer_memory_events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+        "observer_memory_peak": 94113792,
+        "observer_pids_events": "max 0\n"
+      },
+      "actual_qualification": "not run",
+      "batch": "v23",
+      "cause": {
+        "diagnostic": "storage child reported unknown readback",
+        "internal_diagnostic": "Unavailable. The preceding FD correction did not resolve actual initial readback. No additional cause is claimed.",
+        "line": 572,
+        "observer_pid": 25399,
+        "source": "linux_storage.py",
+        "verified_parent_frames": [
+          "LinuxPhysicalOwner.__init__",
+          "LinuxPhysicalOwner.readback",
+          "BoundedStorageJobs.run"
+        ]
+      },
+      "commands": {
+        "0": {
+          "exit": 0,
+          "index": 0,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 110,
+          "stdout_sha256": "17e5bd6e5d8281fbab3f0e249e18854f870fecf164f11e2ceb2fe8f3fd7399ef"
+        },
+        "1": {
+          "exit": 0,
+          "index": 1,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 86,
+          "stdout_sha256": "c54ebdc31423603f0ec6f7ae652c109a5d53855cf03bf27d92a15cec32c141aa"
+        },
+        "2": {
+          "exit": 0,
+          "index": 2,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "3": {
+          "exit": 0,
+          "index": 3,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "4": {
+          "exit": 0,
+          "index": 4,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 810,
+          "stdout_sha256": "dc6a56d7d017424469c47a0e5637082205bea05630fed2c8e6bd285b23852be1"
+        },
+        "5": {
+          "exit": 0,
+          "index": 5,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      "forwarding_restored": true,
+      "guest_generation": 20,
+      "journal_sha256": "b4e485e6f9c458d699a69f76d2b907bac715620fa18c9358010723b78f6b1747",
+      "new_full_charge": true,
+      "observer_pid": 25399,
+      "owner_approval": {
+        "answer": "Approve the exact v23 exception and batch",
+        "question_id": "call_959e21a81ecf4fa7b4e77f13b4ffedc7",
+        "record_sha256": "ad1b63004d7922bd5fcbf162307bb0374c23f3dda01f43bb3e1c03f1a04024a3"
+      },
+      "record": "docs/qualification/phase-2d-executable-batch-v23-20261015.json",
+      "record_sha256": "ad1b63004d7922bd5fcbf162307bb0374c23f3dda01f43bb3e1c03f1a04024a3",
+      "retained_custody": {
+        "common_limits_equal": true,
+        "common_memory_events": "low 0\nhigh 0\nmax 4492\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+        "common_memory_events_local": "low 0\nhigh 0\nmax 2797\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+        "current_journal_fd_identities_equal": 16,
+        "forwarding": 0,
+        "original_charge_snapshots_verified": 18
+      },
+      "status": "refused with original custody",
+      "timer_pid": 25401
+    },
+    {
+      "actual_device_login": "not run",
+      "actual_live_turn": "not run",
+      "actual_progress": {
+        "actual_device_login": "not run",
+        "actual_live_turn": "not run",
+        "actual_qualification": "not run",
+        "domain_loop": {
+          "block_size": 4096,
+          "status": [
+            66306,
+            1055257,
+            0,
+            0,
+            1073741824,
+            124,
+            0,
+            0,
+            16
+          ],
+          "target": "/dev/loop124"
+        },
+        "observer_memory_events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+        "observer_memory_peak": 87601152,
+        "observer_pids_events": "max 0\n"
+      },
+      "actual_qualification": "not run",
+      "batch": "v24",
+      "cause": {
+        "diagnostic": "operational storage owner has an unknown growth slot",
+        "frozen_source_condition": "The name lookup uses unprefixed EXT4_INODE_LIMITS keys. All fifteen original role backing names include an exact qualification-1, qualification-2, or live prefix.",
+        "line": 1141,
+        "observer_pid": 26265,
+        "original_public_refusal": {
+          "execution_allowed": false,
+          "failure_causes": [
+            {
+              "errno": null,
+              "line": 1703,
+              "source": "linux_operational.py",
+              "type": "OperationalRefusal"
+            },
+            {
+              "errno": null,
+              "line": 828,
+              "source": "linux_storage.py",
+              "type": "StorageOwnerRefusal"
+            },
+            {
+              "errno": null,
+              "line": 657,
+              "source": "linux_storage.py",
+              "type": "StorageChildRefusal"
+            }
+          ],
+          "failure_errno": null,
+          "failure_line": 1703,
+          "failure_source": "linux_operational.py",
+          "failure_type": "OperationalRefusal",
+          "phase": "2D",
+          "reusable": false,
+          "schema_version": 1,
+          "stage": "refused_with_original_custody",
+          "storage_child_failure": {
+            "errno": null,
+            "line": 1141,
+            "source": "linux_storage.py",
+            "type": "ValueError"
+          }
+        },
+        "source": "linux_storage.py"
+      },
+      "commands": {
+        "0": {
+          "exit": 0,
+          "index": 0,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 110,
+          "stdout_sha256": "6380713de2b79f17fce6221baad58f10c968cdf92aad4c55000af69df1b1db70"
+        },
+        "1": {
+          "exit": 0,
+          "index": 1,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 86,
+          "stdout_sha256": "c54ebdc31423603f0ec6f7ae652c109a5d53855cf03bf27d92a15cec32c141aa"
+        },
+        "2": {
+          "exit": 0,
+          "index": 2,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "3": {
+          "exit": 0,
+          "index": 3,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "4": {
+          "exit": 0,
+          "index": 4,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 918,
+          "stdout_sha256": "84c102a32131b76a218a48979ba5a3d491853ce7c286414b615152859b91b15e"
+        },
+        "5": {
+          "exit": 0,
+          "index": 5,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      "forwarding_restored": true,
+      "guest_generation": 21,
+      "journal_sha256": "407154fd324c5eb7db98f9cc91ae7c04b29ab3ef60e1c84909e5c4b0bc81285d",
+      "new_full_charge": true,
+      "observer_pid": 26265,
+      "owner_approval": {
+        "answer": "Approve the exact v24 diagnostic exception and batch",
+        "question_id": "call_3218e0d1337745779554d9efc8bd55e6",
+        "record_sha256": "d31c68d2cc108fafc88e0823d20f67733cb354a4f3f933568ebef6d4e750b1ce"
+      },
+      "record": "docs/qualification/phase-2d-executable-batch-v24-20261015.json",
+      "record_sha256": "d31c68d2cc108fafc88e0823d20f67733cb354a4f3f933568ebef6d4e750b1ce",
+      "retained_custody": {
+        "common_limits_equal": true,
+        "common_memory_events": "low 0\nhigh 0\nmax 6569\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+        "common_memory_events_local": "low 0\nhigh 0\nmax 4874\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+        "current_journal_fd_identities_equal": 17,
+        "forwarding": 0,
+        "original_charge_snapshots_verified": 19
+      },
+      "status": "refused with original custody",
+      "timer_pid": 26267
+    },
+    {
+      "actual_device_login": "not run",
+      "actual_live_turn": "not run",
+      "actual_progress": {
+        "actual_device_login": "not run",
+        "actual_live_turn": "not run",
+        "actual_qualification": "not run",
+        "fixture_preparation": "refused during an original FD handoff at the expired shared creation deadline",
+        "initial_storage_owner_readback": "passed before fixture preparation",
+        "observer_memory_events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+        "observer_memory_peak": 88219648
+      },
+      "actual_qualification": "not run",
+      "batch": "v25",
+      "cause": {
+        "diagnostic": "original retained production identity/deadline differs",
+        "journal_span_seconds": 32.460042,
+        "line": 1002,
+        "observer_pid": 27007,
+        "original_creation_deadline": 102042.736105428,
+        "original_public_refusal": {
+          "execution_allowed": false,
+          "failure_causes": [
+            {
+              "errno": null,
+              "line": 1703,
+              "source": "linux_operational.py",
+              "type": "OperationalRefusal"
+            },
+            {
+              "errno": null,
+              "line": 373,
+              "source": "linux_fixture_inputs.py",
+              "type": "ProductionRefusal"
+            },
+            {
+              "errno": null,
+              "line": 1002,
+              "source": "linux_production.py",
+              "type": "ValueError"
+            }
+          ],
+          "failure_errno": null,
+          "failure_line": 1703,
+          "failure_source": "linux_operational.py",
+          "failure_type": "OperationalRefusal",
+          "phase": "2D",
+          "reusable": false,
+          "schema_version": 1,
+          "stage": "refused_with_original_custody"
+        },
+        "original_seed_job_deadline": 102042.736105428,
+        "refusal_timestamp_monotonic_seconds": 102042.906735,
+        "retained_parent_frames": [
+          {
+            "function": "OriginalFixtureInputs.seed",
+            "line": -1
+          },
+          {
+            "function": "BoundedStorageJobs.run",
+            "job_deadline": 102042.736105428,
+            "line": -1
+          },
+          {
+            "function": "_SeedChannel.pump",
+            "line": -1
+          },
+          {
+            "function": "OriginalFixtureInputs.verify_custody",
+            "line": -1
+          },
+          {
+            "function": "OwnedBackingProduction.verify",
+            "line": -1,
+            "original_deadline": 102042.736105428,
+            "public_deadline": 102042.736105428
+          }
+        ],
+        "source": "linux_production.py"
+      },
+      "commands": {
+        "0": {
+          "exit": 0,
+          "index": 0,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 110,
+          "stdout_sha256": "0371fe55994bea82052330cdcc92fbfc36ad920c9bb6296f155421bc8a13e640"
+        },
+        "1": {
+          "exit": 0,
+          "index": 1,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 86,
+          "stdout_sha256": "c54ebdc31423603f0ec6f7ae652c109a5d53855cf03bf27d92a15cec32c141aa"
+        },
+        "2": {
+          "exit": 0,
+          "index": 2,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "3": {
+          "exit": 0,
+          "index": 3,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "4": {
+          "exit": 0,
+          "index": 4,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 819,
+          "stdout_sha256": "bde0d0311d5ccf4518d10234411ad9c24d85b6760eae3b182bd507acd7f59f88"
+        },
+        "5": {
+          "exit": 0,
+          "index": 5,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      "forwarding_restored": true,
+      "guest_generation": 22,
+      "journal_sha256": "f61bcad66e58518975820410733fba59a25f8d04fa81abb43828488d5b73cd42",
+      "new_full_charge": true,
+      "observer_pid": 27007,
+      "owner_approval": {
+        "answer": "Approve the exact v25 exception and batch",
+        "question_id": "call_1ffae8252241473a9041cb313d5b3621",
+        "record_sha256": "fa961c8324b5b1343b6de5d455f86b714d6f4f9b194bd8eb030e147b29ec4599"
+      },
+      "record": "docs/qualification/phase-2d-executable-batch-v25-20261015.json",
+      "record_sha256": "fa961c8324b5b1343b6de5d455f86b714d6f4f9b194bd8eb030e147b29ec4599",
+      "retained_custody": {
+        "common_limits_equal": true,
+        "common_memory_events": "low 0\nhigh 0\nmax 7410\noom 1\noom_kill 1\noom_group_kill 0\nsock_throttled 0\n",
+        "common_memory_events_local": "low 0\nhigh 0\nmax 5715\noom 1\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+        "current_journal_fd_identities_equal": 17,
+        "forwarding": 0,
+        "original_charge_snapshots_verified": 20,
+        "original_observer_custody_loss": 24610
+      },
+      "status": "refused with original custody; later original v22 observer and timer custody loss recorded",
+      "timer_pid": 27010
+    },
+    {
+      "actual_device_login": "not run",
+      "actual_live_turn": "not run",
+      "actual_progress": {
+        "actual_device_login": "not run",
+        "actual_live_turn": "not run",
+        "actual_qualification": "not run",
+        "fixture_seed_and_readback": "returned before policy open",
+        "memory": {
+          "/sys/fs/cgroup/crewshal.slice/crewshal-2d.slice/crewshal-2d-20261015v23.slice": {
+            "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+            "memory.max": "805306368\n",
+            "memory.peak": "124903424\n",
+            "pids.events": "max 0\n"
+          },
+          "/sys/fs/cgroup/crewshal.slice/crewshal-2d.slice/crewshal-2d-20261015v23.slice/crewshal-2d-20261015v23-observer.service": {
+            "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+            "memory.max": "134217728\n",
+            "memory.peak": "100966400\n",
+            "pids.events": "max 0\n"
+          }
+        }
+      },
+      "actual_qualification": "not run",
+      "batch": "v26",
+      "cause": {
+        "errno": 2,
+        "line": 585,
+        "missing_component": "readonly-root",
+        "observer_pid": 28259,
+        "original_public_refusal": {
+          "execution_allowed": false,
+          "failure_causes": [
+            {
+              "errno": null,
+              "line": 1703,
+              "source": "linux_operational.py",
+              "type": "OperationalRefusal"
+            },
+            {
+              "errno": 2,
+              "line": 585,
+              "source": "linux_operational.py",
+              "type": "FileNotFoundError"
+            }
+          ],
+          "failure_errno": null,
+          "failure_line": 1703,
+          "failure_source": "linux_operational.py",
+          "failure_type": "OperationalRefusal",
+          "phase": "2D",
+          "reusable": false,
+          "schema_version": 1,
+          "stage": "refused_with_original_custody"
+        },
+        "policy_relative_path": "/opt/crewshal/storage-audit/policy.binary",
+        "source": "linux_operational.py",
+        "type": "FileNotFoundError",
+        "verified_frames": [
+          "OriginalInstallationDriver.install",
+          "_open_path"
+        ]
+      },
+      "commands": {
+        "0": {
+          "exit": 0,
+          "index": 0,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 110,
+          "stdout_sha256": "7414a5f587c3ce0011fd20bd3fe05c16897c6ed36d5582c84f843d494a201cd2"
+        },
+        "1": {
+          "exit": 0,
+          "index": 1,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 86,
+          "stdout_sha256": "c54ebdc31423603f0ec6f7ae652c109a5d53855cf03bf27d92a15cec32c141aa"
+        },
+        "2": {
+          "exit": 0,
+          "index": 2,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "3": {
+          "exit": 0,
+          "index": 3,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "4": {
+          "exit": 0,
+          "index": 4,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 735,
+          "stdout_sha256": "272b288db2b3b4ce5a5468dfdce614fd6abb7d5293da8d5fe581fa49ddb4482e"
+        },
+        "5": {
+          "exit": 0,
+          "index": 5,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      "forwarding_restored": true,
+      "guest_generation": 23,
+      "journal_sha256": "16074b1d176ae9f295ea390013c1b9eb1669fbe902fae2eedf9a64449c92c70b",
+      "new_full_charge": true,
+      "observer_pid": 28259,
+      "owner_approval": {
+        "answer": "Approve the exact v26 resource and custody exception and batch",
+        "date": "2026-10-15",
+        "question_id": "call_1562154e710941b89657834feea3dd61",
+        "record_sha256": "7dc218853cbc342433ef7e56095231ea69de4069374874f6d63b696988d8dddb"
+      },
+      "record": "docs/qualification/phase-2d-executable-batch-v26-20261015.json",
+      "record_sha256": "7dc218853cbc342433ef7e56095231ea69de4069374874f6d63b696988d8dddb",
+      "retained_custody": {
+        "common_limits_equal": true,
+        "common_memory_events": "low 0\nhigh 0\nmax 7410\noom 1\noom_kill 1\noom_group_kill 0\nsock_throttled 0\n",
+        "common_memory_events_local": "low 0\nhigh 0\nmax 5715\noom 1\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+        "current_journal_fd_identities_equal": 18,
+        "forwarding": 0,
+        "original_charge_snapshots_verified": 21,
+        "original_observer_custody_loss": 24610
+      },
+      "status": "refused with original custody",
+      "timer_pid": 28261
+    },
+    {
+      "actual_device_login": "not run",
+      "actual_live_turn": "not run",
+      "actual_progress": {
+        "actual_device_login": "not run",
+        "actual_live_turn": "not run",
+        "actual_qualification": "not run",
+        "fixture_seed_and_readback": "returned before policy open",
+        "installed_policy_open": "passed before the new bounded policy-load child",
+        "memory": {
+          "/sys/fs/cgroup/crewshal.slice/crewshal-2d.slice/crewshal-2d-20261015v24.slice": {
+            "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+            "memory.max": "805306368\n",
+            "memory.peak": "121405440\n",
+            "pids.events": "max 0\n"
+          },
+          "/sys/fs/cgroup/crewshal.slice/crewshal-2d.slice/crewshal-2d-20261015v24.slice/crewshal-2d-20261015v24-observer.service": {
+            "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+            "memory.max": "134217728\n",
+            "memory.peak": "93913088\n",
+            "pids.events": "max 0\n"
+          }
+        }
+      },
+      "actual_qualification": "not run",
+      "batch": "v27",
+      "cause": {
+        "errno": 11,
+        "line": 157,
+        "location": "First AppArmor namespace revision read before policy loading.",
+        "observer_pid": 29199,
+        "original_public_refusal": {
+          "execution_allowed": false,
+          "failure_causes": [
+            {
+              "errno": null,
+              "line": 1704,
+              "source": "linux_operational.py",
+              "type": "OperationalRefusal"
+            },
+            {
+              "errno": null,
+              "line": 669,
+              "source": "linux_storage.py",
+              "type": "StorageChildRefusal"
+            }
+          ],
+          "failure_errno": null,
+          "failure_line": 1704,
+          "failure_source": "linux_operational.py",
+          "failure_type": "OperationalRefusal",
+          "phase": "2D",
+          "reusable": false,
+          "schema_version": 1,
+          "stage": "refused_with_original_custody",
+          "storage_child_failure": {
+            "errno": 11,
+            "line": 157,
+            "source": "admission.py",
+            "type": "BlockingIOError"
+          }
+        },
+        "source": "admission.py",
+        "type": "BlockingIOError"
+      },
+      "commands": {
+        "0": {
+          "exit": 0,
+          "index": 0,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 110,
+          "stdout_sha256": "435bc6f94175e3dcaeb0901ddea15777b864f6cc60e2a129b6013478e94c2a5a"
+        },
+        "1": {
+          "exit": 0,
+          "index": 1,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 86,
+          "stdout_sha256": "c54ebdc31423603f0ec6f7ae652c109a5d53855cf03bf27d92a15cec32c141aa"
+        },
+        "2": {
+          "exit": 0,
+          "index": 2,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "3": {
+          "exit": 0,
+          "index": 3,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "4": {
+          "exit": 0,
+          "index": 4,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 833,
+          "stdout_sha256": "5bf2100185fe5594c8f491762d72ce389b92b58769f15b8032476f9a6f5d240e"
+        },
+        "5": {
+          "exit": 0,
+          "index": 5,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      "forwarding_restored": true,
+      "guest_generation": 24,
+      "journal_sha256": "bb950808571b86b3b030b4c8d344353784745f0894554d95536c5ac7b7c059e9",
+      "new_full_charge": true,
+      "observer_pid": 29199,
+      "owner_approval": {
+        "answer": "Approve the exact v27 exception and batch",
+        "approval_date": "2026-10-15",
+        "question_id": "call_f68783ab804d4dadb1787fa44c41d81f",
+        "record_sha256": "1b427675e9e78da5390316f9f234d308cd304654d33cfcd0d284ae90cf8c5914"
+      },
+      "record": "docs/qualification/phase-2d-executable-batch-v27-20261015.json",
+      "record_sha256": "1b427675e9e78da5390316f9f234d308cd304654d33cfcd0d284ae90cf8c5914",
+      "retained_custody": {
+        "common_limits_equal": true,
+        "common_memory_events": "low 0\nhigh 0\nmax 7410\noom 1\noom_kill 1\noom_group_kill 0\nsock_throttled 0\n",
+        "common_memory_events_local": "low 0\nhigh 0\nmax 5715\noom 1\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+        "current_journal_fd_identities_equal": 19,
+        "forwarding": 0,
+        "original_charge_snapshots_verified": 22,
+        "original_observer_custody_loss": 24610
+      },
+      "status": "refused with original custody",
+      "timer_pid": 29201
+    },
+    {
+      "actual_device_login": "not run",
+      "actual_live_turn": "not run",
+      "actual_progress": {
+        "actual_device_login": "not run",
+        "actual_live_turn": "not run",
+        "actual_qualification": "not run",
+        "memory": {
+          "/sys/fs/cgroup/crewshal.slice/crewshal-2d.slice/crewshal-2d-20261015v25.slice": {
+            "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+            "memory.max": "805306368\n",
+            "memory.peak": "118366208\n",
+            "pids.events": "max 0\n"
+          },
+          "/sys/fs/cgroup/crewshal.slice/crewshal-2d.slice/crewshal-2d-20261015v25.slice/crewshal-2d-20261015v25-observer.service": {
+            "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+            "memory.max": "134217728\n",
+            "memory.peak": "94359552\n",
+            "pids.events": "max 0\n"
+          }
+        },
+        "policy_load": "kernel refused; no successful load recorded",
+        "revision_read_and_absent_profile_check": "passed before the bounded policy write"
+      },
+      "actual_qualification": "not run",
+      "batch": "v28",
+      "cause": {
+        "errno": 93,
+        "kernel_diagnostic": "invalid profile format",
+        "line": 1335,
+        "observer_pid": 30031,
+        "original_public_refusal": {
+          "execution_allowed": false,
+          "failure_causes": [
+            {
+              "errno": null,
+              "line": 1711,
+              "source": "linux_operational.py",
+              "type": "OperationalRefusal"
+            },
+            {
+              "errno": null,
+              "line": 669,
+              "source": "linux_storage.py",
+              "type": "StorageChildRefusal"
+            }
+          ],
+          "failure_errno": null,
+          "failure_line": 1711,
+          "failure_source": "linux_operational.py",
+          "failure_type": "OperationalRefusal",
+          "phase": "2D",
+          "reusable": false,
+          "schema_version": 1,
+          "stage": "refused_with_original_custody",
+          "storage_child_failure": {
+            "errno": 93,
+            "line": 1335,
+            "source": "linux_operational.py",
+            "type": "OSError"
+          }
+        },
+        "policy_header_hex": "010300000000000028b52ffd",
+        "source": "linux_operational.py",
+        "type": "OSError"
+      },
+      "commands": {
+        "0": {
+          "exit": 0,
+          "index": 0,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 110,
+          "stdout_sha256": "bab0a4f9facde8acceb6008bd375cd8cd47dd1d620f54fccb45da0811ed068c7"
+        },
+        "1": {
+          "exit": 0,
+          "index": 1,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 86,
+          "stdout_sha256": "c54ebdc31423603f0ec6f7ae652c109a5d53855cf03bf27d92a15cec32c141aa"
+        },
+        "2": {
+          "exit": 0,
+          "index": 2,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "3": {
+          "exit": 0,
+          "index": 3,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "4": {
+          "exit": 0,
+          "index": 4,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 834,
+          "stdout_sha256": "783c139af9843189ff2fbe381ab5db514d6d7541c11b37a65aa239acda5167a9"
+        },
+        "5": {
+          "exit": 0,
+          "index": 5,
+          "stderr_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      "forwarding_restored": true,
+      "guest_generation": 25,
+      "journal_sha256": "8e8aa66bb9c2bdae6ff03c4bbb0262a46456b2015d8c67ceadd55fe27b29b268",
+      "new_full_charge": true,
+      "observer_pid": 30031,
+      "owner_approval": {
+        "answer": "Approve the exact v28 exception and batch",
+        "approval_date": "2026-10-15",
+        "question_id": "call_f303d22c2958456b9e13674bb18ba875",
+        "record_sha256": "ad0201333e8292f8371575f9cb0b2d81381dbe0ccb6733ab00b65193f4bde7c5"
+      },
+      "record": "docs/qualification/phase-2d-executable-batch-v28-20261015.json",
+      "record_sha256": "ad0201333e8292f8371575f9cb0b2d81381dbe0ccb6733ab00b65193f4bde7c5",
+      "retained_custody": {
+        "common_limits_equal": true,
+        "common_memory_events": "low 0\nhigh 0\nmax 7410\noom 1\noom_kill 1\noom_group_kill 0\nsock_throttled 0\n",
+        "common_memory_events_local": "low 0\nhigh 0\nmax 5715\noom 1\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+        "current_journal_fd_identities_equal": 20,
+        "forwarding": 0,
+        "original_charge_snapshots_verified": 23,
+        "original_observer_custody_loss": 24610
+      },
+      "status": "refused with original custody",
+      "timer_pid": 30033
+    }
+  ],
+  "full_charges_now": 23,
+  "lane_geometry_continuation": {
+    "actual_progress": {
+      "actual_device_login": "not run",
+      "actual_live_turn": "not run",
+      "actual_qualification": "not run",
+      "domain_loop": {
+        "block_size": 4096,
+        "status": [
+          66306,
+          1055257,
+          0,
+          0,
+          1073741824,
+          124,
+          0,
+          0,
+          16
+        ],
+        "target": "/dev/loop124"
+      },
+      "observer_memory_events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+      "observer_memory_peak": 87601152,
+      "observer_pids_events": "max 0\n"
+    },
+    "actual_readonly_geometry_check": {
+      "all_original_fds_read_only": true,
+      "full_original_names_preserved": true,
+      "limitation": "This validates measured retained bytes only. It does not retry or qualify the consumed observer.",
+      "original_objects_modified": false,
+      "pure_mapping_and_existing_geometry_checks": "passed",
+      "retained_superblocks": 15
+    },
+    "after_fix": {
+      "errors": 0,
+      "failures": 0,
+      "focused_tests": 218,
+      "installed_tests": 1207,
+      "skipped": 0,
+      "source_tests": 1207
+    },
+    "automatic_retries": 0,
+    "before_fix": {
+      "error_subtests": 15,
+      "failure_subtests": 15,
+      "tests": 3
+    },
+    "correction": "Use the existing _image_geometry_name mapping for lane-prefixed image geometry only. Preserve full original names and identities in backing and loop records. Require the .img suffix, accepted lane, fixed role, and unchanged superblock magic, declared size, and inode ceiling. Unknown names remain refused.",
+    "counter_resets": 0,
+    "existing_combined_reserved_bytes_each": 163208757248,
+    "failure": {
+      "diagnostic": "operational storage owner has an unknown growth slot",
+      "frozen_source_condition": "The name lookup uses unprefixed EXT4_INODE_LIMITS keys. All fifteen original role backing names include an exact qualification-1, qualification-2, or live prefix.",
+      "line": 1141,
+      "observer_pid": 26265,
+      "original_public_refusal": {
+        "execution_allowed": false,
+        "failure_causes": [
+          {
+            "errno": null,
+            "line": 1703,
+            "source": "linux_operational.py",
+            "type": "OperationalRefusal"
+          },
+          {
+            "errno": null,
+            "line": 828,
+            "source": "linux_storage.py",
+            "type": "StorageOwnerRefusal"
+          },
+          {
+            "errno": null,
+            "line": 657,
+            "source": "linux_storage.py",
+            "type": "StorageChildRefusal"
+          }
+        ],
+        "failure_errno": null,
+        "failure_line": 1703,
+        "failure_source": "linux_operational.py",
+        "failure_type": "OperationalRefusal",
+        "phase": "2D",
+        "reusable": false,
+        "schema_version": 1,
+        "stage": "refused_with_original_custody",
+        "storage_child_failure": {
+          "errno": null,
+          "line": 1141,
+          "source": "linux_storage.py",
+          "type": "ValueError"
+        }
+      },
+      "source": "linux_storage.py"
+    },
+    "new_aggregate": "crewshal-2d-20261015v22.slice",
+    "new_observer": "crewshal-2d-20261015v22-observer.service",
+    "nineteenth_journal_sha256": "407154fd324c5eb7db98f9cc91ae7c04b29ab3ef60e1c84909e5c4b0bc81285d",
+    "outputs": {
+      "crewshal-bootstrap": {
+        "bytes": 669328,
+        "sha256": "ab3a0bec59dfcb16d5469b10e027c54697dc47b43309bf121261fb846b01d576"
+      },
+      "lost+found": {
+        "directory": true,
+        "entries": [],
+        "nlink": 2
+      },
+      "policy.binary": {
+        "bytes": 7348,
+        "sha256": "5a9ded6dc15a10b869cbbbcbc852cd5606532b8f117f9202c97adde1945f2ae6"
+      },
+      "storage-audit.json": {
+        "bytes": 3537,
+        "sha256": "ad78dfa709dedd7bb849abff1af6d587de57dc1af8fbeced3ddb4274c9eac8f3"
+      }
+    },
+    "physical_closure": "unknown",
+    "proposal": "docs/PHASE-2D-LANE-GEOMETRY-CONTINUATION-2026-10-15.md",
+    "proposed_combined_reserved_bytes_each": 171798691840,
+    "proposed_nominal_memory_charge_bytes": 16106127360,
+    "proposed_nominal_tasks": 2560,
+    "retained_custody": {
+      "common_limits_equal": true,
+      "common_memory_events": "low 0\nhigh 0\nmax 6569\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+      "common_memory_events_local": "low 0\nhigh 0\nmax 4874\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+      "current_journal_fd_identities_equal": 17,
+      "forwarding": 0,
+      "original_charge_snapshots_verified": 19
+    },
+    "v24_approval": {
+      "answer": "Approve the exact v24 diagnostic exception and batch",
+      "question_id": "call_3218e0d1337745779554d9efc8bd55e6",
+      "record_sha256": "d31c68d2cc108fafc88e0823d20f67733cb354a4f3f933568ebef6d4e750b1ce"
+    }
+  },
+  "missing_dated_private_paths": 12,
+  "next_prompt": "docs/PHASE-2D-CORE-NEXT-SESSION-2026-10-15.md",
+  "operational_status": "deferred by owner direction; no v29 operation started",
+  "phase": "2D",
+  "phase_2e": "not started",
+  "physical_closure": "unknown",
+  "public_inputs_verified_initially": {
+    "external_instructions": 4,
+    "repository_files": 271,
+    "zip_entries": 276
+  },
+  "publication": "not performed",
+  "raw_policy_continuation": {
+    "actual_progress": {
+      "actual_device_login": "not run",
+      "actual_live_turn": "not run",
+      "actual_qualification": "not run",
+      "memory": {
+        "/sys/fs/cgroup/crewshal.slice/crewshal-2d.slice/crewshal-2d-20261015v25.slice": {
+          "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+          "memory.max": "805306368\n",
+          "memory.peak": "118366208\n",
+          "pids.events": "max 0\n"
+        },
+        "/sys/fs/cgroup/crewshal.slice/crewshal-2d.slice/crewshal-2d-20261015v25.slice/crewshal-2d-20261015v25-observer.service": {
+          "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+          "memory.max": "134217728\n",
+          "memory.peak": "94359552\n",
+          "pids.events": "max 0\n"
+        }
+      },
+      "policy_load": "kernel refused; no successful load recorded",
+      "revision_read_and_absent_profile_check": "passed before the bounded policy write"
+    },
+    "after_fix": {
+      "errors": 0,
+      "failures": 0,
+      "focused_tests": 69,
+      "installed_tests": 1222,
+      "skipped": 0,
+      "source_tests": 1222
+    },
+    "automatic_retries": 0,
+    "before_fix": {
+      "errors": 1,
+      "failures": 1,
+      "new_regression_methods": 2
+    },
+    "correction": "Require exactly one --zstd-compress-level=none option in the frozen parser recipe. Reject missing, duplicate, and conflicting options. The pinned parser then emits raw serialized policy without userspace compression headers. Preserve direct add-only loading and the exact source-to-binary-to-export checks.",
+    "counter_resets": 0,
+    "existing_combined_reserved_bytes_each": 197568495616,
+    "failure": {
+      "errno": 93,
+      "kernel_diagnostic": "invalid profile format",
+      "line": 1335,
+      "observer_pid": 30031,
+      "original_public_refusal": {
+        "execution_allowed": false,
+        "failure_causes": [
+          {
+            "errno": null,
+            "line": 1711,
+            "source": "linux_operational.py",
+            "type": "OperationalRefusal"
+          },
+          {
+            "errno": null,
+            "line": 669,
+            "source": "linux_storage.py",
+            "type": "StorageChildRefusal"
+          }
+        ],
+        "failure_errno": null,
+        "failure_line": 1711,
+        "failure_source": "linux_operational.py",
+        "failure_type": "OperationalRefusal",
+        "phase": "2D",
+        "reusable": false,
+        "schema_version": 1,
+        "stage": "refused_with_original_custody",
+        "storage_child_failure": {
+          "errno": 93,
+          "line": 1335,
+          "source": "linux_operational.py",
+          "type": "OSError"
+        }
+      },
+      "policy_header_hex": "010300000000000028b52ffd",
+      "source": "linux_operational.py",
+      "type": "OSError"
+    },
+    "kernel_diagnostic_readback": [
+      "5,2119,104856170214,-;audit: type=1400 audit(1792091652.743:358): apparmor=\"STATUS\" info=\"invalid profile format\" error=-93 profile=\"unconfined\" pid=30201 comm=\"python3.12\"\n"
+    ],
+    "new_aggregate": "crewshal-2d-20261015v26.slice",
+    "new_observer": "crewshal-2d-20261015v26-observer.service",
+    "outputs": {
+      "crewshal-bootstrap": {
+        "bytes": 669328,
+        "sha256": "ab3a0bec59dfcb16d5469b10e027c54697dc47b43309bf121261fb846b01d576"
+      },
+      "lost+found": {
+        "directory": true,
+        "entries": [],
+        "nlink": 2
+      },
+      "policy.binary": {
+        "bytes": 7348,
+        "sha256": "5a9ded6dc15a10b869cbbbcbc852cd5606532b8f117f9202c97adde1945f2ae6"
+      },
+      "storage-audit.json": {
+        "bytes": 3537,
+        "sha256": "ad78dfa709dedd7bb849abff1af6d587de57dc1af8fbeced3ddb4274c9eac8f3"
+      }
+    },
+    "parser_option_source_sha256": "064366a5c217f85b04ca38a1a4d01eff134b6139e64ef1429b6f2b2c91ea5df1",
+    "parser_source": "https://gitlab.com/apparmor/apparmor/-/raw/v5.0.2/parser/parser_interface.c",
+    "physical_closure": "unknown",
+    "proposal": "docs/PHASE-2D-RAW-POLICY-CONTINUATION-2026-10-15.md",
+    "proposed_combined_reserved_bytes_each": 206158430208,
+    "proposed_nominal_memory_charge_bytes": 19327352832,
+    "proposed_nominal_tasks": 3072,
+    "read_only_container_probe": {
+      "compilers_executed": false,
+      "decoded_containers": [
+        {
+          "compressed_bytes": 1325,
+          "container_offset": 0,
+          "decoded_bytes": 7695,
+          "decoded_sha256": "142a12a6bbf078923bd521e42e1fefafbf6b377e92fbc28ae418c3bbe7d370af",
+          "raw_version_header": true
+        },
+        {
+          "compressed_bytes": 2447,
+          "container_offset": 1333,
+          "decoded_bytes": 11577,
+          "decoded_sha256": "9dde85a7dad92d546507a8cc6971ac941c8f7eef19ed09c2552839cf3c761b6c",
+          "raw_version_header": true
+        },
+        {
+          "compressed_bytes": 1843,
+          "container_offset": 3788,
+          "decoded_bytes": 9153,
+          "decoded_sha256": "a7f04d7fd477da1202f5f8ca7eb4fc727c93d73f134f28add6ee2bd702940995",
+          "raw_version_header": true
+        },
+        {
+          "compressed_bytes": 1701,
+          "container_offset": 5639,
+          "decoded_bytes": 8729,
+          "decoded_sha256": "970c807d68bdcaa167ea506d462c67bfcff5eeea8dbad6e56568e55b92f324d0",
+          "raw_version_header": true
+        }
+      ],
+      "old_outputs_reused_for_admission": false,
+      "policy_loaded": false,
+      "total_decoded_bytes": 37154
+    },
+    "retained_custody": {
+      "common_limits_equal": true,
+      "common_memory_events": "low 0\nhigh 0\nmax 7410\noom 1\noom_kill 1\noom_group_kill 0\nsock_throttled 0\n",
+      "common_memory_events_local": "low 0\nhigh 0\nmax 5715\noom 1\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+      "current_journal_fd_identities_equal": 20,
+      "forwarding": 0,
+      "original_charge_snapshots_verified": 23,
+      "original_observer_custody_loss": 24610
+    },
+    "twenty_third_journal_sha256": "8e8aa66bb9c2bdae6ff03c4bbb0262a46456b2015d8c67ceadd55fe27b29b268",
+    "v28_approval": {
+      "answer": "Approve the exact v28 exception and batch",
+      "approval_date": "2026-10-15",
+      "question_id": "call_f303d22c2958456b9e13674bb18ba875",
+      "record_sha256": "ad0201333e8292f8371575f9cb0b2d81381dbe0ccb6733ab00b65193f4bde7c5"
+    }
+  },
+  "recovered_private_archive_matches_v10": true,
+  "retained_policy_continuation": {
+    "actual_progress": {
+      "actual_device_login": "not run",
+      "actual_live_turn": "not run",
+      "actual_qualification": "not run",
+      "fixture_seed_and_readback": "returned before policy open",
+      "memory": {
+        "/sys/fs/cgroup/crewshal.slice/crewshal-2d.slice/crewshal-2d-20261015v23.slice": {
+          "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+          "memory.max": "805306368\n",
+          "memory.peak": "124903424\n",
+          "pids.events": "max 0\n"
+        },
+        "/sys/fs/cgroup/crewshal.slice/crewshal-2d.slice/crewshal-2d-20261015v23.slice/crewshal-2d-20261015v23-observer.service": {
+          "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+          "memory.max": "134217728\n",
+          "memory.peak": "100966400\n",
+          "pids.events": "max 0\n"
+        }
+      }
+    },
+    "after_fix": {
+      "errors": 0,
+      "failures": 0,
+      "focused_tests": 11,
+      "installed_tests": 1218,
+      "skipped": 0,
+      "source_tests": 1218
+    },
+    "automatic_retries": 0,
+    "before_fix": {
+      "errors": 2,
+      "failures": 0,
+      "tests": 2
+    },
+    "correction": "Open each canonical policy path component relative to the retained projected-root FD. Preserve no-follow flags, root ownership, outside-write refusal, verified root inventory, and original deadlines. Keep the caller root FD open. Do not resolve its mount path in another namespace.",
+    "counter_resets": 0,
+    "existing_combined_reserved_bytes_each": 180388626432,
+    "failure": {
+      "errno": 2,
+      "line": 585,
+      "missing_component": "readonly-root",
+      "observer_pid": 28259,
+      "original_public_refusal": {
+        "execution_allowed": false,
+        "failure_causes": [
+          {
+            "errno": null,
+            "line": 1703,
+            "source": "linux_operational.py",
+            "type": "OperationalRefusal"
+          },
+          {
+            "errno": 2,
+            "line": 585,
+            "source": "linux_operational.py",
+            "type": "FileNotFoundError"
+          }
+        ],
+        "failure_errno": null,
+        "failure_line": 1703,
+        "failure_source": "linux_operational.py",
+        "failure_type": "OperationalRefusal",
+        "phase": "2D",
+        "reusable": false,
+        "schema_version": 1,
+        "stage": "refused_with_original_custody"
+      },
+      "policy_relative_path": "/opt/crewshal/storage-audit/policy.binary",
+      "source": "linux_operational.py",
+      "type": "FileNotFoundError",
+      "verified_frames": [
+        "OriginalInstallationDriver.install",
+        "_open_path"
+      ]
+    },
+    "new_aggregate": "crewshal-2d-20261015v24.slice",
+    "new_observer": "crewshal-2d-20261015v24-observer.service",
+    "outputs": {
+      "crewshal-bootstrap": {
+        "bytes": 669328,
+        "sha256": "ab3a0bec59dfcb16d5469b10e027c54697dc47b43309bf121261fb846b01d576"
+      },
+      "lost+found": {
+        "directory": true,
+        "entries": [],
+        "nlink": 2
+      },
+      "policy.binary": {
+        "bytes": 7348,
+        "sha256": "5a9ded6dc15a10b869cbbbcbc852cd5606532b8f117f9202c97adde1945f2ae6"
+      },
+      "storage-audit.json": {
+        "bytes": 3537,
+        "sha256": "ad78dfa709dedd7bb849abff1af6d587de57dc1af8fbeced3ddb4274c9eac8f3"
+      }
+    },
+    "physical_closure": "unknown",
+    "proposal": "docs/PHASE-2D-RETAINED-POLICY-CONTINUATION-2026-10-15.md",
+    "proposed_combined_reserved_bytes_each": 188978561024,
+    "proposed_nominal_memory_charge_bytes": 17716740096,
+    "proposed_nominal_tasks": 2816,
+    "retained_custody": {
+      "common_limits_equal": true,
+      "common_memory_events": "low 0\nhigh 0\nmax 7410\noom 1\noom_kill 1\noom_group_kill 0\nsock_throttled 0\n",
+      "common_memory_events_local": "low 0\nhigh 0\nmax 5715\noom 1\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+      "current_journal_fd_identities_equal": 18,
+      "forwarding": 0,
+      "original_charge_snapshots_verified": 21,
+      "original_observer_custody_loss": 24610
+    },
+    "retained_policy_readback": [
+      {
+        "absolute_path_exists_in_host": false,
+        "bytes": 7348,
+        "retained_root_fd": 2437,
+        "root_readonly": false,
+        "sha256": "5a9ded6dc15a10b869cbbbcbc852cd5606532b8f117f9202c97adde1945f2ae6"
+      },
+      {
+        "absolute_path_exists_in_host": false,
+        "bytes": 7348,
+        "retained_root_fd": 2439,
+        "root_readonly": false,
+        "sha256": "5a9ded6dc15a10b869cbbbcbc852cd5606532b8f117f9202c97adde1945f2ae6"
+      },
+      {
+        "absolute_path_exists_in_host": false,
+        "bytes": 7348,
+        "retained_root_fd": 2441,
+        "root_readonly": true,
+        "sha256": "5a9ded6dc15a10b869cbbbcbc852cd5606532b8f117f9202c97adde1945f2ae6"
+      },
+      {
+        "absolute_path_exists_in_host": false,
+        "bytes": 7348,
+        "retained_root_fd": 2443,
+        "root_readonly": true,
+        "sha256": "5a9ded6dc15a10b869cbbbcbc852cd5606532b8f117f9202c97adde1945f2ae6"
+      }
+    ],
+    "twenty_first_journal_sha256": "16074b1d176ae9f295ea390013c1b9eb1669fbe902fae2eedf9a64449c92c70b",
+    "v26_approval": {
+      "answer": "Approve the exact v26 resource and custody exception and batch",
+      "date": "2026-10-15",
+      "question_id": "call_1562154e710941b89657834feea3dd61",
+      "record_sha256": "7dc218853cbc342433ef7e56095231ea69de4069374874f6d63b696988d8dddb"
+    }
+  },
+  "schema_version": 1,
+  "shared_retention_parent": {
+    "additional_common_oom_events_permitted": 0,
+    "cpu_max_unchanged": "100000 100000",
+    "current_approved_memory_bytes": 2147483648,
+    "current_memory_bytes": 765636608,
+    "current_memory_events": "low 0\nhigh 0\nmax 7410\noom 1\noom_kill 1\noom_group_kill 0\nsock_throttled 0\n",
+    "current_memory_events_local": "low 0\nhigh 0\nmax 5715\noom 1\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+    "custody_policy": "The lost v22 observer and timer cannot supply original proof. Retain their journal, full charge, unknown objects, and historical loss. Require all seventeen remaining current original journal FD identities. Reconstruct no lost proof. Stop on another OOM kill or missing mandatory custody.",
+    "guest_memory_limit_changed": false,
+    "higher_ancestor_readback": {
+      "/sys/fs/cgroup": null,
+      "/sys/fs/cgroup/crewshal.slice": "max"
+    },
+    "known_lost_guest_generation": 19,
+    "known_lost_observer": 24610,
+    "known_lost_timer": 24612,
+    "observer_memory_bytes_unchanged": 134217728,
+    "old_batch_memory_events": {
+      "exists": true,
+      "memory.current": "1024000\n",
+      "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 1\noom_group_kill 0\nsock_throttled 0\n",
+      "memory.events.local": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+      "memory.max": "805306368\n"
+    },
+    "old_unit_state": {
+      "common_limit": "805306368",
+      "memory_total_kib": 7573396,
+      "old_timer_exists": false,
+      "old_unit": "MainPID=0\nResult=signal\nOOMPolicy=continue\nExecMainCode=2\nExecMainStatus=9\n"
+    },
+    "original_history_counter_resets": 0,
+    "per_batch_memory_bytes_unchanged": 805306368,
+    "persistent_while_original_objects_remain_retained": true,
+    "previous_memory_bytes": 805306368,
+    "proposed_memory_bytes": 2147483648,
+    "swap_unchanged": 0,
+    "tasks_unchanged": 128,
+    "v26_approval": {
+      "answer": "Approve the exact v26 resource and custody exception and batch",
+      "date": "2026-10-15",
+      "question_id": "call_1562154e710941b89657834feea3dd61",
+      "record_sha256": "7dc218853cbc342433ef7e56095231ea69de4069374874f6d63b696988d8dddb"
+    }
+  },
+  "software_development_status": "active; revised software acceptance pending",
+  "startup_retention_continuation": {
+    "actual_progress": {
+      "actual_device_login": "not run",
+      "actual_live_turn": "not run",
+      "actual_qualification": "not run",
+      "fixture_preparation": "refused during an original FD handoff at the expired shared creation deadline",
+      "initial_storage_owner_readback": "passed before fixture preparation",
+      "observer_memory_events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+      "observer_memory_peak": 88219648
+    },
+    "after_fix": {
+      "errors": 0,
+      "failures": 0,
+      "focused_tests": 227,
+      "installed_tests": 1216,
+      "skipped": 0,
+      "source_tests": 1216
+    },
+    "automatic_retries": 0,
+    "before_fix": {
+      "clock_error_records_including_subtests": 9,
+      "clock_failure_records_including_subtests": 2,
+      "clock_methods": 7,
+      "fixture_count_errors": 1,
+      "fixture_count_failures": 1,
+      "fixture_count_methods": 2
+    },
+    "correction": "Bind installation and operational storage-owner job admission to original batch origin plus 120 seconds. Preserve the per-job min(absolute window, job start plus 30 seconds). Both production and fixture handoff waits use the original captured active job deadline. No window restarts. Require all forty expected fixture handoffs: fifteen formatter handles and twenty-five file handles.",
+    "counter_resets": 0,
+    "existing_combined_reserved_bytes_each": 171798691840,
+    "failure": {
+      "diagnostic": "original retained production identity/deadline differs",
+      "journal_span_seconds": 32.460042,
+      "line": 1002,
+      "observer_pid": 27007,
+      "original_creation_deadline": 102042.736105428,
+      "original_public_refusal": {
+        "execution_allowed": false,
+        "failure_causes": [
+          {
+            "errno": null,
+            "line": 1703,
+            "source": "linux_operational.py",
+            "type": "OperationalRefusal"
+          },
+          {
+            "errno": null,
+            "line": 373,
+            "source": "linux_fixture_inputs.py",
+            "type": "ProductionRefusal"
+          },
+          {
+            "errno": null,
+            "line": 1002,
+            "source": "linux_production.py",
+            "type": "ValueError"
+          }
+        ],
+        "failure_errno": null,
+        "failure_line": 1703,
+        "failure_source": "linux_operational.py",
+        "failure_type": "OperationalRefusal",
+        "phase": "2D",
+        "reusable": false,
+        "schema_version": 1,
+        "stage": "refused_with_original_custody"
+      },
+      "original_seed_job_deadline": 102042.736105428,
+      "refusal_timestamp_monotonic_seconds": 102042.906735,
+      "retained_parent_frames": [
+        {
+          "function": "OriginalFixtureInputs.seed",
+          "line": -1
+        },
+        {
+          "function": "BoundedStorageJobs.run",
+          "job_deadline": 102042.736105428,
+          "line": -1
+        },
+        {
+          "function": "_SeedChannel.pump",
+          "line": -1
+        },
+        {
+          "function": "OriginalFixtureInputs.verify_custody",
+          "line": -1
+        },
+        {
+          "function": "OwnedBackingProduction.verify",
+          "line": -1,
+          "original_deadline": 102042.736105428,
+          "public_deadline": 102042.736105428
+        }
+      ],
+      "source": "linux_production.py"
+    },
+    "new_aggregate": "crewshal-2d-20261015v23.slice",
+    "new_observer": "crewshal-2d-20261015v23-observer.service",
+    "outputs": {
+      "crewshal-bootstrap": {
+        "bytes": 669328,
+        "sha256": "ab3a0bec59dfcb16d5469b10e027c54697dc47b43309bf121261fb846b01d576"
+      },
+      "lost+found": {
+        "directory": true,
+        "entries": [],
+        "nlink": 2
+      },
+      "policy.binary": {
+        "bytes": 7348,
+        "sha256": "5a9ded6dc15a10b869cbbbcbc852cd5606532b8f117f9202c97adde1945f2ae6"
+      },
+      "storage-audit.json": {
+        "bytes": 3537,
+        "sha256": "ad78dfa709dedd7bb849abff1af6d587de57dc1af8fbeced3ddb4274c9eac8f3"
+      }
+    },
+    "physical_closure": "unknown",
+    "proposal": "docs/PHASE-2D-STARTUP-RETENTION-CONTINUATION-2026-10-15.md",
+    "proposed_combined_reserved_bytes_each": 180388626432,
+    "proposed_nominal_memory_charge_bytes": 16911433728,
+    "proposed_nominal_tasks": 2688,
+    "retained_custody": {
+      "common_limits_equal": true,
+      "common_memory_events": "low 0\nhigh 0\nmax 7410\noom 1\noom_kill 1\noom_group_kill 0\nsock_throttled 0\n",
+      "common_memory_events_local": "low 0\nhigh 0\nmax 5715\noom 1\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+      "current_journal_fd_identities_equal": 17,
+      "forwarding": 0,
+      "original_charge_snapshots_verified": 20,
+      "original_observer_custody_loss": 24610
+    },
+    "twentieth_journal_sha256": "f61bcad66e58518975820410733fba59a25f8d04fa81abb43828488d5b73cd42",
+    "v25_approval": {
+      "answer": "Approve the exact v25 exception and batch",
+      "question_id": "call_1ffae8252241473a9041cb313d5b3621",
+      "record_sha256": "fa961c8324b5b1343b6de5d455f86b714d6f4f9b194bd8eb030e147b29ec4599"
+    }
+  },
+  "storage_child_custody_continuation": {
+    "actual_progress": {
+      "actual_device_login": "not run",
+      "actual_live_turn": "not run",
+      "actual_qualification": "not run",
+      "domain_loop": {
+        "block_size": 4096,
+        "status": [
+          66306,
+          1054712,
+          0,
+          0,
+          1073741824,
+          90,
+          0,
+          0,
+          16
+        ],
+        "target": "/dev/loop90"
+      },
+      "full_root_copy_and_encrypted_view_setup": "The original path reached handoff_storage_owner after these operations. Initial storage-owner readback refused.",
+      "observer_memory_current": 68124672,
+      "observer_memory_events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+      "observer_memory_peak": 93712384,
+      "observer_pids_events": "max 0\n"
+    },
+    "after_fix": {
+      "errors": 0,
+      "failures": 0,
+      "focused_tests": 187,
+      "installed_tests": 1197,
+      "skipped": 0,
+      "source_tests": 1197
+    },
+    "automatic_retries": 0,
+    "before_fix": {
+      "errors": 1,
+      "failures": 0,
+      "limitation": "The final six regressions add child identity and parent effect checks. The two-test closed-FD comparison had one child EBADF and one passing parent refusal.",
+      "tests": 2
+    },
+    "correction": "The parent retains full original configuration and charged build verification before readback and effect admission. Each admitted child checks frozen bindings, original handle identities, protected directory, and entered namespace. It does not access parent proof FDs that its bounded job has closed.",
+    "counter_resets": 0,
+    "existing_combined_reserved_bytes_each": 146028888064,
+    "failure": {
+      "diagnostic": "storage child reported unknown readback",
+      "internal_diagnostic": "The child suppresses its exception. The frozen call chain closes compiler proof FDs before calling full parent derivation verification. A closed-FD regression reproduces EBADF. The original child exception remains unavailable.",
+      "line": 572,
+      "observer_pid": 24610,
+      "source": "linux_storage.py",
+      "verified_parent_frames": [
+        "LinuxPhysicalOwner.__init__",
+        "LinuxPhysicalOwner.readback",
+        "BoundedStorageJobs.run"
+      ]
+    },
+    "new_aggregate": "crewshal-2d-20261015v20.slice",
+    "new_observer": "crewshal-2d-20261015v20-observer.service",
+    "outputs": {
+      "crewshal-bootstrap": {
+        "bytes": 669328,
+        "sha256": "ab3a0bec59dfcb16d5469b10e027c54697dc47b43309bf121261fb846b01d576"
+      },
+      "lost+found": {
+        "directory": true,
+        "entries": [],
+        "nlink": 2
+      },
+      "policy.binary": {
+        "bytes": 7348,
+        "sha256": "5a9ded6dc15a10b869cbbbcbc852cd5606532b8f117f9202c97adde1945f2ae6"
+      },
+      "storage-audit.json": {
+        "bytes": 3537,
+        "sha256": "ad78dfa709dedd7bb849abff1af6d587de57dc1af8fbeced3ddb4274c9eac8f3"
+      }
+    },
+    "physical_closure": "unknown",
+    "proposal": "docs/PHASE-2D-CHILD-CUSTODY-CONTINUATION-2026-10-15.md",
+    "proposed_combined_reserved_bytes_each": 154618822656,
+    "proposed_nominal_memory_charge_bytes": 14495514624,
+    "proposed_nominal_tasks": 2304,
+    "retained_custody": {
+      "common_limits_equal": true,
+      "common_memory_events": "low 0\nhigh 0\nmax 4084\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+      "common_memory_events_local": "low 0\nhigh 0\nmax 2389\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+      "fifteen_current_journal_fd_identities_equal": true,
+      "forwarding": 0,
+      "seventeen_original_charge_snapshots_verified": true
+    },
+    "seventeenth_journal_sha256": "af55d1977f10462513cb044b6b53816d4485a20d8af496300bd396a24adcec5c",
+    "v22_approval": {
+      "answer": "Approve the exact v22 exception and batch",
+      "question_id": "call_807403eaee394f0d9ba3280ad9067850",
+      "record_sha256": "9473b455ddbd02253e07b6f1b2b2a789ebd2b05d96c98741a25a7ebc31039d0c"
+    }
+  },
+  "supersedes": "docs/qualification/phase-2d-execution-progress-v1-20261014.json",
+  "v29_unused_approval": {
+    "answer": "Approve the exact v29 exception and batch",
+    "operations_started": 0,
+    "question_id": "call_5c142ab56c3b4ab0bcd6ae4917619dde",
+    "record_sha256": "638cf90f32188dfb024eae2810fe79c547c138a6b41bfcc494bcdb107546b4cd",
+    "status": "Do not execute. The later owner direction stops Linux work."
+  }
+}

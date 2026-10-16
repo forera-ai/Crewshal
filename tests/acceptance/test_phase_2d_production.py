@@ -23,6 +23,29 @@ from tests.acceptance import test_phase_2d_inventory as inventory_fixtures
 
 
 class Phase2DProduction(unittest.TestCase):
+    def test_installation_parent_accepts_run_permissions_without_outside_write(self):
+        value = object.__new__(production.OwnedBackingProduction)
+        value.root = "/run/crewshal-2d-fixed"
+        for mode in (0o700, 0o755, 0o777, 0o775, 0o705):
+            info = SimpleNamespace(
+                st_mode=stat.S_IFDIR | mode, st_uid=0, st_gid=0, st_dev=7, st_ino=9
+            )
+            with (
+                patch.object(production.os, "fstat", return_value=info),
+                patch.object(production.os, "readlink", return_value="/run"),
+            ):
+                if mode in (0o700, 0o755):
+                    self.assertEqual(value._installation_parent(123), (7, 9))
+                else:
+                    with self.assertRaisesRegex(ValueError, "without outside write"):
+                        value._installation_parent(123)
+        with (
+            patch.object(production.os, "fstat", return_value=info),
+            patch.object(production.os, "readlink", return_value="/tmp"),
+        ):
+            with self.assertRaises(ValueError):
+                value._installation_parent(123)
+
     def setUp(self):
         self.stack = ExitStack()
         self.addCleanup(self.stack.close)
@@ -38,6 +61,7 @@ class Phase2DProduction(unittest.TestCase):
             verify=Mock(),
             _verify_transferred=Mock(),
         )
+        self.owner.jobs = SimpleNamespace(original_job_deadline=self.owner.deadline)
         self.channel = production._CreationChannel(self.owner)
         self.channel.expected = ["namespace"]
         self.channel.parent = Mock()
@@ -46,8 +70,62 @@ class Phase2DProduction(unittest.TestCase):
         self.channel.child.sendmsg.return_value = len("namespace")
         self.channel.child.recv.return_value = b"1"
         self.stack.enter_context(
-            patch.object(production.select, "select", side_effect=lambda r, w, e, t: (r, w, []))
+            patch.object(production, "_wait_ready", side_effect=lambda r, w, e, t: (r, w, []))
         )
+
+    def test_creation_handoff_waits_use_the_original_active_job_deadline(self):
+        self.owner.deadline = 220.0
+        self.owner.jobs.original_job_deadline = 105.0
+        with (
+            patch.object(production.time, "monotonic", side_effect=[100.0, 103.0]),
+            patch.object(
+                production, "_wait_ready", side_effect=lambda r, w, e, t: (r, w, [])
+            ) as wait,
+        ):
+            self.channel.transfer("namespace", 42)
+        self.assertEqual([call.args[3] for call in wait.call_args_list], [5.0, 2.0])
+
+    def test_production_uses_the_fixed_startup_boundary_without_a_shared_job_window(self):
+        observer = SimpleNamespace(spec=SimpleNamespace(pid=os.getpid()))
+        role = SimpleNamespace(identity=object())
+        timer = SimpleNamespace(setup=role)
+        reservation = SimpleNamespace(
+            _configuration=SimpleNamespace(lane_id=None),
+            verify_operational=Mock(),
+            capacity_claim=object(),
+            observer=observer,
+            observer_group=object(),
+            aggregate=object(),
+            _batch_timer=timer,
+            batch_started=100.0,
+        )
+        jobs = storage.BoundedStorageJobs(
+            observer,
+            reservation.observer_group,
+            reservation.aggregate,
+            220.0,
+            execution_group=role,
+            batch_timer=timer,
+        )
+        with (
+            patch.object(production.time, "monotonic", return_value=140.0),
+            patch.object(
+                production,
+                "prepare_linux_envelope",
+                return_value=SimpleNamespace(owned_root="/synthetic/owned"),
+            ),
+            patch.object(production.os, "dup", return_value=71),
+            patch.object(
+                production.OwnedBackingProduction, "_installation_parent", return_value=(1, 2)
+            ),
+            patch.object(production._CreationChannel, "open"),
+        ):
+            value = production.OwnedBackingProduction(
+                reservation, None, jobs, installation_parent_fd=55
+            )
+        self.assertEqual(value.deadline, 220.0)
+        self.assertEqual(value._deadline, 220.0)
+        self.assertIs(value.jobs, jobs)
 
     def private_keys(self):
         # Fresh explicit kernel/credential seams, never a real keyctl/add_key.
@@ -258,6 +336,49 @@ class Phase2DProduction(unittest.TestCase):
                 production._copy_root_files(destination, fixture.spec, inputs)
             self.assertEqual(list(output.iterdir()), [])
 
+    def test_root_copy_counts_file_metadata_inside_the_original_root_ceiling(self):
+        with self.copied_root_fixture() as (fixture, output, destination, descriptors):
+            original = production.os.fstat
+
+            def allocated(fd):
+                info = original(fd)
+                if stat.S_ISREG(info.st_mode) and fd not in descriptors.values():
+                    info = SimpleNamespace(**{**vars(info), "st_blocks": info.st_blocks + 8})
+                return info
+
+            with patch.object(production.os, "fstat", side_effect=allocated):
+                production._copy_root_files(destination, fixture.spec, descriptors)
+            for path, raw in fixture.raw.items():
+                self.assertEqual((output / path.lstrip("/")).read_bytes(), raw)
+
+    def test_root_copy_refuses_combined_actual_allocation_above_the_original_ceiling(self):
+        with self.copied_root_fixture() as (fixture, output, destination, descriptors):
+            original = production.os.fstat
+            overhead = len(fixture.spec.root) * 4096
+            data = sum((len(raw) + 4095) // 4096 * 4096 for raw in fixture.raw.values())
+            ceiling = overhead + data + 4096
+            observed = set()
+
+            def allocated(fd):
+                info = original(fd)
+                if stat.S_ISREG(info.st_mode) and fd not in descriptors.values():
+                    observed.add(info.st_ino)
+                    info = SimpleNamespace(
+                        **{**vars(info), "st_blocks": (ceiling - overhead) // 512}
+                    )
+                return info
+
+            with (
+                patch.object(production, "ROOT_COPY_BYTES", ceiling),
+                patch.object(production.os, "fstat", side_effect=allocated),
+                self.assertRaisesRegex(ValueError, "original copy accounting"),
+            ):
+                production._copy_root_files(destination, fixture.spec, descriptors)
+            self.assertEqual(len(observed), 2)
+            self.assertGreaterEqual(sum(path.is_file() for path in output.rglob("*")), 2)
+            for fd in descriptors.values():
+                os.fstat(fd)
+
     def test_root_copy_bad_input_hash_keeps_partial_bytes_and_source_fd(self):
         with self.copied_root_fixture() as (fixture, output, destination, descriptors):
             spec = fixture.spec.model_copy(deep=True)
@@ -314,6 +435,7 @@ class Phase2DProduction(unittest.TestCase):
             parent = os.open(directory, os.O_RDONLY | os.O_DIRECTORY)
             self.addCleanup(os.close, parent)
             value = object.__new__(production.OwnedBackingProduction)
+            value.reservation = SimpleNamespace()
             value.handles = {"root-parent": parent, "namespace": 999}
             value._root_manifest, value._root_inputs = object(), {}
             value._root_channel = SimpleNamespace(transfer=Mock())
@@ -332,6 +454,7 @@ class Phase2DProduction(unittest.TestCase):
 
     def test_root_bind_custody_precedes_readonly_remount(self):
         value = object.__new__(production.OwnedBackingProduction)
+        value.reservation = SimpleNamespace()
         value.root = "/synthetic/owned"
         value.handles = {"namespace": 99, "readonly-root": 98}
         events = []
@@ -359,6 +482,7 @@ class Phase2DProduction(unittest.TestCase):
         with self.copied_root_fixture() as (fixture, _, destination, descriptors):
             production._copy_root_files(destination, fixture.spec, descriptors)
             value = object.__new__(production.OwnedBackingProduction)
+            value.reservation = SimpleNamespace()
             value.failed = False
             value.verify = Mock()
             value._root_manifest = fixture.spec
@@ -413,6 +537,7 @@ class Phase2DProduction(unittest.TestCase):
             descriptor = os.open(root, os.O_RDONLY | os.O_DIRECTORY)
             self.addCleanup(os.close, descriptor)
             value = object.__new__(production.OwnedBackingProduction)
+            value.reservation = SimpleNamespace()
             value.failed = False
             value.verify = Mock()
             value.projected_inventory = SimpleNamespace(descriptor=descriptor, verify=Mock())
@@ -516,6 +641,7 @@ class Phase2DProduction(unittest.TestCase):
 
     def test_formatter_child_execs_fd_and_only_preserves_stdio_owned_loop(self):
         value = object.__new__(production.OwnedBackingProduction)
+        value.reservation = SimpleNamespace()
         value._format_name = "scratch.img"
         value.handles = {"loop:scratch.img": 7, "scratch.img": 8, "formatter": 9}
         expected = bytes(production.LOOP_INFO64.size)
@@ -559,6 +685,7 @@ class Phase2DProduction(unittest.TestCase):
 
     def test_encrypted_mount_child_retains_each_filesystem_before_role_mutation(self):
         value = object.__new__(production.OwnedBackingProduction)
+        value.reservation = SimpleNamespace()
         value.root = "/synthetic/owned"
         value.handles = {
             "namespace": 99,
@@ -619,6 +746,7 @@ class Phase2DProduction(unittest.TestCase):
 
     def test_bad_owned_loop_prevents_any_mount_effect(self):
         value = object.__new__(production.OwnedBackingProduction)
+        value.reservation = SimpleNamespace()
         value.mounts = {"scratch-lower": "/synthetic/lower", "scratch-upper": "/synthetic/upper"}
         value.handles = {
             "namespace": 99,
@@ -642,6 +770,7 @@ class Phase2DProduction(unittest.TestCase):
 
     def test_mount_custody_refusal_never_chowns_or_attempts_upper_mount(self):
         value = object.__new__(production.OwnedBackingProduction)
+        value.reservation = SimpleNamespace()
         value.root = "/synthetic"
         value.handles = {
             "namespace": 99,
@@ -671,10 +800,11 @@ class Phase2DProduction(unittest.TestCase):
 
     def test_handoff_retains_original_creation_deadline_and_separate_bounded_readback(self):
         value = object.__new__(production.OwnedBackingProduction)
+        value.reservation = SimpleNamespace()
         value.failed = False
         value.verify = Mock()
         value._keys = SimpleNamespace(_verify=Mock(), ring=object())
-        value._mount_channel = SimpleNamespace(position=4)
+        value._mount_channel = SimpleNamespace(position=4, expected=list(range(4)))
         value._ext4_metadata = {name: b"synthetic" for name in production.BACKING_SIZES}
         value.mounts = {
             role + suffix: "/synthetic/" + role + suffix
@@ -694,7 +824,7 @@ class Phase2DProduction(unittest.TestCase):
             observer_group=object(),
             aggregate=object(),
             batch_started=time.monotonic() - 2,
-            _configuration=object(),
+            _configuration=SimpleNamespace(lane_id=None),
         )
         value.reservation = reservation
         # Role/timer objects are explicit unqualified data seams; no job runs.
@@ -726,8 +856,9 @@ class Phase2DProduction(unittest.TestCase):
 
     def test_incomplete_mount_custody_cannot_handoff_owner(self):
         value = object.__new__(production.OwnedBackingProduction)
+        value.reservation = SimpleNamespace()
         value.failed = False
-        value._mount_channel = SimpleNamespace(position=3)
+        value._mount_channel = SimpleNamespace(position=3, expected=list(range(4)))
         value.mounts = {name: "/synthetic" for name in range(4)}
         with (
             patch.object(storage.LinuxPhysicalOwner, "__init__") as owner,
@@ -738,6 +869,7 @@ class Phase2DProduction(unittest.TestCase):
 
     def test_auxiliary_images_retain_original_namespace_and_charge_existing_allowances(self):
         value = object.__new__(production.OwnedBackingProduction)
+        value.reservation = SimpleNamespace()
         value.failed = False
         value.complete = True
         value.verify = Mock()
@@ -765,7 +897,7 @@ class Phase2DProduction(unittest.TestCase):
         self.assertTrue(value._auxiliary_complete)
         self.assertEqual(len(channel.expected), 6)
         self.assertEqual(
-            production.ROOT_COPY_BYTES + 3 * production.ADDITIONAL_BACKING_SIZES["native-auth.img"],
+            production.ROOT_COPY_BYTES + 9 * production.ADDITIONAL_BACKING_SIZES["native-auth.img"],
             1073741824,
         )
         self.assertEqual(production.ADDITIONAL_BACKING_SIZES["validator-scratch.img"], 33554432)
@@ -776,6 +908,7 @@ class Phase2DProduction(unittest.TestCase):
 
     def test_auxiliary_success_text_without_complete_custody_retains_and_refuses(self):
         value = object.__new__(production.OwnedBackingProduction)
+        value.reservation = SimpleNamespace()
         value.failed = False
         value.complete = True
         value.verify = Mock()
@@ -805,6 +938,7 @@ class Phase2DProduction(unittest.TestCase):
 
     def test_auxiliary_mount_child_pins_auth_and_validator_views_before_uid_change(self):
         value = object.__new__(production.OwnedBackingProduction)
+        value.reservation = SimpleNamespace()
         value.root = "/synthetic/owned"
         value.handles = {"namespace": 99, "root-parent": 98}
         for index, name in enumerate(production.ADDITIONAL_BACKING_SIZES):
@@ -844,6 +978,7 @@ class Phase2DProduction(unittest.TestCase):
 
     def test_auxiliary_backing_cannot_be_created_after_formatter_started(self):
         value = object.__new__(production.OwnedBackingProduction)
+        value.reservation = SimpleNamespace()
         value._format_attempted = True
         value.failed = False
         value.complete = True
@@ -856,6 +991,7 @@ class Phase2DProduction(unittest.TestCase):
         temporary = tempfile.TemporaryDirectory()
         self.addCleanup(temporary.cleanup)
         value = object.__new__(production.OwnedBackingProduction)
+        value.reservation = SimpleNamespace()
         value.root = temporary.name
         parent = os.open(value.root, os.O_RDONLY | os.O_DIRECTORY)
         self.addCleanup(os.close, parent)
@@ -972,6 +1108,7 @@ class Phase2DProduction(unittest.TestCase):
 
     def partial(self):
         value = object.__new__(production.OwnedBackingProduction)
+        value.reservation = SimpleNamespace()
         value.root = "/synthetic/owned"
         value.handles = {"directory": 99}
         value.directory_identity = (1, 2)
@@ -1058,7 +1195,7 @@ class Phase2DProduction(unittest.TestCase):
 
     def test_constructor_refusal_pins_original_reservation_before_any_duplication(self):
         reservation = SimpleNamespace(
-            _configuration=object(),
+            _configuration=SimpleNamespace(lane_id=None),
             verify=Mock(side_effect=ValueError("synthetic claim refusal")),
             verify_operational=Mock(side_effect=ValueError("synthetic claim refusal")),
         )
@@ -1173,7 +1310,7 @@ class Phase2DCreationChild(unittest.TestCase):
             patch.object(storage, "_stat_identity", side_effect=lambda raw: self.stat)
         )
         self.stack.enter_context(patch.object(storage, "_read", side_effect=self.read))
-        self.stack.enter_context(patch.object(storage.select, "select", return_value=([], [], [])))
+        self.stack.enter_context(patch.object(storage, "_wait_ready", return_value=([], [], [])))
 
     def read(self, descriptor, name):
         if name.startswith("self/fdinfo/"):
@@ -1234,6 +1371,90 @@ class Phase2DCreationChild(unittest.TestCase):
         self.jobs.deadline = time.monotonic() - 1
         with self.assertRaises(ValueError):
             self.jobs.verify_creation_child()
+
+
+class Phase2DDomainDirectIO(unittest.TestCase):
+    """Synthetic loop ioctls preserve custody and refuse unconfirmed direct I/O."""
+
+    def attach(self, *, direct=True, block=4096, failure=False):
+        owner = object.__new__(production.OwnedBackingProduction)
+        owner.handles = {"loop:physical-domain.img": 104, "loop:scratch.img": 104}
+        owner._sizes = Mock(return_value={"scratch.img": 33554432})
+        events = []
+        channel = SimpleNamespace(transfer=lambda name, fd: events.append(("pin", name, fd)))
+        info = SimpleNamespace(
+            st_mode=stat.S_IFBLK | 0o600, st_rdev=os.makedev(7, 3), st_dev=1, st_ino=2
+        )
+        configured = None
+
+        def ioctl(fd, operation, *args):
+            nonlocal configured
+            events.append(
+                ("ioctl", operation, args[0] if args and isinstance(args[0], int) else None)
+            )
+            if operation == production.LOOP_CTL_GET_FREE:
+                return 3
+            if operation == production.LOOP_SET_STATUS64:
+                configured = args[0]
+            if operation == 0x4C08 and failure:
+                raise OSError(errno.EINVAL, "synthetic direct I/O refusal")
+            if operation == 0x1268:
+                args[0][:] = block.to_bytes(4, production.sys.byteorder)
+            if operation == production.LOOP_GET_STATUS64:
+                values = list(production.LOOP_INFO64.unpack(configured))
+                values[8] = 16 if direct else 0
+                args[0][:] = production.LOOP_INFO64.pack(*values)
+            return 0
+
+        try:
+            with (
+                patch.object(production.os, "open", return_value=104),
+                patch.object(production.os, "fstat", return_value=info),
+                patch.object(production.fcntl, "ioctl", side_effect=ioctl),
+            ):
+                owner._attach_created_loop("physical-domain.img", 1073741824, 102, channel, 103)
+        finally:
+            self.events = events
+        return owner
+
+    def test_direct_io_controls_follow_original_loop_custody(self):
+        self.attach()
+        events = self.events
+        self.assertLess(
+            events.index(("pin", "loop:physical-domain.img", 104)),
+            events.index(("ioctl", 0x4C00, 102)),
+        )
+        self.assertLess(events.index(("ioctl", 0x4C09, 4096)), events.index(("ioctl", 0x4C08, 1)))
+        self.assertIn(("ioctl", 0x1268, None), events)
+        self.assertIn(("ioctl", production.LOOP_GET_STATUS64, None), events)
+
+    def test_ignored_direct_io_request_refuses(self):
+        with self.assertRaisesRegex(ValueError, "direct I/O readback"):
+            self.attach(direct=False)
+
+    def test_different_block_size_refuses(self):
+        with self.assertRaisesRegex(ValueError, "block size"):
+            self.attach(block=512)
+
+    def test_direct_io_kernel_refusal_never_clears_or_replaces_the_loop(self):
+        with self.assertRaises(OSError):
+            self.attach(failure=True)
+        self.assertEqual(sum(event[0] == "pin" for event in self.events), 1)
+        self.assertFalse(any(event[:2] == ("ioctl", 0x4C01) for event in self.events))
+
+    def test_only_physical_domain_readback_requires_direct_io(self):
+        owner = object.__new__(production.OwnedBackingProduction)
+        owner.handles = {"loop:physical-domain.img": 104, "loop:scratch.img": 104}
+        owner._sizes = Mock(return_value={"scratch.img": 33554432})
+        info = SimpleNamespace(st_dev=1, st_ino=2, st_rdev=os.makedev(7, 3))
+        with patch.object(production.os, "fstat", return_value=info):
+            self.assertEqual(
+                production.LOOP_INFO64.unpack(owner._expected_loop("physical-domain.img", info))[8],
+                16,
+            )
+            self.assertEqual(
+                production.LOOP_INFO64.unpack(owner._expected_loop("scratch.img", info))[8], 0
+            )
 
 
 class Phase2DFormatterCustody(unittest.TestCase):

@@ -1,0 +1,39 @@
+{
+  "actual_phase_2d_acceptance": "incomplete",
+  "base_revision": "87ed7e6f6c766c7ff2df245ad05569558a9ca3bc",
+  "branch": "codex/phase1-architecture",
+  "candidate_release": "unreleased",
+  "candidate_version": "0.13.0",
+  "combined_reserved_allowance_bytes_each": 42949672960,
+  "compiler_attempts": "The v9 C attempt and all historical attempts remain consumed.",
+  "date": "2026-10-13",
+  "decision": {
+    "answer": "Decline the additional batch",
+    "operational_authority": false,
+    "question_id": "call_13eba8afbe454491a9e81b2fe7348450",
+    "record_sha256": "c3c09e7b4ab8205fe53024ae2718d45e7f279166053a5a0d17c673a063151b2b"
+  },
+  "declined_record": "docs/qualification/phase-2d-executable-batch-v10-20261013.json",
+  "fresh_readback": {
+    "consumed_compiler_pidfd_equal": true,
+    "forwarding": 0,
+    "prior_journal_fd_identities_equal": true,
+    "prior_journal_hashes": {
+      "2": "8da77577ceb30d96c9e82ee72fa004a3157d34b02ce2efabaf1ffb1f08ca59a8",
+      "3": "962a3c23383981728557e1d3fe04bf0439581af7582f839629a86a70549a75ad",
+      "4": "86f685083042a03b3f27bb0eee436d9d1c04ecf2f88ba8985c91673b54b43e1f",
+      "5": "ebcd9bd415699d422390a13670c85a0f9479168a9da1d1b89d9681016d8a20a5",
+      "6": "737d4446eeeb79f63b710f2e418d2148d0a7b962f1556b0abcb1c61f877c10f7"
+    },
+    "v10_paths_absent": true
+  },
+  "new_charge_created": false,
+  "phase": "2D",
+  "phase_2e": "not started",
+  "physical_closure": "unknown",
+  "prior_full_charges": 5,
+  "publication": "not performed",
+  "schema_version": 1,
+  "source_and_fresh_wheel_tests_each": 1161,
+  "v10_operational_commands_consumed": 0
+}

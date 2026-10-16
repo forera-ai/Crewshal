@@ -1,0 +1,224 @@
+{
+  "base_revision": "87ed7e6f6c766c7ff2df245ad05569558a9ca3bc",
+  "baseline_tests": {
+    "installed_occurrences": 1222,
+    "source_occurrences": 1222,
+    "status": "Previously passed before this documentation update. Reverify after implementation."
+  },
+  "branch": "codex/phase1-architecture",
+  "candidate_release": "unreleased",
+  "candidate_version": "0.13.0",
+  "date": "2026-10-15",
+  "files": [
+    {
+      "bytes": 7760,
+      "group": "read_first",
+      "path": "AGENTS.md",
+      "sha256": "ed7b4175bc9c68faaa1d2f9ce43734982374a4780281d4b049af8967464e1b96"
+    },
+    {
+      "bytes": 401980,
+      "group": "read_first",
+      "path": "docs/HANDOFF.md",
+      "sha256": "95da1087aff874b5963cb9c4c7547b47746ab8fea5baeeb2c540f292e4f6006b"
+    },
+    {
+      "bytes": 58245,
+      "group": "read_first",
+      "path": "docs/DEVELOPMENT-PLAN.md",
+      "sha256": "c8dc6d64c0b062f0e2300d0a9c51c79ca8684802e5e23debd6c9818ad47623ec"
+    },
+    {
+      "bytes": 4907,
+      "group": "read_first",
+      "path": "docs/decisions/0007-core-development-before-platform-qualification.md",
+      "sha256": "ade9437cbda53d723d9d42e1250ee40546e338582b0747404b7fafeea3169a8c"
+    },
+    {
+      "bytes": 18875,
+      "group": "read_first",
+      "path": "docs/ARCHITECTURE.md",
+      "sha256": "b1059de8a036fcf5161f89eb99aa1960b1a1eefee445b738b853abd6b7a88621"
+    },
+    {
+      "bytes": 3910,
+      "group": "read_first",
+      "path": "docs/decisions/0002-minimal-architecture.md",
+      "sha256": "d3a95bba05c6a27fef00f417e093d6496aa37f0fc064c679c67590f4556e8d98"
+    },
+    {
+      "bytes": 5676,
+      "group": "read_first",
+      "path": "docs/PHASE-2D-CORE-NEXT-SESSION-2026-10-15.md",
+      "sha256": "47aa9d5552ad72db03315018531b4f41a9290766ea6f51cfc100fc6744397e1f"
+    },
+    {
+      "bytes": 920,
+      "group": "project_metadata",
+      "path": "pyproject.toml",
+      "sha256": "044b8dadb2974ad262ffc4b1b712110b05926f01b4c2ac51e1d15d89e249a320"
+    },
+    {
+      "bytes": 16775,
+      "group": "project_metadata",
+      "path": "requirements-dev.lock",
+      "sha256": "cc15312627f6235586f0a0655e272fb245563782d88283f57e1159af7dffbc00"
+    },
+    {
+      "bytes": 27289,
+      "group": "project_metadata",
+      "path": "README.md",
+      "sha256": "66ef55c270d6031342235a8a79b05297e89ad421982bd31053fad95eef5b4f9b"
+    },
+    {
+      "bytes": 56493,
+      "group": "project_metadata",
+      "path": "CHANGELOG.md",
+      "sha256": "d23eb9aaf42aa4b8c6810359d05b2a00ef0373b7c45ac440acffd690bca407e4"
+    },
+    {
+      "bytes": 11402,
+      "group": "project_metadata",
+      "path": "LICENSE",
+      "sha256": "23e146567faed6ea7b23ba44ee4db3fca49ee2ce0c13272ef38ce59eff567534"
+    },
+    {
+      "bytes": 91,
+      "group": "project_metadata",
+      "path": "src/crewshal/__init__.py",
+      "sha256": "5bf49d29577ae5521790fdf475b36fdbf2839c365843b54e7220fdbe2ffca86e"
+    },
+    {
+      "bytes": 6575,
+      "group": "core_starting_points",
+      "path": "src/crewshal/model.py",
+      "sha256": "3cbc9405e0c7fb5247a13562e72c8472c3edc0f3fc2407db2fd6c6c95fae25de"
+    },
+    {
+      "bytes": 11857,
+      "group": "core_starting_points",
+      "path": "src/crewshal/contracts.py",
+      "sha256": "ed308d86b9b77fec5e9943677bf1d4b59ef0e16edb7fec25e8b334016bada437"
+    },
+    {
+      "bytes": 13229,
+      "group": "core_starting_points",
+      "path": "src/crewshal/discovery.py",
+      "sha256": "b9ab698faa5951f9badf566b1fdd8cd3be7487f82fdc96acd6a246ef44aa1b2c"
+    },
+    {
+      "bytes": 7017,
+      "group": "core_starting_points",
+      "path": "src/crewshal/cli.py",
+      "sha256": "8ecd936c862da846969fc2da482c7f889d0174c208076301fc16e6353842d372"
+    },
+    {
+      "bytes": 3347,
+      "group": "core_starting_points",
+      "path": "src/crewshal/state.py",
+      "sha256": "856abbc9de6e630798736eab14ddc6062bc6768621edd8a0d9477f1f3fa7e5a3"
+    },
+    {
+      "bytes": 18863,
+      "group": "core_starting_points",
+      "path": "src/crewshal/runtime.py",
+      "sha256": "584bf3525f02e274ccd3240a083d0b8dbea54be42d64323b110bdeb2074c64d6"
+    },
+    {
+      "bytes": 17248,
+      "group": "core_starting_points",
+      "path": "src/crewshal/dispatch.py",
+      "sha256": "939b607f3a0f2b829ce73b0f0fce4ac861a448dd985cb2325429b5a390b48641"
+    },
+    {
+      "bytes": 27753,
+      "group": "core_starting_points",
+      "path": "src/crewshal/app_server.py",
+      "sha256": "62e0227245b69bb0900c6bfd566b7b79bbeb90038c82372b541e7534acd7b78d"
+    },
+    {
+      "bytes": 18963,
+      "group": "core_starting_points",
+      "path": "src/crewshal/candidate.py",
+      "sha256": "e667919ff4ec6d043de6a1c00f9cb1683de5843cb28f8813b25fb4b75d948bc4"
+    },
+    {
+      "bytes": 26493,
+      "group": "core_starting_points",
+      "path": "src/crewshal/integration.py",
+      "sha256": "47b33a2bf99aa9de70fb7e0604af1efa48aa4735ba6cbef41b18fb1d8b5b502f"
+    },
+    {
+      "bytes": 66353,
+      "group": "core_starting_points",
+      "path": "src/crewshal/durable.py",
+      "sha256": "702f7b2b940e64ca4c16c4e785fa09d8608ce023c2830c4606b29342ae96d2f4"
+    },
+    {
+      "bytes": 5137,
+      "group": "core_starting_points",
+      "path": "src/crewshal/gates.py",
+      "sha256": "06d841c18cbdde260486c94e91fa0f0f6ca17508ccd36e43778a3bbbec096baf"
+    },
+    {
+      "bytes": 18513,
+      "group": "core_starting_points",
+      "path": "src/crewshal/runtime_batch.py",
+      "sha256": "1c234fb4b2145329306f5ad68dcdf63ce1b400382414c0f69c83e6f76093d8e1"
+    },
+    {
+      "bytes": 16185,
+      "group": "acceptance_starting_points",
+      "path": "tests/acceptance/test_phase_2a.py",
+      "sha256": "e4c53627b3fc1be58467761b2c2002010e256f9e087e92fe9ba20837ed627695"
+    },
+    {
+      "bytes": 33064,
+      "group": "acceptance_starting_points",
+      "path": "tests/acceptance/test_phase_2b.py",
+      "sha256": "a5db032b0e1ba98427bd95e726d70ac5e6c07039851553f8c98950496f9dbe40"
+    },
+    {
+      "bytes": 32642,
+      "group": "acceptance_starting_points",
+      "path": "tests/acceptance/test_phase_2d.py",
+      "sha256": "93f808d46ad2f59d9db21cfc3c462eda8d442891a5dcffeb21735188ed13e238"
+    },
+    {
+      "bytes": 36171,
+      "group": "acceptance_starting_points",
+      "path": "tests/acceptance/test_phase_2d_integration.py",
+      "sha256": "982a1a04ff7a96fa94f4e7317784a933909d864758f97440abf637a9cab39892"
+    },
+    {
+      "bytes": 18658,
+      "group": "acceptance_starting_points",
+      "path": "tests/acceptance/test_phase_2d_dispatch.py",
+      "sha256": "054701cb01b7be843efb34a1352f8affc76de11809db9318df34688149a0bdd8"
+    },
+    {
+      "bytes": 24268,
+      "group": "acceptance_starting_points",
+      "path": "tests/acceptance/test_phase_2d_app_server.py",
+      "sha256": "6ce75889a78cab590201c0834368e9bbbf1f17f9ab4f5261beb6712bad192829"
+    }
+  ],
+  "graph_evidence": {
+    "coverage": "Relevant code and test paths have matching metadata and no recorded issue. This signal does not prove completeness. No exhaustive dependency map is claimed.",
+    "generation_for_additional_paths": "2026-10-15T19:27:27Z",
+    "generation_for_initial_paths": "2026-10-15T19:23:46Z",
+    "project": "Volumes-X10Pro-Crewshal",
+    "tier": "Verify for context selection"
+  },
+  "hash_policy": "Hashes describe preparation time. Inspect later changes and preserve them. Do not reset files or treat a changed hash as a new approval requirement.",
+  "next_prompt": "docs/PHASE-2D-CORE-NEXT-SESSION-2026-10-15.md",
+  "owner_decision": "docs/decisions/0007-core-development-before-platform-qualification.md",
+  "phase": "2D core software development",
+  "platform_and_live_qualification": "deferred separately; operational execution admission stays closed",
+  "private_inputs_required": false,
+  "purpose": "These files provide exact starting context. This index is not a complete standalone build or fixture bundle.",
+  "requires_existing_checkout": true,
+  "root": "/Volumes/X10Pro/Crewshal",
+  "schema_version": 1,
+  "status": "active and unblocked; revised software acceptance pending"
+}

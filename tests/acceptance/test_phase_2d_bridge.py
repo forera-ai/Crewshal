@@ -70,7 +70,7 @@ class Phase2DBridgeProcMapping(unittest.TestCase):
     def mapping(self):
         with (
             patch("crewshal.linux_bridge._filesystem_magic", return_value=0x9FA0),
-            patch("crewshal.linux_bridge.select.select", return_value=([], [], [])),
+            patch("crewshal.linux_bridge._wait_ready", return_value=([], [], [])),
             patch(
                 "crewshal.linux_bridge._namespaces",
                 return_value={"actual": "synthetic namespace inode"},
@@ -110,7 +110,7 @@ class Phase2DBridgeProcMapping(unittest.TestCase):
     def test_actual_proc_namespace_identity_must_agree(self):
         with (
             patch("crewshal.linux_bridge._filesystem_magic", return_value=0x9FA0),
-            patch("crewshal.linux_bridge.select.select", return_value=([], [], [])),
+            patch("crewshal.linux_bridge._wait_ready", return_value=([], [], [])),
             patch(
                 "crewshal.linux_bridge._namespaces", side_effect=[{"pid": "one"}, {"pid": "other"}]
             ),
@@ -130,7 +130,7 @@ class Phase2DBridgeProcMapping(unittest.TestCase):
     def test_pidfd_exit_before_mapping_refuses_without_opening_new_proc(self):
         with (
             patch("crewshal.linux_bridge._filesystem_magic", return_value=0x9FA0),
-            patch("crewshal.linux_bridge.select.select", return_value=([9], [], [])),
+            patch("crewshal.linux_bridge._wait_ready", return_value=([9], [], [])),
             self.assertRaises(ValueError),
         ):
             _mapped_host_proc(self.root_fd, self.source_fd, 9, self.received)
@@ -272,7 +272,7 @@ class Phase2DBridgePacketCustody(unittest.TestCase):
         with (
             patch("crewshal.linux_bridge.time.monotonic", return_value=100),
             patch(
-                "crewshal.linux_bridge.select.select",
+                "crewshal.linux_bridge._wait_ready",
                 return_value=([self.bridge.parent_channel], [], []),
             ) as waiting,
         ):
@@ -285,7 +285,7 @@ class Phase2DBridgePacketCustody(unittest.TestCase):
         with (
             patch("crewshal.linux_bridge.time.monotonic", return_value=129),
             patch(
-                "crewshal.linux_bridge.select.select",
+                "crewshal.linux_bridge._wait_ready",
                 return_value=([self.bridge.parent_channel], [], []),
             ) as waiting,
         ):
@@ -416,6 +416,7 @@ class Phase2DBridgePacketCustody(unittest.TestCase):
         lifetime.controls = SimpleNamespace(configuration=config, boot_id="fixture")
         lifetime.aggregate, lifetime.worker, lifetime.setup = aggregate, worker, setup
         lifetime.supervisor, lifetime.observer_group = supervisor, observer_group
+        lifetime.validator = None
         lifetime.wrapper = Mock()
         lifetime.wrapper.poll.return_value = None
         self.bridge.lifetime = lifetime
@@ -428,7 +429,7 @@ class Phase2DBridgePacketCustody(unittest.TestCase):
         reservation.batch_started, reservation._configuration = 0, config
         reservation.aggregate, reservation.observer_group = aggregate, observer_group
         reservation._batch_timer = SimpleNamespace(
-            worker=worker, setup=setup, supervisor=supervisor
+            worker=worker, setup=setup, supervisor=supervisor, validator=None
         )
         reservation._setup_lifetime, lifetime.storage_reservation = lifetime, reservation
         self.bridge.installation.verify_custody = Mock()
@@ -517,7 +518,7 @@ class Phase2DBridgePacketCustody(unittest.TestCase):
         with (
             patch("crewshal.linux_bridge.time.monotonic", return_value=569.5),
             patch(
-                "crewshal.linux_bridge.select.select",
+                "crewshal.linux_bridge._wait_ready",
                 return_value=([self.bridge.parent_channel], [], []),
             ) as waiting,
         ):
@@ -573,7 +574,7 @@ class Phase2DBridgePacketCustody(unittest.TestCase):
         with (
             patch("crewshal.linux_bridge.time.monotonic", return_value=102.5),
             patch(
-                "crewshal.linux_bridge.select.select",
+                "crewshal.linux_bridge._wait_ready",
                 return_value=([self.bridge.parent_channel], [], []),
             ) as waiting,
         ):
@@ -614,7 +615,14 @@ class Phase2DBridgePacketCustody(unittest.TestCase):
         )
         self.bridge._wait = Mock()
         self.bridge._verify_original = Mock()
-        self.bridge._packet = Mock(return_value=(NATIVE_PACKET, native_fds, (2000, 0, 0)))
+        self.bridge._packet = Mock(
+            return_value=(
+                json.dumps({"protocol": NATIVE_PACKET.decode(), "receipt": {}}).encode(),
+                native_fds,
+                (2000, 0, 0),
+            )
+        )
+        self.bridge._bind_admission = Mock()
         native = Mock()
         frozen = Mock()
 
@@ -640,6 +648,7 @@ class Phase2DBridgePacketCustody(unittest.TestCase):
             patch("crewshal.linux_bridge._namespaces", return_value={}),
             patch("crewshal.linux_bridge.record_digest", return_value="a" * 64),
             patch("crewshal.linux_bridge.NativeAdmissionSpec"),
+            patch("crewshal.linux_bridge.NativeAdmissionReceipt"),
             patch("crewshal.linux_bridge.RetainedProc", return_value=native),
             patch("crewshal.linux_bridge.bind_original_freeze", return_value=frozen),
         ):
@@ -737,7 +746,7 @@ class Phase2DBridgeOrdinarySocket(unittest.TestCase):
         channel.recv.return_value = b"0"
         with (
             patch(
-                "crewshal.linux_bridge.select.select",
+                "crewshal.linux_bridge._wait_ready",
                 side_effect=[([], [channel], []), ([channel], [], [])],
             ),
             self.assertRaisesRegex(ValueError, "acknowledgement"),
@@ -809,6 +818,7 @@ class Phase2DBridgeOrdinarySocket(unittest.TestCase):
         owned_socket = actual_constructor(fileno=duplicate)
         self.addCleanup(owned_socket.close)
         observed = Mock(wraps=owned_socket)
+        observed.setsockopt = Mock()
         observed.getsockopt.side_effect = (
             lambda level, option, *args: socket.SOCK_SEQPACKET
             if option == socket.SO_TYPE
@@ -829,6 +839,7 @@ class Phase2DBridgeOrdinarySocket(unittest.TestCase):
             patch("crewshal.linux_bridge.os.close") as closing,
             patch("crewshal.linux_bridge.socket.socket", return_value=observed),
             patch.object(socket, "SO_PEERCRED", 100011, create=True),
+            patch.object(socket, "SO_PASSCRED", 100012, create=True),
             patch("crewshal.linux_bridge.record_digest", return_value="0" * 64),
         ):
             channel = retain_parent_bridge(parent, controls)
@@ -846,7 +857,7 @@ class Phase2DBridgeOrdinarySocket(unittest.TestCase):
         channel = Mock()
         channel.sendmsg.return_value = 1
         with (
-            patch("crewshal.linux_bridge.select.select", return_value=([], [channel], [])),
+            patch("crewshal.linux_bridge._wait_ready", return_value=([], [channel], [])),
             self.assertRaisesRegex(ValueError, "packet incomplete"),
         ):
             _send(channel, b"packet", (), time.monotonic_ns() + 1_000_000_000)

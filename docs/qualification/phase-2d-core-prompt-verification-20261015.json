@@ -1,0 +1,16 @@
+{
+  "current_relative_links_verified": 16,
+  "date": "2026-10-15",
+  "git_diff_check": "passed",
+  "input_index_sha256": "a414b5aca9626909cb6fa6f62f80435b55305b25bdf6c1e2fbbc573d25661c41",
+  "new_acceptance_tests_run": false,
+  "platform_and_live_status": "deferred; operational execution admission remains closed",
+  "production_and_test_baseline_hashes_unchanged": 117,
+  "prompt": "docs/PHASE-2D-CORE-NEXT-SESSION-2026-10-15.md",
+  "purpose": "Next-session prompt and plan consistency verification",
+  "schema_version": 1,
+  "software_status": "Phase 2D active and unblocked; software acceptance pending",
+  "source_and_tests_changed_for_this_request": false,
+  "starting_files_verified": 32,
+  "test_reason": "This request changes documentation and the development order only. The earlier 1222-test results remain dated baseline evidence."
+}

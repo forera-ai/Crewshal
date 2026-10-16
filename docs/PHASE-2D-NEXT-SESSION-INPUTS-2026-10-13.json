@@ -1,0 +1,1674 @@
+{
+  "archive_use": "Extract into a separate directory for comparison. Do not overwrite the current dirty checkout.",
+  "branch": "codex/phase1-architecture",
+  "candidate_release": "unreleased",
+  "candidate_version": "0.13.0",
+  "date": "2026-10-13",
+  "external_instructions": [
+    {
+      "bundle_path": "host-instructions/RTK.md",
+      "bytes": 482,
+      "path": "/Users/hamedprooshani/.codex/RTK.md",
+      "sha256": "49c368c302c6f63d089f4c1085b242fc50fe22ce5bc34dada6478083000e7c6f"
+    },
+    {
+      "bundle_path": "host-instructions/skills/caveman/SKILL.md",
+      "bytes": 6216,
+      "path": "/Users/hamedprooshani/.agents/skills/caveman/SKILL.md",
+      "sha256": "daf9cec496ebd039809d8236f99f17fa1b4beaadf8ce4e2d532d0da51d70afce"
+    },
+    {
+      "bundle_path": "host-instructions/skills/codebase-memory/SKILL.md",
+      "bytes": 5135,
+      "path": "/Users/hamedprooshani/.agents/skills/codebase-memory/SKILL.md",
+      "sha256": "41865ec0bcd87d8dd10047130f397a71221139bf18a66002903492d1535d1bbe"
+    },
+    {
+      "bundle_path": "host-instructions/skills/jev/SKILL.md",
+      "bytes": 3241,
+      "path": "/Users/hamedprooshani/.claude/skills/jev/SKILL.md",
+      "sha256": "9986ede7d8f8ce8e2f3ee32099db48be7cf2b9e06f7f9710b7dd51ad0279d454"
+    }
+  ],
+  "files": [
+    {
+      "bytes": 7760,
+      "path": "AGENTS.md",
+      "sha256": "ed7b4175bc9c68faaa1d2f9ce43734982374a4780281d4b049af8967464e1b96"
+    },
+    {
+      "bytes": 55979,
+      "path": "CHANGELOG.md",
+      "sha256": "8b24e1dbaafb983c3cfad0cd4d8a9e321b04518b792919a2363e164dcdf10ca0"
+    },
+    {
+      "bytes": 11402,
+      "path": "LICENSE",
+      "sha256": "23e146567faed6ea7b23ba44ee4db3fca49ee2ce0c13272ef38ce59eff567534"
+    },
+    {
+      "bytes": 26557,
+      "path": "README.md",
+      "sha256": "d22e47bd004204c8868f6a06b757b69cf20e66ad0c7674babfb59b4a346e0408"
+    },
+    {
+      "bytes": 18341,
+      "path": "docs/ARCHITECTURE.md",
+      "sha256": "5e376a4131d0ea1e8ea08b7099d7a486c9ea7b13f37f10230ca55e3fa0f5d6eb"
+    },
+    {
+      "bytes": 54097,
+      "path": "docs/DEVELOPMENT-PLAN.md",
+      "sha256": "fde4b7623535ff80287049dc98f550211a51383db570ed2314edc214481fbb0c"
+    },
+    {
+      "bytes": 366523,
+      "path": "docs/HANDOFF.md",
+      "sha256": "01be3cfed22effc3e9fae55b944b76b402d9d122223fbffb31feb6f6834eb173"
+    },
+    {
+      "bytes": 50775,
+      "path": "docs/PHASE-2C-ACTIVE-CONTINUATION.md",
+      "sha256": "d9a03481aa2b252c01b3403d325bf36c1fb447fa27fbc2a63dc53bd41606f498"
+    },
+    {
+      "bytes": 13233,
+      "path": "docs/PHASE-2C-COMPLETION-ASSESSMENT.md",
+      "sha256": "d1138096b5531d299093eb734735e5da9a492261c56758e5ffceb0e0ae02e1c0"
+    },
+    {
+      "bytes": 8457,
+      "path": "docs/PHASE-2D-ADMISSION-COLLECTION.md",
+      "sha256": "4137b1fa325058ab26a75ac091e6d2bde60d6fc9122737c30063b043f1cfa30e"
+    },
+    {
+      "bytes": 7915,
+      "path": "docs/PHASE-2D-BATCH-PREPARATION.md",
+      "sha256": "86be3e55eef44295fb4abd5a0d01dfe889d892ecd7fc78c9506bdea939a84a53"
+    },
+    {
+      "bytes": 10238,
+      "path": "docs/PHASE-2D-BATCH-TIMER-2026-10-10.md",
+      "sha256": "775803208a8cedcd2011e5028fac49b062d1d874624a2ecb75406a7601e0224b"
+    },
+    {
+      "bytes": 4194,
+      "path": "docs/PHASE-2D-BATCH-TIMER-SYNTAX-2026-10-10.md",
+      "sha256": "a4a240a5dd81a3b9cae306a94c6599e5f202d7eceeb2fa48a56f733a7f3df177"
+    },
+    {
+      "bytes": 7701,
+      "path": "docs/PHASE-2D-BLOCKED-2026-10-11.md",
+      "sha256": "7aff38f7adecf29331eb9217b29df6a50d6eeda6e0e29f0e7e48d339203c0351"
+    },
+    {
+      "bytes": 5795,
+      "path": "docs/PHASE-2D-BOOTSTRAP-CLOSURE-DECISION-2026-10-12.md",
+      "sha256": "3e86332071412df383515906e20ee1ac7ea6b291f08ceb1b7532885fca88e365"
+    },
+    {
+      "bytes": 7488,
+      "path": "docs/PHASE-2D-BUILD-MAPPING-CONTINUATION-2026-10-13.md",
+      "sha256": "8dcf89e3a42e1af9223db312a3d6d6cbece8aaf76cb54c4b85092f3e5c52acfa"
+    },
+    {
+      "bytes": 4966,
+      "path": "docs/PHASE-2D-CHARGED-BUILD-DECISION-2026-10-12.md",
+      "sha256": "b8ebfdaeb5795bc889c90c622b842b3cba44e0be1ed43c05f930bf78603ac800"
+    },
+    {
+      "bytes": 5941,
+      "path": "docs/PHASE-2D-CHARGED-CONTINUATION-2026-10-13.md",
+      "sha256": "37ecada0ec1741e8f01495fae95744558caa44760c86a1c23d1aeca996894d2f"
+    },
+    {
+      "bytes": 3980,
+      "path": "docs/PHASE-2D-CHECKPOINT-2026-10-10.md",
+      "sha256": "7f7b433928e8189d7cd256f0d2a67cf5147934f42a370efa416c2414c96bb784"
+    },
+    {
+      "bytes": 13423,
+      "path": "docs/PHASE-2D-COMPLETION-DECISION-2026-10-09.md",
+      "sha256": "248a94bbf858bc1241900f7f6fe7221388ad490b0423a90f7dc6dd51361834cc"
+    },
+    {
+      "bytes": 28732,
+      "path": "docs/PHASE-2D-CONTINUATION-2026-10-08.md",
+      "sha256": "95b0cfaba525a86caa3f601f30bebc021eb18e26c7aba2bc5f963a83cd49647b"
+    },
+    {
+      "bytes": 7873,
+      "path": "docs/PHASE-2D-DISPATCH-PREPARATION.md",
+      "sha256": "faee3590c0298b64f24ae94b0e2c167180ca4fd1c90b26b65e3459f20ac8624e"
+    },
+    {
+      "bytes": 14960,
+      "path": "docs/PHASE-2D-EFFECTIVE-OWNERSHIP-BLOCKED-2026-10-10.md",
+      "sha256": "2b94c0a459a015b623d974e2ef9cb138fb400641ceff55668d77df40853c4495"
+    },
+    {
+      "bytes": 4139,
+      "path": "docs/PHASE-2D-EFFECTIVE-OWNERSHIP-CHECKPOINT-2026-10-10.md",
+      "sha256": "7f7e209e0cfec63475efabad22f6c6cabf7239738a3ea7f66638ebeb517bc2f5"
+    },
+    {
+      "bytes": 1783,
+      "path": "docs/PHASE-2D-ENTRY-REPAIR-2026-10-13.md",
+      "sha256": "bfdbf4c348f016753c982e77dcace716019c38627a0889927d6f01d9e30facb5"
+    },
+    {
+      "bytes": 8161,
+      "path": "docs/PHASE-2D-EXECUTABLE-BATCH-INPUTS-2026-10-12.md",
+      "sha256": "7ebe7e7b73b8e68437b40bcb349786c35a79c7b22270225db0bccd199af8e126"
+    },
+    {
+      "bytes": 10450,
+      "path": "docs/PHASE-2D-EXECUTION-GATE.md",
+      "sha256": "d44c2580557e3883fae20b74e388f1c77de722c9f4d699004f6f0c3d68a00118"
+    },
+    {
+      "bytes": 8827,
+      "path": "docs/PHASE-2D-GROWTH-BOUNDARY-2026-10-10.md",
+      "sha256": "c88a118bb4fd5067b6596845bfa4f344a4e00979ac29150e458c436171cff1db"
+    },
+    {
+      "bytes": 11488,
+      "path": "docs/PHASE-2D-INSTALLATION-BOOTSTRAP-2026-10-10.md",
+      "sha256": "6080dbe289f558e175d1ac834334be3bef0d7a28c188a56d9f89249a8b2a4e8b"
+    },
+    {
+      "bytes": 8004,
+      "path": "docs/PHASE-2D-INSTALLATION-BOOTSTRAP-DECISION-2026-10-10.md",
+      "sha256": "92e4f45d74741d4411892ec58490aecb48278e2e8bf43d7e6a08ed49103eb284"
+    },
+    {
+      "bytes": 8822,
+      "path": "docs/PHASE-2D-KERNEL-SCAFFOLD-SOURCE-REVIEW-2026-10-12.md",
+      "sha256": "a293a460a913752b9b2b657a7d1631bbfcce0eebf8e86f0e1716c6137a654797"
+    },
+    {
+      "bytes": 10722,
+      "path": "docs/PHASE-2D-LINUX-ENVELOPE.md",
+      "sha256": "ccb67d7b921faae28a588ba9006e0b4d3566e962d13b970e9d02b7c14f647e80"
+    },
+    {
+      "bytes": 14163,
+      "path": "docs/PHASE-2D-LINUX-STORAGE-OWNER.md",
+      "sha256": "034875fa80db84f79a50ccb1ebeac2b3b5e43688c99a3d29cd008fef9050e960"
+    },
+    {
+      "bytes": 5133,
+      "path": "docs/PHASE-2D-LINUX-SYNTAX-BATCH-2026-10-09.md",
+      "sha256": "e514bc0db2f95040a061ebd5c244ae5d6882d1f8a96eebfef4385f5c8dc1c448"
+    },
+    {
+      "bytes": 5794,
+      "path": "docs/PHASE-2D-MAPPING-CONTINUATION-2026-10-13.md",
+      "sha256": "689014705bc1730e932c6d78367cb2458f2058f452bbbd173150a040e3f6cdf4"
+    },
+    {
+      "bytes": 8937,
+      "path": "docs/PHASE-2D-NATIVE-ADMISSION.md",
+      "sha256": "1cdc3e12642d8a16fb9a77a3b30757ee91e0aaf04eace5a44ccb336208473fc3"
+    },
+    {
+      "bytes": 4336,
+      "path": "docs/PHASE-2D-NEXT-SESSION-2026-10-08.md",
+      "sha256": "0aaf2306c83f5e2d37412834b16d4241f8e050807192a3a293003a6a22963449"
+    },
+    {
+      "bytes": 6601,
+      "path": "docs/PHASE-2D-NEXT-SESSION-2026-10-10.md",
+      "sha256": "7727427f4c107681e5ebd80f2e2db2359da1afb9ff93c9fd19bf8a7d0da0a84b"
+    },
+    {
+      "bytes": 5765,
+      "path": "docs/PHASE-2D-NEXT-SESSION-2026-10-13.md",
+      "sha256": "36429dc33fb6e7ef9fde4a64b6b84bb142d8acdab6878a0405c5dc69af310381"
+    },
+    {
+      "bytes": 10008,
+      "path": "docs/PHASE-2D-NEXT-SESSION-INPUTS-2026-10-10.json",
+      "sha256": "354359349109d7510cf9bfa21246f257671e8f83eb442a8c32569af2a517310a"
+    },
+    {
+      "bytes": 10916,
+      "path": "docs/PHASE-2D-OFFLINE-CONTRACTS.md",
+      "sha256": "abcf5f2b46ec4a3a65cffb4e6a87bf63f1c369c40a9bea48afed7d53be15995b"
+    },
+    {
+      "bytes": 11166,
+      "path": "docs/PHASE-2D-OPERATIONAL-BATCH-2026-10-13.md",
+      "sha256": "1d6de1123dc8d12d9018d456e8a6312fe2fbf16c508afcea99daf28248fc2eca"
+    },
+    {
+      "bytes": 43742,
+      "path": "docs/PHASE-2D-OPERATIONAL-PREPARATION-2026-10-11.md",
+      "sha256": "71aa1ab8e9e689e3ef880035023cbc6a5fcc5ce2914569b176f9ea8fe22bb21d"
+    },
+    {
+      "bytes": 12212,
+      "path": "docs/PHASE-2D-OWNED-BOOTSTRAP.md",
+      "sha256": "d5b01cb82c63fb0be3826efe32f9e137c84aff3f5b3ca5e1cdad2b5e5bad5560"
+    },
+    {
+      "bytes": 15821,
+      "path": "docs/PHASE-2D-OWNED-SETUP.md",
+      "sha256": "5b35cbc83d1dad598e30ad1aac42539695524900b40e488c4ec23a47b09e0ec4"
+    },
+    {
+      "bytes": 13487,
+      "path": "docs/PHASE-2D-OWNED-TEARDOWN.md",
+      "sha256": "fd24755e758dafb1c90a23c5b10071bc26f0c84ea4cc0ea466a6ce02411efd8c"
+    },
+    {
+      "bytes": 9219,
+      "path": "docs/PHASE-2D-OWNED-VIEWS-2026-10-09.md",
+      "sha256": "bb22c47e8483028e881444485dc12a15fd61423ececf3d8ad3a3b29b99eddcaf"
+    },
+    {
+      "bytes": 13994,
+      "path": "docs/PHASE-2D-PARENT-WATCHDOG.md",
+      "sha256": "a2d6c5509ea79af1fafdf846e6ca6f5cb924d1acf2746a28bb630e82a19b0970"
+    },
+    {
+      "bytes": 4184,
+      "path": "docs/PHASE-2D-PRECHARGE-CONTINUATION-2026-10-13.md",
+      "sha256": "f26122dbb5f70e4316239822f8d83005f979cf0d3468cda01510eccdddca4242"
+    },
+    {
+      "bytes": 9260,
+      "path": "docs/PHASE-2D-PRODUCTION-CAPTURE.md",
+      "sha256": "16fe40d65d2c3232d594e84c726624710bd16d8c273b37ce4904a5a142fa5f9a"
+    },
+    {
+      "bytes": 10453,
+      "path": "docs/PHASE-2D-PRODUCTION-OWNERSHIP-2026-10-09.md",
+      "sha256": "8dcbb13a30d2b1693718abd1a61e174d610983ac1f4b79519674c4b112c7c5a3"
+    },
+    {
+      "bytes": 10292,
+      "path": "docs/PHASE-2D-RETAINED-OWNERSHIP-2026-10-09.md",
+      "sha256": "f3dc8522be221bc7a5c09e509cd1d993e339605e27a3953f4dab0dd126dfb3a0"
+    },
+    {
+      "bytes": 6475,
+      "path": "docs/PHASE-2D-RUNTIME-CONTINUATION-2026-10-13.md",
+      "sha256": "ee58543df5f07c24830ed0666d7d47958050047aad812325b7e24fbe6a95f25c"
+    },
+    {
+      "bytes": 5488,
+      "path": "docs/PHASE-2D-SESSION-SELECTION.md",
+      "sha256": "900da101e00c56e0f8e9ea719e925fe0d68785ffdf5d9b5855bd8c06ce3be7f1"
+    },
+    {
+      "bytes": 6590,
+      "path": "docs/PHASE-2D-SINGLE-LINK-CONTINUATION-2026-10-13.md",
+      "sha256": "ef9aadc48ac1c1288c76ff722c0be9cf737a62c535ec360e56c2dd1c6fb0735f"
+    },
+    {
+      "bytes": 6743,
+      "path": "docs/PHASE-2D-SOURCE-CHECKPOINT-2026-10-09.md",
+      "sha256": "43bea4585c26d461a39c27f42ed469c4e9aac0cbaed490ea78829b4efecf8354"
+    },
+    {
+      "bytes": 13926,
+      "path": "docs/PHASE-2D-STORAGE-CLOSURE-BLOCKER-2026-10-09.md",
+      "sha256": "c31f15d2d033009ae17b68ec3803e8653802207db55e934118546fcbcdae65a7"
+    },
+    {
+      "bytes": 11576,
+      "path": "docs/PHASE-2D-SUBSCRIPTION-AUTH-BOUNDARY-2026-10-09.md",
+      "sha256": "ea54b2785b006adc1c5bb355bf2f8f1e69aaf05144a7a9282e9bc1af3e8e045c"
+    },
+    {
+      "bytes": 10494,
+      "path": "docs/PHASE-2D-SUBSCRIPTION-ROUTE-DECISION-2026-10-09.md",
+      "sha256": "9e303c99130fe2ca9f02415762cefc7d2cbb13c9499ce4725fdfa5512674432a"
+    },
+    {
+      "bytes": 9772,
+      "path": "docs/PHASE-2D-SUPERVISOR-SOURCE.md",
+      "sha256": "a8b6acc6c92ef1b0d7a55528c97877b5de5c8efe00f80756c22ad4837d2b3673"
+    },
+    {
+      "bytes": 5246,
+      "path": "docs/PHASE-2D-SYNTAX-CAPABILITY-2026-10-10.md",
+      "sha256": "9741af36fc6a7562c6aa1095931238ce1bd4c482c2697cab6a57f1b0017b7068"
+    },
+    {
+      "bytes": 10845,
+      "path": "docs/PHASE-2D-SYNTAX-PASS-2026-10-10.md",
+      "sha256": "4a07d9f910f7f7a71fdcd3e5674c3c36cb50355f2cbf5320b271fa781bc192f2"
+    },
+    {
+      "bytes": 7961,
+      "path": "docs/PHASE-2D-SYNTAX-RESULT-2026-10-10.md",
+      "sha256": "e23d979bb70dc7c394d24e2217bacec2523bb2917178200a446dbaade8b9eb9a"
+    },
+    {
+      "bytes": 9174,
+      "path": "docs/PHASE-2D-THREE-LANE-DECISION-2026-10-11.md",
+      "sha256": "34bc2a58743bfcc6607083b4368ebfd4f67b8e04d0fd5a55b265181643443a62"
+    },
+    {
+      "bytes": 8310,
+      "path": "docs/PHASE-2D-TIMER-SYNTAX-PASS-2026-10-10.md",
+      "sha256": "372d2e37722053492c8427cb6485be39ab9907ee186aa4638978260f381e8422"
+    },
+    {
+      "bytes": 7328,
+      "path": "docs/decisions/0001-name-and-repository.md",
+      "sha256": "cecb3ecb8df79bff668af4f6374197a8f01867f80a31f1f9a83afacf3479fe47"
+    },
+    {
+      "bytes": 3578,
+      "path": "docs/decisions/0002-minimal-architecture.md",
+      "sha256": "46f1648d98ba2cb895bf1fd096b7faffec1417d040cf37536dcdf7fc08af7207"
+    },
+    {
+      "bytes": 11609,
+      "path": "docs/decisions/0003-direct-linux-qualification.md",
+      "sha256": "dcd11ac51fc39fe62523dd7a2d351ef24cc902357203a55e34758f56a29ccf99"
+    },
+    {
+      "bytes": 2748,
+      "path": "docs/decisions/0004-retained-terminal-storage.md",
+      "sha256": "09883c39b2a7b52a198bbc5ab7e3e3e6840d7425e3d706dfdf3cc92714c67817"
+    },
+    {
+      "bytes": 3214,
+      "path": "docs/decisions/0005-official-subscription-pilot.md",
+      "sha256": "fd2cc19b5317307ca20510cd9a0bc60fd5874ae41a74b090fa0431091cdd4e53"
+    },
+    {
+      "bytes": 2544,
+      "path": "docs/decisions/0006-upfront-installation-charge.md",
+      "sha256": "d794f8d7d5b8f38eb04b4e4ff1fb837100b6964abe79bfe1610ef35e5f0bf629"
+    },
+    {
+      "bytes": 351141,
+      "path": "docs/qualification/phase-2c-direct-linux-native-full-bindings-v18.json",
+      "sha256": "0bec8dccaa8979706646b25ec4d04bd961588a7279ce5b0ef4ae831aa6552e37"
+    },
+    {
+      "bytes": 1094,
+      "path": "docs/qualification/phase-2c-direct-linux-native-full-decision-v18.json",
+      "sha256": "43eb440a2d338c32df93483da7f7aa41d3566e1c9e7d0e5be594d8ee2ea37aec"
+    },
+    {
+      "bytes": 1290,
+      "path": "docs/qualification/phase-2c-direct-linux-native-full-freeze-v18.json",
+      "sha256": "d9236388440548870494b567476e3926a494d1d1695c8e3464047f0e48be01ed"
+    },
+    {
+      "bytes": 12426,
+      "path": "docs/qualification/phase-2c-direct-linux-native-full-profile-v18.json",
+      "sha256": "95d3e80835033a2aa6105f22bd69554e59c476f338665e239a6797367f5222df"
+    },
+    {
+      "bytes": 7336,
+      "path": "docs/qualification/phase-2c-direct-linux-native-full-qualified-v18-f1.json",
+      "sha256": "e0b3dfb02ee52732c107723e41d0eddfdeca130d8137f8ff383cf6ebf3d0bb23"
+    },
+    {
+      "bytes": 7336,
+      "path": "docs/qualification/phase-2c-direct-linux-native-full-qualified-v18-f2.json",
+      "sha256": "9d4dce5b60b9be8ef034e5aa692af725ebe99e05a987970c847abbaa844cd805"
+    },
+    {
+      "bytes": 5542,
+      "path": "docs/qualification/phase-2c-direct-linux-native-full-readback-v18.json",
+      "sha256": "71badf9ecae2be3550f4ca84f2ad884aa3ceb08a314165ddb0f35538b83e8a87"
+    },
+    {
+      "bytes": 122367,
+      "path": "docs/qualification/phase-2c-direct-linux-native-full-v18-f1-before-cleanup.json",
+      "sha256": "141559a98255886d1329ab737357c8ff09e9e679b697ee2d4068109c34f321c9"
+    },
+    {
+      "bytes": 140429,
+      "path": "docs/qualification/phase-2c-direct-linux-native-full-v18-f1.json",
+      "sha256": "97ff552fc0112bcb908934104d31f447313feed47fa556406f9db8af56cd7b0b"
+    },
+    {
+      "bytes": 121973,
+      "path": "docs/qualification/phase-2c-direct-linux-native-full-v18-f2-before-cleanup.json",
+      "sha256": "3cf96049c66b8f5c87fdfc9c2569e2c8245ff7733efc391ae776ec810dd9eb00"
+    },
+    {
+      "bytes": 139555,
+      "path": "docs/qualification/phase-2c-direct-linux-native-full-v18-f2.json",
+      "sha256": "5becf2a47a0a78943729e295530eb5b054aa8d5a64d2df44f7a77667627c9f6b"
+    },
+    {
+      "bytes": 4487,
+      "path": "docs/qualification/phase-2c-v1.json",
+      "sha256": "fed4dde5e3fe459110a5fb0b2d4f6c75b16214c91aa823d3df640a7415e41563"
+    },
+    {
+      "bytes": 201134,
+      "path": "docs/qualification/phase-2d-admission-collection-verification-v1-20261008.json",
+      "sha256": "0f70c4550bf904fa38a7d0663859b80ae7d6200da907321e8f410539a464dafe"
+    },
+    {
+      "bytes": 10353,
+      "path": "docs/qualification/phase-2d-batch-preparation-v1-20261008.json",
+      "sha256": "b08afc86a6146acce8c4947874b833f699d65495eac7bc3c7f2ebe4ed1ae6bd1"
+    },
+    {
+      "bytes": 2446,
+      "path": "docs/qualification/phase-2d-batch-preparation-verification-v1-20261008.json",
+      "sha256": "37bf9c8b201e82b4a9c0796038554af76ea86108db8a6ead306f7709c94c63b3"
+    },
+    {
+      "bytes": 164132,
+      "path": "docs/qualification/phase-2d-batch-timer-verification-v1-20261010.json",
+      "sha256": "0684b95a4bfd6b996dcc34159b58f0455f4935224f747c382e35f9d4b84d1542"
+    },
+    {
+      "bytes": 130388,
+      "path": "docs/qualification/phase-2d-blocked-verification-v1-20261011.json",
+      "sha256": "d5f26c959b7499208051b1afd8404a36e9e517f5c32049709f798fc31d9966c3"
+    },
+    {
+      "bytes": 190477,
+      "path": "docs/qualification/phase-2d-dispatch-preparation-verification-v1-20261008.json",
+      "sha256": "e2a95bcd0d5aafb8d58eb348654d3b3a77e3f96c7b61a262c63622634d57a0ba"
+    },
+    {
+      "bytes": 71180,
+      "path": "docs/qualification/phase-2d-effective-ownership-publication-v1-20261010.json",
+      "sha256": "d4f6525d4c2719162f40e586de8f00f34237397f4a502d903c2f6a0a953391ff"
+    },
+    {
+      "bytes": 62918,
+      "path": "docs/qualification/phase-2d-effective-ownership-verification-v1-20261010.json",
+      "sha256": "b8c0ef2c14a40bd3bc3df392f9efbb9e4c562bbc6bef8ea3edd87bb0669f7f42"
+    },
+    {
+      "bytes": 47089,
+      "path": "docs/qualification/phase-2d-executable-batch-v1-20261013.json",
+      "sha256": "e32ad8776e77f9bda9998f0b9555bd1edc7b082e74f1abe295b23fdeb7322855"
+    },
+    {
+      "bytes": 65989,
+      "path": "docs/qualification/phase-2d-executable-batch-v10-20261013.json",
+      "sha256": "c3c09e7b4ab8205fe53024ae2718d45e7f279166053a5a0d17c673a063151b2b"
+    },
+    {
+      "bytes": 47487,
+      "path": "docs/qualification/phase-2d-executable-batch-v2-20261013.json",
+      "sha256": "1216a6b55bfe389215039f370296b72e9faa87424b582f8d4ff6071773082687"
+    },
+    {
+      "bytes": 47590,
+      "path": "docs/qualification/phase-2d-executable-batch-v3-20261013.json",
+      "sha256": "1d378cab260330b8a5d05ab8c744315c0329809aaad2ff5b07d7a7f5e127d379"
+    },
+    {
+      "bytes": 50621,
+      "path": "docs/qualification/phase-2d-executable-batch-v4-20261013.json",
+      "sha256": "c33a6f979bb557f2b89c6959a44045000b33ea136ab80a2d86f34dc18383e13d"
+    },
+    {
+      "bytes": 52142,
+      "path": "docs/qualification/phase-2d-executable-batch-v5-20261013.json",
+      "sha256": "d3a57f97bbb85edb2b888f5dd67d6b0ec5e0ef2cb9915a025b2b571c92ee2fa0"
+    },
+    {
+      "bytes": 55064,
+      "path": "docs/qualification/phase-2d-executable-batch-v6-20261013.json",
+      "sha256": "5689230ca58ebab3c50fa8be8530052038c14be6d47104ae242ec0e79863bb4a"
+    },
+    {
+      "bytes": 55765,
+      "path": "docs/qualification/phase-2d-executable-batch-v7-20261013.json",
+      "sha256": "ef31c131614f71eb12411342855b48b48ca75b99eb68d798bb0d619bb11617cb"
+    },
+    {
+      "bytes": 57633,
+      "path": "docs/qualification/phase-2d-executable-batch-v8-20261013.json",
+      "sha256": "deeb0c5b318b7fbcde53dcd451021049c5592908b658c7b465082cc50fd23c43"
+    },
+    {
+      "bytes": 61950,
+      "path": "docs/qualification/phase-2d-executable-batch-v9-20261013.json",
+      "sha256": "58c4ac0819555ba85d9f20a3f5ad2b3f5d490811c6d7070b8326f134897bea71"
+    },
+    {
+      "bytes": 168456,
+      "path": "docs/qualification/phase-2d-growth-verification-v1-20261010.json",
+      "sha256": "8a38a004c4e7bf79f1ab15d1b3071bd08841264fbf729c539f1aa4b924fd1327"
+    },
+    {
+      "bytes": 165093,
+      "path": "docs/qualification/phase-2d-installation-bootstrap-verification-v1-20261010.json",
+      "sha256": "536491ffbdb61832a900d936ce7a4e1d7995a1f7593359abbb6c980fcfdde927"
+    },
+    {
+      "bytes": 166470,
+      "path": "docs/qualification/phase-2d-installation-bootstrap-verification-v2-20261010.json",
+      "sha256": "3a5f3fca43f26bd15ca3ea4a19110355742141c1028be2d202490cb211dde347"
+    },
+    {
+      "bytes": 243941,
+      "path": "docs/qualification/phase-2d-linux-envelope-verification-v1-20261008.json",
+      "sha256": "6743dfc4fc33fd6594b1979744a237d6e0ea7b726c90c7852c02693ecd4619a3"
+    },
+    {
+      "bytes": 148854,
+      "path": "docs/qualification/phase-2d-linux-storage-owner-verification-v1-20261009.json",
+      "sha256": "bc06a0df2fc14e9a4edc52ce51b12d3c85b66a92752aa315052fe91b1470314f"
+    },
+    {
+      "bytes": 200933,
+      "path": "docs/qualification/phase-2d-native-admission-verification-v1-20261008.json",
+      "sha256": "27d1d93b61d03158f79715288ab29f25c2b2cc607b3fdeb389b310fd2f20c0c9"
+    },
+    {
+      "bytes": 172290,
+      "path": "docs/qualification/phase-2d-offline-continuity-20261008.json",
+      "sha256": "9e330457c868085b7d73ef19b4c6535aa9ffed511bf9b811cd11bb476f934023"
+    },
+    {
+      "bytes": 236965,
+      "path": "docs/qualification/phase-2d-owned-bootstrap-verification-v1-20261009.json",
+      "sha256": "b4cc366d314941a58d39bd46b3ec8e0805567bddafe55ccc7aca2d6b0fe8dd92"
+    },
+    {
+      "bytes": 190775,
+      "path": "docs/qualification/phase-2d-owned-setup-verification-v1-20261009.json",
+      "sha256": "20f08a74cdea7916dc1aacb17834656a87212b4916af6bf861f45584e598bd4a"
+    },
+    {
+      "bytes": 175800,
+      "path": "docs/qualification/phase-2d-owned-teardown-verification-v1-20261009.json",
+      "sha256": "3d71e1fa7dfed0a2dbdb2a4b84a1aef8a6034d497193dd3fa85758ef9bea8062"
+    },
+    {
+      "bytes": 315194,
+      "path": "docs/qualification/phase-2d-owned-views-verification-v1-20261009.json",
+      "sha256": "89e7b69fcb0b1037a72d86d18a3d9a9e8b1072cc4cdfc20b3daa59d2de901b90"
+    },
+    {
+      "bytes": 48166,
+      "path": "docs/qualification/phase-2d-owner-decisions-verification-v1-20261009.json",
+      "sha256": "3fc657dbfe3aca47c499cfcb49c6b14dc1ae349a38836edce50f68bbc412a5ee"
+    },
+    {
+      "bytes": 320004,
+      "path": "docs/qualification/phase-2d-parent-watchdog-verification-v1-20261009.json",
+      "sha256": "c637c6fad6085ed703be6cb406f5071a4546321c53f00f466e36ecb14aecbf2e"
+    },
+    {
+      "bytes": 185005,
+      "path": "docs/qualification/phase-2d-production-capture-verification-v1-20261008.json",
+      "sha256": "c578291cd8595b89de2916519b5858ac4fcc295f800ee313cba96783b38aca62"
+    },
+    {
+      "bytes": 212375,
+      "path": "docs/qualification/phase-2d-production-ownership-verification-v1-20261009.json",
+      "sha256": "33dd73f8f8344c287618cb5dce0e244d6bc1f1e360b941ceaac75dca2b9801b6"
+    },
+    {
+      "bytes": 156873,
+      "path": "docs/qualification/phase-2d-publication-verification-v1-20261010.json",
+      "sha256": "a176ea843d7199d7733c3aea6545dc090c427be9f084a99d68176f4971edc746"
+    },
+    {
+      "bytes": 158175,
+      "path": "docs/qualification/phase-2d-publication-verification-v2-20261010.json",
+      "sha256": "2077ac6cd71fc0b7aa67ee67519cbd58b2b07c0124e7299e94e1828700a356d5"
+    },
+    {
+      "bytes": 159218,
+      "path": "docs/qualification/phase-2d-retained-ownership-verification-v1-20261009.json",
+      "sha256": "1eb11623a532802c61ff85b996ea4499a6e4d36086207003988b7ffa644799d6"
+    },
+    {
+      "bytes": 11688,
+      "path": "docs/qualification/phase-2d-session-selection-v1-20261008.json",
+      "sha256": "ade780071f57be32759a0c38ef518faf1119a065b6a5f219854d9b261d166a6a"
+    },
+    {
+      "bytes": 7358,
+      "path": "docs/qualification/phase-2d-session-selection-verification-v1-20261008.json",
+      "sha256": "2caec0558b7de0bccdcb2beac0f6c255cd46d805dd79167433c0ea7f3880c1cb"
+    },
+    {
+      "bytes": 46712,
+      "path": "docs/qualification/phase-2d-source-checkpoint-verification-v1-20261009.json",
+      "sha256": "4f32e1e056fd40a6fedc5196c30b7da87c8391a2568f244cb16069a38e8f9f73"
+    },
+    {
+      "bytes": 13926,
+      "path": "docs/qualification/phase-2d-source-progress-v1-20261012.json",
+      "sha256": "84c6db0fa797297aab7f3989083a318df65d03c4e8e66edfd18f6fbd8157f4c6"
+    },
+    {
+      "bytes": 183508,
+      "path": "docs/qualification/phase-2d-storage-closure-verification-v1-20261009.json",
+      "sha256": "2230584e10652a13ca9d464cfd0c25fe4b4f2f8a9ae671e325b5fbe569da03da"
+    },
+    {
+      "bytes": 206026,
+      "path": "docs/qualification/phase-2d-subscription-auth-boundary-verification-v1-20261009.json",
+      "sha256": "e86058c79e687a6d6ffe4048dbc3391b92bf9fcf4e84210b7a0659ab633bedea"
+    },
+    {
+      "bytes": 6792,
+      "path": "docs/qualification/phase-2d-subscription-route-source-evidence-v1-20261009.json",
+      "sha256": "75f7769f57e30266abbc37681889c4a8c72d268f264f69bfbb1049775ea97067"
+    },
+    {
+      "bytes": 123625,
+      "path": "docs/qualification/phase-2d-supervisor-verification-v1-20261008.json",
+      "sha256": "5189ae2b4926031ff400de07c3d66c20070b958b9c3cd790fb8dc4424a24bfad"
+    },
+    {
+      "bytes": 153391,
+      "path": "docs/qualification/phase-2d-syntax-capability-preparation-v1-20261010.json",
+      "sha256": "c750eab5bb7055087506858809cadc572125c620ab103eabf70f51908b755a09"
+    },
+    {
+      "bytes": 292908,
+      "path": "docs/qualification/phase-2d-syntax-pass-verification-v1-20261010.json",
+      "sha256": "97b7afc75b186931f9d6e7b0798f76ed27c2002c55de6a118157f8674787d5d4"
+    },
+    {
+      "bytes": 278706,
+      "path": "docs/qualification/phase-2d-syntax-result-verification-v1-20261010.json",
+      "sha256": "a885ca32c74aa3a04dbb66b680247bfacb474bc107eb0347c4913e1d22f795cf"
+    },
+    {
+      "bytes": 164103,
+      "path": "docs/qualification/phase-2d-timer-syntax-pass-verification-v1-20261010.json",
+      "sha256": "2e4c61da5415e59f92d53841bd0b8aed31603e99c7d14f1865c18c1850d13c6c"
+    },
+    {
+      "bytes": 1609,
+      "path": "docs/qualification/phase-2d-v10-declined-v1-20261013.json",
+      "sha256": "318ab1ad0648f2624a57bbef6db60b8325ecebec571cb056f436f1428aa09f54"
+    },
+    {
+      "bytes": 3226,
+      "path": "docs/qualification/phase-2d-vm-access-v1-20261011.json",
+      "sha256": "5e197a3782e838a19ca9bb6339fc2bd757e81bda3b0fd6d2c6655823e8e8481c"
+    },
+    {
+      "bytes": 920,
+      "path": "pyproject.toml",
+      "sha256": "044b8dadb2974ad262ffc4b1b712110b05926f01b4c2ac51e1d15d89e249a320"
+    },
+    {
+      "bytes": 8379,
+      "path": "scripts/phase_2d_owner_capabilities.py",
+      "sha256": "b157895edc3bd57e91bd3620b369da7ca60e4da43a4baad437f07609d0a6ba2f"
+    },
+    {
+      "bytes": 13573,
+      "path": "scripts/phase_2d_owner_capabilities_build_maps_v7.py",
+      "sha256": "3c0de6d730395cd9e7781af52cba8022be74bec4f8bd478a4a29d2890db97db7"
+    },
+    {
+      "bytes": 10481,
+      "path": "scripts/phase_2d_owner_capabilities_charged_v3.py",
+      "sha256": "a9fbca58ed4c42ec87024db00a12e781bc47f952bb97974d88c0d5de6d85ac6f"
+    },
+    {
+      "bytes": 11446,
+      "path": "scripts/phase_2d_owner_capabilities_mapping_v5.py",
+      "sha256": "bdb40a650303b51870651070c310adb413fc39f8ad97eb85cb5f25628d486640"
+    },
+    {
+      "bytes": 8675,
+      "path": "scripts/phase_2d_owner_capabilities_precharge_v2.py",
+      "sha256": "dcaab89555082ce0387e82a677d94a3deeeb79f96146bedfdc4ae3259f3a0e42"
+    },
+    {
+      "bytes": 10700,
+      "path": "scripts/phase_2d_owner_capabilities_runtime_v4.py",
+      "sha256": "a5ceab7e227ce7aa03bf5cb732330feeff9dd295753f7b7f40f14ebbda6791e6"
+    },
+    {
+      "bytes": 12703,
+      "path": "scripts/phase_2d_owner_capabilities_single_link_v6.py",
+      "sha256": "e1e60806fafac01101dabd86bf56dc25907f022b7142de46c9d556f7375f2ac9"
+    },
+    {
+      "bytes": 2182,
+      "path": "scripts/phase_2d_owner_input_upload.py",
+      "sha256": "72f6fb91add88fb441e1dd292deaf59125a1530a8e4d60c7509b13d66d1a845a"
+    },
+    {
+      "bytes": 2182,
+      "path": "scripts/phase_2d_owner_input_upload_build_maps_v7.py",
+      "sha256": "4bbf3bb5b1ef36fb9a5fe39a927f16ce4430fd4385c4d7a8616620526e001628"
+    },
+    {
+      "bytes": 2182,
+      "path": "scripts/phase_2d_owner_input_upload_charged_v3.py",
+      "sha256": "36f0961d9a6eaa29898e2d6f44a79db033b8ed5ebc2f6715f4525cf65edcb763"
+    },
+    {
+      "bytes": 2182,
+      "path": "scripts/phase_2d_owner_input_upload_mapping_v5.py",
+      "sha256": "a764ee84e303bdc2a5eacd9c1bd20918cb1e0dcc7188d8fb391ce95d33ca4a70"
+    },
+    {
+      "bytes": 2182,
+      "path": "scripts/phase_2d_owner_input_upload_precharge_v2.py",
+      "sha256": "38026105151d76f706cadc711e6f0d359e9b00ebf55632add8ea73acc4124c04"
+    },
+    {
+      "bytes": 2182,
+      "path": "scripts/phase_2d_owner_input_upload_runtime_v4.py",
+      "sha256": "28fe0719b2d6c81f9acfc272036e661f8b87dc06bb9bdcd86f0931096ed10cfb"
+    },
+    {
+      "bytes": 2182,
+      "path": "scripts/phase_2d_owner_input_upload_single_link_v6.py",
+      "sha256": "f0dfc85778416e0e2957fb5404c6556c1aa438f2cb2b0dd03a3c0778c0e4908c"
+    },
+    {
+      "bytes": 3883,
+      "path": "scripts/phase_2d_storage_compatibility.py",
+      "sha256": "ca32197650cb050b975b9982c8b8ac01de35a3ee97e68d267d01a99cdfcb03c2"
+    },
+    {
+      "bytes": 3397,
+      "path": "scripts/prepare_phase_2d_immutable_inputs.py",
+      "sha256": "598b74a65122e1d56374df3576e0bcc5c04f49f05106dd828d6bb2a549f7fd2d"
+    },
+    {
+      "bytes": 91,
+      "path": "src/crewshal/__init__.py",
+      "sha256": "5bf49d29577ae5521790fdf475b36fdbf2839c365843b54e7220fdbe2ffca86e"
+    },
+    {
+      "bytes": 56,
+      "path": "src/crewshal/__main__.py",
+      "sha256": "61e1b048145332e9aab85470bb2fa2bc1312e41dffa6cd26741319fbfe5443c1"
+    },
+    {
+      "bytes": 31549,
+      "path": "src/crewshal/admission.py",
+      "sha256": "80afd58b359f14ba2b834a03fee848bc0855034867aac5a66f316b5874450a4d"
+    },
+    {
+      "bytes": 27753,
+      "path": "src/crewshal/app_server.py",
+      "sha256": "62e0227245b69bb0900c6bfd566b7b79bbeb90038c82372b541e7534acd7b78d"
+    },
+    {
+      "bytes": 50643,
+      "path": "src/crewshal/bootstrap_helper.c",
+      "sha256": "de5e2928aad6651015bdcb439835ae377738e1f19839fedbc3d6de1a2010db42"
+    },
+    {
+      "bytes": 18963,
+      "path": "src/crewshal/candidate.py",
+      "sha256": "e667919ff4ec6d043de6a1c00f9cb1683de5843cb28f8813b25fb4b75d948bc4"
+    },
+    {
+      "bytes": 7017,
+      "path": "src/crewshal/cli.py",
+      "sha256": "8ecd936c862da846969fc2da482c7f889d0174c208076301fc16e6353842d372"
+    },
+    {
+      "bytes": 11857,
+      "path": "src/crewshal/contracts.py",
+      "sha256": "ed308d86b9b77fec5e9943677bf1d4b59ef0e16edb7fec25e8b334016bada437"
+    },
+    {
+      "bytes": 13229,
+      "path": "src/crewshal/discovery.py",
+      "sha256": "b9ab698faa5951f9badf566b1fdd8cd3be7487f82fdc96acd6a246ef44aa1b2c"
+    },
+    {
+      "bytes": 17248,
+      "path": "src/crewshal/dispatch.py",
+      "sha256": "939b607f3a0f2b829ce73b0f0fce4ac861a448dd985cb2325429b5a390b48641"
+    },
+    {
+      "bytes": 66353,
+      "path": "src/crewshal/durable.py",
+      "sha256": "702f7b2b940e64ca4c16c4e785fa09d8608ce023c2830c4606b29342ae96d2f4"
+    },
+    {
+      "bytes": 5137,
+      "path": "src/crewshal/gates.py",
+      "sha256": "06d841c18cbdde260486c94e91fa0f0f6ca17508ccd36e43778a3bbbec096baf"
+    },
+    {
+      "bytes": 26493,
+      "path": "src/crewshal/integration.py",
+      "sha256": "47b33a2bf99aa9de70fb7e0604af1efa48aa4735ba6cbef41b18fb1d8b5b502f"
+    },
+    {
+      "bytes": 5859,
+      "path": "src/crewshal/linux_attempt.py",
+      "sha256": "a8e709790b3f8a89e551085741dc332611504102c221511e439600483e4e0a4e"
+    },
+    {
+      "bytes": 19995,
+      "path": "src/crewshal/linux_auth.py",
+      "sha256": "675b4e99ccd3d3512918fe3a828ad27a9055f71da29fe8d67e92a647068e72d4"
+    },
+    {
+      "bytes": 19738,
+      "path": "src/crewshal/linux_batch.py",
+      "sha256": "fcc2df1ba19c1d6b1e78e999a8a8ab8815b29dd91c81bf77b28432a7e6640fae"
+    },
+    {
+      "bytes": 48348,
+      "path": "src/crewshal/linux_batch_entry.py",
+      "sha256": "487578f23785b40818dc655579632002e546e33ab7d7737435c98005d96a52df"
+    },
+    {
+      "bytes": 22046,
+      "path": "src/crewshal/linux_bootstrap.py",
+      "sha256": "d9608d5980e8656fd8f54dd739e316ea47212fc8ebdc4ff1653b0e5e38ed3f18"
+    },
+    {
+      "bytes": 84293,
+      "path": "src/crewshal/linux_bridge.py",
+      "sha256": "4ccd5d1396b724ceb0187913db69564027d95e1d3e136d3e27d56a6738f15120"
+    },
+    {
+      "bytes": 18683,
+      "path": "src/crewshal/linux_charged_build.py",
+      "sha256": "1e43655257fdf5ac05e9d8df1839a450f9f0f1da1648dff7dd59c45e5c23864b"
+    },
+    {
+      "bytes": 16203,
+      "path": "src/crewshal/linux_compiler_volume.py",
+      "sha256": "df7f1e5e3f9130e3118b46e39799a9a6a2f93d28f4526605300f01898206dd61"
+    },
+    {
+      "bytes": 28144,
+      "path": "src/crewshal/linux_early_timer.py",
+      "sha256": "32d2100413abd20aeaf13f6f80dc4e1ac16e1b53230c57df30e99446743746f9"
+    },
+    {
+      "bytes": 17331,
+      "path": "src/crewshal/linux_envelope.py",
+      "sha256": "4b5e3b17c1b4280d17d3c31a8c04251134938177bd7b6e3580f10cd4f2bbbdec"
+    },
+    {
+      "bytes": 26259,
+      "path": "src/crewshal/linux_fixture_inputs.py",
+      "sha256": "491d2aecceb1bbc1658ae74e6a2aa5d9e705844b7b9fb002b741e27c02edee4b"
+    },
+    {
+      "bytes": 34235,
+      "path": "src/crewshal/linux_freeze.py",
+      "sha256": "01f2a9744304cd23e3711b9ff2cd43de13205edf2161b940591fbb53f5b8a2a5"
+    },
+    {
+      "bytes": 10436,
+      "path": "src/crewshal/linux_installed.py",
+      "sha256": "adf12e79c8472f3279d086b0eb0eec66d8d79b758ea395b551ee0b8b8d529deb"
+    },
+    {
+      "bytes": 18547,
+      "path": "src/crewshal/linux_inventory.py",
+      "sha256": "48c0babdd2434c12b466adad256d4b836084cbc80891585ef6250f16c1679ac3"
+    },
+    {
+      "bytes": 51927,
+      "path": "src/crewshal/linux_network.py",
+      "sha256": "649673dac5926ef5d2be74cb6ff7e32d0ac0dc8372903fb228bc65f1cf86a85e"
+    },
+    {
+      "bytes": 78770,
+      "path": "src/crewshal/linux_operational.py",
+      "sha256": "088d4110b16890a9e30d45d389200d371e09841a6ab5900bdd26e2186c3ed273"
+    },
+    {
+      "bytes": 36256,
+      "path": "src/crewshal/linux_parent.py",
+      "sha256": "9e90c60afb1ae041affc574b255412567f2b55a8c6dece05c04f321b3870616d"
+    },
+    {
+      "bytes": 1484,
+      "path": "src/crewshal/linux_parent_entry.py",
+      "sha256": "7b2640c80c745cbf1724fb866e66e5e2d1d9c162b19282a77b3bd1389fce3998"
+    },
+    {
+      "bytes": 43585,
+      "path": "src/crewshal/linux_payload_storage.py",
+      "sha256": "d6243b49e34be3c0d9835519c8d1e3e4c85355c41a4d0a69ffa990455fb5bb41"
+    },
+    {
+      "bytes": 106103,
+      "path": "src/crewshal/linux_production.py",
+      "sha256": "e15e0b6e0c5fb85338a32818c2138749249d3d5e2d1f964577f566f0fb9e3166"
+    },
+    {
+      "bytes": 20240,
+      "path": "src/crewshal/linux_qualification.py",
+      "sha256": "29a224c88326cbe856613ebdc5840f4f1a326bb8a9627e77e39aed7a7f5b4711"
+    },
+    {
+      "bytes": 85971,
+      "path": "src/crewshal/linux_qualification_fixture.py",
+      "sha256": "d7e7e487f4e03b18769cabb1b98e1ba3d1ebc09010b9525aa3a387d9a54df004"
+    },
+    {
+      "bytes": 16229,
+      "path": "src/crewshal/linux_schedule.py",
+      "sha256": "ff5d19a2e9f7e91a84dcd556bc36a923a1c8ff74a5f389dfa30f6f532b75572b"
+    },
+    {
+      "bytes": 118468,
+      "path": "src/crewshal/linux_setup.py",
+      "sha256": "c42ac72928a799ae7678a5e8524548e93c39895d9913ddb2876b837c18ce4057"
+    },
+    {
+      "bytes": 56529,
+      "path": "src/crewshal/linux_storage.py",
+      "sha256": "4466aacbfd5faf0a0681866cef4cf2d154039f6fd04b9ef2cf3d33fb67cdce4d"
+    },
+    {
+      "bytes": 22231,
+      "path": "src/crewshal/linux_teardown.py",
+      "sha256": "8a041bc4f5fcd2b6ea94b476f9ec3cbd870e3090797ed13bfacb6df9aa85d68a"
+    },
+    {
+      "bytes": 55207,
+      "path": "src/crewshal/linux_validator.py",
+      "sha256": "55b35c8bbc04f34c2b8b8116e43cd9f44b8f6e9bc65b133cfb9d4f16d72c55a4"
+    },
+    {
+      "bytes": 6575,
+      "path": "src/crewshal/model.py",
+      "sha256": "3cbc9405e0c7fb5247a13562e72c8472c3edc0f3fc2407db2fd6c6c95fae25de"
+    },
+    {
+      "bytes": 3082,
+      "path": "src/crewshal/qualification.py",
+      "sha256": "772df20ee17ddd52023eb0b245d733e2db29d115b625703fd4c6d86026f5554a"
+    },
+    {
+      "bytes": 10798,
+      "path": "src/crewshal/qualification_bundle.py",
+      "sha256": "4a595fc100539d997ad9b5f5750b58cd5f14b0ca276a6cc1cc9de6596c1aae7b"
+    },
+    {
+      "bytes": 18863,
+      "path": "src/crewshal/runtime.py",
+      "sha256": "584bf3525f02e274ccd3240a083d0b8dbea54be42d64323b110bdeb2074c64d6"
+    },
+    {
+      "bytes": 18513,
+      "path": "src/crewshal/runtime_batch.py",
+      "sha256": "1c234fb4b2145329306f5ad68dcdf63ce1b400382414c0f69c83e6f76093d8e1"
+    },
+    {
+      "bytes": 3347,
+      "path": "src/crewshal/state.py",
+      "sha256": "856abbc9de6e630798736eab14ddc6062bc6768621edd8a0d9477f1f3fa7e5a3"
+    },
+    {
+      "bytes": 35230,
+      "path": "src/crewshal/supervisor.py",
+      "sha256": "4ec3238f5d2c9a8f68762c084ab241112a9b87d626023b5e6a18ab7b6e70a2f6"
+    },
+    {
+      "bytes": 0,
+      "path": "tests/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 0,
+      "path": "tests/acceptance/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 16185,
+      "path": "tests/acceptance/test_phase_2a.py",
+      "sha256": "e4c53627b3fc1be58467761b2c2002010e256f9e087e92fe9ba20837ed627695"
+    },
+    {
+      "bytes": 33064,
+      "path": "tests/acceptance/test_phase_2b.py",
+      "sha256": "a5db032b0e1ba98427bd95e726d70ac5e6c07039851553f8c98950496f9dbe40"
+    },
+    {
+      "bytes": 7556,
+      "path": "tests/acceptance/test_phase_2c.py",
+      "sha256": "297c20b81fd7e02a1eb6ea3ee24b1361b2a8f8caf0c53e4d4e17a73cea673d5d"
+    },
+    {
+      "bytes": 2418,
+      "path": "tests/acceptance/test_phase_2c_boundary_observer.py",
+      "sha256": "9381bae4be23774f757bce9bb1519838051fc9701462efde0ce6b097db0e2fe1"
+    },
+    {
+      "bytes": 8567,
+      "path": "tests/acceptance/test_phase_2c_broker_environment.py",
+      "sha256": "1cf85e584b2d3904e44dc52c0fd34bb16abc9329bb4298c497c6f94b5fccedd1"
+    },
+    {
+      "bytes": 15764,
+      "path": "tests/acceptance/test_phase_2c_bundle.py",
+      "sha256": "643f6936ab54a3a367a85f4626f9c3cd4bbe1c45c30c0b5ec2ab1d6b1500b91f"
+    },
+    {
+      "bytes": 979,
+      "path": "tests/acceptance/test_phase_2c_capture_snapshot.py",
+      "sha256": "4bc0e3033c973d0cfb49d09e049cde53c2f64dbf92833192614a25435c009e70"
+    },
+    {
+      "bytes": 3694,
+      "path": "tests/acceptance/test_phase_2c_departed_observer.py",
+      "sha256": "a701544f66e310e795489479a85adaab351d3fdad74b89e23bada29e03ec78be"
+    },
+    {
+      "bytes": 5523,
+      "path": "tests/acceptance/test_phase_2c_lifecycle.py",
+      "sha256": "1b0973b0672a35c1ec0167f95efc730b1909c73ffc07e63b449df6bb81f9853d"
+    },
+    {
+      "bytes": 2258,
+      "path": "tests/acceptance/test_phase_2c_native_continuation.py",
+      "sha256": "0d4c1195a113315f2f2365f09167db3774435252f66493236cd03f195a44fb36"
+    },
+    {
+      "bytes": 3120,
+      "path": "tests/acceptance/test_phase_2c_native_readback.py",
+      "sha256": "0a01f0bf7a40b8a02a99747848df3f308a3a1c605f148f54678a8300ee0c34f5"
+    },
+    {
+      "bytes": 2125,
+      "path": "tests/acceptance/test_phase_2c_native_readback_v2.py",
+      "sha256": "50126483808ad6c146405e038c5ec8e61de2a01e561186a9ecc3bd8fa3ef2d1d"
+    },
+    {
+      "bytes": 8057,
+      "path": "tests/acceptance/test_phase_2c_network.py",
+      "sha256": "911000a18c3a32a3b35c995decf05bd235cbd73238403dd11ef634d52e4c9b99"
+    },
+    {
+      "bytes": 5975,
+      "path": "tests/acceptance/test_phase_2c_protocol.py",
+      "sha256": "27fe2304c0bf14b1bbfcaf40ba46655a0fa512bce51cdf1132b96d190e1cb4a6"
+    },
+    {
+      "bytes": 8732,
+      "path": "tests/acceptance/test_phase_2c_storage.py",
+      "sha256": "85bd90041a86ec5143bbc79b1e7a54636508c59c2edb669fd371fc55cd1010e4"
+    },
+    {
+      "bytes": 2836,
+      "path": "tests/acceptance/test_phase_2c_storage_observer.py",
+      "sha256": "6f630e32bb1f1a23270313f0dea661985a3c20c1e0287e1bf7b9fa38e599aef3"
+    },
+    {
+      "bytes": 6742,
+      "path": "tests/acceptance/test_phase_2c_substrate.py",
+      "sha256": "de36c48b42fc89f8ddd0c27ff34485018c9ef4dd58256f281716fef4994b0c28"
+    },
+    {
+      "bytes": 32642,
+      "path": "tests/acceptance/test_phase_2d.py",
+      "sha256": "93f808d46ad2f59d9db21cfc3c462eda8d442891a5dcffeb21735188ed13e238"
+    },
+    {
+      "bytes": 26880,
+      "path": "tests/acceptance/test_phase_2d_admission.py",
+      "sha256": "c673d6e09b8d9dfce77d20a61026e6c71f8135cb325d58db472728ac942bc832"
+    },
+    {
+      "bytes": 14475,
+      "path": "tests/acceptance/test_phase_2d_admission_collection.py",
+      "sha256": "888c16aec76025a8c7cd5d75e060274dc7b7a9664e9e8fed1c47d2376a8310a4"
+    },
+    {
+      "bytes": 24268,
+      "path": "tests/acceptance/test_phase_2d_app_server.py",
+      "sha256": "6ce75889a78cab590201c0834368e9bbbf1f17f9ab4f5261beb6712bad192829"
+    },
+    {
+      "bytes": 6040,
+      "path": "tests/acceptance/test_phase_2d_attempt_marker.py",
+      "sha256": "77496c100201bcc3253d4b4b58253cba90d556231a667c617059d39592d8954e"
+    },
+    {
+      "bytes": 3178,
+      "path": "tests/acceptance/test_phase_2d_authentication.py",
+      "sha256": "cf3a218a70f7900445154716de6b9c1de67f6828ee863b5972aed4a14951fe80"
+    },
+    {
+      "bytes": 7956,
+      "path": "tests/acceptance/test_phase_2d_batch.py",
+      "sha256": "10679206b79009d5dc498cf94fb30bb62737086ac21b065c39d82fc4e2e81e6c"
+    },
+    {
+      "bytes": 18931,
+      "path": "tests/acceptance/test_phase_2d_batch_entry.py",
+      "sha256": "4bee7d8d9d4a8af4ccd1ecec6179132ee37470bdef523ee721305692b86045b9"
+    },
+    {
+      "bytes": 30251,
+      "path": "tests/acceptance/test_phase_2d_batch_timer.py",
+      "sha256": "c69b9dcaf28169383c82f9f85d62ba3569e61b87968226690d82c4d380c46236"
+    },
+    {
+      "bytes": 24706,
+      "path": "tests/acceptance/test_phase_2d_bootstrap.py",
+      "sha256": "e93d34f3834f3caf492f9656300c20af0ddc05524ce1deffb4599fe0d4341084"
+    },
+    {
+      "bytes": 23548,
+      "path": "tests/acceptance/test_phase_2d_bootstrap_build_closure.py",
+      "sha256": "c95df861fcfb08e5dd8f67b3c512a5d4f366b840cfb579097f098ac1668e5523"
+    },
+    {
+      "bytes": 41274,
+      "path": "tests/acceptance/test_phase_2d_bridge.py",
+      "sha256": "a9b4858f933266dd6484a4693ca42311f70c048f7efae124f25b9eec04e34cfb"
+    },
+    {
+      "bytes": 10826,
+      "path": "tests/acceptance/test_phase_2d_capacity.py",
+      "sha256": "686429e0bce07b6eeecde30b66433fbda4999d5d63732c8e499034e17c2215d1"
+    },
+    {
+      "bytes": 9723,
+      "path": "tests/acceptance/test_phase_2d_charged_build.py",
+      "sha256": "6cce5d646d80139d423149aa491af4e514cff56cf77a9efe7c323d5ad1e738c9"
+    },
+    {
+      "bytes": 18658,
+      "path": "tests/acceptance/test_phase_2d_dispatch.py",
+      "sha256": "054701cb01b7be843efb34a1352f8affc76de11809db9318df34688149a0bdd8"
+    },
+    {
+      "bytes": 21609,
+      "path": "tests/acceptance/test_phase_2d_early_timer.py",
+      "sha256": "9321995c3d4ddf5609f984f2590db8d5e4134a8c5f803cdac1789ed7a3e8475c"
+    },
+    {
+      "bytes": 3123,
+      "path": "tests/acceptance/test_phase_2d_empty_entry.py",
+      "sha256": "6ee605714c461bcf641ec19a9ee78ea85dea39499e0872e7cffb1aa9596b772f"
+    },
+    {
+      "bytes": 22980,
+      "path": "tests/acceptance/test_phase_2d_envelope.py",
+      "sha256": "05f8530992363e830e69f0040c41e01cc836e5d9e13d5b46bf454f790d3ba927"
+    },
+    {
+      "bytes": 2732,
+      "path": "tests/acceptance/test_phase_2d_file_cache.py",
+      "sha256": "0942cdc9d3e08ca585939620e8e7c1eb2ddd9432bb32f21612c904d0ce21f45a"
+    },
+    {
+      "bytes": 7451,
+      "path": "tests/acceptance/test_phase_2d_fixture_inputs.py",
+      "sha256": "2db59dbff2493dadd82e6b3875595e4ac222aef511e42e43fe770598b1091dc1"
+    },
+    {
+      "bytes": 23153,
+      "path": "tests/acceptance/test_phase_2d_freeze.py",
+      "sha256": "4a8dd0fa1658d6cb5b39276153a8f94bc32e5c3259b93ddf0849e25c79c75ec4"
+    },
+    {
+      "bytes": 59614,
+      "path": "tests/acceptance/test_phase_2d_installation.py",
+      "sha256": "1431c44003d0ba4879063115bc5bbb3d7051fb3bd2732b4b3030ee73d68966ed"
+    },
+    {
+      "bytes": 8665,
+      "path": "tests/acceptance/test_phase_2d_installed.py",
+      "sha256": "368a72fd626a9e6db0eba4f1bea6c93db3b5c8c5ef6bf82b4fef4f490ea73a3b"
+    },
+    {
+      "bytes": 17947,
+      "path": "tests/acceptance/test_phase_2d_installed_chain.py",
+      "sha256": "5b8e79b682de63b0b1de8e88b10a77497a05c3f34651b72a135720972add6b40"
+    },
+    {
+      "bytes": 36171,
+      "path": "tests/acceptance/test_phase_2d_integration.py",
+      "sha256": "982a1a04ff7a96fa94f4e7317784a933909d864758f97440abf637a9cab39892"
+    },
+    {
+      "bytes": 17569,
+      "path": "tests/acceptance/test_phase_2d_inventory.py",
+      "sha256": "c7e713ce161413cee029709916229014b407cdd191a1b44b89b53a0f40a0c664"
+    },
+    {
+      "bytes": 6063,
+      "path": "tests/acceptance/test_phase_2d_inventory_hash_cache.py",
+      "sha256": "5bd5a18a449c8c5c3ba155bc4c17854ee049663941090ab453fa23ca9822f668"
+    },
+    {
+      "bytes": 5171,
+      "path": "tests/acceptance/test_phase_2d_lane_production.py",
+      "sha256": "5a7f8913702e02a565f62a69a009e4d1956dae033abab10147b210578205da3d"
+    },
+    {
+      "bytes": 7105,
+      "path": "tests/acceptance/test_phase_2d_lane_setup.py",
+      "sha256": "c49d967bffdb02d22f5cdba5ec4bd0b4cafd74dce8061528b7a61d5dbbdaa48e"
+    },
+    {
+      "bytes": 12223,
+      "path": "tests/acceptance/test_phase_2d_network.py",
+      "sha256": "368d42754c6334ab73819b1a1688f20d0b28040474e6ae537be094af3618c887"
+    },
+    {
+      "bytes": 5973,
+      "path": "tests/acceptance/test_phase_2d_observer_batch.py",
+      "sha256": "432d1db2f1ab6ab728910f3289fdd4aef857cab35318ad89f8bca95e6265a789"
+    },
+    {
+      "bytes": 7878,
+      "path": "tests/acceptance/test_phase_2d_operational.py",
+      "sha256": "d5d50f48372d7245b5e385e0fd954f0fc26df6c93f4e0cf9f7ef9436f797301b"
+    },
+    {
+      "bytes": 4282,
+      "path": "tests/acceptance/test_phase_2d_original_validator_evidence.py",
+      "sha256": "953082734a51fdb5e83040d4cb3203ec01aff92df2acdf049e2cf8a2b0bbce20"
+    },
+    {
+      "bytes": 2784,
+      "path": "tests/acceptance/test_phase_2d_original_verdict.py",
+      "sha256": "ff326d24a70bb66f91b5ace2a846f3f01259b41297a5778ad4028a0f2f9fcf1c"
+    },
+    {
+      "bytes": 33941,
+      "path": "tests/acceptance/test_phase_2d_parent.py",
+      "sha256": "4f7cca745f1d9ccf92d1722f9264a5ecc0fcc4b857f4528474a27640b01ac625"
+    },
+    {
+      "bytes": 25123,
+      "path": "tests/acceptance/test_phase_2d_payload_storage.py",
+      "sha256": "a13c8dc17bb7e4e8b3b8562f28d94119dffea4594dfeff19cc60d2d48378c837"
+    },
+    {
+      "bytes": 2977,
+      "path": "tests/acceptance/test_phase_2d_policy_directories.py",
+      "sha256": "db211d3038fc58a001a36e403dcea83e473ac857cb8e355be7bc379e21348788"
+    },
+    {
+      "bytes": 7847,
+      "path": "tests/acceptance/test_phase_2d_policy_transport.py",
+      "sha256": "099faa6b1c7f0aa56df6363b830cfbd0a387a0cbb9aa4673dc90dc6721576297"
+    },
+    {
+      "bytes": 7575,
+      "path": "tests/acceptance/test_phase_2d_probe_transport.py",
+      "sha256": "ebaac7c3549fa0fee16c51c994e7fc5e30e2236b17712f6f6a01715e2be6bfb6"
+    },
+    {
+      "bytes": 62871,
+      "path": "tests/acceptance/test_phase_2d_production.py",
+      "sha256": "a93363572d07770e2daede70a107d4d336e7162365bd897235b89ed2f7b39b29"
+    },
+    {
+      "bytes": 10409,
+      "path": "tests/acceptance/test_phase_2d_qualification.py",
+      "sha256": "e1b1e3a36f9f9709043b9b63238349f2ff0a423a77c414832a51c43e5c839d3e"
+    },
+    {
+      "bytes": 15856,
+      "path": "tests/acceptance/test_phase_2d_qualification_fixture.py",
+      "sha256": "fe11b1ec3d4513c8064b53763695b765b1589f4ba30b340ee33a7d49a132d17e"
+    },
+    {
+      "bytes": 15428,
+      "path": "tests/acceptance/test_phase_2d_schedule.py",
+      "sha256": "3dd60b06937b67b726f01a3a0789b60da7a2aa1bb13430480d0b81b5fd36ba43"
+    },
+    {
+      "bytes": 9253,
+      "path": "tests/acceptance/test_phase_2d_selection.py",
+      "sha256": "07ad5bcc63f14ff729ebbaa4d17cd2fd25e6147690a8bcbef2cc905d27023053"
+    },
+    {
+      "bytes": 65812,
+      "path": "tests/acceptance/test_phase_2d_setup.py",
+      "sha256": "354ae0bcc6686a86bd53302b05f00b80b9eb754362e2aeffb7ef8bc299bb9b7b"
+    },
+    {
+      "bytes": 39117,
+      "path": "tests/acceptance/test_phase_2d_storage.py",
+      "sha256": "73e1983bea4d3d6788a9b4d61b3c612add97182c964a5fcd4a48db3fe205b51b"
+    },
+    {
+      "bytes": 12850,
+      "path": "tests/acceptance/test_phase_2d_subscription.py",
+      "sha256": "1c01e084917e65e3ea28c9b8af0e34f59e0e127bca871dee725b3869181cb226"
+    },
+    {
+      "bytes": 36386,
+      "path": "tests/acceptance/test_phase_2d_supervisor.py",
+      "sha256": "5c9347f3085199600ce6e5cbd9b2f80a99777159b53c6ba6813d24d9f09a2835"
+    },
+    {
+      "bytes": 27799,
+      "path": "tests/acceptance/test_phase_2d_teardown.py",
+      "sha256": "a1951b8f9bbdb9a4fa99ea1e2b8148e2f53626212b308253fd95fadfc97cef18"
+    },
+    {
+      "bytes": 6691,
+      "path": "tests/acceptance/test_phase_2d_tls_broker.py",
+      "sha256": "50aaa07a7a70297c9afc67673c66a8e723508141a335ad1df7ea5db4eee140de"
+    },
+    {
+      "bytes": 37636,
+      "path": "tests/acceptance/test_phase_2d_validator.py",
+      "sha256": "4b732ce6d5508d01ad08e4247d1899bd63c70a8fb127d9497345af94969ffaaa"
+    }
+  ],
+  "groups": {
+    "complete_test_files": [
+      "tests/__init__.py",
+      "tests/acceptance/__init__.py",
+      "tests/acceptance/test_phase_2a.py",
+      "tests/acceptance/test_phase_2b.py",
+      "tests/acceptance/test_phase_2c.py",
+      "tests/acceptance/test_phase_2c_boundary_observer.py",
+      "tests/acceptance/test_phase_2c_broker_environment.py",
+      "tests/acceptance/test_phase_2c_bundle.py",
+      "tests/acceptance/test_phase_2c_capture_snapshot.py",
+      "tests/acceptance/test_phase_2c_departed_observer.py",
+      "tests/acceptance/test_phase_2c_lifecycle.py",
+      "tests/acceptance/test_phase_2c_native_continuation.py",
+      "tests/acceptance/test_phase_2c_native_readback.py",
+      "tests/acceptance/test_phase_2c_native_readback_v2.py",
+      "tests/acceptance/test_phase_2c_network.py",
+      "tests/acceptance/test_phase_2c_protocol.py",
+      "tests/acceptance/test_phase_2c_storage.py",
+      "tests/acceptance/test_phase_2c_storage_observer.py",
+      "tests/acceptance/test_phase_2c_substrate.py",
+      "tests/acceptance/test_phase_2d.py",
+      "tests/acceptance/test_phase_2d_admission.py",
+      "tests/acceptance/test_phase_2d_admission_collection.py",
+      "tests/acceptance/test_phase_2d_app_server.py",
+      "tests/acceptance/test_phase_2d_attempt_marker.py",
+      "tests/acceptance/test_phase_2d_authentication.py",
+      "tests/acceptance/test_phase_2d_batch.py",
+      "tests/acceptance/test_phase_2d_batch_entry.py",
+      "tests/acceptance/test_phase_2d_batch_timer.py",
+      "tests/acceptance/test_phase_2d_bootstrap.py",
+      "tests/acceptance/test_phase_2d_bootstrap_build_closure.py",
+      "tests/acceptance/test_phase_2d_bridge.py",
+      "tests/acceptance/test_phase_2d_capacity.py",
+      "tests/acceptance/test_phase_2d_charged_build.py",
+      "tests/acceptance/test_phase_2d_dispatch.py",
+      "tests/acceptance/test_phase_2d_early_timer.py",
+      "tests/acceptance/test_phase_2d_empty_entry.py",
+      "tests/acceptance/test_phase_2d_envelope.py",
+      "tests/acceptance/test_phase_2d_file_cache.py",
+      "tests/acceptance/test_phase_2d_fixture_inputs.py",
+      "tests/acceptance/test_phase_2d_freeze.py",
+      "tests/acceptance/test_phase_2d_installation.py",
+      "tests/acceptance/test_phase_2d_installed.py",
+      "tests/acceptance/test_phase_2d_installed_chain.py",
+      "tests/acceptance/test_phase_2d_integration.py",
+      "tests/acceptance/test_phase_2d_inventory.py",
+      "tests/acceptance/test_phase_2d_inventory_hash_cache.py",
+      "tests/acceptance/test_phase_2d_lane_production.py",
+      "tests/acceptance/test_phase_2d_lane_setup.py",
+      "tests/acceptance/test_phase_2d_network.py",
+      "tests/acceptance/test_phase_2d_observer_batch.py",
+      "tests/acceptance/test_phase_2d_operational.py",
+      "tests/acceptance/test_phase_2d_original_validator_evidence.py",
+      "tests/acceptance/test_phase_2d_original_verdict.py",
+      "tests/acceptance/test_phase_2d_parent.py",
+      "tests/acceptance/test_phase_2d_payload_storage.py",
+      "tests/acceptance/test_phase_2d_policy_directories.py",
+      "tests/acceptance/test_phase_2d_policy_transport.py",
+      "tests/acceptance/test_phase_2d_probe_transport.py",
+      "tests/acceptance/test_phase_2d_production.py",
+      "tests/acceptance/test_phase_2d_qualification.py",
+      "tests/acceptance/test_phase_2d_qualification_fixture.py",
+      "tests/acceptance/test_phase_2d_schedule.py",
+      "tests/acceptance/test_phase_2d_selection.py",
+      "tests/acceptance/test_phase_2d_setup.py",
+      "tests/acceptance/test_phase_2d_storage.py",
+      "tests/acceptance/test_phase_2d_subscription.py",
+      "tests/acceptance/test_phase_2d_supervisor.py",
+      "tests/acceptance/test_phase_2d_teardown.py",
+      "tests/acceptance/test_phase_2d_tls_broker.py",
+      "tests/acceptance/test_phase_2d_validator.py"
+    ],
+    "current_packaged_sources": [
+      "src/crewshal/__init__.py",
+      "src/crewshal/__main__.py",
+      "src/crewshal/admission.py",
+      "src/crewshal/app_server.py",
+      "src/crewshal/bootstrap_helper.c",
+      "src/crewshal/candidate.py",
+      "src/crewshal/cli.py",
+      "src/crewshal/contracts.py",
+      "src/crewshal/discovery.py",
+      "src/crewshal/dispatch.py",
+      "src/crewshal/durable.py",
+      "src/crewshal/gates.py",
+      "src/crewshal/integration.py",
+      "src/crewshal/linux_attempt.py",
+      "src/crewshal/linux_auth.py",
+      "src/crewshal/linux_batch.py",
+      "src/crewshal/linux_batch_entry.py",
+      "src/crewshal/linux_bootstrap.py",
+      "src/crewshal/linux_bridge.py",
+      "src/crewshal/linux_charged_build.py",
+      "src/crewshal/linux_compiler_volume.py",
+      "src/crewshal/linux_early_timer.py",
+      "src/crewshal/linux_envelope.py",
+      "src/crewshal/linux_fixture_inputs.py",
+      "src/crewshal/linux_freeze.py",
+      "src/crewshal/linux_installed.py",
+      "src/crewshal/linux_inventory.py",
+      "src/crewshal/linux_network.py",
+      "src/crewshal/linux_operational.py",
+      "src/crewshal/linux_parent.py",
+      "src/crewshal/linux_parent_entry.py",
+      "src/crewshal/linux_payload_storage.py",
+      "src/crewshal/linux_production.py",
+      "src/crewshal/linux_qualification.py",
+      "src/crewshal/linux_qualification_fixture.py",
+      "src/crewshal/linux_schedule.py",
+      "src/crewshal/linux_setup.py",
+      "src/crewshal/linux_storage.py",
+      "src/crewshal/linux_teardown.py",
+      "src/crewshal/linux_validator.py",
+      "src/crewshal/model.py",
+      "src/crewshal/qualification.py",
+      "src/crewshal/qualification_bundle.py",
+      "src/crewshal/runtime.py",
+      "src/crewshal/runtime_batch.py",
+      "src/crewshal/state.py",
+      "src/crewshal/supervisor.py"
+    ],
+    "dated_phase_2d_guides": [
+      "docs/PHASE-2D-ADMISSION-COLLECTION.md",
+      "docs/PHASE-2D-BATCH-PREPARATION.md",
+      "docs/PHASE-2D-BATCH-TIMER-2026-10-10.md",
+      "docs/PHASE-2D-BATCH-TIMER-SYNTAX-2026-10-10.md",
+      "docs/PHASE-2D-BLOCKED-2026-10-11.md",
+      "docs/PHASE-2D-BOOTSTRAP-CLOSURE-DECISION-2026-10-12.md",
+      "docs/PHASE-2D-BUILD-MAPPING-CONTINUATION-2026-10-13.md",
+      "docs/PHASE-2D-CHARGED-BUILD-DECISION-2026-10-12.md",
+      "docs/PHASE-2D-CHARGED-CONTINUATION-2026-10-13.md",
+      "docs/PHASE-2D-CHECKPOINT-2026-10-10.md",
+      "docs/PHASE-2D-COMPLETION-DECISION-2026-10-09.md",
+      "docs/PHASE-2D-CONTINUATION-2026-10-08.md",
+      "docs/PHASE-2D-DISPATCH-PREPARATION.md",
+      "docs/PHASE-2D-EFFECTIVE-OWNERSHIP-BLOCKED-2026-10-10.md",
+      "docs/PHASE-2D-EFFECTIVE-OWNERSHIP-CHECKPOINT-2026-10-10.md",
+      "docs/PHASE-2D-ENTRY-REPAIR-2026-10-13.md",
+      "docs/PHASE-2D-EXECUTABLE-BATCH-INPUTS-2026-10-12.md",
+      "docs/PHASE-2D-EXECUTION-GATE.md",
+      "docs/PHASE-2D-GROWTH-BOUNDARY-2026-10-10.md",
+      "docs/PHASE-2D-INSTALLATION-BOOTSTRAP-2026-10-10.md",
+      "docs/PHASE-2D-INSTALLATION-BOOTSTRAP-DECISION-2026-10-10.md",
+      "docs/PHASE-2D-KERNEL-SCAFFOLD-SOURCE-REVIEW-2026-10-12.md",
+      "docs/PHASE-2D-LINUX-ENVELOPE.md",
+      "docs/PHASE-2D-LINUX-STORAGE-OWNER.md",
+      "docs/PHASE-2D-LINUX-SYNTAX-BATCH-2026-10-09.md",
+      "docs/PHASE-2D-MAPPING-CONTINUATION-2026-10-13.md",
+      "docs/PHASE-2D-NATIVE-ADMISSION.md",
+      "docs/PHASE-2D-NEXT-SESSION-2026-10-08.md",
+      "docs/PHASE-2D-NEXT-SESSION-2026-10-10.md",
+      "docs/PHASE-2D-NEXT-SESSION-2026-10-13.md",
+      "docs/PHASE-2D-OFFLINE-CONTRACTS.md",
+      "docs/PHASE-2D-OPERATIONAL-BATCH-2026-10-13.md",
+      "docs/PHASE-2D-OPERATIONAL-PREPARATION-2026-10-11.md",
+      "docs/PHASE-2D-OWNED-BOOTSTRAP.md",
+      "docs/PHASE-2D-OWNED-SETUP.md",
+      "docs/PHASE-2D-OWNED-TEARDOWN.md",
+      "docs/PHASE-2D-OWNED-VIEWS-2026-10-09.md",
+      "docs/PHASE-2D-PARENT-WATCHDOG.md",
+      "docs/PHASE-2D-PRECHARGE-CONTINUATION-2026-10-13.md",
+      "docs/PHASE-2D-PRODUCTION-CAPTURE.md",
+      "docs/PHASE-2D-PRODUCTION-OWNERSHIP-2026-10-09.md",
+      "docs/PHASE-2D-RETAINED-OWNERSHIP-2026-10-09.md",
+      "docs/PHASE-2D-RUNTIME-CONTINUATION-2026-10-13.md",
+      "docs/PHASE-2D-SESSION-SELECTION.md",
+      "docs/PHASE-2D-SINGLE-LINK-CONTINUATION-2026-10-13.md",
+      "docs/PHASE-2D-SOURCE-CHECKPOINT-2026-10-09.md",
+      "docs/PHASE-2D-STORAGE-CLOSURE-BLOCKER-2026-10-09.md",
+      "docs/PHASE-2D-SUBSCRIPTION-AUTH-BOUNDARY-2026-10-09.md",
+      "docs/PHASE-2D-SUBSCRIPTION-ROUTE-DECISION-2026-10-09.md",
+      "docs/PHASE-2D-SUPERVISOR-SOURCE.md",
+      "docs/PHASE-2D-SYNTAX-CAPABILITY-2026-10-10.md",
+      "docs/PHASE-2D-SYNTAX-PASS-2026-10-10.md",
+      "docs/PHASE-2D-SYNTAX-RESULT-2026-10-10.md",
+      "docs/PHASE-2D-THREE-LANE-DECISION-2026-10-11.md",
+      "docs/PHASE-2D-TIMER-SYNTAX-PASS-2026-10-10.md"
+    ],
+    "dated_phase_2d_ledgers": [
+      "docs/qualification/phase-2d-admission-collection-verification-v1-20261008.json",
+      "docs/qualification/phase-2d-batch-preparation-v1-20261008.json",
+      "docs/qualification/phase-2d-batch-preparation-verification-v1-20261008.json",
+      "docs/qualification/phase-2d-batch-timer-verification-v1-20261010.json",
+      "docs/qualification/phase-2d-blocked-verification-v1-20261011.json",
+      "docs/qualification/phase-2d-dispatch-preparation-verification-v1-20261008.json",
+      "docs/qualification/phase-2d-effective-ownership-publication-v1-20261010.json",
+      "docs/qualification/phase-2d-effective-ownership-verification-v1-20261010.json",
+      "docs/qualification/phase-2d-executable-batch-v1-20261013.json",
+      "docs/qualification/phase-2d-executable-batch-v10-20261013.json",
+      "docs/qualification/phase-2d-executable-batch-v2-20261013.json",
+      "docs/qualification/phase-2d-executable-batch-v3-20261013.json",
+      "docs/qualification/phase-2d-executable-batch-v4-20261013.json",
+      "docs/qualification/phase-2d-executable-batch-v5-20261013.json",
+      "docs/qualification/phase-2d-executable-batch-v6-20261013.json",
+      "docs/qualification/phase-2d-executable-batch-v7-20261013.json",
+      "docs/qualification/phase-2d-executable-batch-v8-20261013.json",
+      "docs/qualification/phase-2d-executable-batch-v9-20261013.json",
+      "docs/qualification/phase-2d-growth-verification-v1-20261010.json",
+      "docs/qualification/phase-2d-installation-bootstrap-verification-v1-20261010.json",
+      "docs/qualification/phase-2d-installation-bootstrap-verification-v2-20261010.json",
+      "docs/qualification/phase-2d-linux-envelope-verification-v1-20261008.json",
+      "docs/qualification/phase-2d-linux-storage-owner-verification-v1-20261009.json",
+      "docs/qualification/phase-2d-native-admission-verification-v1-20261008.json",
+      "docs/qualification/phase-2d-offline-continuity-20261008.json",
+      "docs/qualification/phase-2d-owned-bootstrap-verification-v1-20261009.json",
+      "docs/qualification/phase-2d-owned-setup-verification-v1-20261009.json",
+      "docs/qualification/phase-2d-owned-teardown-verification-v1-20261009.json",
+      "docs/qualification/phase-2d-owned-views-verification-v1-20261009.json",
+      "docs/qualification/phase-2d-owner-decisions-verification-v1-20261009.json",
+      "docs/qualification/phase-2d-parent-watchdog-verification-v1-20261009.json",
+      "docs/qualification/phase-2d-production-capture-verification-v1-20261008.json",
+      "docs/qualification/phase-2d-production-ownership-verification-v1-20261009.json",
+      "docs/qualification/phase-2d-publication-verification-v1-20261010.json",
+      "docs/qualification/phase-2d-publication-verification-v2-20261010.json",
+      "docs/qualification/phase-2d-retained-ownership-verification-v1-20261009.json",
+      "docs/qualification/phase-2d-session-selection-v1-20261008.json",
+      "docs/qualification/phase-2d-session-selection-verification-v1-20261008.json",
+      "docs/qualification/phase-2d-source-checkpoint-verification-v1-20261009.json",
+      "docs/qualification/phase-2d-source-progress-v1-20261012.json",
+      "docs/qualification/phase-2d-storage-closure-verification-v1-20261009.json",
+      "docs/qualification/phase-2d-subscription-auth-boundary-verification-v1-20261009.json",
+      "docs/qualification/phase-2d-subscription-route-source-evidence-v1-20261009.json",
+      "docs/qualification/phase-2d-supervisor-verification-v1-20261008.json",
+      "docs/qualification/phase-2d-syntax-capability-preparation-v1-20261010.json",
+      "docs/qualification/phase-2d-syntax-pass-verification-v1-20261010.json",
+      "docs/qualification/phase-2d-syntax-result-verification-v1-20261010.json",
+      "docs/qualification/phase-2d-timer-syntax-pass-verification-v1-20261010.json",
+      "docs/qualification/phase-2d-v10-declined-v1-20261013.json",
+      "docs/qualification/phase-2d-vm-access-v1-20261011.json"
+    ],
+    "original_qualification_inputs": [
+      "docs/qualification/phase-2c-v1.json",
+      "docs/PHASE-2C-COMPLETION-ASSESSMENT.md",
+      "docs/PHASE-2C-ACTIVE-CONTINUATION.md",
+      "docs/qualification/phase-2c-direct-linux-native-full-bindings-v18.json",
+      "docs/qualification/phase-2c-direct-linux-native-full-decision-v18.json",
+      "docs/qualification/phase-2c-direct-linux-native-full-freeze-v18.json",
+      "docs/qualification/phase-2c-direct-linux-native-full-profile-v18.json",
+      "docs/qualification/phase-2c-direct-linux-native-full-qualified-v18-f1.json",
+      "docs/qualification/phase-2c-direct-linux-native-full-qualified-v18-f2.json",
+      "docs/qualification/phase-2c-direct-linux-native-full-readback-v18.json",
+      "docs/qualification/phase-2c-direct-linux-native-full-v18-f1-before-cleanup.json",
+      "docs/qualification/phase-2c-direct-linux-native-full-v18-f1.json",
+      "docs/qualification/phase-2c-direct-linux-native-full-v18-f2-before-cleanup.json",
+      "docs/qualification/phase-2c-direct-linux-native-full-v18-f2.json"
+    ],
+    "owner_preparation_and_compatibility_scripts": [
+      "scripts/phase_2d_owner_capabilities.py",
+      "scripts/phase_2d_owner_capabilities_build_maps_v7.py",
+      "scripts/phase_2d_owner_capabilities_charged_v3.py",
+      "scripts/phase_2d_owner_capabilities_mapping_v5.py",
+      "scripts/phase_2d_owner_capabilities_precharge_v2.py",
+      "scripts/phase_2d_owner_capabilities_runtime_v4.py",
+      "scripts/phase_2d_owner_capabilities_single_link_v6.py",
+      "scripts/phase_2d_owner_input_upload.py",
+      "scripts/phase_2d_owner_input_upload_build_maps_v7.py",
+      "scripts/phase_2d_owner_input_upload_charged_v3.py",
+      "scripts/phase_2d_owner_input_upload_mapping_v5.py",
+      "scripts/phase_2d_owner_input_upload_precharge_v2.py",
+      "scripts/phase_2d_owner_input_upload_runtime_v4.py",
+      "scripts/phase_2d_owner_input_upload_single_link_v6.py",
+      "scripts/phase_2d_storage_compatibility.py",
+      "scripts/prepare_phase_2d_immutable_inputs.py"
+    ],
+    "project_metadata": [
+      "pyproject.toml",
+      "README.md",
+      "CHANGELOG.md",
+      "LICENSE"
+    ],
+    "read_first_in_order": [
+      "AGENTS.md",
+      "docs/HANDOFF.md",
+      "docs/qualification/phase-2d-v10-declined-v1-20261013.json",
+      "docs/DEVELOPMENT-PLAN.md",
+      "docs/ARCHITECTURE.md",
+      "docs/decisions/0001-name-and-repository.md",
+      "docs/decisions/0002-minimal-architecture.md",
+      "docs/decisions/0003-direct-linux-qualification.md",
+      "docs/decisions/0004-retained-terminal-storage.md",
+      "docs/decisions/0005-official-subscription-pilot.md",
+      "docs/decisions/0006-upfront-installation-charge.md",
+      "docs/PHASE-2D-THREE-LANE-DECISION-2026-10-11.md",
+      "docs/PHASE-2D-CHARGED-BUILD-DECISION-2026-10-12.md",
+      "docs/PHASE-2D-BOOTSTRAP-CLOSURE-DECISION-2026-10-12.md",
+      "docs/PHASE-2D-BUILD-MAPPING-CONTINUATION-2026-10-13.md",
+      "docs/qualification/phase-2d-executable-batch-v10-20261013.json",
+      "docs/PHASE-2D-BLOCKED-2026-10-11.md",
+      "docs/qualification/phase-2d-blocked-verification-v1-20261011.json",
+      "docs/PHASE-2D-NEXT-SESSION-2026-10-10.md",
+      "docs/PHASE-2D-NEXT-SESSION-INPUTS-2026-10-10.json"
+    ]
+  },
+  "head": "87ed7e6f6c766c7ff2df245ad05569558a9ca3bc",
+  "milestone": "Phase 2D remains incomplete. Phase 2E must not start.",
+  "operational_authority": "The owner declined v10. This context grants no additional authority.",
+  "policy": "Read the latest decline first. Historical commands supply evidence and must not be replayed. Preserve all dirty work, original custody, charges, clocks, and unknown results.",
+  "private_local_context": "Private SSH capabilities, TLS keys, account data, runtime metadata, immutable operational archives, retained VM storage, processes, and handles remain outside Git and this bundle. Use only the existing local context if later authorized.",
+  "repository": "https://github.com/forera-ai/Crewshal",
+  "schema_version": 1,
+  "separate_local_context_index": "/Users/hamedprooshani/.codex/artifacts/crewshal/phase2d-local-context-2026-10-13.json",
+  "source_proof": "The v10 record contains exact source and installed-wheel results for 1161 tests each. All production and test hashes remain unchanged.",
+  "workspace": "/Volumes/X10Pro/Crewshal"
+}

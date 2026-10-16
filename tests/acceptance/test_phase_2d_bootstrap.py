@@ -74,6 +74,9 @@ class SyntheticTrace:
     def verify_storage_filter(self, pid):
         self.calls.append(("kernel_filter", pid))
 
+    def verify_storage_policy(self, proc, role):
+        self.calls.append(("loaded_policy", role))
+
     def queue_stop(self, pidfd):
         self.calls.append(("queue_pidfd_stop", pidfd))
 
@@ -229,9 +232,12 @@ class Phase2DBootstrap(unittest.TestCase):
             [
                 "wait",
                 "delivery",
+                "loaded_policy",
+                "kernel_filter",
                 "options",
                 "continue",
                 "wait",
+                "loaded_policy",
                 "kernel_filter",
                 "queue_pidfd_stop",
                 "continue",
@@ -251,6 +257,24 @@ class Phase2DBootstrap(unittest.TestCase):
         self.assertEqual(self.deadline.expires_ns - self.deadline.origin_ns, 5_000_000_000)
         self.assertEqual(self.outside.read_bytes(), b"original unrelated bytes")
 
+    def test_missing_loaded_policy_refuses_before_the_first_helper_resume(self):
+        self.driver.verify_storage_policy = Mock(side_effect=ValueError("loaded policy changed"))
+        with self.assertRaisesRegex(BootstrapRefusal, "loaded policy changed"):
+            self.stage()
+        self.assertNotIn("continue", [name for name, _ in self.driver.calls])
+        self.assertEqual(self.deadline.expires_ns - self.deadline.origin_ns, 5_000_000_000)
+        self.assertEqual(self.outside.read_bytes(), b"original unrelated bytes")
+
+    def test_changed_exec_stop_policy_refuses_before_stop_queue_or_detach(self):
+        self.driver.verify_storage_policy = Mock(
+            side_effect=[None, ValueError("exec role changed")]
+        )
+        with self.assertRaisesRegex(BootstrapRefusal, "exec role changed"):
+            self.stage()
+        self.assertEqual(self.driver.verify_storage_policy.call_count, 2)
+        self.assertNotIn("queue_pidfd_stop", [name for name, _ in self.driver.calls])
+        self.assertNotIn("detach", [name for name, _ in self.driver.calls])
+
     def test_filter_denies_anonymous_storage_and_compat_without_denying_stdio(self):
         # Small independent cBPF evaluator; no kernel loading or C compiler.
         def evaluate(program, arch, number, mmap_flags=0):
@@ -262,8 +286,14 @@ class Phase2DBootstrap(unittest.TestCase):
                     accumulator = {0: number, 4: arch, 40: mmap_flags}[value]
                 elif code == 0x54:
                     accumulator &= value
-                elif code in (0x15, 0x35):
-                    matches = accumulator == value if code == 0x15 else accumulator >= value
+                elif code in (0x15, 0x35, 0x45):
+                    matches = (
+                        accumulator == value
+                        if code == 0x15
+                        else accumulator >= value
+                        if code == 0x35
+                        else bool(accumulator & value)
+                    )
                     pc += yes if matches else no
                 elif code == 0x06:
                     return value
@@ -285,10 +315,12 @@ class Phase2DBootstrap(unittest.TestCase):
             self.assertEqual(evaluate(program, arch, 0), 0x7FFF0000)
             self.assertEqual(evaluate(program, arch, 1), 0x7FFF0000)
             mmap_number = 9 if machine == "x86_64" else 222
-            for flags in (1, 3, 0x21, 0x23, 0x4021, 0x80000001):
+            for flags in (0x21, 0x23, 0x4021, 0x80000021):
                 self.assertEqual(evaluate(program, arch, mmap_number, flags), 0x50001)
-            for flags in (2, 0x22, 0x4022):
+            for flags in (1, 3, 0x4001, 0x80000001, 2, 0x22, 0x4022):
                 self.assertEqual(evaluate(program, arch, mmap_number, flags), 0x7FFF0000)
+            if machine == "x86_64":
+                self.assertEqual(evaluate(program, arch, 133), 0x50001)
         with self.assertRaisesRegex(ValueError, "ABI unavailable"):
             payload_storage_filter("armv7l")
 
@@ -515,7 +547,7 @@ class Phase2DBootstrap(unittest.TestCase):
             self.stage()
 
     def test_bootstrap_source_and_C_bytes_bind_dispatch(self):
-        self.assertEqual(len(self.fixture.configuration.source_sha256), 26)
+        self.assertEqual(len(self.fixture.configuration.source_sha256), 42)
         self.assertEqual(
             self.fixture.configuration.source_sha256["bootstrap_helper.c"],
             digest(

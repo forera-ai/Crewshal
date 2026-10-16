@@ -11,6 +11,7 @@ from crewshal.app_server import (
     AppServerProtocolError,
     SUBSCRIPTION_PERMISSIONS,
     SUBSCRIPTION_STARTUP_SETTINGS,
+    QualificationAccountExpectation,
     _leaves,
 )
 
@@ -129,6 +130,100 @@ def to_turn(exchange):
 
 
 class AppServerTests(unittest.TestCase):
+    def synthetic_profile(self):
+        data = profile().model_dump()
+        data["expected_account_id"] = "live-account"
+        expectation = QualificationAccountExpectation(
+            account={
+                "type": "chatgpt",
+                "email": "phase2d-synthetic@example.invalid",
+                "planType": "plus",
+            },
+            account_id="crewshal-phase2d-synthetic",
+        )
+        data["qualification_accounts"] = {
+            lane: expectation.model_dump() for lane in ("qualification-1", "qualification-2")
+        }
+        return AppServerProfile.model_validate(data)
+
+    def initialize_account(self, exchange):
+        exchange.start()
+        response(
+            exchange,
+            1,
+            {
+                "codexHome": "/native-auth",
+                "platformFamily": "unix",
+                "platformOs": "linux",
+                "userAgent": "codex/0.160.1",
+            },
+        )
+        response(exchange, 2, config_response())
+
+    def test_common_profile_uses_synthetic_accounts_only_in_qualification_lanes(self):
+        common = self.synthetic_profile()
+        for lane in ("qualification-1", "qualification-2", "live", None):
+            with self.subTest(lane=lane):
+                exchange = AppServerExchange(common, lane_id=lane)
+                self.initialize_account(exchange)
+                selected = common.qualification_accounts.get(lane)
+                account = selected.account if selected else common.expected_account
+                account_id = selected.account_id if selected else common.expected_account_id
+                response(exchange, 3, {"account": account, "requiresOpenaiAuth": True})
+                output = response(exchange, 4, {"rateLimits": {}, "accountId": account_id})
+                self.assertEqual(json.loads(output[0])["method"], "thread/start")
+
+    def test_live_lane_refuses_synthetic_account_continuity(self):
+        common = self.synthetic_profile()
+        exchange = AppServerExchange(common, lane_id="live")
+        self.initialize_account(exchange)
+        with self.assertRaises(AppServerProtocolError):
+            response(
+                exchange,
+                3,
+                {
+                    "account": common.qualification_accounts["qualification-1"].account,
+                    "requiresOpenaiAuth": True,
+                },
+            )
+
+    def test_qualification_lane_cannot_use_live_or_missing_expectations(self):
+        with self.assertRaisesRegex(
+            AppServerProtocolError, "synthetic account expectation missing"
+        ):
+            AppServerExchange(profile(), lane_id="qualification-1")
+        common = self.synthetic_profile()
+        exchange = AppServerExchange(common, lane_id="qualification-1")
+        self.initialize_account(exchange)
+        with self.assertRaises(AppServerProtocolError):
+            response(exchange, 3, {"account": common.expected_account, "requiresOpenaiAuth": True})
+
+    def test_qualification_table_and_selected_account_mutation_refuse(self):
+        common = self.synthetic_profile()
+        exchange = AppServerExchange(common, lane_id="qualification-1")
+        common.qualification_accounts["qualification-2"].account["email"] = "changed"
+        with self.assertRaisesRegex(AppServerProtocolError, "configuration changed"):
+            exchange.start()
+        common = self.synthetic_profile()
+        exchange = AppServerExchange(common, lane_id="qualification-1")
+        exchange._account["planType"] = "changed"
+        with self.assertRaisesRegex(AppServerProtocolError, "frozen lane account"):
+            exchange.start()
+
+    def test_synthetic_account_table_requires_both_fixed_lane_names(self):
+        for fault in ("missing", "extra", "real_account"):
+            data = self.synthetic_profile().model_dump()
+            if fault == "missing":
+                del data["qualification_accounts"]["qualification-2"]
+            elif fault == "extra":
+                data["qualification_accounts"]["live"] = data["qualification_accounts"][
+                    "qualification-1"
+                ]
+            else:
+                data["qualification_accounts"]["qualification-1"]["account_id"] = "live-account"
+            with self.subTest(fault=fault), self.assertRaises(ValueError):
+                AppServerProfile.model_validate(data)
+
     def test_six_fixed_requests_and_one_initialized_notification(self):
         exchange = AppServerExchange.from_profile(profile())
         output = [json.loads(exchange.start())]

@@ -12,8 +12,10 @@ from pydantic import model_validator
 
 from crewshal.candidate import FrozenCandidate, _paths, freeze_candidate, scope_evidence
 from crewshal.contracts import (
+    Approval,
     Attempt,
     Binding,
+    CheckDefinition,
     Digest,
     Evidence,
     Identifier,
@@ -24,13 +26,15 @@ from crewshal.contracts import (
     cumulative_usage,
     record_digest,
 )
-from crewshal.model import digest
+from crewshal.model import ProjectModel, digest, model_digest
 from crewshal.runtime import (
     STREAM_BYTES,
     CodexIdentity,
+    CodexRequest,
     ProcessObservation,
     RuntimeOutcome,
     normalize_codex,
+    prepare_codex_contract,
 )
 
 if TYPE_CHECKING:
@@ -38,12 +42,11 @@ if TYPE_CHECKING:
     from crewshal.dispatch import CodexDispatch
     from crewshal.linux_freeze import OriginalVolumeFreeze
     from crewshal.linux_bridge import StoppedNativeBridge
+    from crewshal.linux_bridge import ValidatorBridgeCustody
 
 
-# The host bridge retains actual native proc/pidfd custody, but has not received
-# the original namespace parent's NativeAdmissionReceipt. No host packet can
-# manufacture that receipt or complete installed admission qualification.
-ORIGINAL_VOLUME_COLLECTION_UNRESOLVED = ("original_namespace_admission_receipt_transport",)
+# Original receipt transport requires independent retained host readback.
+ORIGINAL_VOLUME_COLLECTION_UNRESOLVED: tuple[str, ...] = ()
 
 
 def scope_digest(allowed_paths: list[str]) -> str:
@@ -54,6 +57,166 @@ def scope_digest(allowed_paths: list[str]) -> str:
             {"schema_version": 1, "allowed_paths": sorted(allowed_paths)}, sort_keys=True
         ).encode()
     )
+
+
+def prepare_codex_attempt(
+    store: "CoordinatorStore",
+    *,
+    project_id: str,
+    attempt: Attempt,
+    current: Binding,
+    identity: CodexIdentity,
+    expected_configuration: str,
+    initial: FrozenCandidate,
+    candidate: Path,
+    allowed_paths: list[str],
+    token: str,
+) -> CodexRequest:
+    """Persist one checked intent and return inert first-runtime contract data.
+
+    The external adapter must acknowledge its retained handle before collection.
+    This operation does not launch a process or supply operational admission.
+    Outstanding or terminal attempts require inspection, never automatic retry.
+    """
+    from crewshal.candidate import _root, _scan
+
+    request = prepare_codex_contract(
+        attempt=attempt,
+        current=current,
+        identity=identity,
+        task=_stored_task(store, attempt.run_id),
+    )
+    with store.transaction():
+        store._lease(attempt.run_id, token)
+        run, _ = store.get("run", attempt.run_id, Run)
+        model, _ = store.get("project", project_id, ProjectModel)
+        if (
+            run is None
+            or run.state != "ready"
+            or run.binding != request.binding
+            or model is None
+            or model_digest(model) != current.model
+            or not model.facts
+            or model.unresolved
+            or not any(
+                fact.kind == "boundary" and fact.decision == "confirmed" for fact in model.facts
+            )
+            or identity.configuration != expected_configuration
+            or current.candidate != record_digest(initial)
+            or current.scope != scope_digest(allowed_paths)
+        ):
+            raise ValueError("current confirmed model, request, snapshot, or scope differs")
+        if not any(
+            approval.run_id == run.id and approval.binding == current
+            for approval in store.records("approval", Approval)
+        ):
+            raise ValueError("current owner approval required before intent")
+        if any(item.run_id == run.id for item in store.records("attempt", Attempt)):
+            raise ValueError("existing attempt requires inspection; automatic retry is disabled")
+        root = _root(candidate)
+        if root.is_relative_to(store.directory) or store.directory.is_relative_to(root):
+            raise ValueError("candidate must exclude coordinator state")
+        if _scan(root)[0] != initial:
+            raise ValueError("initial candidate changed before intent")
+        # Recheck the stored task while the transaction owns the snapshot.
+        if request.requirement != _stored_task(store, run.id).requirement:
+            raise ValueError("stored task changed before intent")
+        store._put("attempt", attempt.id, attempt, 0)
+    return request
+
+
+def _stored_task(store: "CoordinatorStore", run_id: str) -> Task:
+    run, _ = store.get("run", run_id, Run)
+    task, _ = store.get("task", run.task_id if run is not None else "", Task)
+    if run is None or task is None or record_digest(task) != run.binding.task:
+        raise ValueError("current stored task required")
+    return task
+
+
+def capture_collected_check(
+    store: "CoordinatorStore",
+    *,
+    collection_id: str,
+    current: Binding,
+    check_id: str,
+    observed: CheckDefinition,
+    observation: ProcessObservation,
+    stdout: bytes,
+    stderr: bytes,
+    candidate_root: Path,
+    environment: str,
+    toolchain: str,
+    credential_free: bool,
+    network_disabled: bool,
+    expected_run_version: int,
+    token: str,
+) -> Evidence:
+    """Capture external validation against the stored task and frozen candidate.
+
+    Resolve approved definitions from coordinator state, never worker output.
+    Capture and the validating transition commit together after final readback.
+    A failed transaction retains private artifacts for inspection without replay.
+    """
+    from crewshal.candidate import _root, _scan, validator_evidence
+    from crewshal.durable import Conflict
+
+    with store.transaction():
+        collection, _ = store.get("collection", collection_id, CodexCollection)
+        if collection is None or collection.frozen is None:
+            raise ValueError("completed frozen collection required")
+        store._lease(collection.run_id, token)
+        run, version = store.get("run", collection.run_id, Run)
+        if type(expected_run_version) is not int or version != expected_run_version:
+            raise Conflict("validator capture state version changed")
+        attempt, _ = store.get("attempt", collection.outcome.attempt.id, Attempt)
+        task = _stored_task(store, collection.run_id)
+        if (
+            run is None
+            or run.state not in {"frozen", "validating"}
+            or run.binding != current
+            or collection.binding != current
+            or attempt is None
+            or attempt.binding != current
+            or attempt.state != "completed"
+            or collection.outcome.status != "completed"
+        ):
+            raise ValueError("validation requires current completed collection and run")
+        checks = [check for check in task.checks if check.id == check_id]
+        if len(checks) != 1:
+            raise ValueError("check is not in the approved task")
+        if any(
+            item.run_id == run.id and item.gate == f"check:{check_id}"
+            for item in store.records("evidence", Evidence)
+        ):
+            raise ValueError("check already captured; automatic revalidation is disabled")
+        for fingerprint in (collection.stdout, collection.stderr, record_digest(collection)):
+            store._verify_artifact(fingerprint)
+        evidence = validator_evidence(
+            collection.frozen,
+            candidate_root,
+            current,
+            checks[0],
+            observed,
+            observation,
+            stdout,
+            stderr,
+            environment=environment,
+            toolchain=toolchain,
+            credential_free=credential_free,
+            network_disabled=network_disabled,
+            evidence_id="validator:" + digest((attempt.id + ":" + check_id).encode()),
+            run_id=run.id,
+            attempt_id=attempt.id,
+        )
+        store._artifact(digest(stdout), stdout)
+        store._artifact(digest(stderr), stderr)
+        store._put("evidence", evidence.id, evidence, 0)
+        if run.state == "frozen":
+            updated = Run.model_validate({**run.model_dump(), "state": "validating"})
+            store._put("run", run.id, updated, version)
+        if _scan(_root(candidate_root))[0] != collection.frozen:
+            raise ValueError("frozen candidate changed during validator capture")
+        return evidence
 
 
 class CodexCollection(Record):
@@ -197,9 +360,14 @@ def _collect_codex_attempt_locked(
         if (
             type(frozen_owner) is not OriginalVolumeFreeze
             or frozen_owner.installation.growth.store is not store
-            or getattr(frozen_owner.installation, "_freeze", None) is not frozen_owner
-            or str(candidate) != frozen_owner.installation.production.root + "/candidate-upper"
-            or str(frozen_target) != frozen_owner.installation.production.root + "/validator-frozen"
+            or getattr(
+                getattr(frozen_owner.lifetime, "lane_context", None) or frozen_owner.installation,
+                "_freeze",
+                None,
+            )
+            is not frozen_owner
+            or str(candidate) != frozen_owner.projection_root + "/candidate-upper"
+            or str(frozen_target) != frozen_owner.projection_root + "/validator-frozen"
         ):
             raise ValueError("collection requires original observer/store/volume custody")
         frozen_owner.verify_projection()
@@ -356,10 +524,16 @@ def collect_original_volume_codex(
         if (
             type(store) is not CoordinatorStore
             or bridge.installation.growth.store is not store
-            or getattr(bridge.installation, "_bridge", None) is not bridge
+            or getattr(
+                getattr(bridge, "lane_context", None) or bridge.installation,
+                "_bridge",
+                None,
+            )
+            is not bridge
         ):
             raise ValueError("original observer store/bridge custody differs")
         bridge.verify_capture()
+        bridge.verify_admission()
         dispatch = CodexDispatch.model_validate_json(dispatch.model_dump_json())
         request, configuration = dispatch.request, dispatch.configuration
         subscription = configuration.native_interface == "app_server_stdio"
@@ -414,6 +588,7 @@ def collect_original_volume_codex(
                     binding=request.binding,
                     linux_envelope=configuration.linux_envelope,
                     app_server_profile=configuration.app_server_profile,
+                    lane_id=configuration.lane_id,
                 )
                 or request.identity.configuration != record_digest(configuration)
                 or dispatch.qualification.configuration != request.identity.configuration
@@ -460,8 +635,8 @@ def collect_original_volume_codex(
                 expected_attempt_version=expected_attempt_version,
                 token=token,
                 initial=initial,
-                candidate=Path(bridge.installation.production.root + "/candidate-upper"),
-                frozen_target=Path(bridge.installation.production.root + "/validator-frozen"),
+                candidate=Path(frozen.projection_root + "/candidate-upper"),
+                frozen_target=Path(frozen.projection_root + "/validator-frozen"),
                 allowed_paths=allowed_paths,
                 identity=dispatch.request.identity,
                 expected_configuration=record_digest(dispatch.configuration),
@@ -471,6 +646,19 @@ def collect_original_volume_codex(
                 frozen_owner=frozen,
             )
             bridge.verify_capture()
+            from crewshal.admission import NativeAdmissionRecord
+
+            admission = NativeAdmissionRecord(
+                id=f"admission:{digest(attempt.id.encode())}",
+                run_id=run.id,
+                attempt_id=attempt.id,
+                handle=attempt.handle,
+                dispatch=record_digest(dispatch),
+                receipt=bridge.verify_admission(),
+            )
+            admission_fingerprint = record_digest(admission)
+            store._artifact(admission_fingerprint, admission.model_dump_json().encode())
+            store._put("admission", admission.id, admission, 0)
             receipt = SupervisionReceipt(
                 id=f"supervision:{digest(attempt.id.encode())}",
                 run_id=run.id,
@@ -479,9 +667,7 @@ def collect_original_volume_codex(
                 pid=bridge.native.spec.pid,
                 dispatch=record_digest(dispatch),
                 collection=record_digest(collection),
-                # Missing original namespace receipt remains explicit. Actual
-                # host custody cannot substitute for its admission identity.
-                admission=None,
+                admission=admission_fingerprint,
                 initial=captured.initial,
                 final=captured.final,
                 observation=captured.observation,
@@ -502,14 +688,92 @@ def collect_original_volume_codex(
                 evidence = Evidence.model_validate(
                     {
                         **evidence.model_dump(),
-                        "artifacts": sorted({*evidence.artifacts, fingerprint}),
+                        "artifacts": sorted(
+                            {*evidence.artifacts, fingerprint, admission_fingerprint}
+                        ),
                     }
                 )
                 store._put("evidence", evidence.id, evidence, version)
             bridge.verify_capture()
+            bridge.verify_admission()
             frozen.verify_projection()
             return collection
     except BaseException as error:
         bridge.failed = True
         bridge.installation.reservation._retain_installation_refusal(error)
         raise
+
+
+def capture_original_validator_evidence(
+    custody: "ValidatorBridgeCustody", collection: CodexCollection, approvedcheck: CheckDefinition
+) -> Evidence:
+    """Derive a check record from original terminal custody and retained projection."""
+    from crewshal.candidate import _validator_evidence_record
+    from crewshal.durable import CoordinatorStore
+    from crewshal.linux_bridge import ValidatorBridgeCustody
+    from crewshal.linux_freeze import OriginalVolumeFreeze
+    from crewshal.linux_validator import validator_toolchain_digest
+
+    if (
+        type(custody) is not ValidatorBridgeCustody
+        or type(collection) is not CodexCollection
+        or type(approvedcheck) is not CheckDefinition
+    ):
+        raise ValueError("original validator custody and exact collection/check required")
+    bridge, captured = custody.bridge, custody.captured
+    frozen = bridge.freeze
+    store = bridge.installation.growth.store
+    if type(store) is not CoordinatorStore or type(frozen) is not OriginalVolumeFreeze:
+        raise ValueError("original validator requires retained installation/store/projection")
+    custody.verify_capture()
+    bridge.verify_capture()
+    bridge.verify_admission()
+    frozen.verify_projection()
+    recorded, _ = store.get("collection", collection.id, CodexCollection)
+    run, _ = store.get("run", collection.run_id, Run)
+    attempt, _ = store.get("attempt", collection.outcome.attempt.id, Attempt)
+    task, _ = store.get("task", run.task_id if run is not None else "", Task)
+    configuration = bridge.lifetime.controls.configuration
+    if (
+        recorded != collection
+        or run is None
+        or attempt is None
+        or task is None
+        or collection.outcome.status != "completed"
+        or collection.frozen != frozen.manifest
+        or collection.binding.candidate != record_digest(frozen.manifest)
+        or run.binding != collection.binding
+        or attempt.binding != collection.binding
+        or attempt.role != "implementation"
+        or attempt.run_id != run.id
+        or record_digest(task) != collection.binding.task
+        or task.checks != [approvedcheck]
+        or approvedcheck.cwd != "."
+        or approvedcheck.argv != configuration.validator_argv
+        or approvedcheck.argv != custody.observed_argv
+        or approvedcheck.environment != digest(b"")
+        or custody.observed_environment != approvedcheck.environment
+        or approvedcheck.toolchain != custody.observed_toolchain
+        or custody.observed_toolchain
+        != validator_toolchain_digest(
+            bridge.installation.production._root_manifest, configuration.validator_argv
+        )
+        or custody.proc.spec.configuration != record_digest(configuration)
+        or collection.expected_configuration != record_digest(configuration)
+        or captured.overflow
+        or captured.stop_error
+    ):
+        raise ValueError("original validator check, task, collection, or observed identity differs")
+    evidence = _validator_evidence_record(
+        collection.binding,
+        approvedcheck,
+        captured.observation,
+        captured.stdout,
+        captured.stderr,
+        evidence_id="validator:" + digest((attempt.id + ":" + approvedcheck.id).encode()),
+        run_id=run.id,
+        attempt_id=attempt.id,
+    )
+    custody.verify_capture()
+    frozen.verify_projection()
+    return evidence

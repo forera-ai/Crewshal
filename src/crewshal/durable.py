@@ -11,6 +11,7 @@ from typing import TYPE_CHECKING, Iterator, NoReturn, TypeVar
 
 if TYPE_CHECKING:
     from crewshal.linux_setup import OwnedStorageReservation
+    from crewshal.linux_freeze import OriginalVolumeFreeze
 
 from crewshal.contracts import (
     Approval,
@@ -26,6 +27,7 @@ from crewshal.contracts import (
     Usage,
     Verdict,
     Waiver,
+    BuildDerivationRecord,
     cumulative_usage,
     record_digest,
 )
@@ -58,6 +60,7 @@ TYPES: dict[str, type[Contract]] = {
     "admission": NativeAdmissionRecord,
     "storage_capacity": StorageCapacityDomain,
     "storage_installation": StorageInstallationCharge,
+    "bootstrap_build": BuildDerivationRecord,
 }
 
 
@@ -1247,6 +1250,7 @@ class CoordinatorStore:
         token: str,
         *,
         candidate_root: Path | None = None,
+        frozen_owner: "OriginalVolumeFreeze | None" = None,
     ) -> Verdict:
         with self.transaction():
             self._lease(run_id, token)
@@ -1265,11 +1269,42 @@ class CoordinatorStore:
             if collections:
                 from crewshal.candidate import _root, _scan
 
-                if len(collections) != 1 or candidate_root is None:
+                if len(collections) != 1 or (candidate_root is None) == (frozen_owner is None):
                     raise ValueError(
                         "collected implementation requires exact frozen candidate readback"
                     )
                 collection = collections[0]
+                if frozen_owner is not None:
+                    from crewshal.linux_freeze import OriginalVolumeFreeze
+                    from crewshal.linux_bridge import StoppedNativeBridge
+                    from crewshal.linux_setup import retained_setup_scope
+
+                    if type(frozen_owner) is not OriginalVolumeFreeze:
+                        raise ValueError("original frozen verdict custody required")
+                    installation = frozen_owner.installation
+                    reservation = installation.reservation
+                    owner_scope = (
+                        retained_setup_scope(reservation, frozen_owner.lifetime)
+                        if getattr(reservation, "_lane_contexts", None) is not None
+                        else installation
+                    )
+                    bridge = getattr(owner_scope, "_bridge", None)
+                    if (
+                        installation.growth.store is not self
+                        or getattr(owner_scope, "_freeze", None) is not frozen_owner
+                        or type(bridge) is not StoppedNativeBridge
+                        or bridge.freeze is not frozen_owner
+                        or bridge.native_capture.observation != collection.observation
+                        or bridge.native.spec.configuration != collection.expected_configuration
+                    ):
+                        raise ValueError("original frozen verdict store or collection differs")
+                    bridge.verify_capture()
+                    bridge.verify_admission()
+                    frozen_owner.verify_projection()
+                    observed_frozen = frozen_owner.manifest
+                else:
+                    assert candidate_root is not None
+                    observed_frozen = _scan(_root(candidate_root))[0]
                 attempt, _ = self.get("attempt", collection.outcome.attempt.id, Attempt)
                 expected_attempt = Attempt.model_validate(
                     {
@@ -1282,7 +1317,7 @@ class CoordinatorStore:
                     or collection.frozen is None
                     or collection.outcome.status != "completed"
                     or attempt != expected_attempt
-                    or _scan(_root(candidate_root))[0] != collection.frozen
+                    or observed_frozen != collection.frozen
                 ):
                     raise ValueError("collected implementation or frozen candidate changed")
                 for collection_fingerprint in (

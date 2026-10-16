@@ -1,0 +1,2950 @@
+{
+  "acceptance": {
+    "actual_enabled_file_tools": "not run",
+    "actual_frozen_candidate": "not run",
+    "credential_free_validator": "not run",
+    "original_idle_retention": "not run",
+    "twenty_cases_twice": "not run"
+  },
+  "apparmor_revision_continuation": {
+    "actual_progress": {
+      "actual_device_login": "not run",
+      "actual_live_turn": "not run",
+      "actual_qualification": "not run",
+      "fixture_seed_and_readback": "returned before policy open",
+      "installed_policy_open": "passed before the new bounded policy-load child",
+      "memory": {
+        "/sys/fs/cgroup/crewshal.slice/crewshal-2d.slice/crewshal-2d-20261015v24.slice": {
+          "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+          "memory.max": "805306368\n",
+          "memory.peak": "121405440\n",
+          "pids.events": "max 0\n"
+        },
+        "/sys/fs/cgroup/crewshal.slice/crewshal-2d.slice/crewshal-2d-20261015v24.slice/crewshal-2d-20261015v24-observer.service": {
+          "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+          "memory.max": "134217728\n",
+          "memory.peak": "93913088\n",
+          "pids.events": "max 0\n"
+        }
+      }
+    },
+    "after_fix": {
+      "errors": 0,
+      "failures": 0,
+      "focused_tests": 41,
+      "installed_tests": 1220,
+      "skipped": 0,
+      "source_tests": 1220
+    },
+    "automatic_retries": 0,
+    "before_fix": {
+      "errors": 2,
+      "failures": 0,
+      "new_regression_methods": 2
+    },
+    "correction": "Use the existing RetainedAppArmorExport._revision reader at all four operational AppArmor revision sites. It handles EAGAIN after nonempty bounded data, checks AppArmorfs, and validates the revision. Keep the generic proc reader unchanged. Preserve comparison of before and after revisions.",
+    "counter_resets": 0,
+    "exact_existing_reader_probe": {
+      "compilers_executed": false,
+      "existing_exact_reader_revision": 269,
+      "policy_loaded": false
+    },
+    "existing_combined_reserved_bytes_each": 188978561024,
+    "failure": {
+      "errno": 11,
+      "line": 157,
+      "location": "First AppArmor namespace revision read before policy loading.",
+      "observer_pid": 29199,
+      "original_public_refusal": {
+        "execution_allowed": false,
+        "failure_causes": [
+          {
+            "errno": null,
+            "line": 1704,
+            "source": "linux_operational.py",
+            "type": "OperationalRefusal"
+          },
+          {
+            "errno": null,
+            "line": 669,
+            "source": "linux_storage.py",
+            "type": "StorageChildRefusal"
+          }
+        ],
+        "failure_errno": null,
+        "failure_line": 1704,
+        "failure_source": "linux_operational.py",
+        "failure_type": "OperationalRefusal",
+        "phase": "2D",
+        "reusable": false,
+        "schema_version": 1,
+        "stage": "refused_with_original_custody",
+        "storage_child_failure": {
+          "errno": 11,
+          "line": 157,
+          "source": "admission.py",
+          "type": "BlockingIOError"
+        }
+      },
+      "source": "admission.py",
+      "type": "BlockingIOError"
+    },
+    "kernel_source": "https://github.com/torvalds/linux/blob/v7.0/security/apparmor/apparmorfs.c#L584",
+    "new_aggregate": "crewshal-2d-20261015v25.slice",
+    "new_observer": "crewshal-2d-20261015v25-observer.service",
+    "outputs": {
+      "crewshal-bootstrap": {
+        "bytes": 669328,
+        "sha256": "ab3a0bec59dfcb16d5469b10e027c54697dc47b43309bf121261fb846b01d576"
+      },
+      "lost+found": {
+        "directory": true,
+        "entries": [],
+        "nlink": 2
+      },
+      "policy.binary": {
+        "bytes": 7348,
+        "sha256": "5a9ded6dc15a10b869cbbbcbc852cd5606532b8f117f9202c97adde1945f2ae6"
+      },
+      "storage-audit.json": {
+        "bytes": 3537,
+        "sha256": "ad78dfa709dedd7bb849abff1af6d587de57dc1af8fbeced3ddb4274c9eac8f3"
+      }
+    },
+    "physical_closure": "unknown",
+    "proposal": "docs/PHASE-2D-APPARMOR-REVISION-CONTINUATION-2026-10-15.md",
+    "proposed_combined_reserved_bytes_each": 197568495616,
+    "proposed_nominal_memory_charge_bytes": 18522046464,
+    "proposed_nominal_tasks": 2944,
+    "read_only_interface_probe": {
+      "first_read": "269\n",
+      "operation": "fresh read-only interface; no policy load",
+      "second_read": {
+        "errno": 11,
+        "type": "BlockingIOError"
+      }
+    },
+    "retained_custody": {
+      "common_limits_equal": true,
+      "common_memory_events": "low 0\nhigh 0\nmax 7410\noom 1\noom_kill 1\noom_group_kill 0\nsock_throttled 0\n",
+      "common_memory_events_local": "low 0\nhigh 0\nmax 5715\noom 1\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+      "current_journal_fd_identities_equal": 19,
+      "forwarding": 0,
+      "original_charge_snapshots_verified": 22,
+      "original_observer_custody_loss": 24610
+    },
+    "twenty_second_journal_sha256": "bb950808571b86b3b030b4c8d344353784745f0894554d95536c5ac7b7c059e9",
+    "v27_approval": {
+      "answer": "Approve the exact v27 exception and batch",
+      "approval_date": "2026-10-15",
+      "question_id": "call_f68783ab804d4dadb1787fa44c41d81f",
+      "record_sha256": "1b427675e9e78da5390316f9f234d308cd304654d33cfcd0d284ae90cf8c5914"
+    }
+  },
+  "artifact": {
+    "archive_bytes": 26583040,
+    "archive_sha256": "c565982627f3db67439d297689bf7c71ff608622224e9d2c7faefdfdc7dad395",
+    "batch_sha256": "314865cc42fe02d7b6d5469d4d0538bf051ce5a34578deb06f0d35808d462b4c",
+    "files": 227,
+    "manifest_sha256": "48f0550f49d3db75a1149c999e4aca53cba0659b268057f287050e11c1e0ca55"
+  },
+  "base_revision": "87ed7e6f6c766c7ff2df245ad05569558a9ca3bc",
+  "branch": "codex/phase1-architecture",
+  "build_mapping_continuation": {
+    "actual_common_cpu_ceiling": 1,
+    "actual_common_memory_ceiling": 805306368,
+    "actual_common_swap_ceiling": 0,
+    "actual_common_task_ceiling": 128,
+    "actual_corrected_build_reader": {
+      "actual_build_reader_ranges": 33,
+      "all_frozen_readonly_hashes_passed": true,
+      "compiler_executed": false,
+      "original_stopped_timer_preserved": true,
+      "source_parser": "current shared numeric parser"
+    },
+    "actual_failure": {
+      "compiler_pid": 7168,
+      "compiler_pidfd_number": 468,
+      "compiler_proc_fd_number": 470,
+      "errno": 2,
+      "line": 1128,
+      "observer_pid": 7157,
+      "source": "linux_operational.py",
+      "timer_pid": 7159,
+      "type": "FileNotFoundError"
+    },
+    "additional_compiler_authority": "missing",
+    "additional_retry_authority": "missing",
+    "apparmor_compilers_started": 0,
+    "combined_allocated_reserved_bytes": 51539607552,
+    "combined_logical_reserved_bytes": 51539607552,
+    "combined_nominal_memory_charge": 4831838208,
+    "combined_nominal_task_charge": 768,
+    "compiler_processes_started": 1,
+    "consumed_compiler_state": "zombie retained through original pidfd and proc FD; not reaped or resumed",
+    "new_aggregate": "crewshal-2d-20261013v7.slice",
+    "new_observer": "crewshal-2d-20261013v7-observer.service",
+    "original_fifth_charge": {
+      "allocated_bytes": 8589934592,
+      "configuration_sha256": "2e2afaf143b8e98d88dada60d1bec20197a52d8b7f0122193d641cf8455a2716",
+      "installation": "unknown",
+      "journal_sha256": "737d4446eeeb79f63b710f2e418d2148d0a7b962f1556b0abcb1c61f877c10f7",
+      "logical_bytes": 8589934592,
+      "state": "retained"
+    },
+    "outputs": {
+      "crewshal-bootstrap": 0,
+      "policy.binary": 0,
+      "storage-audit.json": 0
+    },
+    "physical_closure": "unknown",
+    "prior_human_approval": {
+      "answer": "Approve the exact exception and batch",
+      "question_id": "call_87a36c14771e48a8ba9fee3e721322fd",
+      "record_sha256": "58c4ac0819555ba85d9f20a3f5ad2b3f5d490811c6d7070b8326f134897bea71"
+    },
+    "prior_process_custody": "All three current observers and original timers remain retained. Consumed compiler custody remains retained. Accepted loss of older custody remains recorded.",
+    "proposal": "docs/PHASE-2D-BUILD-MAPPING-CONTINUATION-2026-10-13.md"
+  },
+  "candidate_version": "0.13.0",
+  "child_failure_diagnostic_continuation": {
+    "actual_progress": {
+      "actual_device_login": "not run",
+      "actual_live_turn": "not run",
+      "actual_qualification": "not run",
+      "domain_loop": {
+        "block_size": 4096,
+        "status": [
+          66306,
+          1055015,
+          0,
+          0,
+          1073741824,
+          107,
+          0,
+          0,
+          16
+        ],
+        "target": "/dev/loop107"
+      },
+      "observer_memory_current": 61251584,
+      "observer_memory_events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+      "observer_memory_peak": 94113792,
+      "observer_pids_events": "max 0\n"
+    },
+    "after_fix": {
+      "errors": 0,
+      "failures": 0,
+      "focused_tests": 215,
+      "installed_tests": 1204,
+      "skipped": 0,
+      "source_tests": 1204
+    },
+    "automatic_retries": 0,
+    "before_fix": {
+      "error_records_including_subtests": 19,
+      "failures": 0,
+      "method": "Fresh tests against the preceding installed v23 package lack the diagnostic interface.",
+      "tests": 7
+    },
+    "correction": "A failed storage child emits at most 512 bytes of typed failure coordinates. It excludes exception messages, local values, full paths, and unknown exception class names. Strict parent parsing retains a refusal. The original observer exposes these untrusted coordinates in its denial record. No diagnostic grants admission or success.",
+    "counter_resets": 0,
+    "eighteenth_journal_sha256": "b4e485e6f9c458d699a69f76d2b907bac715620fa18c9358010723b78f6b1747",
+    "existing_combined_reserved_bytes_each": 154618822656,
+    "failure": {
+      "diagnostic": "storage child reported unknown readback",
+      "internal_diagnostic": "Unavailable. The preceding FD correction did not resolve actual initial readback. No additional cause is claimed.",
+      "line": 572,
+      "observer_pid": 25399,
+      "source": "linux_storage.py",
+      "verified_parent_frames": [
+        "LinuxPhysicalOwner.__init__",
+        "LinuxPhysicalOwner.readback",
+        "BoundedStorageJobs.run"
+      ]
+    },
+    "new_aggregate": "crewshal-2d-20261015v21.slice",
+    "new_observer": "crewshal-2d-20261015v21-observer.service",
+    "outputs": {
+      "crewshal-bootstrap": {
+        "bytes": 669328,
+        "sha256": "ab3a0bec59dfcb16d5469b10e027c54697dc47b43309bf121261fb846b01d576"
+      },
+      "lost+found": {
+        "directory": true,
+        "entries": [],
+        "nlink": 2
+      },
+      "policy.binary": {
+        "bytes": 7348,
+        "sha256": "5a9ded6dc15a10b869cbbbcbc852cd5606532b8f117f9202c97adde1945f2ae6"
+      },
+      "storage-audit.json": {
+        "bytes": 3537,
+        "sha256": "ad78dfa709dedd7bb849abff1af6d587de57dc1af8fbeced3ddb4274c9eac8f3"
+      }
+    },
+    "physical_closure": "unknown",
+    "proposal": "docs/PHASE-2D-CHILD-FAILURE-CONTINUATION-2026-10-15.md",
+    "proposed_combined_reserved_bytes_each": 163208757248,
+    "proposed_nominal_memory_charge_bytes": 15300820992,
+    "proposed_nominal_tasks": 2432,
+    "remaining_actual_cause": "unknown; next failed child must report source, line, type, and errno when available",
+    "retained_custody": {
+      "common_limits_equal": true,
+      "common_memory_events": "low 0\nhigh 0\nmax 4492\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+      "common_memory_events_local": "low 0\nhigh 0\nmax 2797\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+      "current_journal_fd_identities_equal": 16,
+      "forwarding": 0,
+      "original_charge_snapshots_verified": 18
+    },
+    "v23_approval": {
+      "answer": "Approve the exact v23 exception and batch",
+      "question_id": "call_959e21a81ecf4fa7b4e77f13b4ffedc7",
+      "record_sha256": "ad1b63004d7922bd5fcbf162307bb0374c23f3dda01f43bb3e1c03f1a04024a3"
+    }
+  },
+  "commands": [
+    {
+      "argv": [
+        "sudo",
+        "-n",
+        "env",
+        "-i",
+        "/usr/bin/python3.12",
+        "-I",
+        "-S",
+        "-B",
+        "-c",
+        "\"\"\"Receive one frozen owner input archive after separate operational approval.\"\"\"\n\nimport hashlib\nimport json\nimport os\nimport resource\nimport signal\nimport sys\n\n\nPATH = \"/var/lib/crewshal-phase2d-owner-inputs-v26.tar\"\nBYTES = 26583040\nSHA256 = \"c565982627f3db67439d297689bf7c71ff608622224e9d2c7faefdfdc7dad395\"\n\n\ndef upload() -> None:\n    # CPython can add this locale after an empty-environment exec.\n    if os.environ:\n        if (\n            sys.platform != \"linux\"\n            or not sys.flags.isolated\n            or not sys.flags.no_site\n            or not sys.flags.dont_write_bytecode\n            or dict(os.environ) != {\"LC_CTYPE\": \"C.UTF-8\"}\n        ):\n            raise ValueError(\"The isolated entry inherited an environment.\")\n        with open(\"/proc/self/environ\", \"rb\") as inherited:\n            if inherited.read(1):\n                raise ValueError(\"The isolated entry inherited an environment.\")\n        del os.environ[\"LC_CTYPE\"]\n    if sys.platform != \"linux\" or (os.getuid(), os.getgid()) != (0, 0) or os.environ:\n        raise ValueError(\"The isolated Linux root owner entry is required.\")\n    os.umask(0o077)\n    resource.setrlimit(resource.RLIMIT_FSIZE, (33554432, 33554432))\n    signal.alarm(30)\n    fd = os.open(PATH, os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW, 0o400)\n    sha, count = hashlib.sha256(), 0\n    try:\n        while data := sys.stdin.buffer.read(65536):\n            count += len(data)\n            if count > BYTES:\n                raise ValueError(\"The original owner input archive exceeds its exact bound.\")\n            sha.update(data)\n            view = memoryview(data)\n            while view:\n                written = os.write(fd, view)\n                if written <= 0:\n                    raise ValueError(\"The original owner input write is incomplete.\")\n                view = view[written:]\n        os.fsync(fd)\n        if count != BYTES or sha.hexdigest() != SHA256:\n            raise ValueError(\"The original owner input archive bytes differ.\")\n    finally:\n        os.close(fd)\n    signal.alarm(0)\n    print(json.dumps({\"owner_input_bytes\": count, \"sha256\": sha.hexdigest()}))\n\n\nif __name__ == \"__main__\":\n    upload()\n"
+      ],
+      "stdin_sha256": "c565982627f3db67439d297689bf7c71ff608622224e9d2c7faefdfdc7dad395"
+    },
+    {
+      "argv": [
+        "sudo",
+        "-n",
+        "env",
+        "-i",
+        "/usr/bin/python3.12",
+        "-I",
+        "-S",
+        "-B",
+        "-"
+      ],
+      "stdin_sha256": "dee6e9d8363662734e73570ae735f51a0cc61625ec313ef1f153919a740b2e6a"
+    },
+    {
+      "argv": [
+        "sudo",
+        "-n",
+        "env",
+        "-i",
+        "/usr/bin/python3.12",
+        "-I",
+        "-S",
+        "-B",
+        "-c",
+        "from pathlib import Path; p=Path('/proc/sys/net/ipv4/ip_forward'); assert p.read_text() == '0\\n'; p.write_text('1\\n'); assert p.read_text() == '1\\n'"
+      ],
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "sudo",
+        "-n",
+        "/usr/bin/systemctl",
+        "start",
+        "crewshal-2d-20261015v26-observer.service"
+      ],
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "sudo",
+        "-n",
+        "/usr/bin/journalctl",
+        "--unit",
+        "crewshal-2d-20261015v26-observer.service",
+        "--output=cat",
+        "--no-pager"
+      ],
+      "stdin_sha256": null
+    },
+    {
+      "argv": [
+        "sudo",
+        "-n",
+        "env",
+        "-i",
+        "/usr/bin/python3.12",
+        "-I",
+        "-S",
+        "-B",
+        "-c",
+        "from pathlib import Path; p=Path('/proc/sys/net/ipv4/ip_forward'); assert p.read_text() in ('0\\n','1\\n'); p.write_text('0\\n'); assert p.read_text() == '0\\n'"
+      ],
+      "stdin_sha256": null
+    }
+  ],
+  "compiler_recipe": {
+    "all_resolved_tools_already_pinned": true,
+    "argv": [
+      "/usr/bin/aarch64-linux-gnu-gcc-15",
+      "-B/usr/bin/",
+      "-pipe",
+      "-static",
+      "-s",
+      "-O2",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-nostdinc",
+      "-isystem",
+      "/usr/lib/gcc/aarch64-linux-gnu/15/include",
+      "-isystem",
+      "/usr/include/aarch64-linux-gnu",
+      "-isystem",
+      "/usr/include",
+      "-x",
+      "c",
+      "-o",
+      "@original-helper-output",
+      "-"
+    ],
+    "change": "Add only -B/usr/bin/ to the compiler argument array.",
+    "documentation": "https://gcc.gnu.org/onlinedocs/gcc/Directory-Options.html",
+    "environment": {
+      "TMPDIR": "/run/crewshal-phase2d-compiler-v1/volume"
+    },
+    "linker_identity_readback": {
+      "/usr/bin/aarch64-linux-gnu-ld": {
+        "exists": true,
+        "gid": 0,
+        "links": 1,
+        "mode": 493,
+        "resolved": "/usr/bin/aarch64-linux-gnu-ld.bfd",
+        "sha256": "95d27d6b6dc53580345a26f2be30ec0f967633d24d9e475ab323ac81711eb4b5",
+        "symlink": true,
+        "uid": 0
+      },
+      "/usr/bin/aarch64-linux-gnu-ld.bfd": {
+        "exists": true,
+        "gid": 0,
+        "links": 1,
+        "mode": 493,
+        "resolved": "/usr/bin/aarch64-linux-gnu-ld.bfd",
+        "sha256": "95d27d6b6dc53580345a26f2be30ec0f967633d24d9e475ab323ac81711eb4b5",
+        "symlink": false,
+        "uid": 0
+      },
+      "/usr/bin/ld": {
+        "exists": true,
+        "gid": 0,
+        "links": 1,
+        "mode": 493,
+        "resolved": "/usr/bin/aarch64-linux-gnu-ld.bfd",
+        "sha256": "95d27d6b6dc53580345a26f2be30ec0f967633d24d9e475ab323ac81711eb4b5",
+        "symlink": true,
+        "uid": 0
+      },
+      "/usr/libexec/gcc/aarch64-linux-gnu/15/collect2": {
+        "exists": true,
+        "gid": 0,
+        "links": 1,
+        "mode": 493,
+        "resolved": "/usr/libexec/gcc/aarch64-linux-gnu/15/collect2",
+        "sha256": "8bf651c6364db9f58bea29d8782c6436555f919201eb1f06aa24e090eae34442",
+        "symlink": false,
+        "uid": 0
+      }
+    }
+  },
+  "configuration_sha256": "fe9fca8dc6d55ff3a06242099d6d9931d151d4762703d8b53aa0c959e470f7b8",
+  "copy_accounting_continuation": {
+    "actual_allocated_bytes": 1613824,
+    "actual_progress": {
+      "actual_device_login": "not run",
+      "actual_live_turn": "not run",
+      "actual_qualification": "not run",
+      "partial_root_retained": true,
+      "physical_domain_prepared": true,
+      "primary_and_auxiliary_backings_created": true
+    },
+    "after_fix": {
+      "errors": 0,
+      "failures": 0,
+      "focused_tests": 64,
+      "installed_tests": 1182,
+      "skipped": 0,
+      "source_tests": 1182
+    },
+    "automatic_retries": 0,
+    "before_fix": {
+      "errors": 1,
+      "failures": 1,
+      "tests": 2
+    },
+    "compiler_attempts": "Both v18 compiler attempts remain consumed. No preceding output is reused.",
+    "correction": "Retain the existing directory allowance. Sum actual st_blocks allocation for every copied file, including filesystem metadata. Enforce the unchanged 469762048-byte root ceiling. Preserve input ownership, exact bytes, file size, inode, geometry, and exclusive creation checks.",
+    "existing_combined_reserved_bytes_each": 120259084288,
+    "failure": {
+      "diagnostic": "storage child reported unknown readback",
+      "internal_diagnostic": "The child suppresses its exception text. Read-only partial-file data and the exact frozen source identify the failing allocation condition.",
+      "line": 572,
+      "observer_pid": 19621,
+      "source": "linux_storage.py",
+      "type": "ValueError"
+    },
+    "fourteenth_journal_sha256": "b28e2c2bd2446caf7b428ce24a7662d0e8b4878a2689ff8f6be81f1d23a0e967",
+    "metadata_difference_bytes": 4096,
+    "new_aggregate": "crewshal-2d-20261015v16.slice",
+    "new_observer": "crewshal-2d-20261015v16-observer.service",
+    "outputs": {
+      "crewshal-bootstrap": {
+        "bytes": 669328,
+        "sha256": "ab3a0bec59dfcb16d5469b10e027c54697dc47b43309bf121261fb846b01d576"
+      },
+      "lost+found": {
+        "directory": true,
+        "entries": [],
+        "nlink": 2
+      },
+      "policy.binary": {
+        "bytes": 7348,
+        "sha256": "5a9ded6dc15a10b869cbbbcbc852cd5606532b8f117f9202c97adde1945f2ae6"
+      },
+      "storage-audit.json": {
+        "bytes": 3537,
+        "sha256": "ad78dfa709dedd7bb849abff1af6d587de57dc1af8fbeced3ddb4274c9eac8f3"
+      }
+    },
+    "partial_file": {
+      "blocks": 3152,
+      "extent_count": 1,
+      "extent_data_bytes": 1609728,
+      "extents": [
+        [
+          0,
+          2097152,
+          1609728,
+          0,
+          0,
+          4097,
+          0,
+          0,
+          0
+        ]
+      ],
+      "flags": 0,
+      "sha256": "01c006568543d6b6ab9f0a57dd44b9d779d1edc437a5f5d2db0215887c19dbeb",
+      "size": 1609176,
+      "xattrs": []
+    },
+    "physical_closure": "unknown",
+    "proposal": "docs/PHASE-2D-COPY-ACCOUNTING-CONTINUATION-2026-10-15.md",
+    "proposed_combined_reserved_bytes_each": 128849018880,
+    "proposed_nominal_memory_charge_bytes": 12079595520,
+    "proposed_nominal_tasks": 1920,
+    "rounded_data_bytes": 1609728,
+    "v18_approval": {
+      "answer": "Approve the exact v18 exception and batch",
+      "approval_date": "2026-10-15",
+      "question_id": "call_92bf24b234614ca9a11384c4de7dbd3f",
+      "record_sha256": "4955286ea54809f52ee63db3565614071a4bbede5d20fdff0410afa42fac0bee"
+    }
+  },
+  "development_failures": [
+    {
+      "cause": "The storage test mock replaced unrelated symlink reads.",
+      "check": "initial installed wheel suite",
+      "errors": 48,
+      "resolution": "The mock now applies only to controlled proc FD paths."
+    },
+    "The initial owner upload entry refused CPython-generated LC_CTYPE before any file creation. Exact kernel inherited bytes were empty. Both diagnostic suites then found one old error-message assertion. The invariant test and both complete suites now pass.",
+    "The approved v8 batch refused the 116-link Ubuntu env executable before compiler process creation. It retains its consumed build admission, fresh compiler volume, original timer, handles, full charge, and unknown installation. The new batch supplies exact single-link private bytes through a read-only unit binding.",
+    "The v9 C executable reached its original trace stop. A separate raw mapping reader then used the padded maps spelling and refused before detachment or compilation output. The source now uses the shared strict numeric mapping parser. All seven production map_files access sites use that parser. Actual corrected build-reader readback passes 33 retained ranges without another compiler execution. The consumed C process, outputs, full charge, timer, handles, clock, and unknown result remain retained.",
+    "The first local wheel build lacked setuptools in the project virtual environment. The second build used the exact cached setuptools 80.9.0 wheel with network access denied. Both fresh complete suites pass.",
+    "The approved v10 C compilation reached the linker, then collect2 reported that it could not find ld. The new recipe adds -B/usr/bin/. Read-only inspection confirms that ld resolves to the already pinned linker. No additional compiler execution supplied this preparation evidence.",
+    "The approved v11 C build produced its helper. The AppArmor compiler then rejected the lowercase --include option and exited 1. The source validator and new recipe now use --Include. Every long option matches the pinned source table. Two new regressions fail before the fix; all 18 focused tests and both 1163-test suites pass afterward.",
+    "The approved v12 parser treated - as a filename and exited 2. The pinned parser reads stdin only without positional profile filenames. The source now requires that form and rejects a dash or repeated parser filename. Three new regressions reproduce one error and two failures before correction. All 21 focused tests and both fresh 1166-test suites pass afterward.",
+    {
+      "cause": "Two multiline qualification mock targets still named the removed module-level select import. The first text correction missed their indentation.",
+      "check": "Readiness mock migration focused checks",
+      "errors": 2,
+      "resolution": "The targets now patch the shared readiness call. Both fresh complete suites pass."
+    },
+    {
+      "cause": "The current-source validator correctly refused the preceding plan after the source changed.",
+      "check": "Read-only inspection of the preceding frozen envelope",
+      "resolution": "The diagnostic read the original context from the hash-verified frozen JSON. It performed no preparation or execution."
+    },
+    {
+      "cause": "The existing effect-order fixture omitted the newly mandatory formatter binding.",
+      "check": "Initial v18 full source suite",
+      "failures": 1,
+      "resolution": "The fixture now supplies the exact synthetic formatter entry and original source. Both final complete suites pass."
+    },
+    {
+      "cause": "The fixture read current repository source while using the preceding installed package.",
+      "check": "Initial predecessor regression comparison",
+      "resolution": "The isolated comparison reads that installed package source. Both targeted checks then fail because missing bindings are accepted."
+    },
+    {
+      "cause": "The test asserted a bash path absent from its small synthetic fixture.",
+      "check": "First corrected allocation regression",
+      "failures": 1,
+      "resolution": "The assertion now verifies two retained copied files from the actual fixture. All 64 focused checks and both complete suites pass."
+    },
+    {
+      "cause": "The synthetic owner had no reservation, so it did not exercise registered build verification.",
+      "check": "First child custody regression fixture",
+      "resolution": "Both boundary tests now include a synthetic configuration reservation. The child test then reproduces EBADF before correction."
+    },
+    {
+      "cause": "Nine unrelated historical scripts have existing formatting differences.",
+      "check": "Broad formatting check",
+      "resolution": "All 118 current production, acceptance, and new owner script files pass. Historical scripts remain unchanged."
+    },
+    {
+      "cause": "The insertion placed three existing assertions inside the next test.",
+      "check": "First lane geometry regression fixture",
+      "resolution": "Those assertions returned to their original method before the final predecessor comparison. The three methods then record fifteen expected failure subtests and fifteen expected error subtests."
+    },
+    {
+      "cause": "Three fake roles lacked an identity. The initial child wait change also omitted the overall production cap.",
+      "check": "Initial startup-window fixture checks",
+      "resolution": "Roles supply explicit identity seams. Both handoff waits retain the minimum of the original active job deadline and production window."
+    },
+    {
+      "cause": "The test expected thirty-four handoffs. The complete source sequence contains forty.",
+      "check": "Initial fixture-completion count check and source suite",
+      "resolution": "The test now requires fifteen formatter handoffs plus twenty-five file handoffs. Both final complete suites pass 1216 tests."
+    },
+    {
+      "cause": "Original observer 24610 no longer exists. Its timer also no longer exists. The shared parent and its old batch record an OOM kill.",
+      "check": "Initial twenty-charge custody readback",
+      "resolution": "No new batch started. The proposal explicitly requires acceptance of historical custody loss and a 2 GiB shared retention parent. All twenty journal snapshots remain verified."
+    },
+    {
+      "cause": "The local generator read its new output name instead of the preceding input archive.",
+      "check": "First offline v36 generator invocation",
+      "resolution": "The input now names retained v35. No archive was created before correction. All 228 final members pass independent verification."
+    },
+    {
+      "cause": "The checker requested an external native binding as a tar member.",
+      "check": "First offline proposal inventory check",
+      "resolution": "The final check verifies all 228 actual tar members and both installed unit derivations. Native bindings remain separate owner inputs. No v27 guest operation occurred."
+    },
+    {
+      "cause": "The local generator required an older ledger tail.",
+      "check": "First offline v29 ledger assembly",
+      "resolution": "The expected tail now identifies retained v27. No v29 guest operation occurred."
+    }
+  ],
+  "domain_direct_io_continuation": {
+    "actual_effective_direct_io": "Not run. Positive actual kernel readback remains mandatory in the exact new batch.",
+    "after_fix": {
+      "errors": 0,
+      "failures": 0,
+      "focused_tests": 121,
+      "installed_tests": 1191,
+      "skipped": 0,
+      "source_tests": 1191
+    },
+    "automatic_retries": 0,
+    "backing_dio_alignment_readonly": {
+      "dio_memory_alignment": 4,
+      "dio_offset_alignment": 512,
+      "fd_identity": [
+        66306,
+        1054417
+      ],
+      "mask": 14143
+    },
+    "before_fix": {
+      "errors": 1,
+      "failures": 4,
+      "tests": 5
+    },
+    "cache_readonly_snapshot": {
+      "backing_bytes": 1073741824,
+      "backing_cached_bytes": 127778816,
+      "backing_dirty_bytes": 61440,
+      "backing_writeback_bytes": 0,
+      "copied_root_cached_bytes": 0,
+      "copied_root_files": 910,
+      "range": "Each regular file uses its actual nonzero byte length. The preceding empty-range diagnostic was invalid for whole-file measurement and remains local.",
+      "syscall": "cachestat, verified syscall number 451 from the installed UAPI"
+    },
+    "correction": "After original physical-domain loop custody and fixed SET_FD/SET_STATUS64, request a 4096-byte logical block size and direct I/O. Require positive BLKSSZGET and complete LOOP_GET_STATUS64 readback before formatting. Retained physical-domain loop proofs require DIRECT_IO flag 16. Compiler and role loop settings stay unchanged. No buffered fallback, detach, autoclear, reuse, or counter reset is added.",
+    "counter_resets": 0,
+    "existing_combined_reserved_bytes_each": 137438953472,
+    "failure": {
+      "common_parent_memory_events": "low 0\nhigh 0\nmax 3779\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+      "diagnostic": "aggregate has resource-refusal history",
+      "line": 458,
+      "observer_anon_bytes": 49561600,
+      "observer_file_bytes": 75632640,
+      "observer_memory_events": "low 0\nhigh 0\nmax 861\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+      "observer_memory_max": 134217728,
+      "observer_memory_peak": 134217728,
+      "observer_pid": 21410,
+      "oom": 0,
+      "oom_kill": 0,
+      "source": "admission.py",
+      "type": "ValueError"
+    },
+    "kernel_documentation": "https://man7.org/linux/man-pages/man4/loop.4.html",
+    "kernel_source": "https://raw.githubusercontent.com/torvalds/linux/v7.0/drivers/block/loop.c",
+    "kernel_uapi_readonly": [
+      "\tLO_FLAGS_DIRECT_IO\t= 16,",
+      "#define LOOP_SET_STATUS_SETTABLE_FLAGS (LO_FLAGS_AUTOCLEAR | LO_FLAGS_PARTSCAN)",
+      "\t\t\t\t       | LO_FLAGS_PARTSCAN | LO_FLAGS_DIRECT_IO)",
+      "#define LOOP_SET_DIRECT_IO\t0x4C08",
+      "#define LOOP_SET_BLOCK_SIZE\t0x4C09"
+    ],
+    "new_aggregate": "crewshal-2d-20261015v19.slice",
+    "new_observer": "crewshal-2d-20261015v19-observer.service",
+    "outputs": {
+      "crewshal-bootstrap": {
+        "bytes": 669328,
+        "sha256": "ab3a0bec59dfcb16d5469b10e027c54697dc47b43309bf121261fb846b01d576"
+      },
+      "lost+found": {
+        "directory": true,
+        "entries": [],
+        "nlink": 2
+      },
+      "policy.binary": {
+        "bytes": 7348,
+        "sha256": "5a9ded6dc15a10b869cbbbcbc852cd5606532b8f117f9202c97adde1945f2ae6"
+      },
+      "storage-audit.json": {
+        "bytes": 3537,
+        "sha256": "ad78dfa709dedd7bb849abff1af6d587de57dc1af8fbeced3ddb4274c9eac8f3"
+      }
+    },
+    "physical_closure": "unknown",
+    "proposal": "docs/PHASE-2D-DOMAIN-DIRECT-IO-CONTINUATION-2026-10-15.md",
+    "proposed_combined_reserved_bytes_each": 146028888064,
+    "proposed_nominal_memory_charge_bytes": 13690208256,
+    "proposed_nominal_tasks": 2176,
+    "sixteenth_journal_sha256": "60a50e20eb1242227224a1dc3ae1c4c2b2f8384658adf6b0c9f1d1d3fe26c747",
+    "v21_approval": {
+      "answer": "Approve the exact v21 exception and batch",
+      "approval_date": "2026-10-15",
+      "question_id": "call_bc66a65f46274e4c81da6b973757b554",
+      "record_sha256": "0629f34bd651d8c374f578f14ed9647048d9e7bf6be1f57b7bb6e116fe41ca61"
+    }
+  },
+  "expected_file_tools": [
+    "exec_command",
+    "write_stdin",
+    "apply_patch"
+  ],
+  "formatter_continuation": {
+    "after_fix": {
+      "errors": 0,
+      "failures": 0,
+      "focused_tests": 23,
+      "installed_tests": 1168,
+      "skipped": 0,
+      "source_tests": 1168
+    },
+    "automatic_retries": 0,
+    "before_fix": {
+      "errors": 5,
+      "failures": 0,
+      "tests": 2
+    },
+    "compiler_attempts": "Both v13 compiler processes remain consumed. Their outputs remain retained and cannot be reused.",
+    "correction": "Keep the original empty lost+found directory linked. Verify its original FD, linked identity, and empty contents before build, before sealing, and during retained volume readback. Exact volume inventories include this one directory only when the original constructor exists.",
+    "existing_combined_reserved_bytes_each": 77309411328,
+    "failure": {
+      "diagnostic": "original compiler readonly remount refused",
+      "errno": 16,
+      "failure_line": 926,
+      "failure_source": "linux_operational.py",
+      "observer_pid": 11616,
+      "provenance": "Original refusal record and read-only proc FD inventory. Every retained volume handle is read-only. The retained lost+found inode is deleted."
+    },
+    "kernel_rule": "sb_prepare_remount_readonly returns EBUSY for a nonzero s_remove_count.",
+    "kernel_source": "https://raw.githubusercontent.com/torvalds/linux/v7.0/fs/namespace.c",
+    "new_aggregate": "crewshal-2d-20261014v11.slice",
+    "new_observer": "crewshal-2d-20261014v11-observer.service",
+    "ninth_journal_sha256": "52731130c6819aa6338e1137e0da3c6669e0c2c37e92229e0eb651c17f9179d6",
+    "outputs": {
+      "crewshal-bootstrap": {
+        "bytes": 669328,
+        "sha256": "ab3a0bec59dfcb16d5469b10e027c54697dc47b43309bf121261fb846b01d576"
+      },
+      "policy.binary": {
+        "bytes": 7348,
+        "sha256": "5a9ded6dc15a10b869cbbbcbc852cd5606532b8f117f9202c97adde1945f2ae6"
+      },
+      "storage-audit.json": {
+        "bytes": 3537,
+        "sha256": "ad78dfa709dedd7bb849abff1af6d587de57dc1af8fbeced3ddb4274c9eac8f3"
+      }
+    },
+    "physical_closure": "unknown",
+    "proposal": "docs/PHASE-2D-FORMATTER-CONTINUATION-2026-10-14.md",
+    "proposed_combined_reserved_bytes_each": 85899345920,
+    "proposed_nominal_memory_charge_bytes": 8053063680,
+    "proposed_nominal_tasks": 1280,
+    "v13_approval": {
+      "answer": "Approve the exact v13 exception and batch",
+      "question_id": "call_16eb0dc7fc9c4c6ab90ca9994cd21d5c",
+      "record_sha256": "21e81d89f9a4eee0f80b34015bbfd3f3dbb176a55ffd03f19564102a94412e4b"
+    }
+  },
+  "formatter_inventory_continuation": {
+    "actual_progress": {
+      "actual_device_login": "not run",
+      "actual_live_turn": "not run",
+      "actual_qualification": "not run",
+      "compiler_volume_readonly": true,
+      "directory_handoff_completed": true,
+      "final_lanes_bound": true,
+      "high_descriptor_polling_passed": true
+    },
+    "after_fix": {
+      "errors": 0,
+      "failures": 0,
+      "focused_tests": 47,
+      "installed_tests": 1180,
+      "skipped": 0,
+      "source_tests": 1180
+    },
+    "automatic_retries": 0,
+    "before_fix": {
+      "errors": 0,
+      "failures": 2,
+      "method": "Fresh tests use the exact preceding installed package and its own source bytes.",
+      "tests": 2
+    },
+    "compiler_attempts": "Both v17 compiler attempts remain consumed. No preceding output is reused.",
+    "correction": "Bind /usr/sbin/mkfs.ext4 as a real executable inventory file with the existing /usr/sbin/mke2fs hash and original source path. Reject missing, different, non-executable, symlink, or differently sourced formatter bindings during offline assembly, frozen-batch readback, and installation before charging. Keep every production formatter hash, inode, custody, and readonly check.",
+    "dependency_edges": {
+      "/usr/lib/aarch64-linux-gnu/ld-linux-aarch64.so.1": [],
+      "/usr/lib/aarch64-linux-gnu/libblkid.so.1.1.0": [
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ],
+      "/usr/lib/aarch64-linux-gnu/libc.so.6": [
+        "ld-linux-aarch64.so.1"
+      ],
+      "/usr/lib/aarch64-linux-gnu/libcom_err.so.2.1": [
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ],
+      "/usr/lib/aarch64-linux-gnu/libe2p.so.2.3": [
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ],
+      "/usr/lib/aarch64-linux-gnu/libext2fs.so.2.4": [
+        "libcom_err.so.2",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ],
+      "/usr/lib/aarch64-linux-gnu/libuuid.so.1.3.0": [
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ],
+      "/usr/sbin/mke2fs": [
+        "libext2fs.so.2",
+        "libcom_err.so.2",
+        "libblkid.so.1",
+        "libuuid.so.1",
+        "libe2p.so.2",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ]
+    },
+    "existing_combined_reserved_bytes_each": 111669149696,
+    "failure": {
+      "diagnostic": "physical domain requires bound formatter input",
+      "failure_line": 736,
+      "failure_source": "linux_production.py",
+      "observer_pid": 15078,
+      "preliminary_diagnosis": "The earlier digest-mismatch diagnosis was incorrect and was corrected before any further operation.",
+      "provenance": "The original refusal record names exact frozen source line 736. The hash-verified plan contains no formatter root entry.",
+      "type": "ValueError"
+    },
+    "formatter_readonly": {
+      "forwarding": "0",
+      "gid": 0,
+      "mode": 493,
+      "nlink": 1,
+      "realpath": "/usr/sbin/mke2fs",
+      "sha256": "160d49e1f062f8026b1218bfc377497943fc11fc952888fb3a041468273cec17",
+      "size": 199328,
+      "uid": 0
+    },
+    "library_files": {
+      "/usr/lib/aarch64-linux-gnu/ld-linux-aarch64.so.1": "7cdd4ce693d93790bf088dca2e86857f758335b6010d913e086fa384e7704a46",
+      "/usr/lib/aarch64-linux-gnu/libblkid.so.1.1.0": "127e02de220f4a9c9511eb31cde5f847e3170e528ed3f5f313f2512b813d801b",
+      "/usr/lib/aarch64-linux-gnu/libc.so.6": "7b17086ce95b15145e6c2c5f8146395f80e2df1af2636fbf78e90c546a70df06",
+      "/usr/lib/aarch64-linux-gnu/libcom_err.so.2.1": "05d6d407f8a71f29371c006f21d8424f2135d00455be0845d223db3dcdf39202",
+      "/usr/lib/aarch64-linux-gnu/libe2p.so.2.3": "53331fd94803654e5d634384354baa64278233d2a37c96c846bba46e64473cb6",
+      "/usr/lib/aarch64-linux-gnu/libext2fs.so.2.4": "daaec8dbc5504f642e1ee87856890bb2c4a59dbd814e27cad39ed91a1bab58bd",
+      "/usr/lib/aarch64-linux-gnu/libuuid.so.1.3.0": "cb2a4b14c01a42d951d0d18b377f56e8250721dd0237021ed6fe0353c914c6fb",
+      "/usr/sbin/mke2fs": "160d49e1f062f8026b1218bfc377497943fc11fc952888fb3a041468273cec17"
+    },
+    "new_aggregate": "crewshal-2d-20261015v15.slice",
+    "new_observer": "crewshal-2d-20261015v15-observer.service",
+    "outputs": {
+      "crewshal-bootstrap": {
+        "bytes": 669328,
+        "sha256": "ab3a0bec59dfcb16d5469b10e027c54697dc47b43309bf121261fb846b01d576"
+      },
+      "lost+found": {
+        "directory": true,
+        "entries": [],
+        "nlink": 2
+      },
+      "policy.binary": {
+        "bytes": 7348,
+        "sha256": "5a9ded6dc15a10b869cbbbcbc852cd5606532b8f117f9202c97adde1945f2ae6"
+      },
+      "storage-audit.json": {
+        "bytes": 3537,
+        "sha256": "ad78dfa709dedd7bb849abff1af6d587de57dc1af8fbeced3ddb4274c9eac8f3"
+      }
+    },
+    "owner_preparation": "Verify all thirteen previous journal hashes. Select the single original storage_installation charge without rejecting its retained bootstrap_build record. Exact journal hashes bind all additional records.",
+    "physical_closure": "unknown",
+    "proposal": "docs/PHASE-2D-FORMATTER-INPUT-CONTINUATION-2026-10-15.md",
+    "proposed_combined_reserved_bytes_each": 120259084288,
+    "proposed_nominal_memory_charge_bytes": 11274289152,
+    "proposed_nominal_tasks": 1792,
+    "thirteenth_charge": {
+      "allocated_bytes": 8589934592,
+      "batch_started_monotonic": 32515.828,
+      "configuration": "f5059077ef1098c490e4ff6275a1a994c472f3b71f0beabb3ae744a72eae176b",
+      "id": "b039084bb30cf068a0adcc7636a37bbaf525980fa47e42c04db54588b2f19ecf",
+      "installation": "unknown",
+      "logical_bytes": 8589934592,
+      "memory_bytes": 805306368,
+      "owner": "361141f33105d793f869351f80786ac45ba161b42e6dcf58c1a5fc1e521ac352",
+      "schema_version": 1,
+      "state": "retained",
+      "tasks": 128
+    },
+    "thirteenth_journal_sha256": "74d8aa6278824cd50212a0c9fe009094b6970bd641ff5369d7d7c9100a90a09a",
+    "v17_approval": {
+      "answer": "Approve the exact v17 exception and batch",
+      "approval_date": "2026-10-15",
+      "question_id": "call_7fe4ef431bac4ecf91c4c9e70ea38647",
+      "record_sha256": "ed1a59430c0d52eb4a3157e6f1e6552772d4c82c0873431125c720c21866339c"
+    }
+  },
+  "graph_verification": {
+    "coverage": "Current metadata reports no recorded issue. This signal does not prove completeness. Exact pinned parser and kernel source, kernel diagnostics, and read-only container decoding support the correction.",
+    "generation": "2026-10-15T19:19:23Z",
+    "paths": [
+      "src/crewshal/linux_operational.py",
+      "tests/acceptance/test_phase_2d_bootstrap_build_closure.py",
+      "scripts/phase_2d_owner_capabilities_raw_policy_v26.py",
+      "scripts/phase_2d_owner_input_upload_raw_policy_v26.py"
+    ],
+    "project": "Volumes-X10Pro-Crewshal",
+    "tier": "Verify"
+  },
+  "host": {
+    "apparmor_parser": "5.0.2",
+    "architecture": "aarch64",
+    "cpus": 4,
+    "distribution": "Ubuntu 26.04.1",
+    "gcc": "15.2.0",
+    "kernel": "7.0.0-38-generic",
+    "kernel_signature": "Ubuntu 7.0.0-38.38-generic 7.0.14",
+    "memtotal_kib": 7573396,
+    "python": "3.12.3",
+    "systemd": "259.5-0ubuntu3.4"
+  },
+  "installed_tests": {
+    "errors": 0,
+    "failures": 0,
+    "home": "fresh temporary directory",
+    "inherited_environment": "empty",
+    "kind": "installed",
+    "method_occurrences": 1222,
+    "network": "denied by sandbox-exec",
+    "package": "/Users/hamedprooshani/.codex/artifacts/crewshal/phase2d-access-recovery-2026-10-14/installed-v29/crewshal/__init__.py",
+    "seconds": 43.97537783399457,
+    "skipped": 0,
+    "source_sha256": {
+      "src/crewshal/__init__.py": "5bf49d29577ae5521790fdf475b36fdbf2839c365843b54e7220fdbe2ffca86e",
+      "src/crewshal/__main__.py": "61e1b048145332e9aab85470bb2fa2bc1312e41dffa6cd26741319fbfe5443c1",
+      "src/crewshal/admission.py": "a79e10f4ed9a096e7ab6939ad255d47c5478f618886d4c3b2b0c916f008d5c2e",
+      "src/crewshal/app_server.py": "62e0227245b69bb0900c6bfd566b7b79bbeb90038c82372b541e7534acd7b78d",
+      "src/crewshal/bootstrap_helper.c": "de5e2928aad6651015bdcb439835ae377738e1f19839fedbc3d6de1a2010db42",
+      "src/crewshal/candidate.py": "e667919ff4ec6d043de6a1c00f9cb1683de5843cb28f8813b25fb4b75d948bc4",
+      "src/crewshal/cli.py": "8ecd936c862da846969fc2da482c7f889d0174c208076301fc16e6353842d372",
+      "src/crewshal/contracts.py": "ed308d86b9b77fec5e9943677bf1d4b59ef0e16edb7fec25e8b334016bada437",
+      "src/crewshal/discovery.py": "b9ab698faa5951f9badf566b1fdd8cd3be7487f82fdc96acd6a246ef44aa1b2c",
+      "src/crewshal/dispatch.py": "939b607f3a0f2b829ce73b0f0fce4ac861a448dd985cb2325429b5a390b48641",
+      "src/crewshal/durable.py": "702f7b2b940e64ca4c16c4e785fa09d8608ce023c2830c4606b29342ae96d2f4",
+      "src/crewshal/gates.py": "06d841c18cbdde260486c94e91fa0f0f6ca17508ccd36e43778a3bbbec096baf",
+      "src/crewshal/integration.py": "47b33a2bf99aa9de70fb7e0604af1efa48aa4735ba6cbef41b18fb1d8b5b502f",
+      "src/crewshal/linux_attempt.py": "a8e709790b3f8a89e551085741dc332611504102c221511e439600483e4e0a4e",
+      "src/crewshal/linux_auth.py": "741923374120ef7f09398106a21bee374d44a0d9d7cb8c209e4bf294a71ca4d1",
+      "src/crewshal/linux_batch.py": "fcc2df1ba19c1d6b1e78e999a8a8ab8815b29dd91c81bf77b28432a7e6640fae",
+      "src/crewshal/linux_batch_entry.py": "52ba5cdfbdb4f7dd535d9e1572947e84626113492a6aba3e2ebe4c9044375dec",
+      "src/crewshal/linux_bootstrap.py": "b9a5c6939bca596fe8fc9229ad23a0e2409100603fcb7066accb08ac21b33967",
+      "src/crewshal/linux_bridge.py": "6398fafc1f06acc218d6ae74f68ef9f8bb591621433013bac8123b584c66aa03",
+      "src/crewshal/linux_charged_build.py": "1e43655257fdf5ac05e9d8df1839a450f9f0f1da1648dff7dd59c45e5c23864b",
+      "src/crewshal/linux_compiler_volume.py": "5944961aea043d1fb9b06e3c331ee42abca57dc63ecc3d4b5dcbde4c2309df44",
+      "src/crewshal/linux_early_timer.py": "8f1139978665b2359f18d727040b18969362fc84d267979e5d509b96165d5ee8",
+      "src/crewshal/linux_envelope.py": "4b5e3b17c1b4280d17d3c31a8c04251134938177bd7b6e3580f10cd4f2bbbdec",
+      "src/crewshal/linux_fixture_inputs.py": "87abe46a348512119887450ff6be7e6347d91b2b08f6d2496f6cf380a32dac9d",
+      "src/crewshal/linux_freeze.py": "457f1f7a7fc284a612bd6d37c33f30ed7b270d7c26a90d67599fd556fd9453d2",
+      "src/crewshal/linux_installed.py": "adf12e79c8472f3279d086b0eb0eec66d8d79b758ea395b551ee0b8b8d529deb",
+      "src/crewshal/linux_inventory.py": "e0ec35cb0d5fa51ce7e007b4cd8cf94cddb46938f277db1bf9fb6e7ef9698bd8",
+      "src/crewshal/linux_network.py": "cfc1702fb1f8d4fdd6617155b626c0cbc4aa1f9369e25c973ade4ceb8a050551",
+      "src/crewshal/linux_operational.py": "2a552643fb36f3d04dc7b4932a404c0a054b5e17820080052497b968976ada77",
+      "src/crewshal/linux_parent.py": "0f7be8b69c0145de59b635603a042b1ba989aedfb7c17eaf12eb13cfed79a666",
+      "src/crewshal/linux_parent_entry.py": "7b2640c80c745cbf1724fb866e66e5e2d1d9c162b19282a77b3bd1389fce3998",
+      "src/crewshal/linux_payload_storage.py": "d6243b49e34be3c0d9835519c8d1e3e4c85355c41a4d0a69ffa990455fb5bb41",
+      "src/crewshal/linux_production.py": "551e680157d153a33e63278947badd04f0d2c51d9942ce7c6146b0654b5a255b",
+      "src/crewshal/linux_qualification.py": "aef22f4598c82e7f38980db841b22c4cff18840a7663625a3c33a2a64b924587",
+      "src/crewshal/linux_qualification_fixture.py": "31aedf72285abea025c64768b177c958adf3331acd720204fea3066df21fe4ea",
+      "src/crewshal/linux_schedule.py": "41f63f3dc8f1b13f519095f3ddf52a7edac076de4884f7cf888201d6534544a9",
+      "src/crewshal/linux_setup.py": "d4ffe7a63169aa9a3949ca91f5af6fef678054cf07008ca6264786f79474019b",
+      "src/crewshal/linux_storage.py": "eb305add25b39b78fd5877c55f637b0190ab238f5297dcf2ae349698d9ab7d61",
+      "src/crewshal/linux_teardown.py": "8a041bc4f5fcd2b6ea94b476f9ec3cbd870e3090797ed13bfacb6df9aa85d68a",
+      "src/crewshal/linux_validator.py": "ce28b6bde6112dec645c37683345cbe112184332ef34def01b7a798550ef47fd",
+      "src/crewshal/model.py": "3cbc9405e0c7fb5247a13562e72c8472c3edc0f3fc2407db2fd6c6c95fae25de",
+      "src/crewshal/qualification.py": "772df20ee17ddd52023eb0b245d733e2db29d115b625703fd4c6d86026f5554a",
+      "src/crewshal/qualification_bundle.py": "4a595fc100539d997ad9b5f5750b58cd5f14b0ca276a6cc1cc9de6596c1aae7b",
+      "src/crewshal/runtime.py": "584bf3525f02e274ccd3240a083d0b8dbea54be42d64323b110bdeb2074c64d6",
+      "src/crewshal/runtime_batch.py": "1c234fb4b2145329306f5ad68dcdf63ce1b400382414c0f69c83e6f76093d8e1",
+      "src/crewshal/state.py": "856abbc9de6e630798736eab14ddc6062bc6768621edd8a0d9477f1f3fa7e5a3",
+      "src/crewshal/supervisor.py": "4ec3238f5d2c9a8f68762c084ab241112a9b87d626023b5e6a18ab7b6e70a2f6",
+      "tests/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tests/acceptance/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tests/acceptance/test_phase_2a.py": "e4c53627b3fc1be58467761b2c2002010e256f9e087e92fe9ba20837ed627695",
+      "tests/acceptance/test_phase_2b.py": "a5db032b0e1ba98427bd95e726d70ac5e6c07039851553f8c98950496f9dbe40",
+      "tests/acceptance/test_phase_2c.py": "297c20b81fd7e02a1eb6ea3ee24b1361b2a8f8caf0c53e4d4e17a73cea673d5d",
+      "tests/acceptance/test_phase_2c_boundary_observer.py": "9381bae4be23774f757bce9bb1519838051fc9701462efde0ce6b097db0e2fe1",
+      "tests/acceptance/test_phase_2c_broker_environment.py": "1cf85e584b2d3904e44dc52c0fd34bb16abc9329bb4298c497c6f94b5fccedd1",
+      "tests/acceptance/test_phase_2c_bundle.py": "643f6936ab54a3a367a85f4626f9c3cd4bbe1c45c30c0b5ec2ab1d6b1500b91f",
+      "tests/acceptance/test_phase_2c_capture_snapshot.py": "4bc0e3033c973d0cfb49d09e049cde53c2f64dbf92833192614a25435c009e70",
+      "tests/acceptance/test_phase_2c_departed_observer.py": "a701544f66e310e795489479a85adaab351d3fdad74b89e23bada29e03ec78be",
+      "tests/acceptance/test_phase_2c_lifecycle.py": "1b0973b0672a35c1ec0167f95efc730b1909c73ffc07e63b449df6bb81f9853d",
+      "tests/acceptance/test_phase_2c_native_continuation.py": "0d4c1195a113315f2f2365f09167db3774435252f66493236cd03f195a44fb36",
+      "tests/acceptance/test_phase_2c_native_readback.py": "0a01f0bf7a40b8a02a99747848df3f308a3a1c605f148f54678a8300ee0c34f5",
+      "tests/acceptance/test_phase_2c_native_readback_v2.py": "50126483808ad6c146405e038c5ec8e61de2a01e561186a9ecc3bd8fa3ef2d1d",
+      "tests/acceptance/test_phase_2c_network.py": "911000a18c3a32a3b35c995decf05bd235cbd73238403dd11ef634d52e4c9b99",
+      "tests/acceptance/test_phase_2c_protocol.py": "27fe2304c0bf14b1bbfcaf40ba46655a0fa512bce51cdf1132b96d190e1cb4a6",
+      "tests/acceptance/test_phase_2c_storage.py": "85bd90041a86ec5143bbc79b1e7a54636508c59c2edb669fd371fc55cd1010e4",
+      "tests/acceptance/test_phase_2c_storage_observer.py": "6f630e32bb1f1a23270313f0dea661985a3c20c1e0287e1bf7b9fa38e599aef3",
+      "tests/acceptance/test_phase_2c_substrate.py": "de36c48b42fc89f8ddd0c27ff34485018c9ef4dd58256f281716fef4994b0c28",
+      "tests/acceptance/test_phase_2d.py": "93f808d46ad2f59d9db21cfc3c462eda8d442891a5dcffeb21735188ed13e238",
+      "tests/acceptance/test_phase_2d_admission.py": "c288c0a35ba64ce3f71508f63836f1862327d7d9b8c9f832c434abcc27b7462f",
+      "tests/acceptance/test_phase_2d_admission_collection.py": "888c16aec76025a8c7cd5d75e060274dc7b7a9664e9e8fed1c47d2376a8310a4",
+      "tests/acceptance/test_phase_2d_app_server.py": "6ce75889a78cab590201c0834368e9bbbf1f17f9ab4f5261beb6712bad192829",
+      "tests/acceptance/test_phase_2d_attempt_marker.py": "77496c100201bcc3253d4b4b58253cba90d556231a667c617059d39592d8954e",
+      "tests/acceptance/test_phase_2d_authentication.py": "cf3a218a70f7900445154716de6b9c1de67f6828ee863b5972aed4a14951fe80",
+      "tests/acceptance/test_phase_2d_batch.py": "10679206b79009d5dc498cf94fb30bb62737086ac21b065c39d82fc4e2e81e6c",
+      "tests/acceptance/test_phase_2d_batch_entry.py": "864f36cf03933acde99f79581e3b6929864a87803dfb714b7aa55ae4bb54ec85",
+      "tests/acceptance/test_phase_2d_batch_timer.py": "ff7b302da354692bdd0100487a37a76145006d96f5a783fa7f38c1e696939f02",
+      "tests/acceptance/test_phase_2d_bootstrap.py": "e93d34f3834f3caf492f9656300c20af0ddc05524ce1deffb4599fe0d4341084",
+      "tests/acceptance/test_phase_2d_bootstrap_build_closure.py": "cee25ebafe7217edaae6c47e18490e6769c5d63927ffcdc68f13837e73a98139",
+      "tests/acceptance/test_phase_2d_bridge.py": "fb2d510c15e880a8bed34222d5d2d050fdb5988de0a1d067bf794352419a5405",
+      "tests/acceptance/test_phase_2d_capacity.py": "686429e0bce07b6eeecde30b66433fbda4999d5d63732c8e499034e17c2215d1",
+      "tests/acceptance/test_phase_2d_charged_build.py": "6cce5d646d80139d423149aa491af4e514cff56cf77a9efe7c323d5ad1e738c9",
+      "tests/acceptance/test_phase_2d_dispatch.py": "054701cb01b7be843efb34a1352f8affc76de11809db9318df34688149a0bdd8",
+      "tests/acceptance/test_phase_2d_early_timer.py": "af90a467edf8c20052a7e5697c3dbc5ecccc2d490efd26ede6770b744210896d",
+      "tests/acceptance/test_phase_2d_empty_entry.py": "6ee605714c461bcf641ec19a9ee78ea85dea39499e0872e7cffb1aa9596b772f",
+      "tests/acceptance/test_phase_2d_envelope.py": "05f8530992363e830e69f0040c41e01cc836e5d9e13d5b46bf454f790d3ba927",
+      "tests/acceptance/test_phase_2d_file_cache.py": "ebb7f7e199531a7beb5fea27e8d6b143eda3036f9e6f15e77da90b76933bdcfd",
+      "tests/acceptance/test_phase_2d_fixture_inputs.py": "7e7fbaf18c504dc5315aa5504ec79942374306427fb796b09a836259c2ce84c1",
+      "tests/acceptance/test_phase_2d_freeze.py": "258dcfa6128deb9c56e119964e2222b8024a371d283b3e45ba453d13d5dfe8b0",
+      "tests/acceptance/test_phase_2d_installation.py": "1431c44003d0ba4879063115bc5bbb3d7051fb3bd2732b4b3030ee73d68966ed",
+      "tests/acceptance/test_phase_2d_installed.py": "368a72fd626a9e6db0eba4f1bea6c93db3b5c8c5ef6bf82b4fef4f490ea73a3b",
+      "tests/acceptance/test_phase_2d_installed_chain.py": "131d14365a3ebd5d0bd0a0c5e4872582129543e54797ddd00d1ee6a064f97adf",
+      "tests/acceptance/test_phase_2d_integration.py": "982a1a04ff7a96fa94f4e7317784a933909d864758f97440abf637a9cab39892",
+      "tests/acceptance/test_phase_2d_inventory.py": "c7e713ce161413cee029709916229014b407cdd191a1b44b89b53a0f40a0c664",
+      "tests/acceptance/test_phase_2d_inventory_hash_cache.py": "5bd5a18a449c8c5c3ba155bc4c17854ee049663941090ab453fa23ca9822f668",
+      "tests/acceptance/test_phase_2d_lane_production.py": "5a7f8913702e02a565f62a69a009e4d1956dae033abab10147b210578205da3d",
+      "tests/acceptance/test_phase_2d_lane_setup.py": "c49d967bffdb02d22f5cdba5ec4bd0b4cafd74dce8061528b7a61d5dbbdaa48e",
+      "tests/acceptance/test_phase_2d_network.py": "368d42754c6334ab73819b1a1688f20d0b28040474e6ae537be094af3618c887",
+      "tests/acceptance/test_phase_2d_observer_batch.py": "432d1db2f1ab6ab728910f3289fdd4aef857cab35318ad89f8bca95e6265a789",
+      "tests/acceptance/test_phase_2d_operational.py": "56ebba63ff88fdab03e36a53e9215c73e85fefb2b0211a08ee0acb428aa44877",
+      "tests/acceptance/test_phase_2d_original_validator_evidence.py": "953082734a51fdb5e83040d4cb3203ec01aff92df2acdf049e2cf8a2b0bbce20",
+      "tests/acceptance/test_phase_2d_original_verdict.py": "ff326d24a70bb66f91b5ace2a846f3f01259b41297a5778ad4028a0f2f9fcf1c",
+      "tests/acceptance/test_phase_2d_parent.py": "4f7cca745f1d9ccf92d1722f9264a5ecc0fcc4b857f4528474a27640b01ac625",
+      "tests/acceptance/test_phase_2d_payload_storage.py": "a13c8dc17bb7e4e8b3b8562f28d94119dffea4594dfeff19cc60d2d48378c837",
+      "tests/acceptance/test_phase_2d_policy_directories.py": "377240549bcbcc84484db4c7d72bc69b28892c1b727de62f63c28cb0068315c0",
+      "tests/acceptance/test_phase_2d_policy_transport.py": "099faa6b1c7f0aa56df6363b830cfbd0a387a0cbb9aa4673dc90dc6721576297",
+      "tests/acceptance/test_phase_2d_probe_transport.py": "ebaac7c3549fa0fee16c51c994e7fc5e30e2236b17712f6f6a01715e2be6bfb6",
+      "tests/acceptance/test_phase_2d_production.py": "43a0a0e777ae717d0602b4e81d5a003ec47c34cd60be087cad9f8d500ec1e2c0",
+      "tests/acceptance/test_phase_2d_qualification.py": "9bfab2a1616bd009459578d81f94f5a75ce2dc12297b48fc852b605226702d39",
+      "tests/acceptance/test_phase_2d_qualification_fixture.py": "fe11b1ec3d4513c8064b53763695b765b1589f4ba30b340ee33a7d49a132d17e",
+      "tests/acceptance/test_phase_2d_schedule.py": "fade24715d9b1fbec002fb190412debdac2cd23699e3264034b50b42e5a3e4e7",
+      "tests/acceptance/test_phase_2d_selection.py": "07ad5bcc63f14ff729ebbaa4d17cd2fd25e6147690a8bcbef2cc905d27023053",
+      "tests/acceptance/test_phase_2d_setup.py": "354ae0bcc6686a86bd53302b05f00b80b9eb754362e2aeffb7ef8bc299bb9b7b",
+      "tests/acceptance/test_phase_2d_storage.py": "05897bd83edbff90db9fb1001f73848dc7f610f77eea5828513f111d2605044e",
+      "tests/acceptance/test_phase_2d_subscription.py": "1c01e084917e65e3ea28c9b8af0e34f59e0e127bca871dee725b3869181cb226",
+      "tests/acceptance/test_phase_2d_supervisor.py": "5c9347f3085199600ce6e5cbd9b2f80a99777159b53c6ba6813d24d9f09a2835",
+      "tests/acceptance/test_phase_2d_teardown.py": "a1951b8f9bbdb9a4fa99ea1e2b8148e2f53626212b308253fd95fadfc97cef18",
+      "tests/acceptance/test_phase_2d_tls_broker.py": "50aaa07a7a70297c9afc67673c66a8e723508141a335ad1df7ea5db4eee140de",
+      "tests/acceptance/test_phase_2d_validator.py": "7a325528e1b724b11951fdcf92332849803f504de24bbf6646689e6b85e63804"
+    },
+    "unique_methods": 1206,
+    "unique_phase2d_methods": 1065,
+    "version": "0.13.0"
+  },
+  "journal_snapshot_continuation": {
+    "actual_readonly_verification": {
+      "all_expected_hashes_and_retained_charges_match": true,
+      "exact_new_helper_verified": true,
+      "integrity_checks_pass": true,
+      "journals": 14,
+      "maximum_journal_bytes": 28672,
+      "original_lock_unchanged": true,
+      "owner_prepare_invoked": false
+    },
+    "actual_v19": {
+      "apparmor_compilation_started": false,
+      "c_compilation_started": false,
+      "forwarding": 0,
+      "new_full_charge": false,
+      "new_input_created": false,
+      "new_storage_created": false,
+      "new_unit_created": false,
+      "observer_started": false,
+      "prepare_count": 1,
+      "upload_count": 1,
+      "uploaded_archive_retained": true
+    },
+    "automatic_retries": 0,
+    "correction": "Read at most 1048576 bytes through a new protected readonly FD. Verify exact original bytes and metadata. Deserialize those verified bytes into private in-memory SQLite, enable query_only, require integrity_check=ok, and read the retained charge. Recheck the exact original file after the query. Never open the original SQLite connection or alter its lock.",
+    "existing_combined_reserved_bytes_each": 120259084288,
+    "failure": {
+      "diagnostic": "database is locked",
+      "line": 208,
+      "lock_owner_pid": 19621,
+      "source": "phase_2d_owner_capabilities_copy_accounting_v16.py",
+      "stage": "owner preparation before exclusive input creation",
+      "type": "sqlite3.OperationalError"
+    },
+    "full_suites": "Production source and acceptance files remain byte-identical to the passing v19 source and wheel verification. Both 1182-test results remain current. Unchanged suites were not repeated.",
+    "new_aggregate": "crewshal-2d-20261015v17.slice",
+    "new_observer": "crewshal-2d-20261015v17-observer.service",
+    "physical_closure": "unknown",
+    "proposal": "docs/PHASE-2D-JOURNAL-SNAPSHOT-CONTINUATION-2026-10-15.md",
+    "proposed_charge_ordinal": 15,
+    "proposed_combined_reserved_bytes_each": 128849018880,
+    "proposed_nominal_memory_charge_bytes": 12079595520,
+    "proposed_nominal_tasks": 1920,
+    "snapshot_checks": {
+      "errors": 0,
+      "failures": 0,
+      "lock": "Real SQLite exclusive writer retained before and after snapshot.",
+      "ownership": "Explicit synthetic root ownership for local ordinary files.",
+      "skipped": 0,
+      "tests": 3
+    },
+    "v19_approval": {
+      "answer": "Approve the exact v19 exception and batch",
+      "approval_date": "2026-10-15",
+      "question_id": "call_debeb7e4e366432091198bd2e42a321e",
+      "record_sha256": "ea0ebe4df2f6eb027d5a6ebe6d50422a0f7f7152d1fd17b76153dc25b66d5540"
+    }
+  },
+  "lane_geometry_continuation": {
+    "actual_progress": {
+      "actual_device_login": "not run",
+      "actual_live_turn": "not run",
+      "actual_qualification": "not run",
+      "domain_loop": {
+        "block_size": 4096,
+        "status": [
+          66306,
+          1055257,
+          0,
+          0,
+          1073741824,
+          124,
+          0,
+          0,
+          16
+        ],
+        "target": "/dev/loop124"
+      },
+      "observer_memory_events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+      "observer_memory_peak": 87601152,
+      "observer_pids_events": "max 0\n"
+    },
+    "actual_readonly_geometry_check": {
+      "all_original_fds_read_only": true,
+      "full_original_names_preserved": true,
+      "limitation": "This validates measured retained bytes only. It does not retry or qualify the consumed observer.",
+      "original_objects_modified": false,
+      "pure_mapping_and_existing_geometry_checks": "passed",
+      "retained_superblocks": 15
+    },
+    "after_fix": {
+      "errors": 0,
+      "failures": 0,
+      "focused_tests": 218,
+      "installed_tests": 1207,
+      "skipped": 0,
+      "source_tests": 1207
+    },
+    "automatic_retries": 0,
+    "before_fix": {
+      "error_subtests": 15,
+      "failure_subtests": 15,
+      "tests": 3
+    },
+    "correction": "Use the existing _image_geometry_name mapping for lane-prefixed image geometry only. Preserve full original names and identities in backing and loop records. Require the .img suffix, accepted lane, fixed role, and unchanged superblock magic, declared size, and inode ceiling. Unknown names remain refused.",
+    "counter_resets": 0,
+    "existing_combined_reserved_bytes_each": 163208757248,
+    "failure": {
+      "diagnostic": "operational storage owner has an unknown growth slot",
+      "frozen_source_condition": "The name lookup uses unprefixed EXT4_INODE_LIMITS keys. All fifteen original role backing names include an exact qualification-1, qualification-2, or live prefix.",
+      "line": 1141,
+      "observer_pid": 26265,
+      "original_public_refusal": {
+        "execution_allowed": false,
+        "failure_causes": [
+          {
+            "errno": null,
+            "line": 1703,
+            "source": "linux_operational.py",
+            "type": "OperationalRefusal"
+          },
+          {
+            "errno": null,
+            "line": 828,
+            "source": "linux_storage.py",
+            "type": "StorageOwnerRefusal"
+          },
+          {
+            "errno": null,
+            "line": 657,
+            "source": "linux_storage.py",
+            "type": "StorageChildRefusal"
+          }
+        ],
+        "failure_errno": null,
+        "failure_line": 1703,
+        "failure_source": "linux_operational.py",
+        "failure_type": "OperationalRefusal",
+        "phase": "2D",
+        "reusable": false,
+        "schema_version": 1,
+        "stage": "refused_with_original_custody",
+        "storage_child_failure": {
+          "errno": null,
+          "line": 1141,
+          "source": "linux_storage.py",
+          "type": "ValueError"
+        }
+      },
+      "source": "linux_storage.py"
+    },
+    "new_aggregate": "crewshal-2d-20261015v22.slice",
+    "new_observer": "crewshal-2d-20261015v22-observer.service",
+    "nineteenth_journal_sha256": "407154fd324c5eb7db98f9cc91ae7c04b29ab3ef60e1c84909e5c4b0bc81285d",
+    "outputs": {
+      "crewshal-bootstrap": {
+        "bytes": 669328,
+        "sha256": "ab3a0bec59dfcb16d5469b10e027c54697dc47b43309bf121261fb846b01d576"
+      },
+      "lost+found": {
+        "directory": true,
+        "entries": [],
+        "nlink": 2
+      },
+      "policy.binary": {
+        "bytes": 7348,
+        "sha256": "5a9ded6dc15a10b869cbbbcbc852cd5606532b8f117f9202c97adde1945f2ae6"
+      },
+      "storage-audit.json": {
+        "bytes": 3537,
+        "sha256": "ad78dfa709dedd7bb849abff1af6d587de57dc1af8fbeced3ddb4274c9eac8f3"
+      }
+    },
+    "physical_closure": "unknown",
+    "proposal": "docs/PHASE-2D-LANE-GEOMETRY-CONTINUATION-2026-10-15.md",
+    "proposed_combined_reserved_bytes_each": 171798691840,
+    "proposed_nominal_memory_charge_bytes": 16106127360,
+    "proposed_nominal_tasks": 2560,
+    "retained_custody": {
+      "common_limits_equal": true,
+      "common_memory_events": "low 0\nhigh 0\nmax 6569\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+      "common_memory_events_local": "low 0\nhigh 0\nmax 4874\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+      "current_journal_fd_identities_equal": 17,
+      "forwarding": 0,
+      "original_charge_snapshots_verified": 19
+    },
+    "v24_approval": {
+      "answer": "Approve the exact v24 diagnostic exception and batch",
+      "question_id": "call_3218e0d1337745779554d9efc8bd55e6",
+      "record_sha256": "d31c68d2cc108fafc88e0823d20f67733cb354a4f3f933568ebef6d4e750b1ce"
+    }
+  },
+  "limits": {
+    "aggregate_cpus": 1,
+    "aggregate_memory_bytes": 805306368,
+    "aggregate_swap_bytes": 0,
+    "aggregate_tasks": 128,
+    "allocated_disk_bytes": 8589934592,
+    "automatic_retries": 0,
+    "batch_seconds": 600,
+    "candidate_bytes": 16777216,
+    "capture_seconds": 10,
+    "cleanup_reserve_seconds": 30,
+    "implementation_attempts": 1,
+    "logical_disk_bytes": 8589934592,
+    "scratch_bytes": 33554432,
+    "shared_retention_parent_memory_bytes": 2147483648,
+    "startup_seconds": 120,
+    "stop_grace_seconds": 1,
+    "stream_bytes": 65536,
+    "worker_cpus": 1,
+    "worker_memory_bytes": 134217728,
+    "worker_seconds": 5,
+    "worker_swap_bytes": 0,
+    "worker_tasks": 32
+  },
+  "linker_continuation": {
+    "actual_common_cpu_ceiling": 1,
+    "actual_common_memory_ceiling": 805306368,
+    "actual_common_swap_ceiling": 0,
+    "actual_common_task_ceiling": 128,
+    "automatic_retries": 0,
+    "compiler_attempt": "The v10 compiler attempt remains consumed. Its original pidfd remains retained after reaping.",
+    "existing_combined_reserved_bytes_each": 51539607552,
+    "failure": {
+      "diagnostic": "collect2: fatal error: cannot find 'ld'\ncompilation terminated.\n",
+      "diagnostic_provenance": "A bounded read-only scan of retained observer memory found the compiler diagnostic. No original process or pipe was changed.",
+      "failure_line": 1093,
+      "failure_source": "linux_operational.py",
+      "observer_pid": 9103,
+      "timer_pid": 9105
+    },
+    "new_aggregate": "crewshal-2d-20261014v8.slice",
+    "new_observer": "crewshal-2d-20261014v8-observer.service",
+    "outputs_bytes": {
+      "crewshal-bootstrap": 0,
+      "policy.binary": 0,
+      "storage-audit.json": 0
+    },
+    "physical_closure": "unknown",
+    "proposal": "docs/PHASE-2D-LINKER-CONTINUATION-2026-10-14.md",
+    "proposed_combined_reserved_bytes_each": 60129542144,
+    "proposed_nominal_memory_charge_bytes": 5637144576,
+    "proposed_nominal_tasks": 896,
+    "sixth_journal_sha256": "e3198e2ce4740bea0b33033933a1c4af4286d67f922d7e8c821dd000545c9cd3",
+    "v10_approval": {
+      "answer": "Approve the exact v10 exception and batch",
+      "question_id": "call_4874a8faaa0a40d7a3c84aa156e9292a",
+      "record_sha256": "c3c09e7b4ab8205fe53024ae2718d45e7f279166053a5a0d17c673a063151b2b"
+    }
+  },
+  "mapping_continuation": {
+    "actual_common_memory_ceiling": 805306368,
+    "actual_common_task_ceiling": 128,
+    "actual_corrected_mapping_readback": {
+      "actual_mapped_files": 11,
+      "actual_mapped_ranges": 33,
+      "all_independent_file_readbacks_passed": true,
+      "compiler_started": false,
+      "failures": [],
+      "timer_state": "State:\tt (tracing stop)"
+    },
+    "additional_retry_authority": false,
+    "combined_allocated_reserved_bytes": 34359738368,
+    "combined_logical_reserved_bytes": 34359738368,
+    "combined_nominal_memory_charge": 3221225472,
+    "combined_nominal_task_charge": 512,
+    "compiler_attempts_started": 0,
+    "new_aggregate": "crewshal-2d-20261013v5.slice",
+    "new_observer": "crewshal-2d-20261013v5-observer.service",
+    "physical_closure": "unknown",
+    "prior_full_allocated_charge": 25769803776,
+    "prior_full_logical_charge": 25769803776,
+    "prior_live_observer_pid": 5553,
+    "prior_process_custody": "retained",
+    "prior_stopped_timer_pid": 5555,
+    "proposal": "docs/PHASE-2D-MAPPING-CONTINUATION-2026-10-13.md"
+  },
+  "operational_approval": "Missing for exact v29. The v28 approval excludes another attempt.",
+  "owner_archive_units": {
+    "crewshal-2d-20261015v26-observer.service": {
+      "sha256": "82fd5c6119755ee87f1dcd75fcbf19df254cfcc1244b7bbdddddbff4e47df987",
+      "source": "[Unit]\nDescription=Crewshal original Phase 2D observer\nRequires=crewshal-2d-20261015v26.slice\nAfter=crewshal-2d-20261015v26.slice\n\n[Service]\nType=exec\nUser=root\nGroup=root\nSupplementaryGroups=\nSlice=crewshal-2d-20261015v26.slice\nMemoryAccounting=yes\nMemoryMax=134217728\nMemorySwapMax=0\nTasksAccounting=yes\nTasksMax=32\nCPUAccounting=yes\nCPUQuota=100%\nCPUQuotaPeriodSec=100ms\nNoNewPrivileges=yes\nProtectSystem=strict\nPrivateMounts=yes\nReadWritePaths=/run /sys/fs/cgroup/crewshal.slice/crewshal-2d.slice /sys/kernel/security/apparmor\nBindPaths=/var/lib/crewshal-phase2d-storage-v26:/run\nBindReadOnlyPaths=/var/lib/crewshal-phase2d-input-v26:/run/crewshal-phase2d-input-v1\nWorkingDirectory=/\nEnvironment=\nLimitFSIZE=1073741824\nLimitNOFILE=4096\nDelegate=yes\nRestart=no\nKillMode=control-group\nTimeoutStopSec=1\nStandardInput=null\nStandardOutput=journal\nStandardError=journal\nExecStart=/usr/bin/env -i /usr/bin/python3.12 -I -S -B /run/crewshal-phase2d-input-v1/observer-entry.py /run/crewshal-phase2d-input-v1/batch.json\n"
+    },
+    "crewshal-2d-20261015v26.slice": {
+      "sha256": "52443082382567f718676a9a884a5cc364925d7ed10705a41f94534b8d1dcf40",
+      "source": "[Unit]\nDescription=Crewshal original Phase 2D aggregate\n\n[Slice]\nMemoryAccounting=yes\nMemoryMax=805306368\nMemorySwapMax=0\nTasksAccounting=yes\nTasksMax=128\nCPUAccounting=yes\nCPUQuota=100%\nCPUQuotaPeriodSec=100ms\n"
+    }
+  },
+  "owner_scripts": {
+    "scripts/phase_2d_owner_capabilities_raw_policy_v26.py": {
+      "bytes": 18438,
+      "sha256": "dee6e9d8363662734e73570ae735f51a0cc61625ec313ef1f153919a740b2e6a"
+    },
+    "scripts/phase_2d_owner_input_upload_raw_policy_v26.py": {
+      "bytes": 2183,
+      "sha256": "db3020c220535513eb3b38533147e435d5f9953d9258820aa26938d5555ec3a5"
+    }
+  },
+  "owner_unit_derivation": "The approved preparation script appends four pinned native and env bindings to the archive observer unit. owner_units records the final installed units; owner_archive_units records the immutable archive inputs.",
+  "owner_units": {
+    "crewshal-2d-20261015v26-observer.service": {
+      "sha256": "1106d1f203c899529f5940f4d85290e748446646a32e674e6e70b6a117540e12",
+      "source": "[Unit]\nDescription=Crewshal original Phase 2D observer\nRequires=crewshal-2d-20261015v26.slice\nAfter=crewshal-2d-20261015v26.slice\n\n[Service]\nType=exec\nUser=root\nGroup=root\nSupplementaryGroups=\nSlice=crewshal-2d-20261015v26.slice\nMemoryAccounting=yes\nMemoryMax=134217728\nMemorySwapMax=0\nTasksAccounting=yes\nTasksMax=32\nCPUAccounting=yes\nCPUQuota=100%\nCPUQuotaPeriodSec=100ms\nNoNewPrivileges=yes\nProtectSystem=strict\nPrivateMounts=yes\nReadWritePaths=/run /sys/fs/cgroup/crewshal.slice/crewshal-2d.slice /sys/kernel/security/apparmor\nBindPaths=/var/lib/crewshal-phase2d-storage-v26:/run\nBindReadOnlyPaths=/var/lib/crewshal-phase2d-input-v26:/run/crewshal-phase2d-input-v1\nWorkingDirectory=/\nEnvironment=\nLimitFSIZE=1073741824\nLimitNOFILE=4096\nDelegate=yes\nRestart=no\nKillMode=control-group\nTimeoutStopSec=1\nStandardInput=null\nStandardOutput=journal\nStandardError=journal\nExecStart=/usr/bin/env -i /usr/bin/python3.12 -I -S -B /run/crewshal-phase2d-input-v1/observer-entry.py /run/crewshal-phase2d-input-v1/batch.json\nBindReadOnlyPaths=/var/tmp/crewshal-native-qualification-v18/root/opt/codex/bin/codex:/run/crewshal-phase2d-input-v1/native/bin/codex\nBindReadOnlyPaths=/var/tmp/crewshal-native-qualification-v18/root/opt/codex/codex-resources/bwrap:/run/crewshal-phase2d-input-v1/native/codex-resources/bwrap\nBindReadOnlyPaths=/var/tmp/crewshal-native-qualification-v18/root/opt/codex/codex-resources/bwrap:/usr/bin/bwrap\nBindReadOnlyPaths=/var/lib/crewshal-phase2d-input-v26/root-data/usr/bin/env:/usr/lib/cargo/bin/coreutils/env\n"
+    },
+    "crewshal-2d-20261015v26.slice": {
+      "sha256": "52443082382567f718676a9a884a5cc364925d7ed10705a41f94534b8d1dcf40",
+      "source": "[Unit]\nDescription=Crewshal original Phase 2D aggregate\n\n[Slice]\nMemoryAccounting=yes\nMemoryMax=805306368\nMemorySwapMax=0\nTasksAccounting=yes\nTasksMax=128\nCPUAccounting=yes\nCPUQuota=100%\nCPUQuotaPeriodSec=100ms\n"
+    }
+  },
+  "parser_continuation": {
+    "actual_common_cpu_ceiling": 1,
+    "actual_common_memory_ceiling": 805306368,
+    "actual_common_swap_ceiling": 0,
+    "actual_common_task_ceiling": 128,
+    "automatic_retries": 0,
+    "c_helper": {
+      "bytes": 669328,
+      "reusable": false,
+      "sha256": "ab3a0bec59dfcb16d5469b10e027c54697dc47b43309bf121261fb846b01d576"
+    },
+    "compiler_attempts": "Both v11 compiler processes remain consumed. The original helper output is not reused.",
+    "existing_combined_reserved_bytes_each": 60129542144,
+    "failure": {
+      "diagnostic": "/usr/sbin/apparmor_parser: unrecognized option '--include=/run/crewshal-phase2d-input-v1/policy'\n",
+      "diagnostic_provenance": "A bounded read-only parser of retained traceback locals recovered the actual wait status and captured stderr. Original process and pipe state remained unchanged.",
+      "failure_line": 1093,
+      "failure_source": "linux_operational.py",
+      "observer_pid": 9813,
+      "policy_compiler_pid": 9830,
+      "policy_exit_status": 1
+    },
+    "new_aggregate": "crewshal-2d-20261014v9.slice",
+    "new_observer": "crewshal-2d-20261014v9-observer.service",
+    "outputs_bytes": {
+      "crewshal-bootstrap": 669328,
+      "policy.binary": 0,
+      "storage-audit.json": 0
+    },
+    "physical_closure": "unknown",
+    "proposal": "docs/PHASE-2D-PARSER-CONTINUATION-2026-10-14.md",
+    "proposed_combined_reserved_bytes_each": 68719476736,
+    "proposed_nominal_memory_charge_bytes": 6442450944,
+    "proposed_nominal_tasks": 1024,
+    "seventh_journal_sha256": "77cc95aadca699017f5340a03f302287dfd724aa8f5684b66e08952926d589bd",
+    "v11_approval": {
+      "answer": "Approve the exact v11 exception and batch",
+      "question_id": "call_2c6125b6adc24057811ba147b865a70e",
+      "record_sha256": "e3fe682d97c51b99cb9d5f69b1c8818ee4fbf41aebb8385565657015a0fb1678"
+    }
+  },
+  "phase": "2D",
+  "phase_2e": "not started",
+  "policy_recipe": {
+    "all_long_options_match_pinned_parser_source": true,
+    "argv": [
+      "/usr/sbin/apparmor_parser",
+      "--skip-kernel-load",
+      "--stdout",
+      "--skip-cache",
+      "--skip-read-cache",
+      "--config-file=/dev/null",
+      "--jobs=1",
+      "--max-jobs=1",
+      "--base=/run/crewshal-phase2d-input-v1/policy",
+      "--Include=/run/crewshal-phase2d-input-v1/policy",
+      "--kernel-features=/run/crewshal-phase2d-input-v1/policy/kernel.features",
+      "--override-policy-abi=/run/crewshal-phase2d-input-v1/policy/abi/4.0",
+      "--zstd-compress-level=none"
+    ],
+    "change": "Require exactly one --zstd-compress-level=none. Preserve every other parser option and bound.",
+    "complete_verification": {
+      "home": "fresh",
+      "inherited_environment": "empty",
+      "installed": 1177,
+      "network": "denied",
+      "package_files_equal": 47,
+      "source": 1177,
+      "unique_methods": 1161,
+      "unique_phase2d_methods": 1020
+    },
+    "environment": {},
+    "focused_regressions": {
+      "after_fix": {
+        "complete_focused_tests": 21,
+        "errors": 0,
+        "failures": 0
+      },
+      "before_fix": {
+        "errors": 1,
+        "failures": 2,
+        "tests": 3
+      }
+    },
+    "parser_source_sha256": "064366a5c217f85b04ca38a1a4d01eff134b6139e64ef1429b6f2b2c91ea5df1"
+  },
+  "poll_continuation": {
+    "actual_progress": {
+      "actual_device_login": "not run",
+      "actual_live_turn": "not run",
+      "actual_qualification": "not run",
+      "compiler_volume_readonly": true,
+      "directory_child_admitted": false,
+      "directory_child_started": true,
+      "final_lanes_bound": true
+    },
+    "after_fix": {
+      "errors": 0,
+      "failures": 0,
+      "focused_tests": 4,
+      "installed_tests": 1174,
+      "skipped": 0,
+      "source_tests": 1174
+    },
+    "automatic_retries": 0,
+    "before_fix": {
+      "errors": 5,
+      "failures": 0,
+      "tests": 4
+    },
+    "changed_python_files": [
+      "src/crewshal/linux_schedule.py",
+      "src/crewshal/linux_fixture_inputs.py",
+      "src/crewshal/linux_batch_entry.py",
+      "src/crewshal/linux_qualification_fixture.py",
+      "src/crewshal/linux_early_timer.py",
+      "src/crewshal/linux_bootstrap.py",
+      "src/crewshal/linux_validator.py",
+      "src/crewshal/linux_operational.py",
+      "src/crewshal/linux_bridge.py",
+      "src/crewshal/linux_parent.py",
+      "src/crewshal/linux_network.py",
+      "src/crewshal/linux_qualification.py",
+      "src/crewshal/linux_storage.py",
+      "src/crewshal/linux_production.py",
+      "src/crewshal/linux_freeze.py",
+      "src/crewshal/linux_auth.py",
+      "src/crewshal/linux_setup.py",
+      "src/crewshal/admission.py",
+      "tests/acceptance/test_phase_2d_qualification.py",
+      "tests/acceptance/test_phase_2d_storage.py",
+      "tests/acceptance/test_phase_2d_batch_timer.py",
+      "tests/acceptance/test_phase_2d_freeze.py",
+      "tests/acceptance/test_phase_2d_production.py",
+      "tests/acceptance/test_phase_2d_validator.py",
+      "tests/acceptance/test_phase_2d_bridge.py",
+      "tests/acceptance/test_phase_2d_installed_chain.py",
+      "tests/acceptance/test_phase_2d_admission.py",
+      "tests/acceptance/test_phase_2d_schedule.py"
+    ],
+    "compiler_attempts": "Both v15 compiler processes remain consumed. Their outputs remain retained and cannot be reused.",
+    "correction": "A shared readiness function uses poll when any descriptor number is at least 1024. All 75 observer readiness sites use it. Low descriptors retain select behavior. The poll path preserves object identity, list order, duplicates, readiness, EOF, invalid-handle refusal, and finite timeout validation. No retained descriptor is closed, duplicated, or renumbered by this function.",
+    "documentation": [
+      "https://docs.python.org/3/library/select.html",
+      "https://bugs.python.org/issue31610"
+    ],
+    "eleventh_charge": {
+      "allocated_bytes": 8589934592,
+      "batch_started_monotonic": 31087.888,
+      "configuration": "9ab21657ab4d4af75af305d076689ea5f0f53736e51112d4870990df1b245abe",
+      "id": "b039084bb30cf068a0adcc7636a37bbaf525980fa47e42c04db54588b2f19ecf",
+      "installation": "unknown",
+      "logical_bytes": 8589934592,
+      "memory_bytes": 805306368,
+      "owner": "5119d239776c16f9cf1d9b269fed1f78cb5d39b3428bf00ba8ba0be020113cdd",
+      "schema_version": 1,
+      "state": "retained",
+      "tasks": 128
+    },
+    "eleventh_journal_sha256": "917ba2832e26af663221aa37bad8895221a30cf274ccdba89c48ad46148052c6",
+    "existing_combined_reserved_bytes_each": 94489280512,
+    "failure": {
+      "cleanup_failure_line": 582,
+      "diagnostic": "filedescriptor out of range in select()",
+      "failure_source": "linux_storage.py",
+      "observer_fd_count_observed": 1476,
+      "observer_pid": 13731,
+      "original_child_pid": 13791,
+      "original_child_pidfd": 1476,
+      "original_child_state": "Z (zombie)",
+      "original_read_fd": 1475,
+      "primary_failure_line": 514,
+      "provenance": "Bounded read-only inspection recovered the original ValueError frames and FD values. Proc readback confirms the retained child and pidfd. No original task, handle, pipe, timer, or clock changed during diagnosis.",
+      "type": "ValueError"
+    },
+    "fixed_child_source_constants_unchanged": true,
+    "new_aggregate": "crewshal-2d-20261015v13.slice",
+    "new_observer": "crewshal-2d-20261015v13-observer.service",
+    "outputs": {
+      "crewshal-bootstrap": {
+        "bytes": 669328,
+        "sha256": "ab3a0bec59dfcb16d5469b10e027c54697dc47b43309bf121261fb846b01d576"
+      },
+      "lost+found": {
+        "directory": true,
+        "entries": [],
+        "nlink": 2
+      },
+      "policy.binary": {
+        "bytes": 7348,
+        "sha256": "5a9ded6dc15a10b869cbbbcbc852cd5606532b8f117f9202c97adde1945f2ae6"
+      },
+      "storage-audit.json": {
+        "bytes": 3537,
+        "sha256": "ad78dfa709dedd7bb849abff1af6d587de57dc1af8fbeced3ddb4274c9eac8f3"
+      }
+    },
+    "physical_closure": "unknown",
+    "proposal": "docs/PHASE-2D-POLL-CONTINUATION-2026-10-15.md",
+    "proposed_combined_reserved_bytes_each": 103079215104,
+    "proposed_nominal_memory_charge_bytes": 9663676416,
+    "proposed_nominal_tasks": 1536,
+    "source_call_sites": 75,
+    "v15_approval": {
+      "answer": "Approve the exact v15 exception and batch",
+      "approval_date": "2026-10-15",
+      "question_id": "call_e9cf5e010b04402dbef0c64c59999fe8",
+      "record_sha256": "71d41d82dd99a8f0541e54eff7c6878d8362199e544d4b52e404d29f7e9ce5a8"
+    }
+  },
+  "private_authentication_probes": [
+    "/native-auth/auth.json",
+    "/native-auth/config.toml"
+  ],
+  "publication": "permitted only after full Phase 2D acceptance",
+  "qualification_cases": [
+    "allowed-grant",
+    "external-read",
+    "external-write",
+    "original-checkout",
+    "coordinator-state",
+    "symlink-escape",
+    "new-file-escape",
+    "metadata-escape",
+    "network-egress",
+    "environment-credentials",
+    "repository-hooks",
+    "global-hooks",
+    "mcp-plugins-instructions",
+    "descendant-escape",
+    "cancellation",
+    "deadline",
+    "credential-mediation",
+    "credential-free-validation",
+    "configuration-binding",
+    "qualification-refusal"
+  ],
+  "raw_policy_continuation": {
+    "actual_progress": {
+      "actual_device_login": "not run",
+      "actual_live_turn": "not run",
+      "actual_qualification": "not run",
+      "memory": {
+        "/sys/fs/cgroup/crewshal.slice/crewshal-2d.slice/crewshal-2d-20261015v25.slice": {
+          "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+          "memory.max": "805306368\n",
+          "memory.peak": "118366208\n",
+          "pids.events": "max 0\n"
+        },
+        "/sys/fs/cgroup/crewshal.slice/crewshal-2d.slice/crewshal-2d-20261015v25.slice/crewshal-2d-20261015v25-observer.service": {
+          "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+          "memory.max": "134217728\n",
+          "memory.peak": "94359552\n",
+          "pids.events": "max 0\n"
+        }
+      },
+      "policy_load": "kernel refused; no successful load recorded",
+      "revision_read_and_absent_profile_check": "passed before the bounded policy write"
+    },
+    "after_fix": {
+      "errors": 0,
+      "failures": 0,
+      "focused_tests": 69,
+      "installed_tests": 1222,
+      "skipped": 0,
+      "source_tests": 1222
+    },
+    "automatic_retries": 0,
+    "before_fix": {
+      "errors": 1,
+      "failures": 1,
+      "new_regression_methods": 2
+    },
+    "correction": "Require exactly one --zstd-compress-level=none option in the frozen parser recipe. Reject missing, duplicate, and conflicting options. The pinned parser then emits raw serialized policy without userspace compression headers. Preserve direct add-only loading and the exact source-to-binary-to-export checks.",
+    "counter_resets": 0,
+    "existing_combined_reserved_bytes_each": 197568495616,
+    "failure": {
+      "errno": 93,
+      "kernel_diagnostic": "invalid profile format",
+      "line": 1335,
+      "observer_pid": 30031,
+      "original_public_refusal": {
+        "execution_allowed": false,
+        "failure_causes": [
+          {
+            "errno": null,
+            "line": 1711,
+            "source": "linux_operational.py",
+            "type": "OperationalRefusal"
+          },
+          {
+            "errno": null,
+            "line": 669,
+            "source": "linux_storage.py",
+            "type": "StorageChildRefusal"
+          }
+        ],
+        "failure_errno": null,
+        "failure_line": 1711,
+        "failure_source": "linux_operational.py",
+        "failure_type": "OperationalRefusal",
+        "phase": "2D",
+        "reusable": false,
+        "schema_version": 1,
+        "stage": "refused_with_original_custody",
+        "storage_child_failure": {
+          "errno": 93,
+          "line": 1335,
+          "source": "linux_operational.py",
+          "type": "OSError"
+        }
+      },
+      "policy_header_hex": "010300000000000028b52ffd",
+      "source": "linux_operational.py",
+      "type": "OSError"
+    },
+    "kernel_diagnostic_readback": [
+      "5,2119,104856170214,-;audit: type=1400 audit(1792091652.743:358): apparmor=\"STATUS\" info=\"invalid profile format\" error=-93 profile=\"unconfined\" pid=30201 comm=\"python3.12\"\n"
+    ],
+    "new_aggregate": "crewshal-2d-20261015v26.slice",
+    "new_observer": "crewshal-2d-20261015v26-observer.service",
+    "outputs": {
+      "crewshal-bootstrap": {
+        "bytes": 669328,
+        "sha256": "ab3a0bec59dfcb16d5469b10e027c54697dc47b43309bf121261fb846b01d576"
+      },
+      "lost+found": {
+        "directory": true,
+        "entries": [],
+        "nlink": 2
+      },
+      "policy.binary": {
+        "bytes": 7348,
+        "sha256": "5a9ded6dc15a10b869cbbbcbc852cd5606532b8f117f9202c97adde1945f2ae6"
+      },
+      "storage-audit.json": {
+        "bytes": 3537,
+        "sha256": "ad78dfa709dedd7bb849abff1af6d587de57dc1af8fbeced3ddb4274c9eac8f3"
+      }
+    },
+    "parser_option_source_sha256": "064366a5c217f85b04ca38a1a4d01eff134b6139e64ef1429b6f2b2c91ea5df1",
+    "parser_source": "https://gitlab.com/apparmor/apparmor/-/raw/v5.0.2/parser/parser_interface.c",
+    "physical_closure": "unknown",
+    "proposal": "docs/PHASE-2D-RAW-POLICY-CONTINUATION-2026-10-15.md",
+    "proposed_combined_reserved_bytes_each": 206158430208,
+    "proposed_nominal_memory_charge_bytes": 19327352832,
+    "proposed_nominal_tasks": 3072,
+    "read_only_container_probe": {
+      "compilers_executed": false,
+      "decoded_containers": [
+        {
+          "compressed_bytes": 1325,
+          "container_offset": 0,
+          "decoded_bytes": 7695,
+          "decoded_sha256": "142a12a6bbf078923bd521e42e1fefafbf6b377e92fbc28ae418c3bbe7d370af",
+          "raw_version_header": true
+        },
+        {
+          "compressed_bytes": 2447,
+          "container_offset": 1333,
+          "decoded_bytes": 11577,
+          "decoded_sha256": "9dde85a7dad92d546507a8cc6971ac941c8f7eef19ed09c2552839cf3c761b6c",
+          "raw_version_header": true
+        },
+        {
+          "compressed_bytes": 1843,
+          "container_offset": 3788,
+          "decoded_bytes": 9153,
+          "decoded_sha256": "a7f04d7fd477da1202f5f8ca7eb4fc727c93d73f134f28add6ee2bd702940995",
+          "raw_version_header": true
+        },
+        {
+          "compressed_bytes": 1701,
+          "container_offset": 5639,
+          "decoded_bytes": 8729,
+          "decoded_sha256": "970c807d68bdcaa167ea506d462c67bfcff5eeea8dbad6e56568e55b92f324d0",
+          "raw_version_header": true
+        }
+      ],
+      "old_outputs_reused_for_admission": false,
+      "policy_loaded": false,
+      "total_decoded_bytes": 37154
+    },
+    "retained_custody": {
+      "common_limits_equal": true,
+      "common_memory_events": "low 0\nhigh 0\nmax 7410\noom 1\noom_kill 1\noom_group_kill 0\nsock_throttled 0\n",
+      "common_memory_events_local": "low 0\nhigh 0\nmax 5715\noom 1\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+      "current_journal_fd_identities_equal": 20,
+      "forwarding": 0,
+      "original_charge_snapshots_verified": 23,
+      "original_observer_custody_loss": 24610
+    },
+    "twenty_third_journal_sha256": "8e8aa66bb9c2bdae6ff03c4bbb0262a46456b2015d8c67ceadd55fe27b29b268",
+    "v28_approval": {
+      "answer": "Approve the exact v28 exception and batch",
+      "approval_date": "2026-10-15",
+      "question_id": "call_f303d22c2958456b9e13674bb18ba875",
+      "record_sha256": "ad0201333e8292f8371575f9cb0b2d81381dbe0ccb6733ab00b65193f4bde7c5"
+    }
+  },
+  "recursion_continuation": {
+    "actual_sealing_readback": {
+      "compiler_volume_readonly": true,
+      "formatter_empty": true,
+      "formatter_linked": true
+    },
+    "after_fix": {
+      "errors": 0,
+      "failures": 0,
+      "focused_tests": 47,
+      "installed_tests": 1170,
+      "skipped": 0,
+      "source_tests": 1170
+    },
+    "automatic_retries": 0,
+    "before_fix": {
+      "errors": 1,
+      "failures": 0,
+      "tests": 2
+    },
+    "compiler_attempts": "Both v14 compiler processes remain consumed. Their outputs remain retained and cannot be reused.",
+    "correction": "The timer verifies the original lane registry, configuration, role handles, and kernel controls through an internal effect-free lane readback. The public lane verification retains full reservation verification. No recursive bypass flag or cached readiness state is introduced.",
+    "existing_combined_reserved_bytes_each": 85899345920,
+    "failure": {
+      "cycle": [
+        "verify_early_timer_roles",
+        "RetainedLaneSetup.verify_handles",
+        "OwnedStorageReservation._verify_identity",
+        "verify_observer_configuration",
+        "RetainedBuildDerivation.verify",
+        "OwnedBatchTimer.verify"
+      ],
+      "failure_line": 849,
+      "failure_source": "pathlib.py",
+      "observer_pid": 12352,
+      "provenance": "Bounded read-only inspection recovered names from the original RecursionError traceback. No original task, handle, pipe, timer, or clock changed.",
+      "type": "RecursionError",
+      "verified_traceback_frames": 997
+    },
+    "new_aggregate": "crewshal-2d-20261014v12.slice",
+    "new_observer": "crewshal-2d-20261014v12-observer.service",
+    "outputs": {
+      "crewshal-bootstrap": {
+        "bytes": 669328,
+        "sha256": "ab3a0bec59dfcb16d5469b10e027c54697dc47b43309bf121261fb846b01d576"
+      },
+      "lost+found": {
+        "directory": true,
+        "entries": [],
+        "nlink": 2
+      },
+      "policy.binary": {
+        "bytes": 7348,
+        "sha256": "5a9ded6dc15a10b869cbbbcbc852cd5606532b8f117f9202c97adde1945f2ae6"
+      },
+      "storage-audit.json": {
+        "bytes": 3537,
+        "sha256": "ad78dfa709dedd7bb849abff1af6d587de57dc1af8fbeced3ddb4274c9eac8f3"
+      }
+    },
+    "physical_closure": "unknown",
+    "prestart_verifier_correction": {
+      "final_observer_unit_sha256": "41ab12634a6da8178c89516256cb22373a1f33e8795cd3369d9dc09e9b3d0521",
+      "problem": "The local verifier used the archive unit hash for the final installed unit.",
+      "resolution": "Readback verified the exact four appended bindings from the approved preparation script before the observer started. No frozen input or installed unit changed.",
+      "result": "All 227 inputs, both derived final units, nine prior journals, original custody, and actual common controls passed."
+    },
+    "proposal": "docs/PHASE-2D-RECURSION-CONTINUATION-2026-10-14.md",
+    "proposed_combined_reserved_bytes_each": 94489280512,
+    "proposed_nominal_memory_charge_bytes": 8858370048,
+    "proposed_nominal_tasks": 1408,
+    "tenth_charge": {
+      "allocated_bytes": 8589934592,
+      "batch_started_monotonic": 19902.408,
+      "configuration": "52b3595698ef94dda7a167930f0e53eabed7cbdc070aa7dbfe1896731aa38339",
+      "id": "b039084bb30cf068a0adcc7636a37bbaf525980fa47e42c04db54588b2f19ecf",
+      "installation": "unknown",
+      "logical_bytes": 8589934592,
+      "memory_bytes": 805306368,
+      "owner": "10062bdc9e68b5cf3207ab8b0c6726b73f980903ef872a701af6bdc384474b66",
+      "schema_version": 1,
+      "state": "retained",
+      "tasks": 128
+    },
+    "tenth_journal_sha256": "8d5ef5d267aeeeab11f2ab94e5770a8289aaf9ff7a598dd25561d4ef057f743b",
+    "v14_approval": {
+      "answer": "Approve the exact v14 exception and batch",
+      "question_id": "call_53e28ca7c914448db803ace076b2a7ec",
+      "record_sha256": "9bcee7bbf4e9822e3c52f84bf33158d3d8d153b93e001a7ca069154f6306a7cb"
+    }
+  },
+  "retained_policy_continuation": {
+    "actual_progress": {
+      "actual_device_login": "not run",
+      "actual_live_turn": "not run",
+      "actual_qualification": "not run",
+      "fixture_seed_and_readback": "returned before policy open",
+      "memory": {
+        "/sys/fs/cgroup/crewshal.slice/crewshal-2d.slice/crewshal-2d-20261015v23.slice": {
+          "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+          "memory.max": "805306368\n",
+          "memory.peak": "124903424\n",
+          "pids.events": "max 0\n"
+        },
+        "/sys/fs/cgroup/crewshal.slice/crewshal-2d.slice/crewshal-2d-20261015v23.slice/crewshal-2d-20261015v23-observer.service": {
+          "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+          "memory.max": "134217728\n",
+          "memory.peak": "100966400\n",
+          "pids.events": "max 0\n"
+        }
+      }
+    },
+    "after_fix": {
+      "errors": 0,
+      "failures": 0,
+      "focused_tests": 11,
+      "installed_tests": 1218,
+      "skipped": 0,
+      "source_tests": 1218
+    },
+    "automatic_retries": 0,
+    "before_fix": {
+      "errors": 2,
+      "failures": 0,
+      "tests": 2
+    },
+    "correction": "Open each canonical policy path component relative to the retained projected-root FD. Preserve no-follow flags, root ownership, outside-write refusal, verified root inventory, and original deadlines. Keep the caller root FD open. Do not resolve its mount path in another namespace.",
+    "counter_resets": 0,
+    "existing_combined_reserved_bytes_each": 180388626432,
+    "failure": {
+      "errno": 2,
+      "line": 585,
+      "missing_component": "readonly-root",
+      "observer_pid": 28259,
+      "original_public_refusal": {
+        "execution_allowed": false,
+        "failure_causes": [
+          {
+            "errno": null,
+            "line": 1703,
+            "source": "linux_operational.py",
+            "type": "OperationalRefusal"
+          },
+          {
+            "errno": 2,
+            "line": 585,
+            "source": "linux_operational.py",
+            "type": "FileNotFoundError"
+          }
+        ],
+        "failure_errno": null,
+        "failure_line": 1703,
+        "failure_source": "linux_operational.py",
+        "failure_type": "OperationalRefusal",
+        "phase": "2D",
+        "reusable": false,
+        "schema_version": 1,
+        "stage": "refused_with_original_custody"
+      },
+      "policy_relative_path": "/opt/crewshal/storage-audit/policy.binary",
+      "source": "linux_operational.py",
+      "type": "FileNotFoundError",
+      "verified_frames": [
+        "OriginalInstallationDriver.install",
+        "_open_path"
+      ]
+    },
+    "new_aggregate": "crewshal-2d-20261015v24.slice",
+    "new_observer": "crewshal-2d-20261015v24-observer.service",
+    "outputs": {
+      "crewshal-bootstrap": {
+        "bytes": 669328,
+        "sha256": "ab3a0bec59dfcb16d5469b10e027c54697dc47b43309bf121261fb846b01d576"
+      },
+      "lost+found": {
+        "directory": true,
+        "entries": [],
+        "nlink": 2
+      },
+      "policy.binary": {
+        "bytes": 7348,
+        "sha256": "5a9ded6dc15a10b869cbbbcbc852cd5606532b8f117f9202c97adde1945f2ae6"
+      },
+      "storage-audit.json": {
+        "bytes": 3537,
+        "sha256": "ad78dfa709dedd7bb849abff1af6d587de57dc1af8fbeced3ddb4274c9eac8f3"
+      }
+    },
+    "physical_closure": "unknown",
+    "proposal": "docs/PHASE-2D-RETAINED-POLICY-CONTINUATION-2026-10-15.md",
+    "proposed_combined_reserved_bytes_each": 188978561024,
+    "proposed_nominal_memory_charge_bytes": 17716740096,
+    "proposed_nominal_tasks": 2816,
+    "retained_custody": {
+      "common_limits_equal": true,
+      "common_memory_events": "low 0\nhigh 0\nmax 7410\noom 1\noom_kill 1\noom_group_kill 0\nsock_throttled 0\n",
+      "common_memory_events_local": "low 0\nhigh 0\nmax 5715\noom 1\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+      "current_journal_fd_identities_equal": 18,
+      "forwarding": 0,
+      "original_charge_snapshots_verified": 21,
+      "original_observer_custody_loss": 24610
+    },
+    "retained_policy_readback": [
+      {
+        "absolute_path_exists_in_host": false,
+        "bytes": 7348,
+        "retained_root_fd": 2437,
+        "root_readonly": false,
+        "sha256": "5a9ded6dc15a10b869cbbbcbc852cd5606532b8f117f9202c97adde1945f2ae6"
+      },
+      {
+        "absolute_path_exists_in_host": false,
+        "bytes": 7348,
+        "retained_root_fd": 2439,
+        "root_readonly": false,
+        "sha256": "5a9ded6dc15a10b869cbbbcbc852cd5606532b8f117f9202c97adde1945f2ae6"
+      },
+      {
+        "absolute_path_exists_in_host": false,
+        "bytes": 7348,
+        "retained_root_fd": 2441,
+        "root_readonly": true,
+        "sha256": "5a9ded6dc15a10b869cbbbcbc852cd5606532b8f117f9202c97adde1945f2ae6"
+      },
+      {
+        "absolute_path_exists_in_host": false,
+        "bytes": 7348,
+        "retained_root_fd": 2443,
+        "root_readonly": true,
+        "sha256": "5a9ded6dc15a10b869cbbbcbc852cd5606532b8f117f9202c97adde1945f2ae6"
+      }
+    ],
+    "twenty_first_journal_sha256": "16074b1d176ae9f295ea390013c1b9eb1669fbe902fae2eedf9a64449c92c70b",
+    "v26_approval": {
+      "answer": "Approve the exact v26 resource and custody exception and batch",
+      "date": "2026-10-15",
+      "question_id": "call_1562154e710941b89657834feea3dd61",
+      "record_sha256": "7dc218853cbc342433ef7e56095231ea69de4069374874f6d63b696988d8dddb"
+    }
+  },
+  "role_lifecycle_continuation": {
+    "actual_progress": {
+      "actual_device_login": "not run",
+      "actual_live_turn": "not run",
+      "actual_qualification": "not run",
+      "compiler_volume_readonly": true,
+      "directory_child_admitted": true,
+      "directory_handoff_completed": false,
+      "final_lanes_bound": true,
+      "high_descriptor_polling_passed": true,
+      "installation_root_created": true,
+      "installation_root_entries": []
+    },
+    "after_fix": {
+      "errors": 0,
+      "failures": 0,
+      "focused_tests": 26,
+      "installed_tests": 1177,
+      "skipped": 0,
+      "source_tests": 1177
+    },
+    "automatic_retries": 0,
+    "before_fix": {
+      "errors": 3,
+      "failures": 0,
+      "tests": 3
+    },
+    "compiler_attempts": "Both v16 compiler processes remain consumed. Their outputs remain retained and cannot be reused.",
+    "correction": "Require the original setup role to be empty immediately before the compiler-volume read-only remount. Retained compiler readback continues to require original successful reaped compiler pidfds, immutable output identities, read-only compiler storage, and original setup role controls. Later registered storage and namespace work may use that same role. Their existing actor admission remains unchanged.",
+    "existing_combined_reserved_bytes_each": 103079215104,
+    "failure": {
+      "diagnostic": "original build setup is not empty",
+      "failure_line": 267,
+      "failure_source": "linux_operational.py",
+      "observer_pid": 14430,
+      "original_child_pid": 14490,
+      "original_child_pidfd": 1476,
+      "original_child_state": "Z (zombie)",
+      "provenance": "The exact original refusal record identifies the frozen source check. Read-only proc and filesystem readback confirms the retained child, pidfd, and empty installation root.",
+      "stage": "Installation-root FD handoff readback.",
+      "type": "ValueError"
+    },
+    "new_aggregate": "crewshal-2d-20261015v14.slice",
+    "new_observer": "crewshal-2d-20261015v14-observer.service",
+    "outputs": {
+      "crewshal-bootstrap": {
+        "bytes": 669328,
+        "sha256": "ab3a0bec59dfcb16d5469b10e027c54697dc47b43309bf121261fb846b01d576"
+      },
+      "lost+found": {
+        "directory": true,
+        "entries": [],
+        "nlink": 2
+      },
+      "policy.binary": {
+        "bytes": 7348,
+        "sha256": "5a9ded6dc15a10b869cbbbcbc852cd5606532b8f117f9202c97adde1945f2ae6"
+      },
+      "storage-audit.json": {
+        "bytes": 3537,
+        "sha256": "ad78dfa709dedd7bb849abff1af6d587de57dc1af8fbeced3ddb4274c9eac8f3"
+      }
+    },
+    "physical_closure": "unknown",
+    "proposal": "docs/PHASE-2D-ROLE-CONTINUATION-2026-10-15.md",
+    "proposed_combined_reserved_bytes_each": 111669149696,
+    "proposed_nominal_memory_charge_bytes": 10468982784,
+    "proposed_nominal_tasks": 1664,
+    "twelfth_charge": {
+      "allocated_bytes": 8589934592,
+      "batch_started_monotonic": 31653.438,
+      "configuration": "7a626a821d12baa067136a0facc6d02a591ce0a7a9b27cd07ec4a98fd65f9ab9",
+      "id": "b039084bb30cf068a0adcc7636a37bbaf525980fa47e42c04db54588b2f19ecf",
+      "installation": "unknown",
+      "logical_bytes": 8589934592,
+      "memory_bytes": 805306368,
+      "owner": "b3ec37d37d34a24ebc16b164202ee14658fcd32795786f6471365ecd1c3dcfec",
+      "schema_version": 1,
+      "state": "retained",
+      "tasks": 128
+    },
+    "twelfth_journal_sha256": "cf6588e7a5ac6e0a7a79027b2ba35c82915aa6cef69db1e9390091596b351ff4",
+    "v16_approval": {
+      "answer": "Approve the exact v16 exception and batch",
+      "approval_date": "2026-10-15",
+      "question_id": "call_829645bbbc8a47c48456a158097d153f",
+      "record_sha256": "9de749bc97ec0437f3bb61894dee2d586d8ea14ce00f21245f7856aa381374b3"
+    }
+  },
+  "root_inventory": {
+    "accepted_ceiling_bytes": 469762048,
+    "entries": 1163,
+    "installed_identities": "unknown until charged build and independent readback",
+    "prospective_input_bytes": 348564553
+  },
+  "runtime_continuation": {
+    "actual_build_input_preflight": {
+      "all_bytes_equal": true,
+      "compiler_started": false,
+      "cpus": 4,
+      "failures": [],
+      "frozen_compiler_and_runtime_files": 314,
+      "kernel": "7.0.0-38-generic",
+      "memtotal_kib": 7573396,
+      "page_bytes": 4096
+    },
+    "actual_common_memory_ceiling": 805306368,
+    "actual_common_task_ceiling": 128,
+    "actual_expanded_runtime_preflight": {
+      "all_bytes_and_protected_identities_equal": true,
+      "compiler_started": false,
+      "failures": [],
+      "pinned_runtime_files": 74,
+      "readonly_mount_enforcement": "requires actual observer namespace",
+      "timer_process_created": false
+    },
+    "actual_post_boot_state": {
+      "cgroup_parent_exists": false,
+      "former_pid_exists": {
+        "17455": false,
+        "18165": false,
+        "18819": false
+      },
+      "forwarding": "0",
+      "records": [
+        {
+          "charge": {
+            "allocated_bytes": 8589934592,
+            "configuration": "56b0945cfb4a6d31d1b811eb9e5e6e0db844b116aceb61544de990684973870d",
+            "installation": "unknown",
+            "logical_bytes": 8589934592,
+            "memory_bytes": 805306368,
+            "state": "retained",
+            "tasks": 128
+          },
+          "database_sha256": "8da77577ceb30d96c9e82ee72fa004a3157d34b02ce2efabaf1ffb1f08ca59a8",
+          "version": 2
+        },
+        {
+          "charge": {
+            "allocated_bytes": 8589934592,
+            "configuration": "dd4ef6d86f7e7fb37decae74161edfb16cd2bc3a3c240eef781f36390f862f38",
+            "installation": "unknown",
+            "logical_bytes": 8589934592,
+            "memory_bytes": 805306368,
+            "state": "retained",
+            "tasks": 128
+          },
+          "database_sha256": "962a3c23383981728557e1d3fe04bf0439581af7582f839629a86a70549a75ad",
+          "version": 3
+        }
+      ],
+      "services": {
+        "crewshal-2d-20261012v1-observer.service": [
+          "ActiveState=inactive",
+          "MainPID=0",
+          "Result=success"
+        ],
+        "crewshal-2d-20261013v2-observer.service": [
+          "ActiveState=inactive",
+          "MainPID=0",
+          "Result=success"
+        ],
+        "crewshal-2d-20261013v3-observer.service": [
+          "ActiveState=inactive",
+          "MainPID=0",
+          "Result=success"
+        ]
+      },
+      "uptime": "182.95"
+    },
+    "actual_readonly_60_file_preflight": true,
+    "additional_retry_authority": false,
+    "combined_allocated_reserved_bytes": 25769803776,
+    "combined_logical_reserved_bytes": 25769803776,
+    "combined_nominal_memory_charge": 2415919104,
+    "combined_nominal_task_charge": 384,
+    "compiler_attempts_started": 0,
+    "new_aggregate": "crewshal-2d-20261013v4.slice",
+    "new_observer": "crewshal-2d-20261013v4-observer.service",
+    "physical_closure": "unknown",
+    "pinned_early_runtime_files": 74,
+    "prior_allocated_charge": 17179869184,
+    "prior_journals_unchanged": true,
+    "prior_logical_charge": 17179869184,
+    "prior_process_custody": "lost",
+    "proposal": "docs/PHASE-2D-RUNTIME-CONTINUATION-2026-10-13.md"
+  },
+  "runtime_library_closure_check": "Every recorded ELF dependency has an exact copied-root file or direct alias.",
+  "schema_version": 1,
+  "shared_retention_parent": {
+    "additional_common_oom_events_permitted": 0,
+    "cpu_max_unchanged": "100000 100000",
+    "current_approved_memory_bytes": 2147483648,
+    "current_memory_bytes": 765636608,
+    "current_memory_events": "low 0\nhigh 0\nmax 7410\noom 1\noom_kill 1\noom_group_kill 0\nsock_throttled 0\n",
+    "current_memory_events_local": "low 0\nhigh 0\nmax 5715\noom 1\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+    "custody_policy": "The lost v22 observer and timer cannot supply original proof. Retain their journal, full charge, unknown objects, and historical loss. Require all seventeen remaining current original journal FD identities. Reconstruct no lost proof. Stop on another OOM kill or missing mandatory custody.",
+    "guest_memory_limit_changed": false,
+    "higher_ancestor_readback": {
+      "/sys/fs/cgroup": null,
+      "/sys/fs/cgroup/crewshal.slice": "max"
+    },
+    "known_lost_guest_generation": 19,
+    "known_lost_observer": 24610,
+    "known_lost_timer": 24612,
+    "observer_memory_bytes_unchanged": 134217728,
+    "old_batch_memory_events": {
+      "exists": true,
+      "memory.current": "1024000\n",
+      "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 1\noom_group_kill 0\nsock_throttled 0\n",
+      "memory.events.local": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+      "memory.max": "805306368\n"
+    },
+    "old_unit_state": {
+      "common_limit": "805306368",
+      "memory_total_kib": 7573396,
+      "old_timer_exists": false,
+      "old_unit": "MainPID=0\nResult=signal\nOOMPolicy=continue\nExecMainCode=2\nExecMainStatus=9\n"
+    },
+    "original_history_counter_resets": 0,
+    "per_batch_memory_bytes_unchanged": 805306368,
+    "persistent_while_original_objects_remain_retained": true,
+    "previous_memory_bytes": 805306368,
+    "proposed_memory_bytes": 2147483648,
+    "status": "The owner approved v26. Actual kernel readback confirms the shared parent remains at 2 GiB.",
+    "swap_unchanged": 0,
+    "tasks_unchanged": 128,
+    "v26_approval": {
+      "answer": "Approve the exact v26 resource and custody exception and batch",
+      "date": "2026-10-15",
+      "question_id": "call_1562154e710941b89657834feea3dd61",
+      "record_sha256": "7dc218853cbc342433ef7e56095231ea69de4069374874f6d63b696988d8dddb"
+    }
+  },
+  "single_link_continuation": {
+    "actual_common_cpu_ceiling": 1,
+    "actual_common_memory_ceiling": 805306368,
+    "actual_common_swap_ceiling": 0,
+    "actual_common_task_ceiling": 128,
+    "actual_failure": {
+      "bytes": 10643488,
+      "file": "/usr/lib/cargo/bin/coreutils/env",
+      "line": 591,
+      "nlink": 116,
+      "observer_pid": 6476,
+      "sha256": "ebaaf26ce64d3409229f771954aff321f7d5ef004da77019173132c1f1a9fd91",
+      "source": "linux_operational.py",
+      "timer_pid": 6478,
+      "type": "ValueError"
+    },
+    "additional_retry_authority": "missing",
+    "apparmor_compilers_started": 0,
+    "combined_allocated_reserved_bytes": 42949672960,
+    "combined_logical_reserved_bytes": 42949672960,
+    "combined_nominal_memory_charge": 4026531840,
+    "combined_nominal_task_charge": 640,
+    "compiler_processes_started": 0,
+    "compiler_volume_bytes": 16777216,
+    "compiler_volume_entries": [],
+    "complete_actual_input_link_preflight": {
+      "existing_nonexclusive_inputs": 1,
+      "paths": 1180,
+      "unbuilt_output_paths": 3
+    },
+    "new_aggregate": "crewshal-2d-20261013v6.slice",
+    "new_observer": "crewshal-2d-20261013v6-observer.service",
+    "original_build_admission_attempt": "consumed and retained; not resumed",
+    "original_fourth_charge": {
+      "allocated_bytes": 8589934592,
+      "configuration_sha256": "94c0af7a0a9bc133f4648919a0cc96e5f3400861b56de0a8918e88c1f2ef38d0",
+      "installation": "unknown",
+      "journal_sha256": "ebcd9bd415699d422390a13670c85a0f9479168a9da1d1b89d9681016d8a20a5",
+      "logical_bytes": 8589934592,
+      "state": "retained"
+    },
+    "owner_archive_bounds": {
+      "maximum_bytes": 33554432,
+      "maximum_members": 256,
+      "member_data_maximum_bytes": 33554432,
+      "seconds": 30
+    },
+    "physical_closure": "unknown",
+    "prior_human_approval": {
+      "answer": "Approve the exact exception and batch",
+      "question_id": "call_LHhNyof7DFyXRzGaPJXZGb2a",
+      "record_sha256": "deeb0c5b318b7fbcde53dcd451021049c5592908b658c7b465082cc50fd23c43"
+    },
+    "prior_process_custody": "Current observers and both timers remain retained. Earlier accepted loss remains recorded.",
+    "private_copy": {
+      "archive_path": "root-data/usr/bin/env",
+      "bytes": 10643488,
+      "mode": 365,
+      "nlink_required": 1,
+      "readonly_unit_binding": "/usr/lib/cargo/bin/coreutils/env",
+      "sha256": "ebaaf26ce64d3409229f771954aff321f7d5ef004da77019173132c1f1a9fd91"
+    },
+    "proposal": "docs/PHASE-2D-SINGLE-LINK-CONTINUATION-2026-10-13.md"
+  },
+  "small_file_cache_continuation": {
+    "actual_cache_reclaim_after_fix": "Not measured. The exact new batch must satisfy existing mandatory runtime checks.",
+    "after_fix": {
+      "errors": 0,
+      "failures": 0,
+      "focused_tests": 7,
+      "installed_tests": 1186,
+      "skipped": 0,
+      "source_tests": 1186
+    },
+    "automatic_retries": 0,
+    "before_fix": {
+      "errors": 0,
+      "failures": 3,
+      "tests": 3
+    },
+    "correction": "Advise completed small files as well as full streaming windows. Round the final advice length to the actual kernel page size. Keep incomplete ranges, descriptor custody, exact input bounds, sync-before-written-advice, existing clocks, all ceilings, and mandatory resource-refusal checks. The hint supplies no capacity or successful-reclaim claim.",
+    "counter_resets": 0,
+    "existing_combined_reserved_bytes_each": 128849018880,
+    "failure": {
+      "common_parent_local_events": "low 0\nhigh 0\nmax 850\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+      "common_parent_memory_events": "low 0\nhigh 0\nmax 1684\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+      "diagnostic": "aggregate has resource-refusal history",
+      "line": 458,
+      "observer_anon_bytes": 50196480,
+      "observer_file_bytes": 74772480,
+      "observer_memory_events": "low 0\nhigh 0\nmax 834\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+      "observer_memory_max": 134217728,
+      "observer_memory_peak": 134217728,
+      "observer_pid": 20701,
+      "oom": 0,
+      "oom_kill": 0,
+      "pids_max": 0,
+      "source": "admission.py",
+      "type": "ValueError"
+    },
+    "fifteenth_journal_sha256": "2e3bfe9fa80de0a3da1cdfd10afcbbfb7b09dfa30d3dc68f6d84fc2e10a556b1",
+    "new_aggregate": "crewshal-2d-20261015v18.slice",
+    "new_observer": "crewshal-2d-20261015v18-observer.service",
+    "original_refusal_history": "Preserved in the common parent, failed aggregate, and observer. No existing admission check is bypassed.",
+    "outputs": {
+      "crewshal-bootstrap": {
+        "bytes": 669328,
+        "sha256": "ab3a0bec59dfcb16d5469b10e027c54697dc47b43309bf121261fb846b01d576"
+      },
+      "lost+found": {
+        "directory": true,
+        "entries": [],
+        "nlink": 2
+      },
+      "policy.binary": {
+        "bytes": 7348,
+        "sha256": "5a9ded6dc15a10b869cbbbcbc852cd5606532b8f117f9202c97adde1945f2ae6"
+      },
+      "storage-audit.json": {
+        "bytes": 3537,
+        "sha256": "ad78dfa709dedd7bb849abff1af6d587de57dc1af8fbeced3ddb4274c9eac8f3"
+      }
+    },
+    "physical_closure": "unknown",
+    "proposal": "docs/PHASE-2D-SMALL-CACHE-CONTINUATION-2026-10-15.md",
+    "proposed_combined_reserved_bytes_each": 137438953472,
+    "proposed_nominal_memory_charge_bytes": 12884901888,
+    "proposed_nominal_tasks": 2048,
+    "retained_trace": {
+      "observed_process": 20701,
+      "read_only_bytes": 43622400,
+      "verified_failure_frames": [
+        {
+          "function": "OwnedBackingProduction.copy_root",
+          "line": -1
+        },
+        {
+          "function": "OwnedBackingProduction.verify",
+          "line": -1
+        },
+        {
+          "function": "OwnedStorageReservation.verify",
+          "line": -1
+        },
+        {
+          "function": "OwnedStorageReservation._verify",
+          "line": -1
+        },
+        {
+          "function": "OwnedStorageReservation._verify_identity",
+          "line": -1
+        },
+        {
+          "function": "verify_observer_configuration",
+          "line": -1
+        },
+        {
+          "function": "RetainedBuildDerivation.verify",
+          "line": -1
+        },
+        {
+          "function": "OwnedBatchTimer.verify",
+          "line": -1
+        },
+        {
+          "function": "OwnedBatchTimer._verify_identity",
+          "line": -1
+        },
+        {
+          "function": "OwnedBatchTimer._verify_validator",
+          "line": -1
+        },
+        {
+          "function": "verify_early_timer_roles",
+          "line": -1
+        },
+        {
+          "function": "_aggregate_readback",
+          "line": -1
+        }
+      ]
+    },
+    "root_readonly_metadata": {
+      "2437": {
+        "expected_entries": 1163,
+        "file_bytes": 349238362,
+        "files": 910,
+        "missing": [],
+        "present_entries": 1163,
+        "wrong_modes_or_extra": []
+      },
+      "2439": {
+        "expected_entries": 1163,
+        "file_bytes": 349238362,
+        "files": 910,
+        "missing": [],
+        "present_entries": 1163,
+        "wrong_modes_or_extra": []
+      }
+    },
+    "v20_approval": {
+      "answer": "Approve the exact v20 replacement and batch",
+      "approval_date": "2026-10-15",
+      "question_id": "call_b118c8ab94d04978bfa602386f8f17e4",
+      "record_sha256": "51a2efcf91168fdd46857cd75ca5f5a69590621dc4150a81c71eaf593d1b6f1d"
+    }
+  },
+  "source_tests": {
+    "errors": 0,
+    "failures": 0,
+    "home": "fresh temporary directory",
+    "inherited_environment": "empty",
+    "kind": "source",
+    "method_occurrences": 1222,
+    "network": "denied by sandbox-exec",
+    "package": "/Volumes/X10Pro/Crewshal/src/crewshal/__init__.py",
+    "seconds": 42.65213291699183,
+    "skipped": 0,
+    "source_sha256": {
+      "src/crewshal/__init__.py": "5bf49d29577ae5521790fdf475b36fdbf2839c365843b54e7220fdbe2ffca86e",
+      "src/crewshal/__main__.py": "61e1b048145332e9aab85470bb2fa2bc1312e41dffa6cd26741319fbfe5443c1",
+      "src/crewshal/admission.py": "a79e10f4ed9a096e7ab6939ad255d47c5478f618886d4c3b2b0c916f008d5c2e",
+      "src/crewshal/app_server.py": "62e0227245b69bb0900c6bfd566b7b79bbeb90038c82372b541e7534acd7b78d",
+      "src/crewshal/bootstrap_helper.c": "de5e2928aad6651015bdcb439835ae377738e1f19839fedbc3d6de1a2010db42",
+      "src/crewshal/candidate.py": "e667919ff4ec6d043de6a1c00f9cb1683de5843cb28f8813b25fb4b75d948bc4",
+      "src/crewshal/cli.py": "8ecd936c862da846969fc2da482c7f889d0174c208076301fc16e6353842d372",
+      "src/crewshal/contracts.py": "ed308d86b9b77fec5e9943677bf1d4b59ef0e16edb7fec25e8b334016bada437",
+      "src/crewshal/discovery.py": "b9ab698faa5951f9badf566b1fdd8cd3be7487f82fdc96acd6a246ef44aa1b2c",
+      "src/crewshal/dispatch.py": "939b607f3a0f2b829ce73b0f0fce4ac861a448dd985cb2325429b5a390b48641",
+      "src/crewshal/durable.py": "702f7b2b940e64ca4c16c4e785fa09d8608ce023c2830c4606b29342ae96d2f4",
+      "src/crewshal/gates.py": "06d841c18cbdde260486c94e91fa0f0f6ca17508ccd36e43778a3bbbec096baf",
+      "src/crewshal/integration.py": "47b33a2bf99aa9de70fb7e0604af1efa48aa4735ba6cbef41b18fb1d8b5b502f",
+      "src/crewshal/linux_attempt.py": "a8e709790b3f8a89e551085741dc332611504102c221511e439600483e4e0a4e",
+      "src/crewshal/linux_auth.py": "741923374120ef7f09398106a21bee374d44a0d9d7cb8c209e4bf294a71ca4d1",
+      "src/crewshal/linux_batch.py": "fcc2df1ba19c1d6b1e78e999a8a8ab8815b29dd91c81bf77b28432a7e6640fae",
+      "src/crewshal/linux_batch_entry.py": "52ba5cdfbdb4f7dd535d9e1572947e84626113492a6aba3e2ebe4c9044375dec",
+      "src/crewshal/linux_bootstrap.py": "b9a5c6939bca596fe8fc9229ad23a0e2409100603fcb7066accb08ac21b33967",
+      "src/crewshal/linux_bridge.py": "6398fafc1f06acc218d6ae74f68ef9f8bb591621433013bac8123b584c66aa03",
+      "src/crewshal/linux_charged_build.py": "1e43655257fdf5ac05e9d8df1839a450f9f0f1da1648dff7dd59c45e5c23864b",
+      "src/crewshal/linux_compiler_volume.py": "5944961aea043d1fb9b06e3c331ee42abca57dc63ecc3d4b5dcbde4c2309df44",
+      "src/crewshal/linux_early_timer.py": "8f1139978665b2359f18d727040b18969362fc84d267979e5d509b96165d5ee8",
+      "src/crewshal/linux_envelope.py": "4b5e3b17c1b4280d17d3c31a8c04251134938177bd7b6e3580f10cd4f2bbbdec",
+      "src/crewshal/linux_fixture_inputs.py": "87abe46a348512119887450ff6be7e6347d91b2b08f6d2496f6cf380a32dac9d",
+      "src/crewshal/linux_freeze.py": "457f1f7a7fc284a612bd6d37c33f30ed7b270d7c26a90d67599fd556fd9453d2",
+      "src/crewshal/linux_installed.py": "adf12e79c8472f3279d086b0eb0eec66d8d79b758ea395b551ee0b8b8d529deb",
+      "src/crewshal/linux_inventory.py": "e0ec35cb0d5fa51ce7e007b4cd8cf94cddb46938f277db1bf9fb6e7ef9698bd8",
+      "src/crewshal/linux_network.py": "cfc1702fb1f8d4fdd6617155b626c0cbc4aa1f9369e25c973ade4ceb8a050551",
+      "src/crewshal/linux_operational.py": "2a552643fb36f3d04dc7b4932a404c0a054b5e17820080052497b968976ada77",
+      "src/crewshal/linux_parent.py": "0f7be8b69c0145de59b635603a042b1ba989aedfb7c17eaf12eb13cfed79a666",
+      "src/crewshal/linux_parent_entry.py": "7b2640c80c745cbf1724fb866e66e5e2d1d9c162b19282a77b3bd1389fce3998",
+      "src/crewshal/linux_payload_storage.py": "d6243b49e34be3c0d9835519c8d1e3e4c85355c41a4d0a69ffa990455fb5bb41",
+      "src/crewshal/linux_production.py": "551e680157d153a33e63278947badd04f0d2c51d9942ce7c6146b0654b5a255b",
+      "src/crewshal/linux_qualification.py": "aef22f4598c82e7f38980db841b22c4cff18840a7663625a3c33a2a64b924587",
+      "src/crewshal/linux_qualification_fixture.py": "31aedf72285abea025c64768b177c958adf3331acd720204fea3066df21fe4ea",
+      "src/crewshal/linux_schedule.py": "41f63f3dc8f1b13f519095f3ddf52a7edac076de4884f7cf888201d6534544a9",
+      "src/crewshal/linux_setup.py": "d4ffe7a63169aa9a3949ca91f5af6fef678054cf07008ca6264786f79474019b",
+      "src/crewshal/linux_storage.py": "eb305add25b39b78fd5877c55f637b0190ab238f5297dcf2ae349698d9ab7d61",
+      "src/crewshal/linux_teardown.py": "8a041bc4f5fcd2b6ea94b476f9ec3cbd870e3090797ed13bfacb6df9aa85d68a",
+      "src/crewshal/linux_validator.py": "ce28b6bde6112dec645c37683345cbe112184332ef34def01b7a798550ef47fd",
+      "src/crewshal/model.py": "3cbc9405e0c7fb5247a13562e72c8472c3edc0f3fc2407db2fd6c6c95fae25de",
+      "src/crewshal/qualification.py": "772df20ee17ddd52023eb0b245d733e2db29d115b625703fd4c6d86026f5554a",
+      "src/crewshal/qualification_bundle.py": "4a595fc100539d997ad9b5f5750b58cd5f14b0ca276a6cc1cc9de6596c1aae7b",
+      "src/crewshal/runtime.py": "584bf3525f02e274ccd3240a083d0b8dbea54be42d64323b110bdeb2074c64d6",
+      "src/crewshal/runtime_batch.py": "1c234fb4b2145329306f5ad68dcdf63ce1b400382414c0f69c83e6f76093d8e1",
+      "src/crewshal/state.py": "856abbc9de6e630798736eab14ddc6062bc6768621edd8a0d9477f1f3fa7e5a3",
+      "src/crewshal/supervisor.py": "4ec3238f5d2c9a8f68762c084ab241112a9b87d626023b5e6a18ab7b6e70a2f6",
+      "tests/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tests/acceptance/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tests/acceptance/test_phase_2a.py": "e4c53627b3fc1be58467761b2c2002010e256f9e087e92fe9ba20837ed627695",
+      "tests/acceptance/test_phase_2b.py": "a5db032b0e1ba98427bd95e726d70ac5e6c07039851553f8c98950496f9dbe40",
+      "tests/acceptance/test_phase_2c.py": "297c20b81fd7e02a1eb6ea3ee24b1361b2a8f8caf0c53e4d4e17a73cea673d5d",
+      "tests/acceptance/test_phase_2c_boundary_observer.py": "9381bae4be23774f757bce9bb1519838051fc9701462efde0ce6b097db0e2fe1",
+      "tests/acceptance/test_phase_2c_broker_environment.py": "1cf85e584b2d3904e44dc52c0fd34bb16abc9329bb4298c497c6f94b5fccedd1",
+      "tests/acceptance/test_phase_2c_bundle.py": "643f6936ab54a3a367a85f4626f9c3cd4bbe1c45c30c0b5ec2ab1d6b1500b91f",
+      "tests/acceptance/test_phase_2c_capture_snapshot.py": "4bc0e3033c973d0cfb49d09e049cde53c2f64dbf92833192614a25435c009e70",
+      "tests/acceptance/test_phase_2c_departed_observer.py": "a701544f66e310e795489479a85adaab351d3fdad74b89e23bada29e03ec78be",
+      "tests/acceptance/test_phase_2c_lifecycle.py": "1b0973b0672a35c1ec0167f95efc730b1909c73ffc07e63b449df6bb81f9853d",
+      "tests/acceptance/test_phase_2c_native_continuation.py": "0d4c1195a113315f2f2365f09167db3774435252f66493236cd03f195a44fb36",
+      "tests/acceptance/test_phase_2c_native_readback.py": "0a01f0bf7a40b8a02a99747848df3f308a3a1c605f148f54678a8300ee0c34f5",
+      "tests/acceptance/test_phase_2c_native_readback_v2.py": "50126483808ad6c146405e038c5ec8e61de2a01e561186a9ecc3bd8fa3ef2d1d",
+      "tests/acceptance/test_phase_2c_network.py": "911000a18c3a32a3b35c995decf05bd235cbd73238403dd11ef634d52e4c9b99",
+      "tests/acceptance/test_phase_2c_protocol.py": "27fe2304c0bf14b1bbfcaf40ba46655a0fa512bce51cdf1132b96d190e1cb4a6",
+      "tests/acceptance/test_phase_2c_storage.py": "85bd90041a86ec5143bbc79b1e7a54636508c59c2edb669fd371fc55cd1010e4",
+      "tests/acceptance/test_phase_2c_storage_observer.py": "6f630e32bb1f1a23270313f0dea661985a3c20c1e0287e1bf7b9fa38e599aef3",
+      "tests/acceptance/test_phase_2c_substrate.py": "de36c48b42fc89f8ddd0c27ff34485018c9ef4dd58256f281716fef4994b0c28",
+      "tests/acceptance/test_phase_2d.py": "93f808d46ad2f59d9db21cfc3c462eda8d442891a5dcffeb21735188ed13e238",
+      "tests/acceptance/test_phase_2d_admission.py": "c288c0a35ba64ce3f71508f63836f1862327d7d9b8c9f832c434abcc27b7462f",
+      "tests/acceptance/test_phase_2d_admission_collection.py": "888c16aec76025a8c7cd5d75e060274dc7b7a9664e9e8fed1c47d2376a8310a4",
+      "tests/acceptance/test_phase_2d_app_server.py": "6ce75889a78cab590201c0834368e9bbbf1f17f9ab4f5261beb6712bad192829",
+      "tests/acceptance/test_phase_2d_attempt_marker.py": "77496c100201bcc3253d4b4b58253cba90d556231a667c617059d39592d8954e",
+      "tests/acceptance/test_phase_2d_authentication.py": "cf3a218a70f7900445154716de6b9c1de67f6828ee863b5972aed4a14951fe80",
+      "tests/acceptance/test_phase_2d_batch.py": "10679206b79009d5dc498cf94fb30bb62737086ac21b065c39d82fc4e2e81e6c",
+      "tests/acceptance/test_phase_2d_batch_entry.py": "864f36cf03933acde99f79581e3b6929864a87803dfb714b7aa55ae4bb54ec85",
+      "tests/acceptance/test_phase_2d_batch_timer.py": "ff7b302da354692bdd0100487a37a76145006d96f5a783fa7f38c1e696939f02",
+      "tests/acceptance/test_phase_2d_bootstrap.py": "e93d34f3834f3caf492f9656300c20af0ddc05524ce1deffb4599fe0d4341084",
+      "tests/acceptance/test_phase_2d_bootstrap_build_closure.py": "cee25ebafe7217edaae6c47e18490e6769c5d63927ffcdc68f13837e73a98139",
+      "tests/acceptance/test_phase_2d_bridge.py": "fb2d510c15e880a8bed34222d5d2d050fdb5988de0a1d067bf794352419a5405",
+      "tests/acceptance/test_phase_2d_capacity.py": "686429e0bce07b6eeecde30b66433fbda4999d5d63732c8e499034e17c2215d1",
+      "tests/acceptance/test_phase_2d_charged_build.py": "6cce5d646d80139d423149aa491af4e514cff56cf77a9efe7c323d5ad1e738c9",
+      "tests/acceptance/test_phase_2d_dispatch.py": "054701cb01b7be843efb34a1352f8affc76de11809db9318df34688149a0bdd8",
+      "tests/acceptance/test_phase_2d_early_timer.py": "af90a467edf8c20052a7e5697c3dbc5ecccc2d490efd26ede6770b744210896d",
+      "tests/acceptance/test_phase_2d_empty_entry.py": "6ee605714c461bcf641ec19a9ee78ea85dea39499e0872e7cffb1aa9596b772f",
+      "tests/acceptance/test_phase_2d_envelope.py": "05f8530992363e830e69f0040c41e01cc836e5d9e13d5b46bf454f790d3ba927",
+      "tests/acceptance/test_phase_2d_file_cache.py": "ebb7f7e199531a7beb5fea27e8d6b143eda3036f9e6f15e77da90b76933bdcfd",
+      "tests/acceptance/test_phase_2d_fixture_inputs.py": "7e7fbaf18c504dc5315aa5504ec79942374306427fb796b09a836259c2ce84c1",
+      "tests/acceptance/test_phase_2d_freeze.py": "258dcfa6128deb9c56e119964e2222b8024a371d283b3e45ba453d13d5dfe8b0",
+      "tests/acceptance/test_phase_2d_installation.py": "1431c44003d0ba4879063115bc5bbb3d7051fb3bd2732b4b3030ee73d68966ed",
+      "tests/acceptance/test_phase_2d_installed.py": "368a72fd626a9e6db0eba4f1bea6c93db3b5c8c5ef6bf82b4fef4f490ea73a3b",
+      "tests/acceptance/test_phase_2d_installed_chain.py": "131d14365a3ebd5d0bd0a0c5e4872582129543e54797ddd00d1ee6a064f97adf",
+      "tests/acceptance/test_phase_2d_integration.py": "982a1a04ff7a96fa94f4e7317784a933909d864758f97440abf637a9cab39892",
+      "tests/acceptance/test_phase_2d_inventory.py": "c7e713ce161413cee029709916229014b407cdd191a1b44b89b53a0f40a0c664",
+      "tests/acceptance/test_phase_2d_inventory_hash_cache.py": "5bd5a18a449c8c5c3ba155bc4c17854ee049663941090ab453fa23ca9822f668",
+      "tests/acceptance/test_phase_2d_lane_production.py": "5a7f8913702e02a565f62a69a009e4d1956dae033abab10147b210578205da3d",
+      "tests/acceptance/test_phase_2d_lane_setup.py": "c49d967bffdb02d22f5cdba5ec4bd0b4cafd74dce8061528b7a61d5dbbdaa48e",
+      "tests/acceptance/test_phase_2d_network.py": "368d42754c6334ab73819b1a1688f20d0b28040474e6ae537be094af3618c887",
+      "tests/acceptance/test_phase_2d_observer_batch.py": "432d1db2f1ab6ab728910f3289fdd4aef857cab35318ad89f8bca95e6265a789",
+      "tests/acceptance/test_phase_2d_operational.py": "56ebba63ff88fdab03e36a53e9215c73e85fefb2b0211a08ee0acb428aa44877",
+      "tests/acceptance/test_phase_2d_original_validator_evidence.py": "953082734a51fdb5e83040d4cb3203ec01aff92df2acdf049e2cf8a2b0bbce20",
+      "tests/acceptance/test_phase_2d_original_verdict.py": "ff326d24a70bb66f91b5ace2a846f3f01259b41297a5778ad4028a0f2f9fcf1c",
+      "tests/acceptance/test_phase_2d_parent.py": "4f7cca745f1d9ccf92d1722f9264a5ecc0fcc4b857f4528474a27640b01ac625",
+      "tests/acceptance/test_phase_2d_payload_storage.py": "a13c8dc17bb7e4e8b3b8562f28d94119dffea4594dfeff19cc60d2d48378c837",
+      "tests/acceptance/test_phase_2d_policy_directories.py": "377240549bcbcc84484db4c7d72bc69b28892c1b727de62f63c28cb0068315c0",
+      "tests/acceptance/test_phase_2d_policy_transport.py": "099faa6b1c7f0aa56df6363b830cfbd0a387a0cbb9aa4673dc90dc6721576297",
+      "tests/acceptance/test_phase_2d_probe_transport.py": "ebaac7c3549fa0fee16c51c994e7fc5e30e2236b17712f6f6a01715e2be6bfb6",
+      "tests/acceptance/test_phase_2d_production.py": "43a0a0e777ae717d0602b4e81d5a003ec47c34cd60be087cad9f8d500ec1e2c0",
+      "tests/acceptance/test_phase_2d_qualification.py": "9bfab2a1616bd009459578d81f94f5a75ce2dc12297b48fc852b605226702d39",
+      "tests/acceptance/test_phase_2d_qualification_fixture.py": "fe11b1ec3d4513c8064b53763695b765b1589f4ba30b340ee33a7d49a132d17e",
+      "tests/acceptance/test_phase_2d_schedule.py": "fade24715d9b1fbec002fb190412debdac2cd23699e3264034b50b42e5a3e4e7",
+      "tests/acceptance/test_phase_2d_selection.py": "07ad5bcc63f14ff729ebbaa4d17cd2fd25e6147690a8bcbef2cc905d27023053",
+      "tests/acceptance/test_phase_2d_setup.py": "354ae0bcc6686a86bd53302b05f00b80b9eb754362e2aeffb7ef8bc299bb9b7b",
+      "tests/acceptance/test_phase_2d_storage.py": "05897bd83edbff90db9fb1001f73848dc7f610f77eea5828513f111d2605044e",
+      "tests/acceptance/test_phase_2d_subscription.py": "1c01e084917e65e3ea28c9b8af0e34f59e0e127bca871dee725b3869181cb226",
+      "tests/acceptance/test_phase_2d_supervisor.py": "5c9347f3085199600ce6e5cbd9b2f80a99777159b53c6ba6813d24d9f09a2835",
+      "tests/acceptance/test_phase_2d_teardown.py": "a1951b8f9bbdb9a4fa99ea1e2b8148e2f53626212b308253fd95fadfc97cef18",
+      "tests/acceptance/test_phase_2d_tls_broker.py": "50aaa07a7a70297c9afc67673c66a8e723508141a335ad1df7ea5db4eee140de",
+      "tests/acceptance/test_phase_2d_validator.py": "7a325528e1b724b11951fdcf92332849803f504de24bbf6646689e6b85e63804"
+    },
+    "unique_methods": 1206,
+    "unique_phase2d_methods": 1065,
+    "version": "0.13.0"
+  },
+  "startup_retention_continuation": {
+    "actual_progress": {
+      "actual_device_login": "not run",
+      "actual_live_turn": "not run",
+      "actual_qualification": "not run",
+      "fixture_preparation": "refused during an original FD handoff at the expired shared creation deadline",
+      "initial_storage_owner_readback": "passed before fixture preparation",
+      "observer_memory_events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+      "observer_memory_peak": 88219648
+    },
+    "after_fix": {
+      "errors": 0,
+      "failures": 0,
+      "focused_tests": 227,
+      "installed_tests": 1216,
+      "skipped": 0,
+      "source_tests": 1216
+    },
+    "automatic_retries": 0,
+    "before_fix": {
+      "clock_error_records_including_subtests": 9,
+      "clock_failure_records_including_subtests": 2,
+      "clock_methods": 7,
+      "fixture_count_errors": 1,
+      "fixture_count_failures": 1,
+      "fixture_count_methods": 2
+    },
+    "correction": "Bind installation and operational storage-owner job admission to original batch origin plus 120 seconds. Preserve the per-job min(absolute window, job start plus 30 seconds). Both production and fixture handoff waits use the original captured active job deadline. No window restarts. Require all forty expected fixture handoffs: fifteen formatter handles and twenty-five file handles.",
+    "counter_resets": 0,
+    "existing_combined_reserved_bytes_each": 171798691840,
+    "failure": {
+      "diagnostic": "original retained production identity/deadline differs",
+      "journal_span_seconds": 32.460042,
+      "line": 1002,
+      "observer_pid": 27007,
+      "original_creation_deadline": 102042.736105428,
+      "original_public_refusal": {
+        "execution_allowed": false,
+        "failure_causes": [
+          {
+            "errno": null,
+            "line": 1703,
+            "source": "linux_operational.py",
+            "type": "OperationalRefusal"
+          },
+          {
+            "errno": null,
+            "line": 373,
+            "source": "linux_fixture_inputs.py",
+            "type": "ProductionRefusal"
+          },
+          {
+            "errno": null,
+            "line": 1002,
+            "source": "linux_production.py",
+            "type": "ValueError"
+          }
+        ],
+        "failure_errno": null,
+        "failure_line": 1703,
+        "failure_source": "linux_operational.py",
+        "failure_type": "OperationalRefusal",
+        "phase": "2D",
+        "reusable": false,
+        "schema_version": 1,
+        "stage": "refused_with_original_custody"
+      },
+      "original_seed_job_deadline": 102042.736105428,
+      "refusal_timestamp_monotonic_seconds": 102042.906735,
+      "retained_parent_frames": [
+        {
+          "function": "OriginalFixtureInputs.seed",
+          "line": -1
+        },
+        {
+          "function": "BoundedStorageJobs.run",
+          "job_deadline": 102042.736105428,
+          "line": -1
+        },
+        {
+          "function": "_SeedChannel.pump",
+          "line": -1
+        },
+        {
+          "function": "OriginalFixtureInputs.verify_custody",
+          "line": -1
+        },
+        {
+          "function": "OwnedBackingProduction.verify",
+          "line": -1,
+          "original_deadline": 102042.736105428,
+          "public_deadline": 102042.736105428
+        }
+      ],
+      "source": "linux_production.py"
+    },
+    "new_aggregate": "crewshal-2d-20261015v23.slice",
+    "new_observer": "crewshal-2d-20261015v23-observer.service",
+    "outputs": {
+      "crewshal-bootstrap": {
+        "bytes": 669328,
+        "sha256": "ab3a0bec59dfcb16d5469b10e027c54697dc47b43309bf121261fb846b01d576"
+      },
+      "lost+found": {
+        "directory": true,
+        "entries": [],
+        "nlink": 2
+      },
+      "policy.binary": {
+        "bytes": 7348,
+        "sha256": "5a9ded6dc15a10b869cbbbcbc852cd5606532b8f117f9202c97adde1945f2ae6"
+      },
+      "storage-audit.json": {
+        "bytes": 3537,
+        "sha256": "ad78dfa709dedd7bb849abff1af6d587de57dc1af8fbeced3ddb4274c9eac8f3"
+      }
+    },
+    "physical_closure": "unknown",
+    "proposal": "docs/PHASE-2D-STARTUP-RETENTION-CONTINUATION-2026-10-15.md",
+    "proposed_combined_reserved_bytes_each": 180388626432,
+    "proposed_nominal_memory_charge_bytes": 16911433728,
+    "proposed_nominal_tasks": 2688,
+    "retained_custody": {
+      "common_limits_equal": true,
+      "common_memory_events": "low 0\nhigh 0\nmax 7410\noom 1\noom_kill 1\noom_group_kill 0\nsock_throttled 0\n",
+      "common_memory_events_local": "low 0\nhigh 0\nmax 5715\noom 1\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+      "current_journal_fd_identities_equal": 17,
+      "forwarding": 0,
+      "original_charge_snapshots_verified": 20,
+      "original_observer_custody_loss": 24610
+    },
+    "twentieth_journal_sha256": "f61bcad66e58518975820410733fba59a25f8d04fa81abb43828488d5b73cd42",
+    "v25_approval": {
+      "answer": "Approve the exact v25 exception and batch",
+      "question_id": "call_1ffae8252241473a9041cb313d5b3621",
+      "record_sha256": "fa961c8324b5b1343b6de5d455f86b714d6f4f9b194bd8eb030e147b29ec4599"
+    }
+  },
+  "static_checks": {
+    "actual_retained_superblocks_readonly": 15,
+    "focused_tests": 69,
+    "full_source_and_installed_tests_each": 1222,
+    "mypy": "passed for 46 source files",
+    "ruff_check": "Passed for production, acceptance files, and both new owner scripts.",
+    "ruff_format_check": "Passed for 117 production, acceptance, and new owner script files.",
+    "snapshot_checks": 3
+  },
+  "status": "Revision readback passes. The kernel rejects a userspace compression container header. The new exact recipe requires raw uncompressed policy output. Actual loading remains unverified. Exact v29 approval is required.",
+  "stdin_continuation": {
+    "actual_common_cpu_ceiling": 1,
+    "actual_common_memory_ceiling": 805306368,
+    "actual_common_swap_ceiling": 0,
+    "actual_common_task_ceiling": 128,
+    "automatic_retries": 0,
+    "compiler_attempts": "Both v12 compiler processes remain consumed. The original helper output is not reused.",
+    "eighth_journal_sha256": "88983dd3a0105decd851426a41975915237434a24d5c83fada89879c511c90c7",
+    "existing_combined_reserved_bytes_each": 68719476736,
+    "failure": {
+      "diagnostic": "File - not found, skipping...\n",
+      "diagnostic_provenance": "Bounded read-only inspection of the retained failure frame and captured stderr. Original process and pipe state remained unchanged.",
+      "failure_line": 1093,
+      "failure_source": "linux_operational.py",
+      "observer_pid": 10540,
+      "policy_compiler_pid": 10557,
+      "policy_exit_status": 2
+    },
+    "new_aggregate": "crewshal-2d-20261014v10.slice",
+    "new_observer": "crewshal-2d-20261014v10-observer.service",
+    "outputs_bytes": {
+      "crewshal-bootstrap": 669328,
+      "policy.binary": 0,
+      "storage-audit.json": 0
+    },
+    "physical_closure": "unknown",
+    "proposal": "docs/PHASE-2D-STDIN-CONTINUATION-2026-10-14.md",
+    "proposed_combined_reserved_bytes_each": 77309411328,
+    "proposed_nominal_memory_charge_bytes": 7247757312,
+    "proposed_nominal_tasks": 1152,
+    "v12_approval": {
+      "answer": "Approve the exact v12 exception and batch",
+      "question_id": "call_cef478dd93b34f6facb72fa40d88c4ef",
+      "record_sha256": "ef3a31cc5569d0556bf6212dbf3af16fcfa75982aa18ea59966aef5984347411"
+    }
+  },
+  "storage_child_custody_continuation": {
+    "actual_progress": {
+      "actual_device_login": "not run",
+      "actual_live_turn": "not run",
+      "actual_qualification": "not run",
+      "domain_loop": {
+        "block_size": 4096,
+        "status": [
+          66306,
+          1054712,
+          0,
+          0,
+          1073741824,
+          90,
+          0,
+          0,
+          16
+        ],
+        "target": "/dev/loop90"
+      },
+      "full_root_copy_and_encrypted_view_setup": "The original path reached handoff_storage_owner after these operations. Initial storage-owner readback refused.",
+      "observer_memory_current": 68124672,
+      "observer_memory_events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+      "observer_memory_peak": 93712384,
+      "observer_pids_events": "max 0\n"
+    },
+    "after_fix": {
+      "errors": 0,
+      "failures": 0,
+      "focused_tests": 187,
+      "installed_tests": 1197,
+      "skipped": 0,
+      "source_tests": 1197
+    },
+    "automatic_retries": 0,
+    "before_fix": {
+      "errors": 1,
+      "failures": 0,
+      "limitation": "The final six regressions add child identity and parent effect checks. The two-test closed-FD comparison had one child EBADF and one passing parent refusal.",
+      "tests": 2
+    },
+    "correction": "The parent retains full original configuration and charged build verification before readback and effect admission. Each admitted child checks frozen bindings, original handle identities, protected directory, and entered namespace. It does not access parent proof FDs that its bounded job has closed.",
+    "counter_resets": 0,
+    "existing_combined_reserved_bytes_each": 146028888064,
+    "failure": {
+      "diagnostic": "storage child reported unknown readback",
+      "internal_diagnostic": "The child suppresses its exception. The frozen call chain closes compiler proof FDs before calling full parent derivation verification. A closed-FD regression reproduces EBADF. The original child exception remains unavailable.",
+      "line": 572,
+      "observer_pid": 24610,
+      "source": "linux_storage.py",
+      "verified_parent_frames": [
+        "LinuxPhysicalOwner.__init__",
+        "LinuxPhysicalOwner.readback",
+        "BoundedStorageJobs.run"
+      ]
+    },
+    "new_aggregate": "crewshal-2d-20261015v20.slice",
+    "new_observer": "crewshal-2d-20261015v20-observer.service",
+    "outputs": {
+      "crewshal-bootstrap": {
+        "bytes": 669328,
+        "sha256": "ab3a0bec59dfcb16d5469b10e027c54697dc47b43309bf121261fb846b01d576"
+      },
+      "lost+found": {
+        "directory": true,
+        "entries": [],
+        "nlink": 2
+      },
+      "policy.binary": {
+        "bytes": 7348,
+        "sha256": "5a9ded6dc15a10b869cbbbcbc852cd5606532b8f117f9202c97adde1945f2ae6"
+      },
+      "storage-audit.json": {
+        "bytes": 3537,
+        "sha256": "ad78dfa709dedd7bb849abff1af6d587de57dc1af8fbeced3ddb4274c9eac8f3"
+      }
+    },
+    "physical_closure": "unknown",
+    "proposal": "docs/PHASE-2D-CHILD-CUSTODY-CONTINUATION-2026-10-15.md",
+    "proposed_combined_reserved_bytes_each": 154618822656,
+    "proposed_nominal_memory_charge_bytes": 14495514624,
+    "proposed_nominal_tasks": 2304,
+    "retained_custody": {
+      "common_limits_equal": true,
+      "common_memory_events": "low 0\nhigh 0\nmax 4084\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+      "common_memory_events_local": "low 0\nhigh 0\nmax 2389\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+      "fifteen_current_journal_fd_identities_equal": true,
+      "forwarding": 0,
+      "seventeen_original_charge_snapshots_verified": true
+    },
+    "seventeenth_journal_sha256": "af55d1977f10462513cb044b6b53816d4485a20d8af496300bd396a24adcec5c",
+    "v22_approval": {
+      "answer": "Approve the exact v22 exception and batch",
+      "question_id": "call_807403eaee394f0d9ba3280ad9067850",
+      "record_sha256": "9473b455ddbd02253e07b6f1b2b2a789ebd2b05d96c98741a25a7ebc31039d0c"
+    }
+  },
+  "storage_probes": [
+    "storage-file-shared",
+    "storage-private-anonymous",
+    "storage-anonymous-shared-denied",
+    "storage-dev-zero-denied",
+    "storage-memfd-denied"
+  ],
+  "supersedes": "docs/qualification/phase-2d-executable-batch-v28-20261015.json",
+  "wheel": {
+    "bounded_child_failure_coordinates": true,
+    "build_backend": "setuptools 80.9.0",
+    "build_quiescence_checked_before_sealing": true,
+    "bytes": 365712,
+    "complete_fixture_handoffs": 40,
+    "final_cache_tail_page_aligned": true,
+    "fixed_child_source_constants_unchanged": true,
+    "fixed_startup_window_seconds": 120,
+    "formatter_inventory_preflight": true,
+    "handoff_wait_uses_original_active_job_deadline": true,
+    "high_descriptor_readiness": "poll",
+    "individual_storage_job_seconds": 30,
+    "lane_backing_geometry_uses_original_role_mapping": true,
+    "linked_empty_formatter_directory": true,
+    "network": "denied by sandbox-exec",
+    "operational_revision_uses_existing_apparmor_reader": true,
+    "package_files_equal": 47,
+    "parser_options_match_pinned_getopt_table": true,
+    "parser_uses_implicit_stdin": true,
+    "physical_domain_block_size": 4096,
+    "physical_domain_direct_io_required": true,
+    "retained_compiler_role_controls_preserved": true,
+    "retained_root_relative_policy_open": true,
+    "root_copy_actual_allocated_bytes": "Sum each copied file st_blocks plus the existing directory allowance. Enforce the unchanged ROOT_COPY_BYTES ceiling.",
+    "sha256": "942dfb06c9bef02acdf8638ca6b5e050305b7f1f017759f0e59cc6e8dd2acbca",
+    "small_file_page_cache_advice": true,
+    "storage_child_custody_separate_from_parent_proofs": true,
+    "timer_lane_readback_avoids_reservation_cycle": true,
+    "uncompressed_policy_stdout_required": true,
+    "version": "0.13.0",
+    "wheel": "crewshal-0.13.0-py3-none-any.whl"
+  }
+}

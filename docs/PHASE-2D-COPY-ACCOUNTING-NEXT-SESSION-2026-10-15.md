@@ -1,0 +1,63 @@
+# Phase 2D root-copy accounting continuation prompt — 2026-10-15
+
+Complete actual Phase 2D acceptance, then stop before Phase 2E.
+Read `docs/HANDOFF.md`, the development plan, accepted architecture, and ADRs first.
+Apply `AGENTS.md`, RTK, graph discovery, and ASD-STE100.
+Preserve unrelated dirty work and every original charge, handle, timer, clock, partial object, output, and unknown result.
+
+Read these current inputs:
+
+1. `docs/PHASE-2D-COPY-ACCOUNTING-CONTINUATION-2026-10-15.md`.
+2. `docs/qualification/phase-2d-executable-batch-v19-20261015.json`.
+3. `docs/qualification/phase-2d-execution-progress-v2-20261015.json`.
+4. `src/crewshal/linux_production.py` and `tests/acceptance/test_phase_2d_production.py`.
+5. `src/crewshal/linux_storage.py`, `src/crewshal/linux_operational.py`, and `src/crewshal/linux_batch_entry.py`.
+6. `scripts/phase_2d_owner_capabilities_copy_accounting_v16.py`.
+7. `scripts/phase_2d_owner_input_upload_copy_accounting_v16.py`.
+
+Keep this local custody index outside Git and public bundles:
+`/Users/hamedprooshani/.codex/artifacts/crewshal/phase2d-local-context-2026-10-14.json`.
+It identifies the exact private archive, plan, controller, and independent prestart verifier.
+Never print or commit private access material.
+
+Exact v18 was approved and ran once.
+Both compilers, sealing, lane binding, directory preparation, physical-domain preparation, and backing creation passed.
+Root copying refused its first complete file because allocated blocks include filesystem metadata.
+The retained `/bin/bash` matches its expected bytes but consumes one extra 4096-byte metadata block.
+The child suppresses internal exception text; exact source and read-only partial-file data establish this accounting condition.
+The correction sums actual file allocation within the unchanged root ceiling and retains the existing directory allowance.
+All 64 focused checks and both complete 1182-test suites pass.
+All 47 installed package files match source; Ruff and mypy pass.
+Candidate version remains `0.13.0` at base revision `87ed7e6f6c766c7ff2df245ad05569558a9ca3bc`.
+No commit or push occurred.
+
+Fourteen full charges remain retained under 112 GiB of combined logical and allocated reservations each.
+Observer PID `19621` retains the latest journal, compiler proofs, and partial root.
+Its original root FD is `2439`.
+All older original custody remains retained or historically recorded.
+Never signal, reap, resume, replace, remove, or reuse original objects.
+IPv4 forwarding is zero after the approved restoration.
+No qualification, device login, or live turn occurred.
+
+The exact v19 record SHA-256 is `ea0ebe4df2f6eb027d5a6ebe6d50422a0f7f7152d1fd17b76153dc25b66d5540`.
+Approval remains missing when this prompt is written.
+Check the latest direct owner reply before operations.
+The v18 exception expressly excludes another attempt.
+If v19 is approved, bind the exact reply and record hash in the private approval file.
+Check hashes and consumed markers before every operation.
+Never repeat consumed upload, preparation, forwarding enable, or observer start commands.
+Run upload and preparation once, then require independent prestart readback.
+Only then enable forwarding and start the observer once.
+On refusal, restore forwarding with the exact approved command before source changes.
+The v19 proposal permits no further retry.
+
+Require both complete twenty-case qualifications before device login.
+Each qualification must cover every enabled native file tool.
+Request owner login immediately when the original observer supplies the genuine stock device code.
+Keep all original clocks and exactly one subscription implementation turn.
+Exclude metered APIs, purchased credits, extra turns, and paid hosts.
+Require actual candidate validation, complete admission linkage, positive waits, and original idle retention.
+Restore forwarding with the exact approved command.
+After actual Phase 2D acceptance, update README, CHANGELOG, handoff, next prompt, and synchronized package versions.
+Commit the coherent milestone and push the current branch under standing owner authority.
+Do not merge, deploy, publish a package, or begin Phase 2E.

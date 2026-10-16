@@ -1,8 +1,512 @@
 # Crewshal rolling handoff and project memory
 
-Last updated: 2026-10-10. Consumer: the next session and owner. This is the continuity record; [DEVELOPMENT-PLAN.md](DEVELOPMENT-PLAN.md) defines independently testable milestone gates. Preserve the session ledger when updating current state.
+Last updated: 2026-10-16. This record supplies the next session and the owner with project history. [DEVELOPMENT-PLAN.md](DEVELOPMENT-PLAN.md) defines the milestone acceptance checks. Preserve the session ledger.
 
 ## Current state
+
+**October 16: Phase 2D software complete; platform and live qualification deferred.**
+The coordinator workflow passes fresh deterministic external runtime and validator fixtures.
+Checked request preparation verifies the confirmed model, task, approval, configuration, scope, and initial candidate.
+Atomic validator capture resolves approved definitions and checks the frozen candidate before and after persistence.
+Existing collection, normalization, claims, evidence, verdict, and recovery code remain the production path.
+Both complete source and fresh installed-wheel suites pass 1,248 occurrences, including 26 new core tests.
+The suite contains 1,232 unique methods and 16 existing repeated occurrences.
+All 47 packaged source files match; lint, strict typing, source formatting, and CLI help pass.
+Nine historical script format differences remain byte-identical to session start.
+[The completion report](PHASE-2D-SOFTWARE-COMPLETION-2026-10-16.md) and [verification record](qualification/phase-2d-software-verification-20261016.json) supply exact evidence and limitations.
+The source checkpoint version is 0.14.0 on `codex/phase1-architecture`.
+Its delivery revision is the commit containing this entry and the completion report.
+Operational execution admission remains closed; platform and live qualification remain deferred.
+No Linux implementation bytes changed during this session.
+No platform operation, credential access, provider call, paid host, merge, deployment, or registry publication occurred.
+Phase 2E implementation has not started.
+Use [the Phase 2E prompt](PHASE-2E-NEXT-SESSION-2026-10-16.md) and [exact input index](PHASE-2E-INPUTS-2026-10-16.json) next.
+Stop after the standing branch publication ceremony.
+Earlier dated status entries remain historical records.
+
+**October 15: Phase 2D is active and unblocked for core software development.**
+The owner instructed continued development under the plan and explicitly unblocked Phase 2D.
+[Accepted ADR 0007](decisions/0007-core-development-before-platform-qualification.md) separates software acceptance from deferred platform and live qualification.
+The active milestone completes the first-runtime integration and platform-independent coordinator workflow through existing interfaces.
+Exercise actual production code with deterministic external runtime and validator fixtures.
+[The revised plan](DEVELOPMENT-PLAN.md) defines the observable software acceptance conditions.
+[The current next-session prompt](PHASE-2D-CORE-NEXT-SESSION-2026-10-15.md) directs implementation and verification.
+[The input index](PHASE-2D-CORE-INPUTS-2026-10-15.json) lists exact starting files and preparation hashes.
+
+Do not resume Linux adapter development, VMware or SSH operations, compiler attempts, or the exception sequence.
+The unused v29 approval remains inactive.
+Keep operational execution admission closed and preserve all existing evidence and custody.
+Platform and live qualification remain deferred requirements for operational use and support claims.
+Their missing evidence does not block the revised Phase 2D software checkpoint or subsequent source development.
+After software acceptance, update the required publication files, commit, push the current branch, and stop before Phase 2E.
+Use the completion status "Phase 2D software complete; platform and live qualification deferred" only after the software checks pass.
+
+No production code, operational gate, or historical result changed for this prompt preparation.
+The preceding source and installed suites each passed 1222 occurrences; these remain dated baseline results.
+Base revision remains `87ed7e6f6c766c7ff2df245ad05569558a9ca3bc` on `codex/phase1-architecture`.
+The dirty candidate remains unreleased `0.13.0`.
+Earlier entries that defer the whole milestone are superseded by this instruction.
+
+**October 15: The owner stopped Linux work and moved core completion before platform adaptation.**
+Stop the repeated Linux exception sequence and all further Linux adapter development.
+The owner approved v29, then gave this newer change of direction before any v29 operation started.
+Do not execute the unused v29 approval without a later explicit instruction to resume.
+[The direction record](CORE-COMPLETION-DIRECTION-2026-10-15.md) governs the revised work order.
+[The current prompt](CORE-COMPLETION-NEXT-SESSION-2026-10-15.md) starts bounded core completion work.
+The next milestone uses existing interfaces and deterministic fixtures to complete the platform-independent coordinator workflow.
+Linux, macOS, and Windows qualification follow core completion.
+Operational execution admission remains closed.
+Phase 2D remains incomplete and deferred; no supported-platform or live acceptance claim follows.
+
+The v29 approval file and consumed-operation markers do not exist.
+No v29 upload, preparation, compiler, observer, authentication, or live turn started.
+Forwarding remains zero from the last exact restoration.
+The shared retention parent remains at its approved 2 GiB limit.
+Preserve the twenty-three recorded charges, remaining original custody, private artifacts, and all historical unknowns.
+This direction authorizes no VM shutdown or retained-object removal.
+Both latest offline suites pass 1222 occurrences; no source changed for this direction record.
+No commit, push, release, deployment, or Phase 2E implementation occurred.
+Earlier continuation and approval statements below are dated history.
+
+**October 15: Revision readback passes; the kernel rejects the userspace policy compression header.**
+The owner approved exact v28, and it ran once.
+Observer `30031` passes revision readback and the absent-profile check.
+The policy write returns errno `93`; the kernel reports "invalid profile format" for child `30201`.
+The retained stdout output contains four userspace compression containers.
+The pinned parser emits raw serialized policy when its compression level is `none`.
+The new recipe requires exactly one `--zstd-compress-level=none` and rejects missing, duplicate, or conflicting options.
+Direct add-only loading and exact source-to-binary-to-export checks remain unchanged.
+A read-only diagnostic decodes the historical containers to 37154 bytes, below the existing one-MiB output ceiling.
+No diagnostic executes a compiler, loads policy, or reuses old output for admission.
+All 69 focused checks and both fresh 1222-test suites pass.
+All 47 installed package files match source.
+Actual new compilation and policy loading remain unverified.
+[The exact v29 proposal](PHASE-2D-RAW-POLICY-CONTINUATION-2026-10-15.md) requires separate approval for another attempt.
+[The exact record](qualification/phase-2d-executable-batch-v29-20261015.json) binds all commands and inputs.
+[The current prompt](PHASE-2D-RAW-POLICY-NEXT-SESSION-2026-10-15.md) supplies continuation files.
+
+Twenty-three full charges remain retained under 184 GiB combined logical and allocated reservations each.
+All twenty-three charge snapshots and twenty remaining original journal FD identities pass read-only checks.
+Keep the approved shared retention parent at 2 GiB.
+Individual batches keep 768 MiB, and observers keep 128 MiB.
+The latest batch and observer record zero memory-limit events.
+Shared OOM counters retain their accepted historical values.
+The historical loss of observer `24610` and timer `24612` remains accepted under v26.
+Reconstruct no lost proof or physical release.
+Forwarding is zero after the exact restoration.
+No qualification, device login, or live turn occurred.
+Actual Phase 2D acceptance remains incomplete at unreleased candidate 0.13.0.
+No v29 guest operation, commit, push, release, or Phase 2E work occurred.
+The earlier approval-pending statements below describe dated history.
+
+**October 15: Policy opening passes; the AppArmor revision interface requires its existing event reader.**
+The owner approved exact v27, and it ran once.
+Observer `29199` passes policy opening, then its child reports `BlockingIOError` at frozen `admission.py:157`.
+The failure precedes policy loading.
+A fresh read-only probe returns revision `269`, then `EAGAIN`.
+The existing AppArmor reader handles this interface correctly on the actual VM.
+All four operational revision sites now use that existing reader.
+The generic proc reader remains unchanged, and revision comparisons remain required.
+All 41 focused checks and both fresh 1220-test suites pass.
+All 47 installed package files match source.
+Actual policy loading remains unverified.
+[The exact v28 proposal](PHASE-2D-APPARMOR-REVISION-CONTINUATION-2026-10-15.md) requires separate approval for another attempt.
+[The exact record](qualification/phase-2d-executable-batch-v28-20261015.json) binds all commands and inputs.
+[The current prompt](PHASE-2D-APPARMOR-REVISION-NEXT-SESSION-2026-10-15.md) supplies continuation files.
+
+Twenty-two full charges remain retained under 176 GiB combined logical and allocated reservations each.
+All twenty-two charge snapshots and nineteen remaining original journal FD identities pass read-only checks.
+Keep the approved shared retention parent at 2 GiB.
+Individual batches keep 768 MiB, and observers keep 128 MiB.
+The latest batch and observer record zero memory-limit events.
+Shared OOM counters retain their accepted historical values.
+The historical loss of observer `24610` and timer `24612` remains accepted under v26.
+Reconstruct no lost proof or physical release.
+Forwarding is zero after the exact restoration.
+No qualification, device login, or live turn occurred.
+Actual Phase 2D acceptance remains incomplete at unreleased candidate 0.13.0.
+No v28 guest operation, commit, push, release, or Phase 2E work occurred.
+The earlier approval-pending statements below describe dated history.
+
+**October 15: Fixture preparation returns; policy opening loses the retained mount context.**
+The owner approved exact v26, and it ran once.
+Observer `28259` passes storage-owner readback and returns from fixture preparation before policy opening.
+The policy opener then raises `FileNotFoundError` at frozen `linux_operational.py:585`.
+Read-only retained-frame inspection identifies `readonly-root` as the missing path component.
+The original projected root FD contains the expected policy bytes, but its mount path is absent in the observer namespace.
+The correction walks each canonical policy component relative to the retained projected-root FD.
+No-follow flags, root ownership, outside-write refusal, inventory verification, and original deadlines remain required.
+All eleven focused checks and both fresh 1218-test suites pass.
+All 47 installed package files match source.
+Actual policy loading remains unverified.
+[The exact v27 proposal](PHASE-2D-RETAINED-POLICY-CONTINUATION-2026-10-15.md) requires separate approval for another attempt.
+[The exact record](qualification/phase-2d-executable-batch-v27-20261015.json) binds every command and input.
+[The current prompt](PHASE-2D-RETAINED-POLICY-NEXT-SESSION-2026-10-15.md) supplies continuation files.
+
+Twenty-one full charges remain retained under 168 GiB combined logical and allocated reservations each.
+All twenty-one charge snapshots and eighteen remaining original journal FD identities pass read-only checks.
+The shared retention parent now has its approved persistent 2 GiB memory limit.
+Individual batches keep 768 MiB, and observers keep 128 MiB.
+The new batch and observer record zero memory-limit events.
+Shared OOM counters retain their accepted historical values; no additional OOM event occurred.
+The historical loss of observer `24610` and timer `24612` remains accepted under v26.
+Reconstruct no lost proof or physical release.
+All prior charges, remaining original custody, outputs, counters, clocks, and unknowns remain retained or historically recorded.
+Forwarding is zero after the exact restoration.
+No qualification, device login, or live turn occurred.
+Actual Phase 2D acceptance remains incomplete at unreleased candidate 0.13.0.
+No v27 guest operation, commit, push, release, or Phase 2E work occurred.
+The earlier approval-pending statements below describe dated history.
+
+**October 15: Storage-owner readback passes; fixture startup expires, and shared retention records an OOM custody loss.**
+The owner approved exact v25, and it ran once.
+Observer PID `27007` passes initial storage-owner readback.
+Fixture preparation then expires at its original shared creation deadline, 32.460042 seconds after the startup journal entry.
+Retained production and active-job deadlines both equal `102042.736105428` monotonic seconds.
+The correction uses the original 120-second startup cutoff and preserves each original 30-second job clock.
+Both FD handoff helpers keep the original active-job deadline without renewal.
+A separate corrected join requires all forty fixture handoffs, including fifteen formatter handles and twenty-five file handles.
+All 227 focused checks and both fresh 1216-test suites pass.
+Actual completed fixture preparation remains unverified.
+
+The shared 768 MiB parent now records one OOM kill.
+Original v22 observer `24610` and timer `24612` no longer exist; their old batch records the kill.
+Their full charge, journal, unknown objects, and historical loss remain retained.
+All twenty journal snapshots and seventeen remaining current original journal FD identities pass read-only checks.
+No lost proof, physical release, or refund is reconstructed.
+[The exact v26 proposal](PHASE-2D-STARTUP-RETENTION-CONTINUATION-2026-10-15.md) requires explicit acceptance of that loss and a 2 GiB shared retention parent.
+Individual batches keep 768 MiB, and observers keep 128 MiB.
+The proposed higher parent limit remains after the batch to preserve remaining retention.
+CPU, task, swap, per-job, and overall batch limits retain their original values.
+[The exact record](qualification/phase-2d-executable-batch-v26-20261015.json) binds every command, input, resource exception, and custody requirement.
+[The current prompt](PHASE-2D-STARTUP-RETENTION-NEXT-SESSION-2026-10-15.md) supplies continuation files.
+
+Twenty charges remain retained under 160 GiB combined logical and allocated reservations each.
+No v26 operation or shared memory-limit change has started.
+Forwarding is zero after the approved restoration.
+No qualification, device login, or live turn occurred.
+Actual Phase 2D acceptance remains incomplete at unreleased candidate 0.13.0.
+No commit, push, release, or Phase 2E work occurred.
+The earlier approval-pending statements below describe dated history.
+
+
+**October 15: The original child diagnostic identifies missing lane-name geometry mapping.**
+The owner approved exact v24, and it ran once.
+The original report identifies `ValueError` at frozen `linux_storage.py:1141`.
+The reader looks up full lane-prefixed names in a geometry table with unprefixed roles.
+The correction uses the producer's existing exact mapping only for geometry lookup.
+Full backing and loop names, identities, magic, size, and inode ceilings remain required.
+All fifteen actual retained superblocks pass those unchanged checks through the corrected pure mapping.
+All 218 focused checks and both fresh 1207-test suites pass.
+Actual successful storage-owner readback remains unverified.
+[The exact v25 proposal](PHASE-2D-LANE-GEOMETRY-CONTINUATION-2026-10-15.md) requires separate approval.
+[The exact record](qualification/phase-2d-executable-batch-v25-20261015.json) binds all commands and inputs.
+[The current prompt](PHASE-2D-LANE-GEOMETRY-NEXT-SESSION-2026-10-15.md) supplies continuation files.
+
+Nineteen full charges remain retained under 152 GiB combined logical and allocated reservations each.
+Observer PID `26265` retains its original journal, compiler proofs, loops, copied root, and encrypted views.
+Read-only checks verify all nineteen charges and seventeen current original journal FD identities.
+The observer retains effective domain direct I/O and records zero memory-limit events.
+All earlier original custody, counters, clocks, and unknowns remain retained or historically recorded.
+IPv4 forwarding is zero after the approved restoration.
+No qualification, device login, or live turn occurred.
+Actual Phase 2D acceptance remains incomplete at unreleased candidate 0.13.0.
+No commit, push, release, or Phase 2E work occurred.
+The earlier approval-pending statements below describe dated history.
+
+
+**October 15: Initial storage-owner readback still fails; bounded child failure reporting is prepared.**
+The owner approved exact v23, and it ran once.
+The original domain loop retains direct I/O and 4096-byte logical blocks.
+The observer records zero memory-limit events and a 94113792-byte memory peak.
+Initial storage-owner readback still returns unknown child readback after the preceding FD correction.
+The remaining internal child cause is unknown.
+The new source reports bounded source coordinates and errno without exception messages, local values, or full paths.
+The parent strictly validates the failure data and keeps execution refused.
+All 215 focused checks and both fresh 1204-test suites pass.
+Actual successful storage-owner readback remains unverified.
+[The exact v24 diagnostic proposal](PHASE-2D-CHILD-FAILURE-CONTINUATION-2026-10-15.md) requires separate approval.
+[The exact record](qualification/phase-2d-executable-batch-v24-20261015.json) binds all commands and inputs.
+[The current prompt](PHASE-2D-CHILD-FAILURE-NEXT-SESSION-2026-10-15.md) supplies continuation files.
+
+Eighteen full charges remain retained under 144 GiB combined logical and allocated reservations each.
+Observer PID `25399` retains its original journal, compiler proofs, loops, copied root, and encrypted views.
+Read-only checks verify all eighteen charge snapshots and sixteen current original journal FD identities.
+All earlier original custody, counters, clocks, and unknowns remain retained or historically recorded.
+IPv4 forwarding is zero after the approved restoration.
+No qualification, device login, or live turn occurred.
+Actual Phase 2D acceptance remains incomplete at unreleased candidate 0.13.0.
+No commit, push, release, or Phase 2E work occurred.
+The earlier approval-pending statements below describe dated history.
+
+
+**October 15: Physical-domain direct I/O passes; initial storage-owner readback exposes a child proof lifetime error.**
+The owner approved exact v22, and it ran once.
+The domain loop reports direct-I/O flag `16` and 4096-byte logical blocks.
+The observer records zero memory-limit events and a 93712384-byte memory peak.
+The original path reaches storage-owner handoff after root projection, formatting, and encrypted-view setup.
+The first storage-owner readback returns unknown child readback.
+Retained parent frames identify that readback path.
+Frozen source closes compiler proof FDs before child namespace entry invokes full parent derivation verification.
+A fresh closed-FD regression reproduces `EBADF`; the original internal child exception remains unavailable.
+The correction retains full parent verification before admission and checks child custody during namespace entry.
+All 187 focused checks and both fresh 1197-test suites pass.
+Actual successful storage-owner readback remains unverified.
+[The exact v23 proposal](PHASE-2D-CHILD-CUSTODY-CONTINUATION-2026-10-15.md) requires separate approval.
+[The exact record](qualification/phase-2d-executable-batch-v23-20261015.json) binds all commands and inputs.
+[The current prompt](PHASE-2D-CHILD-CUSTODY-NEXT-SESSION-2026-10-15.md) supplies continuation files.
+
+Seventeen full charges remain retained under 136 GiB of combined logical and allocated reservations each.
+Observer PID `24610`, its original journal, compiler proofs, loops, copied root, and encrypted views remain retained.
+Read-only checks verify all seventeen original charge snapshots and fifteen current original journal FD identities.
+Original common-parent refusal counters remain retained; no counter is reset.
+IPv4 forwarding is zero after the approved restoration.
+No qualification, device login, or live turn occurred.
+Actual Phase 2D acceptance remains incomplete at unreleased candidate 0.13.0.
+No commit, push, release, or Phase 2E work occurred.
+The earlier approval-pending statements below describe dated history.
+
+
+**October 15: Copied-file cache advice works; the physical-domain backing cache still reaches the observer limit.**
+The owner approved exact v21, and it ran once.
+Final verification again refused original memory-limit history.
+Read-only cache inspection reports zero cached bytes across all 910 copied root files.
+The 1 GiB physical-domain image retains 127778816 cached bytes.
+The observer again reaches 128 MiB and records 861 memory-limit events.
+All original refusal history remains retained.
+The correction requires direct I/O and verified 4096-byte blocks for the physical-domain loop only.
+Original loop custody precedes controls, and positive complete kernel readback precedes formatting.
+Later domain proofs require the effective direct-I/O flag.
+All 121 focused checks and both fresh 1191-test suites pass.
+Actual effective direct I/O remains unverified.
+[The exact v22 proposal](PHASE-2D-DOMAIN-DIRECT-IO-CONTINUATION-2026-10-15.md) awaits separate approval.
+[The current record](qualification/phase-2d-executable-batch-v22-20261015.json) binds its exact commands and inputs.
+[The current prompt](PHASE-2D-DOMAIN-DIRECT-IO-NEXT-SESSION-2026-10-15.md) supplies the continuation files.
+
+Sixteen full charges remain retained under the accepted 128 GiB combined reservation.
+Observer PID `21410`, its journal, compiler proofs, copied root, and buffered backing image remain retained.
+No old loop is reconfigured, detached, cleared, or reused.
+All earlier original custody and unknown results remain retained or historically recorded.
+IPv4 forwarding is zero after the approved restoration.
+No qualification, device login, or live turn occurred.
+Actual Phase 2D acceptance remains incomplete at unreleased candidate 0.13.0.
+No commit, push, release, or Phase 2E work occurred.
+The earlier approval-pending statements below describe dated history.
+
+
+**October 15: Root copying passes; final resource readback refuses observer file-cache pressure.**
+The owner approved exact v20, and it ran once.
+Snapshot preparation passed, and all 1163 copied root entries have expected modes with no missing or extra paths.
+Final production verification refused because the observer reached its 128 MiB memory ceiling.
+The retained snapshot records 50196480 anonymous bytes, 74772480 file-cache bytes, and 834 observer memory-limit events.
+The shared parent also retains refusal history; no original counter is reset.
+The cache helper skipped all completed files at or below 4 MiB.
+The correction advises completed small files and aligns final tails to actual kernel page size.
+It changes no memory ceiling, clock, original FD custody, or mandatory resource-refusal check.
+All seven focused checks and both fresh 1186-test suites pass.
+Actual successful cache reclamation remains unverified.
+[The exact v21 proposal](PHASE-2D-SMALL-CACHE-CONTINUATION-2026-10-15.md) awaits separate owner approval.
+[The exact record](qualification/phase-2d-executable-batch-v21-20261015.json) binds its commands and inputs.
+[The current prompt](PHASE-2D-SMALL-CACHE-NEXT-SESSION-2026-10-15.md) supplies the continuation files.
+
+Fifteen full charges remain retained under the accepted 120 GiB combined reservation.
+Observer PID `20701`, its journal, compiler proofs, and original root FDs `2437` and `2439` remain retained.
+All earlier original custody and unknown results remain retained or historically recorded.
+IPv4 forwarding is zero after the approved restoration.
+No qualification, device login, or live turn occurred.
+Actual Phase 2D acceptance remains incomplete at unreleased candidate 0.13.0.
+No commit, push, release, or Phase 2E work occurred.
+The earlier approval-pending statements below describe dated history.
+
+
+**October 15: Owner preparation encounters an original exclusive journal lock before creating a new charge.**
+The owner approved exact v19.
+Upload and preparation each ran once; preparation refused with `sqlite3.OperationalError: database is locked`.
+Original observer PID `19621` holds the exclusive lock.
+No new input directory, storage directory, unit, observer, charge, or compiler was created.
+The uploaded v19 archive remains retained, and the preparation attempt remains consumed.
+The correction reads bounded hash-verified journal snapshots in private memory without changing original locks.
+Three fresh checks pass; the exact helper also verifies all fourteen actual journals and preserves the original lock.
+Production source and acceptance files remain unchanged, so both passing 1182-test results remain current.
+[The exact v20 proposal](PHASE-2D-JOURNAL-SNAPSHOT-CONTINUATION-2026-10-15.md) awaits separate approval.
+[The current record](qualification/phase-2d-executable-batch-v20-20261015.json) binds its exact replacement commands and inputs.
+[The current prompt](PHASE-2D-JOURNAL-SNAPSHOT-NEXT-SESSION-2026-10-15.md) supplies the continuation files.
+
+Fourteen full charges remain retained under the accepted 112 GiB combined reservation.
+The proposed fifteenth charge and 120 GiB ceiling remain unchanged because v19 created no charge.
+Original observer PID `19621`, its exclusive lock, journal, compiler proofs, and partial root remain retained.
+All older original custody remains retained or historically recorded.
+IPv4 forwarding is zero after the approved restoration.
+No qualification, device login, or live turn occurred.
+Actual Phase 2D acceptance remains incomplete at unreleased candidate 0.13.0.
+No commit, push, release, or Phase 2E work occurred.
+The earlier approval-pending statements below describe dated history.
+
+
+**October 15: Physical-domain preparation passes; root copying rejects filesystem metadata allocation.**
+The owner approved exact v18, and it ran once.
+Both compilers, sealing, lane binding, physical-domain preparation, and primary and auxiliary backing creation passed.
+Root copying returned an unknown child readback.
+The retained first file, `/bin/bash`, matches its exact expected bytes.
+Its actual allocation exceeds rounded data bytes by one 4096-byte filesystem metadata block.
+The child suppresses internal exception text; read-only partial-file data and exact frozen source establish the accounting condition.
+The copier now sums actual file allocation within the unchanged 448 MiB root ceiling.
+It retains the existing directory allowance, exact bytes, identity, ownership, size, and exclusive creation checks.
+All 64 focused checks and both fresh 1182-test suites pass.
+[The exact v19 proposal](PHASE-2D-COPY-ACCOUNTING-CONTINUATION-2026-10-15.md) awaits separate owner approval.
+[The exact record](qualification/phase-2d-executable-batch-v19-20261015.json) binds its scripts, commands, units, limits, and hashes.
+[The current prompt](PHASE-2D-COPY-ACCOUNTING-NEXT-SESSION-2026-10-15.md) supplies the continuation inputs.
+
+Fourteen full charges remain retained under the accepted 112 GiB combined reservation.
+Observer PID `19621` retains its journal, compiler proofs, and partial root under original FD `2439`.
+All earlier original objects remain retained or historically recorded.
+IPv4 forwarding is zero after the exact approved restoration.
+No qualification, device login, or live turn occurred.
+Physical closure remains unknown; actual Phase 2D acceptance remains incomplete at unreleased candidate 0.13.0.
+No commit, push, release, or Phase 2E work occurred.
+The earlier approval-pending statements below describe dated history.
+
+
+**October 15: Directory preparation passes; the frozen root lacks its required formatter entry.**
+The owner approved exact v17, and it ran once.
+Both compilers, sealing, final lane binding, polling, and both installation-directory FD handoffs passed.
+Physical-domain preparation refused at frozen `linux_production.py:736` because `/usr/sbin/mkfs.ext4` is absent from the root inventory.
+The preliminary inventory-digest diagnosis was incorrect; the exact line identifies the missing formatter entry.
+The new root entry uses the original `/usr/sbin/mke2fs` bytes and source path.
+New offline and precharge checks reject missing or different formatter bindings.
+All production formatter hash, inode, custody, and read-only checks remain unchanged.
+All 47 focused checks and both fresh 1180-test suites pass.
+[The exact new proposal](PHASE-2D-FORMATTER-INPUT-CONTINUATION-2026-10-15.md) and [v18 record](qualification/phase-2d-executable-batch-v18-20261015.json) await separate approval.
+[The current prompt](PHASE-2D-FORMATTER-INPUT-NEXT-SESSION-2026-10-15.md) supplies the exact continuation inputs.
+[The execution ledger](qualification/phase-2d-execution-progress-v2-20261015.json) records the consumed v17 attempt.
+
+Thirteen full charges remain retained under the accepted 104 GiB combined reservation.
+Observer PID `15078`, both compiler proofs, and its journal remain retained.
+All earlier original custody and partial objects remain retained or historically recorded.
+IPv4 forwarding is zero after the exact approved restoration.
+No qualification, device login, or live turn occurred.
+Physical closure remains unknown; actual Phase 2D acceptance remains incomplete at unreleased candidate 0.13.0.
+No commit, push, release, or Phase 2E work occurred.
+The earlier approval-pending statements below describe dated history.
+
+
+**October 15: High-descriptor polling passes; the retained compiler check conflicts with later setup work.**
+The owner approved exact v16.
+[The current execution record](qualification/phase-2d-execution-progress-v2-20261015.json) preserves commands, approvals, results, and earlier history.
+Both compilers, full compiler-volume sealing, final lane binding, and high-descriptor child admission passed.
+The child created the installation root and began its first FD handoff.
+The retained compiler proof then refused because the shared setup role contained that admitted storage child.
+The source now checks build-role emptiness immediately before sealing.
+Later compiler readback retains immutable-output proofs and original role controls.
+Actor admission checks remain unchanged.
+
+All 26 focused checks and both fresh 1177-test suites pass.
+[The exact lifecycle batch](PHASE-2D-ROLE-CONTINUATION-2026-10-15.md) awaits separate operational approval.
+The [v17 record](qualification/phase-2d-executable-batch-v17-20261015.json) binds the complete current proposal.
+The original child PID `14490` remains a zombie under observer PID `14430` and pidfd `1476`.
+The preceding child PID `13791` and its original pidfd also remain retained.
+Do not signal, reap, resume, or replace these children or pidfds.
+The empty partial installation root remains present; do not remove or reuse it.
+
+Twelve full charges remain retained under the accepted 96 GiB combined reservation.
+IPv4 forwarding is zero after the exact approved restoration.
+No policy installation, qualification, device login, or live turn occurred.
+Physical closure remains unknown.
+Actual Phase 2D acceptance remains incomplete at unreleased candidate 0.13.0.
+No commit, push, release, or Phase 2E work occurred.
+The private recovery directory and local custody index remain outside Git.
+The earlier approval-pending statements below describe dated history.
+
+**October 15: Final lane binding passes; high descriptor numbers block the next storage job.**
+The owner approved exact v15 on October 15.
+[The current execution record](qualification/phase-2d-execution-progress-v2-20261015.json) preserves commands, approvals, results, and earlier history.
+All ten prior journal hashes and eight original journal FD identities matched before new preparation.
+Both compilers, full compiler-volume sealing, and final lane binding passed.
+The parent then refused the installation-directory child because `select()` cannot handle its high FD numbers.
+The original pipe FD is `1475`, and the original child pidfd is `1476`.
+The original child PID `13791` remains a retained zombie under observer PID `13731`.
+Do not signal, reap, resume, or replace this child or its pidfd.
+
+The source now uses a shared polling path for high descriptor numbers at all 75 observer readiness sites.
+It preserves original descriptor custody, controls, clocks, and fixed child source bytes.
+Four real high-descriptor regression checks and both fresh 1174-test suites pass.
+[The exact polling batch](PHASE-2D-POLL-CONTINUATION-2026-10-15.md) awaits separate operational approval.
+The [v16 record](qualification/phase-2d-executable-batch-v16-20261015.json) binds the complete current proposal.
+The private recovery directory and local custody index remain outside Git.
+
+Eleven full charges remain retained under the accepted 88 GiB combined reservation.
+IPv4 forwarding is zero after the exact approved restoration.
+No policy installation, qualification, device login, or live turn occurred.
+Actual Phase 2D acceptance remains incomplete at unreleased candidate 0.13.0.
+No commit, push, release, or Phase 2E work occurred.
+The earlier approval-pending statements below describe dated history.
+
+**October 14: Compiler sealing passes; final lane verification exposes a cycle.**
+The owner approved exact v10, v11, v12, v13, and v14 exceptions during this session.
+[The execution record](qualification/phase-2d-execution-progress-v1-20261014.json) preserves their commands, approvals, results, and limitations.
+All 276 public bundle entries matched before new source changes.
+All twelve dated private paths were missing.
+The owner authorized access recovery from project memory; SSH and password-free sudo work.
+Offline preparation recovered the exact v10 private archive and plan from retained guest inputs.
+The private recovery directory remains outside Git.
+
+Both actual compilers and the full compiler-volume read-only remount now pass.
+The v14 final lane binding then exposed a timer, lane, reservation, and build derivation verification cycle.
+The original traceback confirms this cycle.
+The source now separates internal lane role-handle checks from full reservation verification.
+All original custody and control checks remain required.
+All 47 focused checks and both fresh 1170-test suites pass.
+[The exact cycle correction batch](PHASE-2D-RECURSION-CONTINUATION-2026-10-14.md) awaits separate operational approval.
+The [v15 record](qualification/phase-2d-executable-batch-v15-20261014.json) binds the complete current proposal and final unit hashes.
+
+Ten full charges remain retained under the accepted 80 GiB combined reservation.
+All operational attempts remain consumed; original processes, timers, clocks, handles, and unknowns remain retained or historically recorded.
+IPv4 forwarding is zero after each exact approved restoration.
+No policy installation, qualification, device login, or live turn occurred.
+Actual Phase 2D acceptance remains incomplete at unreleased candidate 0.13.0.
+No commit, push, release, or Phase 2E work occurred.
+The earlier decline statements below describe dated history; the exact new approvals supersede that operational decline only.
+
+**October 14: Next-session package prepared at the owner's request.**
+[The new prompt](PHASE-2D-NEXT-SESSION-2026-10-14.md) and [current exact manifest](PHASE-2D-NEXT-SESSION-INPUTS-2026-10-14.json) include the updated handoff.
+The public bundle is `phase2d-next-session-2026-10-14.zip` in the existing local Crewshal artifact directory.
+The separate October 13 local custody index remains outside the public bundle.
+This preparation grants no operational approval and changes no source, package version, or acceptance result.
+The next milestone remains actual Phase 2D acceptance under exact owner authority.
+
+**October 14: Local continuation inputs verified; Phase 2D remains incomplete.**
+[The resumption report](PHASE-2D-RESUMPTION-2026-10-14.md) supplies the exact boundary and continuation prompt.
+[Fresh local evidence](qualification/phase-2d-local-preflight-v1-20261014.json) records matching hashes for all 267 initial repository inputs and the complete 272-file bundle.
+Both v10 owner scripts, unit hashes, private archive, and private batch plan match their exact records.
+All 117 production and test files in each recorded suite still match.
+The 1161-test source and wheel results remain historical; unchanged complete suites were not repeated.
+Task-directed source inspection supplies no actual installed or live acceptance evidence.
+The October 13 operational decline remains in force.
+The owner has received a question about reopening that decision; no answer was available when this record was written.
+No VM operation, compiler, charge, observer, timer, login, provider call, or Linux installation occurred.
+Original source and dirty work remain intact; only the handoff and new local records change.
+The candidate remains unreleased version 0.13.0 at base revision `87ed7e6f6c766c7ff2df245ad05569558a9ca3bc`.
+No commit, push, release, or Phase 2E work occurred.
+Actual installation, both complete Linux qualifications, and live candidate validation require exact separate operational approval.
+Preserve the dated October 13 manifest and ZIP; their handoff hash describes the preceding handoff.
+
+**October 13: The owner declined the additional Phase 2D batch.**
+The exact v10 reservation and additional compiler exception remain unauthorized.
+[The decision record](qualification/phase-2d-v10-declined-v1-20261013.json) binds the unchanged v10 batch hash and fresh retained-custody readback.
+No v10 operational command ran, and no sixth charge was created.
+The five prior full charges retain the approved 40 GiB combined reservation allowance each.
+All five journal hashes, three current journal FD identities, and the consumed compiler pidfd remain unchanged.
+IPv4 forwarding is zero. The v10 guest paths remain absent.
+Both complete source and fresh-wheel suites pass 1161 tests, but actual Phase 2D acceptance remains incomplete.
+The candidate remains unreleased version 0.13.0.
+No publication or Phase 2E work occurred.
+Do not execute the declined batch or request the same decision again without new owner instructions.
+The dated records below preserve the preceding work and approval history.
+
+
+**October 11: Phase 2D remains blocked at version 0.12.0.** The owner requested completion or an explicit list of causes. [The current report](PHASE-2D-BLOCKED-2026-10-11.md) records four causes, the required capability, and exact continuation inputs. [Fresh verification](qualification/phase-2d-blocked-verification-v1-20261011.json) records 77 focused and 863 complete passing source tests. These include 722 Phase 2D tests. Network access was denied for the complete suite and compatibility check. The inherited environment was empty; HOME was fresh. The source filter still denies bounded WAL mappings on both supported ABIs. Installation admission remains closed. The installed parent, validator view, admission linkage, and exact Linux/live acceptance remain incomplete. No accepted owner decision needs another answer.
+
+The base revision is `87ed7e6f6c766c7ff2df245ad05569558a9ca3bc` on `codex/phase1-architecture`. Production source, tests, and dated evidence remain unchanged. AGENTS.md now records the owner's permanent ASD-STE100 rule. New human communication must obey that rule, including future session prompts and approval requests. No operational batch, paid call, credential access, version change, commit, push, or Phase 2E work occurred. Publication remains conditional on full Phase 2D acceptance. Continue with the new report's exact prompt and input list. The earlier current-state paragraphs are dated records.
 
 **Owner-authorized 0.12.0 blocked source checkpoint, October 10.** The owner instructed “publish and prepare next session's prompt and files.” [Checkpoint and publication verification](PHASE-2D-EFFECTIVE-OWNERSHIP-CHECKPOINT-2026-10-10.md), [next-session prompt and exact input manifest](PHASE-2D-NEXT-SESSION-2026-10-10.md) now govern continuation. Resolve the delivery revision from the commit containing this checkpoint; the current branch is `codex/phase1-architecture`, canonical remote `forera-ai/Crewshal`. This explicitly supersedes the earlier requirement to wait for full Phase 2D acceptance before publishing this checkpoint only. All current uncommitted implementation/evidence is included without reverting original dirty work. Phase 2D remains blocked/incomplete and source unqualified; installation admission stays closed on the recorded stock-runtime growth-policy incompatibility. Accepted decisions, original controls/charges/handles/unknowns and all three consumed compiler attempts remain unchanged. Publication authorizes no compiler/Linux/kernel/credential/login/model/VMware/SSH action, release/reuse, merge/deployment/registry release or Phase 2E. Earlier revision/version/publication statuses below are dated history.
 
@@ -1008,3 +1512,393 @@ Continued the same consolidated milestone from 758079b / 0.11.0 and preserved di
 ## Owner-authorized blocked checkpoint publication — 2026-10-10
 
 The owner explicitly requested publication and next-session materials after the 863 / 722 Phase 2D blocked boundary. Version 0.12.0 publishes the preserved source/evidence checkpoint; use the containing commit as the delivery revision, with push independently verified against the canonical current branch. The checkpoint, publication ledger and next-session prompt/input manifest retain the exact incomplete gates and closed installation admission. Continue compatible effective storage enforcement and the missing installed original-parent/validator/admission chain before preparing separately approved Linux/live qualification. No acceptance, operational or release authority is inferred from publication; no Phase 2E work follows session closure.
+
+## Phase 2D blocked verification and communication rule — 2026-10-11
+
+The owner requested full Phase 2D completion or a list of blocking causes. The session verified the current refusal and supplied that list. [The report](PHASE-2D-BLOCKED-2026-10-11.md) records the storage conflict, missing compatible enforcement, incomplete installed execution chain, and absent Linux/live acceptance. [Fresh evidence](qualification/phase-2d-blocked-verification-v1-20261011.json) records exact commands, source hashes, graph limits, and environment. All 77 focused and 863 complete source tests pass, including 722 Phase 2D tests. The complete suite and compatibility check deny network access and use an empty inherited environment with a fresh HOME. The source result does not qualify installed Linux behavior.
+
+Base revision remains `87ed7e6f6c766c7ff2df245ad05569558a9ca3bc`, branch `codex/phase1-architecture`, version 0.12.0. AGENTS.md records the owner's permanent ASD-STE100 rule. Production source, tests, and historical records remain intact. No operational batch, credential access, paid call, commit, push, or Phase 2E work occurred. Continue the same Phase 2D milestone from the report's exact prompt and input list. The next required capability is compatible installed storage enforcement with independent readback. Accepted decisions require no repeat approval. Publication remains conditional on full Phase 2D acceptance.
+
+## Phase 2D source progress and bootstrap decision — 2026-10-12
+
+Phase 2D has not passed acceptance.
+SSH and root access work on the owner's local VMware Ubuntu installation.
+The owner accepted the three lanes and charged helper build source amendments.
+Those decisions remain accepted.
+
+Source now includes compatible storage readback, installed identities, the finite parent, validator views, and admission linkage.
+It also includes original qualification process transport, the finite synthetic TLS broker, fixture seeding, and observer evidence collection.
+These source changes remain unqualified on Linux.
+
+[Fresh source evidence](qualification/phase-2d-source-progress-v1-20261012.json) records 1,079 passing method occurrences.
+These represent 1,063 unique methods, including 922 Phase 2D methods.
+The complete suite denied network access and used an empty inherited environment with a fresh HOME.
+Source hashes remained unchanged during the suite.
+Ruff checks pass; mypy passes for 41 source files.
+The original batch tests remain intact; new observer tests use a separate module.
+A fresh installed wheel still requires verification.
+
+The [bootstrap source proposal](PHASE-2D-BOOTSTRAP-CLOSURE-DECISION-2026-10-12.md) records two additional source obstructions.
+The existing build receipt cannot derive the required new compiled policy and its audit identities.
+The current C batch timer also starts after helper compilation.
+The observer service deadline does not independently stop the sibling compiler role.
+The proposed amendment supplies one original timer before building and extends one charged build receipt.
+This new source decision is pending.
+No accepted decision requires another answer.
+
+The complete executable operational entry and immutable input closure remain unfinished.
+The separate operational approval has not been requested.
+Both twenty-case Linux runs and actual frozen-candidate live acceptance remain required.
+No new compiler, Linux mutation, authentication, subscription request, publication, or Phase 2E work occurred.
+The base revision, branch, and version remain unchanged.
+
+Continue Phase 2D from the original blocked report and its exact continuation inputs.
+Also supply the accepted three-lane and charged build decisions, bootstrap proposal, operational preparation, and fresh source evidence.
+Resolve the new source decision, then complete the source and freeze the exact operational batch.
+Request operational approval only after the complete batch is reviewable.
+Preserve all original limits, handles, charges, clocks, unknown results, and dirty files.
+Publish only after full Phase 2D acceptance, then stop.
+
+## Phase 2D active continuation — 2026-10-13
+
+Phase 2D has not passed acceptance.
+The owner accepted the bootstrap source amendment on October 12.
+All earlier accepted decisions remain accepted.
+Version 0.13.0 now identifies the unreleased candidate before its exact runtime inputs are frozen.
+The branch and base revision remain unchanged.
+No commit or push has occurred.
+
+The current source includes the original early timer, charged compiler volume, helper and policy build receipt, and finite batch entry.
+It also includes stock device login, exact kernel profile directory readback, and original idle retention.
+The original observer holds its FDs after the batch ends.
+The independent timer preserves the original 570-second cutoff and 600-second end.
+No further active work starts during idle retention.
+All original limits and charges remain unchanged.
+
+A fresh denied-network suite passed 1,142 occurrences and 1,126 unique methods before the latest input corrections.
+It included 956 Phase 2D methods.
+Source hashes remained unchanged during that run.
+The latest directory and streaming-cache checks pass; final combined source and fresh-wheel verification remain required.
+The first two packaging attempts failed because the build backend was unavailable or not extracted.
+An extracted pinned setuptools 80.9.0 backend produced a wheel without network access.
+These packaging attempts were not C compiler attempts.
+
+Read-only VM evidence identifies Ubuntu 26.04.1, aarch64, explicit Python 3.12.3, GCC 15.2.0, and AppArmor parser 5.0.2.
+The kernel signature is Ubuntu 7.0.0-38.38-generic 7.0.14.
+The exact kernel source review supports the unchanged scaffold formulas.
+Short symlink targets use separate kernel objects and create no file-data extents.
+Private source and runtime input data remain outside Git.
+No new C compilation, Linux mutation, authentication, provider request, or Phase 2E work has occurred.
+
+The complete immutable batch and separate operational approval remain pending.
+The VM needs a readonly Crewshal and Pydantic input capability.
+Its writable shared folder does not establish that capability.
+Complete the exact input package, source and wheel checks, and operational commands before requesting operational approval.
+Then run both twenty-case Linux qualifications and the actual frozen-candidate live acceptance.
+Publish only after full acceptance, then stop.
+
+### Phase 2D complete operational proposal — 2026-10-13
+
+The complete source and private executable batch are now prepared.
+[The operational proposal](PHASE-2D-OPERATIONAL-BATCH-2026-10-13.md) identifies exact commands, immutable inputs, clocks, exposure, decisions, and stop conditions.
+[The current batch record](qualification/phase-2d-executable-batch-v3-20261013.json) supplies frozen hashes and complete owner script and unit bodies.
+Earlier preparation records remain intact and supply no execution authority.
+Both source and fresh-wheel suites pass 1,150 occurrences and 1,134 unique methods, including 993 Phase 2D methods.
+The suites deny network access, use an empty inherited environment, and preserve source hashes during execution.
+All 47 package files match; Ruff checks and mypy pass.
+The qualification probe now requires compatible shared-file mapping, denied shared-memory routes, and denied native authentication file access.
+The original twenty cases, limits, charges, observer, clocks, and handles remain unchanged.
+
+The source now supplies exact owner input capability preparation and private disk binds without changing original installation paths.
+No new C compilation, Linux mutation, login, subscription turn, commit, push, or Phase 2E work has occurred.
+The separate operational approval remains required by the owner's original task.
+After that approval, execute only the exact current batch and complete both Linux qualifications and actual live acceptance.
+Record each actual result and preserve unknown custody after any refusal.
+Publish only after full Phase 2D acceptance, then stop.
+
+
+## Phase 2D actual batch continuation — October 13, 2026
+
+Phase 2D remains incomplete. No Phase 2E work has started.
+The owner approved the v3 operational batch, the v5 refusal-before-charge exception, and the v6 two-charge exception.
+The first upload refused a Python-generated locale before any upload or installation.
+The corrected entry removes that value only after empty kernel environment readback.
+The first observer then refused the tab-separated UID and GID identity check before charge.
+The corrected numeric field parser passes actual independent readback.
+The v5 observer consumed its full charge and marker, then refused mismatched setup role limits before either compiler.
+The corrected constructor restores the original setup and supervisor limits.
+The v6 observer consumed a second full charge, then refused a legitimate empty timer runtime file before its timer process.
+The corrected runtime check preserves exact bytes, protections, readonly mounts, and deadlines for empty files.
+A new runtime inventory also pins fourteen actual bytecode files.
+
+The VM then restarted. Fresh kernel readback confirms lost original observer processes and FD custody.
+Both full charge journals remain byte-identical, retained, and unknown.
+No compiler, installed backing, AppArmor profile, qualification, login, or live turn has started.
+IPv4 forwarding is zero.
+Both latest complete suites pass 1156 occurrences and 1140 unique methods, including 999 unique Phase 2D methods.
+All 47 wheel files match current source; static checks pass.
+The candidate remains unreleased 0.13.0. No commit or push has occurred.
+
+[The complete current proposal](PHASE-2D-RUNTIME-CONTINUATION-2026-10-13.md) and [exact v7 record](qualification/phase-2d-executable-batch-v7-20261013.json) define the next operational gate.
+They require explicit approval for a 24 GiB combined reserved test allowance and continuation with lost old custody recorded as unknown.
+Actual common kernel limits remain 805306368 bytes, 128 tasks, one CPU, and zero swap.
+Each new original batch retains the original 8 GiB logical and allocated limits.
+The old records supply no live ownership, eligibility, physical closure, refund, or reusable resource.
+Do not repeat accepted decisions or consumed compiler attempts.
+Publish only after full actual Phase 2D acceptance, then stop.
+
+
+## Phase 2D mapping continuation gate — October 13, 2026
+
+The owner approved the v7 24 GiB combined reservation exception and continuation after lost older custody.
+The v7 observer and timer remain retained at PIDs 5553 and 5555.
+The original timer reached its initial trace stop, then mapping lookup returned errno 2.
+The parser used padded `maps` addresses for unpadded `map_files` names.
+The corrected parser preserves numeric ranges and all original identity checks.
+All 33 actual mapped ranges and 11 actual mapped file readbacks pass independently.
+Both complete suites pass 1158 occurrences and 1142 unique methods, including 1001 unique Phase 2D methods.
+All 47 wheel package files match current source; static checks pass.
+
+No C or AppArmor compiler has started.
+No installed backing, loaded policy, qualification, login, or live turn has started.
+All three full charges remain retained with unknown results.
+The first two original process owners remain lost after the guest restart.
+The current observer, stopped timer, original FDs, groups, journal, marker, clock, and unknown result remain retained.
+IPv4 forwarding is zero.
+
+[The complete mapping proposal](PHASE-2D-MAPPING-CONTINUATION-2026-10-13.md) and [exact v8 batch](qualification/phase-2d-executable-batch-v8-20261013.json) define the pending operational gate.
+The requested exception adds one new full charge and increases combined reserved storage from 24 GiB to 32 GiB each.
+Actual common kernel memory, task, CPU, and swap limits remain unchanged.
+Do not infer approval from the earlier v7 exception.
+Do not reset old clocks, close unknown original handles, refund charges, or repeat consumed compiler attempts.
+Phase 2D remains incomplete. The candidate remains unreleased 0.13.0.
+No commit, push, or Phase 2E work has occurred.
+
+### Exact continuation inputs and prompt
+
+Feed AGENTS.md, RTK.md, HANDOFF.md, DEVELOPMENT-PLAN.md, and all accepted architecture decisions.
+Also feed the original October 11 blocker and its exact continuation inputs.
+Feed the three accepted source amendments, the current mapping proposal, and the exact v8 batch record.
+Preserve every v3 through v7 operational record as dated evidence.
+The private v16 immutable archive, batch plan, controller, and actual readbacks remain outside Git.
+The pending human decision must bind the exact v8 record hash before execution.
+
+Continue Phase 2D on the current dirty branch from revision 87ed7e6f6c766c7ff2df245ad05569558a9ca3bc.
+Preserve all original documentation, dirty work, charges, handles, clocks, and unknown results.
+Use ASD-STE100 for every explanation and decision request.
+Consume only an explicit approval of the exact v8 reservation exception and operational batch.
+Do not repeat accepted decisions or consumed compiler attempts.
+Then perform its exact input preparation, independent readback, original timer, sole unconsumed build, and actual acceptance sequence.
+Pass all twenty original Linux cases twice and cover every enabled native file tool.
+Complete actual frozen-candidate acceptance and independent credential-free validation.
+Publish only after full Phase 2D acceptance under the explicitly amended authority, then stop.
+Record any exact missing capability with fresh evidence. Do not begin Phase 2E.
+
+## October 13: v8 execution and exact private file continuation
+
+The owner approved the exact v8 mapping exception and batch through question `call_LHhNyof7DFyXRzGaPJXZGb2a`.
+The approval binds record SHA-256 `deeb0c5b318b7fbcde53dcd451021049c5592908b658c7b465082cc50fd23c43`.
+The approved upload, owner preparation, forwarding change, and observer start each ran once.
+Independent readback verified all 226 inputs, both unit hashes, unchanged prior journals, and the common and new kernel limits.
+
+The observer has PID 6476 and retains original timer PID 6478.
+It recorded a fourth full charge and created its original 16 MiB compiler volume.
+The volume remains empty.
+Its helper build admission refused the Ubuntu env inode with 116 hard links before compiler process creation.
+The admission remains consumed; neither compiler started.
+The observer retains every partial handle, full charge, original clock, and unknown result.
+The fourth journal SHA-256 is `ebcd9bd415699d422390a13670c85a0f9479168a9da1d1b89d9681016d8a20a5`.
+Its configuration SHA-256 is `94c0af7a0a9bc133f4648919a0cc96e5f3400861b56de0a8918e88c1f2ef38d0`.
+The original observer PID 5553 and stopped timer PID 5555 also remain retained.
+IPv4 forwarding is zero after the approved restoration command.
+
+Independent inspection covered 1180 prospective file paths.
+The env inode is the only existing input that fails the protected regular file and single-link checks.
+Three absent paths identify outputs that require the new charged build.
+The exact private copy preserves executable bytes, its root inventory entry, and every production single-link check.
+The new owner unit supplies that copy through a private read-only bind.
+All 227 immutable archive members pass local size and hash checks.
+Both new owner scripts pass parsing and Ruff checks.
+The two 1158-test suite results remain current because all production and test source hashes remain unchanged.
+
+The [private file continuation](PHASE-2D-SINGLE-LINK-CONTINUATION-2026-10-13.md) and [v9 record](qualification/phase-2d-executable-batch-v9-20261013.json) define the new pending gate.
+The exception requests one new original batch and increases combined reserved storage from 32 GiB to 40 GiB each.
+It expressly permits one new build admission without resuming the consumed v8 admission.
+Actual common kernel memory, task, CPU, and swap limits remain unchanged.
+The exact input member bound increases to 33554432 bytes within the existing transfer hard file limit.
+Every previous charge, clock, timer, handle, unknown result, and accepted loss of older custody remains recorded.
+The pending request supplies no authority until the owner answers.
+Phase 2D remains incomplete at unreleased candidate version 0.13.0.
+No commit, push, or Phase 2E work has occurred.
+
+### Exact continuation inputs and prompt
+
+Feed AGENTS.md, RTK.md, HANDOFF.md, DEVELOPMENT-PLAN.md, and the accepted architecture decisions.
+Also feed the original October 11 blocker and its exact continuation inputs.
+Feed the three accepted source amendments, all dated operational continuations, the private file proposal, and the exact v9 record.
+Preserve every v3 through v8 batch record as dated evidence.
+The private v17 archive, plan, controller, and actual readbacks remain outside Git.
+
+Continue Phase 2D on the dirty branch from revision 87ed7e6f6c766c7ff2df245ad05569558a9ca3bc.
+Preserve all original documentation, dirty work, charges, clocks, timers, handles, and unknown results.
+Use ASD-STE100 for every explanation and decision request.
+Consume only an explicit approval of the exact v9 exception and batch.
+Do not repeat accepted decisions or resume consumed build admissions.
+Perform the exact input preparation, independent readback, original timer, new charged build, and actual acceptance sequence.
+Pass all twenty original Linux cases twice and cover every enabled native file tool.
+Complete actual frozen-candidate acceptance and independent credential-free validation.
+Publish only after full Phase 2D acceptance under the explicitly amended authority, then stop.
+Record any exact missing capability with fresh evidence. Do not begin Phase 2E.
+
+## October 13: v9 execution and exact build mapping continuation
+
+The owner approved the exact v9 exception and batch through question `call_87a36c14771e48a8ba9fee3e721322fd`.
+The approval binds record SHA-256 `58c4ac0819555ba85d9f20a3f5ad2b3f5d490811c6d7070b8326f134897bea71`.
+The approved upload, preparation, forwarding change, and observer start each ran once.
+All 227 inputs, both units, the private env identity, prior journal hashes, and original kernel limits passed independent readback.
+
+Observer PID 7157 recorded the fifth full charge and retains timer PID 7159.
+C compiler PID 7168 reached its original executable trace stop.
+The separate build mapping reader used the padded maps address and refused with errno 2 before detachment.
+The failure path stopped its original setup group.
+The compiler remains a zombie with its original pidfd and proc FD retained by the observer.
+All three output files contain zero bytes.
+The compiler attempt remains consumed; no AppArmor compiler started.
+No policy installation, qualification, authentication, or live turn occurred.
+The original timers, backing, mount, groups, handles, clocks, full charges, and unknown results remain retained.
+The fifth journal SHA-256 is `737d4446eeeb79f63b710f2e418d2148d0a7b962f1556b0abcb1c61f877c10f7`.
+Its configuration SHA-256 is `2e2afaf143b8e98d88dada60d1bec20197a52d8b7f0122193d641cf8455a2716`.
+Fresh readback confirms all five prior journal hashes and all three current journal FD identities.
+It also confirms the original consumed compiler pidfd.
+IPv4 forwarding is zero after approved restoration.
+
+The build reader now uses the existing shared strict numeric parser.
+Three new regression tests cover padded addresses, overlapping numeric ranges, and retained FDs after a writable mapping refusal.
+The focused 18-test suite passes.
+Independent current-reader execution passes all 33 retained kernel ranges and exact frozen read-only hashes without another compiler execution.
+Both complete source and fresh-wheel suites pass 1161 tests with denied network access, an empty inherited environment, and fresh HOME directories.
+There are no skips, failures, or errors.
+All 47 wheel package files equal current source.
+Ruff and mypy pass for the changed scope and production source.
+Nine older script format differences remain unchanged.
+The first local wheel build lacked setuptools; the successful build used the exact cached setuptools 80.9.0 wheel.
+Neither local wheel command executes a Linux C or AppArmor compiler.
+
+The [build mapping continuation](PHASE-2D-BUILD-MAPPING-CONTINUATION-2026-10-13.md) and [v10 record](qualification/phase-2d-executable-batch-v10-20261013.json) define the pending gate.
+The exception requests one new batch, one additional C compiler process, and 48 GiB combined reserved storage each.
+It does not resume, reset, or reuse any consumed compiler or installation.
+All original actual common and per-batch limits remain unchanged.
+The private v18 archive, plan, controller, and fresh actual readbacks remain outside Git.
+The complete proposal and record supply exact source, owner scripts, units, commands, and inputs before approval.
+Phase 2D remains incomplete at unreleased candidate version 0.13.0.
+No commit, push, or Phase 2E work occurred.
+
+### Exact continuation inputs and prompt
+
+Feed AGENTS.md, RTK.md, HANDOFF.md, DEVELOPMENT-PLAN.md, and the accepted architecture decisions.
+Also feed the original October 11 blocker and its exact continuation inputs.
+Feed the three accepted source amendments, all dated operational continuations, the build mapping proposal, and the exact v10 record.
+Preserve every v3 through v9 operational record as dated evidence.
+
+Continue Phase 2D on the dirty branch from revision 87ed7e6f6c766c7ff2df245ad05569558a9ca3bc.
+Preserve all original documentation, dirty work, charges, clocks, timers, handles, and unknown results.
+Use ASD-STE100 for every explanation and decision request.
+Consume only an explicit approval of the exact v10 reservation, additional compiler exception, and operational batch.
+Do not repeat accepted decisions or resume consumed compilers or build admissions.
+Perform the exact input preparation, independent readback, original timer, newly authorized build, and actual acceptance sequence.
+Pass all twenty original Linux cases twice and cover every enabled native file tool.
+Complete actual frozen-candidate acceptance and independent credential-free validation.
+Publish only after full Phase 2D acceptance under the explicitly amended authority, then stop.
+Record any exact missing capability with fresh evidence. Do not begin Phase 2E.
+
+## October 13: owner decline and retained boundary
+
+The owner answered “Decline the additional batch” to question `call_13eba8afbe454491a9e81b2fe7348450`.
+The decision binds v10 record SHA-256 `c3c09e7b4ab8205fe53024ae2718d45e7f279166053a5a0d17c673a063151b2b`.
+The exact [decision and fresh readback](qualification/phase-2d-v10-declined-v1-20261013.json) preserve this boundary.
+The private decision file records a refusal of operational authority.
+No v10 approval file or consumed operational marker exists.
+The new guest archive, input directory, storage directory, and observer unit remain absent.
+No additional compiler, original observer, timer, charge, login, or live turn started.
+Read-only inspection confirms all five prior journal hashes, three current journal FD identities, and the consumed compiler pidfd.
+IPv4 forwarding remains zero.
+Every original charge and unknown result remains unchanged.
+No original handle was closed or original process restarted.
+No clock, timer, compiler flag, marker, or installation was reset.
+
+The exact missing authority is the declined 48 GiB reservation and additional C compiler exception.
+The source correction remains prepared and verified by both complete 1161-test suites.
+The twenty original Linux cases, live frozen-candidate acceptance, and credential-free validation remain incomplete.
+The existing 40 GiB allowance permits no additional full charge.
+Do not infer approval from the original completion request or the preceding accepted exceptions.
+The owner must supply new instructions before any further operational batch.
+Do not request the same declined batch again without such instructions.
+Phase 2D remains incomplete at unreleased candidate version 0.13.0.
+No commit, push, release, or Phase 2E work occurred.
+
+### Exact next-session inputs and prompt
+
+Feed AGENTS.md, RTK.md, HANDOFF.md, DEVELOPMENT-PLAN.md, and the accepted architecture decisions.
+Feed the original October 11 blocker and its exact continuation inputs.
+Feed all three accepted source amendments and every dated operational continuation.
+Feed the build mapping continuation, immutable v10 record, and v10 decline record.
+Preserve all earlier batch records and private original custody data.
+The private v18 source inputs and all prior consumed markers remain available outside Git.
+
+Read the owner decline record before further Phase 2D work.
+Preserve the current dirty branch, source correction, documentation, charges, clocks, timers, handles, and unknown results.
+Use ASD-STE100 for every explanation and decision request.
+Do not run the declined v10 batch, repeat consumed compiler attempts, or request the same approval again.
+Wait for new owner instructions that define any further permitted operational scope.
+Phase 2D remains the active milestone; Phase 2E must not start.
+If later authorized, complete independently reproducible Linux and live acceptance before publication.
+Publish only after full Phase 2D acceptance, then stop.
+
+## October 13: next-session context prepared
+
+The owner requested a next-session prompt and its required files after declining v10.
+[The new prompt](PHASE-2D-NEXT-SESSION-2026-10-13.md) preserves that decline and the Phase 2D boundary.
+[The exact input manifest](PHASE-2D-NEXT-SESSION-INPUTS-2026-10-13.json) lists current source, tests, accepted decisions, instructions, and dated evidence.
+The accompanying public context ZIP supplies those files for a new local session.
+The ZIP excludes private capabilities, authentication, keys, retained VM storage, and operational archives.
+The prompt grants no further operational authority and does not request the same declined approval again.
+Existing dirty source and dated records remain intact.
+No additional test, compiler, VM action, charge, provider call, commit, push, or Phase 2E work occurred during context preparation.
+
+
+## Phase 2D software completion — October 16, 2026
+
+Milestone: Phase 2D software complete; platform and live qualification deferred.
+Base revision: `87ed7e6f6c766c7ff2df245ad05569558a9ca3bc`.
+Branch: `codex/phase1-architecture`. Version: `0.14.0`.
+Delivery revision: the commit containing this ledger entry and the completion report.
+
+This session added checked first-runtime intent preparation and atomic validator capture through existing interfaces.
+Separate deterministic external fixtures exercised actual candidate capture, normalization, SQLite state, claims, evidence, verdicts, and recovery.
+The workflow preserved original files, dirty bytes, and Git metadata.
+Stale approvals, stale definitions, malformed output, forged success, candidate mutation, and failed or missing checks cannot pass.
+Cancellation, timeout, refusal, interruption, and restart preserve explicit outcomes without an automatic retry.
+The session preserved all earlier Phase 2D source, dated evidence, charges, custody, and unknown results.
+It changed only core integration, request validation, new core tests, versions, and publication files.
+
+The final core module passed 26 tests.
+The complete source suite passed 1,248 occurrences in 42.034 seconds.
+The complete installed-wheel suite passed 1,248 occurrences in 47.172 seconds.
+Both suites used fresh HOME directories, empty inherited environments, and network denial.
+All 47 installed source files matched the checkout.
+Ruff lint, source and test formatting, strict mypy, CLI help, and diff checks passed.
+The full formatter check retained nine unchanged historical script differences.
+The observed environment was macOS 27.2 arm64, CPython 3.12.15, and uv 0.9.24.
+
+Initial development checks exposed nested transactions, a retained fixture trigger, and an unused import.
+The implementation and fixture corrections passed the final complete suites.
+The development venv lacks pip; offline packaging used uv and cached pinned dependencies.
+[The report](PHASE-2D-SOFTWARE-COMPLETION-2026-10-16.md) records acceptance mapping, exact limitations, and delivery revision lookup.
+[The verification JSON](qualification/phase-2d-software-verification-20261016.json) records commands, results, environment, hashes, and preserved-byte checks.
+
+Fixture supervision observations do not qualify platform containment or hard deadline enforcement.
+Operational admission remains closed.
+No Linux development, VMware, SSH, compiler, qualification batch, exception proposal, credentials, real runtime, model call, or paid host occurred.
+No Phase 2E implementation, merge, deployment, or package publication occurred.
+Standing instructions authorize this coherent branch commit and push.
+Phase 2E software is next; its prompt and exact files are linked in the current state.

@@ -384,7 +384,12 @@ class Phase2DOriginalVolumeCollection(unittest.TestCase):
         # Use only the fixture helper, never inherit its tests or reuse artifacts.
         from tests.acceptance import test_phase_2d_supervisor as supervisor_fixtures
         from tests.acceptance import test_phase_2d_admission as admission_fixtures
-        from crewshal.admission import NativeAdmissionSpec, RetainedProc
+        from crewshal.admission import (
+            NativeAdmissionReceipt,
+            NativeAdmissionSpec,
+            NamespaceIdentity,
+            RetainedProc,
+        )
         from crewshal.linux_bridge import StoppedNativeBridge
         from crewshal.linux_freeze import OriginalVolumeFreeze
         from crewshal.supervisor import CapturedProcess
@@ -415,6 +420,8 @@ class Phase2DOriginalVolumeCollection(unittest.TestCase):
         )
         frozen = object.__new__(OriginalVolumeFreeze)
         frozen.installation, frozen.manifest, frozen.failed = installation, manifest, False
+        frozen.lifetime = SimpleNamespace(lane_context=None)
+        frozen.projection_root = str(fixture.root)
         frozen.handles = {"readonly-projection": descriptor, "frozen-root": descriptor}
         frozen.verify_custody = Mock()
         frozen._verify_terminal_kernel = Mock()
@@ -450,6 +457,20 @@ class Phase2DOriginalVolumeCollection(unittest.TestCase):
             native_fixture.proc.descriptor, native_fixture.pid_reader.fileno(), spec
         )
         self.addCleanup(bridge.native.close)
+        bridge.admission_receipt = NativeAdmissionReceipt(
+            spec=spec,
+            configuration=spec.configuration,
+            argv=digest(b"synthetic argv"),
+            initial_environment=digest(b"synthetic environment"),
+            aggregate_controls={},
+            stdin_pipe=NamespaceIdentity(device=1, inode=10),
+            stdout_pipe=NamespaceIdentity(device=1, inode=11),
+            stderr_pipe=NamespaceIdentity(device=1, inode=12),
+            started=fixture.observation.started,
+            started_monotonic=1,
+        )
+        bridge._admission_digest = record_digest(bridge.admission_receipt)
+        bridge._admission_host_spec = record_digest(spec)
         bridge.lifetime = SimpleNamespace(
             controls=SimpleNamespace(configuration=self.dispatch.configuration),
             worker=native_fixture.worker,
@@ -508,6 +529,50 @@ class Phase2DOriginalVolumeCollection(unittest.TestCase):
         self.assertEqual((self.fixture.frozen / "README.md").read_bytes(), b"after\n")
         os.fstat(self.projection)
 
+    def test_live_lane_collection_keeps_lane_configuration_and_retained_projection(self):
+        lane_root = self.fixture.root / "lanes" / "live"
+        lane_root.mkdir(parents=True)
+        self.fixture.candidate.rename(lane_root / "candidate-upper")
+        self.fixture.frozen.rename(lane_root / "validator-frozen")
+        self.fixture.candidate = lane_root / "candidate-upper"
+        self.fixture.frozen = lane_root / "validator-frozen"
+        configuration = self.dispatch.configuration.model_copy(update={"lane_id": "live"})
+        identity = self.dispatch.request.identity.model_copy(
+            update={"configuration": record_digest(configuration)}
+        )
+        self.dispatch = self.dispatch.model_copy(
+            update={
+                "configuration": configuration,
+                "request": self.dispatch.request.model_copy(update={"identity": identity}),
+                "qualification": self.dispatch.qualification.model_copy(
+                    update={"configuration": record_digest(configuration)}
+                ),
+            }
+        )
+        self.bridge.native.spec = self.bridge.native.spec.model_copy(
+            update={"configuration": record_digest(configuration)}
+        )
+        self.bridge.admission_receipt = self.bridge.admission_receipt.model_copy(
+            update={
+                "spec": self.bridge.native.spec,
+                "configuration": record_digest(configuration),
+            }
+        )
+        self.bridge._admission_digest = record_digest(self.bridge.admission_receipt)
+        self.bridge._admission_host_spec = record_digest(self.bridge.native.spec)
+        self.bridge.lifetime.controls.configuration = configuration
+        context = SimpleNamespace(_bridge=self.bridge, _freeze=self.bridge.freeze)
+        self.bridge.lane_context = context
+        self.bridge.freeze.lifetime.lane_context = context
+        self.bridge.freeze.projection_root = str(lane_root)
+        self.bridge.installation._bridge = None
+        self.bridge.installation._freeze = None
+        result = self.collect()
+        self.assertEqual(result.outcome.status, "completed")
+        self.assertEqual(self.bridge.admission_receipt.configuration, record_digest(configuration))
+        self.assertEqual((self.fixture.frozen / "README.md").read_bytes(), b"after\n")
+        self.assertFalse((self.fixture.root / "validator-frozen").exists())
+
     def test_original_capture_persists_actual_host_supervision_and_scope_link(self):
         from crewshal.supervisor import SupervisionReceipt
 
@@ -523,19 +588,20 @@ class Phase2DOriginalVolumeCollection(unittest.TestCase):
         self.assertEqual(receipt.initial, self.bridge.native_capture.initial)
         self.assertEqual(receipt.final, self.bridge.native_capture.final)
         self.assertEqual((receipt.stdout, receipt.stderr), (result.stdout, result.stderr))
-        self.assertIsNone(receipt.admission)
+        self.assertIsNotNone(receipt.admission)
         self.assertEqual(
             ORIGINAL_VOLUME_COLLECTION_UNRESOLVED,
-            ("original_namespace_admission_receipt_transport",),
+            (),
         )
         self.assertEqual(
             self.fixture.store.connection.execute(
                 "SELECT count(*) FROM records WHERE kind='admission'"
             ).fetchone()[0],
-            0,
+            1,
         )
         evidence = self.fixture.store.records("evidence", Evidence)[0]
         self.assertIn(record_digest(receipt), evidence.artifacts)
+        self.assertIn(receipt.admission, evidence.artifacts)
         self.assertTrue(
             (self.fixture.store.directory / "artifacts" / record_digest(receipt)).is_file()
         )
@@ -562,6 +628,10 @@ class Phase2DOriginalVolumeCollection(unittest.TestCase):
         dispatch.qualification.configuration = fingerprint
         self.bridge.lifetime.controls.configuration = dispatch.configuration
         self.bridge.native.spec.configuration = fingerprint
+        self.bridge.admission_receipt.spec.configuration = fingerprint
+        self.bridge.admission_receipt.configuration = fingerprint
+        self.bridge._admission_digest = record_digest(self.bridge.admission_receipt)
+        self.bridge._admission_host_spec = record_digest(self.bridge.native.spec)
         with self.assertRaisesRegex(ValueError, "source/task/configuration"):
             self.collect(dispatch=dispatch)
         self.assert_uncommitted()

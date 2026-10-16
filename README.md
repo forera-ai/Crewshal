@@ -10,7 +10,27 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
-Local package version: **0.12.0**. See [CHANGELOG.md](CHANGELOG.md) for version history.
+**October 16: Phase 2D software complete; platform and live qualification deferred.**
+The actual coordinator workflow passes deterministic external runtime and validator fixtures.
+Checked request preparation and atomic validator capture join the existing candidate, evidence, durable state, and verdict code.
+Source and fresh installed-wheel suites each pass 1,248 test occurrences, including 26 new core cases.
+All 47 packaged source files match the checkout.
+Operational execution admission remains closed.
+See [the software completion report](docs/PHASE-2D-SOFTWARE-COMPLETION-2026-10-16.md) and [verification](docs/qualification/phase-2d-software-verification-20261016.json).
+Use [the Phase 2E prompt](docs/PHASE-2E-NEXT-SESSION-2026-10-16.md) and [exact input files](docs/PHASE-2E-INPUTS-2026-10-16.json) next.
+Phase 2E implementation has not started.
+Earlier dated status entries remain historical records.
+
+**October 15: Phase 2D is active and unblocked for core software development.**
+[Accepted ADR 0007](docs/decisions/0007-core-development-before-platform-qualification.md) moves platform adaptation and live qualification after core development.
+[The revised plan](docs/DEVELOPMENT-PLAN.md) requires a complete production coordinator workflow with deterministic external runtime and validator fixtures.
+[The next-session prompt](docs/PHASE-2D-CORE-NEXT-SESSION-2026-10-15.md) directs implementation and verification.
+Operational execution admission remains closed; platform support and live acceptance remain unverified.
+Earlier blocked-status paragraphs below describe dated history.
+
+Source checkpoint: **0.14.0**. Package registry publication remains unauthorized. See [CHANGELOG.md](CHANGELOG.md) for version history.
+
+**October 11: Phase 2D remains blocked.** [The current report](docs/PHASE-2D-BLOCKED-2026-10-11.md) gives four causes and the exact continuation inputs. Fresh source checks pass all 863 offline tests, including 722 Phase 2D tests. Linux and live acceptance remain incomplete. The owner requires ASD-STE100 for human communication. Version 0.12.0 remains unchanged; this report is uncommitted. Earlier status paragraphs are dated records.
 
 The owner explicitly authorized publishing the current blocked Phase 2D source checkpoint on October 10. [Version 0.12.0 checkpoint and publication evidence](docs/PHASE-2D-EFFECTIVE-OWNERSHIP-CHECKPOINT-2026-10-10.md) supersede earlier conditional publication statements for this checkpoint only. Phase 2D remains incomplete/unqualified; installation admission stays closed. [Next-session prompt and exact file list](docs/PHASE-2D-NEXT-SESSION-2026-10-10.md) continue the same effective ownership milestone. Branch publication grants no operational, spend, release/reuse, merge, deployment, package-registry or Phase 2E authority. Earlier status paragraphs below are dated history.
 
@@ -136,3 +156,55 @@ Contributions should follow the active milestone and its acceptance gates. Open 
 [Apache License 2.0](LICENSE). Copyright 2026 forera.ai and contributors.
 
 [Retained native admission source](docs/PHASE-2D-NATIVE-ADMISSION.md) now checks a stopped child through pinned proc/pidfd handles, exact native role/configuration/executable/namespace and pipe identity, actual worker/aggregate ancestry and original resource controls. Twenty-eight fresh offline cases bring unpublished coverage to 124 Phase 2D methods / 265 tests. Kernel/proc/child effects are synthetic; Linux operation, envelope/bootstrap, hard deadline, receipt persistence and separately approved live acceptance remain unqualified. Preparation-only scope persists.
+
+## Phase 2D candidate preparation — 2026-10-13
+
+Version 0.13.0 is an unreleased source candidate.
+Phase 2D has not passed Linux or live acceptance.
+The candidate includes the accepted three lanes, charged builds, original timer, and retained installation and validation owners.
+Publication remains conditional on complete Phase 2D acceptance.
+See [the input contract](docs/PHASE-2D-EXECUTABLE-BATCH-INPUTS-2026-10-12.md) for the remaining operational requirements.
+
+
+Phase 2D continuation, October 13: the corrected source and fresh wheel pass 1158 test occurrences and 1142 unique methods.
+All 47 packaged files match current source.
+Independent readback passes 33 actual mapped ranges after the kernel address spelling correction.
+Actual installation, both twenty-case qualifications, and live acceptance remain incomplete.
+[The exact v8 operational proposal](docs/PHASE-2D-MAPPING-CONTINUATION-2026-10-13.md) requires a separate combined reservation exception.
+No new C or AppArmor compilation, login, live turn, publication, or Phase 2E work has occurred.
+# October 13 private executable preparation
+
+The approved v8 batch refused Ubuntu's 116-link env inode before either compiler started.
+The original observer retains its fourth full charge, timer, empty compiler volume, handles, clock, and unknown result.
+The [exact private file continuation](docs/PHASE-2D-SINGLE-LINK-CONTINUATION-2026-10-13.md) supplies identical bytes through a private read-only binding.
+The production single-link check remains unchanged.
+All 227 new archive members pass local hash and size checks.
+Both 1158-test suite results remain current because all production and test source hashes remain unchanged.
+The new batch requires its exact 40 GiB combined reservation exception.
+Phase 2D remains incomplete. Version 0.13.0 remains unreleased.
+
+## October 13 build mapping correction
+
+The v9 C executable reached its original trace stop, then its separate mapping reader refused a padded kernel address.
+The consumed C process, zero-byte outputs, fifth full charge, timer, handles, clock, and unknown result remain retained.
+The build reader now uses the shared strict numeric parser.
+Both complete source and fresh-wheel suites pass 1161 tests.
+Independent reader execution passes all 33 retained kernel ranges without another compiler execution.
+The [exact additional batch](docs/PHASE-2D-BUILD-MAPPING-CONTINUATION-2026-10-13.md) requires a 48 GiB reservation and additional C compiler exception.
+Phase 2D remains incomplete. Candidate version 0.13.0 remains unreleased.
+
+## October 13 operational decline
+
+The owner declined the exact v10 additional batch and its reservation and compiler exception.
+No v10 operational command ran, and no additional charge was created.
+Fresh readback preserves all five prior journal hashes and current original custody identities.
+IPv4 forwarding remains zero.
+Both complete suites pass 1161 tests, but actual Phase 2D acceptance remains incomplete.
+Candidate version 0.13.0 remains unreleased. No publication or Phase 2E work occurred.
+
+## October 13 next-session context
+
+The [next-session prompt](docs/PHASE-2D-NEXT-SESSION-2026-10-13.md) and exact input manifest preserve the owner decline and current Phase 2D boundary.
+The accompanying public context ZIP includes current source, tests, accepted decisions, and dated evidence.
+Private capabilities and operational archives remain outside the bundle.
+Context preparation supplies no additional operational or publication authority.

@@ -8,13 +8,13 @@ from array import array
 import ctypes
 import os
 from pathlib import PurePosixPath
-import select
 import re
 import socket
 import stat
 import time
 from typing import Literal, NoReturn
 
+from crewshal.admission import _wait_ready
 from crewshal.admission import RetainedProc, _fields, _read, _stat_identity
 from crewshal.candidate import CANDIDATE_BYTES, FrozenCandidate, _scan_fd
 from crewshal.contracts import record_digest
@@ -24,7 +24,13 @@ from crewshal.linux_production import (
     _enter_owned_namespace,
     _filesystem_magic,
 )
-from crewshal.linux_setup import CAPABILITIES, OwnedNamespaceSetup, _role_controls
+from crewshal.linux_setup import (
+    CAPABILITIES,
+    OwnedNamespaceSetup,
+    _role_controls,
+    retained_setup_scope,
+    retained_lane_handle,
+)
 from crewshal.linux_storage import BoundedStorageJobs
 
 
@@ -168,7 +174,7 @@ class _FreezeTransfer:
         if deadline is None:
             raise ValueError("original freeze job deadline unavailable")
         remaining = deadline - time.monotonic()
-        if remaining <= 0 or not select.select([], [self.child], [], remaining)[1]:
+        if remaining <= 0 or not _wait_ready([], [self.child], [], remaining)[1]:
             raise ValueError("original frozen custody deadline exhausted")
         raw = name.encode("ascii")
         if self.child.sendmsg(
@@ -176,7 +182,7 @@ class _FreezeTransfer:
         ) != len(raw):
             raise ValueError("actual frozen FD transfer incomplete")
         remaining = deadline - time.monotonic()
-        if remaining <= 0 or not select.select([self.child], [], [], remaining)[0]:
+        if remaining <= 0 or not _wait_ready([self.child], [], [], remaining)[0]:
             raise ValueError("original frozen custody acknowledgement unavailable")
         if self.child.recv(2) != b"1":
             raise ValueError("original frozen custody acknowledgement differs")
@@ -219,7 +225,7 @@ class _FreezeTransfer:
             raise ValueError("frozen FD is not a regular owned entry")
         self.owner.jobs.verify_creation_child()
         self.owner._verify_terminal_kernel()
-        if not select.select([], [self.parent], [], 0)[1] or self.parent.send(b"1") != 1:
+        if not _wait_ready([], [self.parent], [], 0)[1] or self.parent.send(b"1") != 1:
             raise ValueError("original freeze acknowledgement refused")
 
 
@@ -254,15 +260,18 @@ class OriginalVolumeFreeze:
     mount_row: str
     watchdog_expiry_range: tuple[int, int]
     host_proc: int
+    projection_root: str
     _host_proc_identity: tuple[int, int]
 
     def verify_custody(self) -> None:
         proof, lifetime = self.installation, self.lifetime
         reservation = proof.reservation
+        context = getattr(lifetime, "lane_context", None)
+        scope = retained_setup_scope(reservation, lifetime)
+        custody = scope if context is not None else proof
         if (
             self.failed
-            or getattr(proof, "_freeze", None) is not self
-            or getattr(reservation, "_setup_lifetime", None) is not lifetime
+            or getattr(custody, "_freeze", None) is not self
             or lifetime.storage_reservation is not reservation
             or self._owners != (proof, lifetime, self.parent, self.native, self.watchdog, self.jobs)
             or self._specs
@@ -274,7 +283,7 @@ class OriginalVolumeFreeze:
             or self.jobs.observer is not reservation.observer
             or self.jobs.group is not reservation.observer_group
             or self.jobs.aggregate is not reservation.aggregate
-            or self.jobs.execution_group is not reservation._batch_timer.setup
+            or self.jobs.execution_group is not lifetime.setup
             or self.jobs.batch_timer is not reservation._batch_timer
             or self.jobs.deadline != reservation.batch_started + 570
             or self.jobs.failed
@@ -292,7 +301,7 @@ class OriginalVolumeFreeze:
         self.parent.verify(self.lifetime.supervisor.identity)
         self.native.verify_exited()
         self.watchdog.verify_handles()
-        if not select.select([self.watchdog.pidfd], [], [], 0)[0]:
+        if not _wait_ready([self.watchdog.pidfd], [], [], 0)[0]:
             raise ValueError("original watchdog terminal readback missing")
         self.watchdog.verify_handles()
         # The original pidfds were bound to live tasks in this retained host
@@ -348,11 +357,13 @@ class OriginalVolumeFreeze:
             self.transfer = _FreezeTransfer(self)
             self.verify_custody()
             self._verify_terminal_kernel()
+            context = getattr(self.lifetime, "lane_context", None)
+            projection_parent = "root-parent" if context is None else "lane-root:" + context.lane_id
             keep = {
                 self.source,
                 self.volume,
                 self.installation.production.handles["namespace"],
-                self.installation.production.handles["root-parent"],
+                self.installation.production.handles[projection_parent],
                 self.transfer.child.fileno(),
                 self.parent.descriptor,
                 self.parent.pidfd,
@@ -434,7 +445,7 @@ class OriginalVolumeFreeze:
             os.close(root)
         before, separator, after = self.mount_row.partition(" - ")
         fields = before.split()
-        expected_path = self.installation.production.root + "/validator-frozen"
+        expected_path = self.projection_root + "/validator-frozen"
         if (
             not separator
             or len(fields) < 6
@@ -536,7 +547,10 @@ class OriginalVolumeFreeze:
         os.fsync(frozen)
         if _scan_fd(self.source)[0] != manifest or _scan_fd(frozen)[0] != manifest:
             raise ValueError("original candidate changed during freeze")
-        parent = self.installation.production.handles["root-parent"]
+        context = getattr(self.lifetime, "lane_context", None)
+        parent = self.installation.production.handles[
+            "root-parent" if context is None else "lane-root:" + context.lane_id
+        ]
         os.mkdir("validator-frozen", 0o700, dir_fd=parent)
         target = os.open(
             "validator-frozen",
@@ -544,7 +558,7 @@ class OriginalVolumeFreeze:
             dir_fd=parent,
         )
         self.transfer.transfer("projection-target", target)
-        projection_path = self.installation.production.root + "/validator-frozen"
+        projection_path = self.projection_root + "/validator-frozen"
         if _identity(target) != (
             os.stat(projection_path, follow_symlinks=False).st_dev,
             os.stat(projection_path, follow_symlinks=False).st_ino,
@@ -592,36 +606,42 @@ def bind_original_freeze(
     bridge while native is stopped and its original watchdog is armed. This API
     independently checks them; it supplies no bridge, launch or retry itself.
     """
-    if type(installation) is not EffectiveInstallation or hasattr(installation, "_freeze"):
+    if type(installation) is not EffectiveInstallation:
+        raise ValueError("original installed freeze binding unavailable or consumed")
+    context = getattr(lifetime, "lane_context", None)
+    custody = (
+        retained_setup_scope(installation.reservation, context=context)
+        if getattr(installation.reservation, "_lane_contexts", None) is not None
+        else installation
+    )
+    if hasattr(custody, "_freeze"):
         raise ValueError("original installed freeze binding unavailable or consumed")
     owner = object.__new__(OriginalVolumeFreeze)
     owner.installation, owner.lifetime = installation, lifetime
     owner.parent, owner.native, owner.watchdog = parent, native, watchdog
     owner.failed, owner.received, owner.ancestors, owner.handles = False, [], [], {}
-    setattr(installation, "_freeze", owner)
+    setattr(custody, "_freeze", owner)
     try:
         reservation = installation.reservation
         installation.verify()
+        retained_setup_scope(reservation, lifetime)
+        configuration = lifetime.controls.configuration
+        configuration_digest = record_digest(configuration)
+        owner.projection_root = installation.production.root
+        if context is not None:
+            owner.projection_root += "/lanes/" + context.lane_id
         if (
             type(lifetime) is not OwnedNamespaceSetup
             or type(parent) is not RetainedTrustedTask
             or type(native) is not RetainedProc
             or type(watchdog) is not RetainedTrustedTask
-            or getattr(reservation, "_setup_lifetime", None) is not lifetime
-            or lifetime.storage_reservation is not reservation
-            or lifetime.controls.configuration != reservation._configuration
-            or lifetime.aggregate is not reservation.aggregate
-            or lifetime.supervisor is not reservation._batch_timer.supervisor
-            or lifetime.worker is not reservation._batch_timer.worker
-            or lifetime.setup is not reservation._batch_timer.setup
-            or lifetime.observer_group is not reservation.observer_group
             or lifetime.wrapper is None
             or lifetime.wrapper.poll() is not None
             or native.spec.parent_pid != parent.spec.pid
             or watchdog.spec.parent_pid != parent.spec.pid
-            or parent.spec.configuration != reservation._configuration_digest
-            or native.spec.configuration != reservation._configuration_digest
-            or watchdog.spec.configuration != reservation._configuration_digest
+            or parent.spec.configuration != configuration_digest
+            or native.spec.configuration != configuration_digest
+            or watchdog.spec.configuration != configuration_digest
             or watchdog.spec.executable != lifetime.controls.bootstrap.policy.helper_binary
             or watchdog.spec.argv != lifetime.controls.bootstrap.watchdog_argv
             or watchdog.spec.capabilities != "0" * 16
@@ -654,7 +674,7 @@ def bind_original_freeze(
         parent.verify(lifetime.supervisor.identity)
         watchdog.verify(lifetime.supervisor.identity)
         native.verify_stopped()
-        native.read_configuration(reservation._configuration)
+        native.read_configuration(configuration)
         native.verify_pipes(*pipes)
         _verify_original_watchdog(owner)
         root = owner.host_proc = _proc_root(parent.spec.boot_id)
@@ -670,7 +690,7 @@ def bind_original_freeze(
                 if (
                     observed != ancestor
                     or state not in ("R", "S")
-                    or select.select([pidfd], [], [], 0)[0]
+                    or _wait_ready([pidfd], [], [], 0)[0]
                 ):
                     raise ValueError("original live wrapper ancestry unknown")
                 if ancestor == lifetime.wrapper.pid:
@@ -690,8 +710,12 @@ def bind_original_freeze(
         sample = lifetime.worker.sample()
         if not sample.populated or sample.direct_pids != [native.spec.pid]:
             raise ValueError("original stopped native must be sole worker")
-        owner.source = installation.production.handles["mounted:candidate-upper"]
-        owner.volume = installation.production.handles["mounted:validator-candidate-upper"]
+        owner.source = installation.production.handles[
+            retained_lane_handle(lifetime, "candidate-upper")
+        ]
+        owner.volume = installation.production.handles[
+            retained_lane_handle(lifetime, "validator-candidate-upper")
+        ]
         if _identity(owner.source) == _identity(owner.volume):
             raise ValueError("original frozen volume cannot alias native candidate")
         owner._roots = (_identity(owner.source), _identity(owner.volume))
@@ -700,7 +724,7 @@ def bind_original_freeze(
             reservation.observer_group,
             reservation.aggregate,
             reservation.batch_started + 570,
-            execution_group=reservation._batch_timer.setup,
+            execution_group=lifetime.setup,
             batch_timer=reservation._batch_timer,
         )
         owner._owners = (installation, lifetime, parent, native, watchdog, owner.jobs)

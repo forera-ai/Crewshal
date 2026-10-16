@@ -10,6 +10,16 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**October 16: Phase 3A preparation checkpoint; freeze blocked.**
+The proposed package records 12 pinned public corpus candidates and preserves all four stacks.
+It defines B0, B1, B2, P, both role assignments, task contracts, independent annotation, protocol proposals, and separate usage categories.
+Fourteen fresh offline tests check package integrity and refusal behavior through existing interfaces.
+Owner decisions, independent annotations, sealed task commitments, exact live identities, baseline conformance, and spending approval remain missing.
+Operational execution admission remains closed. Phase 3A remains incomplete, and Phase 3B has not started.
+Use [the package](docs/evaluation/phase-3a/README.md), [owner decisions](docs/PHASE-3A-OWNER-DECISIONS-2026-10-16.md), and [continuation prompt](docs/PHASE-3A-CONTINUATION-2026-10-16.md).
+See [the preparation report](docs/PHASE-3A-PREPARATION-2026-10-16.md) for verification and limitations.
+Earlier dated status entries remain historical records.
+
 **October 16: Phase 2E software complete; platform and live qualification deferred.**
 Both runtime role assignments pass deterministic external fixtures through the production coordinator.
 The second adapter uses existing candidate capture, SQLite state, checks, evidence, and verdict rules.
@@ -42,7 +52,7 @@ Earlier dated status entries remain historical records.
 Operational execution admission remains closed; platform support and live acceptance remain unverified.
 Earlier blocked-status paragraphs below describe dated history.
 
-Source checkpoint: **0.15.0**. Package registry publication remains unauthorized. See [CHANGELOG.md](CHANGELOG.md) for version history.
+Source checkpoint: **0.15.1**. Package registry publication remains unauthorized. See [CHANGELOG.md](CHANGELOG.md) for version history.
 
 **October 11: Phase 2D remains blocked.** [The current report](docs/PHASE-2D-BLOCKED-2026-10-11.md) gives four causes and the exact continuation inputs. Fresh source checks pass all 863 offline tests, including 722 Phase 2D tests. Linux and live acceptance remain incomplete. The owner requires ASD-STE100 for human communication. Version 0.12.0 remains unchanged; this report is uncommitted. Earlier status paragraphs are dated records.
 

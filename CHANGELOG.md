@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.15.1 — 2026-10-16
+
+- Prepare the proposed Phase 3A corpus, task, annotation, condition, protocol, and accounting manifests.
+- Record 12 public candidate revisions and license digests. Preserve Python, TypeScript, Swift, and .NET slots.
+- Keep sealed task contents outside development inputs. Record missing task commitments and challenge-feature evidence explicitly.
+- Preserve both runtime role assignments and unresolved exact live identities. Select no B2 baseline without conformance evidence.
+- Separate measured cost, estimated cost, subscription quota, and unknown usage. Approve no evaluation spending.
+- Add 14 offline integrity and refusal tests through existing interfaces. Add no runtime, provider SDK, or workflow framework.
+- Record six owner decisions and exact continuation inputs. Phase 3A remains incomplete; Phase 3B remains closed.
+- Synchronize package versions. Preserve operational admission, historical records, Linux source, charges, custody, and unknown outcomes.
+
 ## 0.15.0 — 2026-10-16
 
 - Phase 2E software now supports both runtime role assignments through the existing coordinator.

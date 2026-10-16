@@ -1,0 +1,62 @@
+{
+  "date": "2026-10-16",
+  "execution_allowed": false,
+  "files": [
+    {
+      "bytes": 3717,
+      "path": "docs/PHASE-3A-OWNER-DECISIONS-2026-10-16.md",
+      "sha256": "77fd852d75b65ac3db720b919e5b2a5033b0c4cc9eb15abc007b8ceab7e29f9e"
+    },
+    {
+      "bytes": 11852,
+      "path": "docs/evaluation/phase-3a/README.md",
+      "sha256": "079195e6c519209b8b6f4859d10990e9fb478585735cbdf0f5b3e9f9c0fd6438"
+    },
+    {
+      "bytes": 2136,
+      "path": "docs/evaluation/phase-3a/annotations.json",
+      "sha256": "41e3c157144ed32f3124d4fd33bf023930942ea6094c98a54479217ccb7ade47"
+    },
+    {
+      "bytes": 8334,
+      "path": "docs/evaluation/phase-3a/conditions.json",
+      "sha256": "ca6e57f1bc0e242b46b79a7418d1290382d129b5c330d423abbb6f3597440b61"
+    },
+    {
+      "bytes": 34676,
+      "path": "docs/evaluation/phase-3a/corpus.json",
+      "sha256": "53789c41511de8f3b9340e4b4ce9f379a0ea6ec154b0456ddef177176dca7de2"
+    },
+    {
+      "bytes": 3197,
+      "path": "docs/evaluation/phase-3a/decisions.json",
+      "sha256": "87677a3e500b703b81f13f6a6e63f48df7cbe7b4c648f2efa57a41b69c6c9cf5"
+    },
+    {
+      "bytes": 2409,
+      "path": "docs/evaluation/phase-3a/measurement-template.json",
+      "sha256": "23115b27c45664c07b26ed60c4b29056f8f348b578490bc35923147bd56568c9"
+    },
+    {
+      "bytes": 8390,
+      "path": "docs/evaluation/phase-3a/protocol.json",
+      "sha256": "66ce9f1d8979d7049e4083378a94092fc899bfc1cebb4bc481aaaf84a652f4c6"
+    },
+    {
+      "bytes": 14032,
+      "path": "docs/evaluation/phase-3a/tasks.json",
+      "sha256": "0fb15c3f516087934d8fab98d65b13372eb95b626443a1a899d056c8282bc964"
+    },
+    {
+      "bytes": 16154,
+      "path": "tests/acceptance/test_phase_3a.py",
+      "sha256": "6df681be2bb7cbd4558b71c38d24055c433b453d484050e9a71880ba3015174c"
+    }
+  ],
+  "freeze_approved": false,
+  "package_version": "0.15.1",
+  "purpose": "Content integrity for preparation only. This index supplies no approval or execution authority.",
+  "schema_version": 1,
+  "spend_authorized": false,
+  "status": "proposed"
+}

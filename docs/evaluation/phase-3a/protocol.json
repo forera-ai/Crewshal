@@ -1,0 +1,210 @@
+{
+  "analysis": {
+    "approval": null,
+    "proposal": "Use nearest-rank p90 and repository-cluster bootstrap intervals with 10000 resamples and seed 310017.",
+    "required": [
+      "all-planned-unit-totals",
+      "per-stack-coverage",
+      "median",
+      "p90",
+      "paired-task-differences",
+      "uncertainty-intervals",
+      "failure-and-unknown-counts",
+      "B2-total-effort-comparison"
+    ],
+    "small_sample_limit": "Four held-out repositories support exploratory results only. No non-inferiority claim follows.",
+    "undefined_metric": "Report unknown when its denominator is zero or usage is unavailable."
+  },
+  "blinding": {
+    "annotation_access": "Keep adjudicated annotation answers from every condition during timed setup. Grade controls afterward.",
+    "condition_mapping_sha256": null,
+    "custodian": null,
+    "procedure": [
+      "Assign opaque result IDs before grading.",
+      "Remove condition names, runtime names, and implementation conversation from grading bundles.",
+      "Preserve the exact candidate, requirement, and captured check identities.",
+      "Use two independent human graders and attributed adjudication.",
+      "Record unavoidable clues and failed blinding.",
+      "Reveal the mapping only after grades and adjudication are fixed."
+    ]
+  },
+  "cache": {
+    "baseline_configuration": "B1 and B2 may reuse their own frozen configuration within repeated-task blocks. Count their setup and every later correction.",
+    "cold_and_repeated": "Report cold initialization separately. Amortize observed setup over 1, 5, and 20 tasks.",
+    "local_dependencies": "Use the same pinned read-only dependency snapshot. Separate writable caches per run.",
+    "provider": "Record unavoidable provider caching and category counters. Do not claim a cold provider cache without evidence.",
+    "reuse": "Only P may reuse its confirmed model within its defined repeated-task block. Record invalidation and every correction.",
+    "workspace": "Use a new source copy per run. Preserve no patch, session, review findings, or mutable state between conditions."
+  },
+  "coverage": {
+    "amendment_approved": false,
+    "holdout_exposure_permitted": false,
+    "proposal": "Retain all four stacks and report unsupported cells. Do not replace real hold-outs with fixtures.",
+    "python_typescript": "Core fixture evidence exists; platform and live conformance remain unavailable.",
+    "stacks": [
+      "python",
+      "typescript",
+      "swift",
+      "dotnet"
+    ],
+    "swift_dotnet": "Discovery adapters and platform conformance remain unavailable."
+  },
+  "date": "2026-10-16",
+  "design": {
+    "ablations": "Fresh-context same-provider review and cross-provider review form separate optional blocks. They have no approved run count or spend.",
+    "conditions": [
+      "B0",
+      "B1",
+      "B2",
+      "P"
+    ],
+    "development_selection": "Select one development repository per stack before runs. Keep the other four for protocol development.",
+    "development_shape": [
+      4,
+      3,
+      2,
+      4,
+      2
+    ],
+    "original_counts": {
+      "development": 96,
+      "sealed": 288
+    },
+    "proposed_fully_crossed_counts": {
+      "development": 192,
+      "sealed": 576,
+      "total": 768
+    },
+    "role_assignments": [
+      "A-implements",
+      "B-implements"
+    ],
+    "sealed_shape": [
+      4,
+      6,
+      3,
+      4,
+      2
+    ],
+    "shape_dimensions": [
+      "repositories",
+      "tasks",
+      "repetitions",
+      "conditions",
+      "role_assignments"
+    ],
+    "smaller_campaign": "Require a new prospective shape and report the reduced power.",
+    "unit": [
+      "repository",
+      "task",
+      "repetition",
+      "condition",
+      "role_assignment"
+    ]
+  },
+  "execution_allowed": false,
+  "failure_accounting": {
+    "retry_policy": "No automatic coordinator retry. Record any later approved attempt separately.",
+    "rules": [
+      "Create one record for every planned unit, including unsupported and unattempted units.",
+      "Preserve failed attempts and remediation histories. Never replace them with the final success.",
+      "Count blocked and unsupported units in total coverage. Report supported-case accuracy separately.",
+      "Require matching command, environment, and diagnostic identities for baseline-red comparisons.",
+      "Do not compare failed or no-op work as a cost saving over completed work.",
+      "Treat missing usage as unknown. Preserve partial usage after interruption.",
+      "Report product failures separately from task-quality failures.",
+      "A waiver preserves the missing gate. It does not create a passing observation.",
+      "Stop after a lost side-effect response. Reconcile operation identity before any approved retry."
+    ],
+    "statuses": [
+      "planned",
+      "not-attempted",
+      "blocked",
+      "unsupported",
+      "failed",
+      "interrupted",
+      "cancelled",
+      "verified",
+      "accepted-with-waiver",
+      "unknown"
+    ],
+    "stopping": "Stop on boundary failure, false completion, unavailable mandatory control, or exhausted approved resources.",
+    "terminal_reasons": [
+      "malformed-output",
+      "runtime-refusal",
+      "context-overflow",
+      "process-exit",
+      "timeout",
+      "cancelled",
+      "quota-exhausted",
+      "budget-exhausted",
+      "provider-unavailable",
+      "tool-unavailable",
+      "network-unavailable",
+      "scope-violation",
+      "stale-model",
+      "stale-candidate",
+      "missing-evidence",
+      "review-conflict",
+      "unknown-side-effect"
+    ]
+  },
+  "initial_plan_sha256": "ab74f7c04ee2f0894cc95445edef618ce3227ef1d754e5d312af4d1d5ea03acd",
+  "ordering": {
+    "algorithm": "sha256-sort-v1",
+    "approval": null,
+    "block_key": "seed|repository_id|task_id|repetition|role_assignment",
+    "block_order": "Sort blocks by the SHA-256 hex digest of block_key, then by block_key for ties.",
+    "blocking": "Within each repository/task/repetition/role assignment, order all four conditions by that key.",
+    "canonical_key": "seed|repository_id|task_id|repetition|role_assignment|condition",
+    "encoding": "UTF-8; decimal integers; no whitespace or trailing newline",
+    "export": "Freeze the complete schedule and planned rows before the first run.",
+    "schedule_sha256": null,
+    "seed_proposal": 310016,
+    "sort": "Sort by SHA-256 hex digest, then by canonical key for ties."
+  },
+  "owner_product_decision": {
+    "ABANDON": "Record absent setup value, absent B2 benefit, repeated false completion, unavailable enforcement, or excessive overhead.",
+    "GO": "Require all prerequisite, discovery, setup, portability, quality, overhead, and B2 gates to pass.",
+    "MODIFY": "Record limited value and a prospective narrower scope or integration proposal.",
+    "authority": "Only the owner decides. Preserve every failed criterion."
+  },
+  "schema_version": 1,
+  "spend_authorized": false,
+  "spending": {
+    "approval": null,
+    "calibration_allowed": false,
+    "currency": null,
+    "estimate": "Sum implementation, review, remediation, failed attempts, and ablations. Include separate host and human estimates.",
+    "estimated_cost_planning_ceiling": null,
+    "hard_financial_cap_required": null,
+    "host_spend_allowed": false,
+    "measured_cost_ceiling": null,
+    "pricing_source": null,
+    "pricing_timestamp": null,
+    "provider_enforcement_evidence_sha256": null,
+    "refusal": "Refuse a requested hard financial cap when provider enforcement is unavailable. Sampled usage is not a hard cap.",
+    "sealed_evaluation_allowed": false,
+    "subscription_quota_ceiling": null
+  },
+  "status": "proposed",
+  "thresholds": {
+    "approval": null,
+    "proposals": {
+      "B2_differentiation_rule": null,
+      "actionable_provenance_min": 1.0,
+      "command_correctness_min": 0.95,
+      "critical_regressions_max": 0,
+      "critical_risk_detection_min": 1.0,
+      "false_success_max": 0,
+      "heldout_quality_vs_B1": "At least equal aggregate acceptance.",
+      "per_stack_material_regression_margin": null,
+      "repeated_machine_time_median_increase_vs_B1_max": 0.25,
+      "repeated_model_cost_median_increase_vs_B1_max": 0.2,
+      "setup_median_reduction_vs_B1_min": 0.3,
+      "stack_precision_min": 0.95,
+      "stack_recall_min": 0.9,
+      "unnecessary_low_risk_escalation_max": 0.2
+    }
+  }
+}

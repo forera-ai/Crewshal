@@ -1,0 +1,914 @@
+{
+  "acquisition": {
+    "authentication": "none",
+    "commit_endpoint": "https://api.github.com/repos/{repository}/commits/{proposed_tag}",
+    "date": "2026-10-16",
+    "development_tree_endpoint": "https://api.github.com/repos/{repository}/git/trees/{revision}?recursive=1",
+    "development_tree_results": "All eight requests succeeded and returned truncated=false. No hold-out tree request occurred.",
+    "file_endpoint": "https://raw.githubusercontent.com/{repository}/{revision}/{path}",
+    "method": "GET",
+    "request_timeout_seconds": 20,
+    "response_read_ceiling_bytes": 2000000,
+    "root_license_results": "All 12 requests succeeded. Every license digest binds the downloaded bytes.",
+    "root_manifest_results": "All nine requests succeeded. Only the listed development manifest files were read.",
+    "source_archive_fetches": 0,
+    "task_content_fetches": 0,
+    "user_agent": "Crewshal-Phase3A-metadata"
+  },
+  "date": "2026-10-16",
+  "execution_allowed": false,
+  "repositories": [
+    {
+      "annotation_sha256": null,
+      "archive_sha256": null,
+      "baseline_checks": {
+        "definitions_sha256": null,
+        "diagnostics_sha256": null,
+        "status": "not-run"
+      },
+      "ci_execution": "not-run",
+      "ci_limit": "The tree inventory does not establish CI prerequisites or absence of other CI systems.",
+      "command_candidates": [],
+      "external_services": {
+        "approved_destinations": [],
+        "status": "unverified"
+      },
+      "github_workflow_paths": [
+        ".github/workflows/lock.yaml",
+        ".github/workflows/publish.yaml",
+        ".github/workflows/tests.yaml"
+      ],
+      "id": "python-1",
+      "license_access": "observed-public",
+      "license_bytes": 1475,
+      "license_obligations": [
+        "Preserve the notice, conditions, and disclaimer.",
+        "Do not imply endorsement."
+      ],
+      "license_path": "LICENSE.txt",
+      "license_scope": "The observed root notice covers candidate screening only. File and dependency review remains pending.",
+      "license_sha256": "9a8ad106a394e853bfe21f42f4e72d592819a22805d991b5f3275029292b658d",
+      "license_spdx": "BSD-3-Clause",
+      "license_url": "https://github.com/pallets/click/blob/934813e4d421071a1b3db3973c02fe2721359a6e/LICENSE.txt",
+      "limitations": [
+        "Public source can occur in model training data.",
+        "Independent engineers must verify source and dependency obligations.",
+        "The candidate has no complete annotation or execution evidence."
+      ],
+      "manifest_observations": [
+        {
+          "bytes": 2109,
+          "path": "pyproject.toml",
+          "sha256": "cd3bba4c0d03adb892ad3020c77ca06f2d270b56ffa558d5a1b8042ad8a82acd",
+          "url": "https://github.com/pallets/click/blob/934813e4d421071a1b3db3973c02fe2721359a6e/pyproject.toml"
+        }
+      ],
+      "prior_product_configuration": null,
+      "private_estate_overlap": null,
+      "proposed_tag": "8.1.8",
+      "repository": "pallets/click",
+      "revision": "934813e4d421071a1b3db3973c02fe2721359a6e",
+      "selection_approved": false,
+      "source_access": "public-unauthenticated",
+      "source_inventory_sha256": null,
+      "source_url": "https://github.com/pallets/click",
+      "split": "development",
+      "stack": "python",
+      "task_scope": {
+        "allowed_paths": null,
+        "generated_paths": null,
+        "sensitive_paths": null
+      },
+      "toolchain": {
+        "dependency_lock_sha256": null,
+        "exact_runtime_versions": null,
+        "image_sha256": null,
+        "observed_declarations": {
+          "build_system": {
+            "build-backend": "flit_core.buildapi",
+            "requires": [
+              "flit_core<4"
+            ]
+          },
+          "python_range": ">=3.7"
+        },
+        "status": "unqualified"
+      }
+    },
+    {
+      "annotation_sha256": null,
+      "archive_sha256": null,
+      "baseline_checks": {
+        "definitions_sha256": null,
+        "diagnostics_sha256": null,
+        "status": "not-run"
+      },
+      "ci_execution": "not-run",
+      "ci_limit": "The tree inventory does not establish CI prerequisites or absence of other CI systems.",
+      "command_candidates": [],
+      "external_services": {
+        "approved_destinations": [],
+        "status": "unverified"
+      },
+      "github_workflow_paths": [
+        ".github/workflows/lock.yaml",
+        ".github/workflows/publish.yaml",
+        ".github/workflows/tests.yaml"
+      ],
+      "id": "python-2",
+      "license_access": "observed-public",
+      "license_bytes": 1475,
+      "license_obligations": [
+        "Preserve the notice, conditions, and disclaimer.",
+        "Do not imply endorsement."
+      ],
+      "license_path": "LICENSE.txt",
+      "license_scope": "The observed root notice covers candidate screening only. File and dependency review remains pending.",
+      "license_sha256": "63af09891b6be8ad1a4252ed43af0f4efba7fc948e228367bed7f3c5ae0b09d7",
+      "license_spdx": "BSD-3-Clause",
+      "license_url": "https://github.com/pallets/itsdangerous/blob/096c8d42545d3b68ea21a4f890fb2b2d8979c0bd/LICENSE.txt",
+      "limitations": [
+        "Public source can occur in model training data.",
+        "Independent engineers must verify source and dependency obligations.",
+        "The candidate has no complete annotation or execution evidence."
+      ],
+      "manifest_observations": [
+        {
+          "bytes": 1868,
+          "path": "pyproject.toml",
+          "sha256": "953e3af993d7ce64856e943e830ab0f0439a4994ae4bc5d5eb1dfdbc18bee521",
+          "url": "https://github.com/pallets/itsdangerous/blob/096c8d42545d3b68ea21a4f890fb2b2d8979c0bd/pyproject.toml"
+        }
+      ],
+      "prior_product_configuration": null,
+      "private_estate_overlap": null,
+      "proposed_tag": "2.2.0",
+      "repository": "pallets/itsdangerous",
+      "revision": "096c8d42545d3b68ea21a4f890fb2b2d8979c0bd",
+      "selection_approved": false,
+      "source_access": "public-unauthenticated",
+      "source_inventory_sha256": null,
+      "source_url": "https://github.com/pallets/itsdangerous",
+      "split": "development",
+      "stack": "python",
+      "task_scope": {
+        "allowed_paths": null,
+        "generated_paths": null,
+        "sensitive_paths": null
+      },
+      "toolchain": {
+        "dependency_lock_sha256": null,
+        "exact_runtime_versions": null,
+        "image_sha256": null,
+        "observed_declarations": {
+          "build_system": {
+            "build-backend": "flit_core.buildapi",
+            "requires": [
+              "flit_core<4"
+            ]
+          },
+          "python_range": ">=3.8"
+        },
+        "status": "unqualified"
+      }
+    },
+    {
+      "annotation_sha256": null,
+      "archive_sha256": null,
+      "baseline_checks": {
+        "definitions_sha256": null,
+        "diagnostics_sha256": null,
+        "status": "not-run"
+      },
+      "custodian": null,
+      "external_services": {
+        "approved_destinations": [],
+        "status": "unverified"
+      },
+      "id": "python-3",
+      "inspection_limit": "Only revision metadata and the root license were read. No source, task, test, or manifest was read.",
+      "license_access": "observed-public",
+      "license_bytes": 1109,
+      "license_obligations": [
+        "Preserve the copyright and permission notice."
+      ],
+      "license_path": "LICENSE",
+      "license_scope": "The observed root notice covers candidate screening only. File and dependency review remains pending.",
+      "license_sha256": "882115c95dfc2af1eeb6714f8ec6d5cbcabf667caff8729f42420da63f714e9f",
+      "license_spdx": "MIT",
+      "license_url": "https://github.com/python-attrs/attrs/blob/fbff14eeaf817e4b34e9c5727c8d546dc118a346/LICENSE",
+      "limitations": [
+        "Public source can occur in model training data.",
+        "Independent engineers must verify source and dependency obligations.",
+        "The candidate has no complete annotation or execution evidence."
+      ],
+      "manifest_observations": [],
+      "prior_product_configuration": null,
+      "private_estate_overlap": null,
+      "proposed_tag": "25.1.0",
+      "repository": "python-attrs/attrs",
+      "revision": "fbff14eeaf817e4b34e9c5727c8d546dc118a346",
+      "sealed_task_bundle_sha256": null,
+      "sealed_task_contents": "not-created-or-accessed",
+      "selection_approved": false,
+      "source_access": "public-unauthenticated",
+      "source_inventory_sha256": null,
+      "source_url": "https://github.com/python-attrs/attrs",
+      "split": "holdout",
+      "stack": "python",
+      "task_scope": {
+        "allowed_paths": null,
+        "generated_paths": null,
+        "sensitive_paths": null
+      },
+      "toolchain": {
+        "dependency_lock_sha256": null,
+        "exact_runtime_versions": null,
+        "image_sha256": null,
+        "status": "unqualified"
+      }
+    },
+    {
+      "annotation_sha256": null,
+      "archive_sha256": null,
+      "baseline_checks": {
+        "definitions_sha256": null,
+        "diagnostics_sha256": null,
+        "status": "not-run"
+      },
+      "ci_execution": "not-run",
+      "ci_limit": "The tree inventory does not establish CI prerequisites or absence of other CI systems.",
+      "command_candidates": [
+        {
+          "approved": false,
+          "literal": "eslint --cache --ext .ts ./src",
+          "name": "lint:check",
+          "source": "package.json"
+        },
+        {
+          "approved": false,
+          "literal": "yarn lint:check && yarn prettier:check",
+          "name": "check",
+          "source": "package.json"
+        },
+        {
+          "approved": false,
+          "literal": "yarn test:ts-jest",
+          "name": "test",
+          "source": "package.json"
+        }
+      ],
+      "external_services": {
+        "approved_destinations": [],
+        "status": "unverified"
+      },
+      "github_workflow_paths": [
+        ".github/workflows/release-canary.yml",
+        ".github/workflows/release.yml",
+        ".github/workflows/test.yml"
+      ],
+      "id": "typescript-1",
+      "license_access": "observed-public",
+      "license_bytes": 1072,
+      "license_obligations": [
+        "Preserve the copyright and permission notice."
+      ],
+      "license_path": "LICENSE",
+      "license_scope": "The observed root notice covers candidate screening only. File and dependency review remains pending.",
+      "license_sha256": "0225e7c0a96845a7477cd44d75d3dc9c999f673454efa84b54e218415055eece",
+      "license_spdx": "MIT",
+      "license_url": "https://github.com/colinhacks/zod/blob/e30870369d5b8f31ff4d0130d4439fd997deb523/LICENSE",
+      "limitations": [
+        "Public source can occur in model training data.",
+        "Independent engineers must verify source and dependency obligations.",
+        "The candidate has no complete annotation or execution evidence."
+      ],
+      "manifest_observations": [
+        {
+          "bytes": 4061,
+          "path": "package.json",
+          "sha256": "8b15b4aebb322f3943137a8a29316bcc7c5b8be1897acc6ec6b96fdb11a53c9c",
+          "url": "https://github.com/colinhacks/zod/blob/e30870369d5b8f31ff4d0130d4439fd997deb523/package.json"
+        }
+      ],
+      "prior_product_configuration": null,
+      "private_estate_overlap": null,
+      "proposed_tag": "v3.24.2",
+      "repository": "colinhacks/zod",
+      "revision": "e30870369d5b8f31ff4d0130d4439fd997deb523",
+      "selection_approved": false,
+      "source_access": "public-unauthenticated",
+      "source_inventory_sha256": null,
+      "source_url": "https://github.com/colinhacks/zod",
+      "split": "development",
+      "stack": "typescript",
+      "task_scope": {
+        "allowed_paths": null,
+        "generated_paths": null,
+        "sensitive_paths": null
+      },
+      "toolchain": {
+        "dependency_lock_sha256": null,
+        "exact_runtime_versions": null,
+        "image_sha256": null,
+        "observed_declarations": {
+          "engines": null,
+          "package_manager": null
+        },
+        "status": "unqualified"
+      }
+    },
+    {
+      "annotation_sha256": null,
+      "archive_sha256": null,
+      "baseline_checks": {
+        "definitions_sha256": null,
+        "diagnostics_sha256": null,
+        "status": "not-run"
+      },
+      "ci_execution": "not-run",
+      "ci_limit": "The tree inventory does not establish CI prerequisites or absence of other CI systems.",
+      "command_candidates": [
+        {
+          "approved": false,
+          "literal": "tsc --noEmit && vitest --run && vitest -c .vitest.config/jsx-runtime-default.ts --run && vitest -c .vitest.config/jsx-runtime-dom.ts --run",
+          "name": "test",
+          "source": "package.json"
+        },
+        {
+          "approved": false,
+          "literal": "eslint src runtime-tests build perf-measures",
+          "name": "lint",
+          "source": "package.json"
+        }
+      ],
+      "external_services": {
+        "approved_destinations": [],
+        "status": "unverified"
+      },
+      "github_workflow_paths": [
+        ".github/workflows/ci.yml",
+        ".github/workflows/no-response.yml",
+        ".github/workflows/release.yml"
+      ],
+      "id": "typescript-2",
+      "license_access": "observed-public",
+      "license_bytes": 1101,
+      "license_obligations": [
+        "Preserve the copyright and permission notice."
+      ],
+      "license_path": "LICENSE",
+      "license_scope": "The observed root notice covers candidate screening only. File and dependency review remains pending.",
+      "license_sha256": "a6ab98e5c77b9070c443eaff2ff81034a6f8cc05a7524d5098eb0f24defa0115",
+      "license_spdx": "MIT",
+      "license_url": "https://github.com/honojs/hono/blob/5e1f54caf99cc158b0d20dc02ed44d0a4a596842/LICENSE",
+      "limitations": [
+        "Public source can occur in model training data.",
+        "Independent engineers must verify source and dependency obligations.",
+        "The candidate has no complete annotation or execution evidence."
+      ],
+      "manifest_observations": [
+        {
+          "bytes": 22955,
+          "path": "package.json",
+          "sha256": "e92628cc88ad26253c4fabc6f7ab233ec401a9e463a106c27eab6c801b9551c4",
+          "url": "https://github.com/honojs/hono/blob/5e1f54caf99cc158b0d20dc02ed44d0a4a596842/package.json"
+        }
+      ],
+      "prior_product_configuration": null,
+      "private_estate_overlap": null,
+      "proposed_tag": "v4.7.2",
+      "repository": "honojs/hono",
+      "revision": "5e1f54caf99cc158b0d20dc02ed44d0a4a596842",
+      "selection_approved": false,
+      "source_access": "public-unauthenticated",
+      "source_inventory_sha256": null,
+      "source_url": "https://github.com/honojs/hono",
+      "split": "development",
+      "stack": "typescript",
+      "task_scope": {
+        "allowed_paths": null,
+        "generated_paths": null,
+        "sensitive_paths": null
+      },
+      "toolchain": {
+        "dependency_lock_sha256": null,
+        "exact_runtime_versions": null,
+        "image_sha256": null,
+        "observed_declarations": {
+          "engines": {
+            "node": ">=16.9.0"
+          },
+          "package_manager": null
+        },
+        "status": "unqualified"
+      }
+    },
+    {
+      "annotation_sha256": null,
+      "archive_sha256": null,
+      "baseline_checks": {
+        "definitions_sha256": null,
+        "diagnostics_sha256": null,
+        "status": "not-run"
+      },
+      "custodian": null,
+      "external_services": {
+        "approved_destinations": [],
+        "status": "unverified"
+      },
+      "id": "typescript-3",
+      "inspection_limit": "Only revision metadata and the root license were read. No source, task, test, or manifest was read.",
+      "license_access": "observed-public",
+      "license_bytes": 1117,
+      "license_obligations": [
+        "Preserve the copyright and permission notice."
+      ],
+      "license_path": "license",
+      "license_scope": "The observed root notice covers candidate screening only. File and dependency review remains pending.",
+      "license_sha256": "5c932d88256b4ab958f64a856fa48e8bd1f55bc1d96b8149c65689e0c61789d3",
+      "license_spdx": "MIT",
+      "license_url": "https://github.com/sindresorhus/ky/blob/f9a9f3889752d033f06335868fc44877fca04953/license",
+      "limitations": [
+        "Public source can occur in model training data.",
+        "Independent engineers must verify source and dependency obligations.",
+        "The candidate has no complete annotation or execution evidence."
+      ],
+      "manifest_observations": [],
+      "prior_product_configuration": null,
+      "private_estate_overlap": null,
+      "proposed_tag": "v1.7.5",
+      "repository": "sindresorhus/ky",
+      "revision": "f9a9f3889752d033f06335868fc44877fca04953",
+      "sealed_task_bundle_sha256": null,
+      "sealed_task_contents": "not-created-or-accessed",
+      "selection_approved": false,
+      "source_access": "public-unauthenticated",
+      "source_inventory_sha256": null,
+      "source_url": "https://github.com/sindresorhus/ky",
+      "split": "holdout",
+      "stack": "typescript",
+      "task_scope": {
+        "allowed_paths": null,
+        "generated_paths": null,
+        "sensitive_paths": null
+      },
+      "toolchain": {
+        "dependency_lock_sha256": null,
+        "exact_runtime_versions": null,
+        "image_sha256": null,
+        "status": "unqualified"
+      }
+    },
+    {
+      "annotation_sha256": null,
+      "archive_sha256": null,
+      "baseline_checks": {
+        "definitions_sha256": null,
+        "diagnostics_sha256": null,
+        "status": "not-run"
+      },
+      "ci_execution": "not-run",
+      "ci_limit": "The tree inventory does not establish CI prerequisites or absence of other CI systems.",
+      "command_candidates": [],
+      "external_services": {
+        "approved_destinations": [],
+        "status": "unverified"
+      },
+      "github_workflow_paths": [],
+      "id": "swift-1",
+      "license_access": "observed-public",
+      "license_bytes": 11751,
+      "license_obligations": [
+        "Preserve the Apache license and Swift exception.",
+        "Record modifications and review third-party notices."
+      ],
+      "license_path": "LICENSE.txt",
+      "license_scope": "The observed root notice covers candidate screening only. File and dependency review remains pending.",
+      "license_sha256": "770af8291f708538d8ff885a0bbc4e045cd700531741c4f99528d435c14d7f55",
+      "license_spdx": "Apache-2.0 WITH Swift-exception",
+      "license_url": "https://github.com/apple/swift-argument-parser/blob/41982a3656a71c768319979febd796c6fd111d5c/LICENSE.txt",
+      "limitations": [
+        "Public source can occur in model training data.",
+        "Independent engineers must verify source and dependency obligations.",
+        "The candidate has no complete annotation or execution evidence."
+      ],
+      "manifest_observations": [
+        {
+          "bytes": 3519,
+          "path": "Package.swift",
+          "sha256": "5c0ea7f615b82bfb850c64f66224124a7041e1d0004406543cd24c8ab526d84e",
+          "url": "https://github.com/apple/swift-argument-parser/blob/41982a3656a71c768319979febd796c6fd111d5c/Package.swift"
+        }
+      ],
+      "prior_product_configuration": null,
+      "private_estate_overlap": null,
+      "proposed_tag": "1.5.0",
+      "repository": "apple/swift-argument-parser",
+      "revision": "41982a3656a71c768319979febd796c6fd111d5c",
+      "selection_approved": false,
+      "source_access": "public-unauthenticated",
+      "source_inventory_sha256": null,
+      "source_url": "https://github.com/apple/swift-argument-parser",
+      "split": "development",
+      "stack": "swift",
+      "task_scope": {
+        "allowed_paths": null,
+        "generated_paths": null,
+        "sensitive_paths": null
+      },
+      "toolchain": {
+        "dependency_lock_sha256": null,
+        "exact_runtime_versions": null,
+        "image_sha256": null,
+        "observed_declarations": {
+          "swift_tools_header": "// swift-tools-version:5.7"
+        },
+        "status": "unqualified"
+      }
+    },
+    {
+      "annotation_sha256": null,
+      "archive_sha256": null,
+      "baseline_checks": {
+        "definitions_sha256": null,
+        "diagnostics_sha256": null,
+        "status": "not-run"
+      },
+      "ci_execution": "not-run",
+      "ci_limit": "The tree inventory does not establish CI prerequisites or absence of other CI systems.",
+      "command_candidates": [],
+      "external_services": {
+        "approved_destinations": [],
+        "status": "unverified"
+      },
+      "github_workflow_paths": [],
+      "id": "swift-2",
+      "license_access": "observed-public",
+      "license_bytes": 11751,
+      "license_obligations": [
+        "Preserve the Apache license and Swift exception.",
+        "Record modifications and review third-party notices."
+      ],
+      "license_path": "LICENSE.txt",
+      "license_scope": "The observed root notice covers candidate screening only. File and dependency review remains pending.",
+      "license_sha256": "770af8291f708538d8ff885a0bbc4e045cd700531741c4f99528d435c14d7f55",
+      "license_spdx": "Apache-2.0 WITH Swift-exception",
+      "license_url": "https://github.com/apple/swift-collections/blob/671108c96644956dddcd89dd59c203dcdb36cec7/LICENSE.txt",
+      "limitations": [
+        "Public source can occur in model training data.",
+        "Independent engineers must verify source and dependency obligations.",
+        "The candidate has no complete annotation or execution evidence."
+      ],
+      "manifest_observations": [
+        {
+          "bytes": 9277,
+          "path": "Package.swift",
+          "sha256": "3058248053fb7a82944b107eb4140a396adbc4da84a288d32c1112ca1b8abf60",
+          "url": "https://github.com/apple/swift-collections/blob/671108c96644956dddcd89dd59c203dcdb36cec7/Package.swift"
+        }
+      ],
+      "prior_product_configuration": null,
+      "private_estate_overlap": null,
+      "proposed_tag": "1.1.4",
+      "repository": "apple/swift-collections",
+      "revision": "671108c96644956dddcd89dd59c203dcdb36cec7",
+      "selection_approved": false,
+      "source_access": "public-unauthenticated",
+      "source_inventory_sha256": null,
+      "source_url": "https://github.com/apple/swift-collections",
+      "split": "development",
+      "stack": "swift",
+      "task_scope": {
+        "allowed_paths": null,
+        "generated_paths": null,
+        "sensitive_paths": null
+      },
+      "toolchain": {
+        "dependency_lock_sha256": null,
+        "exact_runtime_versions": null,
+        "image_sha256": null,
+        "observed_declarations": {
+          "swift_tools_header": "// swift-tools-version:5.7"
+        },
+        "status": "unqualified"
+      }
+    },
+    {
+      "annotation_sha256": null,
+      "archive_sha256": null,
+      "baseline_checks": {
+        "definitions_sha256": null,
+        "diagnostics_sha256": null,
+        "status": "not-run"
+      },
+      "custodian": null,
+      "external_services": {
+        "approved_destinations": [],
+        "status": "unverified"
+      },
+      "id": "swift-3",
+      "inspection_limit": "Only revision metadata and the root license were read. No source, task, test, or manifest was read.",
+      "license_access": "observed-public",
+      "license_bytes": 11750,
+      "license_obligations": [
+        "Preserve the Apache license and Swift exception.",
+        "Record modifications and review third-party notices."
+      ],
+      "license_path": "LICENSE.txt",
+      "license_scope": "The observed root notice covers candidate screening only. File and dependency review remains pending.",
+      "license_sha256": "2245a990b635558be210fb3eb4f8a6f7a49aebc0fefbf5859146a65ddc7ddcf3",
+      "license_spdx": "Apache-2.0 WITH Swift-exception",
+      "license_url": "https://github.com/apple/swift-system/blob/c8a44d836fe7913603e246acab7c528c2e780168/LICENSE.txt",
+      "limitations": [
+        "Public source can occur in model training data.",
+        "Independent engineers must verify source and dependency obligations.",
+        "The candidate has no complete annotation or execution evidence."
+      ],
+      "manifest_observations": [],
+      "prior_product_configuration": null,
+      "private_estate_overlap": null,
+      "proposed_tag": "1.4.0",
+      "repository": "apple/swift-system",
+      "revision": "c8a44d836fe7913603e246acab7c528c2e780168",
+      "sealed_task_bundle_sha256": null,
+      "sealed_task_contents": "not-created-or-accessed",
+      "selection_approved": false,
+      "source_access": "public-unauthenticated",
+      "source_inventory_sha256": null,
+      "source_url": "https://github.com/apple/swift-system",
+      "split": "holdout",
+      "stack": "swift",
+      "task_scope": {
+        "allowed_paths": null,
+        "generated_paths": null,
+        "sensitive_paths": null
+      },
+      "toolchain": {
+        "dependency_lock_sha256": null,
+        "exact_runtime_versions": null,
+        "image_sha256": null,
+        "status": "unqualified"
+      }
+    },
+    {
+      "annotation_sha256": null,
+      "archive_sha256": null,
+      "baseline_checks": {
+        "definitions_sha256": null,
+        "diagnostics_sha256": null,
+        "status": "not-run"
+      },
+      "ci_execution": "not-run",
+      "ci_limit": "The tree inventory does not establish CI prerequisites or absence of other CI systems.",
+      "command_candidates": [],
+      "external_services": {
+        "approved_destinations": [],
+        "status": "unverified"
+      },
+      "github_workflow_paths": [
+        ".github/workflows/ci.yml"
+      ],
+      "id": "dotnet-1",
+      "license_access": "observed-public",
+      "license_bytes": 10273,
+      "license_obligations": [
+        "Preserve the license and applicable notices.",
+        "Record modifications and review third-party notices."
+      ],
+      "license_path": "LICENSE",
+      "license_scope": "The observed root notice covers candidate screening only. File and dependency review remains pending.",
+      "license_sha256": "73ba74dfaa520b49a401b5d21459a8523a146f3b7518a833eea5efa85130bf68",
+      "license_spdx": "Apache-2.0",
+      "license_url": "https://github.com/serilog/serilog/blob/0e316b7cb072ee660b97976098b1bbdb20ac6da0/LICENSE",
+      "limitations": [
+        "Public source can occur in model training data.",
+        "Independent engineers must verify source and dependency obligations.",
+        "The candidate has no complete annotation or execution evidence."
+      ],
+      "manifest_observations": [
+        {
+          "bytes": 1313,
+          "path": "Directory.Build.props",
+          "sha256": "6c6c0b1baf1eed1e520ec4e7fb2f1767ffdb5c930b0e051f221effbb5554d17f",
+          "url": "https://github.com/serilog/serilog/blob/0e316b7cb072ee660b97976098b1bbdb20ac6da0/Directory.Build.props"
+        },
+        {
+          "bytes": 110,
+          "path": "global.json",
+          "sha256": "ef3c65250475d812c838f1da34d65a7bae8b1a8d2ea1d375cc6644b898f47d41",
+          "url": "https://github.com/serilog/serilog/blob/0e316b7cb072ee660b97976098b1bbdb20ac6da0/global.json"
+        }
+      ],
+      "prior_product_configuration": null,
+      "private_estate_overlap": null,
+      "proposed_tag": "v4.2.0",
+      "repository": "serilog/serilog",
+      "revision": "0e316b7cb072ee660b97976098b1bbdb20ac6da0",
+      "selection_approved": false,
+      "source_access": "public-unauthenticated",
+      "source_inventory_sha256": null,
+      "source_url": "https://github.com/serilog/serilog",
+      "split": "development",
+      "stack": "dotnet",
+      "task_scope": {
+        "allowed_paths": null,
+        "generated_paths": null,
+        "sensitive_paths": null
+      },
+      "toolchain": {
+        "dependency_lock_sha256": null,
+        "exact_runtime_versions": null,
+        "image_sha256": null,
+        "observed_declarations": {
+          "sdk_declaration": {
+            "sdk": {
+              "allowPrerelease": false,
+              "rollForward": "latestFeature",
+              "version": "9.0.100"
+            }
+          }
+        },
+        "status": "unqualified"
+      }
+    },
+    {
+      "annotation_sha256": null,
+      "archive_sha256": null,
+      "baseline_checks": {
+        "definitions_sha256": null,
+        "diagnostics_sha256": null,
+        "status": "not-run"
+      },
+      "ci_execution": "not-run",
+      "ci_limit": "The tree inventory does not establish CI prerequisites or absence of other CI systems.",
+      "command_candidates": [],
+      "external_services": {
+        "approved_destinations": [],
+        "status": "unverified"
+      },
+      "github_workflow_paths": [
+        ".github/workflows/ci.yml",
+        ".github/workflows/lock.yml"
+      ],
+      "id": "dotnet-2",
+      "license_access": "observed-public",
+      "license_bytes": 10349,
+      "license_obligations": [
+        "Preserve the license and applicable notices.",
+        "Record modifications and review third-party notices."
+      ],
+      "license_path": "License.txt",
+      "license_scope": "The observed root notice covers candidate screening only. File and dependency review remains pending.",
+      "license_sha256": "6d1d968fb225eca367cb7f0b8831ab012a35d92b547e945e17ef8e7b05c3e5cc",
+      "license_spdx": "Apache-2.0",
+      "license_url": "https://github.com/FluentValidation/FluentValidation/blob/c8c6400fa2f467d65669b78804613d44066c1c33/License.txt",
+      "limitations": [
+        "Public source can occur in model training data.",
+        "Independent engineers must verify source and dependency obligations.",
+        "The candidate has no complete annotation or execution evidence."
+      ],
+      "manifest_observations": [
+        {
+          "bytes": 119,
+          "path": "global.json",
+          "sha256": "350ca690cce9606d7e13f391cec7393b8f42605ec4263bc3b12ab05b8fb81c08",
+          "url": "https://github.com/FluentValidation/FluentValidation/blob/c8c6400fa2f467d65669b78804613d44066c1c33/global.json"
+        }
+      ],
+      "prior_product_configuration": null,
+      "private_estate_overlap": null,
+      "proposed_tag": "11.11.0",
+      "repository": "FluentValidation/FluentValidation",
+      "revision": "c8c6400fa2f467d65669b78804613d44066c1c33",
+      "selection_approved": false,
+      "source_access": "public-unauthenticated",
+      "source_inventory_sha256": null,
+      "source_url": "https://github.com/FluentValidation/FluentValidation",
+      "split": "development",
+      "stack": "dotnet",
+      "task_scope": {
+        "allowed_paths": null,
+        "generated_paths": null,
+        "sensitive_paths": null
+      },
+      "toolchain": {
+        "dependency_lock_sha256": null,
+        "exact_runtime_versions": null,
+        "image_sha256": null,
+        "observed_declarations": {
+          "sdk_declaration": {
+            "sdk": {
+              "allowPrerelease": true,
+              "rollForward": "latestFeature",
+              "version": "8.0.100"
+            }
+          }
+        },
+        "status": "unqualified"
+      }
+    },
+    {
+      "annotation_sha256": null,
+      "archive_sha256": null,
+      "baseline_checks": {
+        "definitions_sha256": null,
+        "diagnostics_sha256": null,
+        "status": "not-run"
+      },
+      "custodian": null,
+      "external_services": {
+        "approved_destinations": [],
+        "status": "unverified"
+      },
+      "id": "dotnet-3",
+      "inspection_limit": "Only revision metadata and the root license were read. No source, task, test, or manifest was read.",
+      "license_access": "observed-public",
+      "license_bytes": 584,
+      "license_obligations": [
+        "Preserve the license and applicable notices.",
+        "Record modifications and review third-party notices.",
+        "Exclude logo assets from derived evaluation materials unless their separate terms permit use."
+      ],
+      "license_path": "License.txt",
+      "license_scope": "The observed root notice covers candidate screening only. File and dependency review remains pending.",
+      "license_sha256": "9148ebecf47ce49421b0adc69192384b0619bcdc22c67b8bb30d26882b8a7db9",
+      "license_spdx": "Apache-2.0",
+      "license_url": "https://github.com/DapperLib/Dapper/blob/bd4f75b512de3e00f2c2631d5309961a1ecfea23/License.txt",
+      "limitations": [
+        "Public source can occur in model training data.",
+        "Independent engineers must verify source and dependency obligations.",
+        "The candidate has no complete annotation or execution evidence."
+      ],
+      "manifest_observations": [],
+      "prior_product_configuration": null,
+      "private_estate_overlap": null,
+      "proposed_tag": "2.1.66",
+      "repository": "DapperLib/Dapper",
+      "revision": "bd4f75b512de3e00f2c2631d5309961a1ecfea23",
+      "sealed_task_bundle_sha256": null,
+      "sealed_task_contents": "not-created-or-accessed",
+      "selection_approved": false,
+      "source_access": "public-unauthenticated",
+      "source_inventory_sha256": null,
+      "source_url": "https://github.com/DapperLib/Dapper",
+      "split": "holdout",
+      "stack": "dotnet",
+      "task_scope": {
+        "allowed_paths": null,
+        "generated_paths": null,
+        "sensitive_paths": null
+      },
+      "toolchain": {
+        "dependency_lock_sha256": null,
+        "exact_runtime_versions": null,
+        "image_sha256": null,
+        "status": "unqualified"
+      }
+    }
+  ],
+  "required_features": {
+    "generated-code": {
+      "repository_ids": [],
+      "status": "annotation-pending"
+    },
+    "known-failing-baseline": {
+      "repository_ids": [],
+      "status": "annotation-pending"
+    },
+    "misleading-docs": {
+      "repository_ids": [],
+      "status": "annotation-pending"
+    },
+    "multiple-test-targets": {
+      "repository_ids": [],
+      "status": "annotation-pending"
+    },
+    "no-configured-test-harness": {
+      "repository_ids": [],
+      "status": "annotation-pending"
+    },
+    "workspace-or-monorepo": {
+      "repository_ids": [],
+      "status": "annotation-pending"
+    }
+  },
+  "required_stacks": [
+    "python",
+    "typescript",
+    "swift",
+    "dotnet"
+  ],
+  "schema_version": 1,
+  "spend_authorized": false,
+  "split_policy": {
+    "development_per_stack": 2,
+    "development_repositories": 8,
+    "holdout_repositories": 4,
+    "holdouts_per_stack": 1,
+    "mixed_stack_fixture": "Additional synthetic coverage only.",
+    "no_prior_product_configuration": "An independent custodian must attest before selection.",
+    "separation": "Separate source copies, access lists, task stores, and annotation stores. No shared run state."
+  },
+  "status": "proposed"
+}

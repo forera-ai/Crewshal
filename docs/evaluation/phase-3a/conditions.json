@@ -1,0 +1,208 @@
+{
+  "baseline_candidates": [
+    {
+      "evidence": "docs/EXECUTION-QUALIFICATION.md",
+      "license": "MIT",
+      "repository": "bestagentkits/orchestrate",
+      "revision": "1846530cf4383c4592d739601f3c9870e83d9a13",
+      "status": "Historical plugin inspection only. Native dispatch conformance remains unavailable."
+    },
+    {
+      "evidence": "docs/EXECUTION-QUALIFICATION.md",
+      "license": "MIT",
+      "repository": "Dusttoo/orka",
+      "revision": "9e366915fc6cd6ede5aa47ac7a3b418a32ff528b",
+      "status": "Historical synthetic backend tests pass. Native-helper environment exclusions failed. Current conformance remains unavailable."
+    }
+  ],
+  "baseline_required_cases": [
+    "same-input-task-checks-budgets",
+    "fresh-workspace-and-context",
+    "exact-resolved-identities",
+    "provider-independent-read-only-review",
+    "trusted-check-and-terminal-capture",
+    "scope-and-approval-refusal",
+    "failed-and-unavailable-check-accounting",
+    "cancel-timeout-restart-no-replay",
+    "honest-usage-and-cache-accounting",
+    "setup-and-configuration-effort"
+  ],
+  "baseline_rule": "Select the strongest fitting baseline after prospective conformance checks. Preserve failed and unavailable cases. No default B2 selection follows.",
+  "conditions": [
+    {
+      "conformance_status": "unavailable",
+      "difference": "Independent review is absent. Report the difference.",
+      "execution_allowed": false,
+      "id": "B0",
+      "identity_bindings": {
+        "baseline_candidate_sha256": null,
+        "baseline_conformance_sha256": null,
+        "candidate_sha256": null,
+        "check_definitions_sha256": null,
+        "confirmed_project_model_sha256": null,
+        "environment_sha256": null,
+        "grant_sha256": null,
+        "platform_conformance_sha256": null,
+        "policy_sha256": null,
+        "repository_revision": null,
+        "scope_sha256": null,
+        "task_sha256": null,
+        "toolchain_sha256": null
+      },
+      "implementation": "assignment.implementation",
+      "name": "Native single-runtime session",
+      "project_model": "No Crewshal model is supplied. Record native setup and manual context.",
+      "review": "none",
+      "selection_approved": false,
+      "spend_authorized": false
+    },
+    {
+      "conformance_status": "unavailable",
+      "difference": "Run implementation, captured checks, and fresh read-only review without discovery reuse.",
+      "execution_allowed": false,
+      "id": "B1",
+      "identity_bindings": {
+        "baseline_candidate_sha256": null,
+        "baseline_conformance_sha256": null,
+        "candidate_sha256": null,
+        "check_definitions_sha256": null,
+        "confirmed_project_model_sha256": null,
+        "environment_sha256": null,
+        "grant_sha256": null,
+        "platform_conformance_sha256": null,
+        "policy_sha256": null,
+        "repository_revision": null,
+        "scope_sha256": null,
+        "task_sha256": null,
+        "toolchain_sha256": null
+      },
+      "implementation": "assignment.implementation",
+      "name": "Minimal two-runtime script contract",
+      "project_model": "Record timed human setup. Grade its manual controls against independent annotations.",
+      "review": "assignment.review",
+      "script_sha256": null,
+      "selection_approved": false,
+      "spend_authorized": false
+    },
+    {
+      "conformance_status": "unavailable",
+      "difference": "Disclose unsupported controls. Do not add a Crewshal wrapper that changes the comparison.",
+      "execution_allowed": false,
+      "id": "B2",
+      "identity_bindings": {
+        "baseline_candidate_sha256": null,
+        "baseline_conformance_sha256": null,
+        "candidate_sha256": null,
+        "check_definitions_sha256": null,
+        "confirmed_project_model_sha256": null,
+        "environment_sha256": null,
+        "grant_sha256": null,
+        "platform_conformance_sha256": null,
+        "policy_sha256": null,
+        "repository_revision": null,
+        "scope_sha256": null,
+        "task_sha256": null,
+        "toolchain_sha256": null
+      },
+      "implementation": "assignment.implementation",
+      "name": "Strongest relevant existing tool",
+      "project_model": "Use the selected baseline native configuration. Count all manual translation.",
+      "review": "assignment.review-if-supported",
+      "selected_repository": null,
+      "selected_revision": null,
+      "selection_approved": false,
+      "spend_authorized": false
+    },
+    {
+      "conformance_status": "unavailable",
+      "difference": "Count discovery, corrections, review, remediation, and every coordinator call.",
+      "execution_allowed": false,
+      "id": "P",
+      "identity_bindings": {
+        "baseline_candidate_sha256": null,
+        "baseline_conformance_sha256": null,
+        "candidate_sha256": null,
+        "check_definitions_sha256": null,
+        "confirmed_project_model_sha256": null,
+        "environment_sha256": null,
+        "grant_sha256": null,
+        "platform_conformance_sha256": null,
+        "policy_sha256": null,
+        "repository_revision": null,
+        "scope_sha256": null,
+        "task_sha256": null,
+        "toolchain_sha256": null
+      },
+      "implementation": "assignment.implementation",
+      "name": "Crewshal adaptation and evidence layer",
+      "project_model": "Reuse the same confirmed model across both role assignments.",
+      "review": "assignment.review",
+      "selection_approved": false,
+      "software_base_revision": "ae4c6beb2ef2083292863be02cbd6f4ea374478b",
+      "source_sha256": {
+        "src/crewshal/candidate.py": "e667919ff4ec6d043de6a1c00f9cb1683de5843cb28f8813b25fb4b75d948bc4",
+        "src/crewshal/claude.py": "885f704f22ceed74615494fee4015e0b31b64593d2b15b536dd35ed19d6aad84",
+        "src/crewshal/contracts.py": "ed308d86b9b77fec5e9943677bf1d4b59ef0e16edb7fec25e8b334016bada437",
+        "src/crewshal/discovery.py": "b9ab698faa5951f9badf566b1fdd8cd3be7487f82fdc96acd6a246ef44aa1b2c",
+        "src/crewshal/durable.py": "e86e31731bffc3b365ee85d13978382a60b5e45bca870c9aba3a4fc9096a163d",
+        "src/crewshal/gates.py": "04ddc779fc2dc5aa45c09ae30189d7e0e825bbd983fd9b884e878e46f8c55b2e",
+        "src/crewshal/integration.py": "35f69b34238f66e261f34587b5547f2311b7c4fc67cb055627d14b757445da4a",
+        "src/crewshal/model.py": "3cbc9405e0c7fb5247a13562e72c8472c3edc0f3fc2407db2fd6c6c95fae25de",
+        "src/crewshal/qualification.py": "772df20ee17ddd52023eb0b245d733e2db29d115b625703fd4c6d86026f5554a",
+        "src/crewshal/review.py": "11d7f603ce98d233dcd99a02b4ade4b099cf8c5d2489355f3616213838bb6ac9",
+        "src/crewshal/runtime.py": "afd84e5497092a8117d3705f81d7dc9e6885852fa29a22ab9653a9871170f418",
+        "tests/acceptance/test_phase_2e.py": "8aea03066e6366b410e845483c71b7a77858567676cdf85a70f6b59473b831b2"
+      },
+      "spend_authorized": false
+    }
+  ],
+  "date": "2026-10-16",
+  "execution_allowed": false,
+  "role_assignments": [
+    {
+      "id": "A-implements",
+      "implementation": "A",
+      "review": "B"
+    },
+    {
+      "id": "B-implements",
+      "implementation": "B",
+      "review": "A"
+    }
+  ],
+  "runtime_identities": [
+    {
+      "adapter_contract_evidence": "Phase 2E deterministic external fixtures only.",
+      "adapter_contract_version": "0.160.1",
+      "credential_design_sha256": null,
+      "effective_configuration_sha256": null,
+      "executable_sha256": null,
+      "id": "A",
+      "live_conformance": "unavailable",
+      "price_schedule_sha256": null,
+      "provider_proposal": "openai",
+      "resolved_model": null,
+      "resolved_provider": null,
+      "runtime": "codex",
+      "selected_live_runtime_version": null
+    },
+    {
+      "adapter_contract_evidence": "Phase 2E deterministic external fixtures only.",
+      "adapter_contract_version": "2.1.278",
+      "credential_design_sha256": null,
+      "effective_configuration_sha256": null,
+      "executable_sha256": null,
+      "id": "B",
+      "live_conformance": "unavailable",
+      "price_schedule_sha256": null,
+      "provider_proposal": "anthropic",
+      "resolved_model": null,
+      "resolved_provider": null,
+      "runtime": "claude-code",
+      "selected_live_runtime_version": null
+    }
+  ],
+  "schema_version": 1,
+  "spend_authorized": false,
+  "status": "proposed"
+}

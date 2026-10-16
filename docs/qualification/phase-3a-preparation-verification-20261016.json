@@ -1,0 +1,295 @@
+{
+  "base_revision": "ae4c6beb2ef2083292863be02cbd6f4ea374478b",
+  "branch": "codex/phase1-architecture",
+  "calibration_runs": 0,
+  "date": "2026-10-16",
+  "delivery_revision": "The commit containing this verification record and the Phase 3A preparation report.",
+  "development_failures": [
+    {
+      "cause": "The TypeScript fixture used the wrong canonical label. Two synthetic qualification records omitted required IDs.",
+      "command": "rtk proxy .venv/bin/python -m unittest tests.acceptance.test_phase_3a",
+      "errors": 2,
+      "exit_code": 1,
+      "failures": 1,
+      "resolution": "Corrected fixture data only. The final 14 checks pass.",
+      "tests": 14
+    }
+  ],
+  "environment": {
+    "architecture": "arm64",
+    "mypy": "1.18.2",
+    "platform": "macOS-27.2-arm64-arm-64bit",
+    "pydantic": "2.12.5",
+    "pydantic-core": "2.41.5",
+    "python": "3.12.15",
+    "ruff": "0.14.1",
+    "uv": "0.9.24"
+  },
+  "execution_allowed": false,
+  "focused_result": {
+    "command": "rtk proxy .venv/bin/python -m unittest tests.acceptance.test_phase_3a tests.acceptance.test_phase_2e tests.acceptance.test_phase_2d_dispatch",
+    "exit_code": 0,
+    "test_seconds": 5.091,
+    "tests": 85
+  },
+  "formatter": {
+    "command": "rtk proxy .venv/bin/python -m ruff format --check src tests scripts",
+    "exit_code": 1,
+    "historical_exception_bytes_match": true,
+    "source_and_test_format_exit_code": 0,
+    "unchanged_historical_exceptions": {
+      "scripts/cleanup_direct_linux_native_v2.py": "dc10e939b2299e06985e7e366d9a262886e718b1d8803d66345ce0750f181ee1",
+      "scripts/native_fixed_response_fixture_v1.py": "4f755b385ba0db02bb29fad9d27aa4f625585ae3350095579a517174cb29d945",
+      "scripts/native_fixed_response_fixture_v2.py": "a6702c77c3979b5ed657d4fe0672858a6d2c72c8e1d248c30b911e850621bd94",
+      "scripts/native_fixed_response_fixture_v3.py": "ba9dfaf7a1813bd492903745fa4ae81ecf9cf2e0097dbf4505cae8cb039448db",
+      "scripts/native_fixed_response_fixture_v4.py": "d2322d7915e7833aec4354fc2d309bf4cb4332609cc083b88bd99169562f1602",
+      "scripts/probe_direct_linux_native_compatibility_v10.py": "eff38d11709a5a20a0f0829d27e00a08d10fb2fcf62ebc4930855576fa9ed5ca",
+      "scripts/probe_direct_linux_native_compatibility_v13.py": "61632fc33abc9a40dd7459fb49840d9ef7700aaea1b639fdeb8ad3c21a54e5d9",
+      "scripts/probe_direct_linux_native_compatibility_v14.py": "e5bbc879a20be64379fdc1d8b2ed48e2a0542d7461dcd89355e9739e61ebf2ee",
+      "scripts/probe_direct_linux_native_compatibility_v15.py": "5716c12108f36250c0cdafc1c7eea869a964f6a077bc986726fa607a82441227"
+    }
+  },
+  "graph": {
+    "evidence": "Relevant code paths had matching metadata with no recorded gap. New or changed preparation files required direct reads and hash checks.",
+    "generations": [
+      "2026-10-16T07:39:42Z",
+      "2026-10-16T07:55:53Z",
+      "2026-10-16T08:02:30Z"
+    ],
+    "limitation": "Coverage metadata is best-effort. It does not prove completeness.",
+    "out_of_scope_gap": "bootstrap_helper.c lines 75, 77, and 89 remain unchanged.",
+    "project": "Volumes-X10Pro-Crewshal",
+    "tier": "Verify"
+  },
+  "jev_calls": 0,
+  "limitations": [
+    "The corpus is a candidate list, not an accepted or independently annotated corpus.",
+    "Root license observations do not establish all file or dependency rights.",
+    "No sealed task contents exist in the preparation package. No hold-out source or task was read.",
+    "Swift and .NET discovery and platform conformance remain unavailable.",
+    "No selected B2, exact live model identities, baseline conformance, or platform qualification exists.",
+    "Fixture checks establish no live quality, safety, savings, hard deadline, provider identity, or execution support.",
+    "The documents remain checkout artifacts. The wheel contains production code only.",
+    "The final data-only review changes received focused source and installed checks after the complete suites."
+  ],
+  "package": {
+    "matching_files": 49,
+    "root": "/private/var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-3a-20261016-vs4umr1k/installed/lib/python3.12/site-packages/crewshal",
+    "version": "0.15.1",
+    "wheel_sha256": "a3cbd1faa9b4be16b49ef8164f0cbbaa90077c48bbbfea053c58df76589bc918"
+  },
+  "package_index_sha256": "82c0ebfc40438c310eae5f4031456201205244a9d4d808468c87ce37a8b5cf26",
+  "package_integrity": "Ten indexed files match their recorded bytes and hashes. The index supplies no approval or execution authority.",
+  "paid_host_operations": 0,
+  "phase_3a_complete": false,
+  "phase_3b_started": false,
+  "preservation": {
+    "all_other_starting_files_match": true,
+    "changed_starting_files": [
+      "CHANGELOG.md",
+      "README.md",
+      "docs/DEVELOPMENT-PLAN.md",
+      "docs/HANDOFF.md",
+      "pyproject.toml",
+      "src/crewshal/__init__.py"
+    ],
+    "historical_evidence_preserved": true,
+    "initial_evaluation_plan_sha256": "ab74f7c04ee2f0894cc95445edef618ce3227ef1d754e5d312af4d1d5ea03acd",
+    "linux_and_C_bytes_match": true,
+    "linux_and_C_files_checked": 28,
+    "physical_custody_state_observed": false,
+    "starting_tracked_files": 1080
+  },
+  "profile_qualified": false,
+  "provider_inference_calls": 0,
+  "public_metadata": {
+    "authentication": "none",
+    "commit_endpoint": "https://api.github.com/repos/{repository}/commits/{proposed_tag}",
+    "date": "2026-10-16",
+    "development_tree_endpoint": "https://api.github.com/repos/{repository}/git/trees/{revision}?recursive=1",
+    "development_tree_results": "All eight requests succeeded and returned truncated=false. No hold-out tree request occurred.",
+    "file_endpoint": "https://raw.githubusercontent.com/{repository}/{revision}/{path}",
+    "method": "GET",
+    "request_timeout_seconds": 20,
+    "response_read_ceiling_bytes": 2000000,
+    "root_license_results": "All 12 requests succeeded. Every license digest binds the downloaded bytes.",
+    "root_manifest_results": "All nine requests succeeded. Only the listed development manifest files were read.",
+    "source_archive_fetches": 0,
+    "task_content_fetches": 0,
+    "user_agent": "Crewshal-Phase3A-metadata"
+  },
+  "repository": "https://github.com/forera-ai/Crewshal",
+  "reproduction": {
+    "cache_required": "Hash-locked development dependencies and setuptools==80.9.0 must exist locally.",
+    "checkout_required": true,
+    "instructions": [
+      "Create new temporary paths and fresh HOME directories.",
+      "Run the exact recorded source, build, install, installed-suite, and CLI commands with those new paths.",
+      "Compare all installed package source bytes against the checkout.",
+      "Run package integrity tests against the final preparation index.",
+      "Do not use private or historical VM inputs."
+    ],
+    "temporary_root": "/var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-3a-20261016-vs4umr1k"
+  },
+  "results": [
+    {
+      "command": "rtk proxy env -i PATH=/Volumes/X10Pro/Crewshal/.venv/bin:/usr/bin:/bin HOME=/var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-3a-20261016-vs4umr1k/home-source PYTHONDONTWRITEBYTECODE=1 /usr/bin/sandbox-exec -p '(version 1)(allow default)(deny network*)' /Volumes/X10Pro/Crewshal/.venv/bin/python -m unittest discover -s tests -t .",
+      "errors": 0,
+      "exit_code": 0,
+      "failures": 0,
+      "name": "source-suite",
+      "seconds": 51.401,
+      "skips": 0,
+      "stderr_sha256": "b2f96c57818239544aff835b5aa553c1604ef0114559e3aa22c4b686cefb9e1e",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test_seconds": 51.093,
+      "tests": 1319
+    },
+    {
+      "command": "rtk proxy uv venv --offline --python /Volumes/X10Pro/Crewshal/.venv/bin/python /var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-3a-20261016-vs4umr1k/installed",
+      "exit_code": 0,
+      "name": "venv",
+      "seconds": 0.04,
+      "stderr_sha256": "75130412e81f56d20f202598eee65a25066f73cbb58ab312ebcc475226d3e38d",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "rtk proxy /usr/bin/sandbox-exec -p '(version 1)(allow default)(deny network*)' uv pip install --offline --python /var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-3a-20261016-vs4umr1k/installed/bin/python --require-hashes -r requirements-dev.lock",
+      "exit_code": 0,
+      "name": "dependencies",
+      "seconds": 0.122,
+      "stderr_sha256": "115caffaac3401f11f318cf0a895b0a8e68e8b33c0c2fe7196836014ddd69803",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "rtk proxy /usr/bin/sandbox-exec -p '(version 1)(allow default)(deny network*)' uv build --offline --wheel --out-dir /var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-3a-20261016-vs4umr1k/wheel",
+      "exit_code": 0,
+      "name": "build",
+      "seconds": 0.564,
+      "stderr_sha256": "df564464d1ef338e302192067c74c79d0c602ef5604eee7b7b65d5614fe2f24b",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "rtk proxy /usr/bin/sandbox-exec -p '(version 1)(allow default)(deny network*)' uv pip install --offline --no-deps --reinstall --python /var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-3a-20261016-vs4umr1k/installed/bin/python /var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-3a-20261016-vs4umr1k/wheel/crewshal-0.15.1-py3-none-any.whl",
+      "exit_code": 0,
+      "name": "install",
+      "seconds": 0.072,
+      "stderr_sha256": "32ed6d4ee4fb73fd3d3ae3c519c3696940f0bbd9532815bbfe4672a373cfb1a7",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "rtk proxy env -i PATH=/var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-3a-20261016-vs4umr1k/installed/bin:/usr/bin:/bin HOME=/var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-3a-20261016-vs4umr1k/home-installed PYTHONDONTWRITEBYTECODE=1 /usr/bin/sandbox-exec -p '(version 1)(allow default)(deny network*)' /var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-3a-20261016-vs4umr1k/installed/bin/python -m unittest discover -s tests -t .",
+      "errors": 0,
+      "exit_code": 0,
+      "failures": 0,
+      "name": "installed-suite",
+      "seconds": 58.519,
+      "skips": 0,
+      "stderr_sha256": "e02e61b4d4939493b2ad379c99891b514ada06a0668ae5b905b0ac4693d989f1",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test_seconds": 57.934,
+      "tests": 1319
+    },
+    {
+      "command": "rtk proxy env -i PATH=/var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-3a-20261016-vs4umr1k/installed/bin:/usr/bin:/bin HOME=/var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-3a-20261016-vs4umr1k/home-installed /usr/bin/sandbox-exec -p '(version 1)(allow default)(deny network*)' /var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-3a-20261016-vs4umr1k/installed/bin/crewshal --help",
+      "exit_code": 0,
+      "name": "cli",
+      "seconds": 0.156,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "bf3c304b0da0f431d424187eff9acbb697bef2146c12900d132583cd6197447b"
+    },
+    {
+      "command": "rtk proxy /var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-3a-20261016-vs4umr1k/installed/bin/python -I -c 'import crewshal,json,pathlib;print(json.dumps({\"root\":str(pathlib.Path(crewshal.__file__).parent),\"version\":crewshal.__version__}))'",
+      "exit_code": 0,
+      "name": "package-import",
+      "seconds": 0.031,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "e3a4839d86a4eb1f8a619129d39b79599f60a35a2bdab9fc7ade5e14624f958b"
+    },
+    {
+      "command": "rtk proxy env -i PATH=/Volumes/X10Pro/Crewshal/.venv/bin:/usr/bin:/bin HOME=/var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-3a-20261016-vs4umr1k/home-source /usr/bin/sandbox-exec -p '(version 1)(allow default)(deny network*)' /Volumes/X10Pro/Crewshal/.venv/bin/python -m unittest tests.acceptance.test_phase_3a",
+      "errors": 0,
+      "exit_code": 0,
+      "failures": 0,
+      "name": "post-review-source-package",
+      "seconds": 0.161,
+      "skips": 0,
+      "stderr_sha256": "591908f8ebbe623a3d3659dcfff3bb80ff781ef8db2ea993f6d24cd4581362b8",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test_seconds": 0.016,
+      "tests": 14
+    },
+    {
+      "command": "rtk proxy env -i PATH=/var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-3a-20261016-vs4umr1k/installed/bin:/usr/bin:/bin HOME=/var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-3a-20261016-vs4umr1k/home-installed /usr/bin/sandbox-exec -p '(version 1)(allow default)(deny network*)' /var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-3a-20261016-vs4umr1k/installed/bin/python -m unittest tests.acceptance.test_phase_3a",
+      "errors": 0,
+      "exit_code": 0,
+      "failures": 0,
+      "name": "post-review-installed-package",
+      "seconds": 0.172,
+      "skips": 0,
+      "stderr_sha256": "a4dfc6ba8d8ee7f993f00a450146247a1360e5c1204cf97b042c9525cb23198e",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test_seconds": 0.014,
+      "tests": 14
+    },
+    {
+      "command": "rtk proxy .venv/bin/python -m ruff check src tests scripts",
+      "exit_code": 0,
+      "name": "lint",
+      "seconds": 0.039,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+    },
+    {
+      "command": "rtk proxy .venv/bin/python -m ruff format --check src tests",
+      "exit_code": 0,
+      "name": "format",
+      "seconds": 0.037,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "376c98847555bc08e6d0e81fe12f18c2e0f80f00d2279bb463c6b7c5f3d666c1"
+    },
+    {
+      "command": "rtk proxy .venv/bin/python -m mypy src/crewshal",
+      "exit_code": 0,
+      "name": "typing",
+      "seconds": 0.247,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "a459b8765e4db93f08156e7d98399988a9b87243303f92178f28c9db897f6066"
+    },
+    {
+      "command": "rtk proxy git diff --check",
+      "exit_code": 0,
+      "name": "diff",
+      "seconds": 0.02,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "review": {
+    "corrections": "Clarified timed baseline setup, scope bindings, complete block ordering, failure reasons, and owner decision rules. Final indexed data checks pass in both environments.",
+    "result": "NO FINDINGS",
+    "scope": "All changed publication files, new preparation documents, structured manifests, integrity index, and acceptance module. Production source differs only by version.",
+    "skill": "production-code-review"
+  },
+  "schema_version": 1,
+  "sealed_evaluation_runs": 0,
+  "spend_authorized": false,
+  "starting_tree": "Clean. All exact starting input hashes matched.",
+  "status": "Phase 3A preparation verified; freeze blocked",
+  "suite": {
+    "existing_repeated_occurrences": 16,
+    "new_phase_3a_methods": 14,
+    "occurrences": 1319,
+    "unique_methods": 1303
+  },
+  "unresolved": [
+    "D1 corpus screening, independent engineers, adjudication, and custody.",
+    "D2 four-stack coverage or prospective amendment.",
+    "D3 thresholds, margins, B2 advantage, repetitions, seeds, schedule, and analysis.",
+    "D4 exact baseline selection, script, configuration, and conformance.",
+    "D5 exact campaign identities and qualified platform/runtime evidence.",
+    "D6 exact prices, spending, quota exposure, enforcement, egress, and retention.",
+    "Independent annotations, real development tasks, hidden oracles, source inventories, and sealed commitments."
+  ],
+  "version": "0.15.1"
+}

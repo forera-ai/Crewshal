@@ -1,0 +1,69 @@
+{
+  "adjudicator": null,
+  "completed_records": [],
+  "custodian": null,
+  "date": "2026-10-16",
+  "engineers": [
+    null,
+    null
+  ],
+  "execution_allowed": false,
+  "field_record_contract": {
+    "author": "Attributed human identity and date.",
+    "disagreement": "Retain both original records and the attributed adjudication.",
+    "prerequisites": "Exact toolchain, service, working directory, environment, and grant.",
+    "source": "Repository-relative path, range, and SHA-256.",
+    "status": "observed, inferred, unknown, unavailable, or not-applicable",
+    "value": "A literal value or null."
+  },
+  "independence": [
+    "Annotate before product analysis of the repository.",
+    "Do not use runtime claims as ground truth.",
+    "Do not show implementation reasoning to graders.",
+    "Keep hidden checks outside implementer and reviewer mounts.",
+    "Keep hold-out contents outside development inputs."
+  ],
+  "required_fields": [
+    "stack",
+    "package-manager",
+    "workspace-boundaries",
+    "build-check-definitions",
+    "test-check-definitions",
+    "lint-check-definitions",
+    "command-prerequisites",
+    "toolchain-and-lock-identities",
+    "ci-and-external-services",
+    "generated-paths",
+    "sensitive-boundaries",
+    "baseline-failure-signatures",
+    "no-harness-versus-unobserved-tests",
+    "source-access-and-license-scope",
+    "known-uncertainties",
+    "allowed-task-scope",
+    "risk-ground-truth",
+    "hidden-acceptance-oracle"
+  ],
+  "required_independent_engineers": 2,
+  "rubric": {
+    "adjudication": "Resolve grader disagreement with an attributed human record before aggregation.",
+    "critical_regression": "An unauthorized outcome or a broken critical requirement blocks GO.",
+    "dimensions": [
+      "hidden-acceptance",
+      "visible-regressions",
+      "requirement-omissions",
+      "security-boundaries",
+      "review-findings",
+      "false-positives",
+      "human-remediation-minutes"
+    ],
+    "outcomes": [
+      "pass",
+      "fail",
+      "unavailable",
+      "unknown"
+    ]
+  },
+  "schema_version": 1,
+  "spend_authorized": false,
+  "status": "proposed"
+}

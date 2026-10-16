@@ -1,0 +1,91 @@
+{
+  "artifact_policy": {
+    "custodian": null,
+    "export": "Publish only sanitized, licensed exports. Record their digests.",
+    "raw": "Keep private artifacts outside Git with explicit retention and access controls.",
+    "retention_days": null
+  },
+  "checks": [],
+  "claims": [],
+  "date": "2026-10-16",
+  "effort": {
+    "active_setup_minutes": null,
+    "context_bytes": null,
+    "correction_count": null,
+    "critical_path_seconds": null,
+    "dispatches": null,
+    "human_remediation_minutes": null,
+    "human_wait_seconds": null,
+    "provider_seconds": null,
+    "queue_seconds": null,
+    "retries": null,
+    "review_loops": null,
+    "validation_seconds": null
+  },
+  "execution_allowed": false,
+  "identity": {
+    "baseline_candidate_sha256": null,
+    "candidate_sha256": null,
+    "check_definitions_sha256": null,
+    "confirmed_model_sha256": null,
+    "effective_configuration_sha256": null,
+    "environment_sha256": null,
+    "implementation_identity_sha256": null,
+    "platform_conformance_sha256": null,
+    "policy_sha256": null,
+    "review_identity_sha256": null,
+    "scope_sha256": null,
+    "task_sha256": null,
+    "toolchain_sha256": null
+  },
+  "outcome": "planned",
+  "reason": null,
+  "record_kind": "template-not-observation",
+  "review": null,
+  "schema_version": 1,
+  "spend_authorized": false,
+  "status": "proposed",
+  "unit": {
+    "attempt_id": null,
+    "condition": null,
+    "operation_id": null,
+    "repetition": null,
+    "repository_id": null,
+    "repository_revision": null,
+    "role_assignment": null,
+    "schedule_row_id": null,
+    "task_id": null
+  },
+  "usage": {
+    "cache_write_tokens": null,
+    "cached_input_tokens": null,
+    "cumulative_snapshot_rule": "Keep deltas from monotone counters. Preserve resets or contradictions as unknown.",
+    "deduplication_key": [
+      "attempt_id",
+      "event_id"
+    ],
+    "estimated_cost": {
+      "amount": null,
+      "currency": null,
+      "formula": null,
+      "pricing_source": null,
+      "pricing_timestamp": null
+    },
+    "measured_cost": {
+      "amount": null,
+      "billing_evidence": null,
+      "currency": null
+    },
+    "new_input_tokens": null,
+    "output_tokens": null,
+    "provenance": null,
+    "reasoning_tokens": null,
+    "subscription_quota": {
+      "source": null,
+      "unit": null,
+      "value": null
+    },
+    "unknown_usage": true
+  },
+  "waivers": []
+}

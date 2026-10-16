@@ -1,0 +1,404 @@
+{
+  "date": "2026-10-16",
+  "development_fixtures": [
+    {
+      "acceptance": "Compare exact README bytes with after followed by one newline. Compare all other source bytes.",
+      "allowed_change_paths": [
+        "README.md"
+      ],
+      "expected_literal_check": "python -m unittest",
+      "expected_stack": "python",
+      "files": {
+        "README.md": "before\n",
+        "pyproject.toml": "[project]\nname=\"phase3a-fixture\"\n[tool.hatch.envs.default.scripts]\ntest=\"python -m unittest\"\n"
+      },
+      "id": "dev-python-discovery",
+      "requirement": "Change README.md from before to after. Preserve every other file.",
+      "stack": "python"
+    },
+    {
+      "acceptance": "Compare exact README bytes with after followed by one newline. Compare all other source bytes.",
+      "allowed_change_paths": [
+        "README.md"
+      ],
+      "expected_literal_check": "node --test",
+      "expected_stack": "typescript/javascript",
+      "files": {
+        "README.md": "before\n",
+        "package.json": "{\"name\":\"phase3a-fixture\",\"devDependencies\":{\"typescript\":\"5.0.0\"},\"scripts\":{\"test\":\"node --test\"}}\n"
+      },
+      "id": "dev-typescript-discovery",
+      "requirement": "Change README.md from before to after. Preserve every other file.",
+      "stack": "typescript"
+    },
+    {
+      "acceptance": "The project stack remains unknown. No command receives confirmation.",
+      "allowed_change_paths": [],
+      "expected_literal_check": null,
+      "expected_stack": null,
+      "files": {
+        "Package.swift": "// swift-tools-version:5.7\n// This text fixture must never execute.\n",
+        "README.md": "before\n"
+      },
+      "id": "dev-swift-unknown",
+      "requirement": "Report unsupported discovery without inventing a stack or executable check.",
+      "stack": "swift"
+    },
+    {
+      "acceptance": "The project stack remains unknown. No command receives confirmation.",
+      "allowed_change_paths": [],
+      "expected_literal_check": null,
+      "expected_stack": null,
+      "files": {
+        "Fixture.csproj": "<Project Sdk=\"Microsoft.NET.Sdk\"><PropertyGroup><TargetFramework>net8.0</TargetFramework></PropertyGroup></Project>\n",
+        "README.md": "before\n"
+      },
+      "id": "dev-dotnet-unknown",
+      "requirement": "Report unsupported discovery without inventing a stack or executable check.",
+      "stack": "dotnet"
+    }
+  ],
+  "development_real_task_requirement": "Independent engineers must define repository-specific tasks after source annotation. Synthetic fixtures cannot replace them.",
+  "execution_allowed": false,
+  "fixture_license": "Apache-2.0",
+  "fixture_origin": "Crewshal authors created these fixtures independently.",
+  "heldout_categories": [
+    {
+      "id": "presentation",
+      "oracle_contract": "Check exact required text or presentation behavior and unchanged unrelated bytes.",
+      "requirement_contract": "Make a bounded documentation or presentation change.",
+      "risk": "low",
+      "scope_contract": "Name exact documentation or presentation paths."
+    },
+    {
+      "id": "ordinary-bug",
+      "oracle_contract": "Reproduce the bug before the patch. Check the fix and adjacent regressions.",
+      "requirement_contract": "Correct one specified observable behavior.",
+      "risk": "ordinary",
+      "scope_contract": "Name implementation and test paths."
+    },
+    {
+      "id": "multi-file-feature",
+      "oracle_contract": "Check the new behavior, integration, and existing behavior.",
+      "requirement_contract": "Add one compatible behavior across named modules.",
+      "risk": "ordinary-or-high-after-human-assessment",
+      "scope_contract": "Name every affected module and public contract."
+    },
+    {
+      "id": "security-permission",
+      "oracle_contract": "Check permitted and denied actors through the same interface.",
+      "requirement_contract": "Enforce one specified permission boundary.",
+      "risk": "high",
+      "scope_contract": "Name the security boundary and permitted changes."
+    },
+    {
+      "id": "persistence-compatibility",
+      "oracle_contract": "Read old and new fixtures. Check rejection, preservation, and rollback where applicable.",
+      "requirement_contract": "Preserve specified stored-data or public-interface compatibility.",
+      "risk": "high",
+      "scope_contract": "Name formats, interfaces, versions, and affected paths.",
+      "substitute_contract": "For a stateless library, test a public serialization or API compatibility change. Obtain prospective approval."
+    },
+    {
+      "id": "interruption-stale-model",
+      "oracle_contract": "Retain partial state. Reject stale approval and duplicate replay. Require fresh affected evidence.",
+      "requirement_contract": "Recover from one defined interruption or relevant source change.",
+      "risk": "high",
+      "scope_contract": "Name the interrupted operation, identity, and approved recovery."
+    }
+  ],
+  "heldout_slots": [
+    {
+      "acceptance_sha256": null,
+      "allowed_scope_sha256": null,
+      "category": "presentation",
+      "contents_reference": null,
+      "custodian": null,
+      "id": "python-3-presentation",
+      "repository_id": "python-3",
+      "requirement_sha256": null,
+      "risk_annotation_sha256": null,
+      "substitute_approved": false
+    },
+    {
+      "acceptance_sha256": null,
+      "allowed_scope_sha256": null,
+      "category": "ordinary-bug",
+      "contents_reference": null,
+      "custodian": null,
+      "id": "python-3-ordinary-bug",
+      "repository_id": "python-3",
+      "requirement_sha256": null,
+      "risk_annotation_sha256": null,
+      "substitute_approved": false
+    },
+    {
+      "acceptance_sha256": null,
+      "allowed_scope_sha256": null,
+      "category": "multi-file-feature",
+      "contents_reference": null,
+      "custodian": null,
+      "id": "python-3-multi-file-feature",
+      "repository_id": "python-3",
+      "requirement_sha256": null,
+      "risk_annotation_sha256": null,
+      "substitute_approved": false
+    },
+    {
+      "acceptance_sha256": null,
+      "allowed_scope_sha256": null,
+      "category": "security-permission",
+      "contents_reference": null,
+      "custodian": null,
+      "id": "python-3-security-permission",
+      "repository_id": "python-3",
+      "requirement_sha256": null,
+      "risk_annotation_sha256": null,
+      "substitute_approved": false
+    },
+    {
+      "acceptance_sha256": null,
+      "allowed_scope_sha256": null,
+      "category": "persistence-compatibility",
+      "contents_reference": null,
+      "custodian": null,
+      "id": "python-3-persistence-compatibility",
+      "repository_id": "python-3",
+      "requirement_sha256": null,
+      "risk_annotation_sha256": null,
+      "substitute_approved": false
+    },
+    {
+      "acceptance_sha256": null,
+      "allowed_scope_sha256": null,
+      "category": "interruption-stale-model",
+      "contents_reference": null,
+      "custodian": null,
+      "id": "python-3-interruption-stale-model",
+      "repository_id": "python-3",
+      "requirement_sha256": null,
+      "risk_annotation_sha256": null,
+      "substitute_approved": false
+    },
+    {
+      "acceptance_sha256": null,
+      "allowed_scope_sha256": null,
+      "category": "presentation",
+      "contents_reference": null,
+      "custodian": null,
+      "id": "typescript-3-presentation",
+      "repository_id": "typescript-3",
+      "requirement_sha256": null,
+      "risk_annotation_sha256": null,
+      "substitute_approved": false
+    },
+    {
+      "acceptance_sha256": null,
+      "allowed_scope_sha256": null,
+      "category": "ordinary-bug",
+      "contents_reference": null,
+      "custodian": null,
+      "id": "typescript-3-ordinary-bug",
+      "repository_id": "typescript-3",
+      "requirement_sha256": null,
+      "risk_annotation_sha256": null,
+      "substitute_approved": false
+    },
+    {
+      "acceptance_sha256": null,
+      "allowed_scope_sha256": null,
+      "category": "multi-file-feature",
+      "contents_reference": null,
+      "custodian": null,
+      "id": "typescript-3-multi-file-feature",
+      "repository_id": "typescript-3",
+      "requirement_sha256": null,
+      "risk_annotation_sha256": null,
+      "substitute_approved": false
+    },
+    {
+      "acceptance_sha256": null,
+      "allowed_scope_sha256": null,
+      "category": "security-permission",
+      "contents_reference": null,
+      "custodian": null,
+      "id": "typescript-3-security-permission",
+      "repository_id": "typescript-3",
+      "requirement_sha256": null,
+      "risk_annotation_sha256": null,
+      "substitute_approved": false
+    },
+    {
+      "acceptance_sha256": null,
+      "allowed_scope_sha256": null,
+      "category": "persistence-compatibility",
+      "contents_reference": null,
+      "custodian": null,
+      "id": "typescript-3-persistence-compatibility",
+      "repository_id": "typescript-3",
+      "requirement_sha256": null,
+      "risk_annotation_sha256": null,
+      "substitute_approved": false
+    },
+    {
+      "acceptance_sha256": null,
+      "allowed_scope_sha256": null,
+      "category": "interruption-stale-model",
+      "contents_reference": null,
+      "custodian": null,
+      "id": "typescript-3-interruption-stale-model",
+      "repository_id": "typescript-3",
+      "requirement_sha256": null,
+      "risk_annotation_sha256": null,
+      "substitute_approved": false
+    },
+    {
+      "acceptance_sha256": null,
+      "allowed_scope_sha256": null,
+      "category": "presentation",
+      "contents_reference": null,
+      "custodian": null,
+      "id": "swift-3-presentation",
+      "repository_id": "swift-3",
+      "requirement_sha256": null,
+      "risk_annotation_sha256": null,
+      "substitute_approved": false
+    },
+    {
+      "acceptance_sha256": null,
+      "allowed_scope_sha256": null,
+      "category": "ordinary-bug",
+      "contents_reference": null,
+      "custodian": null,
+      "id": "swift-3-ordinary-bug",
+      "repository_id": "swift-3",
+      "requirement_sha256": null,
+      "risk_annotation_sha256": null,
+      "substitute_approved": false
+    },
+    {
+      "acceptance_sha256": null,
+      "allowed_scope_sha256": null,
+      "category": "multi-file-feature",
+      "contents_reference": null,
+      "custodian": null,
+      "id": "swift-3-multi-file-feature",
+      "repository_id": "swift-3",
+      "requirement_sha256": null,
+      "risk_annotation_sha256": null,
+      "substitute_approved": false
+    },
+    {
+      "acceptance_sha256": null,
+      "allowed_scope_sha256": null,
+      "category": "security-permission",
+      "contents_reference": null,
+      "custodian": null,
+      "id": "swift-3-security-permission",
+      "repository_id": "swift-3",
+      "requirement_sha256": null,
+      "risk_annotation_sha256": null,
+      "substitute_approved": false
+    },
+    {
+      "acceptance_sha256": null,
+      "allowed_scope_sha256": null,
+      "category": "persistence-compatibility",
+      "contents_reference": null,
+      "custodian": null,
+      "id": "swift-3-persistence-compatibility",
+      "repository_id": "swift-3",
+      "requirement_sha256": null,
+      "risk_annotation_sha256": null,
+      "substitute_approved": false
+    },
+    {
+      "acceptance_sha256": null,
+      "allowed_scope_sha256": null,
+      "category": "interruption-stale-model",
+      "contents_reference": null,
+      "custodian": null,
+      "id": "swift-3-interruption-stale-model",
+      "repository_id": "swift-3",
+      "requirement_sha256": null,
+      "risk_annotation_sha256": null,
+      "substitute_approved": false
+    },
+    {
+      "acceptance_sha256": null,
+      "allowed_scope_sha256": null,
+      "category": "presentation",
+      "contents_reference": null,
+      "custodian": null,
+      "id": "dotnet-3-presentation",
+      "repository_id": "dotnet-3",
+      "requirement_sha256": null,
+      "risk_annotation_sha256": null,
+      "substitute_approved": false
+    },
+    {
+      "acceptance_sha256": null,
+      "allowed_scope_sha256": null,
+      "category": "ordinary-bug",
+      "contents_reference": null,
+      "custodian": null,
+      "id": "dotnet-3-ordinary-bug",
+      "repository_id": "dotnet-3",
+      "requirement_sha256": null,
+      "risk_annotation_sha256": null,
+      "substitute_approved": false
+    },
+    {
+      "acceptance_sha256": null,
+      "allowed_scope_sha256": null,
+      "category": "multi-file-feature",
+      "contents_reference": null,
+      "custodian": null,
+      "id": "dotnet-3-multi-file-feature",
+      "repository_id": "dotnet-3",
+      "requirement_sha256": null,
+      "risk_annotation_sha256": null,
+      "substitute_approved": false
+    },
+    {
+      "acceptance_sha256": null,
+      "allowed_scope_sha256": null,
+      "category": "security-permission",
+      "contents_reference": null,
+      "custodian": null,
+      "id": "dotnet-3-security-permission",
+      "repository_id": "dotnet-3",
+      "requirement_sha256": null,
+      "risk_annotation_sha256": null,
+      "substitute_approved": false
+    },
+    {
+      "acceptance_sha256": null,
+      "allowed_scope_sha256": null,
+      "category": "persistence-compatibility",
+      "contents_reference": null,
+      "custodian": null,
+      "id": "dotnet-3-persistence-compatibility",
+      "repository_id": "dotnet-3",
+      "requirement_sha256": null,
+      "risk_annotation_sha256": null,
+      "substitute_approved": false
+    },
+    {
+      "acceptance_sha256": null,
+      "allowed_scope_sha256": null,
+      "category": "interruption-stale-model",
+      "contents_reference": null,
+      "custodian": null,
+      "id": "dotnet-3-interruption-stale-model",
+      "repository_id": "dotnet-3",
+      "requirement_sha256": null,
+      "risk_annotation_sha256": null,
+      "substitute_approved": false
+    }
+  ],
+  "holdout_access": "No hold-out task contents exist in this package. Only the independent custodian may materialize them.",
+  "schema_version": 1,
+  "spend_authorized": false,
+  "status": "proposed"
+}

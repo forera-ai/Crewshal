@@ -1,0 +1,93 @@
+{
+  "date": "2026-10-16",
+  "execution_allowed": false,
+  "freeze_approved": false,
+  "phase_3b_allowed": false,
+  "required_freeze_evidence": [
+    "complete-independent-annotations",
+    "repository-specific-development-tasks",
+    "sealed-task-and-oracle-commitments",
+    "all-required-owner-decisions",
+    "qualified-exact-platform-and-runtime-identities",
+    "passing-baseline-conformance",
+    "approved-schedule-and-analysis",
+    "approved-exact-budget"
+  ],
+  "required_owner_decisions": [
+    {
+      "blocks": "Corpus freeze.",
+      "decision": null,
+      "id": "D1-corpus",
+      "proposal": "Accept the 12 candidates for independent screening. Appoint two engineers, an adjudicator, and a hold-out custodian.",
+      "required_evidence": [
+        "unfamiliarity-and-estate-attestation",
+        "source-and-dependency-license-review",
+        "feature-coverage-map",
+        "sealed-task-commitments"
+      ]
+    },
+    {
+      "alternative": "Approve a specific scope amendment before any sealed task exposure.",
+      "blocks": "Coverage freeze.",
+      "decision": null,
+      "id": "D2-coverage",
+      "proposal": "Retain four-stack reporting. Keep unsupported Swift and .NET cells visible until later qualified support exists."
+    },
+    {
+      "blocks": "Protocol freeze.",
+      "decision": null,
+      "id": "D3-protocol",
+      "proposal": "Use the original numerical thresholds and the fully crossed 192/576 shapes.",
+      "required_values": [
+        "per-stack-material-regression-margin",
+        "B2-differentiation-rule",
+        "order-seeds",
+        "repetitions",
+        "analysis-method",
+        "category-substitutions"
+      ]
+    },
+    {
+      "blocks": "Baseline freeze. Conformance cannot run in this session.",
+      "decision": null,
+      "id": "D4-baselines",
+      "proposal": "Compare the pinned Orka and Orchestrate candidates against the same conformance contract before choosing B2.",
+      "required_values": [
+        "B1-script-digest",
+        "selected-B2-revision",
+        "baseline-configurations",
+        "comparable-workload-and-control-differences"
+      ]
+    },
+    {
+      "blocks": "Identity freeze. Fixture labels supply no live evidence.",
+      "decision": null,
+      "id": "D5-identities",
+      "proposal": "Select exact live CLI versions, resolved providers and models, configurations, toolchains, and dependency snapshots for both roles.",
+      "required_values": [
+        "runtime-identities",
+        "project-model-and-candidate-digests",
+        "platform-conformance-evidence"
+      ]
+    },
+    {
+      "blocks": "Spending and execution.",
+      "decision": null,
+      "id": "D6-spend",
+      "proposal": "Keep spending at zero until a separately approved exact campaign has complete prices, quotas, and resource limits.",
+      "required_values": [
+        "campaign-shape",
+        "currency",
+        "financial-ceiling",
+        "quota-ceiling",
+        "hard-cap-requirement",
+        "provider-enforcement-or-explicit-non-hard-exposure",
+        "host-cost-and-cleanup",
+        "retention-and-egress"
+      ]
+    }
+  ],
+  "schema_version": 1,
+  "spend_authorized": false,
+  "status": "proposed"
+}

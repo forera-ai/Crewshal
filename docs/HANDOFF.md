@@ -4,6 +4,21 @@ Last updated: 2026-10-16. This record supplies the next session and the owner wi
 
 ## Current state
 
+**October 16: Phase 3A preparation checkpoint; freeze blocked.**
+The proposed package records 12 pinned public corpus candidates and preserves all four stacks.
+It defines B0, B1, B2, P, both role assignments, task contracts, independent annotation, protocol proposals, and separate usage categories.
+Fourteen fresh offline tests check package integrity and refusal behavior through existing interfaces.
+Owner decisions, independent annotations, sealed task commitments, exact live identities, baseline conformance, and spending approval remain missing.
+Operational execution admission remains closed. Phase 3A remains incomplete, and Phase 3B has not started.
+Use [the package](evaluation/phase-3a/README.md), [owner decisions](PHASE-3A-OWNER-DECISIONS-2026-10-16.md), and [continuation prompt](PHASE-3A-CONTINUATION-2026-10-16.md).
+See [the preparation report](PHASE-3A-PREPARATION-2026-10-16.md) for verification and limitations.
+Earlier dated status entries remain historical records.
+
+The source checkpoint version is 0.15.1 on `codex/phase1-architecture`.
+The delivery revision is the commit containing this entry and the Phase 3A preparation report.
+Continue this same milestone with [the exact input index](PHASE-3A-CONTINUATION-INPUTS-2026-10-16.json).
+Stop after the standing branch publication ceremony.
+
 **October 16: Phase 2E software complete; platform and live qualification deferred.**
 Both runtime role assignments pass deterministic external fixtures through the production coordinator.
 The second adapter uses existing candidate capture, SQLite state, checks, evidence, and verdict rules.
@@ -1980,3 +1995,53 @@ No Phase 3A implementation, evaluation, merge, deployment, or registry publicati
 Next milestone: Phase 3A prepares the frozen comparative evaluation package and unresolved owner decisions.
 Feed [the next prompt](PHASE-3A-NEXT-SESSION-2026-10-16.md) and every file in [the exact input index](PHASE-3A-INPUTS-2026-10-16.json).
 Complete the standing branch commit and push, then end this session.
+
+## Phase 3A preparation checkpoint — October 16, 2026
+
+Milestone: prepare the comparative evaluation package. Freeze remains blocked; Phase 3A is incomplete.
+Base revision: `ae4c6beb2ef2083292863be02cbd6f4ea374478b`.
+Branch: `codex/phase1-architecture`. Version: `0.15.1`.
+Delivery revision: the commit containing this entry and the Phase 3A preparation report.
+The checkout was clean, and every exact starting input hash matched.
+
+The proposed package contains seven manifests, a guide, and a content index.
+It records 12 public candidate revisions, root-license digests, source access, observed development prerequisites, and unresolved annotations.
+Each stack retains two development candidates and one proposed hold-out.
+Four independent synthetic fixtures supplement the real corpus; they do not replace it.
+Six task categories and 24 empty sealed-task commitments preserve the planned hold-out shape.
+No hold-out source, manifest, test, or task content was inspected.
+Only public revision metadata and root licenses were read for hold-out candidates.
+
+B0, B1, B2, and P preserve both role assignments and explicit identity fields.
+Live identities, selected baselines, configuration digests, and platform conformance remain unavailable.
+The protocol records threshold proposals, ordering seeds, cache treatment, blinded review, failure accounting, and separate usage categories.
+The fully crossed planning shapes contain 192 development runs and 576 sealed runs, before optional ablations.
+No numerical budget, quota exposure, evaluation execution, or protocol freeze is approved.
+[Six concrete owner decisions](PHASE-3A-OWNER-DECISIONS-2026-10-16.md) state the missing choices and evidence.
+
+The new acceptance module passes 14 tests through existing interfaces.
+The focused package, Phase 2E, and dispatch command passes 85 tests:
+`rtk proxy .venv/bin/python -m unittest tests.acceptance.test_phase_3a tests.acceptance.test_phase_2e tests.acceptance.test_phase_2d_dispatch`.
+Source and fresh installed-wheel suites each pass 1,319 occurrences, with 1,303 unique methods and 16 existing repeats.
+Both suites use empty inherited environments, fresh HOME directories, and process-level network denial.
+All 49 installed package source files match. Offline build, install, CLI help, lint, source/test formatting, typing, and diff checks pass.
+The final data-only review changes pass 14 focused checks in both source and installed environments.
+The first package check exposed one incorrect fixture label and two missing synthetic qualification IDs.
+Fixture corrections pass without changing production behavior.
+The nine historical script format differences retain their starting bytes.
+
+The environment is macOS 27.2 arm64, CPython 3.12.15, uv 0.9.24, and the pinned development dependencies.
+[The preparation report](PHASE-3A-PREPARATION-2026-10-16.md) maps delivered preparation and remaining gates.
+[The verification record](qualification/phase-3a-preparation-verification-20261016.json) supplies exact commands, exits, output hashes, package identity, and limitations.
+The initial evaluation plan, operational code, Linux source, C helper, historical records, charges, custody, and unknown outcomes remain preserved.
+Only the synchronized package version changes inside production source.
+The session did not inspect current physical custody or access credentials or private artifacts.
+No Linux development, VMware, SSH, compiler attempt, real coding runtime, provider inference, paid model, or paid host operation occurred.
+No calibration, sealed evaluation, infrastructure provisioning, merge, deployment, or registry publication occurred.
+Operational execution admission remains closed under ADR 0007.
+
+Continue this same Phase 3A milestone with [the continuation prompt](PHASE-3A-CONTINUATION-2026-10-16.md).
+Feed every file in [the exact continuation index](PHASE-3A-CONTINUATION-INPUTS-2026-10-16.json).
+The smallest missing decision assigns independent corpus engineers, adjudication, and sealed-task custody.
+Owner decisions cannot replace missing independent task or baseline and platform conformance evidence.
+Complete the standing branch commit and push, then stop before Phase 3B.

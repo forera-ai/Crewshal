@@ -10,6 +10,20 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**October 16: Phase 2E software complete; platform and live qualification deferred.**
+Both runtime role assignments pass deterministic external fixtures through the production coordinator.
+The second adapter uses existing candidate capture, SQLite state, checks, evidence, and verdict rules.
+Required review enforces resolved provider independence and the same confirmed project model.
+Risk gates preserve planning approval, actual scope escalation, human conflict decisions, and fresh remediation evidence.
+Source and installed-wheel suites each pass 1,305 test occurrences, including 57 Phase 2E methods.
+All 49 packaged source files match the checkout.
+Operational execution admission remains closed.
+See [the completion report](docs/PHASE-2E-SOFTWARE-COMPLETION-2026-10-16.md) and [verification](docs/qualification/phase-2e-software-verification-20261016.json).
+Phase 3A prepares the comparative evaluation package in a separate session.
+Use [its prompt](docs/PHASE-3A-NEXT-SESSION-2026-10-16.md) and [exact input files](docs/PHASE-3A-INPUTS-2026-10-16.json).
+No Phase 3A implementation or evaluation occurred.
+Earlier dated status entries remain historical records.
+
 **October 16: Phase 2D software complete; platform and live qualification deferred.**
 The actual coordinator workflow passes deterministic external runtime and validator fixtures.
 Checked request preparation and atomic validator capture join the existing candidate, evidence, durable state, and verdict code.
@@ -28,7 +42,7 @@ Earlier dated status entries remain historical records.
 Operational execution admission remains closed; platform support and live acceptance remain unverified.
 Earlier blocked-status paragraphs below describe dated history.
 
-Source checkpoint: **0.14.0**. Package registry publication remains unauthorized. See [CHANGELOG.md](CHANGELOG.md) for version history.
+Source checkpoint: **0.15.0**. Package registry publication remains unauthorized. See [CHANGELOG.md](CHANGELOG.md) for version history.
 
 **October 11: Phase 2D remains blocked.** [The current report](docs/PHASE-2D-BLOCKED-2026-10-11.md) gives four causes and the exact continuation inputs. Fresh source checks pass all 863 offline tests, including 722 Phase 2D tests. Linux and live acceptance remain incomplete. The owner requires ASD-STE100 for human communication. Version 0.12.0 remains unchanged; this report is uncommitted. Earlier status paragraphs are dated records.
 

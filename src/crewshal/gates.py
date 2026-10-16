@@ -22,9 +22,11 @@ def evaluate(
     attempts: list[Attempt],
     evidence: list[Evidence],
     waivers: list[Waiver],
+    *,
+    additional_gates: dict[str, str] | None = None,
 ) -> Verdict:
     """Caller must supply trusted records; the durable store resolves all IDs itself."""
-    gates: dict[str, str] = {}
+    gates: dict[str, str] = dict(additional_gates or {})
     if run.binding != current or current.task != record_digest(task) or run.task_id != task.id:
         gates["binding"] = "stale"
     if not any(a.run_id == run.id and a.binding == current for a in approvals):

@@ -32,6 +32,16 @@ from crewshal.contracts import (
     record_digest,
 )
 from crewshal.gates import evaluate
+from crewshal.review import (
+    WorkflowPlan,
+    ReviewBaseline,
+    PlanningApproval,
+    ReviewRequest,
+    ReviewCapture,
+    ReviewResolution,
+    Remediation,
+    workflow_gates,
+)
 from crewshal.admission import NativeAdmissionRecord
 from crewshal.integration import CodexCollection
 from crewshal.model import Contract, ProjectModel, digest, model_digest
@@ -45,6 +55,13 @@ INSTALLATION_OUTPUT_BYTES = 16777216
 INSTALLATION_JOURNAL_FILE_BYTES = 1073741824
 T = TypeVar("T", bound=Contract)
 TYPES: dict[str, type[Contract]] = {
+    "review_baseline": ReviewBaseline,
+    "workflow": WorkflowPlan,
+    "planning": PlanningApproval,
+    "review_request": ReviewRequest,
+    "review_capture": ReviewCapture,
+    "review_resolution": ReviewResolution,
+    "remediation": Remediation,
     "project": ProjectModel,
     "task": Task,
     "run": Run,
@@ -1375,6 +1392,7 @@ class CoordinatorStore:
                 [a for a in self.records("attempt", Attempt) if a.run_id == run_id],
                 captured,
                 [w for w in self.records("waiver", Waiver) if w.run_id == run_id],
+                additional_gates=workflow_gates(self, run, current),
             )
             _, verdict_version = self.get("verdict", result.id, Verdict)
             self._put("verdict", result.id, result, verdict_version)

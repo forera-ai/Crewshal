@@ -643,7 +643,8 @@ class Phase2DAdmission(unittest.TestCase):
         ):
             with self.subTest(changes=changes), self.assertRaises(ValueError):
                 NativeAdmissionSpec.model_validate({**self.spec.model_dump(), **changes})
-        self.assertEqual(len(self.configuration.source_sha256), 42)
+        self.assertEqual(len(self.configuration.source_sha256), 44)
+        self.assertTrue({"claude.py", "review.py"} <= self.configuration.source_sha256.keys())
 
     def test_missing_or_reaped_child_cannot_supply_admission(self):
         self.child.result = 0

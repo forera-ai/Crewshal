@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.15.0 — 2026-10-16
+
+- Phase 2E software now supports both runtime role assignments through the existing coordinator.
+- The bounded Claude Code adapter preserves typed outcomes, runtime-reported usage, and closed operational admission.
+- Independent review receives the confirmed project model, frozen source, captured source diff, and approved check evidence.
+- Risk rules require planning approval for high-risk work and block actual scope escalation.
+- Human decisions preserve review disagreement, explicit risk acceptance, stopping, and authorized remediation as separate records.
+- Remediation creates a new candidate and task, preserves required checks, and requires fresh approval, validation, and review.
+- Fifty-seven external-fixture tests cover both role assignments, project models, identity refusal, evidence integrity, cancellation, failure, and recovery.
+- Source and installed suites each pass 1,305 occurrences. All 49 package files match; lint, source formatting, typing, and CLI checks pass.
+- Dispatch now binds 44 source files. Changed adapter or review bytes invalidate earlier configurations.
+- Platform and live qualification remain deferred. Historical Linux source, custody records, and nine script format differences remain intact.
+- This checkpoint includes the Phase 3A prompt and exact continuation inputs. Phase 3A implementation has not started.
+
 ## 0.14.0 — 2026-10-16
 
 - Complete Phase 2D software under ADR 0007; defer platform and live qualification.

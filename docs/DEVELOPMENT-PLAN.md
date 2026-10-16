@@ -1,5 +1,18 @@
 # Crewshal phased development and acceptance plan
 
+## Current software checkpoint — Phase 2E, 2026-10-16
+
+Phase 2E software complete; platform and live qualification deferred.
+[The completion report](PHASE-2E-SOFTWARE-COMPLETION-2026-10-16.md) maps the software conditions to fresh production-path evidence.
+Source and installed-wheel suites each pass 1,305 occurrences, including 57 Phase 2E methods.
+Both role assignments use the same confirmed project model.
+Provider independence, risk, human conflict decisions, and remediation pass deterministic external fixtures.
+Operational execution admission remains closed.
+Phase 3A prepares the comparative evaluation package in a separate session.
+Use [its prompt](PHASE-3A-NEXT-SESSION-2026-10-16.md) and [exact inputs](PHASE-3A-INPUTS-2026-10-16.json).
+Platform conformance, live trials, evaluation spending, and releases retain their separate gates.
+Earlier dated status entries remain historical records.
+
 ## Current software checkpoint — 2026-10-16
 
 Phase 2D software complete; platform and live qualification deferred.
@@ -62,7 +75,7 @@ A milestone has four parts: plan the concrete change; implement only its scope; 
 | 2B | Durable state, pure gates and trusted evidence contracts | 2A | Crash/recovery fixtures, forged/stale evidence rejection, explicit unavailable/waiver states; deterministic suite | Complete; 21 offline acceptance cases, 33-case complete suite and installed-wheel/static checks passed on 2026-10-02; see HANDOFF.md |
 | 2C | Reuse decision and execution-environment qualification | 2B | Existing execution seams assessed against frozen cases; chosen substrate passes containment probes; denied boundaries documented | Complete; one complete v18 Linux aarch64 profile passes all twenty original cases twice and both native file tools. Original limits unchanged; current cleanup observed. Windows/macOS runtime qualification unknown. See PHASE-2C-COMPLETION-ASSESSMENT.md |
 | 2D | First-runtime integration and core software workflow | Existing 2A–2C software and accepted ADR 0007 | Actual coordinator workflow passes fresh deterministic runtime/validator fixtures, candidate and evidence integrity, refusal/recovery cases, complete offline suite, and installed-package checks | Software complete on 2026-10-16; platform and live qualification deferred separately |
-| 2E | Second runtime, independent review and full vertical slice | Revised 2D software acceptance | Both role assignments, provider identity rules, disagreement/remediation, and the low-risk no-review path pass deterministic source integration checks | Planned as the next software milestone; platform and live qualification remain separate |
+| 2E | Second runtime, independent review and full vertical slice | Revised 2D software acceptance | Both role assignments, provider identity rules, disagreement/remediation, and the low-risk no-review path pass deterministic source integration checks | Software complete on 2026-10-16; platform and live qualification deferred separately |
 | 3A | Frozen comparative evaluation package | 2E | Legally usable corpus, task/rubric/threshold/baseline/version manifests; four-stack coverage or prospective amendment; owner spend approval | Planned; evaluation gate |
 | 3B | Calibration and protocol corrections | 3A | Development corpus runs with complete accounting; failures preserved; amended protocol frozen before hold-outs | Planned |
 | 3C | Sealed evaluation and owner product decision | 3B | Frozen held-out execution, blind quality assessment, baseline comparison and unknown/failed-run accounting; GO/MODIFY/ABANDON decision | Planned |

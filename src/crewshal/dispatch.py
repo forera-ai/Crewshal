@@ -59,6 +59,8 @@ SOURCE_FILES = (
     "bootstrap_helper.c",
     "supervisor.py",
     "runtime.py",
+    "claude.py",
+    "review.py",
     "runtime_batch.py",
     "integration.py",
     "candidate.py",

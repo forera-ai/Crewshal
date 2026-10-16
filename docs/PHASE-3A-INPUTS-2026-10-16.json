@@ -1,0 +1,243 @@
+{
+  "branch": "codex/phase1-architecture",
+  "date": "2026-10-16",
+  "delivery_revision": "The commit containing this input index.",
+  "files": [
+    {
+      "bytes": 7760,
+      "path": "AGENTS.md",
+      "sha256": "ed7b4175bc9c68faaa1d2f9ce43734982374a4780281d4b049af8967464e1b96"
+    },
+    {
+      "bytes": 29374,
+      "path": "README.md",
+      "sha256": "e1e2e45bd0469c5668da53e4c48c6897e031a481642a16df3d8765d264799e63"
+    },
+    {
+      "bytes": 58815,
+      "path": "CHANGELOG.md",
+      "sha256": "a4d73431dee7cf29536e9f53d0c757118b290f7f72ed74196f12aece08f939a9"
+    },
+    {
+      "bytes": 920,
+      "path": "pyproject.toml",
+      "sha256": "f93b489618b00203174d00fb3fd09a78d49332ca9bd05819268e360bc71f119e"
+    },
+    {
+      "bytes": 16775,
+      "path": "requirements-dev.lock",
+      "sha256": "cc15312627f6235586f0a0655e272fb245563782d88283f57e1159af7dffbc00"
+    },
+    {
+      "bytes": 11402,
+      "path": "LICENSE",
+      "sha256": "23e146567faed6ea7b23ba44ee4db3fca49ee2ce0c13272ef38ce59eff567534"
+    },
+    {
+      "bytes": 14592,
+      "path": "INITIAL-EVALUATION-PLAN.md",
+      "sha256": "ab74f7c04ee2f0894cc95445edef618ce3227ef1d754e5d312af4d1d5ea03acd"
+    },
+    {
+      "bytes": 412145,
+      "path": "docs/HANDOFF.md",
+      "sha256": "ab3254ce96eced3ca7ca9d8f98d6134a81396ad91722348e3e0e8a58fd52f22b"
+    },
+    {
+      "bytes": 59702,
+      "path": "docs/DEVELOPMENT-PLAN.md",
+      "sha256": "fdfde99e92429414861affbcfda836f08efd4da697740ec599b37fd63cbd3700"
+    },
+    {
+      "bytes": 18875,
+      "path": "docs/ARCHITECTURE.md",
+      "sha256": "b1059de8a036fcf5161f89eb99aa1960b1a1eefee445b738b853abd6b7a88621"
+    },
+    {
+      "bytes": 7328,
+      "path": "docs/decisions/0001-name-and-repository.md",
+      "sha256": "cecb3ecb8df79bff668af4f6374197a8f01867f80a31f1f9a83afacf3479fe47"
+    },
+    {
+      "bytes": 3910,
+      "path": "docs/decisions/0002-minimal-architecture.md",
+      "sha256": "d3a95bba05c6a27fef00f417e093d6496aa37f0fc064c679c67590f4556e8d98"
+    },
+    {
+      "bytes": 11609,
+      "path": "docs/decisions/0003-direct-linux-qualification.md",
+      "sha256": "dcd11ac51fc39fe62523dd7a2d351ef24cc902357203a55e34758f56a29ccf99"
+    },
+    {
+      "bytes": 2748,
+      "path": "docs/decisions/0004-retained-terminal-storage.md",
+      "sha256": "09883c39b2a7b52a198bbc5ab7e3e3e6840d7425e3d706dfdf3cc92714c67817"
+    },
+    {
+      "bytes": 3214,
+      "path": "docs/decisions/0005-official-subscription-pilot.md",
+      "sha256": "fd2cc19b5317307ca20510cd9a0bc60fd5874ae41a74b090fa0431091cdd4e53"
+    },
+    {
+      "bytes": 2544,
+      "path": "docs/decisions/0006-upfront-installation-charge.md",
+      "sha256": "d794f8d7d5b8f38eb04b4e4ff1fb837100b6964abe79bfe1610ef35e5f0bf629"
+    },
+    {
+      "bytes": 4907,
+      "path": "docs/decisions/0007-core-development-before-platform-qualification.md",
+      "sha256": "ade9437cbda53d723d9d42e1250ee40546e338582b0747404b7fafeea3169a8c"
+    },
+    {
+      "bytes": 7819,
+      "path": "docs/PHASE-2D-SOFTWARE-COMPLETION-2026-10-16.md",
+      "sha256": "86c3ea8946a317467942a4e884421aefeeda954b561981dc7c4b5db0b5bc27d1"
+    },
+    {
+      "bytes": 12546,
+      "path": "docs/qualification/phase-2d-software-verification-20261016.json",
+      "sha256": "bf09356f0db3746925fc3ef51c66bec48dae628332bcea6d41fa1d31f6e40d91"
+    },
+    {
+      "bytes": 10112,
+      "path": "docs/PHASE-2E-SOFTWARE-COMPLETION-2026-10-16.md",
+      "sha256": "7eb3f63d06cca12c055fec6dea914bc7c228dfd12e43b8adb4fc6c77894dd3d8"
+    },
+    {
+      "bytes": 19236,
+      "path": "docs/qualification/phase-2e-software-verification-20261016.json",
+      "sha256": "dcc3d278255966be0315a77dbac5d303157760b64428d37c3e8c2a586b50447a"
+    },
+    {
+      "bytes": 3519,
+      "path": "docs/PHASE-3A-NEXT-SESSION-2026-10-16.md",
+      "sha256": "698d8bdf30cc2268b47b717da2517eb91932fdb162be4143f04dadb2418ec6cb"
+    },
+    {
+      "bytes": 91,
+      "path": "src/crewshal/__init__.py",
+      "sha256": "84dbdd91c74a38b1c7c7ac7828add707330a6421c3c09193e902baef524cc457"
+    },
+    {
+      "bytes": 6575,
+      "path": "src/crewshal/model.py",
+      "sha256": "3cbc9405e0c7fb5247a13562e72c8472c3edc0f3fc2407db2fd6c6c95fae25de"
+    },
+    {
+      "bytes": 11857,
+      "path": "src/crewshal/contracts.py",
+      "sha256": "ed308d86b9b77fec5e9943677bf1d4b59ef0e16edb7fec25e8b334016bada437"
+    },
+    {
+      "bytes": 13229,
+      "path": "src/crewshal/discovery.py",
+      "sha256": "b9ab698faa5951f9badf566b1fdd8cd3be7487f82fdc96acd6a246ef44aa1b2c"
+    },
+    {
+      "bytes": 3347,
+      "path": "src/crewshal/state.py",
+      "sha256": "856abbc9de6e630798736eab14ddc6062bc6768621edd8a0d9477f1f3fa7e5a3"
+    },
+    {
+      "bytes": 19518,
+      "path": "src/crewshal/runtime.py",
+      "sha256": "afd84e5497092a8117d3705f81d7dc9e6885852fa29a22ab9653a9871170f418"
+    },
+    {
+      "bytes": 13240,
+      "path": "src/crewshal/claude.py",
+      "sha256": "885f704f22ceed74615494fee4015e0b31b64593d2b15b536dd35ed19d6aad84"
+    },
+    {
+      "bytes": 35516,
+      "path": "src/crewshal/integration.py",
+      "sha256": "35f69b34238f66e261f34587b5547f2311b7c4fc67cb055627d14b757445da4a"
+    },
+    {
+      "bytes": 18963,
+      "path": "src/crewshal/candidate.py",
+      "sha256": "e667919ff4ec6d043de6a1c00f9cb1683de5843cb28f8813b25fb4b75d948bc4"
+    },
+    {
+      "bytes": 66863,
+      "path": "src/crewshal/durable.py",
+      "sha256": "e86e31731bffc3b365ee85d13978382a60b5e45bca870c9aba3a4fc9096a163d"
+    },
+    {
+      "bytes": 5222,
+      "path": "src/crewshal/gates.py",
+      "sha256": "04ddc779fc2dc5aa45c09ae30189d7e0e825bbd983fd9b884e878e46f8c55b2e"
+    },
+    {
+      "bytes": 29474,
+      "path": "src/crewshal/review.py",
+      "sha256": "11d7f603ce98d233dcd99a02b4ade4b099cf8c5d2489355f3616213838bb6ac9"
+    },
+    {
+      "bytes": 17282,
+      "path": "src/crewshal/dispatch.py",
+      "sha256": "b4afe498e5d7f25b3fb5781e7142280de9722a06811b107b646c0acc37eeffd8"
+    },
+    {
+      "bytes": 3082,
+      "path": "src/crewshal/qualification.py",
+      "sha256": "772df20ee17ddd52023eb0b245d733e2db29d115b625703fd4c6d86026f5554a"
+    },
+    {
+      "bytes": 35230,
+      "path": "src/crewshal/supervisor.py",
+      "sha256": "4ec3238f5d2c9a8f68762c084ab241112a9b87d626023b5e6a18ab7b6e70a2f6"
+    },
+    {
+      "bytes": 27753,
+      "path": "src/crewshal/app_server.py",
+      "sha256": "62e0227245b69bb0900c6bfd566b7b79bbeb90038c82372b541e7534acd7b78d"
+    },
+    {
+      "bytes": 16185,
+      "path": "tests/acceptance/test_phase_2a.py",
+      "sha256": "e4c53627b3fc1be58467761b2c2002010e256f9e087e92fe9ba20837ed627695"
+    },
+    {
+      "bytes": 33064,
+      "path": "tests/acceptance/test_phase_2b.py",
+      "sha256": "a5db032b0e1ba98427bd95e726d70ac5e6c07039851553f8c98950496f9dbe40"
+    },
+    {
+      "bytes": 19696,
+      "path": "tests/acceptance/test_phase_2d_core.py",
+      "sha256": "ccc356bf4245afe2cb23158ad53484daa00b3788b64379c2d6483cfbff72a0c0"
+    },
+    {
+      "bytes": 35917,
+      "path": "tests/acceptance/test_phase_2e.py",
+      "sha256": "8aea03066e6366b410e845483c71b7a77858567676cdf85a70f6b59473b831b2"
+    },
+    {
+      "bytes": 18770,
+      "path": "tests/acceptance/test_phase_2d_dispatch.py",
+      "sha256": "af08ffbb69de2bb1b048a89057ec621c0e6e4bd453230adced9c17f000c5d012"
+    },
+    {
+      "bytes": 29930,
+      "path": "tests/acceptance/test_phase_2d_admission.py",
+      "sha256": "769167cc94160ce457ceed43f7ec328caa09c56bf73f51e57f05d792e5ee534a"
+    },
+    {
+      "bytes": 24831,
+      "path": "tests/acceptance/test_phase_2d_bootstrap.py",
+      "sha256": "c186f92b42251759986443f3fe1ff7d537d9687803cb64505846da54f6d73e98"
+    }
+  ],
+  "hash_policy": "Hashes describe this checkpoint. Inspect and preserve later changes.",
+  "next_prompt": "docs/PHASE-3A-NEXT-SESSION-2026-10-16.md",
+  "operational_execution_allowed": false,
+  "phase": "3A evaluation package",
+  "platform_and_live_qualification": "Deferred separately under ADR 0007.",
+  "private_inputs_required": false,
+  "purpose": "Exact starting context. This index requires the existing checkout and is not a standalone build bundle.",
+  "requires_existing_checkout": true,
+  "schema_version": 1,
+  "spend_authorized": false,
+  "version": "0.15.0"
+}

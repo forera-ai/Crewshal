@@ -378,13 +378,15 @@ class Phase2DDispatch(unittest.TestCase):
 
         original = _Reader.read
 
-        def changed(reader, name):
-            data = original(reader, name)
-            return data + b"\n# changed production source\n" if name == "runtime.py" else data
+        for source in ("runtime.py", "claude.py", "review.py"):
 
-        with patch("crewshal.dispatch._Reader.read", changed):
-            with self.assertRaisesRegex(ValueError, "current source/preparation bytes differ"):
-                self.prepare()
+            def changed(reader, name):
+                data = original(reader, name)
+                return data + b"\n# changed production source\n" if name == source else data
+
+            with self.subTest(source=source), patch("crewshal.dispatch._Reader.read", changed):
+                with self.assertRaisesRegex(ValueError, "current source/preparation bytes differ"):
+                    self.prepare()
 
     def test_fresh_qualification_cannot_expand_first_fixture_task_or_scope(self):
         original_task, original_binding = self.task, self.binding

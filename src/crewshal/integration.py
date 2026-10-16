@@ -27,14 +27,18 @@ from crewshal.contracts import (
     record_digest,
 )
 from crewshal.model import ProjectModel, digest, model_digest
+from crewshal.claude import (
+    ClaudeIdentity,
+    ClaudeRequest,
+    normalize_runtime,
+    prepare_runtime_contract,
+)
 from crewshal.runtime import (
     STREAM_BYTES,
     CodexIdentity,
     CodexRequest,
     ProcessObservation,
     RuntimeOutcome,
-    normalize_codex,
-    prepare_codex_contract,
 )
 
 if TYPE_CHECKING:
@@ -59,19 +63,19 @@ def scope_digest(allowed_paths: list[str]) -> str:
     )
 
 
-def prepare_codex_attempt(
+def _prepare_runtime_attempt(
     store: "CoordinatorStore",
     *,
     project_id: str,
     attempt: Attempt,
     current: Binding,
-    identity: CodexIdentity,
+    identity: CodexIdentity | ClaudeIdentity,
     expected_configuration: str,
     initial: FrozenCandidate,
     candidate: Path,
     allowed_paths: list[str],
     token: str,
-) -> CodexRequest:
+) -> CodexRequest | ClaudeRequest:
     """Persist one checked intent and return inert first-runtime contract data.
 
     The external adapter must acknowledge its retained handle before collection.
@@ -80,7 +84,7 @@ def prepare_codex_attempt(
     """
     from crewshal.candidate import _root, _scan
 
-    request = prepare_codex_contract(
+    request = prepare_runtime_contract(
         attempt=attempt,
         current=current,
         identity=identity,
@@ -113,6 +117,9 @@ def prepare_codex_attempt(
             raise ValueError("current owner approval required before intent")
         if any(item.run_id == run.id for item in store.records("attempt", Attempt)):
             raise ValueError("existing attempt requires inspection; automatic retry is disabled")
+        from crewshal.review import check_planning, capture_baseline
+
+        check_planning(store, run)
         root = _root(candidate)
         if root.is_relative_to(store.directory) or store.directory.is_relative_to(root):
             raise ValueError("candidate must exclude coordinator state")
@@ -121,6 +128,7 @@ def prepare_codex_attempt(
         # Recheck the stored task while the transaction owns the snapshot.
         if request.requirement != _stored_task(store, run.id).requirement:
             raise ValueError("stored task changed before intent")
+        capture_baseline(store, run, root, initial)
         store._put("attempt", attempt.id, attempt, 0)
     return request
 
@@ -228,7 +236,7 @@ class CodexCollection(Record):
     initial: FrozenCandidate
     frozen: FrozenCandidate | None
     allowed_paths: list[str]
-    identity: CodexIdentity
+    identity: CodexIdentity | ClaudeIdentity
     expected_configuration: Digest
     observation: ProcessObservation
     outcome: RuntimeOutcome
@@ -270,7 +278,7 @@ def collect_codex_attempt(
     candidate: Path,
     frozen_target: Path,
     allowed_paths: list[str],
-    identity: CodexIdentity,
+    identity: CodexIdentity | ClaudeIdentity,
     expected_configuration: str,
     observation: ProcessObservation,
     stdout: bytes,
@@ -309,7 +317,7 @@ def _collect_codex_attempt_locked(
     candidate: Path,
     frozen_target: Path,
     allowed_paths: list[str],
-    identity: CodexIdentity,
+    identity: CodexIdentity | ClaudeIdentity,
     expected_configuration: str,
     observation: ProcessObservation,
     stdout: bytes,
@@ -334,7 +342,7 @@ def _collect_codex_attempt_locked(
 
     current = Binding.model_validate_json(current.model_dump_json())
     initial = FrozenCandidate.model_validate_json(initial.model_dump_json())
-    identity = CodexIdentity.model_validate_json(identity.model_dump_json())
+    identity = type(identity).model_validate_json(identity.model_dump_json())
     observation = ProcessObservation.model_validate_json(observation.model_dump_json())
     allowed_paths = list(allowed_paths)
     if current.candidate != record_digest(initial) or current.scope != scope_digest(allowed_paths):
@@ -401,7 +409,7 @@ def _collect_codex_attempt_locked(
     # No previously captured evidence may be silently rebound to a new candidate.
     if any(item.run_id == run.id for item in store.records("evidence", Evidence)):
         raise ValueError("existing evidence cannot transfer to a new candidate")
-    outcome = normalize_codex(
+    outcome = normalize_runtime(
         attempt,
         current,
         identity,
@@ -491,6 +499,74 @@ def _collect_codex_attempt_locked(
     if frozen is None:
         store.connection.execute("DELETE FROM lease")
     return collection
+
+
+# Both routes use the same capture records and durable store.
+def prepare_runtime_attempt(
+    store: "CoordinatorStore",
+    *,
+    project_id: str,
+    attempt: Attempt,
+    current: Binding,
+    identity: CodexIdentity | ClaudeIdentity,
+    expected_configuration: str,
+    initial: FrozenCandidate,
+    candidate: Path,
+    allowed_paths: list[str],
+    token: str,
+) -> CodexRequest | ClaudeRequest:
+    """Require a recorded risk plan for the two-runtime software workflow."""
+    from crewshal.review import WorkflowPlan
+
+    if store.get("workflow", attempt.run_id, WorkflowPlan)[0] is None:
+        raise ValueError("two-runtime workflow requires a recorded risk plan")
+    return _prepare_runtime_attempt(
+        store,
+        project_id=project_id,
+        attempt=attempt,
+        current=current,
+        identity=identity,
+        expected_configuration=expected_configuration,
+        initial=initial,
+        candidate=candidate,
+        allowed_paths=allowed_paths,
+        token=token,
+    )
+
+
+def prepare_codex_attempt(
+    store: "CoordinatorStore",
+    *,
+    project_id: str,
+    attempt: Attempt,
+    current: Binding,
+    identity: CodexIdentity,
+    expected_configuration: str,
+    initial: FrozenCandidate,
+    candidate: Path,
+    allowed_paths: list[str],
+    token: str,
+) -> CodexRequest:
+    """Preserve the first-runtime implementation contract."""
+    identity = CodexIdentity.model_validate_json(identity.model_dump_json())
+    result = _prepare_runtime_attempt(
+        store,
+        project_id=project_id,
+        attempt=attempt,
+        current=current,
+        identity=identity,
+        expected_configuration=expected_configuration,
+        initial=initial,
+        candidate=candidate,
+        allowed_paths=allowed_paths,
+        token=token,
+    )
+    assert isinstance(result, CodexRequest)
+    return result
+
+
+collect_runtime_attempt = collect_codex_attempt
+RuntimeCollection = CodexCollection
 
 
 def collect_original_volume_codex(

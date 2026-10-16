@@ -4,6 +4,24 @@ Last updated: 2026-10-16. This record supplies the next session and the owner wi
 
 ## Current state
 
+**October 16: Phase 2E software complete; platform and live qualification deferred.**
+Both runtime role assignments pass deterministic external fixtures through the production coordinator.
+The second adapter uses existing candidate capture, SQLite state, checks, evidence, and verdict rules.
+Required review enforces resolved provider independence and the same confirmed project model.
+Risk gates preserve planning approval, actual scope escalation, human conflict decisions, and fresh remediation evidence.
+Source and installed-wheel suites each pass 1,305 test occurrences, including 57 Phase 2E methods.
+All 49 packaged source files match the checkout.
+Operational execution admission remains closed.
+See [the completion report](PHASE-2E-SOFTWARE-COMPLETION-2026-10-16.md) and [verification](qualification/phase-2e-software-verification-20261016.json).
+Phase 3A prepares the comparative evaluation package in a separate session.
+Use [its prompt](PHASE-3A-NEXT-SESSION-2026-10-16.md) and [exact input files](PHASE-3A-INPUTS-2026-10-16.json).
+No Phase 3A implementation or evaluation occurred.
+Earlier dated status entries remain historical records.
+
+The source checkpoint version is 0.15.0 on `codex/phase1-architecture`.
+The delivery revision is the commit containing this entry and the Phase 2E completion report.
+Stop after the standing branch publication ceremony.
+
 **October 16: Phase 2D software complete; platform and live qualification deferred.**
 The coordinator workflow passes fresh deterministic external runtime and validator fixtures.
 Checked request preparation verifies the confirmed model, task, approval, configuration, scope, and initial candidate.
@@ -1902,3 +1920,63 @@ No Linux development, VMware, SSH, compiler, qualification batch, exception prop
 No Phase 2E implementation, merge, deployment, or package publication occurred.
 Standing instructions authorize this coherent branch commit and push.
 Phase 2E software is next; its prompt and exact files are linked in the current state.
+
+
+## Phase 2E software completion — October 16, 2026
+
+Milestone: Phase 2E software complete; platform and live qualification deferred.
+Base revision: `18fa30f5ed28ec78170ee4d73d37378e00017a21`.
+Branch: `codex/phase1-architecture`. Version: `0.15.0`.
+Delivery revision: the commit containing this ledger entry and the completion report.
+
+The second adapter uses the existing production coordinator, candidate capture, SQLite store, normalization, evidence, and verdict path.
+Both role assignments use the same confirmed Python or package-based TypeScript project model.
+The reviewer receives a separate frozen copy, actual source diff, task, project model, and captured checks.
+The request excludes implementation claims and conversation.
+Resolved provider identity must differ when independent review is required.
+A different session or runtime label cannot establish independence.
+Required review remains blocked when no independent capture exists, including when a generic completion waiver exists.
+
+The risk plan enforces ordinary-risk review and separate high-risk planning approval.
+Actual scope escalation remains blocked.
+Low-risk work can finish without mandatory review.
+Human conflict decisions retain the review, explicit risk acceptance, stopping, and remediation separately.
+Authorized remediation creates another candidate and task.
+It preserves required checks and requires fresh owner approval, affected checks, and review.
+It cannot accept an earlier scope escape or remove required checks.
+Claims, captured evidence, decisions, and verdicts remain separate records.
+Cancellation, timeout, refusal, malformed output, failure, and restart cannot silently retry work.
+The fixtures preserve original files, dirty bytes, and Git metadata.
+The coordinator never merges a candidate automatically.
+
+The new module passes 57 tests.
+The focused affected suite passes 167 tests.
+The Phase 2E and dispatch suite passes 71 tests.
+Both complete suites pass 1,305 occurrences, with 1,289 unique methods and 16 existing repeated occurrences.
+All 49 installed package files match the source.
+Lint, source and test formatting, strict typing, CLI help, and diff checks pass.
+The nine historical script format differences match their starting bytes.
+The environment is macOS 27.2 arm64 with CPython 3.12.15, uv 0.9.24, and the pinned development dependencies.
+[The verification record](qualification/phase-2e-software-verification-20261016.json) supplies exact commands, results, environment, hashes, and limitations.
+
+Development tests reproduced missing-review waiver acceptance, review before check capture, and missing before/after diff data.
+The corrected production paths pass their regression tests.
+The first complete source and installed runs each failed two old assertions after source binding increased from 42 to 44 files.
+The corrected tests require both new modules and preserve the existing admission checks.
+A static check also required an explicit type for review termination data.
+The final checks pass.
+[The completion report](PHASE-2E-SOFTWARE-COMPLETION-2026-10-16.md) maps acceptance conditions and records these failures.
+
+Platform containment, hard deadlines, real provider identity, and live runtime behavior remain unqualified.
+The strict Claude stream subset refuses unsupported event types.
+Fixture process observations supply no platform proof or execution permission.
+Core source changes invalidate older source-bound configurations.
+No Linux-specific implementation or C helper bytes changed.
+The session made no VMware, SSH, compiler, qualification-batch, credential, provider-inference, paid-model, or paid-host operation.
+Historical records, retained charges, custody, and unknown outcomes remain preserved.
+The session did not inspect their current physical state.
+No Phase 3A implementation, evaluation, merge, deployment, or registry publication occurred.
+
+Next milestone: Phase 3A prepares the frozen comparative evaluation package and unresolved owner decisions.
+Feed [the next prompt](PHASE-3A-NEXT-SESSION-2026-10-16.md) and every file in [the exact input index](PHASE-3A-INPUTS-2026-10-16.json).
+Complete the standing branch commit and push, then end this session.

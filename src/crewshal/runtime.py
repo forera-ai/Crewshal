@@ -153,6 +153,7 @@ def normalize_codex(
     stderr: bytes,
     *,
     expected_configuration: str | None = None,
+    role: Literal["implementation", "review"] = "implementation",
 ) -> RuntimeOutcome:
     """Normalize one recorded native turn; completion is not a project verdict.
 
@@ -194,7 +195,7 @@ def normalize_codex(
     if (
         attempt.state != "acknowledged"
         or not attempt.handle
-        or attempt.role != "implementation"
+        or attempt.role != role
         or not attempt.provider
         or not attempt.model
         or attempt.provider != identity.provider
@@ -432,7 +433,12 @@ def prepare_codex_request(
 
 
 def prepare_codex_contract(
-    task: "Task", attempt: Attempt, current: Binding, identity: CodexIdentity
+    task: "Task",
+    attempt: Attempt,
+    current: Binding,
+    identity: CodexIdentity,
+    *,
+    role: Literal["implementation", "review"] = "implementation",
 ) -> CodexRequest:
     """Build inert first-runtime data without platform qualification or launch authority.
 
@@ -448,7 +454,7 @@ def prepare_codex_contract(
     if (
         attempt.binding != current
         or current.task != record_digest(task)
-        or attempt.role != "implementation"
+        or attempt.role != role
         or attempt.state != "intent"
         or attempt.handle is not None
         or attempt.process_exit is not None

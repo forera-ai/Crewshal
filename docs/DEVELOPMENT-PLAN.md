@@ -1,5 +1,15 @@
 # Crewshal phased development and acceptance plan
 
+## Current boundary — Phase 3B toolchain preparation draft, 2026-10-18
+
+The frozen package checker passes, but the guest and selected tools still fail admission.
+Read-only installer logs report rounded fetch totals without an exact transfer bound.
+The [preparation draft](PHASE-3B-TOOLCHAIN-PREPARATION-BLOCKED-2026-10-18.md) proposes a guest-visible RAM threshold and separate infrastructure ledger.
+The draft lacks complete artifact digests, byte counts, dependencies, and install commands.
+It grants no installation, retrieval, qualification, or calibration authority.
+Use [the next prompt](PHASE-3B-TOOLCHAIN-PREPARATION-NEXT-SESSION-2026-10-18.md) and [exact input index](PHASE-3B-TOOLCHAIN-PREPARATION-INPUTS-2026-10-18.json).
+All 192 development rows remain planned. All 576 sealed rows remain unexposed. Phase 3C remains closed.
+
 ## Current boundary — Phase 3B guest account handoff, 2026-10-18
 
 The approved batch has a separate, nonshared Ubuntu arm64 guest with four virtual CPUs, 16 GiB RAM, and a 64 GB virtual disk.

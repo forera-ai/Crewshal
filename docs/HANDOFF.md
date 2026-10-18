@@ -4,6 +4,21 @@ Last updated: 2026-10-18. This record supplies the next session and the owner wi
 
 ## Current state
 
+**October 18: Phase 3B toolchain preparation amendment remains incomplete.**
+The session began at `76980c7b8837da63b8c17e0b1fa1535893bfa39e` on `codex/phase1-architecture` with a clean worktree.
+The frozen checker again passed with 23 artifacts, 768 planned units, and content digest `4bd188deb0089a79d018ed13b2fd2467927a53efc4d3d4e323f8cf43bdc892c0`.
+The separate Ubuntu guest remains disconnected. Installer logs show rounded `Fetched 393 kB` and `Fetched 292 MB` summaries.
+These summaries do not provide an exact upper bound for the installer transfer.
+The guest's 16,728,174,592 visible memory bytes remain below 16 GiB. Selected tools remain absent or different.
+The [blocked amendment draft](PHASE-3B-TOOLCHAIN-PREPARATION-BLOCKED-2026-10-18.md) proposes an exact visible-memory threshold and separate VM-plus-ISO ledger.
+The proposed storage interpretation needs owner approval. Artifact digests, byte counts, dependency sets, and commands remain incomplete.
+No guest settings, network connection, tool installation, provider request, or calibration changed.
+The prior qualification and batch-limit approvals remain in force. No Jev paid call ran.
+All 192 development rows remain planned. All 576 sealed rows remain unexposed. Operational admission and Phase 3C remain closed.
+The source checkpoint version is `0.15.8`. The delivery revision is the commit containing this entry.
+Use the [next prompt](PHASE-3B-TOOLCHAIN-PREPARATION-NEXT-SESSION-2026-10-18.md) and [exact input index](PHASE-3B-TOOLCHAIN-PREPARATION-INPUTS-2026-10-18.json).
+Earlier dated entries remain historical records.
+
 **October 18: Phase 3B guest readback blocks operational admission.**
 The session began at `c421624` on `codex/phase1-architecture` with a clean worktree.
 The owner unlocked the Mac and signed in to the separate Ubuntu guest without sharing the password.

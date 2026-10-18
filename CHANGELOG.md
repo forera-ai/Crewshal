@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.15.8 — 2026-10-18
+
+- Record the guest's rounded installer fetch summaries without treating them as exact transfer accounting.
+- Prepare a blocked toolchain amendment draft with official artifact candidates, explicit missing identities, and proposed RAM and storage rules.
+- Keep guest networking, installation, provider requests, and calibration stopped until the transfer ledger, artifact manifest, and changed owner decisions pass.
+- Verify the frozen package and publish the next-session prompt. Preserve all planned and sealed rows.
+
 ## 0.15.7 — 2026-10-18
 
 - Read back Ubuntu 24.04.5 arm64, four CPUs, guest memory, and free disk through the owner's signed-in console.

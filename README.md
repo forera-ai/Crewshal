@@ -10,6 +10,16 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**October 18: Phase 3B toolchain preparation remains blocked.**
+The frozen package checker passes with 23 artifacts and 768 planned units.
+The Ubuntu guest remains disconnected. Its selected tools are still absent, and its guest-visible RAM is below 16 GiB.
+Installer logs show rounded fetch totals, but they do not establish exact transfer bytes.
+The [amendment draft](docs/PHASE-3B-TOOLCHAIN-PREPARATION-BLOCKED-2026-10-18.md) proposes a guest-visible RAM rule and separate infrastructure ledger.
+It also records official artifact candidates and missing digests, sizes, dependencies, and install commands.
+The draft is incomplete and grants no installation or retrieval authority.
+Use the [next prompt](docs/PHASE-3B-TOOLCHAIN-PREPARATION-NEXT-SESSION-2026-10-18.md) and [exact input index](docs/PHASE-3B-TOOLCHAIN-PREPARATION-INPUTS-2026-10-18.json).
+All 192 development rows remain planned. All 576 sealed rows remain unexposed. Operational admission and Phase 3C remain closed.
+
 **October 18: Phase 3B guest capacity readback stops on missing tools.**
 The owner signed in to the separate Ubuntu guest without sharing its password.
 The guest reports Linux arm64, four online CPUs, and 55,538,384,896 bytes free on `/var/tmp`.

@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.15.11 — 2026-10-18
+
+- Record the owner's local Mac development order in accepted ADR 0009 and project instructions.
+- Defer all remaining Linux tests and VMware activity until planned source development passes local acceptance.
+- Replace the active next-session prompt with a source-only Mac workflow and exact public inputs.
+- Preserve the frozen package, operational limits, unknown transfer, planned rows, and sealed tasks.
+- Keep Phase 3B calibration and Phase 3C closed. No Linux or provider test ran.
+
 ## 0.15.10 — 2026-10-18
 
 - Verify all 138 starting public input hashes and preserve the exact known transfer and allocation ledgers.

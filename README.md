@@ -10,6 +10,13 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**October 18: Local Mac development precedes all remaining Linux tests.**
+The owner stopped Linux testing during development under [ADR 0009](docs/decisions/0009-local-development-before-consolidated-linux-testing.md).
+Use the local macOS checkout for remaining source work and deterministic offline checks.
+The [current order record](docs/PHASE-3B-LOCAL-DEVELOPMENT-ORDER-2026-10-18.md) preserves operational limits and unknowns.
+The [next prompt](docs/PHASE-3B-LOCAL-DEVELOPMENT-NEXT-SESSION-2026-10-18.md) and [exact inputs](docs/PHASE-3B-LOCAL-DEVELOPMENT-INPUTS-2026-10-18.json) govern continuation.
+The earlier Linux toolchain prompt is dated history. Phase 3B calibration and Phase 3C remain closed.
+
 **October 18: Phase 3B toolchain amendment remains blocked after a second read-only review.**
 The [current boundary](docs/PHASE-3B-TOOLCHAIN-AMENDMENT-BOUNDARY-2026-10-18.md) records exact known ledgers and failed guest console access.
 The [candidate manifest](docs/PHASE-3B-LINUX-ARM64-TOOLCHAIN-MANIFEST-2026-10-18.json) pins available official metadata and marks missing admission fields unknown.

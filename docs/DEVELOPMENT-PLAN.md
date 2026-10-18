@@ -1,5 +1,16 @@
 # Crewshal phased development and acceptance plan
 
+## Current development order — local Mac first, 2026-10-18
+
+The owner stopped Linux tests during development through [ADR 0009](decisions/0009-local-development-before-consolidated-linux-testing.md).
+Use the local macOS checkout for remaining source work and its deterministic, offline acceptance checks.
+Run applicable Mac-only checks and record Linux-specific test modules as deferred.
+Do not enter either VMware guest, use a droplet, or prepare Linux toolchain artifacts during development.
+After all planned source work passes locally, prepare one consolidated Linux qualification and test campaign.
+The [order record](PHASE-3B-LOCAL-DEVELOPMENT-ORDER-2026-10-18.md) and [next prompt](PHASE-3B-LOCAL-DEVELOPMENT-NEXT-SESSION-2026-10-18.md) govern the next session.
+Feed every file in the [exact input index](PHASE-3B-LOCAL-DEVELOPMENT-INPUTS-2026-10-18.json).
+Phase 3B calibration and Phase 3C remain closed. Earlier sections describe dated operational preparation.
+
 ## Current boundary — Phase 3B toolchain amendment continuation, 2026-10-18
 
 The [current boundary](PHASE-3B-TOOLCHAIN-AMENDMENT-BOUNDARY-2026-10-18.md) preserves zero conservative transfer headroom and the incomplete artifact manifest.
@@ -155,12 +166,12 @@ A milestone has four parts: plan the concrete change; implement only its scope; 
 | 2D | First-runtime integration and core software workflow | Existing 2A–2C software and accepted ADR 0007 | Actual coordinator workflow passes fresh deterministic runtime/validator fixtures, candidate and evidence integrity, refusal/recovery cases, complete offline suite, and installed-package checks | Software complete on 2026-10-16; platform and live qualification deferred separately |
 | 2E | Second runtime, independent review and full vertical slice | Revised 2D software acceptance | Both role assignments, provider identity rules, disagreement/remediation, and the low-risk no-review path pass deterministic source integration checks | Software complete on 2026-10-16; platform and live qualification deferred separately |
 | 3A | Frozen comparative evaluation package | 2E | Legally usable corpus, task/rubric/threshold/baseline/version manifests; four-stack coverage or prospective amendment; owner spend approval | Complete under ADR 0008; source package frozen, zero spending, actual execution admission closed |
-| 3B | Calibration and protocol corrections | 3A | Development corpus runs with complete accounting; failures preserved; amended protocol frozen before hold-outs | Planned |
+| 3B | Calibration and protocol corrections | 3A, completed local source development, and later consolidated Linux qualification | Development corpus runs with complete accounting; failures preserved; amended protocol frozen before hold-outs | Planned; Linux-dependent execution deferred under ADR 0009 |
 | 3C | Sealed evaluation and owner product decision | 3B | Frozen held-out execution, blind quality assessment, baseline comparison and unknown/failed-run accounting; GO/MODIFY/ABANDON decision | Planned |
 | 4 | Conditional release readiness and delivery | Owner GO after 3C | Reproducible package/install, supported-platform CI, security/support limits, license/dependency review, release authorization | Conditional |
 
 The core software slice targets confirmed Python and TypeScript project adaptation.
-Platform execution qualification follows core development under ADR 0007.
+Platform execution qualification follows all planned source development under ADRs 0007 and 0009.
 It remains required before dependent live evaluation or supported-platform claims.
 Four-stack evaluation remains the target; any protocol amendment must precede hold-out exposure.
 

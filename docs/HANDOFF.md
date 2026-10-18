@@ -4,6 +4,22 @@ Last updated: 2026-10-18. This record supplies the next session and the owner wi
 
 ## Current state
 
+**October 18: The owner restored local Mac development before Linux testing.**
+The session began at `7dca8e8b134d5304ff6fa2c8952257dce7903cc3` on `codex/phase1-architecture` with a clean worktree.
+The owner stopped Linux tests during development and directed local machine development.
+[ADR 0009](decisions/0009-local-development-before-consolidated-linux-testing.md) records the active order.
+Complete remaining source work with local deterministic checks before one consolidated Linux test campaign.
+Do not operate either VMware guest, retrieve Linux artifacts, or run Linux qualification during development.
+The previous Phase 3B toolchain prompt is a dated record, not the active next session.
+The guest, ISO, transfer ledger, proposed limit amendments, and unknown installer traffic remain unchanged.
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+No Linux conformance, provider identity, native baseline, or calibration result was established.
+Phase 3B calibration and Phase 3C remain closed.
+The [order record](PHASE-3B-LOCAL-DEVELOPMENT-ORDER-2026-10-18.md) supplies commands, results, costs, and limits.
+The checkpoint version is `0.15.11`. The delivery revision is the commit containing this entry.
+Use the [local development prompt](PHASE-3B-LOCAL-DEVELOPMENT-NEXT-SESSION-2026-10-18.md) and [exact inputs](PHASE-3B-LOCAL-DEVELOPMENT-INPUTS-2026-10-18.json).
+Earlier dated entries remain historical records.
+
 **October 18: Phase 3B toolchain amendment remains blocked after a second read-only review.**
 The session began at `2d627c7f4985801a3b65fe497514e5f226fdf6fd` on `codex/phase1-architecture` with a clean worktree.
 All 138 starting public input hashes matched.

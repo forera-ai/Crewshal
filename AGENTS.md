@@ -33,6 +33,21 @@ Read [docs/HANDOFF.md](docs/HANDOFF.md) first, then [docs/DEVELOPMENT-PLAN.md](d
 - At session closure, provide a brief explanation of the next milestone, its initial prompt and the exact files to feed into the next session.
 - Once the active milestone's goals and acceptance gates pass, conclude development immediately. The publishing ceremony (README, changelog, handoff, next prompt, version bump, commit and push) ends the session; do not begin the next milestone.
 
+## Local development and deferred Linux tests — owner instruction, 2026-10-18
+
+The owner stopped Linux testing during development. Use the local macOS checkout as the main development environment.
+Complete source work with local deterministic fixtures, offline checks, static checks, and installed-package checks where relevant.
+Do not run Linux tests or qualification during a development session.
+Exclude Linux-specific test modules from local development checks. Record them as deferred, not passing.
+Do not boot, inspect, reconfigure, reconnect, or install into either VMware Ubuntu guest during development.
+Do not use a droplet or retrieve Linux toolchain artifacts for development preparation.
+Preserve existing guests, the ISO, records, charges, and unknown outcomes.
+After all planned source work passes local acceptance, prepare one consolidated Linux qualification and test campaign.
+Obtain any required approval for changed scope before that campaign acts.
+Earlier qualification approvals remain historical records. They do not reopen Linux work during local development.
+Keep Linux conformance, Phase 3B calibration, and Phase 3C claims closed until their actual gates pass.
+See [ADR 0009](docs/decisions/0009-local-development-before-consolidated-linux-testing.md).
+
 ## Linux test cost and host lifecycle — owner declaration, 2026-10-05
 
 This declaration supersedes the 2026-10-02 temporary-host retention rule. The owner intends to remove the current droplet; do not require its retention or assume its continued availability. Do not delete a host on the owner's behalf without an explicit action request. Host-only private authentication state and preparation artifacts may be lost; preserve public evidence and reproducible pinned inputs, never credentials in Git.

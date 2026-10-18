@@ -4,6 +4,11 @@ Date: 2026-10-02. Status: accepted as the initial implementation direction on 20
 
 ## Outcome and scope
 
+Current development order, 2026-10-18: [accepted ADR 0009](decisions/0009-local-development-before-consolidated-linux-testing.md) makes the local macOS checkout the main development environment.
+Complete planned source work and local deterministic checks before one consolidated Linux qualification and test campaign.
+Do not run Linux tests or operate the VMware guests during development.
+Local checks do not establish Linux execution support or Phase 3B calibration.
+
 Current development order, 2026-10-15: [accepted ADR 0007](decisions/0007-core-development-before-platform-qualification.md) unblocks Phase 2D software development.
 Complete core coordination and runtime contracts before platform adaptation.
 Use deterministic external fixtures to verify the production coordinator workflow.

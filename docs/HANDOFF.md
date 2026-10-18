@@ -4,6 +4,22 @@ Last updated: 2026-10-18. This record supplies the next session and the owner wi
 
 ## Current state
 
+**October 18: Phase 3B toolchain amendment remains blocked after a second read-only review.**
+The session began at `2d627c7f4985801a3b65fe497514e5f226fdf6fd` on `codex/phase1-architecture` with a clean worktree.
+All 138 starting public input hashes matched.
+The inspected host log and guest console did not establish an exact installer transfer bound.
+The guest interface returned `noWindowsAvailable` during further read-only checks.
+Charge the prior 8 GiB transfer allowance in full. Its conservative remaining balance is zero.
+The [candidate manifest](PHASE-3B-LINUX-ARM64-TOOLCHAIN-MANIFEST-2026-10-18.json) records fourteen artifacts and marks missing admission fields unknown.
+The host currently reports 9,093,566,464 allocated bytes for the new VM bundle and ISO directory together.
+The proposed 16 GiB guest-visible RAM rule, 40 GiB infrastructure ceiling, and 16 GiB cumulative transfer ceiling need owner approval.
+The [current boundary](PHASE-3B-TOOLCHAIN-AMENDMENT-BOUNDARY-2026-10-18.md) gives exact ledgers, results, costs, failures, and limits.
+No guest setting, network connection, retrieval, installation, provider request, or calibration changed.
+All 192 development rows remain planned. All 576 sealed rows remain unexposed. Operational admission and Phase 3C remain closed.
+The checkpoint version is `0.15.10`. The delivery revision is the commit containing this entry.
+Use the [next prompt](PHASE-3B-TOOLCHAIN-AMENDMENT-CONTINUATION-2026-10-18.md) and [exact inputs](PHASE-3B-TOOLCHAIN-AMENDMENT-CONTINUATION-INPUTS-2026-10-18.json).
+Earlier dated entries remain historical records.
+
 **October 18: Phase 3B toolchain amendment remains blocked after official artifact review.**
 The session began at `7a592dd6d1f47fc98651b44e18edb05feab7c7b7` on `codex/phase1-architecture` with a clean worktree.
 The frozen checker passed with 23 artifacts, 768 planned units, and content digest `4bd188deb0089a79d018ed13b2fd2467927a53efc4d3d4e323f8cf43bdc892c0`.

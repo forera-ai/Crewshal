@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.15.10 — 2026-10-18
+
+- Verify all 138 starting public input hashes and preserve the exact known transfer and allocation ledgers.
+- Add a fourteen-artifact Linux arm64 candidate manifest with verified official metadata and explicit missing fields.
+- Record a candidate .NET 8.0.11 runtime and targeting pack for the selected `net8.0` checks.
+- Propose a 16 GiB cumulative transfer ceiling with the unknown prior 8 GiB charged in full.
+- Keep RAM and storage amendments unapproved, guest networking disconnected, and all execution gates closed.
+- Publish the blocked boundary, next prompt, and exact continuation inputs.
+
 ## 0.15.9 — 2026-10-18
 
 - Record the exact known transfer ledger and charge the unknown installer balance conservatively.

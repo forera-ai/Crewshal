@@ -1,5 +1,13 @@
 # Crewshal phased development and acceptance plan
 
+## Current boundary — Phase 3B toolchain amendment continuation, 2026-10-18
+
+The [current boundary](PHASE-3B-TOOLCHAIN-AMENDMENT-BOUNDARY-2026-10-18.md) preserves zero conservative transfer headroom and the incomplete artifact manifest.
+The proposed RAM, infrastructure, retained-data, and transfer changes still need owner approval.
+No guest change, retrieval, installation, qualification, or calibration occurred.
+Use the [next prompt](PHASE-3B-TOOLCHAIN-AMENDMENT-CONTINUATION-2026-10-18.md) and [exact inputs](PHASE-3B-TOOLCHAIN-AMENDMENT-CONTINUATION-INPUTS-2026-10-18.json).
+The earlier sections remain dated history.
+
 ## Current boundary — Phase 3B toolchain amendment checkpoint, 2026-10-18
 
 The [current checkpoint](PHASE-3B-TOOLCHAIN-AMENDMENT-CHECKPOINT-2026-10-18.md) adds official vendor metadata and an exact known transfer ledger.

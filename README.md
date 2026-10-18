@@ -10,6 +10,16 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**October 18: Phase 3B toolchain amendment remains blocked after a second read-only review.**
+The [current boundary](docs/PHASE-3B-TOOLCHAIN-AMENDMENT-BOUNDARY-2026-10-18.md) records exact known ledgers and failed guest console access.
+The [candidate manifest](docs/PHASE-3B-LINUX-ARM64-TOOLCHAIN-MANIFEST-2026-10-18.json) pins available official metadata and marks missing admission fields unknown.
+The proposed 16 GiB guest-visible RAM rule, 40 GiB VM-plus-ISO ceiling, and 16 GiB cumulative transfer ceiling need owner approval.
+The old 8 GiB transfer allowance remains fully charged under conservative accounting.
+No retrieval, installation, VM change, provider request, or calibration occurred.
+Use the [next prompt](docs/PHASE-3B-TOOLCHAIN-AMENDMENT-CONTINUATION-2026-10-18.md) and [exact inputs](docs/PHASE-3B-TOOLCHAIN-AMENDMENT-CONTINUATION-INPUTS-2026-10-18.json).
+All 192 development rows remain planned, and all 576 sealed rows remain unexposed.
+Operational admission and Phase 3C remain closed. Earlier dated entries remain historical records.
+
 **October 18: Phase 3B toolchain amendment remains blocked after official artifact review.**
 The [current checkpoint](docs/PHASE-3B-TOOLCHAIN-AMENDMENT-CHECKPOINT-2026-10-18.md) records the exact transfer ledger and new vendor metadata.
 The installer transfer remains unknown, so the approved 8 GiB transfer allowance has zero conservative remaining balance.

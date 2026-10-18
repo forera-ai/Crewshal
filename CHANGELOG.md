@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.15.5 — 2026-10-18
+
+- Create a separate, nonshared Ubuntu arm64 VMware guest with four virtual CPUs, 16 GiB RAM, and a 64 GB virtual disk.
+- Verify the official Ubuntu Server 24.04.5 arm64 ISO digest and select a 62.948 GB ext4 root layout.
+- Stop at the new account credential step for owner entry under the computer-use handoff rule.
+- Preserve the previous guest under owner control, the approved limits, all planned rows, and closed operational admission.
+- Record commands, results, costs, failures, unknowns, and exact continuation inputs. No calibration or sealed evaluation ran.
+
 ## 0.15.4 — 2026-10-18
 
 - Record the owner's separate approval to resume qualification and accept the exact Phase 3B limits with unknown subscription quota debit.

@@ -10,6 +10,17 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**October 18: Separate Phase 3B guest reaches the Ubuntu account step.**
+The owner controls the previous VMware guest and will manage its state.
+A separate, nonshared Ubuntu arm64 guest has four virtual CPUs, 16 GiB RAM, and a 64 GB virtual disk.
+The official Ubuntu Server 24.04.5 arm64 ISO passed its SHA-256 check.
+The installer selected a 62.948 GB ext4 root partition and awaits owner entry of new account credentials.
+Guest capacity readback, toolchains, native controls, provider identities, baselines, and calibration remain unverified.
+The [guest record](docs/PHASE-3B-GUEST-PREPARATION-2026-10-18.md) gives commands, observations, limits, and costs.
+Use the [next prompt](docs/PHASE-3B-GUEST-NEXT-SESSION-2026-10-18.md) and [exact inputs](docs/PHASE-3B-GUEST-INPUTS-2026-10-18.json).
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+Operational admission and Phase 3C remain closed. Earlier dated entries remain historical records.
+
 **October 18: Phase 3B limits approved; local guest capacity blocks preparation.**
 The owner explicitly resumed platform and live qualification and approved the [Phase 3B batch limits](docs/PHASE-3B-ADMISSION-PROPOSAL-2026-10-18.md), including unknown subscription quota debit.
 The selected local VMware Ubuntu VM was powered off and configured with 8 GiB RAM.

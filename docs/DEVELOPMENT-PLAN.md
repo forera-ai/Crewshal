@@ -1,6 +1,14 @@
 # Crewshal phased development and acceptance plan
 
-## Current boundary — Phase 3B guest capacity, 2026-10-18
+## Current boundary — Phase 3B guest account handoff, 2026-10-18
+
+The approved batch has a separate, nonshared Ubuntu arm64 guest with four virtual CPUs, 16 GiB RAM, and a 64 GB virtual disk.
+The installer reached Profile configuration and awaits owner entry of new authentication credentials.
+Guest free disk and the proposed controls remain unverified. No calibration unit started.
+Use the [guest record](PHASE-3B-GUEST-PREPARATION-2026-10-18.md) and [next prompt](PHASE-3B-GUEST-NEXT-SESSION-2026-10-18.md).
+Operational admission, Phase 3B acceptance, and Phase 3C remain closed.
+
+## Previous boundary — Phase 3B guest capacity, 2026-10-18
 
 The owner explicitly resumed platform and live qualification on the existing local VMware Ubuntu installation.
 The owner separately approved the [exact Phase 3B proposal limits](PHASE-3B-ADMISSION-PROPOSAL-2026-10-18.md) and accepted unknown subscription quota debit.

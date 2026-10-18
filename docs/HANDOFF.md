@@ -4,6 +4,22 @@ Last updated: 2026-10-18. This record supplies the next session and the owner wi
 
 ## Current state
 
+**October 18: Separate Phase 3B guest awaits owner account entry.**
+The session began at `90e7aa1` on `codex/phase1-architecture` with a clean worktree.
+The approved Phase 3B limits and qualification authority remain in force.
+The owner took responsibility for the previous 8 GiB VMware guest.
+A separate, nonshared Ubuntu arm64 guest has four virtual CPUs, 16 GiB RAM, and a 64 GB disk.
+Its official Ubuntu Server 24.04.5 arm64 ISO matched the published SHA-256 digest.
+The installer selected a 62.948 GB ext4 root layout and reached Profile configuration.
+The owner must enter and submit the new account credentials under the computer-use handoff rule.
+Guest free disk, toolchains, native controls, provider identities, dependencies, baselines, and calibration remain unverified.
+The [guest record](PHASE-3B-GUEST-PREPARATION-2026-10-18.md) gives exact commands, results, costs, failures, and limits.
+No development row or coding-runtime submission ran. All 576 sealed rows remain unexposed.
+Operational admission and Phase 3C stay closed. The source checkpoint version is `0.15.5`.
+The delivery revision is the commit containing this entry.
+Use the [next prompt](PHASE-3B-GUEST-NEXT-SESSION-2026-10-18.md) and [exact inputs](PHASE-3B-GUEST-INPUTS-2026-10-18.json).
+Earlier dated entries remain historical records.
+
 **October 18: Phase 3B limits approved; local guest capacity blocks preparation.**
 The session began at `1bdb65f` on `codex/phase1-architecture` with a clean worktree.
 The owner separately answered "Yes, resume qualification" and "Approve limits and unknown quota" against the exact proposal.

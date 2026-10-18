@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.15.3 — 2026-10-18
+
+- Publish a concrete Phase 3B operational admission proposal for the twelve selected development tasks and 192 planned development units.
+- Record exact frozen check commands, dependencies, toolchains, controls, deadlines, resource limits, spending limits, and cleanup.
+- Preserve zero current evaluation authority, failed native evidence, unavailable qualification, and unknown subscription quota debit.
+- Verify all 120 starting file hashes, 23 frozen artifacts, 768 planned units, and 108 focused offline tests.
+- Supply the next-session prompt and exact continuation inputs. No calibration or sealed evaluation ran.
+
 ## 0.15.2 — 2026-10-18
 
 - Complete Phase 3A under accepted ADR 0008 and three explicit owner decisions.

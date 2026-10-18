@@ -10,6 +10,15 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**October 18: Phase 3B admission proposal published; calibration remains closed.**
+The frozen Phase 3A package and all 120 starting file hashes passed read-only checks.
+The focused offline suite passed 108 tests.
+The [admission proposal](docs/PHASE-3B-ADMISSION-PROPOSAL-2026-10-18.md) defines selected units, commands, controls, limits, and cleanup.
+The owner has not approved Phase 3B spending or resumed platform and live qualification.
+No calibration or sealed evaluation ran.
+Use the [continuation prompt](docs/PHASE-3B-ADMISSION-NEXT-SESSION-2026-10-18.md) and [exact inputs](docs/PHASE-3B-ADMISSION-INPUTS-2026-10-18.json).
+Earlier dated entries remain historical records.
+
 **October 18: Phase 3A complete; the source evaluation package is frozen.**
 The owner approved agent annotation, delegated bounded selections, and selected zero evaluation spending.
 The package retains twelve pinned repositories, all four stacks, independent annotations, and attributed adjudication.

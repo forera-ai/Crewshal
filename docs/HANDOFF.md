@@ -4,6 +4,22 @@ Last updated: 2026-10-18. This record supplies the next session and the owner wi
 
 ## Current state
 
+**October 18: Phase 3B admission proposal published; calibration remains closed.**
+The session began at `9deb7d476615c4f3016acedd0e0c0160ffab08b6` on `codex/phase1-architecture`.
+The worktree was clean at entry. All 120 files in the Phase 3B starting index matched their byte counts and SHA-256 digests.
+The read-only frozen-package checker passed with 23 artifacts and 768 planned units.
+The focused offline suite passed 108 tests. These checks did not run a coding runtime or provider.
+The [verification record](PHASE-3B-ADMISSION-VERIFICATION-2026-10-18.md) lists exact commands, environment, results, costs, and limits.
+The [Phase 3B admission proposal](PHASE-3B-ADMISSION-PROPOSAL-2026-10-18.md) names the four development repositories, twelve tasks, 192 rows, commands, dependencies, limits, and cleanup.
+The proposal requests USD 0 metered billing, USD 0 paid hosts, at most 256 turns per selected runtime, and a USD 200 API-equivalent planning limit.
+Actual service quota debit remains unknown. No hard provider quota control has been proved.
+The owner has not approved the proposal or explicitly resumed platform and live qualification.
+No dependency preparation, credential access, native runtime turn, calibration, sealed task exposure, or paid operation occurred.
+Phase 3B calibration remains incomplete. Operational admission stays closed.
+The source checkpoint version is `0.15.3`; the delivery revision is the commit containing this entry.
+Use [the continuation prompt](PHASE-3B-ADMISSION-NEXT-SESSION-2026-10-18.md) and [exact inputs](PHASE-3B-ADMISSION-INPUTS-2026-10-18.json).
+Stop before Phase 3C or sealed evaluation. Earlier dated entries remain historical records.
+
 **October 18: Phase 3A complete; the source evaluation package is frozen.**
 The owner approved agent annotation, delegated bounded selections, and selected zero evaluation spending.
 The package retains twelve pinned repositories, all four stacks, independent annotations, and attributed adjudication.

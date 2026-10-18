@@ -1,5 +1,15 @@
 # Crewshal phased development and acceptance plan
 
+## Current boundary — Phase 3B admission proposal, 2026-10-18
+
+The [Phase 3B proposal](PHASE-3B-ADMISSION-PROPOSAL-2026-10-18.md) defines a bounded development calibration batch.
+The package checker, exact starting hashes, and focused offline tests pass.
+The owner has not approved the proposed spending and subscription exposure.
+The owner has not explicitly resumed platform and live qualification.
+No calibration unit has started. Phase 3B acceptance and Phase 3C remain closed.
+Use [the admission continuation prompt](PHASE-3B-ADMISSION-NEXT-SESSION-2026-10-18.md) and [exact inputs](PHASE-3B-ADMISSION-INPUTS-2026-10-18.json).
+The next section records the earlier Phase 3A completion state.
+
 ## Current milestone — Phase 3A complete, 2026-10-18
 
 The [frozen source package](evaluation/phase-3a-frozen/README.md) completes Phase 3A under accepted ADR 0008.

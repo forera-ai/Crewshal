@@ -4,6 +4,24 @@ Last updated: 2026-10-18. This record supplies the next session and the owner wi
 
 ## Current state
 
+**October 18: Phase 3B toolchain amendment remains blocked after official artifact review.**
+The session began at `7a592dd6d1f47fc98651b44e18edb05feab7c7b7` on `codex/phase1-architecture` with a clean worktree.
+The frozen checker passed with 23 artifacts, 768 planned units, and content digest `4bd188deb0089a79d018ed13b2fd2467927a53efc4d3d4e323f8cf43bdc892c0`.
+All 135 starting file hashes matched.
+The known ISO and checksum consumed 3,825,518,142 bytes of the approved 8 GiB transfer limit.
+The installer's rounded fetch summaries do not bound its exact transfer.
+Charging the unknown prior amount against the full remaining balance leaves zero bytes for new retrieval.
+The host reported 5,268,045,824 allocated bytes for the new VM bundle alone.
+Official RTK and .NET digests, Bun checksum-manifest availability, and Swift direct dependencies are now recorded.
+Exact archive sizes, extraction bounds, transitive dependencies, and executable hashes remain missing.
+The proposed guest-visible RAM threshold and separate infrastructure ledger still require owner approval.
+The guest network remains disconnected. No setting, installation, provider request, or calibration changed.
+No Jev call ran. All 192 development rows remain planned, and all 576 sealed rows remain unexposed.
+Operational admission and Phase 3C remain closed.
+The source checkpoint version is `0.15.9`. The delivery revision is the commit containing this entry.
+Use the [checkpoint](PHASE-3B-TOOLCHAIN-AMENDMENT-CHECKPOINT-2026-10-18.md), [next prompt](PHASE-3B-TOOLCHAIN-AMENDMENT-NEXT-SESSION-2026-10-18.md), and [exact inputs](PHASE-3B-TOOLCHAIN-AMENDMENT-INPUTS-2026-10-18.json).
+Earlier dated entries remain historical records.
+
 **October 18: Phase 3B toolchain preparation amendment remains incomplete.**
 The session began at `76980c7b8837da63b8c17e0b1fa1535893bfa39e` on `codex/phase1-architecture` with a clean worktree.
 The frozen checker again passed with 23 artifacts, 768 planned units, and content digest `4bd188deb0089a79d018ed13b2fd2467927a53efc4d3d4e323f8cf43bdc892c0`.

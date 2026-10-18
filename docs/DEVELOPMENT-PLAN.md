@@ -1,5 +1,14 @@
 # Crewshal phased development and acceptance plan
 
+## Current boundary — Phase 3B toolchain amendment checkpoint, 2026-10-18
+
+The [current checkpoint](PHASE-3B-TOOLCHAIN-AMENDMENT-CHECKPOINT-2026-10-18.md) adds official vendor metadata and an exact known transfer ledger.
+The installer transfer remains unknown. Its conservative charge consumes the remaining approved download balance.
+The proposed RAM and storage changes still need owner approval.
+The artifact manifest and dependency set remain incomplete, so no installation or retrieval is admitted.
+Use the [next prompt](PHASE-3B-TOOLCHAIN-AMENDMENT-NEXT-SESSION-2026-10-18.md) and [exact inputs](PHASE-3B-TOOLCHAIN-AMENDMENT-INPUTS-2026-10-18.json).
+All 192 development rows remain planned. All 576 sealed rows remain unexposed. Phase 3C stays closed.
+
 ## Current boundary — Phase 3B toolchain preparation draft, 2026-10-18
 
 The frozen package checker passes, but the guest and selected tools still fail admission.

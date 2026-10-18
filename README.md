@@ -10,6 +10,16 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**October 18: Phase 3B toolchain amendment remains blocked after official artifact review.**
+The [current checkpoint](docs/PHASE-3B-TOOLCHAIN-AMENDMENT-CHECKPOINT-2026-10-18.md) records the exact transfer ledger and new vendor metadata.
+The installer transfer remains unknown, so the approved 8 GiB transfer allowance has zero conservative remaining balance.
+The guest-visible RAM and storage interpretation still require owner approval.
+Exact archive bytes, extraction bounds, dependencies, and executable hashes remain incomplete.
+The frozen package and 135 starting input hashes pass read-only checks.
+Use the [next prompt](docs/PHASE-3B-TOOLCHAIN-AMENDMENT-NEXT-SESSION-2026-10-18.md) and [exact inputs](docs/PHASE-3B-TOOLCHAIN-AMENDMENT-INPUTS-2026-10-18.json).
+No installation, provider request, calibration, or sealed exposure occurred.
+Operational admission and Phase 3C remain closed. Earlier dated entries remain historical records.
+
 **October 18: Phase 3B toolchain preparation remains blocked.**
 The frozen package checker passes with 23 artifacts and 768 planned units.
 The Ubuntu guest remains disconnected. Its selected tools are still absent, and its guest-visible RAM is below 16 GiB.

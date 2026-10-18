@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.15.9 — 2026-10-18
+
+- Record the exact known transfer ledger and charge the unknown installer balance conservatively.
+- Add official RTK and .NET digests, the Bun checksum-manifest location, and Swift Ubuntu dependencies.
+- Preserve unresolved archive sizes, extraction bounds, transitive dependencies, and executable identities.
+- Keep the RAM and infrastructure-ledger proposal unapproved and all execution gates closed.
+- Verify the frozen package and 135 starting file hashes. Publish the blocked checkpoint and continuation inputs.
+
 ## 0.15.8 — 2026-10-18
 
 - Record the guest's rounded installer fetch summaries without treating them as exact transfer accounting.

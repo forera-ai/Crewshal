@@ -1,5 +1,13 @@
 # Crewshal phased development and acceptance plan
 
+## Current source boundary — 2026-10-18
+
+The completed Phase 2D, Phase 2E, and Phase 3A source milestones passed selected local Mac acceptance again.
+The [source-ready record](PHASE-3B-SOURCE-READY-2026-10-18.md) gives the commands and deferred Linux scope.
+The [consolidated campaign plan](PHASE-3B-CONSOLIDATED-LINUX-CAMPAIGN-2026-10-18.md) records later qualification and test gates.
+The [next prompt](PHASE-3B-SOURCE-READY-NEXT-SESSION-2026-10-18.md) and [exact inputs](PHASE-3B-SOURCE-READY-INPUTS-2026-10-18.json) govern continuation.
+Linux work and Phase 3B calibration remain closed. All 576 sealed rows remain unexposed.
+
 ## Current development order — local Mac first, 2026-10-18
 
 The owner stopped Linux tests during development through [ADR 0009](decisions/0009-local-development-before-consolidated-linux-testing.md).

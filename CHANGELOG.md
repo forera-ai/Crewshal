@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.15.12 — 2026-10-18
+
+- Verify the completed core source path with 196 local Mac acceptance tests, a matching installed wheel, static checks, and the unchanged Phase 3A freeze checker.
+- Record Linux-specific acceptance modules as deferred and publish a source-ready boundary without Linux qualification claims.
+- Prepare one consolidated Linux campaign plan with exact known limits, unresolved inputs, costs, and cleanup.
+- Preserve all 192 development rows as planned and all 576 sealed rows as unexposed.
+
 ## 0.15.11 — 2026-10-18
 
 - Record the owner's local Mac development order in accepted ADR 0009 and project instructions.

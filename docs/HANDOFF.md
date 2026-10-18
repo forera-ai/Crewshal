@@ -4,6 +4,26 @@ Last updated: 2026-10-18. This record supplies the next session and the owner wi
 
 ## Current state
 
+**October 18: Core source work is ready for consolidated Linux campaign admission.**
+The session began at `e314651` on `codex/phase1-architecture` with a clean worktree.
+All 146 entry-index file hashes matched.
+The selected Mac source suite passed 196 tests through the production coordinator path.
+The fresh offline wheel passed the same 196 tests with network access denied.
+All 49 installed source files matched the checkout.
+The frozen checker retained 23 artifacts, 768 planned units, and digest `4bd188deb0089a79d018ed13b2fd2467927a53efc4d3d4e323f8cf43bdc892c0`.
+Ruff and strict mypy passed. Linux-specific acceptance modules remain deferred.
+The accepted plan has no further core source milestone before Phase 3B admission.
+The [source-ready record](PHASE-3B-SOURCE-READY-2026-10-18.md) gives local commands, results, costs, failures, and limits.
+The [consolidated campaign plan](PHASE-3B-CONSOLIDATED-LINUX-CAMPAIGN-2026-10-18.md) binds known inputs and records unresolved admission work.
+The old transfer allowance has zero conservative remaining balance. Proposed limit amendments remain unapproved.
+No guest, Linux test, provider request, or evaluation row ran.
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+Linux conformance, native baseline results, and resolved provider identities remain unknown.
+Phase 3B calibration and Phase 3C have not started. The checkpoint version is `0.15.12`.
+The delivery revision is the commit containing this entry.
+Use the [next prompt](PHASE-3B-SOURCE-READY-NEXT-SESSION-2026-10-18.md) and [exact inputs](PHASE-3B-SOURCE-READY-INPUTS-2026-10-18.json).
+Earlier dated entries remain historical records.
+
 **October 18: The owner restored local Mac development before Linux testing.**
 The session began at `7dca8e8b134d5304ff6fa2c8952257dce7903cc3` on `codex/phase1-architecture` with a clean worktree.
 The owner stopped Linux tests during development and directed local machine development.

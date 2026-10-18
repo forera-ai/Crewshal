@@ -10,6 +10,15 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**October 18: Core source work is ready for consolidated Linux campaign admission.**
+The [source-ready record](docs/PHASE-3B-SOURCE-READY-2026-10-18.md) reports 196 passing Mac tests and unchanged frozen Phase 3A bytes.
+The fresh offline wheel passed the same 196 tests.
+The [campaign plan](docs/PHASE-3B-CONSOLIDATED-LINUX-CAMPAIGN-2026-10-18.md) records later limits, input binding, qualification, and cleanup.
+Linux tests remain deferred. The old transfer allowance has zero conservative remaining balance.
+Use the [next prompt](docs/PHASE-3B-SOURCE-READY-NEXT-SESSION-2026-10-18.md) and [exact inputs](docs/PHASE-3B-SOURCE-READY-INPUTS-2026-10-18.json).
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+Linux qualification, native baselines, and provider identity remain unknown. Phase 3B calibration and Phase 3C have not started.
+
 **October 18: Local Mac development precedes all remaining Linux tests.**
 The owner stopped Linux testing during development under [ADR 0009](docs/decisions/0009-local-development-before-consolidated-linux-testing.md).
 Use the local macOS checkout for remaining source work and deterministic offline checks.

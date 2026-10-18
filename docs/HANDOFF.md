@@ -4,6 +4,24 @@ Last updated: 2026-10-18. This record supplies the next session and the owner wi
 
 ## Current state
 
+**October 18: Phase 3B limits approved; local guest capacity blocks preparation.**
+The session began at `1bdb65f` on `codex/phase1-architecture` with a clean worktree.
+The owner separately answered "Yes, resume qualification" and "Approve limits and unknown quota" against the exact proposal.
+The approved Phase 3B batch has USD 0 metered billing, USD 0 paid hosts, and 256 turns per runtime.
+It has a USD 200 API-equivalent planning limit and 8 GiB download and retention limits.
+Actual subscription quota debit remains unknown and was explicitly accepted. No hard quota ceiling was proved.
+The selected local VMware Ubuntu VM was powered off and configured with 8 GiB RAM.
+The approved proposal requires 16 GiB before preparation. No guest startup or qualification occurred.
+The frozen package checker passed with 23 artifacts and 768 planned units.
+All 124 files in the previous continuation index matched byte counts and SHA-256 digests.
+The focused offline suite passed 108 tests on macOS 27.2 arm64 with Python 3.12.15.
+The [capacity record](PHASE-3B-ADMISSION-CAPACITY-BLOCKED-2026-10-18.md) gives exact commands, results, costs, and limits.
+No dependency preparation, credential access, native runtime turn, provider inference, calibration, or sealed exposure occurred.
+Phase 3B calibration remains incomplete. Operational admission and Phase 3C stay closed.
+The source checkpoint version is `0.15.4`; the delivery revision is the commit containing this entry.
+Use [the next prompt](PHASE-3B-ADMISSION-CAPACITY-NEXT-SESSION-2026-10-18.md) and [exact inputs](PHASE-3B-ADMISSION-CAPACITY-INPUTS-2026-10-18.json).
+Earlier dated entries remain historical records.
+
 **October 18: Phase 3B admission proposal published; calibration remains closed.**
 The session began at `9deb7d476615c4f3016acedd0e0c0160ffab08b6` on `codex/phase1-architecture`.
 The worktree was clean at entry. All 120 files in the Phase 3B starting index matched their byte counts and SHA-256 digests.

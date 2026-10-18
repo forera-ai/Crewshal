@@ -10,6 +10,14 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**October 18: Phase 3B limits approved; local guest capacity blocks preparation.**
+The owner explicitly resumed platform and live qualification and approved the [Phase 3B batch limits](docs/PHASE-3B-ADMISSION-PROPOSAL-2026-10-18.md), including unknown subscription quota debit.
+The selected local VMware Ubuntu VM was powered off and configured with 8 GiB RAM.
+The proposal requires 16 GiB RAM before preparation, so no guest startup or calibration ran.
+The [capacity record](docs/PHASE-3B-ADMISSION-CAPACITY-BLOCKED-2026-10-18.md) gives exact commands, results, and limits.
+Use the [next prompt](docs/PHASE-3B-ADMISSION-CAPACITY-NEXT-SESSION-2026-10-18.md) and [exact inputs](docs/PHASE-3B-ADMISSION-CAPACITY-INPUTS-2026-10-18.json).
+Operational admission and Phase 3C remain closed. Earlier dated entries remain historical records.
+
 **October 18: Phase 3B admission proposal published; calibration remains closed.**
 The frozen Phase 3A package and all 120 starting file hashes passed read-only checks.
 The focused offline suite passed 108 tests.

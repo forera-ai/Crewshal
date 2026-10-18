@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.15.4 — 2026-10-18
+
+- Record the owner's separate approval to resume qualification and accept the exact Phase 3B limits with unknown subscription quota debit.
+- Stop preparation because the powered-off local VMware Ubuntu VM has 8 GiB configured RAM; the approved proposal requires 16 GiB.
+- Preserve the frozen package, all planned rows, closed operational admission, and unexposed sealed work.
+- Verify 124 continuation files, 23 frozen artifacts, 768 planned units, and 108 focused offline tests.
+- Supply the capacity record, next prompt, and exact inputs. No VM startup, runtime turn, or calibration ran.
+
 ## 0.15.3 — 2026-10-18
 
 - Publish a concrete Phase 3B operational admission proposal for the twelve selected development tasks and 192 planned development units.

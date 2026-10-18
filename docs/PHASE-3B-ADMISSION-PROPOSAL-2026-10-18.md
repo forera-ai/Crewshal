@@ -229,3 +229,12 @@ An approved proposal cannot convert these missing observations into passes.
 The smallest owner decisions are explicit qualification resumption and acceptance of the proposed batch limits, including unknown service quota debit.
 If either decision is absent, retain all 192 development rows as planned and start no operational operation.
 Phase 3B calibration remains incomplete. Phase 3C and sealed contents stay closed.
+
+## October 18 owner approval and capacity stop
+
+The owner answered "Yes, resume qualification" to the separate platform and live qualification request.
+The owner answered "Approve limits and unknown quota" to the exact Phase 3B limit request.
+These answers approve this batch's limits. They do not supply platform, toolchain, runtime, provider, dependency, or baseline observations.
+The selected powered-off local VMware Ubuntu VM has 8 GiB configured RAM.
+This proposal requires 16 GiB before preparation. The session stopped before VM startup.
+The [capacity record](PHASE-3B-ADMISSION-CAPACITY-BLOCKED-2026-10-18.md) gives the exact checks and continuation.

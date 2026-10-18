@@ -1,5 +1,15 @@
 # Crewshal phased development and acceptance plan
 
+## Current boundary — Phase 3B guest capacity, 2026-10-18
+
+The owner explicitly resumed platform and live qualification on the existing local VMware Ubuntu installation.
+The owner separately approved the [exact Phase 3B proposal limits](PHASE-3B-ADMISSION-PROPOSAL-2026-10-18.md) and accepted unknown subscription quota debit.
+The powered-off selected VM has 8 GiB configured RAM. The proposal requires 16 GiB before preparation.
+No guest startup, dependency preparation, provider call, credential access, or calibration occurred.
+Use the [capacity record](PHASE-3B-ADMISSION-CAPACITY-BLOCKED-2026-10-18.md), [next prompt](PHASE-3B-ADMISSION-CAPACITY-NEXT-SESSION-2026-10-18.md), and [exact inputs](PHASE-3B-ADMISSION-CAPACITY-INPUTS-2026-10-18.json).
+Operational admission, Phase 3B acceptance, and Phase 3C remain closed.
+The following section records the earlier proposal boundary.
+
 ## Current boundary — Phase 3B admission proposal, 2026-10-18
 
 The [Phase 3B proposal](PHASE-3B-ADMISSION-PROPOSAL-2026-10-18.md) defines a bounded development calibration batch.

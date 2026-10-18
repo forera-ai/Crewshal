@@ -10,6 +10,16 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**October 18: The separate Phase 3B guest completed installation and reached login.**
+The owner entered the new account credentials. The Ubuntu guest reached its login prompt after reboot.
+The agent disconnected its network and installation media. The owner must sign in before guest capacity readback.
+The installer's security-update transfer is unknown. The VM bundle and ISO directory together occupy more than 8 GiB.
+No further retrieval can pass the approved accounting gate until these amounts and limits are resolved.
+The [boot record](docs/PHASE-3B-GUEST-BOOT-BLOCKED-2026-10-18.md) gives exact observations, commands, costs, and unknowns.
+Use the [next prompt](docs/PHASE-3B-GUEST-BOOT-NEXT-SESSION-2026-10-18.md) and [exact inputs](docs/PHASE-3B-GUEST-BOOT-INPUTS-2026-10-18.json).
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+Operational admission and Phase 3C remain closed. Earlier dated entries remain historical records.
+
 **October 18: Separate Phase 3B guest reaches the Ubuntu account step.**
 The owner controls the previous VMware guest and will manage its state.
 A separate, nonshared Ubuntu arm64 guest has four virtual CPUs, 16 GiB RAM, and a 64 GB virtual disk.

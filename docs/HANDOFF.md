@@ -4,6 +4,23 @@ Last updated: 2026-10-18. This record supplies the next session and the owner wi
 
 ## Current state
 
+**October 18: Separate Phase 3B guest installed; login and accounting block readback.**
+The session began at `31b7e8a` on `codex/phase1-architecture` with a clean worktree.
+The owner completed the new Ubuntu account profile without sharing the password.
+The installer completed, and the guest reached its login prompt after reboot.
+The guest network and installation media are disconnected in VMware Fusion.
+The owner must sign in before the guest's capacity and control checks can run.
+The Mac locked during this checkpoint. The owner must unlock it before VMware inspection resumes.
+The installer's security-update transfer is unknown. Further retrieval remains stopped.
+The VM bundle and ISO directory together occupy 9,041,420,288 host bytes.
+That amount exceeds 8 GiB if both items fall under the approved retained-data limit.
+The [boot record](PHASE-3B-GUEST-BOOT-BLOCKED-2026-10-18.md) gives commands, results, limits, and unknowns.
+No coding-runtime turn or evaluation provider request ran. All 192 development rows remain planned.
+All 576 sealed rows remain unexposed. Operational admission and Phase 3C stay closed.
+The source checkpoint version is `0.15.6`. The delivery revision is the commit containing this entry.
+Use the [next prompt](PHASE-3B-GUEST-BOOT-NEXT-SESSION-2026-10-18.md) and [exact inputs](PHASE-3B-GUEST-BOOT-INPUTS-2026-10-18.json).
+Earlier dated entries remain historical records.
+
 **October 18: Separate Phase 3B guest awaits owner account entry.**
 The session began at `90e7aa1` on `codex/phase1-architecture` with a clean worktree.
 The approved Phase 3B limits and qualification authority remain in force.

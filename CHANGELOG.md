@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.15.6 — 2026-10-18
+
+- Complete the separate Ubuntu guest installation and confirm that it reaches its login prompt.
+- Keep the network and installation media disconnected while the owner signs in through VMware Fusion.
+- Record unknown installer transfer and the host allocation of the VM bundle and ISO directory.
+- Keep guest capacity readback, toolchains, controls, baselines, calibration, and sealed evaluation closed.
+- Publish the boot record, next prompt, and exact input index.
+
 ## 0.15.5 — 2026-10-18
 
 - Create a separate, nonshared Ubuntu arm64 VMware guest with four virtual CPUs, 16 GiB RAM, and a 64 GB virtual disk.

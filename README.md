@@ -10,6 +10,17 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**October 18: Phase 3B guest capacity readback stops on missing tools.**
+The owner signed in to the separate Ubuntu guest without sharing its password.
+The guest reports Linux arm64, four online CPUs, and 55,538,384,896 bytes free on `/var/tmp`.
+Its 16 GiB VM configuration yields 16,728,174,592 guest-visible memory bytes.
+RTK and eight selected tools are absent. Installed Python 3.12.3 differs from selected 3.12.15.
+The [readback record](docs/PHASE-3B-GUEST-CAPACITY-READBACK-BLOCKED-2026-10-18.md) gives commands, results, costs, and limits.
+Use the [next prompt](docs/PHASE-3B-GUEST-CAPACITY-NEXT-SESSION-2026-10-18.md) and [exact inputs](docs/PHASE-3B-GUEST-CAPACITY-INPUTS-2026-10-18.json).
+The guest network remains disconnected. No tool installation, qualification, or calibration ran.
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+Operational admission and Phase 3C remain closed. Earlier dated entries remain historical records.
+
 **October 18: The separate Phase 3B guest completed installation and reached login.**
 The owner entered the new account credentials. The Ubuntu guest reached its login prompt after reboot.
 The agent disconnected its network and installation media. The owner must sign in before guest capacity readback.

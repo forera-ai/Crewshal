@@ -4,6 +4,22 @@ Last updated: 2026-10-18. This record supplies the next session and the owner wi
 
 ## Current state
 
+**October 18: Phase 3B guest readback blocks operational admission.**
+The session began at `c421624` on `codex/phase1-architecture` with a clean worktree.
+The owner unlocked the Mac and signed in to the separate Ubuntu guest without sharing the password.
+The guest reported Ubuntu 24.04.5, Linux arm64, four online CPUs, and 55,538,384,896 bytes free on `/var/tmp`.
+The 16 GiB VM configuration yielded 16,728,174,592 guest-visible memory bytes.
+RTK, Node.js, Bun, Swift, .NET, CMake, Ninja, Codex CLI, and Claude Code CLI were absent.
+Installed Python 3.12.3 differs from the selected 3.12.15.
+The approved proposal says to stop on an absent or different selected tool.
+The [readback record](PHASE-3B-GUEST-CAPACITY-READBACK-BLOCKED-2026-10-18.md) gives exact commands, results, costs, and limits.
+The guest network remains disconnected. No installation, dependency retrieval, provider request, or calibration ran.
+The previous 8 GiB guest remains under owner control. All 192 development rows remain planned.
+All 576 sealed rows remain unexposed. Operational admission and Phase 3C stay closed.
+The source checkpoint version is `0.15.7`. The delivery revision is the commit containing this entry.
+Use the [next prompt](PHASE-3B-GUEST-CAPACITY-NEXT-SESSION-2026-10-18.md) and [exact inputs](PHASE-3B-GUEST-CAPACITY-INPUTS-2026-10-18.json).
+Earlier dated entries remain historical records.
+
 **October 18: Separate Phase 3B guest installed; login and accounting block readback.**
 The session began at `31b7e8a` on `codex/phase1-architecture` with a clean worktree.
 The owner completed the new Ubuntu account profile without sharing the password.

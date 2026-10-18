@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.15.7 — 2026-10-18
+
+- Read back Ubuntu 24.04.5 arm64, four CPUs, guest memory, and free disk through the owner's signed-in console.
+- Stop admission because RTK and eight selected tools are absent; Python 3.12.3 differs from selected 3.12.15.
+- Record that guest-visible memory is below 16 GiB despite the VM's 16 GiB configuration.
+- Keep the guest network disconnected and make no tool installation, provider request, or calibration run.
+- Publish the readback record, next prompt, and exact input index.
+
 ## 0.15.6 — 2026-10-18
 
 - Complete the separate Ubuntu guest installation and confirm that it reaches its login prompt.

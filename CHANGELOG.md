@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.15.2 — 2026-10-18
+
+- Complete Phase 3A under accepted ADR 0008 and three explicit owner decisions.
+- Freeze twelve source revisions, independent agent annotations, adjudication, 24 development tasks, and 24 private sealed task commitments.
+- Fix B0, B1, B2, P, both role assignments, toolchain selections, protocol thresholds, scoring, and 768 planned units.
+- Add public artifact integrity checks and deterministic refusal tests through existing interfaces.
+- Preserve failed native evidence, unavailable qualification, unknown usage, and zero evaluation spending.
+- Supply the Phase 3B prompt and exact inputs. No calibration or sealed evaluation ran.
+
 ## 0.15.1 — 2026-10-16
 
 - Prepare the proposed Phase 3A corpus, task, annotation, condition, protocol, and accounting manifests.

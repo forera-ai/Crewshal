@@ -1,0 +1,635 @@
+{
+  "approved_evaluation_allowance": {
+    "money": 0,
+    "paid_hosts": 0,
+    "subscription_quota": 0
+  },
+  "base_revision": "e3457ee0218d1a16d16f1a4a07f363f99454c65f",
+  "branch": "codex/phase1-architecture",
+  "date": "2026-10-18",
+  "delivery_revision": "The commit containing this exact input index.",
+  "files": [
+    {
+      "bytes": 7760,
+      "path": "AGENTS.md",
+      "sha256": "ed7b4175bc9c68faaa1d2f9ce43734982374a4780281d4b049af8967464e1b96"
+    },
+    {
+      "bytes": 60475,
+      "path": "CHANGELOG.md",
+      "sha256": "2d87c172f8e08baca3c128aa4a526fc086ed61520d4f905601c06fd42a2a066e"
+    },
+    {
+      "bytes": 14592,
+      "path": "INITIAL-EVALUATION-PLAN.md",
+      "sha256": "ab74f7c04ee2f0894cc95445edef618ce3227ef1d754e5d312af4d1d5ea03acd"
+    },
+    {
+      "bytes": 11402,
+      "path": "LICENSE",
+      "sha256": "23e146567faed6ea7b23ba44ee4db3fca49ee2ce0c13272ef38ce59eff567534"
+    },
+    {
+      "bytes": 31426,
+      "path": "README.md",
+      "sha256": "882640500c3d410a8faa06a52fe501f041b6cdb0892eaca1cb6c32b4ce83a4c1"
+    },
+    {
+      "bytes": 18875,
+      "path": "docs/ARCHITECTURE.md",
+      "sha256": "b1059de8a036fcf5161f89eb99aa1960b1a1eefee445b738b853abd6b7a88621"
+    },
+    {
+      "bytes": 61780,
+      "path": "docs/DEVELOPMENT-PLAN.md",
+      "sha256": "319782b54b0a9ff8e419b5ae25fc7c95b77790e4abacc14ba91643a9b23c45fa"
+    },
+    {
+      "bytes": 9238,
+      "path": "docs/EXECUTION-QUALIFICATION.md",
+      "sha256": "4722102bf6e3111fb8c97ec2840264728ae77e016829cf738f03d2046544bfe1"
+    },
+    {
+      "bytes": 423692,
+      "path": "docs/HANDOFF.md",
+      "sha256": "b7bad85251a8a7a39c9068e04ce8c87400b1e477bc168978509ef7cc1b6153b4"
+    },
+    {
+      "bytes": 7819,
+      "path": "docs/PHASE-2D-SOFTWARE-COMPLETION-2026-10-16.md",
+      "sha256": "86c3ea8946a317467942a4e884421aefeeda954b561981dc7c4b5db0b5bc27d1"
+    },
+    {
+      "bytes": 10112,
+      "path": "docs/PHASE-2E-SOFTWARE-COMPLETION-2026-10-16.md",
+      "sha256": "7eb3f63d06cca12c055fec6dea914bc7c228dfd12e43b8adb4fc6c77894dd3d8"
+    },
+    {
+      "bytes": 11831,
+      "path": "docs/PHASE-3A-COMPLETION-2026-10-18.md",
+      "sha256": "ed2c62773b41fae72d0603bb84732a86a4ff3dfc844054ae0b920d1e966a6cd0"
+    },
+    {
+      "bytes": 5048,
+      "path": "docs/PHASE-3A-CONTINUATION-2026-10-16.md",
+      "sha256": "59a70daa3f01f0ec6111a5178dca210234236529309a8fd90574f2cfb8de9b4e"
+    },
+    {
+      "bytes": 8244,
+      "path": "docs/PHASE-3A-INPUTS-2026-10-16.json",
+      "sha256": "afcb546840c4e3b1358375a5b530301bb896b0efa314a3cd6cbed2ce0610570b"
+    },
+    {
+      "bytes": 3519,
+      "path": "docs/PHASE-3A-NEXT-SESSION-2026-10-16.md",
+      "sha256": "698d8bdf30cc2268b47b717da2517eb91932fdb162be4143f04dadb2418ec6cb"
+    },
+    {
+      "bytes": 3717,
+      "path": "docs/PHASE-3A-OWNER-DECISIONS-2026-10-16.md",
+      "sha256": "77fd852d75b65ac3db720b919e5b2a5033b0c4cc9eb15abc007b8ceab7e29f9e"
+    },
+    {
+      "bytes": 8753,
+      "path": "docs/PHASE-3A-PREPARATION-2026-10-16.md",
+      "sha256": "13e3570a858bb9d1a4a8a8279f251700be35396b41d53bf302fd606feebff45b"
+    },
+    {
+      "bytes": 4817,
+      "path": "docs/PHASE-3B-NEXT-SESSION-2026-10-18.md",
+      "sha256": "848e774949c4657d59d86a87d92d8a06ba3fdc3788ab8979fc56b1446dbbe59d"
+    },
+    {
+      "bytes": 7328,
+      "path": "docs/decisions/0001-name-and-repository.md",
+      "sha256": "cecb3ecb8df79bff668af4f6374197a8f01867f80a31f1f9a83afacf3479fe47"
+    },
+    {
+      "bytes": 3910,
+      "path": "docs/decisions/0002-minimal-architecture.md",
+      "sha256": "d3a95bba05c6a27fef00f417e093d6496aa37f0fc064c679c67590f4556e8d98"
+    },
+    {
+      "bytes": 11609,
+      "path": "docs/decisions/0003-direct-linux-qualification.md",
+      "sha256": "dcd11ac51fc39fe62523dd7a2d351ef24cc902357203a55e34758f56a29ccf99"
+    },
+    {
+      "bytes": 2748,
+      "path": "docs/decisions/0004-retained-terminal-storage.md",
+      "sha256": "09883c39b2a7b52a198bbc5ab7e3e3e6840d7425e3d706dfdf3cc92714c67817"
+    },
+    {
+      "bytes": 3214,
+      "path": "docs/decisions/0005-official-subscription-pilot.md",
+      "sha256": "fd2cc19b5317307ca20510cd9a0bc60fd5874ae41a74b090fa0431091cdd4e53"
+    },
+    {
+      "bytes": 2544,
+      "path": "docs/decisions/0006-upfront-installation-charge.md",
+      "sha256": "d794f8d7d5b8f38eb04b4e4ff1fb837100b6964abe79bfe1610ef35e5f0bf629"
+    },
+    {
+      "bytes": 4907,
+      "path": "docs/decisions/0007-core-development-before-platform-qualification.md",
+      "sha256": "ade9437cbda53d723d9d42e1250ee40546e338582b0747404b7fafeea3169a8c"
+    },
+    {
+      "bytes": 4357,
+      "path": "docs/decisions/0008-agent-annotation-and-phase-3a-freeze.md",
+      "sha256": "8bf97676e997a5b333d20da15a9a953812d4d5add4c3e9578d96fef36645f3f3"
+    },
+    {
+      "bytes": 7739,
+      "path": "docs/evaluation/phase-3a-frozen/README.md",
+      "sha256": "95eb82810a7d9e873cfb79fa7d098366ca1dfc75aee702019570a64ca1eacc03"
+    },
+    {
+      "bytes": 420522,
+      "path": "docs/evaluation/phase-3a-frozen/annotation-a.json",
+      "sha256": "8c6ecfad7fec831f8f1e047499a1904219f626452f63044372ec0551fbd847e8"
+    },
+    {
+      "bytes": 503021,
+      "path": "docs/evaluation/phase-3a-frozen/annotation-b.json",
+      "sha256": "26dffbbe001a359092f90d93ab8574561058bb7d08b957711cab98d8467fc244"
+    },
+    {
+      "bytes": 4423,
+      "path": "docs/evaluation/phase-3a-frozen/baseline-conformance.json",
+      "sha256": "f25a815cd8ecbf015aadfc3266088bee7da3c2b75ea58034bdf174b1b3b86d19"
+    },
+    {
+      "bytes": 12359,
+      "path": "docs/evaluation/phase-3a-frozen/conditions.json",
+      "sha256": "431975c826351a2e5f55fe3f0f07775d2f384570210dabed94b1f3108f32052d"
+    },
+    {
+      "bytes": 134801,
+      "path": "docs/evaluation/phase-3a-frozen/corpus.json",
+      "sha256": "894f38d198b640bdda49d1adb40590d037e076a8bb547072f799c2f9f3f0a0fd"
+    },
+    {
+      "bytes": 492066,
+      "path": "docs/evaluation/phase-3a-frozen/development-adjudication.json",
+      "sha256": "c9b1f28cc7536e8d7157ce2c764034188d8726126002dfec1887b3170ef2f2d7"
+    },
+    {
+      "bytes": 207242,
+      "path": "docs/evaluation/phase-3a-frozen/development-tasks.json",
+      "sha256": "8a096faf855cea3b67410ae43b381c593a2fb4ad98fdd604526c9608e8ef7030"
+    },
+    {
+      "bytes": 1333,
+      "path": "docs/evaluation/phase-3a-frozen/execution-admission.json",
+      "sha256": "e658e4e678b7676ab13ccd37f513f3d41ca2f26541c5930fe3f3043b4596ef8a"
+    },
+    {
+      "bytes": 2532,
+      "path": "docs/evaluation/phase-3a-frozen/measurement-template.json",
+      "sha256": "7c9e754d5a5e710eb179b0449f0676e1b291ab3b1f196afee3f21e1fab217174"
+    },
+    {
+      "bytes": 2072,
+      "path": "docs/evaluation/phase-3a-frozen/owner-decisions.json",
+      "sha256": "9e229861c2978572e6b13d0edce0b113dd5436b51348ff3c51a6f8aea7d68403"
+    },
+    {
+      "bytes": 4830,
+      "path": "docs/evaluation/phase-3a-frozen/package-index.json",
+      "sha256": "a264ce5458ddf053b482df5b99f669afa6139306887e1de92473eef5529970d1"
+    },
+    {
+      "bytes": 39528,
+      "path": "docs/evaluation/phase-3a-frozen/package-review-b.json",
+      "sha256": "e7ac55b0217747d42b3e9933e5a6ac40f65b37862446d64ec50ce19f9be43729"
+    },
+    {
+      "bytes": 13076,
+      "path": "docs/evaluation/phase-3a-frozen/protocol.json",
+      "sha256": "30c6b3d80e1e6f9ed3948f551677f02c7bae21d0a5d0a0e70d517eedd23212a7"
+    },
+    {
+      "bytes": 3207,
+      "path": "docs/evaluation/phase-3a-frozen/rubric.json",
+      "sha256": "015bfabe9a21979cebc9d63fcf4d3c6f20b597b1bc661604923c4ebc3d4cbe08"
+    },
+    {
+      "bytes": 9614,
+      "path": "docs/evaluation/phase-3a-frozen/runtime-selections.json",
+      "sha256": "265d513b19dd5d92b3dc6fa68636fe2575d75d8b1637895439a818abc50b5ec7"
+    },
+    {
+      "bytes": 489384,
+      "path": "docs/evaluation/phase-3a-frozen/schedule.json",
+      "sha256": "0a4546644f31211ca6827f0b81346a1559fc47a60acff03f492b45cfe9485280"
+    },
+    {
+      "bytes": 35635,
+      "path": "docs/evaluation/phase-3a-frozen/sealed-commitments.json",
+      "sha256": "94373a810f2055445e7124e63c41ef838597b34944ac09a43ae563d70bc08fd2"
+    },
+    {
+      "bytes": 453528,
+      "path": "docs/evaluation/phase-3a-frozen/source-inventories.json",
+      "sha256": "86a2efd86d84dc42b33dbc4fb9be6a9818b0fb90a3916bf0b225479d7877f48f"
+    },
+    {
+      "bytes": 1777,
+      "path": "docs/evaluation/phase-3a-frozen/supplemental-fixtures.json",
+      "sha256": "45129378d710d3d5d7ff46e6d833c0256224e2badedd335d8dcba2fdbe59ca77"
+    },
+    {
+      "bytes": 11852,
+      "path": "docs/evaluation/phase-3a/README.md",
+      "sha256": "079195e6c519209b8b6f4859d10990e9fb478585735cbdf0f5b3e9f9c0fd6438"
+    },
+    {
+      "bytes": 2136,
+      "path": "docs/evaluation/phase-3a/annotations.json",
+      "sha256": "41e3c157144ed32f3124d4fd33bf023930942ea6094c98a54479217ccb7ade47"
+    },
+    {
+      "bytes": 8334,
+      "path": "docs/evaluation/phase-3a/conditions.json",
+      "sha256": "ca6e57f1bc0e242b46b79a7418d1290382d129b5c330d423abbb6f3597440b61"
+    },
+    {
+      "bytes": 34676,
+      "path": "docs/evaluation/phase-3a/corpus.json",
+      "sha256": "53789c41511de8f3b9340e4b4ce9f379a0ea6ec154b0456ddef177176dca7de2"
+    },
+    {
+      "bytes": 3197,
+      "path": "docs/evaluation/phase-3a/decisions.json",
+      "sha256": "87677a3e500b703b81f13f6a6e63f48df7cbe7b4c648f2efa57a41b69c6c9cf5"
+    },
+    {
+      "bytes": 2409,
+      "path": "docs/evaluation/phase-3a/measurement-template.json",
+      "sha256": "23115b27c45664c07b26ed60c4b29056f8f348b578490bc35923147bd56568c9"
+    },
+    {
+      "bytes": 2064,
+      "path": "docs/evaluation/phase-3a/package-index.json",
+      "sha256": "82c0ebfc40438c310eae5f4031456201205244a9d4d808468c87ce37a8b5cf26"
+    },
+    {
+      "bytes": 8390,
+      "path": "docs/evaluation/phase-3a/protocol.json",
+      "sha256": "66ce9f1d8979d7049e4083378a94092fc899bfc1cebb4bc481aaaf84a652f4c6"
+    },
+    {
+      "bytes": 14032,
+      "path": "docs/evaluation/phase-3a/tasks.json",
+      "sha256": "0fb15c3f516087934d8fab98d65b13372eb95b626443a1a899d056c8282bc964"
+    },
+    {
+      "bytes": 12546,
+      "path": "docs/qualification/phase-2d-software-verification-20261016.json",
+      "sha256": "bf09356f0db3746925fc3ef51c66bec48dae628332bcea6d41fa1d31f6e40d91"
+    },
+    {
+      "bytes": 19236,
+      "path": "docs/qualification/phase-2e-software-verification-20261016.json",
+      "sha256": "dcc3d278255966be0315a77dbac5d303157760b64428d37c3e8c2a586b50447a"
+    },
+    {
+      "bytes": 23919,
+      "path": "docs/qualification/phase-3a-freeze-verification-20261018.json",
+      "sha256": "0d5c7d4ce6000572f92e9466c877d7ab888e0c4c7ff0a741fd034d1f5c3d682c"
+    },
+    {
+      "bytes": 16191,
+      "path": "docs/qualification/phase-3a-preparation-verification-20261016.json",
+      "sha256": "af23ee2b33b59ed7ce3f2976d7cb6588e278e7e441e25940385ea0c3c5fecf03"
+    },
+    {
+      "bytes": 920,
+      "path": "pyproject.toml",
+      "sha256": "24121dc941e10984d6263993f681b6c8cc8a0ab3e414704e22569087280cd994"
+    },
+    {
+      "bytes": 16775,
+      "path": "requirements-dev.lock",
+      "sha256": "cc15312627f6235586f0a0655e272fb245563782d88283f57e1159af7dffbc00"
+    },
+    {
+      "bytes": 20317,
+      "path": "scripts/check_phase_3a_freeze.py",
+      "sha256": "e3e8fee8a594059059283db8b8c208b10463668d64ea2be3f4d3de6ad52cbe85"
+    },
+    {
+      "bytes": 91,
+      "path": "src/crewshal/__init__.py",
+      "sha256": "9d19b545c2a666e7b1d50e8511ee0f9a38a7ae9c41fc6d1fb31ef06e1f586039"
+    },
+    {
+      "bytes": 56,
+      "path": "src/crewshal/__main__.py",
+      "sha256": "61e1b048145332e9aab85470bb2fa2bc1312e41dffa6cd26741319fbfe5443c1"
+    },
+    {
+      "bytes": 33743,
+      "path": "src/crewshal/admission.py",
+      "sha256": "a79e10f4ed9a096e7ab6939ad255d47c5478f618886d4c3b2b0c916f008d5c2e"
+    },
+    {
+      "bytes": 27753,
+      "path": "src/crewshal/app_server.py",
+      "sha256": "62e0227245b69bb0900c6bfd566b7b79bbeb90038c82372b541e7534acd7b78d"
+    },
+    {
+      "bytes": 50643,
+      "path": "src/crewshal/bootstrap_helper.c",
+      "sha256": "de5e2928aad6651015bdcb439835ae377738e1f19839fedbc3d6de1a2010db42"
+    },
+    {
+      "bytes": 18963,
+      "path": "src/crewshal/candidate.py",
+      "sha256": "e667919ff4ec6d043de6a1c00f9cb1683de5843cb28f8813b25fb4b75d948bc4"
+    },
+    {
+      "bytes": 13240,
+      "path": "src/crewshal/claude.py",
+      "sha256": "885f704f22ceed74615494fee4015e0b31b64593d2b15b536dd35ed19d6aad84"
+    },
+    {
+      "bytes": 7017,
+      "path": "src/crewshal/cli.py",
+      "sha256": "8ecd936c862da846969fc2da482c7f889d0174c208076301fc16e6353842d372"
+    },
+    {
+      "bytes": 11857,
+      "path": "src/crewshal/contracts.py",
+      "sha256": "ed308d86b9b77fec5e9943677bf1d4b59ef0e16edb7fec25e8b334016bada437"
+    },
+    {
+      "bytes": 13229,
+      "path": "src/crewshal/discovery.py",
+      "sha256": "b9ab698faa5951f9badf566b1fdd8cd3be7487f82fdc96acd6a246ef44aa1b2c"
+    },
+    {
+      "bytes": 17282,
+      "path": "src/crewshal/dispatch.py",
+      "sha256": "b4afe498e5d7f25b3fb5781e7142280de9722a06811b107b646c0acc37eeffd8"
+    },
+    {
+      "bytes": 66863,
+      "path": "src/crewshal/durable.py",
+      "sha256": "e86e31731bffc3b365ee85d13978382a60b5e45bca870c9aba3a4fc9096a163d"
+    },
+    {
+      "bytes": 5222,
+      "path": "src/crewshal/gates.py",
+      "sha256": "04ddc779fc2dc5aa45c09ae30189d7e0e825bbd983fd9b884e878e46f8c55b2e"
+    },
+    {
+      "bytes": 35516,
+      "path": "src/crewshal/integration.py",
+      "sha256": "35f69b34238f66e261f34587b5547f2311b7c4fc67cb055627d14b757445da4a"
+    },
+    {
+      "bytes": 5859,
+      "path": "src/crewshal/linux_attempt.py",
+      "sha256": "a8e709790b3f8a89e551085741dc332611504102c221511e439600483e4e0a4e"
+    },
+    {
+      "bytes": 20018,
+      "path": "src/crewshal/linux_auth.py",
+      "sha256": "741923374120ef7f09398106a21bee374d44a0d9d7cb8c209e4bf294a71ca4d1"
+    },
+    {
+      "bytes": 19738,
+      "path": "src/crewshal/linux_batch.py",
+      "sha256": "fcc2df1ba19c1d6b1e78e999a8a8ab8815b29dd91c81bf77b28432a7e6640fae"
+    },
+    {
+      "bytes": 48780,
+      "path": "src/crewshal/linux_batch_entry.py",
+      "sha256": "52ba5cdfbdb4f7dd535d9e1572947e84626113492a6aba3e2ebe4c9044375dec"
+    },
+    {
+      "bytes": 22073,
+      "path": "src/crewshal/linux_bootstrap.py",
+      "sha256": "b9a5c6939bca596fe8fc9229ad23a0e2409100603fcb7066accb08ac21b33967"
+    },
+    {
+      "bytes": 84236,
+      "path": "src/crewshal/linux_bridge.py",
+      "sha256": "6398fafc1f06acc218d6ae74f68ef9f8bb591621433013bac8123b584c66aa03"
+    },
+    {
+      "bytes": 18683,
+      "path": "src/crewshal/linux_charged_build.py",
+      "sha256": "1e43655257fdf5ac05e9d8df1839a450f9f0f1da1648dff7dd59c45e5c23864b"
+    },
+    {
+      "bytes": 17076,
+      "path": "src/crewshal/linux_compiler_volume.py",
+      "sha256": "5944961aea043d1fb9b06e3c331ee42abca57dc63ecc3d4b5dcbde4c2309df44"
+    },
+    {
+      "bytes": 28307,
+      "path": "src/crewshal/linux_early_timer.py",
+      "sha256": "8f1139978665b2359f18d727040b18969362fc84d267979e5d509b96165d5ee8"
+    },
+    {
+      "bytes": 17331,
+      "path": "src/crewshal/linux_envelope.py",
+      "sha256": "4b5e3b17c1b4280d17d3c31a8c04251134938177bd7b6e3580f10cd4f2bbbdec"
+    },
+    {
+      "bytes": 26373,
+      "path": "src/crewshal/linux_fixture_inputs.py",
+      "sha256": "87abe46a348512119887450ff6be7e6347d91b2b08f6d2496f6cf380a32dac9d"
+    },
+    {
+      "bytes": 34254,
+      "path": "src/crewshal/linux_freeze.py",
+      "sha256": "457f1f7a7fc284a612bd6d37c33f30ed7b270d7c26a90d67599fd556fd9453d2"
+    },
+    {
+      "bytes": 10436,
+      "path": "src/crewshal/linux_installed.py",
+      "sha256": "adf12e79c8472f3279d086b0eb0eec66d8d79b758ea395b551ee0b8b8d529deb"
+    },
+    {
+      "bytes": 18740,
+      "path": "src/crewshal/linux_inventory.py",
+      "sha256": "e0ec35cb0d5fa51ce7e007b4cd8cf94cddb46938f277db1bf9fb6e7ef9698bd8"
+    },
+    {
+      "bytes": 51948,
+      "path": "src/crewshal/linux_network.py",
+      "sha256": "cfc1702fb1f8d4fdd6617155b626c0cbc4aa1f9369e25c973ade4ceb8a050551"
+    },
+    {
+      "bytes": 80576,
+      "path": "src/crewshal/linux_operational.py",
+      "sha256": "2a552643fb36f3d04dc7b4932a404c0a054b5e17820080052497b968976ada77"
+    },
+    {
+      "bytes": 36281,
+      "path": "src/crewshal/linux_parent.py",
+      "sha256": "0f7be8b69c0145de59b635603a042b1ba989aedfb7c17eaf12eb13cfed79a666"
+    },
+    {
+      "bytes": 1484,
+      "path": "src/crewshal/linux_parent_entry.py",
+      "sha256": "7b2640c80c745cbf1724fb866e66e5e2d1d9c162b19282a77b3bd1389fce3998"
+    },
+    {
+      "bytes": 43585,
+      "path": "src/crewshal/linux_payload_storage.py",
+      "sha256": "d6243b49e34be3c0d9835519c8d1e3e4c85355c41a4d0a69ffa990455fb5bb41"
+    },
+    {
+      "bytes": 107348,
+      "path": "src/crewshal/linux_production.py",
+      "sha256": "551e680157d153a33e63278947badd04f0d2c51d9942ce7c6146b0654b5a255b"
+    },
+    {
+      "bytes": 20259,
+      "path": "src/crewshal/linux_qualification.py",
+      "sha256": "aef22f4598c82e7f38980db841b22c4cff18840a7663625a3c33a2a64b924587"
+    },
+    {
+      "bytes": 85980,
+      "path": "src/crewshal/linux_qualification_fixture.py",
+      "sha256": "31aedf72285abea025c64768b177c958adf3331acd720204fea3066df21fe4ea"
+    },
+    {
+      "bytes": 16256,
+      "path": "src/crewshal/linux_schedule.py",
+      "sha256": "41f63f3dc8f1b13f519095f3ddf52a7edac076de4884f7cf888201d6534544a9"
+    },
+    {
+      "bytes": 118626,
+      "path": "src/crewshal/linux_setup.py",
+      "sha256": "d4ffe7a63169aa9a3949ca91f5af6fef678054cf07008ca6264786f79474019b"
+    },
+    {
+      "bytes": 61069,
+      "path": "src/crewshal/linux_storage.py",
+      "sha256": "eb305add25b39b78fd5877c55f637b0190ab238f5297dcf2ae349698d9ab7d61"
+    },
+    {
+      "bytes": 22231,
+      "path": "src/crewshal/linux_teardown.py",
+      "sha256": "8a041bc4f5fcd2b6ea94b476f9ec3cbd870e3090797ed13bfacb6df9aa85d68a"
+    },
+    {
+      "bytes": 55228,
+      "path": "src/crewshal/linux_validator.py",
+      "sha256": "ce28b6bde6112dec645c37683345cbe112184332ef34def01b7a798550ef47fd"
+    },
+    {
+      "bytes": 6575,
+      "path": "src/crewshal/model.py",
+      "sha256": "3cbc9405e0c7fb5247a13562e72c8472c3edc0f3fc2407db2fd6c6c95fae25de"
+    },
+    {
+      "bytes": 3082,
+      "path": "src/crewshal/qualification.py",
+      "sha256": "772df20ee17ddd52023eb0b245d733e2db29d115b625703fd4c6d86026f5554a"
+    },
+    {
+      "bytes": 10798,
+      "path": "src/crewshal/qualification_bundle.py",
+      "sha256": "4a595fc100539d997ad9b5f5750b58cd5f14b0ca276a6cc1cc9de6596c1aae7b"
+    },
+    {
+      "bytes": 29474,
+      "path": "src/crewshal/review.py",
+      "sha256": "11d7f603ce98d233dcd99a02b4ade4b099cf8c5d2489355f3616213838bb6ac9"
+    },
+    {
+      "bytes": 19518,
+      "path": "src/crewshal/runtime.py",
+      "sha256": "afd84e5497092a8117d3705f81d7dc9e6885852fa29a22ab9653a9871170f418"
+    },
+    {
+      "bytes": 18513,
+      "path": "src/crewshal/runtime_batch.py",
+      "sha256": "1c234fb4b2145329306f5ad68dcdf63ce1b400382414c0f69c83e6f76093d8e1"
+    },
+    {
+      "bytes": 3347,
+      "path": "src/crewshal/state.py",
+      "sha256": "856abbc9de6e630798736eab14ddc6062bc6768621edd8a0d9477f1f3fa7e5a3"
+    },
+    {
+      "bytes": 35230,
+      "path": "src/crewshal/supervisor.py",
+      "sha256": "4ec3238f5d2c9a8f68762c084ab241112a9b87d626023b5e6a18ab7b6e70a2f6"
+    },
+    {
+      "bytes": 16185,
+      "path": "tests/acceptance/test_phase_2a.py",
+      "sha256": "e4c53627b3fc1be58467761b2c2002010e256f9e087e92fe9ba20837ed627695"
+    },
+    {
+      "bytes": 33064,
+      "path": "tests/acceptance/test_phase_2b.py",
+      "sha256": "a5db032b0e1ba98427bd95e726d70ac5e6c07039851553f8c98950496f9dbe40"
+    },
+    {
+      "bytes": 29930,
+      "path": "tests/acceptance/test_phase_2d_admission.py",
+      "sha256": "769167cc94160ce457ceed43f7ec328caa09c56bf73f51e57f05d792e5ee534a"
+    },
+    {
+      "bytes": 24831,
+      "path": "tests/acceptance/test_phase_2d_bootstrap.py",
+      "sha256": "c186f92b42251759986443f3fe1ff7d537d9687803cb64505846da54f6d73e98"
+    },
+    {
+      "bytes": 19696,
+      "path": "tests/acceptance/test_phase_2d_core.py",
+      "sha256": "ccc356bf4245afe2cb23158ad53484daa00b3788b64379c2d6483cfbff72a0c0"
+    },
+    {
+      "bytes": 18770,
+      "path": "tests/acceptance/test_phase_2d_dispatch.py",
+      "sha256": "af08ffbb69de2bb1b048a89057ec621c0e6e4bd453230adced9c17f000c5d012"
+    },
+    {
+      "bytes": 35917,
+      "path": "tests/acceptance/test_phase_2e.py",
+      "sha256": "8aea03066e6366b410e845483c71b7a77858567676cdf85a70f6b59473b831b2"
+    },
+    {
+      "bytes": 16154,
+      "path": "tests/acceptance/test_phase_3a.py",
+      "sha256": "6df681be2bb7cbd4558b71c38d24055c433b453d484050e9a71880ba3015174c"
+    },
+    {
+      "bytes": 13796,
+      "path": "tests/acceptance/test_phase_3a_freeze.py",
+      "sha256": "0aec50cc533f9001864047df69f4dc07c6cdcc0817edc5f98a3b70acee1efb26"
+    }
+  ],
+  "future_sealed_custody_reference": "private-store:phase3a-20261016/sealed/v1",
+  "hash_policy": "Verify these exact checkpoint bytes. Inspect and preserve later work. The containing Git commit binds the complete checkout.",
+  "next_prompt": "docs/PHASE-3B-NEXT-SESSION-2026-10-18.md",
+  "operational_execution_allowed": false,
+  "package_index": "docs/evaluation/phase-3a-frozen/package-index.json",
+  "phase": "3A complete; next milestone 3B calibration and protocol corrections",
+  "phase_3a_complete": true,
+  "phase_3b_execution_allowed": false,
+  "phase_3b_started": false,
+  "platform_and_live_qualification": "Deferred under ADR 0007. A later explicit owner instruction and current admission remain required.",
+  "private_calibration_inputs_required": false,
+  "private_inputs_included": false,
+  "purpose": "Exact public starting inputs for Phase 3B. This index grants no evaluation execution authority.",
+  "requires_existing_checkout": true,
+  "schema_version": 1,
+  "sealed_task_contents_included": false,
+  "smallest_next_decisions": [
+    "Approve an exact Phase 3B spending and subscription quota batch.",
+    "Explicitly instruct resumption of the required platform and live qualification work."
+  ],
+  "spend_authorized": false,
+  "version": "0.15.2"
+}

@@ -1,0 +1,3192 @@
+{
+  "completion_limit": "This file freezes source and contract identities. It does not qualify native execution or admit calibration, evaluation, spending, or publication.",
+  "date": "2026-10-18",
+  "dependency_policy": "No selected source or toolchain implies a resolved dependency environment. All four holdout inventories lack recognized lockfiles.",
+  "execution_allowed": false,
+  "global_prior_use": "unknown",
+  "inputs": {
+    "annotation-a.json": {
+      "path": "docs/evaluation/phase-3a-frozen/annotation-a.json",
+      "sha256": "8c6ecfad7fec831f8f1e047499a1904219f626452f63044372ec0551fbd847e8"
+    },
+    "annotation-b.json": {
+      "path": "docs/evaluation/phase-3a-frozen/annotation-b.json",
+      "sha256": "26dffbbe001a359092f90d93ab8574561058bb7d08b957711cab98d8467fc244"
+    },
+    "development-adjudication.json": {
+      "path": "docs/evaluation/phase-3a-frozen/development-adjudication.json",
+      "sha256": "c9b1f28cc7536e8d7157ce2c764034188d8726126002dfec1887b3170ef2f2d7"
+    },
+    "development-tasks.json": {
+      "path": "docs/evaluation/phase-3a-frozen/development-tasks.json",
+      "sha256": "8a096faf855cea3b67410ae43b381c593a2fb4ad98fdd604526c9608e8ef7030"
+    },
+    "runtime-selections.json": {
+      "path": "docs/evaluation/phase-3a-frozen/runtime-selections.json",
+      "sha256": "265d513b19dd5d92b3dc6fa68636fe2575d75d8b1637895439a818abc50b5ec7"
+    },
+    "sealed-commitments.json": {
+      "path": "docs/evaluation/phase-3a-frozen/sealed-commitments.json",
+      "sha256": "94373a810f2055445e7124e63c41ef838597b34944ac09a43ae563d70bc08fd2"
+    },
+    "source-inventories.json": {
+      "path": "docs/evaluation/phase-3a-frozen/source-inventories.json",
+      "sha256": "86a2efd86d84dc42b33dbc4fb9be6a9818b0fb90a3916bf0b225479d7877f48f"
+    }
+  },
+  "legal_policy": "Preserve observed notices. Review dependency, file, and asset rights for each admitted task and redistribution. Root notices do not grant complete clearance.",
+  "package_id": "phase3a-20261016-v1",
+  "pin_source": {
+    "path": "docs/evaluation/phase-3a/corpus.json",
+    "rule": "All 12 repository names, revisions, split assignments, and root license digests retain the original pins.",
+    "sha256": "53789c41511de8f3b9340e4b4ce9f379a0ea6ec154b0456ddef177176dca7de2"
+  },
+  "repositories": [
+    {
+      "access_policy": {
+        "annotation_sources": "Public pinned archives only.",
+        "annotations": "Independent agent records with later separate adjudication.",
+        "development_tasks": "Public frozen task contracts.",
+        "human_ground_truth_claim": false,
+        "private_predecessor_material_accessed": false,
+        "provider_independence_claim": false
+      },
+      "annotations": {
+        "A": {
+          "artifact": {
+            "path": "docs/evaluation/phase-3a-frozen/annotation-a.json",
+            "sha256": "8c6ecfad7fec831f8f1e047499a1904219f626452f63044372ec0551fbd847e8"
+          },
+          "record_pointer": "/repositories/0"
+        },
+        "B": {
+          "artifact": {
+            "path": "docs/evaluation/phase-3a-frozen/annotation-b.json",
+            "sha256": "26dffbbe001a359092f90d93ab8574561058bb7d08b957711cab98d8467fc244"
+          },
+          "record_pointer": "/repositories/0"
+        },
+        "adjudication": {
+          "artifact": {
+            "path": "docs/evaluation/phase-3a-frozen/development-adjudication.json",
+            "sha256": "c9b1f28cc7536e8d7157ce2c764034188d8726126002dfec1887b3170ef2f2d7"
+          },
+          "field_count": 15,
+          "record_pointer": "/repositories/0"
+        }
+      },
+      "archive_sha256": "edfa6cf117bbbe46f6690266a40389b08b12cbf87fad8664d349ebd6eea811a1",
+      "baseline_checks": {
+        "definition_count": 6,
+        "definitions_reference": {
+          "artifact": {
+            "path": "docs/evaluation/phase-3a-frozen/development-adjudication.json",
+            "sha256": "c9b1f28cc7536e8d7157ce2c764034188d8726126002dfec1887b3170ef2f2d7"
+          },
+          "field": "checks",
+          "repository_id": "python-1"
+        },
+        "definitions_sha256": "e5d0b17e26a87542f1ebba3605b6626d8bb3f25d9acd8f7d797df257a837cd4c",
+        "diagnostics_sha256": null,
+        "known_natural_failure": false,
+        "known_natural_failure_limit": "No natural failing baseline is established. This false value does not prove a passing baseline.",
+        "results": "unknown",
+        "status": "not-run"
+      },
+      "calibration_selected": true,
+      "ci_execution": "not-run",
+      "dependencies": {
+        "full_environment_lock": "unknown",
+        "installed_dependency_resolution": "unavailable",
+        "policy": "Resolve and freeze exact installed dependencies before admitted checks. Preserve source lock files and constraint digests.",
+        "recognized_files": [
+          {
+            "kind": "compiled-constraint-file",
+            "path": "requirements/build.txt",
+            "sha256": "d3ef91ebee54f317182134b191061325ad72eed5be7a2484d1f9de7205c5a293"
+          },
+          {
+            "kind": "compiled-constraint-file",
+            "path": "requirements/dev.txt",
+            "sha256": "edb0efa850ff4a2cb07121a972462dc02f4a439146dfb6d50e990c1c610f6640"
+          },
+          {
+            "kind": "compiled-constraint-file",
+            "path": "requirements/docs.txt",
+            "sha256": "9734b3d503f345f7d03eb7c923fb0baafbd574780fd070992aad87da21ed3ccc"
+          },
+          {
+            "kind": "compiled-constraint-file",
+            "path": "requirements/tests.txt",
+            "sha256": "5bac9588b5dda6960373aa11fe3c4ca9da734edf178169ceef18579702ee5c2f"
+          },
+          {
+            "kind": "compiled-constraint-file",
+            "path": "requirements/tests37.txt",
+            "sha256": "d87080293ce5a12245249089ed75b794a9ad1276b7d8491a13724ad307763a82"
+          },
+          {
+            "kind": "compiled-constraint-file",
+            "path": "requirements/typing.txt",
+            "sha256": "afa23e2cb2e7cec61928565cb9b0481ce410b1cf7067b0df727d0e80eaa8f07f"
+          }
+        ],
+        "rights_review": "incomplete"
+      },
+      "execution_allowed": false,
+      "external_services": {
+        "approved_destinations": [],
+        "execution_admitted": false,
+        "status": "unknown"
+      },
+      "id": "python-1",
+      "legal_root_evidence": {
+        "branding_rule": "Exclude branding and logo assets unless separately permitted.",
+        "dependency_rights_review": "incomplete",
+        "line_range": [
+          1,
+          28
+        ],
+        "line_range_limit": null,
+        "notice_obligations": [
+          "Preserve the notice, conditions, and disclaimer.",
+          "Do not imply endorsement."
+        ],
+        "path": "LICENSE.txt",
+        "root_scope": "This root notice is source evidence. It does not establish all dependency, file, asset, patent, or trademark rights.",
+        "sha256": "9a8ad106a394e853bfe21f42f4e72d592819a22805d991b5f3275029292b658d",
+        "source_observation_date": "2026-10-16",
+        "spdx_screening_label": "BSD-3-Clause",
+        "status": "observed-public-root-notice",
+        "third_party_redistribution_clearance": "unknown",
+        "url": "https://github.com/pallets/click/blob/934813e4d421071a1b3db3973c02fe2721359a6e/LICENSE.txt"
+      },
+      "license_path": "LICENSE.txt",
+      "license_sha256": "9a8ad106a394e853bfe21f42f4e72d592819a22805d991b5f3275029292b658d",
+      "license_spdx": "BSD-3-Clause",
+      "limitations": [
+        "Checks are source-defined and unrun. No passing baseline is established.",
+        "Selected toolchains do not establish installed executables or qualified platforms.",
+        "Root license observations do not clear all dependencies or assets.",
+        "Global prior use, prior product configuration, training exposure, and private-estate overlap remain unknown."
+      ],
+      "prior_product_configuration": {
+        "reason": "The current public source copies cannot establish global prior configuration.",
+        "status": "unknown",
+        "value": null
+      },
+      "private_estate_overlap": {
+        "reason": "No global absence claim follows from independent public-source reviews.",
+        "status": "unknown",
+        "value": null
+      },
+      "proposed_tag": "8.1.8",
+      "repository": "pallets/click",
+      "revision": "934813e4d421071a1b3db3973c02fe2721359a6e",
+      "selection_authority": "The owner delegated bounded source selections. This selection grants no execution or spending authority.",
+      "selection_status": "frozen-artifact-only",
+      "source_access": "public-unauthenticated",
+      "source_identity": {
+        "archive_bytes": 343014,
+        "archive_sha256": "edfa6cf117bbbe46f6690266a40389b08b12cbf87fad8664d349ebd6eea811a1",
+        "archive_url": "https://codeload.github.com/pallets/click/tar.gz/934813e4d421071a1b3db3973c02fe2721359a6e",
+        "inventory_reference": {
+          "path": "docs/evaluation/phase-3a-frozen/source-inventories.json",
+          "sha256": "86a2efd86d84dc42b33dbc4fb9be6a9818b0fb90a3916bf0b225479d7877f48f"
+        },
+        "inventory_serialization": "SHA-256 of UTF-8 JSON for the sorted files list, with sorted keys and compact separators. Each row contains path, bytes, and SHA-256.",
+        "repository": "pallets/click",
+        "revision": "934813e4d421071a1b3db3973c02fe2721359a6e",
+        "source_file_count": 147,
+        "source_inventory_sha256": "18e29675d7e2cd5d86b7973b36aaed6edb161af5837243060d8705e70dfa58e8",
+        "symlink_rule": "Do not follow source symlinks during inspection or inventory comparison."
+      },
+      "source_inventory_sha256": "18e29675d7e2cd5d86b7973b36aaed6edb161af5837243060d8705e70dfa58e8",
+      "source_observation_date": "2026-10-16",
+      "source_url": "https://github.com/pallets/click",
+      "spend_authorized": false,
+      "split": "development",
+      "stack": "python",
+      "task_scope": {
+        "generated_and_sensitive_policy": "Use the adjudicated field records. A task allowance does not admit credentials, network, publication, or generated-file writes.",
+        "scope_rule": "Each task starts from its pinned source. Only its exact allowed paths can change.",
+        "task_bundle": {
+          "path": "docs/evaluation/phase-3a-frozen/development-tasks.json",
+          "sha256": "8a096faf855cea3b67410ae43b381c593a2fb4ad98fdd604526c9608e8ef7030"
+        },
+        "tasks": [
+          {
+            "allowed_paths": [
+              "docs/parameters.rst"
+            ],
+            "category": "documentation",
+            "id": "python-1-documentation",
+            "risk": "low"
+          },
+          {
+            "allowed_paths": [
+              "src/click/types.py",
+              "tests/test_types.py"
+            ],
+            "category": "behavior",
+            "id": "python-1-behavior",
+            "risk": "medium"
+          },
+          {
+            "allowed_paths": [
+              "src/click/types.py",
+              "src/click/__init__.py",
+              "tests/test_types.py",
+              "docs/parameters.rst"
+            ],
+            "category": "compatibility",
+            "id": "python-1-compatibility",
+            "risk": "medium"
+          }
+        ],
+        "visibility": "public-development-contracts"
+      },
+      "toolchain": {
+        "actual_environment_sha256": null,
+        "actual_executable_sha256": null,
+        "actual_runtime_version": null,
+        "qualified": false,
+        "selection": {
+          "availability": "The coordinator host has CPython 3.12.15. Corpus dependencies and qualified execution remain unavailable.",
+          "repository_ids": [
+            "python-1",
+            "python-2",
+            "python-3"
+          ],
+          "selected": "CPython 3.12.15",
+          "stack": "python"
+        },
+        "selection_reference": {
+          "path": "docs/evaluation/phase-3a-frozen/runtime-selections.json",
+          "sha256": "265d513b19dd5d92b3dc6fa68636fe2575d75d8b1637895439a818abc50b5ec7"
+        },
+        "source_declarations_reference": {
+          "artifact": {
+            "path": "docs/evaluation/phase-3a-frozen/development-adjudication.json",
+            "sha256": "c9b1f28cc7536e8d7157ce2c764034188d8726126002dfec1887b3170ef2f2d7"
+          },
+          "field": "toolchain",
+          "repository_id": "python-1"
+        },
+        "status": "prospective-selection-only"
+      }
+    },
+    {
+      "access_policy": {
+        "annotation_sources": "Public pinned archives only.",
+        "annotations": "Independent agent records with later separate adjudication.",
+        "development_tasks": "Public frozen task contracts.",
+        "human_ground_truth_claim": false,
+        "private_predecessor_material_accessed": false,
+        "provider_independence_claim": false
+      },
+      "annotations": {
+        "A": {
+          "artifact": {
+            "path": "docs/evaluation/phase-3a-frozen/annotation-a.json",
+            "sha256": "8c6ecfad7fec831f8f1e047499a1904219f626452f63044372ec0551fbd847e8"
+          },
+          "record_pointer": "/repositories/1"
+        },
+        "B": {
+          "artifact": {
+            "path": "docs/evaluation/phase-3a-frozen/annotation-b.json",
+            "sha256": "26dffbbe001a359092f90d93ab8574561058bb7d08b957711cab98d8467fc244"
+          },
+          "record_pointer": "/repositories/1"
+        },
+        "adjudication": {
+          "artifact": {
+            "path": "docs/evaluation/phase-3a-frozen/development-adjudication.json",
+            "sha256": "c9b1f28cc7536e8d7157ce2c764034188d8726126002dfec1887b3170ef2f2d7"
+          },
+          "field_count": 15,
+          "record_pointer": "/repositories/1"
+        }
+      },
+      "archive_sha256": "d4efd6a06cc4118fdd4edd1cbd90987cd5d91dddd96f5cf4f70d027988385249",
+      "baseline_checks": {
+        "definition_count": 6,
+        "definitions_reference": {
+          "artifact": {
+            "path": "docs/evaluation/phase-3a-frozen/development-adjudication.json",
+            "sha256": "c9b1f28cc7536e8d7157ce2c764034188d8726126002dfec1887b3170ef2f2d7"
+          },
+          "field": "checks",
+          "repository_id": "python-2"
+        },
+        "definitions_sha256": "e5d0b17e26a87542f1ebba3605b6626d8bb3f25d9acd8f7d797df257a837cd4c",
+        "diagnostics_sha256": null,
+        "known_natural_failure": false,
+        "known_natural_failure_limit": "No natural failing baseline is established. This false value does not prove a passing baseline.",
+        "results": "unknown",
+        "status": "not-run"
+      },
+      "calibration_selected": false,
+      "ci_execution": "not-run",
+      "dependencies": {
+        "full_environment_lock": "unknown",
+        "installed_dependency_resolution": "unavailable",
+        "policy": "Resolve and freeze exact installed dependencies before admitted checks. Preserve source lock files and constraint digests.",
+        "recognized_files": [
+          {
+            "kind": "compiled-constraint-file",
+            "path": "requirements/build.txt",
+            "sha256": "e623540e870b119c29064c83467dad8b4b99150caf8b37acabf5ce9a86e2abaa"
+          },
+          {
+            "kind": "compiled-constraint-file",
+            "path": "requirements/dev.txt",
+            "sha256": "a19e1555eba8be011d1e5ba6b6a6b87e818b2631cdacfc533cbeec815c1ef24b"
+          },
+          {
+            "kind": "compiled-constraint-file",
+            "path": "requirements/docs.txt",
+            "sha256": "711a3de180d52e23a95861ac02a0b5419153a13ba27c6531b4d42e39a02a5bea"
+          },
+          {
+            "kind": "compiled-constraint-file",
+            "path": "requirements/tests.txt",
+            "sha256": "6989747e91fc4c09ee14c58305a277a9387fb9ca71615dacf21b5b085c017c4f"
+          },
+          {
+            "kind": "compiled-constraint-file",
+            "path": "requirements/typing.txt",
+            "sha256": "d69053ffd15e7af37f96f3508cd618371ca82304a2619dfa81880ed37be9c4a1"
+          }
+        ],
+        "rights_review": "incomplete"
+      },
+      "execution_allowed": false,
+      "external_services": {
+        "approved_destinations": [],
+        "execution_admitted": false,
+        "status": "unknown"
+      },
+      "id": "python-2",
+      "legal_root_evidence": {
+        "branding_rule": "Exclude branding and logo assets unless separately permitted.",
+        "dependency_rights_review": "incomplete",
+        "line_range": [
+          1,
+          28
+        ],
+        "line_range_limit": null,
+        "notice_obligations": [
+          "Preserve the notice, conditions, and disclaimer.",
+          "Do not imply endorsement."
+        ],
+        "path": "LICENSE.txt",
+        "root_scope": "This root notice is source evidence. It does not establish all dependency, file, asset, patent, or trademark rights.",
+        "sha256": "63af09891b6be8ad1a4252ed43af0f4efba7fc948e228367bed7f3c5ae0b09d7",
+        "source_observation_date": "2026-10-16",
+        "spdx_screening_label": "BSD-3-Clause",
+        "status": "observed-public-root-notice",
+        "third_party_redistribution_clearance": "unknown",
+        "url": "https://github.com/pallets/itsdangerous/blob/096c8d42545d3b68ea21a4f890fb2b2d8979c0bd/LICENSE.txt"
+      },
+      "license_path": "LICENSE.txt",
+      "license_sha256": "63af09891b6be8ad1a4252ed43af0f4efba7fc948e228367bed7f3c5ae0b09d7",
+      "license_spdx": "BSD-3-Clause",
+      "limitations": [
+        "Checks are source-defined and unrun. No passing baseline is established.",
+        "Selected toolchains do not establish installed executables or qualified platforms.",
+        "Root license observations do not clear all dependencies or assets.",
+        "Global prior use, prior product configuration, training exposure, and private-estate overlap remain unknown."
+      ],
+      "prior_product_configuration": {
+        "reason": "The current public source copies cannot establish global prior configuration.",
+        "status": "unknown",
+        "value": null
+      },
+      "private_estate_overlap": {
+        "reason": "No global absence claim follows from independent public-source reviews.",
+        "status": "unknown",
+        "value": null
+      },
+      "proposed_tag": "2.2.0",
+      "repository": "pallets/itsdangerous",
+      "revision": "096c8d42545d3b68ea21a4f890fb2b2d8979c0bd",
+      "selection_authority": "The owner delegated bounded source selections. This selection grants no execution or spending authority.",
+      "selection_status": "frozen-artifact-only",
+      "source_access": "public-unauthenticated",
+      "source_identity": {
+        "archive_bytes": 60650,
+        "archive_sha256": "d4efd6a06cc4118fdd4edd1cbd90987cd5d91dddd96f5cf4f70d027988385249",
+        "archive_url": "https://codeload.github.com/pallets/itsdangerous/tar.gz/096c8d42545d3b68ea21a4f890fb2b2d8979c0bd",
+        "inventory_reference": {
+          "path": "docs/evaluation/phase-3a-frozen/source-inventories.json",
+          "sha256": "86a2efd86d84dc42b33dbc4fb9be6a9818b0fb90a3916bf0b225479d7877f48f"
+        },
+        "inventory_serialization": "SHA-256 of UTF-8 JSON for the sorted files list, with sorted keys and compact separators. Each row contains path, bytes, and SHA-256.",
+        "repository": "pallets/itsdangerous",
+        "revision": "096c8d42545d3b68ea21a4f890fb2b2d8979c0bd",
+        "source_file_count": 60,
+        "source_inventory_sha256": "7719b87ad32b127b7203cfd19db185a78802ebe31c3adef673de60ca465ff606",
+        "symlink_rule": "Do not follow source symlinks during inspection or inventory comparison."
+      },
+      "source_inventory_sha256": "7719b87ad32b127b7203cfd19db185a78802ebe31c3adef673de60ca465ff606",
+      "source_observation_date": "2026-10-16",
+      "source_url": "https://github.com/pallets/itsdangerous",
+      "spend_authorized": false,
+      "split": "development",
+      "stack": "python",
+      "task_scope": {
+        "generated_and_sensitive_policy": "Use the adjudicated field records. A task allowance does not admit credentials, network, publication, or generated-file writes.",
+        "scope_rule": "Each task starts from its pinned source. Only its exact allowed paths can change.",
+        "task_bundle": {
+          "path": "docs/evaluation/phase-3a-frozen/development-tasks.json",
+          "sha256": "8a096faf855cea3b67410ae43b381c593a2fb4ad98fdd604526c9608e8ef7030"
+        },
+        "tasks": [
+          {
+            "allowed_paths": [
+              "docs/concepts.rst"
+            ],
+            "category": "documentation",
+            "id": "python-2-documentation",
+            "risk": "low"
+          },
+          {
+            "allowed_paths": [
+              "src/itsdangerous/encoding.py",
+              "tests/test_itsdangerous/test_encoding.py"
+            ],
+            "category": "behavior",
+            "id": "python-2-behavior",
+            "risk": "high"
+          },
+          {
+            "allowed_paths": [
+              "src/itsdangerous/encoding.py",
+              "src/itsdangerous/__init__.py",
+              "tests/test_itsdangerous/test_encoding.py",
+              "docs/concepts.rst"
+            ],
+            "category": "compatibility",
+            "id": "python-2-compatibility",
+            "risk": "medium"
+          }
+        ],
+        "visibility": "public-development-contracts"
+      },
+      "toolchain": {
+        "actual_environment_sha256": null,
+        "actual_executable_sha256": null,
+        "actual_runtime_version": null,
+        "qualified": false,
+        "selection": {
+          "availability": "The coordinator host has CPython 3.12.15. Corpus dependencies and qualified execution remain unavailable.",
+          "repository_ids": [
+            "python-1",
+            "python-2",
+            "python-3"
+          ],
+          "selected": "CPython 3.12.15",
+          "stack": "python"
+        },
+        "selection_reference": {
+          "path": "docs/evaluation/phase-3a-frozen/runtime-selections.json",
+          "sha256": "265d513b19dd5d92b3dc6fa68636fe2575d75d8b1637895439a818abc50b5ec7"
+        },
+        "source_declarations_reference": {
+          "artifact": {
+            "path": "docs/evaluation/phase-3a-frozen/development-adjudication.json",
+            "sha256": "c9b1f28cc7536e8d7157ce2c764034188d8726126002dfec1887b3170ef2f2d7"
+          },
+          "field": "toolchain",
+          "repository_id": "python-2"
+        },
+        "status": "prospective-selection-only"
+      }
+    },
+    {
+      "access_policy": {
+        "annotation_sources": "Public pinned archives only.",
+        "annotations": "Independent agent records with later separate adjudication.",
+        "development_tasks": "Separate sealed custodian. Public scope hashes only.",
+        "human_ground_truth_claim": false,
+        "private_predecessor_material_accessed": false,
+        "provider_independence_claim": false
+      },
+      "annotations": {
+        "A": {
+          "artifact": {
+            "path": "docs/evaluation/phase-3a-frozen/annotation-a.json",
+            "sha256": "8c6ecfad7fec831f8f1e047499a1904219f626452f63044372ec0551fbd847e8"
+          },
+          "raw_record_sha256": "69b2635cb16ccd7bcf92b140ec6164728f78307b7ca82de88f39d9d6368c53e3",
+          "status_counts": {
+            "per_field": {
+              "baseline_results": {
+                "unknown": 1
+              },
+              "checks": {
+                "observed": 1
+              },
+              "ci": {
+                "observed": 1
+              },
+              "dependency_locks": {
+                "observed": 1
+              },
+              "generated_paths": {
+                "inferred": 1
+              },
+              "licenses": {
+                "observed": 1
+              },
+              "package_manager": {
+                "inferred": 1
+              },
+              "prior_product_configuration": {
+                "unknown": 1
+              },
+              "private_estate_overlap": {
+                "unknown": 1
+              },
+              "sensitive_paths": {
+                "inferred": 1
+              },
+              "services_and_authority": {
+                "inferred": 1
+              },
+              "stack": {
+                "observed": 1
+              },
+              "third_party_concerns": {
+                "inferred": 1
+              },
+              "toolchain": {
+                "observed": 1
+              },
+              "workspace_boundaries": {
+                "observed": 1
+              }
+            },
+            "total": {
+              "inferred": 5,
+              "observed": 7,
+              "unknown": 3
+            }
+          }
+        },
+        "B": {
+          "artifact": {
+            "path": "docs/evaluation/phase-3a-frozen/annotation-b.json",
+            "sha256": "26dffbbe001a359092f90d93ab8574561058bb7d08b957711cab98d8467fc244"
+          },
+          "raw_record_sha256": "a2036af714e888a4dee831c8d7c6c369954f1c1f52636ae5674b9d67c8193e00",
+          "status_counts": {
+            "baseline": {
+              "inferred": 0,
+              "observed": 0,
+              "unavailable": 0,
+              "unknown": 1
+            },
+            "build": {
+              "inferred": 1,
+              "observed": 0,
+              "unavailable": 0,
+              "unknown": 1
+            },
+            "ci": {
+              "inferred": 0,
+              "observed": 6,
+              "unavailable": 0,
+              "unknown": 0
+            },
+            "generated": {
+              "inferred": 0,
+              "observed": 1,
+              "unavailable": 0,
+              "unknown": 0
+            },
+            "license": {
+              "inferred": 0,
+              "observed": 1,
+              "unavailable": 0,
+              "unknown": 0
+            },
+            "lint": {
+              "inferred": 1,
+              "observed": 1,
+              "unavailable": 0,
+              "unknown": 0
+            },
+            "locks": {
+              "inferred": 0,
+              "observed": 0,
+              "unavailable": 0,
+              "unknown": 1
+            },
+            "package_manager": {
+              "inferred": 1,
+              "observed": 0,
+              "unavailable": 0,
+              "unknown": 0
+            },
+            "provenance": {
+              "inferred": 0,
+              "observed": 1,
+              "unavailable": 0,
+              "unknown": 0
+            },
+            "sensitive": {
+              "inferred": 1,
+              "observed": 4,
+              "unavailable": 0,
+              "unknown": 0
+            },
+            "services": {
+              "inferred": 0,
+              "observed": 6,
+              "unavailable": 0,
+              "unknown": 1
+            },
+            "stack": {
+              "inferred": 0,
+              "observed": 1,
+              "unavailable": 0,
+              "unknown": 0
+            },
+            "test": {
+              "inferred": 1,
+              "observed": 1,
+              "unavailable": 0,
+              "unknown": 0
+            },
+            "third_party": {
+              "inferred": 0,
+              "observed": 2,
+              "unavailable": 0,
+              "unknown": 1
+            },
+            "toolchain": {
+              "inferred": 0,
+              "observed": 1,
+              "unavailable": 1,
+              "unknown": 0
+            },
+            "workspace": {
+              "inferred": 1,
+              "observed": 0,
+              "unavailable": 0,
+              "unknown": 0
+            }
+          }
+        },
+        "sealed_adjudication": {
+          "public_content": "counts-and-digest-only",
+          "sha256": "8d18fde49e61b0c957c617c1d4fc0ab8c8da42a935365a1cbcf7a713bc0645dc"
+        }
+      },
+      "archive_sha256": "eea68206ca35d846c01b05fb241acb179beaf8334d3564b23cce440a05db0ddf",
+      "baseline_checks": {
+        "definitions_reference": "Separate sealed custody. Definitions are not exported here.",
+        "definitions_sha256": null,
+        "diagnostics_sha256": null,
+        "known_natural_failure": false,
+        "known_natural_failure_limit": "No executed upstream failure is established.",
+        "results": "unknown",
+        "status": "not-run"
+      },
+      "calibration_selected": false,
+      "ci_execution": "not-run",
+      "dependencies": {
+        "dependency_lock_sha256": null,
+        "evidence": {
+          "artifact": {
+            "path": "docs/evaluation/phase-3a-frozen/runtime-selections.json",
+            "sha256": "265d513b19dd5d92b3dc6fa68636fe2575d75d8b1637895439a818abc50b5ec7"
+          },
+          "pointer": "/holdout_dependency_limit"
+        },
+        "full_environment_lock": "unavailable",
+        "installed_dependency_resolution": "unavailable",
+        "lockfile_status": "No recognized dependency lockfile exists in the pinned source inventory.",
+        "policy": "Resolve and freeze exact dependencies through separate preparation admission. Do not fabricate a lock digest.",
+        "recognized_lockfile_observed": false,
+        "rights_review": "incomplete"
+      },
+      "execution_allowed": false,
+      "external_services": {
+        "approved_destinations": [],
+        "execution_admitted": false,
+        "status": "unknown"
+      },
+      "id": "python-3",
+      "legal_root_evidence": {
+        "branding_rule": "Exclude branding and logo assets unless separately permitted.",
+        "dependency_rights_review": "incomplete",
+        "line_range": null,
+        "line_range_limit": "The public screening and safe source commitment bind the notice digest. They do not export source line ranges.",
+        "notice_obligations": [
+          "Preserve the copyright and permission notice."
+        ],
+        "path": "LICENSE",
+        "root_scope": "This root notice is source evidence. It does not establish all dependency, file, asset, patent, or trademark rights.",
+        "sha256": "882115c95dfc2af1eeb6714f8ec6d5cbcabf667caff8729f42420da63f714e9f",
+        "source_observation_date": "2026-10-16",
+        "spdx_screening_label": "MIT",
+        "status": "observed-public-root-notice",
+        "third_party_redistribution_clearance": "unknown",
+        "url": "https://github.com/python-attrs/attrs/blob/fbff14eeaf817e4b34e9c5727c8d546dc118a346/LICENSE"
+      },
+      "license_path": "LICENSE",
+      "license_sha256": "882115c95dfc2af1eeb6714f8ec6d5cbcabf667caff8729f42420da63f714e9f",
+      "license_spdx": "MIT",
+      "limitations": [
+        "Checks are source-defined and unrun. No passing baseline is established.",
+        "Selected toolchains do not establish installed executables or qualified platforms.",
+        "Root license observations do not clear all dependencies or assets.",
+        "Global prior use, prior product configuration, training exposure, and private-estate overlap remain unknown."
+      ],
+      "prior_product_configuration": {
+        "reason": "The current public source copies cannot establish global prior configuration.",
+        "status": "unknown",
+        "value": null
+      },
+      "private_estate_overlap": {
+        "reason": "No global absence claim follows from independent public-source reviews.",
+        "status": "unknown",
+        "value": null
+      },
+      "proposed_tag": "25.1.0",
+      "repository": "python-attrs/attrs",
+      "revision": "fbff14eeaf817e4b34e9c5727c8d546dc118a346",
+      "selection_authority": "The owner delegated bounded source selections. This selection grants no execution or spending authority.",
+      "selection_status": "frozen-artifact-only",
+      "source_access": "public-unauthenticated",
+      "source_identity": {
+        "archive_bytes": 810965,
+        "archive_sha256": "eea68206ca35d846c01b05fb241acb179beaf8334d3564b23cce440a05db0ddf",
+        "archive_url": "https://codeload.github.com/python-attrs/attrs/tar.gz/fbff14eeaf817e4b34e9c5727c8d546dc118a346",
+        "inventory_reference": {
+          "path": "docs/evaluation/phase-3a-frozen/sealed-commitments.json",
+          "sha256": "94373a810f2055445e7124e63c41ef838597b34944ac09a43ae563d70bc08fd2"
+        },
+        "inventory_serialization": "Sort paths by Unicode code point. Encode JSON with sorted keys, compact separators, and one final LF. Hash original regular-file bytes. Bind symlink target text separately. Do not follow links.",
+        "repository": "python-attrs/attrs",
+        "revision": "fbff14eeaf817e4b34e9c5727c8d546dc118a346",
+        "source_file_count": 123,
+        "source_inventory_sha256": "09f9e1703e9956e5b24dea34ba714dc01d378e3342c420e599e3a8b39a2b610e",
+        "symlink_rule": "Do not follow source symlinks during inspection or inventory comparison."
+      },
+      "source_inventory_sha256": "09f9e1703e9956e5b24dea34ba714dc01d378e3342c420e599e3a8b39a2b610e",
+      "source_observation_date": "2026-10-16",
+      "source_url": "https://github.com/python-attrs/attrs",
+      "spend_authorized": false,
+      "split": "holdout",
+      "stack": "python",
+      "task_scope": {
+        "allowed_paths": null,
+        "commitments": [
+          {
+            "allowed_scope_sha256": "da3cb8d0e46c7d10418336cb698603b4ea4cdca89b652ad9aaa7369891ddffd0",
+            "id": "s3a-133d46da92116c249c17",
+            "task_bundle_sha256": "8b92e8f6fdb09addf9c74342d97a64755bb90fd50ba43800e57488ccfe73cfb0"
+          },
+          {
+            "allowed_scope_sha256": "842536d011fc879abfdfb550d1d3e37ca85241a2e5f91edcba57335e860fb2c7",
+            "id": "s3a-229be691158e43468596",
+            "task_bundle_sha256": "5d5be695d7c71671201a103cee5a2e1af9e57f357df26f6c76024a44b755fdf5"
+          },
+          {
+            "allowed_scope_sha256": "d53118c5d1db6a2c6d88e271e253c07caf6aeacf14423146e365cb9283cd4341",
+            "id": "s3a-8d381eedd7da767ad703",
+            "task_bundle_sha256": "68a0a71c959daeb3e316f5f0b4e53a012b7aa958e295356643f031522b20a0b9"
+          },
+          {
+            "allowed_scope_sha256": "43c77c4dc3d6a848a236b4ab01a0183b42aa07d4f94e808ea88ef5bd7b6c562f",
+            "id": "s3a-a03d13d8ca15e5f1f25d",
+            "task_bundle_sha256": "f26da82400e0b2544ae03674f95076786d4a68785557c2af0f4b3da68d951507"
+          },
+          {
+            "allowed_scope_sha256": "4fc921b38275be4bd15fbae06444e596fe0f2124fb4ab259ebcb1ed304118bdf",
+            "id": "s3a-b3b34b6a3f056fcc19f7",
+            "task_bundle_sha256": "ab88329dcea3da16ed6c660954ee93a4148c0e9de1607a295d3ab2bfd2a057da"
+          },
+          {
+            "allowed_scope_sha256": "61f64ab29b4cea440cf33c93e263487b8d2cffd3b36eb5f948050392f5f1d828",
+            "id": "s3a-ecb1f8210d981b4c4a9c",
+            "task_bundle_sha256": "d22ec5d2679c9a0b52685a9f9378a7f4f6aca80d48d688562d39981ba97abc06"
+          }
+        ],
+        "contents_reference": "private-store:phase3a-20261016/sealed/v1",
+        "scope_rule": "The separate custodian holds task contents. Bind the committed exact scope only after later authorized unsealing.",
+        "task_contents_accessed_for_this_record": false,
+        "task_count": 6,
+        "visibility": "sealed-hash-commitments-only"
+      },
+      "toolchain": {
+        "actual_environment_sha256": null,
+        "actual_executable_sha256": null,
+        "actual_runtime_version": null,
+        "qualified": false,
+        "selection": {
+          "availability": "The coordinator host has CPython 3.12.15. Corpus dependencies and qualified execution remain unavailable.",
+          "repository_ids": [
+            "python-1",
+            "python-2",
+            "python-3"
+          ],
+          "selected": "CPython 3.12.15",
+          "stack": "python"
+        },
+        "selection_reference": {
+          "path": "docs/evaluation/phase-3a-frozen/runtime-selections.json",
+          "sha256": "265d513b19dd5d92b3dc6fa68636fe2575d75d8b1637895439a818abc50b5ec7"
+        },
+        "source_declarations_reference": "Private source annotations remain committed. Source details are not exported.",
+        "status": "prospective-selection-only"
+      }
+    },
+    {
+      "access_policy": {
+        "annotation_sources": "Public pinned archives only.",
+        "annotations": "Independent agent records with later separate adjudication.",
+        "development_tasks": "Public frozen task contracts.",
+        "human_ground_truth_claim": false,
+        "private_predecessor_material_accessed": false,
+        "provider_independence_claim": false
+      },
+      "annotations": {
+        "A": {
+          "artifact": {
+            "path": "docs/evaluation/phase-3a-frozen/annotation-a.json",
+            "sha256": "8c6ecfad7fec831f8f1e047499a1904219f626452f63044372ec0551fbd847e8"
+          },
+          "record_pointer": "/repositories/3"
+        },
+        "B": {
+          "artifact": {
+            "path": "docs/evaluation/phase-3a-frozen/annotation-b.json",
+            "sha256": "26dffbbe001a359092f90d93ab8574561058bb7d08b957711cab98d8467fc244"
+          },
+          "record_pointer": "/repositories/2"
+        },
+        "adjudication": {
+          "artifact": {
+            "path": "docs/evaluation/phase-3a-frozen/development-adjudication.json",
+            "sha256": "c9b1f28cc7536e8d7157ce2c764034188d8726126002dfec1887b3170ef2f2d7"
+          },
+          "field_count": 15,
+          "record_pointer": "/repositories/2"
+        }
+      },
+      "archive_sha256": "34d6943168210fba885b7206d47e7fc032d595e21a26ea56c8b7e8df9fa53465",
+      "baseline_checks": {
+        "definition_count": 8,
+        "definitions_reference": {
+          "artifact": {
+            "path": "docs/evaluation/phase-3a-frozen/development-adjudication.json",
+            "sha256": "c9b1f28cc7536e8d7157ce2c764034188d8726126002dfec1887b3170ef2f2d7"
+          },
+          "field": "checks",
+          "repository_id": "typescript-1"
+        },
+        "definitions_sha256": "84f1bce859740aadc06a5a19b6aee6fca4b3c91d95a08a6c052aba96f53710c8",
+        "diagnostics_sha256": null,
+        "known_natural_failure": false,
+        "known_natural_failure_limit": "No natural failing baseline is established. This false value does not prove a passing baseline.",
+        "results": "unknown",
+        "status": "not-run"
+      },
+      "calibration_selected": false,
+      "ci_execution": "not-run",
+      "dependencies": {
+        "full_environment_lock": "unknown",
+        "installed_dependency_resolution": "unavailable",
+        "policy": "Resolve and freeze exact installed dependencies before admitted checks. Preserve source lock files and constraint digests.",
+        "recognized_files": [
+          {
+            "kind": "dependency-lock",
+            "path": "yarn.lock",
+            "sha256": "84f5076e65d8a5ee731f27973dcc8bdc9de05ef7b3369b9ab42f5c5807f22cc7"
+          }
+        ],
+        "rights_review": "incomplete"
+      },
+      "execution_allowed": false,
+      "external_services": {
+        "approved_destinations": [],
+        "execution_admitted": false,
+        "status": "unknown"
+      },
+      "id": "typescript-1",
+      "legal_root_evidence": {
+        "branding_rule": "Exclude branding and logo assets unless separately permitted.",
+        "dependency_rights_review": "incomplete",
+        "line_range": [
+          1,
+          21
+        ],
+        "line_range_limit": null,
+        "notice_obligations": [
+          "Preserve the copyright and permission notice."
+        ],
+        "path": "LICENSE",
+        "root_scope": "This root notice is source evidence. It does not establish all dependency, file, asset, patent, or trademark rights.",
+        "sha256": "0225e7c0a96845a7477cd44d75d3dc9c999f673454efa84b54e218415055eece",
+        "source_observation_date": "2026-10-16",
+        "spdx_screening_label": "MIT",
+        "status": "observed-public-root-notice",
+        "third_party_redistribution_clearance": "unknown",
+        "url": "https://github.com/colinhacks/zod/blob/e30870369d5b8f31ff4d0130d4439fd997deb523/LICENSE"
+      },
+      "license_path": "LICENSE",
+      "license_sha256": "0225e7c0a96845a7477cd44d75d3dc9c999f673454efa84b54e218415055eece",
+      "license_spdx": "MIT",
+      "limitations": [
+        "Checks are source-defined and unrun. No passing baseline is established.",
+        "Selected toolchains do not establish installed executables or qualified platforms.",
+        "Root license observations do not clear all dependencies or assets.",
+        "Global prior use, prior product configuration, training exposure, and private-estate overlap remain unknown."
+      ],
+      "prior_product_configuration": {
+        "reason": "The current public source copies cannot establish global prior configuration.",
+        "status": "unknown",
+        "value": null
+      },
+      "private_estate_overlap": {
+        "reason": "No global absence claim follows from independent public-source reviews.",
+        "status": "unknown",
+        "value": null
+      },
+      "proposed_tag": "v3.24.2",
+      "repository": "colinhacks/zod",
+      "revision": "e30870369d5b8f31ff4d0130d4439fd997deb523",
+      "selection_authority": "The owner delegated bounded source selections. This selection grants no execution or spending authority.",
+      "selection_status": "frozen-artifact-only",
+      "source_access": "public-unauthenticated",
+      "source_identity": {
+        "archive_bytes": 758976,
+        "archive_sha256": "34d6943168210fba885b7206d47e7fc032d595e21a26ea56c8b7e8df9fa53465",
+        "archive_url": "https://codeload.github.com/colinhacks/zod/tar.gz/e30870369d5b8f31ff4d0130d4439fd997deb523",
+        "inventory_reference": {
+          "path": "docs/evaluation/phase-3a-frozen/source-inventories.json",
+          "sha256": "86a2efd86d84dc42b33dbc4fb9be6a9818b0fb90a3916bf0b225479d7877f48f"
+        },
+        "inventory_serialization": "SHA-256 of UTF-8 JSON for the sorted files list, with sorted keys and compact separators. Each row contains path, bytes, and SHA-256.",
+        "repository": "colinhacks/zod",
+        "revision": "e30870369d5b8f31ff4d0130d4439fd997deb523",
+        "source_file_count": 236,
+        "source_inventory_sha256": "225d81910a219959b6a63a1f4d820faa40bcae1ee22d18fcfaa9e3400638e8cd",
+        "symlink_rule": "Do not follow source symlinks during inspection or inventory comparison."
+      },
+      "source_inventory_sha256": "225d81910a219959b6a63a1f4d820faa40bcae1ee22d18fcfaa9e3400638e8cd",
+      "source_observation_date": "2026-10-16",
+      "source_url": "https://github.com/colinhacks/zod",
+      "spend_authorized": false,
+      "split": "development",
+      "stack": "typescript",
+      "task_scope": {
+        "generated_and_sensitive_policy": "Use the adjudicated field records. A task allowance does not admit credentials, network, publication, or generated-file writes.",
+        "scope_rule": "Each task starts from its pinned source. Only its exact allowed paths can change.",
+        "task_bundle": {
+          "path": "docs/evaluation/phase-3a-frozen/development-tasks.json",
+          "sha256": "8a096faf855cea3b67410ae43b381c593a2fb4ad98fdd604526c9608e8ef7030"
+        },
+        "tasks": [
+          {
+            "allowed_paths": [
+              "README.md"
+            ],
+            "category": "documentation",
+            "id": "typescript-1-documentation",
+            "risk": "low"
+          },
+          {
+            "allowed_paths": [
+              "src/helpers/util.ts",
+              "src/__tests__/util.test.ts"
+            ],
+            "category": "behavior",
+            "id": "typescript-1-behavior",
+            "risk": "medium"
+          },
+          {
+            "allowed_paths": [
+              "src/nonEmptyTrimmedString.ts",
+              "src/external.ts",
+              "src/__tests__/nonEmptyTrimmedString.test.ts",
+              "README.md"
+            ],
+            "category": "compatibility",
+            "id": "typescript-1-compatibility",
+            "risk": "medium"
+          }
+        ],
+        "visibility": "public-development-contracts"
+      },
+      "toolchain": {
+        "actual_environment_sha256": null,
+        "actual_executable_sha256": null,
+        "actual_runtime_version": null,
+        "qualified": false,
+        "selection": {
+          "availability": "unavailable",
+          "policy": "Use each pinned repository lock. Do not run installation hooks or enable network implicitly.",
+          "repository_ids": [
+            "typescript-1",
+            "typescript-2",
+            "typescript-3"
+          ],
+          "selected": "Node.js 22.14.0; Bun 1.2.2",
+          "stack": "typescript"
+        },
+        "selection_reference": {
+          "path": "docs/evaluation/phase-3a-frozen/runtime-selections.json",
+          "sha256": "265d513b19dd5d92b3dc6fa68636fe2575d75d8b1637895439a818abc50b5ec7"
+        },
+        "source_declarations_reference": {
+          "artifact": {
+            "path": "docs/evaluation/phase-3a-frozen/development-adjudication.json",
+            "sha256": "c9b1f28cc7536e8d7157ce2c764034188d8726126002dfec1887b3170ef2f2d7"
+          },
+          "field": "toolchain",
+          "repository_id": "typescript-1"
+        },
+        "status": "prospective-selection-only"
+      }
+    },
+    {
+      "access_policy": {
+        "annotation_sources": "Public pinned archives only.",
+        "annotations": "Independent agent records with later separate adjudication.",
+        "development_tasks": "Public frozen task contracts.",
+        "human_ground_truth_claim": false,
+        "private_predecessor_material_accessed": false,
+        "provider_independence_claim": false
+      },
+      "annotations": {
+        "A": {
+          "artifact": {
+            "path": "docs/evaluation/phase-3a-frozen/annotation-a.json",
+            "sha256": "8c6ecfad7fec831f8f1e047499a1904219f626452f63044372ec0551fbd847e8"
+          },
+          "record_pointer": "/repositories/4"
+        },
+        "B": {
+          "artifact": {
+            "path": "docs/evaluation/phase-3a-frozen/annotation-b.json",
+            "sha256": "26dffbbe001a359092f90d93ab8574561058bb7d08b957711cab98d8467fc244"
+          },
+          "record_pointer": "/repositories/3"
+        },
+        "adjudication": {
+          "artifact": {
+            "path": "docs/evaluation/phase-3a-frozen/development-adjudication.json",
+            "sha256": "c9b1f28cc7536e8d7157ce2c764034188d8726126002dfec1887b3170ef2f2d7"
+          },
+          "field_count": 15,
+          "record_pointer": "/repositories/3"
+        }
+      },
+      "archive_sha256": "4754f74b4defcbaa9b8748406fcd3e974b756abf7824e8a1a4304ec9665e6ced",
+      "baseline_checks": {
+        "definition_count": 6,
+        "definitions_reference": {
+          "artifact": {
+            "path": "docs/evaluation/phase-3a-frozen/development-adjudication.json",
+            "sha256": "c9b1f28cc7536e8d7157ce2c764034188d8726126002dfec1887b3170ef2f2d7"
+          },
+          "field": "checks",
+          "repository_id": "typescript-2"
+        },
+        "definitions_sha256": "8f13a866eb69fc0ae5b8da846d3e2aa07c9ebe64ca91d2735375db33a075dcb9",
+        "diagnostics_sha256": null,
+        "known_natural_failure": false,
+        "known_natural_failure_limit": "No natural failing baseline is established. This false value does not prove a passing baseline.",
+        "results": "unknown",
+        "status": "not-run"
+      },
+      "calibration_selected": true,
+      "ci_execution": "not-run",
+      "dependencies": {
+        "full_environment_lock": "unknown",
+        "installed_dependency_resolution": "unavailable",
+        "policy": "Resolve and freeze exact installed dependencies before admitted checks. Preserve source lock files and constraint digests.",
+        "recognized_files": [
+          {
+            "kind": "dependency-lock",
+            "path": "benchmarks/handle-event/yarn.lock",
+            "sha256": "e6b400a4e805a20cb6be6b5b757eb0e0a893c6cbb19e72bdfa49c3ab51f54f25"
+          },
+          {
+            "kind": "dependency-lock",
+            "path": "benchmarks/jsx/yarn.lock",
+            "sha256": "98a9dd3860ce62798df5ee6a0717bd1db1703cd5ad2065305d5a1e62a50d33bf"
+          },
+          {
+            "kind": "dependency-lock",
+            "path": "benchmarks/query-param/bun.lockb",
+            "sha256": "222896138ef7ac950cb5fad6ac1336167e320c25140ac45ff41d58c08f3b3cc7"
+          },
+          {
+            "kind": "dependency-lock",
+            "path": "benchmarks/query-param/package-lock.json",
+            "sha256": "0d827c3451a7f353cc7ea7ed938c8edc3f99c99553ebce1c5ec588bcb0a71b84"
+          },
+          {
+            "kind": "dependency-lock",
+            "path": "benchmarks/routers/yarn.lock",
+            "sha256": "1bc90f0a4420d31085ead1467cd58b14fe12d88ef8bd2f5929a2790a1278cade"
+          },
+          {
+            "kind": "dependency-lock",
+            "path": "bun.lock",
+            "sha256": "2bcdfebb22fd9487a8f3344c4aa6b99baa073a372a460d74f8b5c44d10fbd298"
+          }
+        ],
+        "rights_review": "incomplete"
+      },
+      "execution_allowed": false,
+      "external_services": {
+        "approved_destinations": [],
+        "execution_admitted": false,
+        "status": "unknown"
+      },
+      "id": "typescript-2",
+      "legal_root_evidence": {
+        "branding_rule": "Exclude branding and logo assets unless separately permitted.",
+        "dependency_rights_review": "incomplete",
+        "line_range": [
+          1,
+          21
+        ],
+        "line_range_limit": null,
+        "notice_obligations": [
+          "Preserve the copyright and permission notice."
+        ],
+        "path": "LICENSE",
+        "root_scope": "This root notice is source evidence. It does not establish all dependency, file, asset, patent, or trademark rights.",
+        "sha256": "a6ab98e5c77b9070c443eaff2ff81034a6f8cc05a7524d5098eb0f24defa0115",
+        "source_observation_date": "2026-10-16",
+        "spdx_screening_label": "MIT",
+        "status": "observed-public-root-notice",
+        "third_party_redistribution_clearance": "unknown",
+        "url": "https://github.com/honojs/hono/blob/5e1f54caf99cc158b0d20dc02ed44d0a4a596842/LICENSE"
+      },
+      "license_path": "LICENSE",
+      "license_sha256": "a6ab98e5c77b9070c443eaff2ff81034a6f8cc05a7524d5098eb0f24defa0115",
+      "license_spdx": "MIT",
+      "limitations": [
+        "Checks are source-defined and unrun. No passing baseline is established.",
+        "Selected toolchains do not establish installed executables or qualified platforms.",
+        "Root license observations do not clear all dependencies or assets.",
+        "Global prior use, prior product configuration, training exposure, and private-estate overlap remain unknown."
+      ],
+      "prior_product_configuration": {
+        "reason": "The current public source copies cannot establish global prior configuration.",
+        "status": "unknown",
+        "value": null
+      },
+      "private_estate_overlap": {
+        "reason": "No global absence claim follows from independent public-source reviews.",
+        "status": "unknown",
+        "value": null
+      },
+      "proposed_tag": "v4.7.2",
+      "repository": "honojs/hono",
+      "revision": "5e1f54caf99cc158b0d20dc02ed44d0a4a596842",
+      "selection_authority": "The owner delegated bounded source selections. This selection grants no execution or spending authority.",
+      "selection_status": "frozen-artifact-only",
+      "source_access": "public-unauthenticated",
+      "source_identity": {
+        "archive_bytes": 1580238,
+        "archive_sha256": "4754f74b4defcbaa9b8748406fcd3e974b756abf7824e8a1a4304ec9665e6ced",
+        "archive_url": "https://codeload.github.com/honojs/hono/tar.gz/5e1f54caf99cc158b0d20dc02ed44d0a4a596842",
+        "inventory_reference": {
+          "path": "docs/evaluation/phase-3a-frozen/source-inventories.json",
+          "sha256": "86a2efd86d84dc42b33dbc4fb9be6a9818b0fb90a3916bf0b225479d7877f48f"
+        },
+        "inventory_serialization": "SHA-256 of UTF-8 JSON for the sorted files list, with sorted keys and compact separators. Each row contains path, bytes, and SHA-256.",
+        "repository": "honojs/hono",
+        "revision": "5e1f54caf99cc158b0d20dc02ed44d0a4a596842",
+        "source_file_count": 460,
+        "source_inventory_sha256": "ed6981e09a0bfcc68b0b0f210c0c7698e7955de0a8f06db0a45b6f6d2fbf438b",
+        "symlink_rule": "Do not follow source symlinks during inspection or inventory comparison."
+      },
+      "source_inventory_sha256": "ed6981e09a0bfcc68b0b0f210c0c7698e7955de0a8f06db0a45b6f6d2fbf438b",
+      "source_observation_date": "2026-10-16",
+      "source_url": "https://github.com/honojs/hono",
+      "spend_authorized": false,
+      "split": "development",
+      "stack": "typescript",
+      "task_scope": {
+        "generated_and_sensitive_policy": "Use the adjudicated field records. A task allowance does not admit credentials, network, publication, or generated-file writes.",
+        "scope_rule": "Each task starts from its pinned source. Only its exact allowed paths can change.",
+        "task_bundle": {
+          "path": "docs/evaluation/phase-3a-frozen/development-tasks.json",
+          "sha256": "8a096faf855cea3b67410ae43b381c593a2fb4ad98fdd604526c9608e8ef7030"
+        },
+        "tasks": [
+          {
+            "allowed_paths": [
+              "README.md"
+            ],
+            "category": "documentation",
+            "id": "typescript-2-documentation",
+            "risk": "low"
+          },
+          {
+            "allowed_paths": [
+              "src/utils/encode.ts",
+              "src/utils/encode.test.ts"
+            ],
+            "category": "behavior",
+            "id": "typescript-2-behavior",
+            "risk": "medium"
+          },
+          {
+            "allowed_paths": [
+              "src/utils/encode.ts",
+              "src/utils/encode.test.ts",
+              "runtime-tests/node/base64url-strict.test.ts",
+              "README.md"
+            ],
+            "category": "compatibility",
+            "id": "typescript-2-compatibility",
+            "risk": "medium"
+          }
+        ],
+        "visibility": "public-development-contracts"
+      },
+      "toolchain": {
+        "actual_environment_sha256": null,
+        "actual_executable_sha256": null,
+        "actual_runtime_version": null,
+        "qualified": false,
+        "selection": {
+          "availability": "unavailable",
+          "policy": "Use each pinned repository lock. Do not run installation hooks or enable network implicitly.",
+          "repository_ids": [
+            "typescript-1",
+            "typescript-2",
+            "typescript-3"
+          ],
+          "selected": "Node.js 22.14.0; Bun 1.2.2",
+          "stack": "typescript"
+        },
+        "selection_reference": {
+          "path": "docs/evaluation/phase-3a-frozen/runtime-selections.json",
+          "sha256": "265d513b19dd5d92b3dc6fa68636fe2575d75d8b1637895439a818abc50b5ec7"
+        },
+        "source_declarations_reference": {
+          "artifact": {
+            "path": "docs/evaluation/phase-3a-frozen/development-adjudication.json",
+            "sha256": "c9b1f28cc7536e8d7157ce2c764034188d8726126002dfec1887b3170ef2f2d7"
+          },
+          "field": "toolchain",
+          "repository_id": "typescript-2"
+        },
+        "status": "prospective-selection-only"
+      }
+    },
+    {
+      "access_policy": {
+        "annotation_sources": "Public pinned archives only.",
+        "annotations": "Independent agent records with later separate adjudication.",
+        "development_tasks": "Separate sealed custodian. Public scope hashes only.",
+        "human_ground_truth_claim": false,
+        "private_predecessor_material_accessed": false,
+        "provider_independence_claim": false
+      },
+      "annotations": {
+        "A": {
+          "artifact": {
+            "path": "docs/evaluation/phase-3a-frozen/annotation-a.json",
+            "sha256": "8c6ecfad7fec831f8f1e047499a1904219f626452f63044372ec0551fbd847e8"
+          },
+          "raw_record_sha256": "52fca57784edbd5c2ab55bc6ac85b6ec9f0b05b835838b643fd6084ce184ef4e",
+          "status_counts": {
+            "per_field": {
+              "baseline_results": {
+                "unknown": 1
+              },
+              "checks": {
+                "observed": 1
+              },
+              "ci": {
+                "observed": 1
+              },
+              "dependency_locks": {
+                "observed": 1
+              },
+              "generated_paths": {
+                "inferred": 1
+              },
+              "licenses": {
+                "observed": 1
+              },
+              "package_manager": {
+                "inferred": 1
+              },
+              "prior_product_configuration": {
+                "unknown": 1
+              },
+              "private_estate_overlap": {
+                "unknown": 1
+              },
+              "sensitive_paths": {
+                "inferred": 1
+              },
+              "services_and_authority": {
+                "inferred": 1
+              },
+              "stack": {
+                "observed": 1
+              },
+              "third_party_concerns": {
+                "inferred": 1
+              },
+              "toolchain": {
+                "observed": 1
+              },
+              "workspace_boundaries": {
+                "observed": 1
+              }
+            },
+            "total": {
+              "inferred": 5,
+              "observed": 7,
+              "unknown": 3
+            }
+          }
+        },
+        "B": {
+          "artifact": {
+            "path": "docs/evaluation/phase-3a-frozen/annotation-b.json",
+            "sha256": "26dffbbe001a359092f90d93ab8574561058bb7d08b957711cab98d8467fc244"
+          },
+          "raw_record_sha256": "2e3f3d35d4ebce9f76750187db4a7419e3cb4fa45641695cf491c4e189bfb276",
+          "status_counts": {
+            "baseline": {
+              "inferred": 0,
+              "observed": 0,
+              "unavailable": 0,
+              "unknown": 1
+            },
+            "build": {
+              "inferred": 1,
+              "observed": 1,
+              "unavailable": 0,
+              "unknown": 0
+            },
+            "ci": {
+              "inferred": 0,
+              "observed": 1,
+              "unavailable": 0,
+              "unknown": 0
+            },
+            "generated": {
+              "inferred": 0,
+              "observed": 2,
+              "unavailable": 0,
+              "unknown": 0
+            },
+            "license": {
+              "inferred": 0,
+              "observed": 1,
+              "unavailable": 0,
+              "unknown": 0
+            },
+            "lint": {
+              "inferred": 1,
+              "observed": 0,
+              "unavailable": 0,
+              "unknown": 0
+            },
+            "locks": {
+              "inferred": 0,
+              "observed": 0,
+              "unavailable": 0,
+              "unknown": 1
+            },
+            "package_manager": {
+              "inferred": 0,
+              "observed": 1,
+              "unavailable": 0,
+              "unknown": 0
+            },
+            "provenance": {
+              "inferred": 0,
+              "observed": 1,
+              "unavailable": 0,
+              "unknown": 0
+            },
+            "sensitive": {
+              "inferred": 1,
+              "observed": 1,
+              "unavailable": 0,
+              "unknown": 0
+            },
+            "services": {
+              "inferred": 0,
+              "observed": 1,
+              "unavailable": 0,
+              "unknown": 1
+            },
+            "stack": {
+              "inferred": 0,
+              "observed": 1,
+              "unavailable": 0,
+              "unknown": 0
+            },
+            "test": {
+              "inferred": 1,
+              "observed": 2,
+              "unavailable": 0,
+              "unknown": 0
+            },
+            "third_party": {
+              "inferred": 0,
+              "observed": 1,
+              "unavailable": 0,
+              "unknown": 1
+            },
+            "toolchain": {
+              "inferred": 0,
+              "observed": 3,
+              "unavailable": 1,
+              "unknown": 0
+            },
+            "workspace": {
+              "inferred": 0,
+              "observed": 1,
+              "unavailable": 0,
+              "unknown": 0
+            }
+          }
+        },
+        "sealed_adjudication": {
+          "public_content": "counts-and-digest-only",
+          "sha256": "8d18fde49e61b0c957c617c1d4fc0ab8c8da42a935365a1cbcf7a713bc0645dc"
+        }
+      },
+      "archive_sha256": "624c5c25657276455c2488ab83fc42db48b3c248341a6bb0bae74a407400aea7",
+      "baseline_checks": {
+        "definitions_reference": "Separate sealed custody. Definitions are not exported here.",
+        "definitions_sha256": null,
+        "diagnostics_sha256": null,
+        "known_natural_failure": false,
+        "known_natural_failure_limit": "No executed upstream failure is established.",
+        "results": "unknown",
+        "status": "not-run"
+      },
+      "calibration_selected": false,
+      "ci_execution": "not-run",
+      "dependencies": {
+        "dependency_lock_sha256": null,
+        "evidence": {
+          "artifact": {
+            "path": "docs/evaluation/phase-3a-frozen/runtime-selections.json",
+            "sha256": "265d513b19dd5d92b3dc6fa68636fe2575d75d8b1637895439a818abc50b5ec7"
+          },
+          "pointer": "/holdout_dependency_limit"
+        },
+        "full_environment_lock": "unavailable",
+        "installed_dependency_resolution": "unavailable",
+        "lockfile_status": "No recognized dependency lockfile exists in the pinned source inventory.",
+        "policy": "Resolve and freeze exact dependencies through separate preparation admission. Do not fabricate a lock digest.",
+        "recognized_lockfile_observed": false,
+        "rights_review": "incomplete"
+      },
+      "execution_allowed": false,
+      "external_services": {
+        "approved_destinations": [],
+        "execution_admitted": false,
+        "status": "unknown"
+      },
+      "id": "typescript-3",
+      "legal_root_evidence": {
+        "branding_rule": "Exclude branding and logo assets unless separately permitted.",
+        "dependency_rights_review": "incomplete",
+        "line_range": null,
+        "line_range_limit": "The public screening and safe source commitment bind the notice digest. They do not export source line ranges.",
+        "notice_obligations": [
+          "Preserve the copyright and permission notice."
+        ],
+        "path": "license",
+        "root_scope": "This root notice is source evidence. It does not establish all dependency, file, asset, patent, or trademark rights.",
+        "sha256": "5c932d88256b4ab958f64a856fa48e8bd1f55bc1d96b8149c65689e0c61789d3",
+        "source_observation_date": "2026-10-16",
+        "spdx_screening_label": "MIT",
+        "status": "observed-public-root-notice",
+        "third_party_redistribution_clearance": "unknown",
+        "url": "https://github.com/sindresorhus/ky/blob/f9a9f3889752d033f06335868fc44877fca04953/license"
+      },
+      "license_path": "license",
+      "license_sha256": "5c932d88256b4ab958f64a856fa48e8bd1f55bc1d96b8149c65689e0c61789d3",
+      "license_spdx": "MIT",
+      "limitations": [
+        "Checks are source-defined and unrun. No passing baseline is established.",
+        "Selected toolchains do not establish installed executables or qualified platforms.",
+        "Root license observations do not clear all dependencies or assets.",
+        "Global prior use, prior product configuration, training exposure, and private-estate overlap remain unknown."
+      ],
+      "prior_product_configuration": {
+        "reason": "The current public source copies cannot establish global prior configuration.",
+        "status": "unknown",
+        "value": null
+      },
+      "private_estate_overlap": {
+        "reason": "No global absence claim follows from independent public-source reviews.",
+        "status": "unknown",
+        "value": null
+      },
+      "proposed_tag": "v1.7.5",
+      "repository": "sindresorhus/ky",
+      "revision": "f9a9f3889752d033f06335868fc44877fca04953",
+      "selection_authority": "The owner delegated bounded source selections. This selection grants no execution or spending authority.",
+      "selection_status": "frozen-artifact-only",
+      "source_access": "public-unauthenticated",
+      "source_identity": {
+        "archive_bytes": 214739,
+        "archive_sha256": "624c5c25657276455c2488ab83fc42db48b3c248341a6bb0bae74a407400aea7",
+        "archive_url": "https://codeload.github.com/sindresorhus/ky/tar.gz/f9a9f3889752d033f06335868fc44877fca04953",
+        "inventory_reference": {
+          "path": "docs/evaluation/phase-3a-frozen/sealed-commitments.json",
+          "sha256": "94373a810f2055445e7124e63c41ef838597b34944ac09a43ae563d70bc08fd2"
+        },
+        "inventory_serialization": "Sort paths by Unicode code point. Encode JSON with sorted keys, compact separators, and one final LF. Hash original regular-file bytes. Bind symlink target text separately. Do not follow links.",
+        "repository": "sindresorhus/ky",
+        "revision": "f9a9f3889752d033f06335868fc44877fca04953",
+        "source_file_count": 49,
+        "source_inventory_sha256": "0c97a4b420d24c52d0759c656af07fa36c8ae98defd2eed24d49ebb4dc99c94d",
+        "symlink_rule": "Do not follow source symlinks during inspection or inventory comparison."
+      },
+      "source_inventory_sha256": "0c97a4b420d24c52d0759c656af07fa36c8ae98defd2eed24d49ebb4dc99c94d",
+      "source_observation_date": "2026-10-16",
+      "source_url": "https://github.com/sindresorhus/ky",
+      "spend_authorized": false,
+      "split": "holdout",
+      "stack": "typescript",
+      "task_scope": {
+        "allowed_paths": null,
+        "commitments": [
+          {
+            "allowed_scope_sha256": "77cea987a9b75d5ebdeb9e1c9592c0801725a906249b94fb9980227b4f9263a0",
+            "id": "s3a-08eb017c20fd31bcaff1",
+            "task_bundle_sha256": "811b8de188914f2ca2eeb1e288bf57ddd687a800a308038e3cc7680fa70a9a40"
+          },
+          {
+            "allowed_scope_sha256": "a81f04ac62c00f8cb0798a7df4b790d4734890accc2d05935be6dbff6b42cc0e",
+            "id": "s3a-51667df760c275b5459a",
+            "task_bundle_sha256": "80280327aeb7cc9af12e1e5f1e9e9fe3e8f9698a9f6b638877dd237f86a3239f"
+          },
+          {
+            "allowed_scope_sha256": "574757c1d22cc477a0b541d9c20c5c7887b4dba319722419a0414490f5c93d52",
+            "id": "s3a-661ad8d3b529205c8af6",
+            "task_bundle_sha256": "c1759d81dbf8ffa23f4971b33a175f580c60ca4b2662f667e117e7826791b639"
+          },
+          {
+            "allowed_scope_sha256": "f901964cdd97f64be00ecbcb9986abab3ff3cd5f82a342cc841acf4923764a70",
+            "id": "s3a-7525f23d98e927f2dbec",
+            "task_bundle_sha256": "0083f07e0943dcd050a096d0c1430bf651a274e4081993d32d8e4e1fba42fa4b"
+          },
+          {
+            "allowed_scope_sha256": "ec42f0a50db9aea76a88d408e2e0038cddcb344d0cfdcbd4a0dfd4cc30cd7afa",
+            "id": "s3a-e517ccb5b39942610e17",
+            "task_bundle_sha256": "ad46743a96b6eb5f5a7e64c3cbdc26485390969c09f20d985d58acdd550114e9"
+          },
+          {
+            "allowed_scope_sha256": "3ce2bbe45c4000338b63e1941af8ba6684715ea90991a664dd18ae5683257fbf",
+            "id": "s3a-fefb40da3da56ac6a265",
+            "task_bundle_sha256": "dc908c41cac794f31e722ffd37bd66f61ffd4fb4c646c1a3421f5c0364c1a21a"
+          }
+        ],
+        "contents_reference": "private-store:phase3a-20261016/sealed/v1",
+        "scope_rule": "The separate custodian holds task contents. Bind the committed exact scope only after later authorized unsealing.",
+        "task_contents_accessed_for_this_record": false,
+        "task_count": 6,
+        "visibility": "sealed-hash-commitments-only"
+      },
+      "toolchain": {
+        "actual_environment_sha256": null,
+        "actual_executable_sha256": null,
+        "actual_runtime_version": null,
+        "qualified": false,
+        "selection": {
+          "availability": "unavailable",
+          "policy": "Use each pinned repository lock. Do not run installation hooks or enable network implicitly.",
+          "repository_ids": [
+            "typescript-1",
+            "typescript-2",
+            "typescript-3"
+          ],
+          "selected": "Node.js 22.14.0; Bun 1.2.2",
+          "stack": "typescript"
+        },
+        "selection_reference": {
+          "path": "docs/evaluation/phase-3a-frozen/runtime-selections.json",
+          "sha256": "265d513b19dd5d92b3dc6fa68636fe2575d75d8b1637895439a818abc50b5ec7"
+        },
+        "source_declarations_reference": "Private source annotations remain committed. Source details are not exported.",
+        "status": "prospective-selection-only"
+      }
+    },
+    {
+      "access_policy": {
+        "annotation_sources": "Public pinned archives only.",
+        "annotations": "Independent agent records with later separate adjudication.",
+        "development_tasks": "Public frozen task contracts.",
+        "human_ground_truth_claim": false,
+        "private_predecessor_material_accessed": false,
+        "provider_independence_claim": false
+      },
+      "annotations": {
+        "A": {
+          "artifact": {
+            "path": "docs/evaluation/phase-3a-frozen/annotation-a.json",
+            "sha256": "8c6ecfad7fec831f8f1e047499a1904219f626452f63044372ec0551fbd847e8"
+          },
+          "record_pointer": "/repositories/6"
+        },
+        "B": {
+          "artifact": {
+            "path": "docs/evaluation/phase-3a-frozen/annotation-b.json",
+            "sha256": "26dffbbe001a359092f90d93ab8574561058bb7d08b957711cab98d8467fc244"
+          },
+          "record_pointer": "/repositories/4"
+        },
+        "adjudication": {
+          "artifact": {
+            "path": "docs/evaluation/phase-3a-frozen/development-adjudication.json",
+            "sha256": "c9b1f28cc7536e8d7157ce2c764034188d8726126002dfec1887b3170ef2f2d7"
+          },
+          "field_count": 15,
+          "record_pointer": "/repositories/4"
+        }
+      },
+      "archive_sha256": "45c952a441611e17d8c30de26c4a6b40eec483c07900d9faad2501539aa5c900",
+      "baseline_checks": {
+        "definition_count": 4,
+        "definitions_reference": {
+          "artifact": {
+            "path": "docs/evaluation/phase-3a-frozen/development-adjudication.json",
+            "sha256": "c9b1f28cc7536e8d7157ce2c764034188d8726126002dfec1887b3170ef2f2d7"
+          },
+          "field": "checks",
+          "repository_id": "swift-1"
+        },
+        "definitions_sha256": "bc91be4b8adad34f7ef09ca5aa36e5406a5a6511300103719ab00260b46889af",
+        "diagnostics_sha256": null,
+        "known_natural_failure": false,
+        "known_natural_failure_limit": "No natural failing baseline is established. This false value does not prove a passing baseline.",
+        "results": "unknown",
+        "status": "not-run"
+      },
+      "calibration_selected": true,
+      "ci_execution": "not-run",
+      "dependencies": {
+        "full_environment_lock": "unknown",
+        "installed_dependency_resolution": "unavailable",
+        "policy": "Resolve and freeze exact installed dependencies before admitted checks. Preserve source lock files and constraint digests.",
+        "recognized_files": [],
+        "rights_review": "incomplete"
+      },
+      "execution_allowed": false,
+      "external_services": {
+        "approved_destinations": [],
+        "execution_admitted": false,
+        "status": "unknown"
+      },
+      "id": "swift-1",
+      "legal_root_evidence": {
+        "branding_rule": "Exclude branding and logo assets unless separately permitted.",
+        "dependency_rights_review": "incomplete",
+        "line_range": [
+          1,
+          211
+        ],
+        "line_range_limit": null,
+        "notice_obligations": [
+          "Preserve the Apache license and Swift exception.",
+          "Record modifications and review third-party notices."
+        ],
+        "path": "LICENSE.txt",
+        "root_scope": "This root notice is source evidence. It does not establish all dependency, file, asset, patent, or trademark rights.",
+        "sha256": "770af8291f708538d8ff885a0bbc4e045cd700531741c4f99528d435c14d7f55",
+        "source_observation_date": "2026-10-16",
+        "spdx_screening_label": "Apache-2.0 WITH Swift-exception",
+        "status": "observed-public-root-notice",
+        "third_party_redistribution_clearance": "unknown",
+        "url": "https://github.com/apple/swift-argument-parser/blob/41982a3656a71c768319979febd796c6fd111d5c/LICENSE.txt"
+      },
+      "license_path": "LICENSE.txt",
+      "license_sha256": "770af8291f708538d8ff885a0bbc4e045cd700531741c4f99528d435c14d7f55",
+      "license_spdx": "Apache-2.0 WITH Swift-exception",
+      "limitations": [
+        "Checks are source-defined and unrun. No passing baseline is established.",
+        "Selected toolchains do not establish installed executables or qualified platforms.",
+        "Root license observations do not clear all dependencies or assets.",
+        "Global prior use, prior product configuration, training exposure, and private-estate overlap remain unknown."
+      ],
+      "prior_product_configuration": {
+        "reason": "The current public source copies cannot establish global prior configuration.",
+        "status": "unknown",
+        "value": null
+      },
+      "private_estate_overlap": {
+        "reason": "No global absence claim follows from independent public-source reviews.",
+        "status": "unknown",
+        "value": null
+      },
+      "proposed_tag": "1.5.0",
+      "repository": "apple/swift-argument-parser",
+      "revision": "41982a3656a71c768319979febd796c6fd111d5c",
+      "selection_authority": "The owner delegated bounded source selections. This selection grants no execution or spending authority.",
+      "selection_status": "frozen-artifact-only",
+      "source_access": "public-unauthenticated",
+      "source_identity": {
+        "archive_bytes": 655699,
+        "archive_sha256": "45c952a441611e17d8c30de26c4a6b40eec483c07900d9faad2501539aa5c900",
+        "archive_url": "https://codeload.github.com/apple/swift-argument-parser/tar.gz/41982a3656a71c768319979febd796c6fd111d5c",
+        "inventory_reference": {
+          "path": "docs/evaluation/phase-3a-frozen/source-inventories.json",
+          "sha256": "86a2efd86d84dc42b33dbc4fb9be6a9818b0fb90a3916bf0b225479d7877f48f"
+        },
+        "inventory_serialization": "SHA-256 of UTF-8 JSON for the sorted files list, with sorted keys and compact separators. Each row contains path, bytes, and SHA-256.",
+        "repository": "apple/swift-argument-parser",
+        "revision": "41982a3656a71c768319979febd796c6fd111d5c",
+        "source_file_count": 194,
+        "source_inventory_sha256": "ccbdcc5fe9d9bd574ff7741f0c451f854611cebd5d2504e6d517bb790d7c3833",
+        "symlink_rule": "Do not follow source symlinks during inspection or inventory comparison."
+      },
+      "source_inventory_sha256": "ccbdcc5fe9d9bd574ff7741f0c451f854611cebd5d2504e6d517bb790d7c3833",
+      "source_observation_date": "2026-10-16",
+      "source_url": "https://github.com/apple/swift-argument-parser",
+      "spend_authorized": false,
+      "split": "development",
+      "stack": "swift",
+      "task_scope": {
+        "generated_and_sensitive_policy": "Use the adjudicated field records. A task allowance does not admit credentials, network, publication, or generated-file writes.",
+        "scope_rule": "Each task starts from its pinned source. Only its exact allowed paths can change.",
+        "task_bundle": {
+          "path": "docs/evaluation/phase-3a-frozen/development-tasks.json",
+          "sha256": "8a096faf855cea3b67410ae43b381c593a2fb4ad98fdd604526c9608e8ef7030"
+        },
+        "tasks": [
+          {
+            "allowed_paths": [
+              "README.md"
+            ],
+            "category": "documentation",
+            "id": "swift-1-documentation",
+            "risk": "low"
+          },
+          {
+            "allowed_paths": [
+              "Sources/ArgumentParser/Parsable Types/ExpressibleByArgument.swift",
+              "Tests/ArgumentParserUnitTests/ArgumentListConversionTests.swift",
+              "Tests/ArgumentParserUnitTests/CMakeLists.txt"
+            ],
+            "category": "behavior",
+            "id": "swift-1-behavior",
+            "risk": "medium"
+          },
+          {
+            "allowed_paths": [
+              "Sources/ArgumentParser/Parsable Types/NonEmptyArgument.swift",
+              "Sources/ArgumentParser/CMakeLists.txt",
+              "Tests/ArgumentParserUnitTests/NonEmptyArgumentTests.swift",
+              "Tests/ArgumentParserUnitTests/CMakeLists.txt",
+              "README.md"
+            ],
+            "category": "compatibility",
+            "id": "swift-1-compatibility",
+            "risk": "medium"
+          }
+        ],
+        "visibility": "public-development-contracts"
+      },
+      "toolchain": {
+        "actual_environment_sha256": null,
+        "actual_executable_sha256": null,
+        "actual_runtime_version": null,
+        "qualified": false,
+        "selection": {
+          "availability": "unavailable",
+          "policy": "Sources declare tools-version 5.7 for swift-1/swift-2 and 5.9 for swift-3. Verify Swift6.0.3 against each exact platform before execution.",
+          "repository_ids": [
+            "swift-1",
+            "swift-2",
+            "swift-3"
+          ],
+          "selected": "Swift 6.0.3",
+          "stack": "swift"
+        },
+        "selection_reference": {
+          "path": "docs/evaluation/phase-3a-frozen/runtime-selections.json",
+          "sha256": "265d513b19dd5d92b3dc6fa68636fe2575d75d8b1637895439a818abc50b5ec7"
+        },
+        "source_declarations_reference": {
+          "artifact": {
+            "path": "docs/evaluation/phase-3a-frozen/development-adjudication.json",
+            "sha256": "c9b1f28cc7536e8d7157ce2c764034188d8726126002dfec1887b3170ef2f2d7"
+          },
+          "field": "toolchain",
+          "repository_id": "swift-1"
+        },
+        "status": "prospective-selection-only"
+      }
+    },
+    {
+      "access_policy": {
+        "annotation_sources": "Public pinned archives only.",
+        "annotations": "Independent agent records with later separate adjudication.",
+        "development_tasks": "Public frozen task contracts.",
+        "human_ground_truth_claim": false,
+        "private_predecessor_material_accessed": false,
+        "provider_independence_claim": false
+      },
+      "annotations": {
+        "A": {
+          "artifact": {
+            "path": "docs/evaluation/phase-3a-frozen/annotation-a.json",
+            "sha256": "8c6ecfad7fec831f8f1e047499a1904219f626452f63044372ec0551fbd847e8"
+          },
+          "record_pointer": "/repositories/7"
+        },
+        "B": {
+          "artifact": {
+            "path": "docs/evaluation/phase-3a-frozen/annotation-b.json",
+            "sha256": "26dffbbe001a359092f90d93ab8574561058bb7d08b957711cab98d8467fc244"
+          },
+          "record_pointer": "/repositories/5"
+        },
+        "adjudication": {
+          "artifact": {
+            "path": "docs/evaluation/phase-3a-frozen/development-adjudication.json",
+            "sha256": "c9b1f28cc7536e8d7157ce2c764034188d8726126002dfec1887b3170ef2f2d7"
+          },
+          "field_count": 15,
+          "record_pointer": "/repositories/5"
+        }
+      },
+      "archive_sha256": "e75dbe91b6b834fda13e980e71bd220fa46c9d90aa9053a19dd893c722d679b2",
+      "baseline_checks": {
+        "definition_count": 5,
+        "definitions_reference": {
+          "artifact": {
+            "path": "docs/evaluation/phase-3a-frozen/development-adjudication.json",
+            "sha256": "c9b1f28cc7536e8d7157ce2c764034188d8726126002dfec1887b3170ef2f2d7"
+          },
+          "field": "checks",
+          "repository_id": "swift-2"
+        },
+        "definitions_sha256": "28b7a49751cbae12e03d0cc458d1a62cd8c0d88b0111cf4648b6ab742b633989",
+        "diagnostics_sha256": null,
+        "known_natural_failure": false,
+        "known_natural_failure_limit": "No natural failing baseline is established. This false value does not prove a passing baseline.",
+        "results": "unknown",
+        "status": "not-run"
+      },
+      "calibration_selected": false,
+      "ci_execution": "not-run",
+      "dependencies": {
+        "full_environment_lock": "unknown",
+        "installed_dependency_resolution": "unavailable",
+        "policy": "Resolve and freeze exact installed dependencies before admitted checks. Preserve source lock files and constraint digests.",
+        "recognized_files": [
+          {
+            "kind": "dependency-lock",
+            "path": "Benchmarks/Package.resolved",
+            "sha256": "5399413798b6211f5aa2f0f7d47f46818f7508140469ed54e0fa79ab499a48c3"
+          },
+          {
+            "kind": "dependency-lock",
+            "path": "Utils/swift-collections.xcworkspace/xcshareddata/swiftpm/Package.resolved",
+            "sha256": "84c14e8daf627fc320c3e233a658d36807b85cb4bb931b89fd1e8c1ff442bfda"
+          }
+        ],
+        "rights_review": "incomplete"
+      },
+      "execution_allowed": false,
+      "external_services": {
+        "approved_destinations": [],
+        "execution_admitted": false,
+        "status": "unknown"
+      },
+      "id": "swift-2",
+      "legal_root_evidence": {
+        "branding_rule": "Exclude branding and logo assets unless separately permitted.",
+        "dependency_rights_review": "incomplete",
+        "line_range": [
+          1,
+          211
+        ],
+        "line_range_limit": null,
+        "notice_obligations": [
+          "Preserve the Apache license and Swift exception.",
+          "Record modifications and review third-party notices."
+        ],
+        "path": "LICENSE.txt",
+        "root_scope": "This root notice is source evidence. It does not establish all dependency, file, asset, patent, or trademark rights.",
+        "sha256": "770af8291f708538d8ff885a0bbc4e045cd700531741c4f99528d435c14d7f55",
+        "source_observation_date": "2026-10-16",
+        "spdx_screening_label": "Apache-2.0 WITH Swift-exception",
+        "status": "observed-public-root-notice",
+        "third_party_redistribution_clearance": "unknown",
+        "url": "https://github.com/apple/swift-collections/blob/671108c96644956dddcd89dd59c203dcdb36cec7/LICENSE.txt"
+      },
+      "license_path": "LICENSE.txt",
+      "license_sha256": "770af8291f708538d8ff885a0bbc4e045cd700531741c4f99528d435c14d7f55",
+      "license_spdx": "Apache-2.0 WITH Swift-exception",
+      "limitations": [
+        "Checks are source-defined and unrun. No passing baseline is established.",
+        "Selected toolchains do not establish installed executables or qualified platforms.",
+        "Root license observations do not clear all dependencies or assets.",
+        "Global prior use, prior product configuration, training exposure, and private-estate overlap remain unknown."
+      ],
+      "prior_product_configuration": {
+        "reason": "The current public source copies cannot establish global prior configuration.",
+        "status": "unknown",
+        "value": null
+      },
+      "private_estate_overlap": {
+        "reason": "No global absence claim follows from independent public-source reviews.",
+        "status": "unknown",
+        "value": null
+      },
+      "proposed_tag": "1.1.4",
+      "repository": "apple/swift-collections",
+      "revision": "671108c96644956dddcd89dd59c203dcdb36cec7",
+      "selection_authority": "The owner delegated bounded source selections. This selection grants no execution or spending authority.",
+      "selection_status": "frozen-artifact-only",
+      "source_access": "public-unauthenticated",
+      "source_identity": {
+        "archive_bytes": 5630630,
+        "archive_sha256": "e75dbe91b6b834fda13e980e71bd220fa46c9d90aa9053a19dd893c722d679b2",
+        "archive_url": "https://codeload.github.com/apple/swift-collections/tar.gz/671108c96644956dddcd89dd59c203dcdb36cec7",
+        "inventory_reference": {
+          "path": "docs/evaluation/phase-3a-frozen/source-inventories.json",
+          "sha256": "86a2efd86d84dc42b33dbc4fb9be6a9818b0fb90a3916bf0b225479d7877f48f"
+        },
+        "inventory_serialization": "SHA-256 of UTF-8 JSON for the sorted files list, with sorted keys and compact separators. Each row contains path, bytes, and SHA-256.",
+        "repository": "apple/swift-collections",
+        "revision": "671108c96644956dddcd89dd59c203dcdb36cec7",
+        "source_file_count": 592,
+        "source_inventory_sha256": "5fb6fae3d55ffc1d5fea7f89299e723ec02a7acae294b032502692cd98ebc202",
+        "symlink_rule": "Do not follow source symlinks during inspection or inventory comparison."
+      },
+      "source_inventory_sha256": "5fb6fae3d55ffc1d5fea7f89299e723ec02a7acae294b032502692cd98ebc202",
+      "source_observation_date": "2026-10-16",
+      "source_url": "https://github.com/apple/swift-collections",
+      "spend_authorized": false,
+      "split": "development",
+      "stack": "swift",
+      "task_scope": {
+        "generated_and_sensitive_policy": "Use the adjudicated field records. A task allowance does not admit credentials, network, publication, or generated-file writes.",
+        "scope_rule": "Each task starts from its pinned source. Only its exact allowed paths can change.",
+        "task_bundle": {
+          "path": "docs/evaluation/phase-3a-frozen/development-tasks.json",
+          "sha256": "8a096faf855cea3b67410ae43b381c593a2fb4ad98fdd604526c9608e8ef7030"
+        },
+        "tasks": [
+          {
+            "allowed_paths": [
+              "Documentation/Deque.md"
+            ],
+            "category": "documentation",
+            "id": "swift-2-documentation",
+            "risk": "low"
+          },
+          {
+            "allowed_paths": [
+              "Sources/DequeModule/Deque+Extras.swift",
+              "Tests/DequeTests/DequeTests.swift"
+            ],
+            "category": "behavior",
+            "id": "swift-2-behavior",
+            "risk": "medium"
+          },
+          {
+            "allowed_paths": [
+              "Sources/DequeModule/Deque+Extras.swift",
+              "Tests/DequeTests/DequeTests.swift",
+              "Tests/DequeTests/ChunkedImportTests.swift",
+              "Package.swift",
+              "Documentation/Deque.md"
+            ],
+            "category": "compatibility",
+            "id": "swift-2-compatibility",
+            "risk": "medium"
+          }
+        ],
+        "visibility": "public-development-contracts"
+      },
+      "toolchain": {
+        "actual_environment_sha256": null,
+        "actual_executable_sha256": null,
+        "actual_runtime_version": null,
+        "qualified": false,
+        "selection": {
+          "availability": "unavailable",
+          "policy": "Sources declare tools-version 5.7 for swift-1/swift-2 and 5.9 for swift-3. Verify Swift6.0.3 against each exact platform before execution.",
+          "repository_ids": [
+            "swift-1",
+            "swift-2",
+            "swift-3"
+          ],
+          "selected": "Swift 6.0.3",
+          "stack": "swift"
+        },
+        "selection_reference": {
+          "path": "docs/evaluation/phase-3a-frozen/runtime-selections.json",
+          "sha256": "265d513b19dd5d92b3dc6fa68636fe2575d75d8b1637895439a818abc50b5ec7"
+        },
+        "source_declarations_reference": {
+          "artifact": {
+            "path": "docs/evaluation/phase-3a-frozen/development-adjudication.json",
+            "sha256": "c9b1f28cc7536e8d7157ce2c764034188d8726126002dfec1887b3170ef2f2d7"
+          },
+          "field": "toolchain",
+          "repository_id": "swift-2"
+        },
+        "status": "prospective-selection-only"
+      }
+    },
+    {
+      "access_policy": {
+        "annotation_sources": "Public pinned archives only.",
+        "annotations": "Independent agent records with later separate adjudication.",
+        "development_tasks": "Separate sealed custodian. Public scope hashes only.",
+        "human_ground_truth_claim": false,
+        "private_predecessor_material_accessed": false,
+        "provider_independence_claim": false
+      },
+      "annotations": {
+        "A": {
+          "artifact": {
+            "path": "docs/evaluation/phase-3a-frozen/annotation-a.json",
+            "sha256": "8c6ecfad7fec831f8f1e047499a1904219f626452f63044372ec0551fbd847e8"
+          },
+          "raw_record_sha256": "011088d5bc94139af1dcf55a4565a73dda49ad692e20e135420c18b90065324f",
+          "status_counts": {
+            "per_field": {
+              "baseline_results": {
+                "unknown": 1
+              },
+              "checks": {
+                "observed": 1
+              },
+              "ci": {
+                "observed": 1
+              },
+              "dependency_locks": {
+                "observed": 1
+              },
+              "generated_paths": {
+                "inferred": 1
+              },
+              "licenses": {
+                "observed": 1
+              },
+              "package_manager": {
+                "observed": 1
+              },
+              "prior_product_configuration": {
+                "unknown": 1
+              },
+              "private_estate_overlap": {
+                "unknown": 1
+              },
+              "sensitive_paths": {
+                "inferred": 1
+              },
+              "services_and_authority": {
+                "inferred": 1
+              },
+              "stack": {
+                "observed": 1
+              },
+              "third_party_concerns": {
+                "inferred": 1
+              },
+              "toolchain": {
+                "observed": 1
+              },
+              "workspace_boundaries": {
+                "observed": 1
+              }
+            },
+            "total": {
+              "inferred": 4,
+              "observed": 8,
+              "unknown": 3
+            }
+          }
+        },
+        "B": {
+          "artifact": {
+            "path": "docs/evaluation/phase-3a-frozen/annotation-b.json",
+            "sha256": "26dffbbe001a359092f90d93ab8574561058bb7d08b957711cab98d8467fc244"
+          },
+          "raw_record_sha256": "966013235e19fe9d1801fd4902a6e5cb714fac0f4b9c5a6ab9e79ea168fa3b28",
+          "status_counts": {
+            "baseline": {
+              "inferred": 0,
+              "observed": 0,
+              "unavailable": 0,
+              "unknown": 1
+            },
+            "build": {
+              "inferred": 1,
+              "observed": 1,
+              "unavailable": 0,
+              "unknown": 0
+            },
+            "ci": {
+              "inferred": 0,
+              "observed": 1,
+              "unavailable": 0,
+              "unknown": 0
+            },
+            "generated": {
+              "inferred": 0,
+              "observed": 1,
+              "unavailable": 0,
+              "unknown": 0
+            },
+            "license": {
+              "inferred": 0,
+              "observed": 1,
+              "unavailable": 0,
+              "unknown": 0
+            },
+            "lint": {
+              "inferred": 0,
+              "observed": 0,
+              "unavailable": 0,
+              "unknown": 1
+            },
+            "locks": {
+              "inferred": 0,
+              "observed": 0,
+              "unavailable": 0,
+              "unknown": 1
+            },
+            "package_manager": {
+              "inferred": 0,
+              "observed": 1,
+              "unavailable": 0,
+              "unknown": 0
+            },
+            "provenance": {
+              "inferred": 0,
+              "observed": 1,
+              "unavailable": 0,
+              "unknown": 0
+            },
+            "sensitive": {
+              "inferred": 1,
+              "observed": 0,
+              "unavailable": 0,
+              "unknown": 0
+            },
+            "services": {
+              "inferred": 0,
+              "observed": 0,
+              "unavailable": 0,
+              "unknown": 1
+            },
+            "stack": {
+              "inferred": 0,
+              "observed": 1,
+              "unavailable": 0,
+              "unknown": 0
+            },
+            "test": {
+              "inferred": 1,
+              "observed": 0,
+              "unavailable": 0,
+              "unknown": 0
+            },
+            "third_party": {
+              "inferred": 0,
+              "observed": 1,
+              "unavailable": 0,
+              "unknown": 1
+            },
+            "toolchain": {
+              "inferred": 0,
+              "observed": 1,
+              "unavailable": 1,
+              "unknown": 0
+            },
+            "workspace": {
+              "inferred": 0,
+              "observed": 1,
+              "unavailable": 0,
+              "unknown": 0
+            }
+          }
+        },
+        "sealed_adjudication": {
+          "public_content": "counts-and-digest-only",
+          "sha256": "8d18fde49e61b0c957c617c1d4fc0ab8c8da42a935365a1cbcf7a713bc0645dc"
+        }
+      },
+      "archive_sha256": "a0d8778a04ce76b44513df41ecb3a54fd5f7fa978c51d45bcb4e436163a47e7c",
+      "baseline_checks": {
+        "definitions_reference": "Separate sealed custody. Definitions are not exported here.",
+        "definitions_sha256": null,
+        "diagnostics_sha256": null,
+        "known_natural_failure": false,
+        "known_natural_failure_limit": "No executed upstream failure is established.",
+        "results": "unknown",
+        "status": "not-run"
+      },
+      "calibration_selected": false,
+      "ci_execution": "not-run",
+      "dependencies": {
+        "dependency_lock_sha256": null,
+        "evidence": {
+          "artifact": {
+            "path": "docs/evaluation/phase-3a-frozen/runtime-selections.json",
+            "sha256": "265d513b19dd5d92b3dc6fa68636fe2575d75d8b1637895439a818abc50b5ec7"
+          },
+          "pointer": "/holdout_dependency_limit"
+        },
+        "full_environment_lock": "unavailable",
+        "installed_dependency_resolution": "unavailable",
+        "lockfile_status": "No recognized dependency lockfile exists in the pinned source inventory.",
+        "policy": "Resolve and freeze exact dependencies through separate preparation admission. Do not fabricate a lock digest.",
+        "recognized_lockfile_observed": false,
+        "rights_review": "incomplete"
+      },
+      "execution_allowed": false,
+      "external_services": {
+        "approved_destinations": [],
+        "execution_admitted": false,
+        "status": "unknown"
+      },
+      "id": "swift-3",
+      "legal_root_evidence": {
+        "branding_rule": "Exclude branding and logo assets unless separately permitted.",
+        "dependency_rights_review": "incomplete",
+        "line_range": null,
+        "line_range_limit": "The public screening and safe source commitment bind the notice digest. They do not export source line ranges.",
+        "notice_obligations": [
+          "Preserve the Apache license and Swift exception.",
+          "Record modifications and review third-party notices."
+        ],
+        "path": "LICENSE.txt",
+        "root_scope": "This root notice is source evidence. It does not establish all dependency, file, asset, patent, or trademark rights.",
+        "sha256": "2245a990b635558be210fb3eb4f8a6f7a49aebc0fefbf5859146a65ddc7ddcf3",
+        "source_observation_date": "2026-10-16",
+        "spdx_screening_label": "Apache-2.0 WITH Swift-exception",
+        "status": "observed-public-root-notice",
+        "third_party_redistribution_clearance": "unknown",
+        "url": "https://github.com/apple/swift-system/blob/c8a44d836fe7913603e246acab7c528c2e780168/LICENSE.txt"
+      },
+      "license_path": "LICENSE.txt",
+      "license_sha256": "2245a990b635558be210fb3eb4f8a6f7a49aebc0fefbf5859146a65ddc7ddcf3",
+      "license_spdx": "Apache-2.0 WITH Swift-exception",
+      "limitations": [
+        "Checks are source-defined and unrun. No passing baseline is established.",
+        "Selected toolchains do not establish installed executables or qualified platforms.",
+        "Root license observations do not clear all dependencies or assets.",
+        "Global prior use, prior product configuration, training exposure, and private-estate overlap remain unknown."
+      ],
+      "prior_product_configuration": {
+        "reason": "The current public source copies cannot establish global prior configuration.",
+        "status": "unknown",
+        "value": null
+      },
+      "private_estate_overlap": {
+        "reason": "No global absence claim follows from independent public-source reviews.",
+        "status": "unknown",
+        "value": null
+      },
+      "proposed_tag": "1.4.0",
+      "repository": "apple/swift-system",
+      "revision": "c8a44d836fe7913603e246acab7c528c2e780168",
+      "selection_authority": "The owner delegated bounded source selections. This selection grants no execution or spending authority.",
+      "selection_status": "frozen-artifact-only",
+      "source_access": "public-unauthenticated",
+      "source_identity": {
+        "archive_bytes": 98804,
+        "archive_sha256": "a0d8778a04ce76b44513df41ecb3a54fd5f7fa978c51d45bcb4e436163a47e7c",
+        "archive_url": "https://codeload.github.com/apple/swift-system/tar.gz/c8a44d836fe7913603e246acab7c528c2e780168",
+        "inventory_reference": {
+          "path": "docs/evaluation/phase-3a-frozen/sealed-commitments.json",
+          "sha256": "94373a810f2055445e7124e63c41ef838597b34944ac09a43ae563d70bc08fd2"
+        },
+        "inventory_serialization": "Sort paths by Unicode code point. Encode JSON with sorted keys, compact separators, and one final LF. Hash original regular-file bytes. Bind symlink target text separately. Do not follow links.",
+        "repository": "apple/swift-system",
+        "revision": "c8a44d836fe7913603e246acab7c528c2e780168",
+        "source_file_count": 76,
+        "source_inventory_sha256": "e9866fac3093961361057b1c3fe4b6c82089a99384211566f3b94095ed0b6f86",
+        "symlink_rule": "Do not follow source symlinks during inspection or inventory comparison."
+      },
+      "source_inventory_sha256": "e9866fac3093961361057b1c3fe4b6c82089a99384211566f3b94095ed0b6f86",
+      "source_observation_date": "2026-10-16",
+      "source_url": "https://github.com/apple/swift-system",
+      "spend_authorized": false,
+      "split": "holdout",
+      "stack": "swift",
+      "task_scope": {
+        "allowed_paths": null,
+        "commitments": [
+          {
+            "allowed_scope_sha256": "9e16b2eeac167ef55d7b22863e0195b7b2ae5a4ccbe62db7581a2824df89cea1",
+            "id": "s3a-0067a53bba4fd7ce782a",
+            "task_bundle_sha256": "31129cc7255643164e7c0fa81787092bcb42bd5d605d9bec415e0384cb131632"
+          },
+          {
+            "allowed_scope_sha256": "45fd2cb82de970b43d7e06c30ea4d7edd0d74a606108f153133e69adb8be236c",
+            "id": "s3a-0a8af0fd33df045acfd7",
+            "task_bundle_sha256": "f4e45d03e834e3a0612556546ef2fc3926396fcbc1bcdbf9358d8f355656a7bd"
+          },
+          {
+            "allowed_scope_sha256": "ee85086e9ac659e1c72a98220d0920fce5b3a19faafb166596072f08782d7900",
+            "id": "s3a-1b52c616b1930929d71b",
+            "task_bundle_sha256": "173f5536b98114a49c2c19cbbc32a530c60d19838e304d2ce3017d5e0f512def"
+          },
+          {
+            "allowed_scope_sha256": "71363b0114633d71e4d71982e65b9225ad4dc7d8d19f35650be633fb05f92939",
+            "id": "s3a-6a9111ef10a29370d9ee",
+            "task_bundle_sha256": "60b5f0eada96e89f252a6c67c5ee271759df5a97761ca959c5729de4cbfe0501"
+          },
+          {
+            "allowed_scope_sha256": "b0cbb7017c7e3924aeb6e871cf96248a35ed9de85bd8f0d4e5c5ece64acd1de0",
+            "id": "s3a-727612d907fe29ed328c",
+            "task_bundle_sha256": "8949b2a45dd1f93fe0ae0ae7ff8beb8b8358b617d82b74f8c0ad41a7a5e86ab5"
+          },
+          {
+            "allowed_scope_sha256": "8bbd85bde0103697e7b33e95ce4abad1273876bdb85fef85e55febd1a13e6942",
+            "id": "s3a-e11999002ef08d767d15",
+            "task_bundle_sha256": "90a4cc5a565bcab8c02e89fd92e4921aad0e857a3fad91db7e94a4796f634a7c"
+          }
+        ],
+        "contents_reference": "private-store:phase3a-20261016/sealed/v1",
+        "scope_rule": "The separate custodian holds task contents. Bind the committed exact scope only after later authorized unsealing.",
+        "task_contents_accessed_for_this_record": false,
+        "task_count": 6,
+        "visibility": "sealed-hash-commitments-only"
+      },
+      "toolchain": {
+        "actual_environment_sha256": null,
+        "actual_executable_sha256": null,
+        "actual_runtime_version": null,
+        "qualified": false,
+        "selection": {
+          "availability": "unavailable",
+          "policy": "Sources declare tools-version 5.7 for swift-1/swift-2 and 5.9 for swift-3. Verify Swift6.0.3 against each exact platform before execution.",
+          "repository_ids": [
+            "swift-1",
+            "swift-2",
+            "swift-3"
+          ],
+          "selected": "Swift 6.0.3",
+          "stack": "swift"
+        },
+        "selection_reference": {
+          "path": "docs/evaluation/phase-3a-frozen/runtime-selections.json",
+          "sha256": "265d513b19dd5d92b3dc6fa68636fe2575d75d8b1637895439a818abc50b5ec7"
+        },
+        "source_declarations_reference": "Private source annotations remain committed. Source details are not exported.",
+        "status": "prospective-selection-only"
+      }
+    },
+    {
+      "access_policy": {
+        "annotation_sources": "Public pinned archives only.",
+        "annotations": "Independent agent records with later separate adjudication.",
+        "development_tasks": "Public frozen task contracts.",
+        "human_ground_truth_claim": false,
+        "private_predecessor_material_accessed": false,
+        "provider_independence_claim": false
+      },
+      "annotations": {
+        "A": {
+          "artifact": {
+            "path": "docs/evaluation/phase-3a-frozen/annotation-a.json",
+            "sha256": "8c6ecfad7fec831f8f1e047499a1904219f626452f63044372ec0551fbd847e8"
+          },
+          "record_pointer": "/repositories/9"
+        },
+        "B": {
+          "artifact": {
+            "path": "docs/evaluation/phase-3a-frozen/annotation-b.json",
+            "sha256": "26dffbbe001a359092f90d93ab8574561058bb7d08b957711cab98d8467fc244"
+          },
+          "record_pointer": "/repositories/6"
+        },
+        "adjudication": {
+          "artifact": {
+            "path": "docs/evaluation/phase-3a-frozen/development-adjudication.json",
+            "sha256": "c9b1f28cc7536e8d7157ce2c764034188d8726126002dfec1887b3170ef2f2d7"
+          },
+          "field_count": 15,
+          "record_pointer": "/repositories/6"
+        }
+      },
+      "archive_sha256": "71a77a7c2eb4d1ffa1572c97c9050c673e16f24cdac19d5039ad79cad06a26dd",
+      "baseline_checks": {
+        "definition_count": 6,
+        "definitions_reference": {
+          "artifact": {
+            "path": "docs/evaluation/phase-3a-frozen/development-adjudication.json",
+            "sha256": "c9b1f28cc7536e8d7157ce2c764034188d8726126002dfec1887b3170ef2f2d7"
+          },
+          "field": "checks",
+          "repository_id": "dotnet-1"
+        },
+        "definitions_sha256": "f0ba66b67cde458a953b87a6c3f7039dd6c0fba70c0c566c40af883628c5cacc",
+        "diagnostics_sha256": null,
+        "known_natural_failure": false,
+        "known_natural_failure_limit": "No natural failing baseline is established. This false value does not prove a passing baseline.",
+        "results": "unknown",
+        "status": "not-run"
+      },
+      "calibration_selected": true,
+      "ci_execution": "not-run",
+      "dependencies": {
+        "full_environment_lock": "unknown",
+        "installed_dependency_resolution": "unavailable",
+        "policy": "Resolve and freeze exact installed dependencies before admitted checks. Preserve source lock files and constraint digests.",
+        "recognized_files": [],
+        "rights_review": "incomplete"
+      },
+      "execution_allowed": false,
+      "external_services": {
+        "approved_destinations": [],
+        "execution_admitted": false,
+        "status": "unknown"
+      },
+      "id": "dotnet-1",
+      "legal_root_evidence": {
+        "branding_rule": "Exclude branding and logo assets unless separately permitted.",
+        "dependency_rights_review": "incomplete",
+        "line_range": [
+          1,
+          191
+        ],
+        "line_range_limit": null,
+        "notice_obligations": [
+          "Preserve the license and applicable notices.",
+          "Record modifications and review third-party notices."
+        ],
+        "path": "LICENSE",
+        "root_scope": "This root notice is source evidence. It does not establish all dependency, file, asset, patent, or trademark rights.",
+        "sha256": "73ba74dfaa520b49a401b5d21459a8523a146f3b7518a833eea5efa85130bf68",
+        "source_observation_date": "2026-10-16",
+        "spdx_screening_label": "Apache-2.0",
+        "status": "observed-public-root-notice",
+        "third_party_redistribution_clearance": "unknown",
+        "url": "https://github.com/serilog/serilog/blob/0e316b7cb072ee660b97976098b1bbdb20ac6da0/LICENSE"
+      },
+      "license_path": "LICENSE",
+      "license_sha256": "73ba74dfaa520b49a401b5d21459a8523a146f3b7518a833eea5efa85130bf68",
+      "license_spdx": "Apache-2.0",
+      "limitations": [
+        "Checks are source-defined and unrun. No passing baseline is established.",
+        "Selected toolchains do not establish installed executables or qualified platforms.",
+        "Root license observations do not clear all dependencies or assets.",
+        "Global prior use, prior product configuration, training exposure, and private-estate overlap remain unknown."
+      ],
+      "prior_product_configuration": {
+        "reason": "The current public source copies cannot establish global prior configuration.",
+        "status": "unknown",
+        "value": null
+      },
+      "private_estate_overlap": {
+        "reason": "No global absence claim follows from independent public-source reviews.",
+        "status": "unknown",
+        "value": null
+      },
+      "proposed_tag": "v4.2.0",
+      "repository": "serilog/serilog",
+      "revision": "0e316b7cb072ee660b97976098b1bbdb20ac6da0",
+      "selection_authority": "The owner delegated bounded source selections. This selection grants no execution or spending authority.",
+      "selection_status": "frozen-artifact-only",
+      "source_access": "public-unauthenticated",
+      "source_identity": {
+        "archive_bytes": 198331,
+        "archive_sha256": "71a77a7c2eb4d1ffa1572c97c9050c673e16f24cdac19d5039ad79cad06a26dd",
+        "archive_url": "https://codeload.github.com/serilog/serilog/tar.gz/0e316b7cb072ee660b97976098b1bbdb20ac6da0",
+        "inventory_reference": {
+          "path": "docs/evaluation/phase-3a-frozen/source-inventories.json",
+          "sha256": "86a2efd86d84dc42b33dbc4fb9be6a9818b0fb90a3916bf0b225479d7877f48f"
+        },
+        "inventory_serialization": "SHA-256 of UTF-8 JSON for the sorted files list, with sorted keys and compact separators. Each row contains path, bytes, and SHA-256.",
+        "repository": "serilog/serilog",
+        "revision": "0e316b7cb072ee660b97976098b1bbdb20ac6da0",
+        "source_file_count": 281,
+        "source_inventory_sha256": "8549a2cb35f1c38f04f9f82a1f1868de388f2cf44915bc5e02cd4831f2dcbe96",
+        "symlink_rule": "Do not follow source symlinks during inspection or inventory comparison."
+      },
+      "source_inventory_sha256": "8549a2cb35f1c38f04f9f82a1f1868de388f2cf44915bc5e02cd4831f2dcbe96",
+      "source_observation_date": "2026-10-16",
+      "source_url": "https://github.com/serilog/serilog",
+      "spend_authorized": false,
+      "split": "development",
+      "stack": "dotnet",
+      "task_scope": {
+        "generated_and_sensitive_policy": "Use the adjudicated field records. A task allowance does not admit credentials, network, publication, or generated-file writes.",
+        "scope_rule": "Each task starts from its pinned source. Only its exact allowed paths can change.",
+        "task_bundle": {
+          "path": "docs/evaluation/phase-3a-frozen/development-tasks.json",
+          "sha256": "8a096faf855cea3b67410ae43b381c593a2fb4ad98fdd604526c9608e8ef7030"
+        },
+        "tasks": [
+          {
+            "allowed_paths": [
+              "README.md"
+            ],
+            "category": "documentation",
+            "id": "dotnet-1-documentation",
+            "risk": "low"
+          },
+          {
+            "allowed_paths": [
+              "src/Serilog/Events/LogEventLevelExtensions.cs",
+              "test/Serilog.Tests/Events/LogEventLevelExtensionsTests.cs",
+              "test/Serilog.ApprovalTests/Serilog.approved.txt"
+            ],
+            "category": "behavior",
+            "id": "dotnet-1-behavior",
+            "risk": "medium"
+          },
+          {
+            "allowed_paths": [
+              "src/Serilog/Events/LogEventLevelParser.cs",
+              "test/Serilog.Tests/Events/LogEventLevelParserTests.cs",
+              "test/Serilog.ApprovalTests/Serilog.approved.txt",
+              "README.md"
+            ],
+            "category": "compatibility",
+            "id": "dotnet-1-compatibility",
+            "risk": "medium"
+          }
+        ],
+        "visibility": "public-development-contracts"
+      },
+      "toolchain": {
+        "actual_environment_sha256": null,
+        "actual_executable_sha256": null,
+        "actual_runtime_version": null,
+        "qualified": false,
+        "selection": {
+          "availability": "unavailable",
+          "policy": "Bind SDK/runtime/target framework and lock identities at admission. Do not silently roll forward.",
+          "repository_ids": [
+            "dotnet-1",
+            "dotnet-2",
+            "dotnet-3"
+          ],
+          "selected": "SDK 9.0.100 for dotnet-1; SDK 8.0.100 for dotnet-2; SDK 9.0.101 for dotnet-3",
+          "stack": "dotnet"
+        },
+        "selection_reference": {
+          "path": "docs/evaluation/phase-3a-frozen/runtime-selections.json",
+          "sha256": "265d513b19dd5d92b3dc6fa68636fe2575d75d8b1637895439a818abc50b5ec7"
+        },
+        "source_declarations_reference": {
+          "artifact": {
+            "path": "docs/evaluation/phase-3a-frozen/development-adjudication.json",
+            "sha256": "c9b1f28cc7536e8d7157ce2c764034188d8726126002dfec1887b3170ef2f2d7"
+          },
+          "field": "toolchain",
+          "repository_id": "dotnet-1"
+        },
+        "status": "prospective-selection-only"
+      }
+    },
+    {
+      "access_policy": {
+        "annotation_sources": "Public pinned archives only.",
+        "annotations": "Independent agent records with later separate adjudication.",
+        "development_tasks": "Public frozen task contracts.",
+        "human_ground_truth_claim": false,
+        "private_predecessor_material_accessed": false,
+        "provider_independence_claim": false
+      },
+      "annotations": {
+        "A": {
+          "artifact": {
+            "path": "docs/evaluation/phase-3a-frozen/annotation-a.json",
+            "sha256": "8c6ecfad7fec831f8f1e047499a1904219f626452f63044372ec0551fbd847e8"
+          },
+          "record_pointer": "/repositories/10"
+        },
+        "B": {
+          "artifact": {
+            "path": "docs/evaluation/phase-3a-frozen/annotation-b.json",
+            "sha256": "26dffbbe001a359092f90d93ab8574561058bb7d08b957711cab98d8467fc244"
+          },
+          "record_pointer": "/repositories/7"
+        },
+        "adjudication": {
+          "artifact": {
+            "path": "docs/evaluation/phase-3a-frozen/development-adjudication.json",
+            "sha256": "c9b1f28cc7536e8d7157ce2c764034188d8726126002dfec1887b3170ef2f2d7"
+          },
+          "field_count": 15,
+          "record_pointer": "/repositories/7"
+        }
+      },
+      "archive_sha256": "02727aaf29edda5ace5c09aee573173cc47adbd4e5e1f841f425ad88f8aaf598",
+      "baseline_checks": {
+        "definition_count": 4,
+        "definitions_reference": {
+          "artifact": {
+            "path": "docs/evaluation/phase-3a-frozen/development-adjudication.json",
+            "sha256": "c9b1f28cc7536e8d7157ce2c764034188d8726126002dfec1887b3170ef2f2d7"
+          },
+          "field": "checks",
+          "repository_id": "dotnet-2"
+        },
+        "definitions_sha256": "77522386049ae94393104b9be9824135f963314e45ee004b8ea5de406e0f1a39",
+        "diagnostics_sha256": null,
+        "known_natural_failure": false,
+        "known_natural_failure_limit": "No natural failing baseline is established. This false value does not prove a passing baseline.",
+        "results": "unknown",
+        "status": "not-run"
+      },
+      "calibration_selected": false,
+      "ci_execution": "not-run",
+      "dependencies": {
+        "full_environment_lock": "unknown",
+        "installed_dependency_resolution": "unavailable",
+        "policy": "Resolve and freeze exact installed dependencies before admitted checks. Preserve source lock files and constraint digests.",
+        "recognized_files": [],
+        "rights_review": "incomplete"
+      },
+      "execution_allowed": false,
+      "external_services": {
+        "approved_destinations": [],
+        "execution_admitted": false,
+        "status": "unknown"
+      },
+      "id": "dotnet-2",
+      "legal_root_evidence": {
+        "branding_rule": "Exclude branding and logo assets unless separately permitted.",
+        "dependency_rights_review": "incomplete",
+        "line_range": [
+          1,
+          176
+        ],
+        "line_range_limit": null,
+        "notice_obligations": [
+          "Preserve the license and applicable notices.",
+          "Record modifications and review third-party notices."
+        ],
+        "path": "License.txt",
+        "root_scope": "This root notice is source evidence. It does not establish all dependency, file, asset, patent, or trademark rights.",
+        "sha256": "6d1d968fb225eca367cb7f0b8831ab012a35d92b547e945e17ef8e7b05c3e5cc",
+        "source_observation_date": "2026-10-16",
+        "spdx_screening_label": "Apache-2.0",
+        "status": "observed-public-root-notice",
+        "third_party_redistribution_clearance": "unknown",
+        "url": "https://github.com/FluentValidation/FluentValidation/blob/c8c6400fa2f467d65669b78804613d44066c1c33/License.txt"
+      },
+      "license_path": "License.txt",
+      "license_sha256": "6d1d968fb225eca367cb7f0b8831ab012a35d92b547e945e17ef8e7b05c3e5cc",
+      "license_spdx": "Apache-2.0",
+      "limitations": [
+        "Checks are source-defined and unrun. No passing baseline is established.",
+        "Selected toolchains do not establish installed executables or qualified platforms.",
+        "Root license observations do not clear all dependencies or assets.",
+        "Global prior use, prior product configuration, training exposure, and private-estate overlap remain unknown."
+      ],
+      "prior_product_configuration": {
+        "reason": "The current public source copies cannot establish global prior configuration.",
+        "status": "unknown",
+        "value": null
+      },
+      "private_estate_overlap": {
+        "reason": "No global absence claim follows from independent public-source reviews.",
+        "status": "unknown",
+        "value": null
+      },
+      "proposed_tag": "11.11.0",
+      "repository": "FluentValidation/FluentValidation",
+      "revision": "c8c6400fa2f467d65669b78804613d44066c1c33",
+      "selection_authority": "The owner delegated bounded source selections. This selection grants no execution or spending authority.",
+      "selection_status": "frozen-artifact-only",
+      "source_access": "public-unauthenticated",
+      "source_identity": {
+        "archive_bytes": 335445,
+        "archive_sha256": "02727aaf29edda5ace5c09aee573173cc47adbd4e5e1f841f425ad88f8aaf598",
+        "archive_url": "https://codeload.github.com/FluentValidation/FluentValidation/tar.gz/c8c6400fa2f467d65669b78804613d44066c1c33",
+        "inventory_reference": {
+          "path": "docs/evaluation/phase-3a-frozen/source-inventories.json",
+          "sha256": "86a2efd86d84dc42b33dbc4fb9be6a9818b0fb90a3916bf0b225479d7877f48f"
+        },
+        "inventory_serialization": "SHA-256 of UTF-8 JSON for the sorted files list, with sorted keys and compact separators. Each row contains path, bytes, and SHA-256.",
+        "repository": "FluentValidation/FluentValidation",
+        "revision": "c8c6400fa2f467d65669b78804613d44066c1c33",
+        "source_file_count": 294,
+        "source_inventory_sha256": "fc5727efff78c0f6ef2185012d7fde5ba5980e360e515e45dad6a53e8c76842f",
+        "symlink_rule": "Do not follow source symlinks during inspection or inventory comparison."
+      },
+      "source_inventory_sha256": "fc5727efff78c0f6ef2185012d7fde5ba5980e360e515e45dad6a53e8c76842f",
+      "source_observation_date": "2026-10-16",
+      "source_url": "https://github.com/FluentValidation/FluentValidation",
+      "spend_authorized": false,
+      "split": "development",
+      "stack": "dotnet",
+      "task_scope": {
+        "generated_and_sensitive_policy": "Use the adjudicated field records. A task allowance does not admit credentials, network, publication, or generated-file writes.",
+        "scope_rule": "Each task starts from its pinned source. Only its exact allowed paths can change.",
+        "task_bundle": {
+          "path": "docs/evaluation/phase-3a-frozen/development-tasks.json",
+          "sha256": "8a096faf855cea3b67410ae43b381c593a2fb4ad98fdd604526c9608e8ef7030"
+        },
+        "tasks": [
+          {
+            "allowed_paths": [
+              "docs/built-in-validators.md"
+            ],
+            "category": "documentation",
+            "id": "dotnet-2-documentation",
+            "risk": "low"
+          },
+          {
+            "allowed_paths": [
+              "src/FluentValidation/Validators/LengthValidator.cs",
+              "src/FluentValidation.Tests/LengthValidatorTests.cs"
+            ],
+            "category": "behavior",
+            "id": "dotnet-2-behavior",
+            "risk": "medium"
+          },
+          {
+            "allowed_paths": [
+              "src/FluentValidation/Validators/AsciiValidator.cs",
+              "src/FluentValidation/DefaultValidatorExtensions.cs",
+              "src/FluentValidation.Tests/AsciiValidatorTests.cs",
+              "docs/built-in-validators.md"
+            ],
+            "category": "compatibility",
+            "id": "dotnet-2-compatibility",
+            "risk": "medium"
+          }
+        ],
+        "visibility": "public-development-contracts"
+      },
+      "toolchain": {
+        "actual_environment_sha256": null,
+        "actual_executable_sha256": null,
+        "actual_runtime_version": null,
+        "qualified": false,
+        "selection": {
+          "availability": "unavailable",
+          "policy": "Bind SDK/runtime/target framework and lock identities at admission. Do not silently roll forward.",
+          "repository_ids": [
+            "dotnet-1",
+            "dotnet-2",
+            "dotnet-3"
+          ],
+          "selected": "SDK 9.0.100 for dotnet-1; SDK 8.0.100 for dotnet-2; SDK 9.0.101 for dotnet-3",
+          "stack": "dotnet"
+        },
+        "selection_reference": {
+          "path": "docs/evaluation/phase-3a-frozen/runtime-selections.json",
+          "sha256": "265d513b19dd5d92b3dc6fa68636fe2575d75d8b1637895439a818abc50b5ec7"
+        },
+        "source_declarations_reference": {
+          "artifact": {
+            "path": "docs/evaluation/phase-3a-frozen/development-adjudication.json",
+            "sha256": "c9b1f28cc7536e8d7157ce2c764034188d8726126002dfec1887b3170ef2f2d7"
+          },
+          "field": "toolchain",
+          "repository_id": "dotnet-2"
+        },
+        "status": "prospective-selection-only"
+      }
+    },
+    {
+      "access_policy": {
+        "annotation_sources": "Public pinned archives only.",
+        "annotations": "Independent agent records with later separate adjudication.",
+        "development_tasks": "Separate sealed custodian. Public scope hashes only.",
+        "human_ground_truth_claim": false,
+        "private_predecessor_material_accessed": false,
+        "provider_independence_claim": false
+      },
+      "annotations": {
+        "A": {
+          "artifact": {
+            "path": "docs/evaluation/phase-3a-frozen/annotation-a.json",
+            "sha256": "8c6ecfad7fec831f8f1e047499a1904219f626452f63044372ec0551fbd847e8"
+          },
+          "raw_record_sha256": "833c78f7a92f301ce81c013c7232b4d7be826b31fbd7f63cff924daaea4f4888",
+          "status_counts": {
+            "per_field": {
+              "baseline_results": {
+                "unknown": 1
+              },
+              "checks": {
+                "observed": 1
+              },
+              "ci": {
+                "observed": 1
+              },
+              "dependency_locks": {
+                "observed": 1
+              },
+              "generated_paths": {
+                "inferred": 1
+              },
+              "licenses": {
+                "observed": 1
+              },
+              "package_manager": {
+                "observed": 1
+              },
+              "prior_product_configuration": {
+                "unknown": 1
+              },
+              "private_estate_overlap": {
+                "unknown": 1
+              },
+              "sensitive_paths": {
+                "inferred": 1
+              },
+              "services_and_authority": {
+                "inferred": 1
+              },
+              "stack": {
+                "observed": 1
+              },
+              "third_party_concerns": {
+                "inferred": 1
+              },
+              "toolchain": {
+                "observed": 1
+              },
+              "workspace_boundaries": {
+                "observed": 1
+              }
+            },
+            "total": {
+              "inferred": 4,
+              "observed": 8,
+              "unknown": 3
+            }
+          }
+        },
+        "B": {
+          "artifact": {
+            "path": "docs/evaluation/phase-3a-frozen/annotation-b.json",
+            "sha256": "26dffbbe001a359092f90d93ab8574561058bb7d08b957711cab98d8467fc244"
+          },
+          "raw_record_sha256": "7ae5a4266d74c00b16231bd80b5c0c66b0cc0fefd89fd54b122bc8050b454f7f",
+          "status_counts": {
+            "baseline": {
+              "inferred": 0,
+              "observed": 0,
+              "unavailable": 0,
+              "unknown": 1
+            },
+            "build": {
+              "inferred": 1,
+              "observed": 2,
+              "unavailable": 0,
+              "unknown": 0
+            },
+            "ci": {
+              "inferred": 0,
+              "observed": 3,
+              "unavailable": 0,
+              "unknown": 0
+            },
+            "generated": {
+              "inferred": 0,
+              "observed": 6,
+              "unavailable": 0,
+              "unknown": 0
+            },
+            "license": {
+              "inferred": 0,
+              "observed": 1,
+              "unavailable": 0,
+              "unknown": 0
+            },
+            "lint": {
+              "inferred": 0,
+              "observed": 0,
+              "unavailable": 0,
+              "unknown": 1
+            },
+            "locks": {
+              "inferred": 0,
+              "observed": 0,
+              "unavailable": 0,
+              "unknown": 1
+            },
+            "package_manager": {
+              "inferred": 1,
+              "observed": 0,
+              "unavailable": 0,
+              "unknown": 0
+            },
+            "provenance": {
+              "inferred": 0,
+              "observed": 1,
+              "unavailable": 0,
+              "unknown": 0
+            },
+            "sensitive": {
+              "inferred": 1,
+              "observed": 6,
+              "unavailable": 0,
+              "unknown": 0
+            },
+            "services": {
+              "inferred": 0,
+              "observed": 4,
+              "unavailable": 0,
+              "unknown": 1
+            },
+            "stack": {
+              "inferred": 0,
+              "observed": 1,
+              "unavailable": 0,
+              "unknown": 0
+            },
+            "test": {
+              "inferred": 1,
+              "observed": 0,
+              "unavailable": 0,
+              "unknown": 0
+            },
+            "third_party": {
+              "inferred": 0,
+              "observed": 13,
+              "unavailable": 0,
+              "unknown": 1
+            },
+            "toolchain": {
+              "inferred": 0,
+              "observed": 17,
+              "unavailable": 1,
+              "unknown": 0
+            },
+            "workspace": {
+              "inferred": 0,
+              "observed": 18,
+              "unavailable": 0,
+              "unknown": 0
+            }
+          }
+        },
+        "sealed_adjudication": {
+          "public_content": "counts-and-digest-only",
+          "sha256": "8d18fde49e61b0c957c617c1d4fc0ab8c8da42a935365a1cbcf7a713bc0645dc"
+        }
+      },
+      "archive_sha256": "2e750089dcf37e11531126cf860a1eef43d187a25fca640eca3f4b5ed3bf63ab",
+      "baseline_checks": {
+        "definitions_reference": "Separate sealed custody. Definitions are not exported here.",
+        "definitions_sha256": null,
+        "diagnostics_sha256": null,
+        "known_natural_failure": false,
+        "known_natural_failure_limit": "No executed upstream failure is established.",
+        "results": "unknown",
+        "status": "not-run"
+      },
+      "calibration_selected": false,
+      "ci_execution": "not-run",
+      "dependencies": {
+        "dependency_lock_sha256": null,
+        "evidence": {
+          "artifact": {
+            "path": "docs/evaluation/phase-3a-frozen/runtime-selections.json",
+            "sha256": "265d513b19dd5d92b3dc6fa68636fe2575d75d8b1637895439a818abc50b5ec7"
+          },
+          "pointer": "/holdout_dependency_limit"
+        },
+        "full_environment_lock": "unavailable",
+        "installed_dependency_resolution": "unavailable",
+        "lockfile_status": "No recognized dependency lockfile exists in the pinned source inventory.",
+        "policy": "Resolve and freeze exact dependencies through separate preparation admission. Do not fabricate a lock digest.",
+        "recognized_lockfile_observed": false,
+        "rights_review": "incomplete"
+      },
+      "execution_allowed": false,
+      "external_services": {
+        "approved_destinations": [],
+        "execution_admitted": false,
+        "status": "unknown"
+      },
+      "id": "dotnet-3",
+      "legal_root_evidence": {
+        "branding_rule": "Exclude branding and logo assets unless separately permitted.",
+        "dependency_rights_review": "incomplete",
+        "line_range": null,
+        "line_range_limit": "The public screening and safe source commitment bind the notice digest. They do not export source line ranges.",
+        "notice_obligations": [
+          "Preserve the license and applicable notices.",
+          "Record modifications and review third-party notices.",
+          "Exclude logo assets from derived evaluation materials unless their separate terms permit use."
+        ],
+        "path": "License.txt",
+        "root_scope": "This root notice is source evidence. It does not establish all dependency, file, asset, patent, or trademark rights.",
+        "sha256": "9148ebecf47ce49421b0adc69192384b0619bcdc22c67b8bb30d26882b8a7db9",
+        "source_observation_date": "2026-10-16",
+        "spdx_screening_label": "Apache-2.0",
+        "status": "observed-public-root-notice",
+        "third_party_redistribution_clearance": "unknown",
+        "url": "https://github.com/DapperLib/Dapper/blob/bd4f75b512de3e00f2c2631d5309961a1ecfea23/License.txt"
+      },
+      "license_path": "License.txt",
+      "license_sha256": "9148ebecf47ce49421b0adc69192384b0619bcdc22c67b8bb30d26882b8a7db9",
+      "license_spdx": "Apache-2.0",
+      "limitations": [
+        "Checks are source-defined and unrun. No passing baseline is established.",
+        "Selected toolchains do not establish installed executables or qualified platforms.",
+        "Root license observations do not clear all dependencies or assets.",
+        "Global prior use, prior product configuration, training exposure, and private-estate overlap remain unknown."
+      ],
+      "prior_product_configuration": {
+        "reason": "The current public source copies cannot establish global prior configuration.",
+        "status": "unknown",
+        "value": null
+      },
+      "private_estate_overlap": {
+        "reason": "No global absence claim follows from independent public-source reviews.",
+        "status": "unknown",
+        "value": null
+      },
+      "proposed_tag": "2.1.66",
+      "repository": "DapperLib/Dapper",
+      "revision": "bd4f75b512de3e00f2c2631d5309961a1ecfea23",
+      "selection_authority": "The owner delegated bounded source selections. This selection grants no execution or spending authority.",
+      "selection_status": "frozen-artifact-only",
+      "source_access": "public-unauthenticated",
+      "source_identity": {
+        "archive_bytes": 244708,
+        "archive_sha256": "2e750089dcf37e11531126cf860a1eef43d187a25fca640eca3f4b5ed3bf63ab",
+        "archive_url": "https://codeload.github.com/DapperLib/Dapper/tar.gz/bd4f75b512de3e00f2c2631d5309961a1ecfea23",
+        "inventory_reference": {
+          "path": "docs/evaluation/phase-3a-frozen/sealed-commitments.json",
+          "sha256": "94373a810f2055445e7124e63c41ef838597b34944ac09a43ae563d70bc08fd2"
+        },
+        "inventory_serialization": "Sort paths by Unicode code point. Encode JSON with sorted keys, compact separators, and one final LF. Hash original regular-file bytes. Bind symlink target text separately. Do not follow links.",
+        "repository": "DapperLib/Dapper",
+        "revision": "bd4f75b512de3e00f2c2631d5309961a1ecfea23",
+        "source_file_count": 224,
+        "source_inventory_sha256": "316b1e29aeec43d38add8c1fff7ab78da48238caffb1a249e61d925eeb15b1b7",
+        "symlink_rule": "Do not follow source symlinks during inspection or inventory comparison."
+      },
+      "source_inventory_sha256": "316b1e29aeec43d38add8c1fff7ab78da48238caffb1a249e61d925eeb15b1b7",
+      "source_observation_date": "2026-10-16",
+      "source_url": "https://github.com/DapperLib/Dapper",
+      "spend_authorized": false,
+      "split": "holdout",
+      "stack": "dotnet",
+      "task_scope": {
+        "allowed_paths": null,
+        "commitments": [
+          {
+            "allowed_scope_sha256": "ca1a213bb7cd99de7eef05a7ccd73f65bcf263bfabdaa3dcbd96754078d8065c",
+            "id": "s3a-0ca6afb158e2972ad981",
+            "task_bundle_sha256": "d235dfbbb7a28a631e0604137022637525281adf940a4722bb29caef23f25106"
+          },
+          {
+            "allowed_scope_sha256": "692ebc963da60d690a3b8cf35b906954dfe5b66dd6d1ed92e25b1918bf9999a7",
+            "id": "s3a-1eff89c18cd2765f4bc7",
+            "task_bundle_sha256": "fb53faff89ab19cf8eac22d56592799f987cb3a8c244b2273f56733edb765b47"
+          },
+          {
+            "allowed_scope_sha256": "403de85ea19190e1952a5ce1cc1e17db214f3579df92cd17637da414c4de8a07",
+            "id": "s3a-35a8329523da8694d1d2",
+            "task_bundle_sha256": "2edd641ce8a79a9e48255ea94325ca39aad9631788a35cfac46a06a5c8eed4cf"
+          },
+          {
+            "allowed_scope_sha256": "10fc013939afb14a1dbc39ba19a72212ed06e63839e2069e77eecc82f8e33a48",
+            "id": "s3a-4e35667dc1804f09cab1",
+            "task_bundle_sha256": "ebcd62203e6d4d1ec2f23865ec011647f901e35187a19f934d70df4d3b2327f4"
+          },
+          {
+            "allowed_scope_sha256": "9ba34eb6126143cbabc8e700afd1e166299007a1e86a09d1b4ab140480d5d583",
+            "id": "s3a-7613124bf9de9a3cc977",
+            "task_bundle_sha256": "4e9de59bdc53fc35a5f6b2b39cbf5f677388b4f67855a2186c98a4aa37d15e2a"
+          },
+          {
+            "allowed_scope_sha256": "d516d6120a28686f205dbd42a963e0b85739dc454bd911430104738a9574f17d",
+            "id": "s3a-884fac10a754516bae40",
+            "task_bundle_sha256": "43c5455d21a3e0e71310149a744a7717d8edfab1848265554c91534c4f71134b"
+          }
+        ],
+        "contents_reference": "private-store:phase3a-20261016/sealed/v1",
+        "scope_rule": "The separate custodian holds task contents. Bind the committed exact scope only after later authorized unsealing.",
+        "task_contents_accessed_for_this_record": false,
+        "task_count": 6,
+        "visibility": "sealed-hash-commitments-only"
+      },
+      "toolchain": {
+        "actual_environment_sha256": null,
+        "actual_executable_sha256": null,
+        "actual_runtime_version": null,
+        "qualified": false,
+        "selection": {
+          "availability": "unavailable",
+          "policy": "Bind SDK/runtime/target framework and lock identities at admission. Do not silently roll forward.",
+          "repository_ids": [
+            "dotnet-1",
+            "dotnet-2",
+            "dotnet-3"
+          ],
+          "selected": "SDK 9.0.100 for dotnet-1; SDK 8.0.100 for dotnet-2; SDK 9.0.101 for dotnet-3",
+          "stack": "dotnet"
+        },
+        "selection_reference": {
+          "path": "docs/evaluation/phase-3a-frozen/runtime-selections.json",
+          "sha256": "265d513b19dd5d92b3dc6fa68636fe2575d75d8b1637895439a818abc50b5ec7"
+        },
+        "source_declarations_reference": "Private source annotations remain committed. Source details are not exported.",
+        "status": "prospective-selection-only"
+      }
+    }
+  ],
+  "required_stacks": [
+    "python",
+    "typescript",
+    "swift",
+    "dotnet"
+  ],
+  "schema_version": 1,
+  "source_observation_date": "2026-10-16",
+  "spend_authorized": false,
+  "split_policy": {
+    "calibration_repository_ids": [
+      "python-1",
+      "typescript-2",
+      "swift-1",
+      "dotnet-1"
+    ],
+    "calibration_scope": "The four selected repositories support the planned 192-row development shape. All 24 development tasks remain frozen.",
+    "development_per_stack": 2,
+    "development_repositories": 8,
+    "holdout_repositories": 4,
+    "holdouts_per_stack": 1,
+    "separation": "Holdout task contents and adjudication remain under separate sealed custody. This record uses only safe public commitments."
+  },
+  "status": "frozen-artifact-only",
+  "verification": {
+    "calibration": "not-run",
+    "development_count": 8,
+    "evaluation": "not-run",
+    "holdout_count": 4,
+    "native_checks": "not-run",
+    "original_pin_mismatches": 0,
+    "repository_count": 12,
+    "safe_holdout_license_digest_mismatches": 0,
+    "stack_count": 4
+  }
+}

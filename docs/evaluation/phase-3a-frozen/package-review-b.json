@@ -1,0 +1,898 @@
+{
+  "annotation_a_accessed": false,
+  "annotation_a_development_entries_accessed": true,
+  "checks": [
+    {
+      "detail": "All eight JSON files deny evaluation execution and spending.",
+      "id": "zero-spending",
+      "status": "pass"
+    },
+    {
+      "detail": "The design retains four stacks, 192 calibration rows, and 576 sealed rows.",
+      "id": "four-stack-design",
+      "status": "pass"
+    },
+    {
+      "detail": "Both implementation assignments remain planned.",
+      "id": "both-role-assignments",
+      "status": "pass"
+    },
+    {
+      "detail": "Actual executable, effective configuration, resolved provider, and resolved model identities remain null.",
+      "id": "unknown-future-identities",
+      "status": "pass"
+    },
+    {
+      "detail": "The package labels 20 passing source tests separately from unavailable native conformance.",
+      "id": "source-native-separation",
+      "status": "pass"
+    },
+    {
+      "detail": "The package freezes Orka prospectively. It does not claim passing native fitness.",
+      "id": "prospective-baseline",
+      "status": "pass"
+    },
+    {
+      "detail": "The recorded file list matches its compact JSON digest and count.",
+      "id": "inventory-python-1",
+      "status": "pass"
+    },
+    {
+      "detail": "The recorded file list matches its compact JSON digest and count.",
+      "id": "inventory-python-2",
+      "status": "pass"
+    },
+    {
+      "detail": "The recorded file list matches its compact JSON digest and count.",
+      "id": "inventory-typescript-1",
+      "status": "pass"
+    },
+    {
+      "detail": "The recorded file list matches its compact JSON digest and count.",
+      "id": "inventory-typescript-2",
+      "status": "pass"
+    },
+    {
+      "detail": "The recorded file list matches its compact JSON digest and count.",
+      "id": "inventory-swift-1",
+      "status": "pass"
+    },
+    {
+      "detail": "The recorded file list matches its compact JSON digest and count.",
+      "id": "inventory-swift-2",
+      "status": "pass"
+    },
+    {
+      "detail": "The recorded file list matches its compact JSON digest and count.",
+      "id": "inventory-dotnet-1",
+      "status": "pass"
+    },
+    {
+      "detail": "The recorded file list matches its compact JSON digest and count.",
+      "id": "inventory-dotnet-2",
+      "status": "pass"
+    },
+    {
+      "detail": "The condition hash matches its current contract bytes.",
+      "id": "contract-hash-B0",
+      "status": "pass"
+    },
+    {
+      "detail": "The condition hash matches its current contract bytes.",
+      "id": "contract-hash-B1",
+      "status": "pass"
+    },
+    {
+      "detail": "The condition hash matches its current contract bytes.",
+      "id": "contract-hash-B2",
+      "status": "pass"
+    },
+    {
+      "detail": "The condition hash matches its current contract bytes.",
+      "id": "contract-hash-P",
+      "status": "pass"
+    },
+    {
+      "detail": "B0 excludes the reviewer and Crewshal model bindings. It records attributed applicability reasons.",
+      "id": "B0-binding-applicability",
+      "status": "pass"
+    }
+  ],
+  "date": "2026-10-16",
+  "development_tasks_accessed": true,
+  "external_reference_checks": [
+    {
+      "detail": "The listed standard input, cached-input, cache-write, and output rates match the official page. Pricing modifiers require later formula selection.",
+      "status": "observed",
+      "url": "https://developers.openai.com/api/docs/models/gpt-6.1-sol"
+    },
+    {
+      "detail": "The listed standard input, output, five-minute cache-write, and cache-read rates match the official page.",
+      "status": "observed",
+      "url": "https://platform.claude.com/docs/en/models/sonnet-5-5/overview"
+    }
+  ],
+  "findings": [
+    {
+      "evidence": [
+        {
+          "excerpt": "      \"not_applicable_bindings\": {",
+          "line_range": [
+            12,
+            12
+          ],
+          "path": "docs/evaluation/phase-3a-frozen/conditions.json",
+          "raw_sha256": "431975c826351a2e5f55fe3f0f07775d2f384570210dabed94b1f3108f32052d"
+        },
+        {
+          "excerpt": "      \"not_applicable_bindings\": {",
+          "line_range": [
+            47,
+            47
+          ],
+          "path": "docs/evaluation/phase-3a-frozen/conditions.json",
+          "raw_sha256": "431975c826351a2e5f55fe3f0f07775d2f384570210dabed94b1f3108f32052d"
+        },
+        {
+          "excerpt": "      \"not_applicable_bindings\": {",
+          "line_range": [
+            84,
+            84
+          ],
+          "path": "docs/evaluation/phase-3a-frozen/conditions.json",
+          "raw_sha256": "431975c826351a2e5f55fe3f0f07775d2f384570210dabed94b1f3108f32052d"
+        },
+        {
+          "excerpt": "      \"not_applicable_bindings\": {},",
+          "line_range": [
+            125,
+            125
+          ],
+          "path": "docs/evaluation/phase-3a-frozen/conditions.json",
+          "raw_sha256": "431975c826351a2e5f55fe3f0f07775d2f384570210dabed94b1f3108f32052d"
+        },
+        {
+          "excerpt": "        \"review-runtime-provider-model-executable-configuration\": \"B0 has no reviewer.\"",
+          "line_range": [
+            14,
+            14
+          ],
+          "path": "docs/evaluation/phase-3a-frozen/conditions.json",
+          "raw_sha256": "431975c826351a2e5f55fe3f0f07775d2f384570210dabed94b1f3108f32052d"
+        }
+      ],
+      "id": "package-b-001",
+      "original_target_sha256": "705620564bfe26dd5a7c7509dd8d8e7ad2687e3e31c8502544fa7331c0205e34",
+      "priority": 2,
+      "problem": "The original B0 contract required a reviewer identity and confirmed Crewshal model. Its stages provide neither.",
+      "requested_change": "Exclude those bindings for B0. Record explicit applicability reasons without treating absent review as failure.",
+      "resolution": "The parent added condition-specific required and not-applicable bindings. The current B0 contract passes the source check.",
+      "status": "resolved",
+      "title": "Apply identity requirements by condition."
+    },
+    {
+      "effect": "A later analyst could choose the favorable cost category after results. Missing subscription billing could also produce an unsupported overhead conclusion.",
+      "evidence": [
+        {
+          "excerpt": "      \"repeated_model_cost_median_increase_vs_B1_max\": 0.2,",
+          "line_range": [
+            219,
+            219
+          ],
+          "path": "docs/evaluation/phase-3a-frozen/protocol.json",
+          "raw_sha256": "abf694161cb6a530d07b9cf00e16dc65736a19093dd6c921e0b1205ef899ea7b"
+        },
+        {
+          "excerpt": "    \"estimated_cost\": {",
+          "line_range": [
+            70,
+            70
+          ],
+          "path": "docs/evaluation/phase-3a-frozen/measurement-template.json",
+          "raw_sha256": "7c9e754d5a5e710eb179b0449f0676e1b291ab3b1f196afee3f21e1fab217174"
+        },
+        {
+          "excerpt": "    \"measured_cost\": {",
+          "line_range": [
+            77,
+            77
+          ],
+          "path": "docs/evaluation/phase-3a-frozen/measurement-template.json",
+          "raw_sha256": "7c9e754d5a5e710eb179b0449f0676e1b291ab3b1f196afee3f21e1fab217174"
+        },
+        {
+          "excerpt": "    \"subscription_quota\": {",
+          "line_range": [
+            86,
+            86
+          ],
+          "path": "docs/evaluation/phase-3a-frozen/measurement-template.json",
+          "raw_sha256": "7c9e754d5a5e710eb179b0449f0676e1b291ab3b1f196afee3f21e1fab217174"
+        },
+        {
+          "excerpt": "      \"usage_route\": \"Official CLI subscription route only. No metered fallback. Future quota exposure requires approval.\",",
+          "line_range": [
+            116,
+            116
+          ],
+          "path": "docs/evaluation/phase-3a-frozen/runtime-selections.json",
+          "raw_sha256": "265d513b19dd5d92b3dc6fa68636fe2575d75d8b1637895439a818abc50b5ec7"
+        },
+        {
+          "excerpt": "      \"usage_route\": \"Official CLI subscription route only. No metered fallback. Future quota exposure requires approval.\",",
+          "line_range": [
+            187,
+            187
+          ],
+          "path": "docs/evaluation/phase-3a-frozen/runtime-selections.json",
+          "raw_sha256": "265d513b19dd5d92b3dc6fa68636fe2575d75d8b1637895439a818abc50b5ec7"
+        }
+      ],
+      "id": "package-b-002",
+      "priority": 2,
+      "problem": "The overhead threshold names model cost. The template separates API price estimates, measured billing, and subscription quota. The protocol selects none.",
+      "requested_change": "Freeze the primary metric, formula, aggregation, and unavailable-input rule. Report other usage categories separately.",
+      "resolution": "The saved protocol names the primary API-equivalent estimate. It fixes disjoint counters, paired ratios, percentile intervals, and unknown inputs.",
+      "resolution_date": "2026-10-18",
+      "resolution_evidence": [
+        {
+          "line_range": [
+            14,
+            14
+          ],
+          "path": "docs/evaluation/phase-3a-frozen/protocol.json",
+          "raw_sha256": "30c6b3d80e1e6f9ed3948f551677f02c7bae21d0a5d0a0e70d517eedd23212a7"
+        },
+        {
+          "line_range": [
+            6,
+            6
+          ],
+          "path": "docs/evaluation/phase-3a-frozen/protocol.json",
+          "raw_sha256": "30c6b3d80e1e6f9ed3948f551677f02c7bae21d0a5d0a0e70d517eedd23212a7"
+        },
+        {
+          "line_range": [
+            30,
+            30
+          ],
+          "path": "docs/evaluation/phase-3a-frozen/protocol.json",
+          "raw_sha256": "30c6b3d80e1e6f9ed3948f551677f02c7bae21d0a5d0a0e70d517eedd23212a7"
+        },
+        {
+          "line_range": [
+            35,
+            35
+          ],
+          "path": "docs/evaluation/phase-3a-frozen/protocol.json",
+          "raw_sha256": "30c6b3d80e1e6f9ed3948f551677f02c7bae21d0a5d0a0e70d517eedd23212a7"
+        },
+        {
+          "line_range": [
+            5,
+            5
+          ],
+          "path": "docs/evaluation/phase-3a-frozen/protocol.json",
+          "raw_sha256": "30c6b3d80e1e6f9ed3948f551677f02c7bae21d0a5d0a0e70d517eedd23212a7"
+        },
+        {
+          "line_range": [
+            28,
+            28
+          ],
+          "path": "docs/evaluation/phase-3a-frozen/protocol.json",
+          "raw_sha256": "30c6b3d80e1e6f9ed3948f551677f02c7bae21d0a5d0a0e70d517eedd23212a7"
+        }
+      ],
+      "status": "resolved",
+      "title": "Select the primary model cost metric before calibration."
+    },
+    {
+      "alternative": "Retain the full upstream suite only behind separate explicit network admission. Do not label it network-free.",
+      "effect": "The mandatory check conflicts with the declared network boundary. A correct decoder cannot satisfy the frozen check under that boundary.",
+      "evidence": [
+        {
+          "excerpt": "{\n  \"name\": \"hono\",\n  \"version\": \"4.7.2\",\n  \"description\": \"Web framework built on Web Standards\",\n  \"main\": \"dist/cjs/index.js\",\n  \"type\": \"module\",\n  \"module\": \"dist/index.js\",\n  \"types\": \"dist/types/index.d.ts\",\n  \"files\": [\n    \"dist\"\n  ],\n  \"scripts\": {\n    \"test\": \"tsc --noEmit && vitest --run && vitest -c .vitest.config/jsx-runtime-default.ts --run && vitest -c .vitest.config/jsx-runtime-dom.ts --run\",\n    \"test:watch\": \"vitest --watch\",\n    \"test:deno\": \"deno test --allow-read --allow-env --allow-write --allow-net -c runtime-tests/deno/deno.json runtime-tests/deno && deno test --no-lock -c runtime-tests/deno-jsx/deno.precompile.json runtime-tests/deno-jsx && deno test --no-lock -c runtime-tests/deno-jsx/deno.react-jsx.json runtime-tests/deno-jsx\",\n    \"test:bun\": \"bun test --jsx-import-source ../../src/jsx runtime-tests/bun/index.test.tsx\",\n    \"test:fastly\": \"vitest --run --config ./runtime-tests/fastly/vitest.config.ts\",\n    \"test:node\": \"vitest --run --config ./runtime-tests/node/vitest.config.ts\",\n    \"test:workerd\": \"vitest --run --config ./runtime-tests/workerd/vitest.config.ts\",\n    \"test:lambda\": \"vitest --run --config ./runtime-tests/lambda/vitest.config.ts\",\n    \"test:lambda-edge\": \"vitest --run --config ./runtime-tests/lambda-edge/vitest.config.ts\",\n    \"test:all\": \"bun run test && bun test:deno && bun test:bun && bun test:fastly && bun test:node && bun test:workerd && bun test:lambda && bun test:lambda-edge\",\n    \"lint\": \"eslint src runtime-tests build perf-measures\",\n    \"lint:fix\": \"eslint src runtime-tests build perf-measures --fix\",\n    \"format\": \"prettier --check --cache \\\"src/**/*.{js,ts,tsx}\\\" \\\"runtime-tests/**/*.{js,ts,tsx}\\\" \\\"build/**/*.{js,ts,tsx}\\\" \\\"perf-measures/**/*.{js,ts,tsx}\\\"\",\n    \"format:fix\": \"prettier --write --cache --cache-strategy metadata \\\"src/**/*.{js,ts,tsx}\\\" \\\"runtime-tests/**/*.{js,ts,tsx}\\\" \\\"build/**/*.{js,ts,tsx}\\\" \\\"perf-measures/**/*.{js,ts,tsx}\\\"\",\n    \"copy:package.cjs.json\": \"cp ./package.cjs.json ./dist/cjs/package.json && cp ./package.cjs.json ./dist/types/package.json\",\n    \"build\": \"bun run --shell bun remove-dist && bun ./build/build.ts && bun run copy:package.cjs.json\",\n    \"postbuild\": \"publint\",\n    \"watch\": \"bun run --shell bun remove-dist && bun ./build/build.ts --watch && bun run copy:package.cjs.json\",",
+          "line_range": [
+            1,
+            30
+          ],
+          "path": "package.json",
+          "repository_id": "typescript-2",
+          "sha256": "e92628cc88ad26253c4fabc6f7ab233ec401a9e463a106c27eab6c801b9551c4"
+        },
+        {
+          "excerpt": "export default defineConfig({\n  test: {\n    env: {\n      NAME: 'Node',\n    },\n    globals: true,\n    include: ['**/runtime-tests/node/**/*.+(ts|tsx|js)'],\n    exclude: ['**/runtime-tests/node/vitest.config.ts'],\n    coverage: {\n      ...config.test?.coverage,\n      reportsDirectory: './coverage/raw/runtime-node',\n    },",
+          "line_range": [
+            5,
+            16
+          ],
+          "path": "runtime-tests/node/vitest.config.ts",
+          "repository_id": "typescript-2",
+          "sha256": "d4a7daabfa6746b99e54826f585cdcbe75dafdc306b890d5ea237a5ec294d38b"
+        },
+        {
+          "excerpt": "describe('compress', async () => {\n  const cssContent = Array.from({ length: 60 }, () => 'body { color: red; }').join('\\n')\n  const [externalServer, serverInfo] = await new Promise<[Server, AddressInfo]>((resolve) => {\n    const externalApp = new Hono()\n    externalApp.get('/style.css', (c) =>\n      c.text(cssContent, {\n        headers: {\n          'Content-Type': 'text/css',\n        },\n      })\n    )\n    const server = serve(\n      {\n        fetch: externalApp.fetch,\n        port: 0,\n        hostname: '0.0.0.0',\n      },\n      (serverInfo) => {\n        resolve([server as Server, serverInfo])\n      }\n    )\n  })\n\n  const app = new Hono()\n  app.use(compress())\n  app.get('/fetch/:file', (c) => {\n    return fetch(`http://${serverInfo.address}:${serverInfo.port}/${c.req.param('file')}`)\n  })\n  const server = createAdaptorServer(app)\n\n  afterAll(() => {\n    externalServer.close()\n  })\n\n  it('Should be compressed a fetch response', async () => {\n    const res = await request(server).get('/fetch/style.css')\n    expect(res.status).toBe(200)",
+          "line_range": [
+            209,
+            245
+          ],
+          "path": "runtime-tests/node/index.test.ts",
+          "repository_id": "typescript-2",
+          "sha256": "6f80529a08afd2df8847308dcd38764239d970c73bed1af8d346d0ca76dd2340"
+        }
+      ],
+      "id": "package-b-003",
+      "priority": 2,
+      "problem": "The contract requires bun run test:node with network disabled after preparation. That upstream suite starts an HTTP server and sends HTTP requests.",
+      "requested_change": "Allow a new decoder-only Node test file. Select only that file with the Node Vitest configuration. Keep network disabled.",
+      "resolution": "The revised contract selects only the new decoder test through local Node and Vitest. It forbids network and expanded collection.",
+      "resolution_date": "2026-10-18",
+      "resolution_evidence": [
+        {
+          "line_range": [
+            2071,
+            2071
+          ],
+          "path": "docs/evaluation/phase-3a-frozen/development-tasks.json",
+          "raw_sha256": "8a096faf855cea3b67410ae43b381c593a2fb4ad98fdd604526c9608e8ef7030"
+        },
+        {
+          "line_range": [
+            2080,
+            2080
+          ],
+          "path": "docs/evaluation/phase-3a-frozen/development-tasks.json",
+          "raw_sha256": "8a096faf855cea3b67410ae43b381c593a2fb4ad98fdd604526c9608e8ef7030"
+        },
+        {
+          "line_range": [
+            2155,
+            2155
+          ],
+          "path": "docs/evaluation/phase-3a-frozen/development-tasks.json",
+          "raw_sha256": "8a096faf855cea3b67410ae43b381c593a2fb4ad98fdd604526c9608e8ef7030"
+        },
+        {
+          "line_range": [
+            2179,
+            2179
+          ],
+          "path": "docs/evaluation/phase-3a-frozen/development-tasks.json",
+          "raw_sha256": "8a096faf855cea3b67410ae43b381c593a2fb4ad98fdd604526c9608e8ef7030"
+        },
+        {
+          "line_range": [
+            2189,
+            2189
+          ],
+          "path": "docs/evaluation/phase-3a-frozen/development-tasks.json",
+          "raw_sha256": "8a096faf855cea3b67410ae43b381c593a2fb4ad98fdd604526c9608e8ef7030"
+        },
+        {
+          "line_range": [
+            2227,
+            2227
+          ],
+          "path": "docs/evaluation/phase-3a-frozen/development-tasks.json",
+          "raw_sha256": "8a096faf855cea3b67410ae43b381c593a2fb4ad98fdd604526c9608e8ef7030"
+        },
+        {
+          "line_range": [
+            2280,
+            2280
+          ],
+          "path": "docs/evaluation/phase-3a-frozen/development-tasks.json",
+          "raw_sha256": "8a096faf855cea3b67410ae43b381c593a2fb4ad98fdd604526c9608e8ef7030"
+        },
+        {
+          "line_range": [
+            2292,
+            2292
+          ],
+          "path": "docs/evaluation/phase-3a-frozen/development-tasks.json",
+          "raw_sha256": "8a096faf855cea3b67410ae43b381c593a2fb4ad98fdd604526c9608e8ef7030"
+        }
+      ],
+      "status": "resolved",
+      "task_file_sha256": "10d60b649686221c19643abe48bd982480c5ce99c9c2c77a174a2a00eeb0a04c",
+      "task_id": "typescript-2-compatibility",
+      "task_pointer": "/tasks/11/checks",
+      "title": "Select a network-free Node decoder check."
+    },
+    {
+      "discovered_date": "2026-10-18",
+      "historical_evidence_limit": "The intermediate source read appears in this review conversation. No intermediate raw-file digest was retained.",
+      "id": "package-b-004",
+      "priority": 2,
+      "problem": "An intermediate decoder-only prerequisite selected Node 20. The frozen TypeScript toolchain selected Node.js 22.14.0.",
+      "resolution": "The current prerequisite selects Node.js 22.14.0. Separate source observations no longer change the selected runtime.",
+      "resolution_date": "2026-10-18",
+      "resolution_evidence": [
+        {
+          "line_range": [
+            2163,
+            2163
+          ],
+          "path": "docs/evaluation/phase-3a-frozen/development-tasks.json",
+          "raw_sha256": "8a096faf855cea3b67410ae43b381c593a2fb4ad98fdd604526c9608e8ef7030"
+        },
+        {
+          "line_range": [
+            2173,
+            2173
+          ],
+          "path": "docs/evaluation/phase-3a-frozen/development-tasks.json",
+          "raw_sha256": "8a096faf855cea3b67410ae43b381c593a2fb4ad98fdd604526c9608e8ef7030"
+        },
+        {
+          "line_range": [
+            217,
+            217
+          ],
+          "path": "docs/evaluation/phase-3a-frozen/runtime-selections.json",
+          "raw_sha256": "265d513b19dd5d92b3dc6fa68636fe2575d75d8b1637895439a818abc50b5ec7"
+        }
+      ],
+      "status": "resolved",
+      "task_id": "typescript-2-compatibility",
+      "title": "Use the frozen Node version in the task prerequisite."
+    },
+    {
+      "discovered_date": "2026-10-18",
+      "id": "package-b-005",
+      "priority": 2,
+      "problem": "The initial checker required 15 fields for both reviewers. Annotation B contains 16 fields.",
+      "resolution": "The checker now validates the distinct field sets and the common adjudication fields. The current public package passes semantics().",
+      "resolution_date": "2026-10-18",
+      "resolution_evidence": [
+        {
+          "line_range": [
+            244,
+            244
+          ],
+          "path": "scripts/check_phase_3a_freeze.py",
+          "raw_sha256": "0b199afcdc3db103e70a83aa4630b25b863a032aaf7bf8d60be650612005d8b9"
+        },
+        {
+          "line_range": [
+            266,
+            266
+          ],
+          "path": "scripts/check_phase_3a_freeze.py",
+          "raw_sha256": "0b199afcdc3db103e70a83aa4630b25b863a032aaf7bf8d60be650612005d8b9"
+        },
+        {
+          "line_range": [
+            96,
+            96
+          ],
+          "path": "tests/acceptance/test_phase_3a_freeze.py",
+          "raw_sha256": "0590833729ecc0be85716e1db34b0ba28668e903386176df9f936db251df0a66"
+        }
+      ],
+      "status": "resolved",
+      "title": "Validate the two independent annotation schemas."
+    },
+    {
+      "discovered_date": "2026-10-18",
+      "id": "package-b-006",
+      "priority": 2,
+      "problem": "The initial leaf open could wait for a FIFO writer before checking the file type.",
+      "resolution": "The leaf open now uses O_NONBLOCK. A fresh FIFO receives regular-file refusal immediately.",
+      "resolution_date": "2026-10-18",
+      "resolution_evidence": [
+        {
+          "line_range": [
+            124,
+            124
+          ],
+          "path": "scripts/check_phase_3a_freeze.py",
+          "raw_sha256": "0b199afcdc3db103e70a83aa4630b25b863a032aaf7bf8d60be650612005d8b9"
+        },
+        {
+          "line_range": [
+            147,
+            147
+          ],
+          "path": "tests/acceptance/test_phase_3a_freeze.py",
+          "raw_sha256": "0590833729ecc0be85716e1db34b0ba28668e903386176df9f936db251df0a66"
+        }
+      ],
+      "status": "resolved",
+      "title": "Refuse a FIFO before a blocking read."
+    },
+    {
+      "discovered_date": "2026-10-18",
+      "id": "package-b-007",
+      "priority": 2,
+      "problem": "The initial role check validated labels only. A malformed B-implements mapping could select implementation A.",
+      "resolution": "The checker now requires exact A/B and B/A mappings. The malformed in-memory mapping receives role assignment mismatch.",
+      "resolution_date": "2026-10-18",
+      "resolution_evidence": [
+        {
+          "line_range": [
+            353,
+            353
+          ],
+          "path": "scripts/check_phase_3a_freeze.py",
+          "raw_sha256": "0b199afcdc3db103e70a83aa4630b25b863a032aaf7bf8d60be650612005d8b9"
+        },
+        {
+          "line_range": [
+            153,
+            153
+          ],
+          "path": "tests/acceptance/test_phase_3a_freeze.py",
+          "raw_sha256": "0590833729ecc0be85716e1db34b0ba28668e903386176df9f936db251df0a66"
+        }
+      ],
+      "status": "resolved",
+      "title": "Validate mirrored implementation and review mappings."
+    },
+    {
+      "discovered_date": "2026-10-18",
+      "id": "package-b-008",
+      "priority": 2,
+      "problem": "The initial checker accepted sealed_shape=[1,1,1,1,1] while retaining 576 sealed rows.",
+      "resolution": "The checker now validates shapes, planned counts, factors, and calibration selection. The malformed shape receives sealed shape mismatch.",
+      "resolution_date": "2026-10-18",
+      "resolution_evidence": [
+        {
+          "line_range": [
+            384,
+            384
+          ],
+          "path": "scripts/check_phase_3a_freeze.py",
+          "raw_sha256": "0b199afcdc3db103e70a83aa4630b25b863a032aaf7bf8d60be650612005d8b9"
+        },
+        {
+          "line_range": [
+            160,
+            160
+          ],
+          "path": "tests/acceptance/test_phase_3a_freeze.py",
+          "raw_sha256": "0590833729ecc0be85716e1db34b0ba28668e903386176df9f936db251df0a66"
+        }
+      ],
+      "status": "resolved",
+      "title": "Require schedule declarations to match the frozen design."
+    }
+  ],
+  "followups": [
+    {
+      "additional_review": "The current public contracts preserve zero spending, both roles, four stacks, prospective baseline selection, and unknown future execution identities. No additional material control defect was found in this bounded review.",
+      "checks": [
+        {
+          "id": "cost-metric-correction",
+          "status": "pass"
+        },
+        {
+          "id": "decoder-only-Hono-selection",
+          "status": "pass"
+        },
+        {
+          "id": "Hono-selected-Node-consistency",
+          "status": "pass"
+        },
+        {
+          "id": "zero-spending-and-execution-denial",
+          "status": "pass"
+        }
+      ],
+      "current_development_citations_verified": 128,
+      "current_development_task_count": 24,
+      "current_scope_hash_mismatches": 0,
+      "date": "2026-10-18",
+      "graph": {
+        "coverage": "Six corrected control paths had matching graph metadata. Exact source bytes remain the review evidence.",
+        "generation": "2026-10-16T18:49:48Z",
+        "project": "Volumes-X10Pro-Crewshal"
+      },
+      "kind": "saved-correction-and-public-control-review",
+      "live_processes_started": false,
+      "node_prerequisite_resolution": "The task author corrected the Node prerequisite during this follow-up. The saved follow-up snapshot already selected Node.js 22.14.0.",
+      "pending_integration_files": [
+        "package-index.json"
+      ],
+      "scope_limit": "This review checks the current public contracts. It does not qualify native execution or complete pending integration artifacts.",
+      "sealed_task_contents_accessed": false,
+      "source_only": true,
+      "target_raw_sha256": {
+        "docs/evaluation/phase-3a-frozen/baseline-conformance.json": "f25a815cd8ecbf015aadfc3266088bee7da3c2b75ea58034bdf174b1b3b86d19",
+        "docs/evaluation/phase-3a-frozen/conditions.json": "431975c826351a2e5f55fe3f0f07775d2f384570210dabed94b1f3108f32052d",
+        "docs/evaluation/phase-3a-frozen/development-tasks.json": "8a096faf855cea3b67410ae43b381c593a2fb4ad98fdd604526c9608e8ef7030",
+        "docs/evaluation/phase-3a-frozen/execution-admission.json": "e658e4e678b7676ab13ccd37f513f3d41ca2f26541c5930fe3f3043b4596ef8a",
+        "docs/evaluation/phase-3a-frozen/measurement-template.json": "7c9e754d5a5e710eb179b0449f0676e1b291ab3b1f196afee3f21e1fab217174",
+        "docs/evaluation/phase-3a-frozen/owner-decisions.json": "9e229861c2978572e6b13d0edce0b113dd5436b51348ff3c51a6f8aea7d68403",
+        "docs/evaluation/phase-3a-frozen/protocol.json": "30c6b3d80e1e6f9ed3948f551677f02c7bae21d0a5d0a0e70d517eedd23212a7",
+        "docs/evaluation/phase-3a-frozen/runtime-selections.json": "265d513b19dd5d92b3dc6fa68636fe2575d75d8b1637895439a818abc50b5ec7",
+        "docs/evaluation/phase-3a-frozen/sealed-commitments.json": "94373a810f2055445e7124e63c41ef838597b34944ac09a43ae563d70bc08fd2",
+        "docs/evaluation/phase-3a-frozen/source-inventories.json": "86a2efd86d84dc42b33dbc4fb9be6a9818b0fb90a3916bf0b225479d7877f48f"
+      }
+    },
+    {
+      "authority_review": "The checker returns source consistency only. It does not create a platform grant or evaluation spending authority.",
+      "date": "2026-10-18",
+      "graph": {
+        "coverage": "The checker, schedule, and rubric had matching metadata. The test file had changed metadata and received direct source fallback.",
+        "generation": "2026-10-18T10:01:02Z",
+        "project": "Volumes-X10Pro-Crewshal"
+      },
+      "kind": "bounded-final-checker-schedule-and-rubric-review",
+      "limitations": [
+        "The direct checks did not execute coding runtimes, corpus tasks, providers, or sealed contents.",
+        "This review did not rerun the complete acceptance suite. The parent is fixing its reported timestamp fixture issue.",
+        "The current package index is excluded from review hashes to avoid a cyclic report reference.",
+        "The parent must refresh the index after this report changes."
+      ],
+      "observed_checks": [
+        {
+          "case": "current public semantics",
+          "result": "accepted"
+        },
+        {
+          "case": "B-implements with implementation A",
+          "result": "refused: role assignment mismatch"
+        },
+        {
+          "case": "sealed_shape=[1,1,1,1,1]",
+          "result": "refused: sealed shape mismatch"
+        },
+        {
+          "case": "fresh FIFO without a writer",
+          "elapsed_seconds_rounded": 0.0,
+          "result": "refused: artifact must be a regular file"
+        }
+      ],
+      "rubric_review": "The rubric preserves human quality grading, explicit unknowns, source-bound discovery facts, and four-stack coverage reporting.",
+      "schedule_review": "All 768 planned rows preserve the four conditions and both roles. The checker reconstructs exact block and condition ordering.",
+      "skill": "/Users/hamedprooshani/.agents/skills/production-code-review/SKILL.md",
+      "status": "pass-source-review",
+      "target_raw_sha256": {
+        "docs/evaluation/phase-3a-frozen/rubric.json": "015bfabe9a21979cebc9d63fcf4d3c6f20b597b1bc661604923c4ebc3d4cbe08",
+        "docs/evaluation/phase-3a-frozen/schedule.json": "0a4546644f31211ca6827f0b81346a1559fc47a60acff03f492b45cfe9485280",
+        "scripts/check_phase_3a_freeze.py": "0b199afcdc3db103e70a83aa4630b25b863a032aaf7bf8d60be650612005d8b9",
+        "tests/acceptance/test_phase_3a_freeze.py": "0590833729ecc0be85716e1db34b0ba28668e903386176df9f936db251df0a66"
+      },
+      "test_review": "The added refusal tests reach semantic checks after refreshing dependent source bindings. The parent retains the complete acceptance run."
+    }
+  ],
+  "graph": {
+    "coverage": "All nine target paths had no recorded issue and matching metadata at the coverage call. Exact source reads remain the evidence.",
+    "generation": "2026-10-16T18:42:50Z",
+    "project": "Volumes-X10Pro-Crewshal"
+  },
+  "human_ground_truth": false,
+  "last_reviewed_date": "2026-10-18",
+  "limitations": [
+    "This review does not verify the recorded 20-test execution by rerunning it.",
+    "This review does not qualify a native runtime, baseline, environment, or platform.",
+    "Holdout source annotations remain private. This report contains no hidden task content.",
+    "The review hashes identify the read bytes. Later edits require a new verification record.",
+    "The task cross-review read Annotation A development entries after both independent source records were complete. Both original records remain unchanged."
+  ],
+  "original_annotation_b_sha256": "ec6e3843a1dd6c01aec0247090f2711bd13e7c94e48e1a050fc2cdceced38cb2",
+  "owner_approval_review": "The three recorded answers authorize independent agents, bounded selections, and a zero-spending package. They do not authorize evaluation execution.",
+  "review_kind": "separate-source-package-review",
+  "reviewer": "annotation-b",
+  "schema_version": 1,
+  "sealed_tasks_accessed": false,
+  "status": "pass-source-review",
+  "target_raw_sha256": {
+    "docs/decisions/0008-agent-annotation-and-phase-3a-freeze.md": "8bf97676e997a5b333d20da15a9a953812d4d5add4c3e9578d96fef36645f3f3",
+    "docs/evaluation/phase-3a-frozen/annotation-a.json": "8c6ecfad7fec831f8f1e047499a1904219f626452f63044372ec0551fbd847e8",
+    "docs/evaluation/phase-3a-frozen/baseline-conformance.json": "afc0138df18393bb14eb3182436c6476cd61b0d6accbf7619d8a2d8e47ebae10",
+    "docs/evaluation/phase-3a-frozen/conditions.json": "431975c826351a2e5f55fe3f0f07775d2f384570210dabed94b1f3108f32052d",
+    "docs/evaluation/phase-3a-frozen/development-tasks.json": "10d60b649686221c19643abe48bd982480c5ce99c9c2c77a174a2a00eeb0a04c",
+    "docs/evaluation/phase-3a-frozen/execution-admission.json": "e658e4e678b7676ab13ccd37f513f3d41ca2f26541c5930fe3f3043b4596ef8a",
+    "docs/evaluation/phase-3a-frozen/measurement-template.json": "7c9e754d5a5e710eb179b0449f0676e1b291ab3b1f196afee3f21e1fab217174",
+    "docs/evaluation/phase-3a-frozen/owner-decisions.json": "9e229861c2978572e6b13d0edce0b113dd5436b51348ff3c51a6f8aea7d68403",
+    "docs/evaluation/phase-3a-frozen/protocol.json": "abf694161cb6a530d07b9cf00e16dc65736a19093dd6c921e0b1205ef899ea7b",
+    "docs/evaluation/phase-3a-frozen/runtime-selections.json": "265d513b19dd5d92b3dc6fa68636fe2575d75d8b1637895439a818abc50b5ec7",
+    "docs/evaluation/phase-3a-frozen/source-inventories.json": "86a2efd86d84dc42b33dbc4fb9be6a9818b0fb90a3916bf0b225479d7877f48f"
+  },
+  "task_execution": "not-run",
+  "task_review": {
+    "citation_count_verified": 128,
+    "kind": "separate-development-contract-cross-review",
+    "sealed_tasks_accessed": false,
+    "source_or_scope_hash_mismatches": 0,
+    "task_count": 24,
+    "tasks": [
+      {
+        "acceptance_cases": 4,
+        "exact_allowed_paths": 1,
+        "id": "python-1-documentation",
+        "runtime_feasibility": "unexecuted",
+        "scope_hashes_verified": true,
+        "status": "source-reviewed-no-concrete-defect"
+      },
+      {
+        "acceptance_cases": 6,
+        "exact_allowed_paths": 2,
+        "id": "python-1-behavior",
+        "runtime_feasibility": "unexecuted",
+        "scope_hashes_verified": true,
+        "status": "source-reviewed-no-concrete-defect"
+      },
+      {
+        "acceptance_cases": 6,
+        "exact_allowed_paths": 4,
+        "id": "python-1-compatibility",
+        "runtime_feasibility": "unexecuted",
+        "scope_hashes_verified": true,
+        "status": "source-reviewed-no-concrete-defect"
+      },
+      {
+        "acceptance_cases": 4,
+        "exact_allowed_paths": 1,
+        "id": "python-2-documentation",
+        "runtime_feasibility": "unexecuted",
+        "scope_hashes_verified": true,
+        "status": "source-reviewed-no-concrete-defect"
+      },
+      {
+        "acceptance_cases": 5,
+        "exact_allowed_paths": 2,
+        "id": "python-2-behavior",
+        "runtime_feasibility": "unexecuted",
+        "scope_hashes_verified": true,
+        "status": "source-reviewed-no-concrete-defect"
+      },
+      {
+        "acceptance_cases": 5,
+        "exact_allowed_paths": 4,
+        "id": "python-2-compatibility",
+        "runtime_feasibility": "unexecuted",
+        "scope_hashes_verified": true,
+        "status": "source-reviewed-no-concrete-defect"
+      },
+      {
+        "acceptance_cases": 3,
+        "exact_allowed_paths": 1,
+        "id": "typescript-1-documentation",
+        "runtime_feasibility": "unexecuted",
+        "scope_hashes_verified": true,
+        "status": "source-reviewed-no-concrete-defect"
+      },
+      {
+        "acceptance_cases": 4,
+        "exact_allowed_paths": 2,
+        "id": "typescript-1-behavior",
+        "runtime_feasibility": "unexecuted",
+        "scope_hashes_verified": true,
+        "status": "source-reviewed-no-concrete-defect"
+      },
+      {
+        "acceptance_cases": 5,
+        "exact_allowed_paths": 4,
+        "id": "typescript-1-compatibility",
+        "runtime_feasibility": "unexecuted",
+        "scope_hashes_verified": true,
+        "status": "source-reviewed-no-concrete-defect"
+      },
+      {
+        "acceptance_cases": 4,
+        "exact_allowed_paths": 1,
+        "id": "typescript-2-documentation",
+        "runtime_feasibility": "unexecuted",
+        "scope_hashes_verified": true,
+        "status": "source-reviewed-no-concrete-defect"
+      },
+      {
+        "acceptance_cases": 5,
+        "exact_allowed_paths": 2,
+        "id": "typescript-2-behavior",
+        "runtime_feasibility": "unexecuted",
+        "scope_hashes_verified": true,
+        "status": "source-reviewed-no-concrete-defect"
+      },
+      {
+        "acceptance_cases": 7,
+        "exact_allowed_paths": 4,
+        "id": "typescript-2-compatibility",
+        "runtime_feasibility": "unexecuted",
+        "scope_hashes_verified": true,
+        "status": "source-reviewed-findings-resolved"
+      },
+      {
+        "acceptance_cases": 4,
+        "exact_allowed_paths": 1,
+        "id": "swift-1-documentation",
+        "runtime_feasibility": "unexecuted",
+        "scope_hashes_verified": true,
+        "status": "source-reviewed-no-concrete-defect"
+      },
+      {
+        "acceptance_cases": 5,
+        "exact_allowed_paths": 3,
+        "id": "swift-1-behavior",
+        "runtime_feasibility": "unexecuted",
+        "scope_hashes_verified": true,
+        "status": "source-reviewed-no-concrete-defect"
+      },
+      {
+        "acceptance_cases": 6,
+        "exact_allowed_paths": 5,
+        "id": "swift-1-compatibility",
+        "runtime_feasibility": "unexecuted",
+        "scope_hashes_verified": true,
+        "status": "source-reviewed-no-concrete-defect"
+      },
+      {
+        "acceptance_cases": 4,
+        "exact_allowed_paths": 1,
+        "id": "swift-2-documentation",
+        "runtime_feasibility": "unexecuted",
+        "scope_hashes_verified": true,
+        "status": "source-reviewed-no-concrete-defect"
+      },
+      {
+        "acceptance_cases": 5,
+        "exact_allowed_paths": 2,
+        "id": "swift-2-behavior",
+        "runtime_feasibility": "unexecuted",
+        "scope_hashes_verified": true,
+        "status": "source-reviewed-no-concrete-defect"
+      },
+      {
+        "acceptance_cases": 6,
+        "exact_allowed_paths": 5,
+        "id": "swift-2-compatibility",
+        "runtime_feasibility": "unexecuted",
+        "scope_hashes_verified": true,
+        "status": "source-reviewed-no-concrete-defect"
+      },
+      {
+        "acceptance_cases": 4,
+        "exact_allowed_paths": 1,
+        "id": "dotnet-1-documentation",
+        "runtime_feasibility": "unexecuted",
+        "scope_hashes_verified": true,
+        "status": "source-reviewed-no-concrete-defect"
+      },
+      {
+        "acceptance_cases": 4,
+        "exact_allowed_paths": 3,
+        "id": "dotnet-1-behavior",
+        "runtime_feasibility": "unexecuted",
+        "scope_hashes_verified": true,
+        "status": "source-reviewed-no-concrete-defect"
+      },
+      {
+        "acceptance_cases": 5,
+        "exact_allowed_paths": 4,
+        "id": "dotnet-1-compatibility",
+        "runtime_feasibility": "unexecuted",
+        "scope_hashes_verified": true,
+        "status": "source-reviewed-no-concrete-defect"
+      },
+      {
+        "acceptance_cases": 4,
+        "exact_allowed_paths": 1,
+        "id": "dotnet-2-documentation",
+        "runtime_feasibility": "unexecuted",
+        "scope_hashes_verified": true,
+        "status": "source-reviewed-no-concrete-defect"
+      },
+      {
+        "acceptance_cases": 6,
+        "exact_allowed_paths": 2,
+        "id": "dotnet-2-behavior",
+        "runtime_feasibility": "unexecuted",
+        "scope_hashes_verified": true,
+        "status": "source-reviewed-no-concrete-defect"
+      },
+      {
+        "acceptance_cases": 6,
+        "exact_allowed_paths": 4,
+        "id": "dotnet-2-compatibility",
+        "runtime_feasibility": "unexecuted",
+        "scope_hashes_verified": true,
+        "status": "source-reviewed-no-concrete-defect"
+      }
+    ],
+    "upstream_execution": "not-run"
+  }
+}

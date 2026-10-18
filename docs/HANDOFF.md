@@ -1,8 +1,22 @@
 # Crewshal rolling handoff and project memory
 
-Last updated: 2026-10-16. This record supplies the next session and the owner with project history. [DEVELOPMENT-PLAN.md](DEVELOPMENT-PLAN.md) defines the milestone acceptance checks. Preserve the session ledger.
+Last updated: 2026-10-18. This record supplies the next session and the owner with project history. [DEVELOPMENT-PLAN.md](DEVELOPMENT-PLAN.md) defines the milestone acceptance checks. Preserve the session ledger.
 
 ## Current state
+
+**October 18: Phase 3A complete; the source evaluation package is frozen.**
+The owner approved agent annotation, delegated bounded selections, and selected zero evaluation spending.
+The package retains twelve pinned repositories, all four stacks, independent annotations, and attributed adjudication.
+It fixes 24 development tasks and 24 sealed task commitments under separate custody.
+B0, B1, B2, P, both role assignments, thresholds, accounting, and 768 planned units are fixed.
+Accepted ADR 0008 separates package acceptance from deferred native and platform qualification.
+Operational admission stays closed. Phase 3B execution requires separate approval and qualified controls.
+No calibration or sealed evaluation ran. Earlier dated entries remain historical records.
+The source checkpoint version is `0.15.2` on `codex/phase1-architecture`.
+The delivery revision is the commit containing this entry and the completion report.
+Use [the completion report](PHASE-3A-COMPLETION-2026-10-18.md) and [verification record](qualification/phase-3a-freeze-verification-20261018.json).
+Continue with [the Phase 3B prompt](PHASE-3B-NEXT-SESSION-2026-10-18.md) and [exact input index](PHASE-3B-INPUTS-2026-10-18.json).
+Complete publication, then stop before Phase 3B work.
 
 **October 16: Phase 3A preparation checkpoint; freeze blocked.**
 The proposed package records 12 pinned public corpus candidates and preserves all four stacks.
@@ -2045,3 +2059,57 @@ Feed every file in [the exact continuation index](PHASE-3A-CONTINUATION-INPUTS-2
 The smallest missing decision assigns independent corpus engineers, adjudication, and sealed-task custody.
 Owner decisions cannot replace missing independent task or baseline and platform conformance evidence.
 Complete the standing branch commit and push, then stop before Phase 3B.
+
+## Phase 3A complete — October 18, 2026
+
+Milestone: freeze the comparative source evaluation package under accepted ADR 0008.
+Base revision: `e3457ee0218d1a16d16f1a4a07f363f99454c65f`. Branch: `codex/phase1-architecture`. Version: `0.15.2`.
+The delivery revision is the commit containing this entry, completion report, and exact next input index.
+The starting checkout was clean. All 1,095 starting tracked files were inventoried.
+
+The owner explicitly approved agent annotation, bounded source-package selections, and zero evaluation spending.
+Two independent agent contexts completed source annotations before reading each other's records.
+The separate custodian prepared and verified 24 sealed tasks without exposing contents to development authors or the parent.
+The package retains twelve pinned public sources and all four stacks.
+Development adjudication records 120 field decisions across eight repositories and 822 verified citations.
+Both source inventory serializations reproduce their digests for all 2,264 development entries.
+Independent task review verified 128 source and scope citations.
+Private adjudication binds eight original records, 60 field decisions, and 688 evidence references.
+The sealed task artifacts contain 272 files and 245,463 bytes. The private integrity manifest binds 763 entries.
+The public index binds 23 artifacts and exposes no sealed requirements, paths, or oracle code.
+Private custody uses `private-store:phase3a-20261016/sealed/v1`; Git does not back it up.
+Files use `0600`; directories use `0700`. Retention requires an explicit later disposal decision.
+
+B0, B1, pinned Orka B2, and P preserve both role assignments.
+Selected CLI distributions, requested providers/models, configurations, and toolchains are fixed.
+Future actual candidates, project models, executables, effective settings, and resolved identities remain explicit admission observations.
+The protocol fixes thresholds, scoring, cache treatment, blinding, repetitions, ordering, paired analysis, and failure accounting.
+All 192 development and 576 sealed planned units remain represented.
+The primary model overhead metric estimates API-equivalent cost. Actual billing, subscription quota, and unknown usage remain separate.
+Twenty fresh deterministic Orka source tests pass; historical native exclusion failures remain failed.
+Native execution, dependency resolution, provider behavior, and platform conformance remain unavailable.
+Agent reference annotations establish neither human ground truth nor cross-provider independence.
+Swift and .NET discovery support remain unavailable. No unsupported unit disappears from planned coverage.
+The original initial evaluation plan, proposed package, and prior completion records remain unchanged.
+
+All 23 new package checks pass. The focused package, Phase 2E, and dispatch command passes 108 tests.
+Source and fresh installed-wheel suites each pass 1,342 occurrences: 1,326 unique methods and sixteen inherited repeats.
+All 49 installed source files match. Offline build, hash-locked install, CLI help, lint, formatting, strict typing, and diff checks pass.
+Both complete suites use empty inherited environments, fresh HOME paths, and process-level network denial.
+Nine historical script format differences remain byte-identical.
+Eight independent review findings were corrected and verified. Initial fixture errors remain recorded in verification.
+[The completion report](PHASE-3A-COMPLETION-2026-10-18.md) and [verification record](qualification/phase-3a-freeze-verification-20261018.json) supply exact evidence and limitations.
+
+Only the synchronized version changed inside production source. All other starting source and historical files remain intact.
+All 28 Linux and C source files match their starting bytes. Historical physical custody was not inspected.
+No credential, private predecessor, VM, SSH, compiler, coding-runtime, evaluation inference, or paid-host operation occurred.
+No calibration, sealed evaluation, infrastructure provisioning, merge, deployment, or registry publication occurred.
+Operational admission remains closed under ADRs 0007 and 0008.
+The approved evaluation allowance remains zero money, zero quota, and zero paid-host spending.
+Agent-session subscription usage was not measured and remains unknown.
+
+Next milestone: Phase 3B development calibration and prospective protocol corrections.
+Its execution requires separate owner spending approval and an explicit instruction to resume required qualification.
+Use [the Phase 3B prompt](PHASE-3B-NEXT-SESSION-2026-10-18.md) and [exact input index](PHASE-3B-INPUTS-2026-10-18.json).
+Do not reopen Phase 3A because later execution gates remain closed.
+Complete the standing commit and push, then stop before Phase 3B work.

@@ -10,6 +10,17 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**October 18: Phase 3A complete; the source evaluation package is frozen.**
+The owner approved agent annotation, delegated bounded selections, and selected zero evaluation spending.
+The package retains twelve pinned repositories, all four stacks, independent annotations, and attributed adjudication.
+It fixes 24 development tasks and 24 sealed task commitments under separate custody.
+B0, B1, B2, P, both role assignments, thresholds, accounting, and 768 planned units are fixed.
+Accepted ADR 0008 separates package acceptance from deferred native and platform qualification.
+Operational admission stays closed. Phase 3B execution requires separate approval and qualified controls.
+No calibration or sealed evaluation ran. Earlier dated entries remain historical records.
+Use [the frozen package](docs/evaluation/phase-3a-frozen/README.md) and [completion report](docs/PHASE-3A-COMPLETION-2026-10-18.md).
+Continue with [the Phase 3B prompt](docs/PHASE-3B-NEXT-SESSION-2026-10-18.md) and [exact inputs](docs/PHASE-3B-INPUTS-2026-10-18.json).
+
 **October 16: Phase 3A preparation checkpoint; freeze blocked.**
 The proposed package records 12 pinned public corpus candidates and preserves all four stacks.
 It defines B0, B1, B2, P, both role assignments, task contracts, independent annotation, protocol proposals, and separate usage categories.
@@ -52,7 +63,7 @@ Earlier dated status entries remain historical records.
 Operational execution admission remains closed; platform support and live acceptance remain unverified.
 Earlier blocked-status paragraphs below describe dated history.
 
-Source checkpoint: **0.15.1**. Package registry publication remains unauthorized. See [CHANGELOG.md](CHANGELOG.md) for version history.
+Source checkpoint: **0.15.2**. Package registry publication remains unauthorized. See [CHANGELOG.md](CHANGELOG.md) for version history.
 
 **October 11: Phase 2D remains blocked.** [The current report](docs/PHASE-2D-BLOCKED-2026-10-11.md) gives four causes and the exact continuation inputs. Fresh source checks pass all 863 offline tests, including 722 Phase 2D tests. Linux and live acceptance remain incomplete. The owner requires ASD-STE100 for human communication. Version 0.12.0 remains unchanged; this report is uncommitted. Earlier status paragraphs are dated records.
 

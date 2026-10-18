@@ -1,6 +1,18 @@
 # Crewshal phased development and acceptance plan
 
-## Current preparation checkpoint — Phase 3A, 2026-10-16
+## Current milestone — Phase 3A complete, 2026-10-18
+
+The [frozen source package](evaluation/phase-3a-frozen/README.md) completes Phase 3A under accepted ADR 0008.
+The owner approved independent agent annotation, delegated bounded selections, and fixed the evaluation allowance at zero.
+Source-package acceptance covers actual corpus, annotations, adjudication, task artifacts, source identities, comparison contracts, protocol, and deterministic refusal evidence.
+Native/platform conformance and future observed identities remain mandatory execution gates under ADRs 0007 and 0008.
+Their unavailable status does not become a pass. Frozen selection identities do not substitute for actual execution observations.
+Phase 3B has not started. Its execution requires separate spending approval and an explicit instruction to resume required qualification.
+Use [the Phase 3B prompt](PHASE-3B-NEXT-SESSION-2026-10-18.md) and [exact inputs](PHASE-3B-INPUTS-2026-10-18.json).
+The [completion report](PHASE-3A-COMPLETION-2026-10-18.md) records the accepted amendment and source-package evidence.
+Earlier dated checkpoint sections remain historical records.
+
+## Historical preparation checkpoint — Phase 3A, 2026-10-16
 
 The [proposed package](evaluation/phase-3a/README.md) prepares corpus, tasks, annotation, conditions, protocol, and accounting contracts.
 The package remains proposed. Phase 3A is incomplete because its owner and evidence gates remain unsatisfied.
@@ -87,7 +99,7 @@ A milestone has four parts: plan the concrete change; implement only its scope; 
 | 2C | Reuse decision and execution-environment qualification | 2B | Existing execution seams assessed against frozen cases; chosen substrate passes containment probes; denied boundaries documented | Complete; one complete v18 Linux aarch64 profile passes all twenty original cases twice and both native file tools. Original limits unchanged; current cleanup observed. Windows/macOS runtime qualification unknown. See PHASE-2C-COMPLETION-ASSESSMENT.md |
 | 2D | First-runtime integration and core software workflow | Existing 2A–2C software and accepted ADR 0007 | Actual coordinator workflow passes fresh deterministic runtime/validator fixtures, candidate and evidence integrity, refusal/recovery cases, complete offline suite, and installed-package checks | Software complete on 2026-10-16; platform and live qualification deferred separately |
 | 2E | Second runtime, independent review and full vertical slice | Revised 2D software acceptance | Both role assignments, provider identity rules, disagreement/remediation, and the low-risk no-review path pass deterministic source integration checks | Software complete on 2026-10-16; platform and live qualification deferred separately |
-| 3A | Frozen comparative evaluation package | 2E | Legally usable corpus, task/rubric/threshold/baseline/version manifests; four-stack coverage or prospective amendment; owner spend approval | Preparation checkpoint; freeze blocked on owner decisions, annotations, identities, and conformance |
+| 3A | Frozen comparative evaluation package | 2E | Legally usable corpus, task/rubric/threshold/baseline/version manifests; four-stack coverage or prospective amendment; owner spend approval | Complete under ADR 0008; source package frozen, zero spending, actual execution admission closed |
 | 3B | Calibration and protocol corrections | 3A | Development corpus runs with complete accounting; failures preserved; amended protocol frozen before hold-outs | Planned |
 | 3C | Sealed evaluation and owner product decision | 3B | Frozen held-out execution, blind quality assessment, baseline comparison and unknown/failed-run accounting; GO/MODIFY/ABANDON decision | Planned |
 | 4 | Conditional release readiness and delivery | Owner GO after 3C | Reproducible package/install, supported-platform CI, security/support limits, license/dependency review, release authorization | Conditional |

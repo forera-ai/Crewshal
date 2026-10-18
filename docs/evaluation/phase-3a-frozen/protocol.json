@@ -1,0 +1,254 @@
+{
+  "analysis": {
+    "annotation_limit": "Agent reference annotations can share model errors. Reports must not label them human ground truth.",
+    "approval": "Owner-delegated selection.",
+    "p90": "Use the nearest-rank value at ceil(0.90 * n) in ascending finite observations. Empty observations yield unknown.",
+    "paired_aggregation": {
+      "cost_increase": "For each comparable completed repeated low-risk pair, compute (P_estimated_api_equivalent_cost_usd - B1_estimated_api_equivalent_cost_usd) / B1_estimated_api_equivalent_cost_usd. Report the median ratio.",
+      "exclusions": "Zero baseline denominators, missing data, failed work, and no-op work yield no ratio. Report every excluded row and planned coverage.",
+      "machine_increase": "Use the same paired formula with observed machine elapsed seconds. Measure the critical path from admitted task start to final captured evidence. Include waits and remediation.",
+      "matching": "Match repository, task, repetition, role assignment, source, acceptance, and qualified environment.",
+      "setup_clock": "Count active operator setup, model correction, and baseline translation. Report machine wait separately. Never subtract unresolved or failed work.",
+      "setup_reduction": "For each comparable completed pair, compute (baseline_active_setup_seconds - P_active_setup_seconds) / baseline_active_setup_seconds. Report the median ratio separately for B1 and B2."
+    },
+    "primary_model_cost_metric": {
+      "actual_cost": "Report measured billed USD, estimates, subscription quota, and unknown usage in separate columns.",
+      "categories": "Use disjoint counters. Subtract cache reads and writes from inclusive input totals only when provider semantics prove that inclusion. Include reasoning in output when already charged there.",
+      "formula": "Sum (new_input_tokens * 2 + cache_read_tokens * 0.10 + five_minute_cache_write_tokens * 2.50 + output_tokens * 10) / 1000000 across all attempts.",
+      "meaning": "This metric estimates token-equivalent API cost. It does not measure subscription billing or quota.",
+      "name": "estimated_api_equivalent_cost_usd",
+      "rates_file": "runtime-selections.json",
+      "scope": "Include implementation, review, remediation, failures, and interrupted attempts. Preserve each attempt and partial usage.",
+      "unknown_rule": "Unknown counter categories, unavailable usage, other cache tiers, or ambiguous overlap make this metric unknown. Never substitute zero."
+    },
+    "required": [
+      "all-planned-unit-totals",
+      "per-stack-coverage",
+      "median",
+      "p90",
+      "paired-task-differences",
+      "uncertainty-intervals",
+      "failure-and-unknown-counts",
+      "B2-total-effort-comparison"
+    ],
+    "small_sample_limit": "Four held-out repositories support exploratory results only. No non-inferiority claim follows.",
+    "uncertainty": {
+      "confidence_level": 0.95,
+      "endpoints": "Use nearest-rank 2.5th and 97.5th percentiles of sorted resample statistics. Undefined resamples remain counted and excluded from interval endpoints. Report their number.",
+      "method": "Repository-cluster percentile bootstrap. Sample repositories with replacement and retain their complete paired units. Recompute each median ratio.",
+      "resamples": 10000,
+      "seed": 310017,
+      "small_sample": "Four held-out clusters permit exploratory intervals only. No statistical non-inferiority claim follows."
+    },
+    "undefined_metric": "Report unknown when its denominator is zero or usage is unavailable."
+  },
+  "authority": "Owner-delegated selections under accepted ADR 0008.",
+  "blinding": {
+    "annotation_access": "Exclude reference annotations and condition labels from timed setup and grading bundles. Retain raw originals for later adjudication.",
+    "condition_mapping_file": "sealed custody: condition-mapping.json",
+    "condition_mapping_sha256": "a0ff54cfa131c92b6dc86e878793858f74f7cf2f0d4a97fc51a2d0751664f357",
+    "custodian": "separate-agent-custodian",
+    "grader_identity_binding": "Bind actual grader identities before Phase 3C. Human quality grading was not replaced by the annotation amendment.",
+    "grader_kind": "human",
+    "procedure": [
+      "Assign opaque result IDs before grading.",
+      "Remove condition names, runtime names, and implementation conversation from grading bundles.",
+      "Preserve the exact candidate, requirement, and captured check identities.",
+      "Use two independent human graders and attributed adjudication.",
+      "Record unavoidable clues and failed blinding.",
+      "Reveal the mapping only after grades and adjudication are fixed."
+    ],
+    "required_graders": 2
+  },
+  "cache": {
+    "baseline_configuration": "B1 and B2 may reuse their own frozen configuration within repeated-task blocks. Count their setup and every later correction.",
+    "cold_and_repeated": "Report cold initialization separately. Amortize observed setup over 1, 5, and 20 tasks.",
+    "local_dependencies": "Use the same pinned read-only dependency snapshot. Separate writable caches per run.",
+    "provider": "Record unavoidable provider caching and category counters. Do not claim a cold provider cache without evidence.",
+    "reuse": "Only P may reuse its confirmed model within its defined repeated-task block. Record invalidation and every correction.",
+    "workspace": "Use a new source copy per run. Preserve no patch, session, review findings, or mutable state between conditions."
+  },
+  "coverage": {
+    "amendment": "Agent annotation replaces human annotation. Explicit synthetic variants supplement missing stress features. All four real-repository stacks remain in denominators.",
+    "amendment_approved": true,
+    "candidate_unfamiliarity": "Current source copies and public inputs are new to this campaign. Global prior product use and predecessor-estate overlap remain unknown.",
+    "decision": "Retain all four stacks and report unsupported cells. Do not replace real hold-outs with fixtures.",
+    "holdout_exposure_permitted": false,
+    "python_typescript": "Core fixture evidence exists; platform and live conformance remain unavailable.",
+    "stacks": [
+      "python",
+      "typescript",
+      "swift",
+      "dotnet"
+    ],
+    "swift_dotnet": "Discovery adapters and platform conformance remain unavailable."
+  },
+  "date": "2026-10-16",
+  "design": {
+    "ablations": "No optional ablation runs are in this version. A later owner-approved version must define their shape and budget before exposure.",
+    "conditions": [
+      "B0",
+      "B1",
+      "B2",
+      "P"
+    ],
+    "development_repository_ids": [
+      "python-1",
+      "typescript-2",
+      "swift-1",
+      "dotnet-1"
+    ],
+    "development_selection": "Select these four repositories prospectively for calibration. Retain the other four for development preparation only.",
+    "development_selection_reason": "The selection spans command-line, web, Swift package, and logging library structures. It uses no task outcome.",
+    "development_shape": [
+      4,
+      3,
+      2,
+      4,
+      2
+    ],
+    "original_counts": {
+      "development": 96,
+      "sealed": 288
+    },
+    "planned_counts": {
+      "development": 192,
+      "sealed": 576,
+      "total": 768
+    },
+    "role_assignments": [
+      "A-implements",
+      "B-implements"
+    ],
+    "sealed_shape": [
+      4,
+      6,
+      3,
+      4,
+      2
+    ],
+    "shape_dimensions": [
+      "repositories",
+      "tasks",
+      "repetitions",
+      "conditions",
+      "role_assignments"
+    ],
+    "smaller_campaign": "Require a new prospective shape and report the reduced power.",
+    "unit": [
+      "repository",
+      "task",
+      "repetition",
+      "condition",
+      "role_assignment"
+    ]
+  },
+  "execution_allowed": false,
+  "failure_accounting": {
+    "retry_policy": "No automatic coordinator retry. Record any later approved attempt separately.",
+    "rules": [
+      "Create one record for every planned unit, including unsupported and unattempted units.",
+      "Preserve failed attempts and remediation histories. Never replace them with the final success.",
+      "Count blocked and unsupported units in total coverage. Report supported-case accuracy separately.",
+      "Require matching command, environment, and diagnostic identities for baseline-red comparisons.",
+      "Do not compare failed or no-op work as a cost saving over completed work.",
+      "Treat missing usage as unknown. Preserve partial usage after interruption.",
+      "Report product failures separately from task-quality failures.",
+      "A waiver preserves the missing gate. It does not create a passing observation.",
+      "Stop after a lost side-effect response. Reconcile operation identity before any approved retry."
+    ],
+    "statuses": [
+      "planned",
+      "not-attempted",
+      "blocked",
+      "unsupported",
+      "failed",
+      "interrupted",
+      "cancelled",
+      "verified",
+      "accepted-with-waiver",
+      "unknown"
+    ],
+    "stopping": "Stop on boundary failure, false completion, unavailable mandatory control, or exhausted approved resources.",
+    "terminal_reasons": [
+      "malformed-output",
+      "runtime-refusal",
+      "context-overflow",
+      "process-exit",
+      "timeout",
+      "cancelled",
+      "quota-exhausted",
+      "budget-exhausted",
+      "provider-unavailable",
+      "tool-unavailable",
+      "network-unavailable",
+      "scope-violation",
+      "stale-model",
+      "stale-candidate",
+      "missing-evidence",
+      "review-conflict",
+      "unknown-side-effect"
+    ]
+  },
+  "freeze_boundary": "Selected source-package inputs and analysis contracts are frozen. Actual native and platform qualification remains a distinct admission gate.",
+  "initial_plan_sha256": "ab74f7c04ee2f0894cc95445edef618ce3227ef1d754e5d312af4d1d5ea03acd",
+  "ordering": {
+    "algorithm": "sha256-sort-v1",
+    "approval": "Owner-delegated selection.",
+    "block_key": "seed|repository_id|task_id|repetition|role_assignment",
+    "block_order": "Sort blocks by the SHA-256 hex digest of block_key, then by block_key for ties.",
+    "blocking": "Within each repository/task/repetition/role assignment, order all four conditions by that key.",
+    "canonical_key": "seed|repository_id|task_id|repetition|role_assignment|condition",
+    "encoding": "UTF-8; decimal integers; no whitespace or trailing newline",
+    "export": "Freeze the complete schedule and planned rows before the first run.",
+    "schedule_file": "schedule.json",
+    "seed": 310016,
+    "sort": "Sort by SHA-256 hex digest, then by canonical key for ties."
+  },
+  "owner_product_decision": {
+    "ABANDON": "Record absent setup value, absent B2 benefit, repeated false completion, unavailable enforcement, or excessive overhead.",
+    "GO": "Require all prerequisite, discovery, setup, portability, quality, overhead, and B2 gates to pass.",
+    "MODIFY": "Record limited value and a prospective narrower scope or integration proposal.",
+    "authority": "Only the owner decides. Preserve every failed criterion."
+  },
+  "package_id": "phase3a-20261016-v1",
+  "quality_rubric_file": "rubric.json",
+  "schema_version": 1,
+  "spend_authorized": false,
+  "spending": {
+    "approval": "The owner explicitly selected zero spending.",
+    "calibration_allowed": false,
+    "currency": "USD",
+    "enforcement": "No evaluation process or inference may start with this zero allowance. Future nonzero exposure requires a separately approved exact budget.",
+    "estimated_cost_planning_ceiling": 0,
+    "hard_financial_cap_required": true,
+    "host_spend_allowed": false,
+    "measured_cost_ceiling": 0,
+    "paid_host_cost_ceiling": 0,
+    "pricing_file": "runtime-selections.json",
+    "sealed_evaluation_allowed": false,
+    "subscription_quota_ceiling": 0,
+    "unknown_usage": "Missing billing and quota observations remain unknown. A zero allowance does not imply zero historical or subscription consumption."
+  },
+  "status": "frozen",
+  "thresholds": {
+    "approval": "Owner delegated bounded selection. These values are fixed before sealed exposure.",
+    "margin_interpretation": "The 0.10 per-stack margin means ten percentage points. It is exploratory and is not a statistical non-inferiority margin.",
+    "values": {
+      "B2_differentiation_rule": "P must reduce median active setup time by at least 20% versus B2. It must retain the quality and overhead gates.",
+      "actionable_provenance_min": 1.0,
+      "command_correctness_min": 0.95,
+      "critical_regressions_max": 0,
+      "critical_risk_detection_min": 1.0,
+      "false_success_max": 0,
+      "heldout_quality_vs_B1": "At least equal aggregate acceptance.",
+      "per_stack_material_regression_margin": 0.1,
+      "repeated_machine_time_median_increase_vs_B1_max": 0.25,
+      "repeated_model_cost_median_increase_vs_B1_max": 0.2,
+      "setup_median_reduction_vs_B1_min": 0.3,
+      "stack_precision_min": 0.95,
+      "stack_recall_min": 0.9,
+      "unnecessary_low_risk_escalation_max": 0.2
+    }
+  }
+}

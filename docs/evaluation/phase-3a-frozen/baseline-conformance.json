@@ -1,0 +1,100 @@
+{
+  "candidates": [
+    {
+      "fresh_source_conformance": {
+        "command": "rtk proxy env -i PATH=/usr/bin:/bin HOME=/var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-3a-finalize-20261016-ti21cba7/baseline-home PYTHONDONTWRITEBYTECODE=1 /usr/bin/sandbox-exec -p '(version 1)(allow default)(deny network*)' /Volumes/X10Pro/Crewshal/.venv/bin/python -I /var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-3a-finalize-20261016-ti21cba7/orka/tests/execution_backend_test.py",
+        "exit_code": 0,
+        "kind": "fresh-source-contract-tests",
+        "passed": true,
+        "scope": "Pinned public deterministic backend tests only. No native runtime, provider, kernel containment, or live evaluation.",
+        "seconds": 0.084,
+        "stderr_sha256": "9bbc098e2230c512a412cacf2b63165e5ef0e80673e0a84bae80fc9b34f1885d",
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "test_count": 20
+      },
+      "id": "orka",
+      "license": "MIT",
+      "native_environment_exclusions": "Historical helper observations failed exclusion of a synthetic secret, SSH_AUTH_SOCK, and injected hook settings. They remain failed.",
+      "native_execution": "unavailable",
+      "platform_containment": "unavailable",
+      "provider_identity_and_usage": "unavailable",
+      "repository": "Dusttoo/orka",
+      "revision": "9e366915fc6cd6ede5aa47ac7a3b418a32ff528b",
+      "source_files": [
+        {
+          "bytes": 1071,
+          "path": "LICENSE",
+          "sha256": "03271c89c000e42db89252d490511a449f4236013976d1d2f95a06bee4aaeffc"
+        },
+        {
+          "bytes": 27553,
+          "path": "scripts/execution_backend.py",
+          "sha256": "8a59a09e16ab355f23b76298043d4d94278ee65d5b94bd4774489c72d4d243e4"
+        },
+        {
+          "bytes": 8643,
+          "path": "scripts/execution_backend_contract.py",
+          "sha256": "74c42f2bb02df2424b5cb3fcbf1ae071ac086babcf65eb2f140c73b60718ea2c"
+        },
+        {
+          "bytes": 15107,
+          "path": "tests/execution_backend_test.py",
+          "sha256": "74b00f5961425a7a47ecb56b9487a26b3d0455b8f5e3db81925254b32c0b1ae1"
+        },
+        {
+          "bytes": 1228,
+          "path": "tests/fixtures/execution-backend-v1.json",
+          "sha256": "62c9b2d352bfcc4f5e24da7e7df3b3e680a1c18878a02017ba8db71e63139eb5"
+        },
+        {
+          "bytes": 4204,
+          "path": "contracts/execution-backend-v1.json",
+          "sha256": "b75bc154598eda334caf546fca6668faa675f7e624189624fd416268bd462f30"
+        },
+        {
+          "bytes": 10720,
+          "path": "docs/execution-backend-contract.md",
+          "sha256": "22897434c7e9cd9ad766af5a49c6b4f815737e1f593a230f96c4be500f73b297"
+        },
+        {
+          "bytes": 17627,
+          "path": "scripts/phase_worker_contract.py",
+          "sha256": "ec4a76a6b134ee5ad3e5ca7d5f06480daf68132789241bc2fb4439581449a329"
+        },
+        {
+          "bytes": 10087,
+          "path": "contracts/phase-worker-protocol-v1.json",
+          "sha256": "3fe34266a2abbad700b7ccd54e176ef5ba72a158f24fb9f3e4e13b7242fffee8"
+        }
+      ]
+    },
+    {
+      "id": "orchestrate",
+      "license": "MIT",
+      "native_execution": "unavailable",
+      "repository": "bestagentkits/orchestrate",
+      "revision": "1846530cf4383c4592d739601f3c9870e83d9a13",
+      "source_conformance": "The pinned public snapshot contains declarative plugin contracts, not the requested executable execution seam."
+    }
+  ],
+  "date": "2026-10-16",
+  "execution_allowed": false,
+  "failure_rule": "No failed or unavailable actual conformance case becomes passed. Refuse dependent execution until qualified evidence matches the frozen inputs.",
+  "historical_reference": "docs/EXECUTION-QUALIFICATION.md",
+  "mandatory_actual_cases": [
+    "same-input-task-checks-budgets",
+    "fresh-workspace-and-context",
+    "exact-resolved-identities",
+    "provider-independent-read-only-review",
+    "trusted-check-and-terminal-capture",
+    "scope-and-approval-refusal",
+    "failed-and-unavailable-check-accounting",
+    "cancel-timeout-restart-no-replay",
+    "honest-usage-and-cache-accounting",
+    "setup-and-configuration-effort"
+  ],
+  "package_id": "phase3a-20261016-v1",
+  "schema_version": 1,
+  "selection": "Orka at the recorded commit is the prospective B2. Orchestrate remains the inspected alternative.",
+  "spend_authorized": false
+}

@@ -1,0 +1,243 @@
+{
+  "date": "2026-10-16",
+  "execution_allowed": false,
+  "future_identity_rule": "Capture actual observations when the run creates them. Unknown future candidates, models, and executables cannot receive fabricated hashes.",
+  "holdout_dependency_limit": "The four pinned holdout inventories contain no recognized dependency lockfile. Resolve and freeze exact dependencies through a separately authorized preparation before dependent execution.",
+  "package_id": "phase3a-20261016-v1",
+  "per_run_required_identities": [
+    "source-revision",
+    "source-inventory",
+    "initial-candidate",
+    "resulting-candidate",
+    "confirmed-project-model",
+    "task",
+    "policy",
+    "scope",
+    "check-definitions",
+    "implementation-runtime-provider-model-executable-configuration",
+    "review-runtime-provider-model-executable-configuration",
+    "environment",
+    "toolchain",
+    "platform-qualification"
+  ],
+  "platform_matrix": [
+    {
+      "conformance": "unavailable",
+      "platform": "Linux aarch64",
+      "selected_cli_artifacts": "Recorded npm native distribution identities."
+    },
+    {
+      "conformance": "unavailable",
+      "limitation": "Coordinator fixture tests do not qualify coding runtime containment.",
+      "platform": "macOS arm64"
+    },
+    {
+      "conformance": "unavailable",
+      "limitation": ".NET Framework targets require their actual Windows environment.",
+      "platform": "Windows x64"
+    }
+  ],
+  "role_assignments": [
+    {
+      "id": "A-implements",
+      "implementation": "A",
+      "review": "B"
+    },
+    {
+      "id": "B-implements",
+      "implementation": "B",
+      "review": "A"
+    }
+  ],
+  "runtimes": [
+    {
+      "actual_executable_sha256": null,
+      "configuration": {
+        "authorization": "No launch without separately qualified exact platform and grant.",
+        "configuration_kind": "Selected constraints, not an observed native configuration.",
+        "context": "fresh-per-attempt",
+        "coordinator_retries": 0,
+        "fallback_models": [],
+        "hooks": [],
+        "inherit_global_configuration": false,
+        "mcp_servers": [],
+        "network": "Provider transport only after qualified mediation. Worker and validator network remain denied.",
+        "plugins": [],
+        "reasoning_effort": "high",
+        "requested_model": "gpt-6.1-sol",
+        "requested_provider": "openai",
+        "runtime": "codex",
+        "schema_version": 1,
+        "version": "0.160.1"
+      },
+      "configuration_sha256": "52ba0ba4146fa2637e430cfc8d7c932641becbc5b204bc81957f5cfea078212d",
+      "effective_configuration_sha256": null,
+      "id": "A",
+      "live_conformance": "unavailable",
+      "model_observation_date": "2026-10-16",
+      "model_reference": "https://developers.openai.com/api/docs/models/gpt-6.1-sol",
+      "price_reference": {
+        "billing_kind": "API reference estimate only. These rates are not subscription billing or an approved allowance.",
+        "currency": "USD",
+        "observed_date": "2026-10-16",
+        "source": "https://developers.openai.com/api/docs/models/gpt-6.1-sol",
+        "standard_cache_write_5m": 2.5,
+        "standard_cached_input": 0.1,
+        "standard_input": 2.0,
+        "standard_output": 10.0,
+        "unit": "per-million-tokens"
+      },
+      "requested_model": "gpt-6.1-sol",
+      "requested_provider": "openai",
+      "resolved_model": null,
+      "resolved_provider": null,
+      "runtime": "codex",
+      "runtime_executed": false,
+      "selected_native_distribution": {
+        "cpu": [
+          "arm64"
+        ],
+        "distribution": {
+          "integrity": "sha512-JLyjBlmjPvwTaicHemw+y5xQSz3Uja2r7F/xkvS8gFufTA2g132Ak+0fo35xnJ/k2uc9fTtjm0LrsEGI78L6Ng==",
+          "shasum": "9f4675355651f59038dfe15dce5791ec9176324c",
+          "tarball": "https://registry.npmjs.org/@openai/codex/-/codex-0.160.1-linux-arm64.tgz"
+        },
+        "id": "codex-linux-arm64",
+        "metadata_sha256": "ec70077e8eac41f6041b7a2441e64d9bc6bdc236f03762b1a05cd7c57d7ed3f6",
+        "name": "@openai/codex",
+        "observed_execution": false,
+        "os": [
+          "linux"
+        ],
+        "url": "https://registry.npmjs.org/@openai/codex/0.160.1-linux-arm64",
+        "version": "0.160.1-linux-arm64"
+      },
+      "selected_version": "0.160.1",
+      "usage_route": "Official CLI subscription route only. No metered fallback. Future quota exposure requires approval.",
+      "wrapper_distribution": {
+        "integrity": "sha512-f1yrJhwgimKQI1kYQlxdPJcFwkNZxZrbz7Hf89EAcnLqkQ7TiESzr2FgSZn13Ga5RuHjlVUfurzwq10wk9zw2g==",
+        "metadata_sha256": "6d6c38e50c6fef8e0dfb8014ac52d598b81a8124b86d43c9091510d52f1b4d95",
+        "tarball": "https://registry.npmjs.org/@openai/codex/-/codex-0.160.1.tgz",
+        "url": "https://registry.npmjs.org/@openai/codex/0.160.1"
+      }
+    },
+    {
+      "actual_executable_sha256": null,
+      "configuration": {
+        "authorization": "No launch without separately qualified exact platform and grant.",
+        "configuration_kind": "Selected constraints, not an observed native configuration.",
+        "context": "fresh-per-attempt",
+        "coordinator_retries": 0,
+        "fallback_models": [],
+        "hooks": [],
+        "inherit_global_configuration": false,
+        "mcp_servers": [],
+        "network": "Provider transport only after qualified mediation. Worker and validator network remain denied.",
+        "plugins": [],
+        "reasoning_effort": "high",
+        "requested_model": "claude-sonnet-5-5",
+        "requested_provider": "anthropic",
+        "runtime": "claude-code",
+        "schema_version": 1,
+        "version": "2.1.278"
+      },
+      "configuration_sha256": "fb2d3d811fb4a1aa4f5bf6691e54f81502719aaec87673b778d95e59bb610fae",
+      "effective_configuration_sha256": null,
+      "id": "B",
+      "live_conformance": "unavailable",
+      "model_observation_date": "2026-10-16",
+      "model_reference": "https://platform.claude.com/docs/en/models/sonnet-5-5/overview",
+      "price_reference": {
+        "billing_kind": "API reference estimate only. These rates are not subscription billing or an approved allowance.",
+        "currency": "USD",
+        "observed_date": "2026-10-16",
+        "source": "https://platform.claude.com/docs/en/models/sonnet-5-5/overview",
+        "standard_cache_write_5m": 2.5,
+        "standard_cached_input": 0.1,
+        "standard_input": 2.0,
+        "standard_output": 10.0,
+        "unit": "per-million-tokens"
+      },
+      "requested_model": "claude-sonnet-5-5",
+      "requested_provider": "anthropic",
+      "resolved_model": null,
+      "resolved_provider": null,
+      "runtime": "claude-code",
+      "runtime_executed": false,
+      "selected_native_distribution": {
+        "cpu": [
+          "arm64"
+        ],
+        "distribution": {
+          "integrity": "sha512-QAsHwRVX03nXgAA7pTdvZSLguegbAAPuLG1vY09YHhkukqD6FlkSDwYqK9XFh4up8rFjK7qrzXtokuNULP0nEg==",
+          "shasum": "e1e08ee732c31855ff62969af45c09dbf7e465e0",
+          "tarball": "https://registry.npmjs.org/@anthropic-ai/claude-code-linux-arm64/-/claude-code-linux-arm64-2.1.278.tgz"
+        },
+        "id": "claude-linux-arm64",
+        "metadata_sha256": "233a1038608a074028f51f5b73ef4604d4b6f381922bec8089d491b7d7e6565d",
+        "name": "@anthropic-ai/claude-code-linux-arm64",
+        "observed_execution": false,
+        "os": [
+          "linux"
+        ],
+        "url": "https://registry.npmjs.org/@anthropic-ai/claude-code-linux-arm64/2.1.278",
+        "version": "2.1.278"
+      },
+      "selected_version": "2.1.278",
+      "usage_route": "Official CLI subscription route only. No metered fallback. Future quota exposure requires approval.",
+      "wrapper_distribution": {
+        "integrity": "sha512-mfNRqC0GaEXqmP97NiwJBeYBmRuqe2VzgLUreUUaEhyJxJWx2Z6ClW1tBOncGNNXdhj6EY4LPvUIWP+oq311CA==",
+        "metadata_sha256": "10def16e847bb03297900519569eb7691719524cd196514cf398dfb91a3382bf",
+        "tarball": "https://registry.npmjs.org/@anthropic-ai/claude-code/-/claude-code-2.1.278.tgz",
+        "url": "https://registry.npmjs.org/@anthropic-ai/claude-code/2.1.278"
+      }
+    }
+  ],
+  "schema_version": 1,
+  "spend_authorized": false,
+  "toolchains": [
+    {
+      "availability": "The coordinator host has CPython 3.12.15. Corpus dependencies and qualified execution remain unavailable.",
+      "repository_ids": [
+        "python-1",
+        "python-2",
+        "python-3"
+      ],
+      "selected": "CPython 3.12.15",
+      "stack": "python"
+    },
+    {
+      "availability": "unavailable",
+      "policy": "Use each pinned repository lock. Do not run installation hooks or enable network implicitly.",
+      "repository_ids": [
+        "typescript-1",
+        "typescript-2",
+        "typescript-3"
+      ],
+      "selected": "Node.js 22.14.0; Bun 1.2.2",
+      "stack": "typescript"
+    },
+    {
+      "availability": "unavailable",
+      "policy": "Sources declare tools-version 5.7 for swift-1/swift-2 and 5.9 for swift-3. Verify Swift6.0.3 against each exact platform before execution.",
+      "repository_ids": [
+        "swift-1",
+        "swift-2",
+        "swift-3"
+      ],
+      "selected": "Swift 6.0.3",
+      "stack": "swift"
+    },
+    {
+      "availability": "unavailable",
+      "policy": "Bind SDK/runtime/target framework and lock identities at admission. Do not silently roll forward.",
+      "repository_ids": [
+        "dotnet-1",
+        "dotnet-2",
+        "dotnet-3"
+      ],
+      "selected": "SDK 9.0.100 for dotnet-1; SDK 8.0.100 for dotnet-2; SDK 9.0.101 for dotnet-3",
+      "stack": "dotnet"
+    }
+  ]
+}

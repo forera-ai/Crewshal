@@ -1,0 +1,41 @@
+{
+  "accepted_adr": "docs/decisions/0008-agent-annotation-and-phase-3a-freeze.md",
+  "annotation_method": "Two independent agent reviews, retained originals, attributed adjudication, and a separate sealed-task custodian.",
+  "approval_text_sha256": "e5e46027434424d073f80d4fa8c7b94b08c8dfe905e26172b060b17270832763",
+  "approvals": [
+    {
+      "answer": "Approve the agent method and delegation.",
+      "id": "annotation-method",
+      "question": "The plan requires two human annotation engineers. May I replace them with two independent agent reviews and a separate agent custodian for sealed tasks?"
+    },
+    {
+      "answer": "Approve these bounded selections.",
+      "id": "bounded-selections",
+      "question": "May I select and freeze the remaining corpus, baseline, identity, and protocol values? I will preserve failed conformance and unsupported platforms. Live execution will still require qualification."
+    },
+    {
+      "answer": "Record zero spending; require approval before Phase 3B execution.",
+      "id": "zero-spending",
+      "question": "What spending authority should the frozen package contain? Zero spending permits package preparation but keeps Phase 3B execution subject to separate budget approval."
+    }
+  ],
+  "approved_budget": {
+    "calibration_allowed": false,
+    "currency": "USD",
+    "estimated_cost_allowance": 0,
+    "measured_cost_allowance": 0,
+    "paid_host_allowance": 0,
+    "sealed_execution_allowed": false,
+    "subscription_quota_allowance": 0
+  },
+  "authority": "Direct owner answers in this chat.",
+  "cross_provider_annotation_independence": false,
+  "date": "2026-10-16",
+  "execution_allowed": false,
+  "human_ground_truth": false,
+  "operational_qualification": "Required separately before dependent execution. No failed or unavailable evidence becomes passed.",
+  "package_id": "phase3a-20261016-v1",
+  "schema_version": 1,
+  "selection_authority": "The owner delegated bounded source-package selections. The coordinator binds those selected bytes in package-index.json.",
+  "spend_authorized": false
+}

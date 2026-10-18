@@ -1,0 +1,425 @@
+{
+  "annotations": {
+    "A_fields_per_development_repository": 15,
+    "B_fields_per_development_repository": 16,
+    "cross_provider_ground_truth": false,
+    "development_adjudicated_fields": 120,
+    "development_adjudication_citations_verified": 822,
+    "development_inventory_entries_verified": 2264,
+    "development_repositories": 8,
+    "human_ground_truth": false,
+    "independent_contexts": 2,
+    "task_review_citations_verified": 128
+  },
+  "base_revision": "e3457ee0218d1a16d16f1a4a07f363f99454c65f",
+  "baseline": {
+    "Orchestrate": "unavailable-executable-seam",
+    "actual_native_conformance": "unavailable",
+    "exact_record": "docs/evaluation/phase-3a-frozen/baseline-conformance.json",
+    "historical_native_exclusion_failures": "preserved-failed",
+    "selected": "Orka 9e366915fc6cd6ede5aa47ac7a3b418a32ff528b",
+    "source_tests_passed": 20
+  },
+  "branch": "codex/phase1-architecture",
+  "date": "2026-10-18",
+  "delivery_revision": "The commit containing this record, completion report, and next input index.",
+  "development_failures": [
+    {
+      "cause": "Rehashed negative fixtures retained stale dependent hashes. The no-harness fixture lacked a recognized manifest. A low-risk Task retained independent-review defaults.",
+      "errors": 1,
+      "failures": 6,
+      "resolution": "Repair fixture references, declare a no-harness Python manifest, and set both review flags consistently.",
+      "stage": "initial-new-tests",
+      "tests": 19
+    },
+    {
+      "cause": "Synthetic scope evidence omitted required timestamps.",
+      "errors": 1,
+      "resolution": "Bind deterministic start and end timestamps.",
+      "stage": "new-tests-followup",
+      "tests": 21
+    },
+    {
+      "cause": "Synthetic passing scope evidence omitted captured log digests.",
+      "errors": 1,
+      "resolution": "Bind empty captured log digests. Final 22 new tests pass.",
+      "stage": "new-tests-followup",
+      "tests": 22
+    }
+  ],
+  "environment": {
+    "architecture": "arm64",
+    "mypy": "1.18.2",
+    "platform": "macOS-27.2-arm64-arm-64bit",
+    "pydantic": "2.12.5",
+    "pydantic-core": "2.41.5",
+    "python": "3.12.15",
+    "rtk": "Required command proxy; every recorded shell command uses RTK.",
+    "ruff": "0.14.1",
+    "uv": "0.9.24"
+  },
+  "execution_allowed": false,
+  "final_review_rerun": "Both initial complete suites passed 1341 occurrences. Final membership refusal added one case. Both complete suites then passed 1342 occurrences.",
+  "graph": {
+    "coverage": "No recorded gaps in relevant indexed paths. Changed and newly authored files received direct source reads.",
+    "generations": [
+      "2026-10-16T08:08:34Z",
+      "2026-10-16T18:44:26Z",
+      "2026-10-18T09:58:22Z"
+    ],
+    "limitation": "Coverage is best effort. Existing C parser gaps at 75, 77, and 89 remain unchanged. Upstream snapshots use direct source inventories outside this graph.",
+    "project": "Volumes-X10Pro-Crewshal",
+    "tier": "Verify"
+  },
+  "historical_formatter_limit": "Nine pre-existing script format differences remain byte-identical. Source, tests, and the new checker pass formatting.",
+  "limitations": [
+    "Agent reference annotations do not establish human ground truth, cross-provider independence, or kernel separation.",
+    "Native/platform conformance, real runtime behavior, exact future executable/provider observations, and resolved dependency environments remain unavailable.",
+    "Root-license observations do not establish all dependency, file, asset, patent, or trademark rights. No source archives are redistributed.",
+    "Four heldout inventories have no recognized lockfile. Later admitted preparation must freeze exact dependency resolution.",
+    "Swift and .NET discovery support remains unavailable. Keep all four stacks and unsupported units in reported totals.",
+    "No natural initial-red or harness-absence result is asserted. Explicit synthetic fixtures supplement real sources.",
+    "Global prior use, model training exposure, and private predecessor-estate overlap remain unknown.",
+    "Four holdout clusters permit exploratory comparisons only. Human quality graders must bind identities before Phase 3C.",
+    "API-equivalent costs are estimates. Missing subscription billing, quota, and usage remain unknown. Zero approval is not a usage observation.",
+    "Private custody is required for future sealed execution and is not included in Git. Its absence or changed digest blocks execution.",
+    "The wheel contains production source. Evaluation documents and checker remain checkout artifacts."
+  ],
+  "next_prompt": "docs/PHASE-3B-NEXT-SESSION-2026-10-18.md",
+  "operational_counts": {
+    "VMware_or_SSH_operations": 0,
+    "calibration_runs": 0,
+    "coding_runtime_turns": 0,
+    "compiler_attempts": 0,
+    "credential_accesses": 0,
+    "jev_requests": 0,
+    "paid_host_operations": 0,
+    "provider_inference_requests": 0,
+    "sealed_evaluation_runs": 0
+  },
+  "operational_counts_scope": "Evaluation operations only. These counts do not measure agent-session model or subscription usage.",
+  "owner_decisions": {
+    "accepted_adr": "docs/decisions/0008-agent-annotation-and-phase-3a-freeze.md",
+    "evaluation_budget": {
+      "money": 0,
+      "paid_hosts": 0,
+      "subscription_quota": 0
+    },
+    "method": "Independent agents with retained originals and separate sealed custodian.",
+    "missing_phase_3a_owner_decisions": [],
+    "next_phase_execution_approval": "Required separately.",
+    "path": "docs/evaluation/phase-3a-frozen/owner-decisions.json",
+    "sha256": "9e229861c2978572e6b13d0edce0b113dd5436b51348ff3c51a6f8aea7d68403"
+  },
+  "package": {
+    "files": [
+      "__init__.py",
+      "__main__.py",
+      "admission.py",
+      "app_server.py",
+      "bootstrap_helper.c",
+      "candidate.py",
+      "claude.py",
+      "cli.py",
+      "contracts.py",
+      "discovery.py",
+      "dispatch.py",
+      "durable.py",
+      "gates.py",
+      "integration.py",
+      "linux_attempt.py",
+      "linux_auth.py",
+      "linux_batch.py",
+      "linux_batch_entry.py",
+      "linux_bootstrap.py",
+      "linux_bridge.py",
+      "linux_charged_build.py",
+      "linux_compiler_volume.py",
+      "linux_early_timer.py",
+      "linux_envelope.py",
+      "linux_fixture_inputs.py",
+      "linux_freeze.py",
+      "linux_installed.py",
+      "linux_inventory.py",
+      "linux_network.py",
+      "linux_operational.py",
+      "linux_parent.py",
+      "linux_parent_entry.py",
+      "linux_payload_storage.py",
+      "linux_production.py",
+      "linux_qualification.py",
+      "linux_qualification_fixture.py",
+      "linux_schedule.py",
+      "linux_setup.py",
+      "linux_storage.py",
+      "linux_teardown.py",
+      "linux_validator.py",
+      "model.py",
+      "qualification.py",
+      "qualification_bundle.py",
+      "review.py",
+      "runtime.py",
+      "runtime_batch.py",
+      "state.py",
+      "supervisor.py"
+    ],
+    "matching_files": 49,
+    "root": "/private/var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-3a-finalize-20261016-ti21cba7/installed-final/lib/python3.12/site-packages/crewshal",
+    "version": "0.15.2",
+    "wheel_sha256": "54d6c88fa75790e3ce65fc214f9b4c398f0e7ec3f4dac793dd4959eaa56989d4"
+  },
+  "package_index_sha256": "a264ce5458ddf053b482df5b99f669afa6139306887e1de92473eef5529970d1",
+  "package_integrity": {
+    "artifacts": 23,
+    "content_sha256": "4bd188deb0089a79d018ed13b2fd2467927a53efc4d3d4e323f8cf43bdc892c0",
+    "execution_allowed": false,
+    "phase_3b_execution_allowed": false,
+    "planned_units": 768,
+    "status": "consistent-frozen-source-package"
+  },
+  "phase_3a_complete": true,
+  "phase_3b_started": false,
+  "preservation": {
+    "all_other_starting_files_match": true,
+    "changed_starting_files": [
+      "CHANGELOG.md",
+      "README.md",
+      "docs/DEVELOPMENT-PLAN.md",
+      "docs/HANDOFF.md",
+      "pyproject.toml",
+      "src/crewshal/__init__.py"
+    ],
+    "historical_evidence_preserved": true,
+    "historical_formatter_exceptions": {
+      "scripts/cleanup_direct_linux_native_v2.py": "dc10e939b2299e06985e7e366d9a262886e718b1d8803d66345ce0750f181ee1",
+      "scripts/native_fixed_response_fixture_v1.py": "4f755b385ba0db02bb29fad9d27aa4f625585ae3350095579a517174cb29d945",
+      "scripts/native_fixed_response_fixture_v2.py": "a6702c77c3979b5ed657d4fe0672858a6d2c72c8e1d248c30b911e850621bd94",
+      "scripts/native_fixed_response_fixture_v3.py": "ba9dfaf7a1813bd492903745fa4ae81ecf9cf2e0097dbf4505cae8cb039448db",
+      "scripts/native_fixed_response_fixture_v4.py": "d2322d7915e7833aec4354fc2d309bf4cb4332609cc083b88bd99169562f1602",
+      "scripts/probe_direct_linux_native_compatibility_v10.py": "eff38d11709a5a20a0f0829d27e00a08d10fb2fcf62ebc4930855576fa9ed5ca",
+      "scripts/probe_direct_linux_native_compatibility_v13.py": "61632fc33abc9a40dd7459fb49840d9ef7700aaea1b639fdeb8ad3c21a54e5d9",
+      "scripts/probe_direct_linux_native_compatibility_v14.py": "e5bbc879a20be64379fdc1d8b2ed48e2a0542d7461dcd89355e9739e61ebf2ee",
+      "scripts/probe_direct_linux_native_compatibility_v15.py": "5716c12108f36250c0cdafc1c7eea869a964f6a077bc986726fa607a82441227"
+    },
+    "historical_physical_custody_observed": false,
+    "initial_evaluation_plan_sha256": "ab74f7c04ee2f0894cc95445edef618ce3227ef1d754e5d312af4d1d5ea03acd",
+    "linux_and_C_bytes_match": true,
+    "linux_and_C_files_checked": 28,
+    "starting_tracked_files": 1095
+  },
+  "repository": "https://github.com/forera-ai/Crewshal",
+  "reproduction": {
+    "cache_prerequisite": "Hash-locked development wheels and setuptools==80.9.0 must exist locally.",
+    "command_receipt_generator_sha256": "200dd7e718b9e5091d3adb01ffc09fdeedc314977e90b90c5c0c048071b9e9f2",
+    "home_directories_empty_after_checks": true,
+    "instructions": [
+      "Use a fresh temporary root and new HOME paths.",
+      "Run the exact recorded integrity, focused, source, build, install, installed, and static commands.",
+      "Compare all 49 installed source files with the checkout.",
+      "Preserve unsupported platform and native qualification status.",
+      "Use no private or historical VM inputs."
+    ],
+    "temporary_root": "/var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-3a-finalize-20261016-ti21cba7"
+  },
+  "results": [
+    {
+      "command": "rtk proxy /usr/bin/sandbox-exec -p '(version 1)(allow default)(deny network*)' /Users/hamedprooshani/.local/bin/uv build --offline --wheel --out-dir /var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-3a-finalize-20261016-ti21cba7/wheel-final",
+      "exit_code": 0,
+      "name": "final-build",
+      "seconds": 0.7,
+      "stderr_sha256": "3a4ea6cfee1c30185d907f93ee1ceb31041bd07b2b2503c6c65ca967b52063cb",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "rtk proxy env -i PATH=/var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-3a-finalize-20261016-ti21cba7/installed-final/bin:/usr/bin:/bin HOME=/var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-3a-finalize-20261016-ti21cba7/home-installed-final PYTHONDONTWRITEBYTECODE=1 /usr/bin/sandbox-exec -p '(version 1)(allow default)(deny network*)' /var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-3a-finalize-20261016-ti21cba7/installed-final/bin/crewshal --help",
+      "exit_code": 0,
+      "name": "final-cli",
+      "seconds": 0.315,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "bf3c304b0da0f431d424187eff9acbb697bef2146c12900d132583cd6197447b"
+    },
+    {
+      "command": "rtk proxy /usr/bin/sandbox-exec -p '(version 1)(allow default)(deny network*)' /Users/hamedprooshani/.local/bin/uv pip install --offline --python /var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-3a-finalize-20261016-ti21cba7/installed-final/bin/python --require-hashes -r requirements-dev.lock",
+      "exit_code": 0,
+      "name": "final-dependencies",
+      "seconds": 0.172,
+      "stderr_sha256": "c6313fbdc34c6ca56bfa06c3c944092a5cafa8c3e37ca3df76c217561c8bcb35",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "rtk proxy git diff --check",
+      "exit_code": 0,
+      "name": "final-diff-check",
+      "seconds": 0.025,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "rtk proxy env -i PATH=/Volumes/X10Pro/Crewshal/.venv/bin:/usr/bin:/bin HOME=/var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-3a-finalize-20261016-ti21cba7/home-source-final PYTHONDONTWRITEBYTECODE=1 /usr/bin/sandbox-exec -p '(version 1)(allow default)(deny network*)' /Volumes/X10Pro/Crewshal/.venv/bin/python -m unittest tests.acceptance.test_phase_3a_freeze tests.acceptance.test_phase_3a tests.acceptance.test_phase_2e tests.acceptance.test_phase_2d_dispatch",
+      "exit_code": 0,
+      "name": "final-focused",
+      "seconds": 13.385,
+      "stderr_sha256": "76e5be76e00a321c7db5f94b0a7e1111ee40dbe70ca512d6779071bac3ea5920",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test_seconds": 13.111,
+      "tests": 108
+    },
+    {
+      "command": "rtk proxy /Volumes/X10Pro/Crewshal/.venv/bin/python -m ruff format --check src tests scripts/check_phase_3a_freeze.py",
+      "exit_code": 0,
+      "name": "final-format",
+      "seconds": 0.042,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "b1589e558de12a68704dd4a8223f2d36ac6a88906f2ee6989c0778b550734808"
+    },
+    {
+      "command": "rtk proxy /var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-3a-finalize-20261016-ti21cba7/installed-final/bin/python -I -c 'import crewshal,json,pathlib;print(json.dumps({\"root\":str(pathlib.Path(crewshal.__file__).parent),\"version\":crewshal.__version__}))'",
+      "exit_code": 0,
+      "name": "final-import",
+      "seconds": 0.038,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "70487466f07d86e63328c4f7cea6f4142323846c3ac57cf012f9641f0c7807b7"
+    },
+    {
+      "command": "rtk proxy /usr/bin/sandbox-exec -p '(version 1)(allow default)(deny network*)' /Users/hamedprooshani/.local/bin/uv pip install --offline --no-deps --python /var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-3a-finalize-20261016-ti21cba7/installed-final/bin/python /var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-3a-finalize-20261016-ti21cba7/wheel-final/crewshal-0.15.2-py3-none-any.whl",
+      "exit_code": 0,
+      "name": "final-install",
+      "seconds": 0.044,
+      "stderr_sha256": "c33215ff5cbc4cfa644e1e2d584b00c189e272525b52840f88da38f764ce5a53",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "rtk proxy env -i PATH=/var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-3a-finalize-20261016-ti21cba7/installed-final/bin:/usr/bin:/bin HOME=/var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-3a-finalize-20261016-ti21cba7/home-installed-final PYTHONDONTWRITEBYTECODE=1 /usr/bin/sandbox-exec -p '(version 1)(allow default)(deny network*)' /var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-3a-finalize-20261016-ti21cba7/installed-final/bin/python -m unittest discover -s tests -t .",
+      "exit_code": 0,
+      "name": "final-installed-suite",
+      "seconds": 85.824,
+      "stderr_sha256": "8fc5c734e988df24fb5fea6275dbc6707b5d3e42ec8a5f95c22815d83b9c7f0e",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test_seconds": 85.253,
+      "tests": 1342
+    },
+    {
+      "command": "rtk proxy env -i PATH=/Volumes/X10Pro/Crewshal/.venv/bin:/usr/bin:/bin HOME=/var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-3a-finalize-20261016-ti21cba7/home-source-final PYTHONDONTWRITEBYTECODE=1 /usr/bin/sandbox-exec -p '(version 1)(allow default)(deny network*)' /Volumes/X10Pro/Crewshal/.venv/bin/python scripts/check_phase_3a_freeze.py",
+      "exit_code": 0,
+      "name": "final-integrity",
+      "seconds": 0.106,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "08d8be7d11d7a1384c5ccdb7ce8271df7a3f072ec0416ee408ebe026acb93cfd"
+    },
+    {
+      "command": "rtk proxy /Volumes/X10Pro/Crewshal/.venv/bin/python -m ruff check src tests scripts",
+      "exit_code": 0,
+      "name": "final-lint",
+      "seconds": 0.069,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+    },
+    {
+      "command": "rtk proxy /Volumes/X10Pro/Crewshal/.venv/bin/python -m mypy src",
+      "exit_code": 0,
+      "name": "final-mypy",
+      "seconds": 0.532,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "a459b8765e4db93f08156e7d98399988a9b87243303f92178f28c9db897f6066"
+    },
+    {
+      "command": "rtk proxy env -i PATH=/Volumes/X10Pro/Crewshal/.venv/bin:/usr/bin:/bin HOME=/var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-3a-finalize-20261016-ti21cba7/home-source-final PYTHONDONTWRITEBYTECODE=1 /usr/bin/sandbox-exec -p '(version 1)(allow default)(deny network*)' /Volumes/X10Pro/Crewshal/.venv/bin/python -m unittest discover -s tests -t .",
+      "exit_code": 0,
+      "name": "final-source-suite",
+      "seconds": 81.883,
+      "stderr_sha256": "7f5492188697e2691d3ccbd71e2b21b4248e00d0b988138e9af2123a46ac7cd0",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test_seconds": 81.37,
+      "tests": 1342
+    },
+    {
+      "command": "rtk proxy /Users/hamedprooshani/.local/bin/uv venv --offline --python /Volumes/X10Pro/Crewshal/.venv/bin/python /var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T/crewshal-3a-finalize-20261016-ti21cba7/installed-final",
+      "exit_code": 0,
+      "name": "final-venv",
+      "seconds": 0.058,
+      "stderr_sha256": "d90b6a3ac7b87a45d135abab1000b60dfdbdeb12135b170eae0286dffa1dbc64",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "review": {
+    "parent_final_findings": [
+      {
+        "problem": "An additional package file could remain outside the indexed artifact membership.",
+        "resolution": "Require exact directory membership through a no-follow directory descriptor. A fresh extra-file refusal test passes.",
+        "status": "resolved"
+      }
+    ],
+    "parent_integration": "Final index, 108 focused tests, 1342 complete source and installed occurrences, and source preservation pass.",
+    "remaining_material_findings": 0,
+    "report": "docs/evaluation/phase-3a-frozen/package-review-b.json",
+    "resolved_findings": 8,
+    "sha256": "e7ac55b0217747d42b3e9933e5a6ac40f65b37862446d64ec50ce19f9be43729",
+    "skill": "production-code-review"
+  },
+  "schema_version": 1,
+  "sealed_custody": {
+    "adjudication": {
+      "field_adjudication_count": 60,
+      "raw_record_count": 8,
+      "repository_count": 4,
+      "sha256": "8d18fde49e61b0c957c617c1d4fc0ab8c8da42a935365a1cbcf7a713bc0645dc",
+      "status": "complete-source-only; execution-unavailable",
+      "task_feasibility_count": 24,
+      "verified_evidence_count": 688
+    },
+    "backup_limit": "Git publication does not preserve private store contents.",
+    "blinded_map": {
+      "sha256": "a0ff54cfa131c92b6dc86e878793858f74f7cf2f0d4a97fc51a2d0751664f357",
+      "status": "frozen-private"
+    },
+    "private_manifest_entries": 763,
+    "private_manifest_sha256": "f72b1caa758cbbb708ab34c65b4496a9e89b113bca91a69320b978e947b492ee",
+    "private_receipt_sha256": "e3268265b3f2fdda13c590495b291cbdb455fae89e245ea4fa2bcba545094083",
+    "reference": "private-store:phase3a-20261016/sealed/v1",
+    "retention": {
+      "automatic_deletion": false,
+      "rule": "Retain all custody files until an explicit later owner disposal decision.",
+      "status": "active"
+    },
+    "source_inventory_entries": 472,
+    "task_artifact_bytes": 245463,
+    "task_artifact_files": 272,
+    "task_count": 24,
+    "verification": "The separate custodian verified retained actual artifact bytes, source bindings, and 0600/0700 permissions. The parent read only public commitments."
+  },
+  "source_observation_date": "2026-10-16",
+  "spend_authorized": false,
+  "starting_tree": "clean",
+  "status": "Phase 3A complete; source evaluation package frozen; operational admission closed",
+  "suite": {
+    "fresh_HOME": true,
+    "inherited_environment": "empty for source and installed suites",
+    "inherited_repeated_occurrences": 16,
+    "installed_passed": true,
+    "meaning": "These deterministic fixture checks provide no native platform or live provider qualification.",
+    "network": "Denied for both complete suites through sandbox-exec.",
+    "occurrences": 1342,
+    "repeated_ids": {
+      "tests.acceptance.test_phase_2d_integration.Phase2DOriginalVolumeCollection.test_capture_mutation_during_artifact_write_rolls_back_and_retains_artifact": 2,
+      "tests.acceptance.test_phase_2d_integration.Phase2DOriginalVolumeCollection.test_dispatch_requirement_task_runtime_provider_and_check_each_remain_bound": 2,
+      "tests.acceptance.test_phase_2d_integration.Phase2DOriginalVolumeCollection.test_forged_dispatch_requirement_and_task_digest_cannot_pass_current_binding": 2,
+      "tests.acceptance.test_phase_2d_integration.Phase2DOriginalVolumeCollection.test_live_lane_collection_keeps_lane_configuration_and_retained_projection": 2,
+      "tests.acceptance.test_phase_2d_integration.Phase2DOriginalVolumeCollection.test_mutated_capture_record_refuses_while_retaining_original_packets": 2,
+      "tests.acceptance.test_phase_2d_integration.Phase2DOriginalVolumeCollection.test_original_capture_persists_actual_host_supervision_and_scope_link": 2,
+      "tests.acceptance.test_phase_2d_integration.Phase2DOriginalVolumeCollection.test_original_projection_inode_replacement_cannot_be_path_copy_fallback": 2,
+      "tests.acceptance.test_phase_2d_integration.Phase2DOriginalVolumeCollection.test_other_original_store_cannot_import_or_reopen_sqlite_and_consumes_bridge": 2,
+      "tests.acceptance.test_phase_2d_integration.Phase2DOriginalVolumeCollection.test_other_scope_cannot_broaden_original_approved_candidate": 2,
+      "tests.acceptance.test_phase_2d_integration.Phase2DOriginalVolumeCollection.test_projection_change_after_receipt_write_rolls_back_before_commit": 2,
+      "tests.acceptance.test_phase_2d_integration.Phase2DOriginalVolumeCollection.test_source_configuration_forgery_refuses_even_with_matching_bridge_hashes": 2,
+      "tests.acceptance.test_phase_2d_integration.Phase2DOriginalVolumeCollection.test_sql_rollback_retains_actual_projection_artifacts_and_consumed_bridge": 2,
+      "tests.acceptance.test_phase_2d_integration.Phase2DOriginalVolumeCollection.test_stale_initial_manifest_cannot_rebind_original_frozen_projection": 2,
+      "tests.acceptance.test_phase_2d_integration.Phase2DOriginalVolumeCollection.test_stale_versions_lease_and_scope_refuse_without_store_terminal_state": 2,
+      "tests.acceptance.test_phase_2d_integration.Phase2DOriginalVolumeCollection.test_substituted_capture_refuses_before_any_sqlite_or_artifact_write": 2,
+      "tests.acceptance.test_phase_2d_integration.Phase2DOriginalVolumeCollection.test_wrong_lease_cannot_write_collection": 2
+    },
+    "source_passed": true,
+    "unique_methods": 1326
+  },
+  "unknown_usage_rule": "Preparation launched no evaluation process. Agent-session model and subscription usage was not measured and remains unknown.",
+  "version": "0.15.2"
+}

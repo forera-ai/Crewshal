@@ -1,0 +1,42 @@
+{
+  "date": "2026-10-18",
+  "execution_allowed": false,
+  "fixtures": [
+    {
+      "argv": [
+        "python",
+        "-I",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        ".",
+        "-p",
+        "test_red.py"
+      ],
+      "expected_exit_code": 1,
+      "files": {
+        "pyproject.toml": "[project]\nname=\"red-fixture\"\nversion=\"0.0.0\"\n",
+        "test_red.py": "import unittest\n\nclass Red(unittest.TestCase):\n    def test_red(self):\n        self.assertEqual(1, 2, \"PHASE3A_BASELINE_RED\")\n"
+      },
+      "id": "known-red",
+      "interpretation": "A successful unrelated command cannot erase this failure. Compare exact source, command, environment, and diagnostic identities.",
+      "required_diagnostic": "PHASE3A_BASELINE_RED"
+    },
+    {
+      "expected": "Discovery leaves checks unknown. It does not assert that tests do not exist.",
+      "files": {
+        "README.md": "This fixture defines no configured check command.\n",
+        "arithmetic.py": "def add(a, b):\n    return a + b\n",
+        "pyproject.toml": "[project]\nname=\"no-harness-fixture\"\nversion=\"0.0.0\"\n"
+      },
+      "id": "no-harness"
+    }
+  ],
+  "natural_corpus_limit": "No initial red baseline or complete absence of a configured harness was established for every real source. Upstream execution remains unavailable.",
+  "other_fixtures": "The historical proposed package retains fresh four-stack, stale-source, malicious-instruction, candidate, and qualification-refusal fixtures.",
+  "package_id": "phase3a-20261016-v1",
+  "purpose": "These independently authored fixtures cover stress features absent from verified natural corpus evidence. They do not replace real repositories.",
+  "schema_version": 1,
+  "spend_authorized": false
+}

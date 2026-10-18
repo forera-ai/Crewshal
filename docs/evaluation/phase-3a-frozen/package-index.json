@@ -1,0 +1,129 @@
+{
+  "content_sha256": "4bd188deb0089a79d018ed13b2fd2467927a53efc4d3d4e323f8cf43bdc892c0",
+  "date": "2026-10-18",
+  "execution_allowed": false,
+  "files": [
+    {
+      "bytes": 14592,
+      "path": "INITIAL-EVALUATION-PLAN.md",
+      "sha256": "ab74f7c04ee2f0894cc95445edef618ce3227ef1d754e5d312af4d1d5ea03acd"
+    },
+    {
+      "bytes": 4357,
+      "path": "docs/decisions/0008-agent-annotation-and-phase-3a-freeze.md",
+      "sha256": "8bf97676e997a5b333d20da15a9a953812d4d5add4c3e9578d96fef36645f3f3"
+    },
+    {
+      "bytes": 7739,
+      "path": "docs/evaluation/phase-3a-frozen/README.md",
+      "sha256": "95eb82810a7d9e873cfb79fa7d098366ca1dfc75aee702019570a64ca1eacc03"
+    },
+    {
+      "bytes": 420522,
+      "path": "docs/evaluation/phase-3a-frozen/annotation-a.json",
+      "sha256": "8c6ecfad7fec831f8f1e047499a1904219f626452f63044372ec0551fbd847e8"
+    },
+    {
+      "bytes": 503021,
+      "path": "docs/evaluation/phase-3a-frozen/annotation-b.json",
+      "sha256": "26dffbbe001a359092f90d93ab8574561058bb7d08b957711cab98d8467fc244"
+    },
+    {
+      "bytes": 4423,
+      "path": "docs/evaluation/phase-3a-frozen/baseline-conformance.json",
+      "sha256": "f25a815cd8ecbf015aadfc3266088bee7da3c2b75ea58034bdf174b1b3b86d19"
+    },
+    {
+      "bytes": 12359,
+      "path": "docs/evaluation/phase-3a-frozen/conditions.json",
+      "sha256": "431975c826351a2e5f55fe3f0f07775d2f384570210dabed94b1f3108f32052d"
+    },
+    {
+      "bytes": 134801,
+      "path": "docs/evaluation/phase-3a-frozen/corpus.json",
+      "sha256": "894f38d198b640bdda49d1adb40590d037e076a8bb547072f799c2f9f3f0a0fd"
+    },
+    {
+      "bytes": 492066,
+      "path": "docs/evaluation/phase-3a-frozen/development-adjudication.json",
+      "sha256": "c9b1f28cc7536e8d7157ce2c764034188d8726126002dfec1887b3170ef2f2d7"
+    },
+    {
+      "bytes": 207242,
+      "path": "docs/evaluation/phase-3a-frozen/development-tasks.json",
+      "sha256": "8a096faf855cea3b67410ae43b381c593a2fb4ad98fdd604526c9608e8ef7030"
+    },
+    {
+      "bytes": 1333,
+      "path": "docs/evaluation/phase-3a-frozen/execution-admission.json",
+      "sha256": "e658e4e678b7676ab13ccd37f513f3d41ca2f26541c5930fe3f3043b4596ef8a"
+    },
+    {
+      "bytes": 2532,
+      "path": "docs/evaluation/phase-3a-frozen/measurement-template.json",
+      "sha256": "7c9e754d5a5e710eb179b0449f0676e1b291ab3b1f196afee3f21e1fab217174"
+    },
+    {
+      "bytes": 2072,
+      "path": "docs/evaluation/phase-3a-frozen/owner-decisions.json",
+      "sha256": "9e229861c2978572e6b13d0edce0b113dd5436b51348ff3c51a6f8aea7d68403"
+    },
+    {
+      "bytes": 39528,
+      "path": "docs/evaluation/phase-3a-frozen/package-review-b.json",
+      "sha256": "e7ac55b0217747d42b3e9933e5a6ac40f65b37862446d64ec50ce19f9be43729"
+    },
+    {
+      "bytes": 13076,
+      "path": "docs/evaluation/phase-3a-frozen/protocol.json",
+      "sha256": "30c6b3d80e1e6f9ed3948f551677f02c7bae21d0a5d0a0e70d517eedd23212a7"
+    },
+    {
+      "bytes": 3207,
+      "path": "docs/evaluation/phase-3a-frozen/rubric.json",
+      "sha256": "015bfabe9a21979cebc9d63fcf4d3c6f20b597b1bc661604923c4ebc3d4cbe08"
+    },
+    {
+      "bytes": 9614,
+      "path": "docs/evaluation/phase-3a-frozen/runtime-selections.json",
+      "sha256": "265d513b19dd5d92b3dc6fa68636fe2575d75d8b1637895439a818abc50b5ec7"
+    },
+    {
+      "bytes": 489384,
+      "path": "docs/evaluation/phase-3a-frozen/schedule.json",
+      "sha256": "0a4546644f31211ca6827f0b81346a1559fc47a60acff03f492b45cfe9485280"
+    },
+    {
+      "bytes": 35635,
+      "path": "docs/evaluation/phase-3a-frozen/sealed-commitments.json",
+      "sha256": "94373a810f2055445e7124e63c41ef838597b34944ac09a43ae563d70bc08fd2"
+    },
+    {
+      "bytes": 453528,
+      "path": "docs/evaluation/phase-3a-frozen/source-inventories.json",
+      "sha256": "86a2efd86d84dc42b33dbc4fb9be6a9818b0fb90a3916bf0b225479d7877f48f"
+    },
+    {
+      "bytes": 1777,
+      "path": "docs/evaluation/phase-3a-frozen/supplemental-fixtures.json",
+      "sha256": "45129378d710d3d5d7ff46e6d833c0256224e2badedd335d8dcba2fdbe59ca77"
+    },
+    {
+      "bytes": 20317,
+      "path": "scripts/check_phase_3a_freeze.py",
+      "sha256": "e3e8fee8a594059059283db8b8c208b10463668d64ea2be3f4d3de6ad52cbe85"
+    },
+    {
+      "bytes": 13796,
+      "path": "tests/acceptance/test_phase_3a_freeze.py",
+      "sha256": "0aec50cc533f9001864047df69f4dc07c6cdcc0817edc5f98a3b70acee1efb26"
+    }
+  ],
+  "identity_limit": "The containing Git commit identifies delivery. Future execution observations require separately admitted bindings.",
+  "package_id": "phase3a-20261016-v1",
+  "phase_3a_complete": true,
+  "private_custody": "Private artifact contents remain outside this index. Public commitments bind their actual retained bytes.",
+  "schema_version": 1,
+  "spend_authorized": false,
+  "status": "frozen"
+}

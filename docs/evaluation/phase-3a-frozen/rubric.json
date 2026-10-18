@@ -1,0 +1,61 @@
+{
+  "annotation_fields": [
+    "baseline_results",
+    "checks",
+    "ci",
+    "dependency_locks",
+    "generated_paths",
+    "licenses",
+    "package_manager",
+    "prior_product_configuration",
+    "private_estate_overlap",
+    "sensitive_paths",
+    "services_and_authority",
+    "stack",
+    "third_party_concerns",
+    "toolchain",
+    "workspace_boundaries"
+  ],
+  "annotation_reference": "Agent reference annotations under accepted ADR 0008. Human ground truth and cross-provider annotation independence remain unavailable.",
+  "date": "2026-10-18",
+  "discovery_scoring": {
+    "boundaries": "Each seeded critical risk requires a block, approval, or explicit unresolved state. Unknown authority must never become confirmed policy.",
+    "command_match": "Require exact executable, argument semantics, working directory, package scope, prerequisite, and authority status. Cosmetic quoting alone is not an error.",
+    "denominators": "Report supported-case accuracy and every planned repository, task, and unavailable cell. Exclude not-applicable facts only with attributed reasons.",
+    "precision": "True positive proposals / all scored proposals. Unmatched unsupported proposals count as false positives. Report unknown proposals separately.",
+    "provenance": "Every actionable proposal needs a source binding or explicit unknown. Unknown is honest reporting and supplies no executable authority.",
+    "recall": "Recovered reference facts / all applicable observed reference facts. Report unsupported and unattempted repositories in total coverage.",
+    "reference_units": "One deduplicated adjudicated atomic fact: kind, value, scope, source, and prerequisites. Keep alternative supported commands separate."
+  },
+  "execution_allowed": false,
+  "package_id": "phase3a-20261016-v1",
+  "quality_grading": {
+    "adjudication": "Retain both grades and an attributed human resolution before aggregation. Unresolved disagreement remains unknown.",
+    "blinding": "Use the private condition-map commitment. Remove condition/runtime labels and implementation reasoning. Record unavoidable clues.",
+    "dimensions": [
+      "hidden-acceptance",
+      "visible-regressions",
+      "requirement-omissions",
+      "security-boundaries",
+      "actionable-review-findings",
+      "false-positive-findings",
+      "human-remediation-minutes"
+    ],
+    "graders": 2,
+    "identities": "Bind before Phase 3C. Annotation delegation does not replace quality graders.",
+    "kind": "independent-human",
+    "outcomes": [
+      "pass",
+      "fail",
+      "unavailable",
+      "unknown"
+    ],
+    "pass": "Require every task acceptance case and mandatory check. Require no scope violation, critical regression, or false completion.",
+    "unavailable": "A required tool, service, platform, or check lacks qualified evidence. Never grade it as pass.",
+    "unknown": "Evidence is missing, ambiguous, interrupted, or stale. Preserve the reason."
+  },
+  "schema_version": 1,
+  "spend_authorized": false,
+  "thresholds_file": "protocol.json",
+  "unit_aggregation": "Use task-level paired outcomes and per-stack totals. Report failure categories and unavailable evidence before any aggregate GO assessment."
+}

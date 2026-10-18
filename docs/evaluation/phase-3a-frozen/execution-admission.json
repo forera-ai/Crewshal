@@ -1,0 +1,29 @@
+{
+  "date": "2026-10-16",
+  "execution_allowed": false,
+  "historical_custody": "Preserve all historical charges, custody, and unknown outcomes. This package inspects none of them.",
+  "never_implied": [
+    "source publication",
+    "package freeze",
+    "zero budget approval",
+    "historical subscription pilot",
+    "historical qualification profile",
+    "a model or runtime label",
+    "an agent-authored approval string"
+  ],
+  "package_id": "phase3a-20261016-v1",
+  "phase_3a_package_freeze": "Permitted after source-package acceptance.",
+  "phase_3b_execution_allowed": false,
+  "phase_3b_software_preparation_allowed": true,
+  "phase_3c_execution_allowed": false,
+  "requirements_before_any_evaluation": [
+    "Explicit concrete nonzero spending and quota approval when the operation consumes them.",
+    "A later explicit owner instruction to resume the required platform and live qualification work.",
+    "Current qualified exact native runtime, platform, credential separation, configuration, and toolchain.",
+    "Passing actual baseline conformance for every enabled comparison channel.",
+    "Approved data egress, dependency preparation, artifact retention, and cleanup.",
+    "Exact current source/task/model/policy/scope/candidate and command bindings."
+  ],
+  "schema_version": 1,
+  "spend_authorized": false
+}

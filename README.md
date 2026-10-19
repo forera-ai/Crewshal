@@ -10,6 +10,15 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**October 19: A capped archive evidence stage is ready for one owner scope decision.**
+The [single admission ledger](docs/PHASE-3B-CAMPAIGN-ADMISSION-MANIFEST-2026-10-19.json) now separates this exact stage from the full campaign.
+The [stage proposal](docs/PHASE-3B-CAPPED-ARCHIVE-STAGE-2026-10-19.md) limits sixteen URLs and caps new transfer at 2,232,012,187 bytes.
+It caps retained logical data at 3,221,225,472 bytes and adds no guest or VM allocation.
+The stage needs owner approval and verified transport and storage controls before any archive body request.
+The full Linux campaign remains blocked by archive, Ubuntu, dependency, and operational gates.
+Use the [next prompt](docs/PHASE-3B-CAPPED-ARCHIVE-NEXT-SESSION-2026-10-19.md) and [exact inputs](docs/PHASE-3B-CAPPED-ARCHIVE-INPUTS-2026-10-19.json).
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+
 **October 19: Exact campaign batch closure remains blocked after Ubuntu and npm metadata review.**
 The [single admission ledger](docs/PHASE-3B-CAMPAIGN-ADMISSION-MANIFEST-2026-10-19.json) records ten tool package or archive byte counts and four source archive byte counts.
 The [latest boundary](docs/PHASE-3B-CAMPAIGN-BATCH-CLOSURE-METADATA-BOUNDARY-2026-10-19.md) records four missing npm counts and unresolved archive and dependency closures.

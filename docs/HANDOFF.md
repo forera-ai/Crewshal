@@ -4,6 +4,22 @@ Last updated: 2026-10-19. This record supplies the next session and the owner wi
 
 ## Current state
 
+**October 19: A capped archive evidence stage is ready for one owner scope decision.**
+The session began at `692eaecd93ddb66d9e9aa918f4c403e26979c88b` with a clean worktree.
+All 162 continuation inputs matched their recorded size and SHA-256.
+Four npm tarball HEAD responses returned HTTP 200 without compressed byte counts.
+The [single ledger](PHASE-3B-CAMPAIGN-ADMISSION-MANIFEST-2026-10-19.json) now defines a sixteen-URL evidence stage.
+The [stage proposal](PHASE-3B-CAPPED-ARCHIVE-STAGE-2026-10-19.md) caps new transfer at 2,232,012,187 bytes.
+It caps retained logical data at 3,221,225,472 bytes and permits zero guest or VM allocation growth.
+Owner approval and verified transport and storage controls remain mandatory before retrieval.
+The full campaign remains blocked by unverified archives, Ubuntu and repository closures, and operational inputs.
+No archive body, guest, Linux test, provider request, Jev call, or evaluation row ran.
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+Linux qualification, native baselines, provider identity, Phase 3B calibration, and Phase 3C remain closed.
+The checkpoint version is `0.15.16`. The delivery revision is the commit containing this entry.
+Use the [next prompt](PHASE-3B-CAPPED-ARCHIVE-NEXT-SESSION-2026-10-19.md) and [exact inputs](PHASE-3B-CAPPED-ARCHIVE-INPUTS-2026-10-19.json).
+Earlier dated entries remain historical records.
+
 **October 19: Exact campaign batch closure remains blocked after Ubuntu and npm metadata review.**
 The session began at `779b2c17c23fa6bc3f6f0b4edd53ea3b10df9a7d` with a clean worktree.
 All 159 continuation inputs matched their recorded size and SHA-256.

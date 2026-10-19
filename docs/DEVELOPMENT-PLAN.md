@@ -1,5 +1,16 @@
 # Crewshal phased development and acceptance plan
 
+## Current capped archive evidence stage — 2026-10-19
+
+The [single admission ledger](PHASE-3B-CAMPAIGN-ADMISSION-MANIFEST-2026-10-19.json) now names one exact sixteen-URL archive evidence stage.
+The [stage proposal](PHASE-3B-CAPPED-ARCHIVE-STAGE-2026-10-19.md) caps new transfer at 2,232,012,187 bytes.
+It caps retained logical data at 3,221,225,472 bytes and allows zero guest or VM allocation growth.
+This narrow stage can resolve archive facts that metadata cannot supply.
+It needs owner approval and verified transport and storage controls before any archive body request.
+The full campaign remains unreviewable until Ubuntu, dependency, guest, and operational inputs are bound.
+Use the [next prompt](PHASE-3B-CAPPED-ARCHIVE-NEXT-SESSION-2026-10-19.md) and [exact inputs](PHASE-3B-CAPPED-ARCHIVE-INPUTS-2026-10-19.json).
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+
 ## Current exact campaign batch metadata boundary — 2026-10-19
 
 The [single admission ledger](PHASE-3B-CAMPAIGN-ADMISSION-MANIFEST-2026-10-19.json) records ten tool package or archive counts and four source archive counts.

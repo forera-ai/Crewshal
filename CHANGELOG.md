@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.15.16 — 2026-10-19
+
+- Verify all 162 continuation inputs and preserve the frozen Phase 3A package.
+- Confirm that four npm tarball HEAD responses omit compressed byte counts.
+- Prepare one sixteen-URL archive evidence stage with exact policy caps and stop rules.
+- Keep archive retrieval closed until the owner approves this stage and its controls pass.
+- Keep guest access, Linux qualification, native turns, and evaluation rows closed.
+
 ## 0.15.15 — 2026-10-19
 
 - Verify all 159 continuation inputs and the unchanged frozen Phase 3A package.

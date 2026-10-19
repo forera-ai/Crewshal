@@ -12,7 +12,59 @@
   "approval_request": {
     "changed_limits_requested": false,
     "exact_batch_reviewable": false,
-    "reason": "Four npm tarballs still lack exact compressed bytes. Safe archive inventories, Ubuntu and repository closures, transfer, retained-data, guest-disk, and launch bounds remain incomplete."
+    "reason": "The full campaign remains unreviewable. The separate sixteen-URL archive evidence stage has exact policy ceilings and awaits its own owner scope decision."
+  },
+  "archive_evidence_stage": {
+    "active_seconds_cap": 7200,
+    "archive_body_bytes_retrieved": 0,
+    "archive_response_body_cap_bytes": 2181680539,
+    "batch_retained_logical_cap_bytes": 3221225472,
+    "body_requests_admitted": false,
+    "bounded_transport_verified": false,
+    "cumulative_transfer_cap_bytes": 10821946779,
+    "elapsed_seconds_cap": 86400,
+    "exact_scope_reviewable": true,
+    "excluded_tool_ids": [
+      "cmake",
+      "ninja"
+    ],
+    "full_campaign_reviewable": false,
+    "guest_disk_growth_cap_bytes": 0,
+    "known_archive_bytes": 1107938715,
+    "known_tool_ids": [
+      "rtk",
+      "cpython",
+      "node",
+      "bun",
+      "swift",
+      "dotnet-sdk",
+      "dotnet-runtime-net8",
+      "dotnet-targeting-pack-net8"
+    ],
+    "metered_api_usd_cap": 0,
+    "native_turn_cap": 0,
+    "new_mac_host_allocation_cap_bytes": 4294967296,
+    "npm_ids": [
+      "codex-wrapper",
+      "codex-native",
+      "claude-wrapper",
+      "claude-native"
+    ],
+    "npm_per_object_policy_cap_bytes": 268435456,
+    "other_response_body_reserve_bytes": 50331648,
+    "owner_decision": null,
+    "paid_host_usd_cap": 0,
+    "proposal": "docs/PHASE-3B-CAPPED-ARCHIVE-STAGE-2026-10-19.md",
+    "source_ids": [
+      "dotnet-1",
+      "python-1",
+      "swift-1",
+      "typescript-2"
+    ],
+    "stage_transfer_cap_bytes": 2232012187,
+    "status": "scope decision pending; no transfer or guest action admitted",
+    "storage_quota_verified": false,
+    "vm_plus_iso_growth_cap_bytes": 0
   },
   "b1": {
     "effective_native_command_bound": false,
@@ -456,6 +508,14 @@
       "codex-native",
       "claude-wrapper",
       "claude-native"
+    ],
+    "npm_tarball_head_body_bytes": 0,
+    "npm_tarball_head_content_length_present": false,
+    "npm_tarball_head_statuses": [
+      200,
+      200,
+      200,
+      200
     ],
     "npm_version_metadata_response_bytes": 12488,
     "previous_read_only_research_entry_revision": "b5259f2505b74c4059ee72940463e18fa357d2a0",

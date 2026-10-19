@@ -1,6 +1,6 @@
 {
-  "version": "0.17.1",
-  "entry_revision": "a3f48ead823ff2fe3a1b04a409753be7e380e849",
+  "version": "0.17.2",
+  "entry_revision": "139c16ce6317aaef0526a1ec07d677674dfd151b",
   "files": [
     {
       "path": "AGENTS.md",
@@ -9,8 +9,8 @@
     },
     {
       "path": "CHANGELOG.md",
-      "bytes": 72001,
-      "sha256": "ad5464ba3a9b33a67195654a0683995c20d769029e620331dcc65ffa4f9eb725"
+      "bytes": 72176,
+      "sha256": "6851e5a7616cf5cb3bbb69742f28ef929b55e555e2b70edb7a3d9e84d973ea15"
     },
     {
       "path": "INITIAL-EVALUATION-PLAN.md",
@@ -24,8 +24,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 51278,
-      "sha256": "7a409213a439efb119c91cc129e5f09f2e557056540dadde34633964742c1a2f"
+      "bytes": 51392,
+      "sha256": "4865537d02cbe7673c17a3ff0d3e0157f32e5ecc107bdbf2b23baad3df012051"
     },
     {
       "path": "docs/ARCHITECTURE.md",
@@ -34,8 +34,8 @@
     },
     {
       "path": "docs/DEVELOPMENT-PLAN.md",
-      "bytes": 78138,
-      "sha256": "5bfc89ff8b48bc6a8461c27d5ff67596e4f369a35182b70f4d920ff110a87ad7"
+      "bytes": 78250,
+      "sha256": "437fc85eacaf3d6db8b70ea27b920dfb379c7dd374618b95bf5acd82fd439212"
     },
     {
       "path": "docs/EXECUTION-QUALIFICATION.md",
@@ -44,8 +44,8 @@
     },
     {
       "path": "docs/HANDOFF.md",
-      "bytes": 461894,
-      "sha256": "c9164ef5680a0aa74e5cfc23ad1fb811c3da16ab7efc1dd89a8cb13847c9fe26"
+      "bytes": 461989,
+      "sha256": "4204f95b26778423300dd6079fe410ee135d583dea6f36f31e4a5212761d3ced"
     },
     {
       "path": "docs/PHASE-2D-SOFTWARE-COMPLETION-2026-10-16.md",
@@ -129,8 +129,8 @@
     },
     {
       "path": "docs/PHASE-3B-CAMPAIGN-ADMISSION-MANIFEST-2026-10-19.json",
-      "bytes": 46062,
-      "sha256": "39a2cf74b6600cfdea756f912677d7b8c2d6103667f692edb8fd5e4c0d8aebc8"
+      "bytes": 46190,
+      "sha256": "cec5b3ad826deed381df68a1ed72ad2e8ce861df74f88c0072f569c7f7b7dbf0"
     },
     {
       "path": "docs/PHASE-3B-CAMPAIGN-ADMISSION-NEXT-SESSION-2026-10-19.md",
@@ -314,8 +314,8 @@
     },
     {
       "path": "docs/PHASE-3B-RETAINED-EXTRACTION-COMPLETION-2026-10-20.md",
-      "bytes": 4339,
-      "sha256": "d6423c79cd40275fd1cdfcba1e4291f1aa4bbd7c31c93e48ec247ee05834f0cb"
+      "bytes": 4431,
+      "sha256": "91f8f705b2992903cfc901bc9c4f3f1f0b65d7ee52968a2505e30b0f8ba7527e"
     },
     {
       "path": "docs/PHASE-3B-RETAINED-EXTRACTION-DECISION-2026-10-19.md",
@@ -625,7 +625,7 @@
     {
       "path": "pyproject.toml",
       "bytes": 920,
-      "sha256": "07e394beaba8d896729a35864c9aca5fc0824f4547b4e276950607496c4988c5"
+      "sha256": "b91766ded341b902b465b40ae03eab80f9839ffc42cc922011119cc97d6bbf3a"
     },
     {
       "path": "requirements-dev.lock",
@@ -665,7 +665,7 @@
     {
       "path": "src/crewshal/__init__.py",
       "bytes": 91,
-      "sha256": "4001d013cf3961721f80f8324453fa7aa0f8bf70ef96cf35923162e6b9544242"
+      "sha256": "0211f38b3aa5ac488999246fdf8e67905de719eccda5ccabad1e486c731a5639"
     },
     {
       "path": "src/crewshal/__main__.py",

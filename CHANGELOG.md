@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.17.2 — 2026-10-20
+
+- Correct live campaign blockers after the completed bounded extraction.
+- Keep excluded archives, installation, Linux work, and evaluation closed.
+
 ## 0.17.1 — 2026-10-20
 
 - Record the owner's exact one-attempt approval and completed retained extraction.

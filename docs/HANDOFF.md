@@ -5,6 +5,7 @@ Last updated: 2026-10-19. This record supplies the next session and the owner wi
 ## Current state
 
 **October 20: The owner-approved retained extraction completed in one attempt.**
+The follow-up `0.17.2` checkpoint corrects stale live blockers in the single admission ledger.
 The session began at `a3f48ead823ff2fe3a1b04a409753be7e380e849` with a clean worktree.
 All 191 exact entry inputs matched their recorded sizes and SHA-256 values.
 The owner approved the exact one-attempt decision in this Codex chat on October 19.
@@ -20,7 +21,7 @@ No archive body request, guest, Linux test, native turn, provider request, or ev
 Guest and VM growth was zero. All 192 development rows remain planned, and all 576 sealed rows remain unexposed.
 Executable hashes, effective commands, providers, and B1 conformance remain unknown.
 Installation, archived tool execution, Linux qualification, Phase 3B calibration, and Phase 3C remain closed.
-The checkpoint version is `0.17.1`. The delivery revision is the commit containing this entry.
+The checkpoint version is `0.17.2`. The delivery revision is the commit containing this entry.
 Use the [next prompt](PHASE-3B-POST-EXTRACTION-NEXT-SESSION-2026-10-20.md) and [exact inputs](PHASE-3B-POST-EXTRACTION-INPUTS-2026-10-20.json).
 Earlier dated entries remain historical records.
 

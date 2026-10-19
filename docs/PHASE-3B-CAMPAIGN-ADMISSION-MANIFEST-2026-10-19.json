@@ -3,16 +3,16 @@
     "Changed RAM, infrastructure, retained-data, and transfer rules lack owner approval.",
     "The current transfer balance is zero under conservative accounting.",
     "The four npm archive sizes are now receipt-bound; CMake, Ninja, Ubuntu, and repository dependency closures remain unresolved.",
-    "The retained archives have bounded member metadata, but .NET paths and Node/Swift links need an approved extraction policy and a full storage bound.",
+    "The selected twelve archives passed the approved bounded extraction. The four excluded archives, including Swift links, lack an approved extraction and storage scope.",
     "Ubuntu and selected repository dependency closures lack exact read-only package snapshots.",
-    "The source extractor has no admitted selected archive result.",
+    "The earlier source-only extractor has no admitted selected-archive result. The bounded retained extractor completed the selected twelve-archive batch.",
     "B1 lacks admitted native launch commands and conformance.",
     "Actual runtime executables, effective configuration, provider identities, and platform qualification remain unknown."
   ],
   "approval_request": {
     "changed_limits_requested": false,
     "exact_batch_reviewable": false,
-    "reason": "The full campaign remains unreviewable. The sixteen archive requests are complete and closed. Archive extraction and Linux work are not admitted."
+    "reason": "The full campaign remains unreviewable. Sixteen archive requests and one bounded extraction completed. Further extraction, installation, and Linux work remain closed."
   },
   "archive_evidence_stage": {
     "active_seconds_cap": 7200,

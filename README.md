@@ -11,6 +11,7 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 ## Current status
 
 **October 20: The approved bounded retained extraction completed once.**
+The follow-up `0.17.2` ledger correction distinguishes completed extraction from the remaining campaign blockers.
 The [completion record](docs/PHASE-3B-RETAINED-EXTRACTION-COMPLETION-2026-10-20.md) records its checks and limits.
 The output contains twelve selected archives, 11,019 verified regular files, and three recorded Node links.
 The regular content totals 511,667,961 bytes. Mounted free space stayed above the required floor.

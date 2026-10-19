@@ -4,6 +4,7 @@ Date: 2026-10-20. Branch: `codex/phase1-architecture`.
 Entry revision: `a3f48ead823ff2fe3a1b04a409753be7e380e849`.
 The owner approved the exact one-attempt decision in the current Codex chat on 2026-10-19.
 The [single admission ledger](PHASE-3B-CAMPAIGN-ADMISSION-MANIFEST-2026-10-19.json) records that decision and closes further extraction.
+The `0.17.2` follow-up corrects its live blockers after the `0.17.1` completion checkpoint.
 
 ## Action and result
 

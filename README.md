@@ -10,6 +10,13 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**October 20: All sixteen retained archive inventories have read-only output bindings.**
+The [toolchain readback](docs/PHASE-3B-TOOLCHAIN-READBACK-COMPLETION-2026-10-20.md) confirms 1,368,218,293 compressed bytes and 4,371,619,599 regular content bytes.
+It binds both output manifests and keeps installed executable hashes, effective commands, and providers unknown.
+The guest decision remains open. No guest, installer, archived tool, native turn, or evaluation row ran.
+Use the [next prompt](docs/PHASE-3B-TOOLCHAIN-READBACK-NEXT-SESSION-2026-10-20.md) and [exact inputs](docs/PHASE-3B-TOOLCHAIN-READBACK-INPUTS-2026-10-20.json).
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+
 **October 20: Phase 3B guest admission needs a new owner decision.**
 The [read-only review](docs/PHASE-3B-POST-EXTRACTION-ADMISSION-REVIEW-2026-10-20.md) records source dependencies and current VMware custody.
 Both historical guests contain suspended-state files. The Phase 3B VM and ISO now use 25,752,367,104 allocated host bytes.

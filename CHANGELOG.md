@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.18.3 — 2026-10-20
+
+- Bind sixteen retained archive inventories to their verified extraction manifests.
+- Recheck 1,368,218,293 compressed bytes and 4,371,619,599 regular content bytes without execution.
+- Keep installed executable hashes, commands, providers, guests, and evaluation closed.
+
 ## 0.18.2 — 2026-10-20
 
 - Review extracted source dependency metadata and existing guest custody without running a guest.

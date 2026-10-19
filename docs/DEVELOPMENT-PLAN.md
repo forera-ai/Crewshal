@@ -1,5 +1,14 @@
 # Crewshal phased development and acceptance plan
 
+## Current retained toolchain readback — 2026-10-20
+
+The [readback completion](PHASE-3B-TOOLCHAIN-READBACK-COMPLETION-2026-10-20.md) binds all 16 retained archives to both output manifests.
+It records 1,368,218,293 compressed bytes, 4,371,619,599 regular content bytes, and 40 links.
+Installed executable hashes, effective commands, providers, and B1 conformance remain unknown.
+The owner decision for a guest remains pending. No guest action, installation, Linux test, or evaluation is admitted.
+Use the [next prompt](PHASE-3B-TOOLCHAIN-READBACK-NEXT-SESSION-2026-10-20.md) and [exact inputs](PHASE-3B-TOOLCHAIN-READBACK-INPUTS-2026-10-20.json).
+All 192 development rows remain planned, and all 576 sealed rows remain unexposed.
+
 ## Current Phase 3B guest admission decision — 2026-10-20
 
 The [read-only review](PHASE-3B-POST-EXTRACTION-ADMISSION-REVIEW-2026-10-20.md) records source constraints and suspended guest custody.

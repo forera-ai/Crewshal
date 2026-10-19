@@ -4,6 +4,21 @@ Last updated: 2026-10-20. This record supplies the next session and the owner wi
 
 ## Current state
 
+**October 20: Retained toolchain inventory readback is complete.**
+The session began at `57cbae2` with a clean worktree.
+The [completion record](PHASE-3B-TOOLCHAIN-READBACK-COMPLETION-2026-10-20.md) records read-only commands, results, costs, and limits.
+All 16 archive sizes and hashes matched again. Their compressed bytes total 1,368,218,293.
+Both output manifests bind 4,371,619,599 regular content bytes and 40 links.
+Static file identification found AArch64 ELF candidates for Bun, Node, Swift, .NET, Codex, and Claude.
+Installed executable hashes, effective commands, providers, and B1 conformance remain null.
+The guest choice and exact clone approval remain pending. The single ledger admits no guest action.
+No archive body request, guest, package install, archived tool, native turn, or evaluation row ran.
+Known paid-host and metered API cost was USD 0. New network transfer was zero bytes.
+All 192 development rows remain planned, and all 576 sealed rows remain unexposed.
+The checkpoint version is `0.18.3`. The delivery revision is the commit containing this entry.
+Use the [next prompt](PHASE-3B-TOOLCHAIN-READBACK-NEXT-SESSION-2026-10-20.md) and [exact inputs](PHASE-3B-TOOLCHAIN-READBACK-INPUTS-2026-10-20.json).
+Earlier dated entries remain historical records.
+
 **October 20: The post-extraction guest admission review is complete.**
 The session began at `aa8f19d` with a clean worktree.
 The [review](PHASE-3B-POST-EXTRACTION-ADMISSION-REVIEW-2026-10-20.md) records source constraints, VMware custody, costs, and limits.

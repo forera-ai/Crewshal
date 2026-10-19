@@ -4,6 +4,12 @@ Date: 2026-10-20. Status: Read-only review complete; guest decision pending.
 Entry revision: `aa8f19d` on `codex/phase1-architecture`.
 The two approved extraction batches are complete. Their further attempt flags are closed in the single admission ledger.
 This review does not admit guest work, installation, package retrieval, archived tool execution, native turns, or evaluation rows.
+The [retained inventory readback](PHASE-3B-RETAINED-TOOLCHAIN-READBACK-2026-10-20.json) binds all sixteen archives to both output manifests.
+Its 4,371,619,599 regular content bytes match the sum of the two extracted batches.
+It records 40 links: three Node links and 37 Swift links.
+Installed executable hashes, effective commands, and providers remain null.
+The local `file` check identified AArch64 ELF candidates for Bun, Node, Swift, .NET, Codex, and Claude.
+It did not launch them or establish Linux runtime conformance.
 
 ## Local source metadata
 

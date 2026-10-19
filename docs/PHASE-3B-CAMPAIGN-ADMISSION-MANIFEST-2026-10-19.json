@@ -1079,6 +1079,16 @@
       "completion_record": "docs/PHASE-3B-REMAINING-EXTRACTION-COMPLETION-2026-10-20.md"
     }
   },
+  "retained_inventory_readback": {
+    "status": "read-only inventory bound; installation and execution closed",
+    "path": "docs/PHASE-3B-RETAINED-TOOLCHAIN-READBACK-2026-10-20.json",
+    "sha256": "34f369daa663b65c0a9d24a0c54860f1ca4b29a546bd1df8c3ef3bd5b6fe28cd",
+    "archive_count": 16,
+    "regular_content_upper_bytes": 4371619599,
+    "symlink_members": 40,
+    "installation_admitted": false,
+    "archived_tool_execution_admitted": false
+  },
   "guest_clone_capacity": {
     "status": "proposed; owner decision pending; no guest action admitted",
     "proposal": "docs/PHASE-3B-SEPARATE-GUEST-CAPACITY-PROPOSAL-2026-10-20.md",

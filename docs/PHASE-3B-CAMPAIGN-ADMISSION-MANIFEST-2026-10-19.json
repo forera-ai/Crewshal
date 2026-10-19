@@ -16,7 +16,7 @@
   },
   "archive_evidence_stage": {
     "active_seconds_cap": 7200,
-    "archive_body_bytes_retrieved": 0,
+    "archive_body_bytes_retrieved": 260852274,
     "archive_response_body_cap_bytes": 2181680539,
     "batch_retained_logical_cap_bytes": 3221225472,
     "body_requests_admitted": false,
@@ -52,7 +52,7 @@
     ],
     "npm_per_object_policy_cap_bytes": 268435456,
     "other_response_body_reserve_bytes": 50331648,
-    "owner_decision": null,
+    "owner_decision": "approved exact stage",
     "paid_host_usd_cap": 0,
     "proposal": "docs/PHASE-3B-CAPPED-ARCHIVE-STAGE-2026-10-19.md",
     "source_ids": [
@@ -62,9 +62,49 @@
       "typescript-2"
     ],
     "stage_transfer_cap_bytes": 2232012187,
-    "status": "scope decision pending; no transfer or guest action admitted",
-    "storage_quota_verified": false,
-    "vm_plus_iso_growth_cap_bytes": 0
+    "status": "halted after a transport SHA-512 encoding bug; no further archive body request admitted",
+    "storage_quota_verified": true,
+    "vm_plus_iso_growth_cap_bytes": 0,
+    "owner_decision_evidence": "2026-10-19 owner reply in current Codex chat: Approve exact stage. Approval binds docs/PHASE-3B-CAPPED-ARCHIVE-STAGE-2026-10-19.md and its unchanged sixteen URLs and numeric ceilings.",
+    "transport_receipt_schema": "scripts/phase3b_capped_archive.py SQLite meta, attempts, responses, and reads tables; synchronous FULL; incomplete reservations halt reuse",
+    "transport_script_sha256": "79c547bcaecdd3ef85a1b4618cbb71b29f8fe28c93f2106380058c36079c14c4",
+    "storage_readback": {
+      "image_logical_bytes": 3221225472,
+      "mounted_volume_bytes": 3221184512,
+      "initial_image_allocated_bytes": 3221225472,
+      "guest_growth_bytes": 0
+    },
+    "other_response_body_bytes_retrieved": 0,
+    "other_response_body_reserve_charged_bytes": 50331648,
+    "new_stage_transfer_charged_bytes": 311183922,
+    "cumulative_transfer_charged_bytes": 8901118514,
+    "retained_logical_bytes_readback": 268468780,
+    "attempted_ids": [
+      "dotnet-1",
+      "python-1",
+      "swift-1",
+      "typescript-2",
+      "rtk",
+      "cpython",
+      "node",
+      "dotnet-sdk"
+    ],
+    "verified_source_ids": [
+      "dotnet-1",
+      "python-1",
+      "swift-1",
+      "typescript-2"
+    ],
+    "verified_tool_ids": [
+      "rtk",
+      "cpython",
+      "node"
+    ],
+    "failed_receipt_id": "dotnet-sdk",
+    "failed_receipt_note": "The original transport parsed the official hexadecimal SHA-512 as Base64. The 204,124,866-byte retained file independently matches the recorded SHA-512. Keep the receipt failed and the stage halted.",
+    "current_transport_script_sha256": "e67c93816da58c242880c631b6f436c75011cf098e317c7a29ca2f1edb104f91",
+    "original_transport_script_sha256": "79c547bcaecdd3ef85a1b4618cbb71b29f8fe28c93f2106380058c36079c14c4",
+    "boundary_record": "docs/PHASE-3B-CAPPED-ARCHIVE-HALTED-2026-10-19.md"
   },
   "b1": {
     "effective_native_command_bound": false,

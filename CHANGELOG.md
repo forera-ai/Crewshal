@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.15.17 — 2026-10-19
+
+- Record the owner's exact approval of the sixteen-URL archive evidence stage.
+- Verify four source archives, four frozen source extractions, and three tool archives.
+- Retain the failed `.NET SDK` receipt after a hexadecimal SHA-512 parser error.
+- Charge 260,852,274 actual body bytes and the full 50,331,648-byte reserve.
+- Repair the parser and pass ten local tests, Ruff, mypy, and the frozen package checker.
+- Close further body requests under the halted grant. Keep Linux and evaluation gates closed.
+
 ## 0.15.16 — 2026-10-19
 
 - Verify all 162 continuation inputs and preserve the frozen Phase 3A package.

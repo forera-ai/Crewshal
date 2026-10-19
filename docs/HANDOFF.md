@@ -4,6 +4,27 @@ Last updated: 2026-10-19. This record supplies the next session and the owner wi
 
 ## Current state
 
+**October 19: The owner-approved capped archive stage halted after a transport digest-parser failure.**
+The session began at `f11e1b40b63d8b4e33a3b321a421a1293c231598` with a clean worktree.
+All 164 continuation inputs matched their recorded size and SHA-256.
+The owner approved the exact sixteen-URL stage in this chat.
+Four source archives and three tool archives passed their recorded size and trusted digest checks.
+The frozen extractor matched all four source inventories.
+The `.NET SDK` transfer retained 204,124,866 bytes and independently matched its recorded SHA-512.
+The original transport misread hexadecimal SHA-512 as Base64 and recorded a failed attempt.
+The receipt remains halted; no further archive body request is admitted under this grant.
+The repaired parser passed ten local tests, Ruff, and strict mypy.
+The frozen checker retained 23 artifacts, 768 planned units, and digest `4bd188deb0089a79d018ed13b2fd2467927a53efc4d3d4e323f8cf43bdc892c0`.
+Actual archive bodies totaled 260,852,274 bytes. The full reserve makes the conservative new charge 311,183,922 bytes.
+The prior 8,589,934,592-byte charge remains intact; cumulative conservative charge is 8,901,118,514 bytes.
+The retained local image and receipt remain outside Git. The guest and VM allocations did not change.
+The [halted boundary](PHASE-3B-CAPPED-ARCHIVE-HALTED-2026-10-19.md) records commands, results, costs, failures, and limits.
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+Linux qualification, native baselines, provider identity, Phase 3B calibration, and Phase 3C remain closed.
+The checkpoint version is `0.15.17`. The delivery revision is the commit containing this entry.
+Use the [next prompt](PHASE-3B-CAPPED-ARCHIVE-HALTED-NEXT-SESSION-2026-10-19.md) and [exact inputs](PHASE-3B-CAPPED-ARCHIVE-HALTED-INPUTS-2026-10-19.json).
+Earlier dated entries remain historical records.
+
 **October 19: A capped archive evidence stage is ready for one owner scope decision.**
 The session began at `692eaecd93ddb66d9e9aa918f4c403e26979c88b` with a clean worktree.
 All 162 continuation inputs matched their recorded size and SHA-256.

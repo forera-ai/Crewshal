@@ -1,5 +1,17 @@
 # Crewshal phased development and acceptance plan
 
+## Current capped archive halt — 2026-10-19
+
+The owner approved the exact sixteen-URL archive evidence stage.
+The [single admission ledger](PHASE-3B-CAMPAIGN-ADMISSION-MANIFEST-2026-10-19.json) records eight attempts and their charges.
+Four source archives and three tool archives passed size and digest checks.
+The frozen extractor matched all four source inventories.
+The `.NET SDK` body matched its recorded SHA-512, but the transport stored a failed receipt.
+The repaired parser passed local tests. The original stage remains halted, with no further body request admitted.
+The [halted boundary](PHASE-3B-CAPPED-ARCHIVE-HALTED-2026-10-19.md) records the failure, costs, and limits.
+Use the [next prompt](PHASE-3B-CAPPED-ARCHIVE-HALTED-NEXT-SESSION-2026-10-19.md) and [exact inputs](PHASE-3B-CAPPED-ARCHIVE-HALTED-INPUTS-2026-10-19.json).
+The Linux campaign and all evaluation gates remain closed.
+
 ## Current capped archive evidence stage — 2026-10-19
 
 The [single admission ledger](PHASE-3B-CAMPAIGN-ADMISSION-MANIFEST-2026-10-19.json) now names one exact sixteen-URL archive evidence stage.

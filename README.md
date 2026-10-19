@@ -10,6 +10,16 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**October 19: The approved capped archive stage halted after a transport parser failure.**
+The owner approved the exact sixteen-URL stage and its fixed caps.
+Four source archives and three tool archives passed size and digest checks.
+The frozen extractor matched all four source inventories.
+The `.NET SDK` file matched its official SHA-512, but the transport recorded a false failure.
+The repaired parser passed local tests. The original receipt remains halted, and no further body request is admitted.
+The [boundary record](docs/PHASE-3B-CAPPED-ARCHIVE-HALTED-2026-10-19.md) records 260,852,274 actual body bytes and a 311,183,922-byte conservative charge.
+Use the [next prompt](docs/PHASE-3B-CAPPED-ARCHIVE-HALTED-NEXT-SESSION-2026-10-19.md) and [exact inputs](docs/PHASE-3B-CAPPED-ARCHIVE-HALTED-INPUTS-2026-10-19.json).
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+
 **October 19: A capped archive evidence stage is ready for one owner scope decision.**
 The [single admission ledger](docs/PHASE-3B-CAMPAIGN-ADMISSION-MANIFEST-2026-10-19.json) now separates this exact stage from the full campaign.
 The [stage proposal](docs/PHASE-3B-CAPPED-ARCHIVE-STAGE-2026-10-19.md) limits sixteen URLs and caps new transfer at 2,232,012,187 bytes.

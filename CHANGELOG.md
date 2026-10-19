@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.15.13 — 2026-10-19
+
+- Verify all 149 source-ready input hashes and the unchanged frozen Phase 3A package.
+- Bind four selected source archives, a candidate safe extractor, and the B1 manual stage order.
+- Pass three network-denied local extraction tests without touching a selected source archive.
+- Record fourteen toolchain candidates, missing dependency and launch identities, and zero conservative transfer balance in one manifest.
+- Keep changed limits unapproved and all Linux, provider, baseline, calibration, and sealed gates closed.
+- Publish the blocked boundary, next prompt, and exact continuation inputs.
+
 ## 0.15.12 — 2026-10-18
 
 - Verify the completed core source path with 196 local Mac acceptance tests, a matching installed wheel, static checks, and the unchanged Phase 3A freeze checker.

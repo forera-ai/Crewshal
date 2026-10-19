@@ -10,6 +10,15 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**October 19: Consolidated Linux campaign admission remains blocked.**
+The [campaign manifest](docs/PHASE-3B-CAMPAIGN-ADMISSION-MANIFEST-2026-10-19.json) binds four source archives, a candidate extractor, and the B1 stage order.
+The [boundary record](docs/PHASE-3B-CAMPAIGN-ADMISSION-BOUNDARY-2026-10-19.md) records missing toolchain, dependency, launch, and resource bounds.
+The old transfer allowance still has zero conservative remaining balance.
+No changed-limit approval was requested because the exact batch is incomplete.
+Use the [next prompt](docs/PHASE-3B-CAMPAIGN-ADMISSION-NEXT-SESSION-2026-10-19.md) and [exact inputs](docs/PHASE-3B-CAMPAIGN-ADMISSION-INPUTS-2026-10-19.json).
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+Linux qualification, provider identities, native baselines, Phase 3B calibration, and Phase 3C remain closed.
+
 **October 18: Core source work is ready for consolidated Linux campaign admission.**
 The [source-ready record](docs/PHASE-3B-SOURCE-READY-2026-10-18.md) reports 196 passing Mac tests and unchanged frozen Phase 3A bytes.
 The fresh offline wheel passed the same 196 tests.

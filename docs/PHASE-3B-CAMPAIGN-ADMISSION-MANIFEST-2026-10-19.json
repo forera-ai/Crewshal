@@ -1,0 +1,723 @@
+{
+  "admission_blockers": [
+    "Changed RAM, infrastructure, retained-data, and transfer rules lack owner approval.",
+    "The current transfer balance is zero under conservative accounting.",
+    "Thirteen selected tool archives lack exact byte counts; other required artifact fields remain unknown.",
+    "Ubuntu packages and all selected repository dependency closures remain unresolved.",
+    "The source extractor has no admitted archive or Linux validation result.",
+    "B1 lacks admitted native launch commands and conformance.",
+    "Actual runtime executables, effective configuration, provider identities, and platform qualification remain unknown."
+  ],
+  "approval_request": {
+    "changed_limits_requested": false,
+    "exact_batch_reviewable": false,
+    "reason": "Artifact, dependency, transfer, retained-data, guest-disk, and launch bounds are incomplete."
+  },
+  "b1": {
+    "effective_native_command_bound": false,
+    "frozen_contract": "docs/evaluation/phase-3a-frozen/conditions.json",
+    "operator_script": "docs/PHASE-3B-B1-MANUAL-SCRIPT-2026-10-19.md",
+    "qualified": false,
+    "script_sha256": "c031a045af15436462fa3100c14f32bc06005db5b651d8d8282dadaf1e02e1e7",
+    "stage_order_bound": true,
+    "status": "draft only; no B1 row may start"
+  },
+  "branch": "codex/phase1-architecture",
+  "campaign_sequence": [
+    "owner decision after exact batch review",
+    "guest admission",
+    "toolchain and dependency preparation",
+    "platform and native qualification",
+    "provider identity",
+    "B1 conformance",
+    "native baselines",
+    "192 development rows"
+  ],
+  "cleanup": "Preserve historical guests, ISO, records, and sealed custody. Remove only verified batch-owned scratch after admission.",
+  "date": "2026-10-19",
+  "dependencies": {
+    "read_only_snapshot": null,
+    "repositories": [
+      {
+        "download_bytes_upper_bound": null,
+        "exact_resolved_closure": null,
+        "license_result": null,
+        "recognized_inputs": [],
+        "repository_id": "dotnet-1",
+        "retained_bytes_upper_bound": null,
+        "source_declarations": [
+          {
+            "line_range": [
+              1,
+              7
+            ],
+            "observation_date": "2026-10-16",
+            "path": "global.json",
+            "repository_id": "dotnet-1",
+            "sha256": "ef3c65250475d812c838f1da34d65a7bae8b1a8d2ea1d375cc6644b898f47d41"
+          }
+        ]
+      },
+      {
+        "download_bytes_upper_bound": null,
+        "exact_resolved_closure": null,
+        "license_result": null,
+        "recognized_inputs": [
+          {
+            "kind": "compiled-constraint-file",
+            "path": "requirements/build.txt",
+            "sha256": "d3ef91ebee54f317182134b191061325ad72eed5be7a2484d1f9de7205c5a293"
+          },
+          {
+            "kind": "compiled-constraint-file",
+            "path": "requirements/dev.txt",
+            "sha256": "edb0efa850ff4a2cb07121a972462dc02f4a439146dfb6d50e990c1c610f6640"
+          },
+          {
+            "kind": "compiled-constraint-file",
+            "path": "requirements/docs.txt",
+            "sha256": "9734b3d503f345f7d03eb7c923fb0baafbd574780fd070992aad87da21ed3ccc"
+          },
+          {
+            "kind": "compiled-constraint-file",
+            "path": "requirements/tests.txt",
+            "sha256": "5bac9588b5dda6960373aa11fe3c4ca9da734edf178169ceef18579702ee5c2f"
+          },
+          {
+            "kind": "compiled-constraint-file",
+            "path": "requirements/tests37.txt",
+            "sha256": "d87080293ce5a12245249089ed75b794a9ad1276b7d8491a13724ad307763a82"
+          },
+          {
+            "kind": "compiled-constraint-file",
+            "path": "requirements/typing.txt",
+            "sha256": "afa23e2cb2e7cec61928565cb9b0481ce410b1cf7067b0df727d0e80eaa8f07f"
+          }
+        ],
+        "repository_id": "python-1",
+        "retained_bytes_upper_bound": null,
+        "source_declarations": [
+          {
+            "line_range": [
+              1,
+              12
+            ],
+            "observation_date": "2026-10-16",
+            "path": "requirements/build.txt",
+            "repository_id": "python-1",
+            "sha256": "d3ef91ebee54f317182134b191061325ad72eed5be7a2484d1f9de7205c5a293"
+          },
+          {
+            "line_range": [
+              1,
+              150
+            ],
+            "observation_date": "2026-10-16",
+            "path": "requirements/dev.txt",
+            "repository_id": "python-1",
+            "sha256": "edb0efa850ff4a2cb07121a972462dc02f4a439146dfb6d50e990c1c610f6640"
+          },
+          {
+            "line_range": [
+              1,
+              70
+            ],
+            "observation_date": "2026-10-16",
+            "path": "requirements/docs.txt",
+            "repository_id": "python-1",
+            "sha256": "9734b3d503f345f7d03eb7c923fb0baafbd574780fd070992aad87da21ed3ccc"
+          },
+          {
+            "line_range": [
+              1,
+              14
+            ],
+            "observation_date": "2026-10-16",
+            "path": "requirements/tests.txt",
+            "repository_id": "python-1",
+            "sha256": "5bac9588b5dda6960373aa11fe3c4ca9da734edf178169ceef18579702ee5c2f"
+          },
+          {
+            "line_range": [
+              1,
+              26
+            ],
+            "observation_date": "2026-10-16",
+            "path": "requirements/tests37.txt",
+            "repository_id": "python-1",
+            "sha256": "d87080293ce5a12245249089ed75b794a9ad1276b7d8491a13724ad307763a82"
+          },
+          {
+            "line_range": [
+              1,
+              18
+            ],
+            "observation_date": "2026-10-16",
+            "path": "requirements/typing.txt",
+            "repository_id": "python-1",
+            "sha256": "afa23e2cb2e7cec61928565cb9b0481ce410b1cf7067b0df727d0e80eaa8f07f"
+          }
+        ]
+      },
+      {
+        "download_bytes_upper_bound": null,
+        "exact_resolved_closure": null,
+        "license_result": null,
+        "recognized_inputs": [],
+        "repository_id": "swift-1",
+        "retained_bytes_upper_bound": null,
+        "source_declarations": [
+          {
+            "line_range": [
+              1,
+              107
+            ],
+            "observation_date": "2026-10-16",
+            "path": "Package.swift",
+            "repository_id": "swift-1",
+            "sha256": "5c0ea7f615b82bfb850c64f66224124a7041e1d0004406543cd24c8ab526d84e"
+          }
+        ]
+      },
+      {
+        "download_bytes_upper_bound": null,
+        "exact_resolved_closure": null,
+        "license_result": null,
+        "recognized_inputs": [
+          {
+            "kind": "dependency-lock",
+            "path": "benchmarks/handle-event/yarn.lock",
+            "sha256": "e6b400a4e805a20cb6be6b5b757eb0e0a893c6cbb19e72bdfa49c3ab51f54f25"
+          },
+          {
+            "kind": "dependency-lock",
+            "path": "benchmarks/jsx/yarn.lock",
+            "sha256": "98a9dd3860ce62798df5ee6a0717bd1db1703cd5ad2065305d5a1e62a50d33bf"
+          },
+          {
+            "kind": "dependency-lock",
+            "path": "benchmarks/query-param/bun.lockb",
+            "sha256": "222896138ef7ac950cb5fad6ac1336167e320c25140ac45ff41d58c08f3b3cc7"
+          },
+          {
+            "kind": "dependency-lock",
+            "path": "benchmarks/query-param/package-lock.json",
+            "sha256": "0d827c3451a7f353cc7ea7ed938c8edc3f99c99553ebce1c5ec588bcb0a71b84"
+          },
+          {
+            "kind": "dependency-lock",
+            "path": "benchmarks/routers/yarn.lock",
+            "sha256": "1bc90f0a4420d31085ead1467cd58b14fe12d88ef8bd2f5929a2790a1278cade"
+          },
+          {
+            "kind": "dependency-lock",
+            "path": "bun.lock",
+            "sha256": "2bcdfebb22fd9487a8f3344c4aa6b99baa073a372a460d74f8b5c44d10fbd298"
+          }
+        ],
+        "repository_id": "typescript-2",
+        "retained_bytes_upper_bound": null,
+        "source_declarations": [
+          {
+            "line_range": [
+              1,
+              678
+            ],
+            "observation_date": "2026-10-16",
+            "path": "benchmarks/handle-event/yarn.lock",
+            "repository_id": "typescript-2",
+            "sha256": "e6b400a4e805a20cb6be6b5b757eb0e0a893c6cbb19e72bdfa49c3ab51f54f25"
+          },
+          {
+            "line_range": [
+              1,
+              392
+            ],
+            "observation_date": "2026-10-16",
+            "path": "benchmarks/jsx/yarn.lock",
+            "repository_id": "typescript-2",
+            "sha256": "98a9dd3860ce62798df5ee6a0717bd1db1703cd5ad2065305d5a1e62a50d33bf"
+          },
+          {
+            "line_range": [
+              1,
+              132
+            ],
+            "observation_date": "2026-10-16",
+            "path": "benchmarks/query-param/bun.lockb",
+            "repository_id": "typescript-2",
+            "sha256": "222896138ef7ac950cb5fad6ac1336167e320c25140ac45ff41d58c08f3b3cc7"
+          },
+          {
+            "line_range": [
+              1,
+              735
+            ],
+            "observation_date": "2026-10-16",
+            "path": "benchmarks/query-param/package-lock.json",
+            "repository_id": "typescript-2",
+            "sha256": "0d827c3451a7f353cc7ea7ed938c8edc3f99c99553ebce1c5ec588bcb0a71b84"
+          },
+          {
+            "line_range": [
+              1,
+              2062
+            ],
+            "observation_date": "2026-10-16",
+            "path": "benchmarks/routers/yarn.lock",
+            "repository_id": "typescript-2",
+            "sha256": "1bc90f0a4420d31085ead1467cd58b14fe12d88ef8bd2f5929a2790a1278cade"
+          },
+          {
+            "line_range": [
+              1,
+              2031
+            ],
+            "observation_date": "2026-10-16",
+            "path": "bun.lock",
+            "repository_id": "typescript-2",
+            "sha256": "2bcdfebb22fd9487a8f3344c4aa6b99baa073a372a460d74f8b5c44d10fbd298"
+          }
+        ]
+      }
+    ],
+    "resolution_status": "blocked; source constraints do not bind installed packages"
+  },
+  "development": {
+    "planned_rows": 192,
+    "run_rows": 0,
+    "schedule": "docs/evaluation/phase-3a-frozen/schedule.json",
+    "sealed_rows_unexposed": 576,
+    "selected_sources": [
+      {
+        "archive_bytes": 198331,
+        "archive_member_safety_verified": false,
+        "archive_sha256": "71a77a7c2eb4d1ffa1572c97c9050c673e16f24cdac19d5039ad79cad06a26dd",
+        "archive_url": "https://codeload.github.com/serilog/serilog/tar.gz/0e316b7cb072ee660b97976098b1bbdb20ac6da0",
+        "expanded_content_bytes": 1152465,
+        "extraction_command_verified_on_archive": false,
+        "id": "dotnet-1",
+        "repository": "serilog/serilog",
+        "revision": "0e316b7cb072ee660b97976098b1bbdb20ac6da0",
+        "source_file_count": 281,
+        "source_inventory_sha256": "8549a2cb35f1c38f04f9f82a1f1868de388f2cf44915bc5e02cd4831f2dcbe96"
+      },
+      {
+        "archive_bytes": 343014,
+        "archive_member_safety_verified": false,
+        "archive_sha256": "edfa6cf117bbbe46f6690266a40389b08b12cbf87fad8664d349ebd6eea811a1",
+        "archive_url": "https://codeload.github.com/pallets/click/tar.gz/934813e4d421071a1b3db3973c02fe2721359a6e",
+        "expanded_content_bytes": 947826,
+        "extraction_command_verified_on_archive": false,
+        "id": "python-1",
+        "repository": "pallets/click",
+        "revision": "934813e4d421071a1b3db3973c02fe2721359a6e",
+        "source_file_count": 147,
+        "source_inventory_sha256": "18e29675d7e2cd5d86b7973b36aaed6edb161af5837243060d8705e70dfa58e8"
+      },
+      {
+        "archive_bytes": 655699,
+        "archive_member_safety_verified": false,
+        "archive_sha256": "45c952a441611e17d8c30de26c4a6b40eec483c07900d9faad2501539aa5c900",
+        "archive_url": "https://codeload.github.com/apple/swift-argument-parser/tar.gz/41982a3656a71c768319979febd796c6fd111d5c",
+        "expanded_content_bytes": 1549662,
+        "extraction_command_verified_on_archive": false,
+        "id": "swift-1",
+        "repository": "apple/swift-argument-parser",
+        "revision": "41982a3656a71c768319979febd796c6fd111d5c",
+        "source_file_count": 194,
+        "source_inventory_sha256": "ccbdcc5fe9d9bd574ff7741f0c451f854611cebd5d2504e6d517bb790d7c3833"
+      },
+      {
+        "archive_bytes": 1580238,
+        "archive_member_safety_verified": false,
+        "archive_sha256": "4754f74b4defcbaa9b8748406fcd3e974b756abf7824e8a1a4304ec9665e6ced",
+        "archive_url": "https://codeload.github.com/honojs/hono/tar.gz/5e1f54caf99cc158b0d20dc02ed44d0a4a596842",
+        "expanded_content_bytes": 3917401,
+        "extraction_command_verified_on_archive": false,
+        "id": "typescript-2",
+        "repository": "honojs/hono",
+        "revision": "5e1f54caf99cc158b0d20dc02ed44d0a4a596842",
+        "source_file_count": 460,
+        "source_inventory_sha256": "ed6981e09a0bfcc68b0b0f210c0c7698e7955de0a8f06db0a45b6f6d2fbf438b"
+      }
+    ],
+    "task_contract": "docs/evaluation/phase-3a-frozen/development-tasks.json"
+  },
+  "entry_revision": "9678937b5f92cc7f9721d441fea7e86ba25a26f7",
+  "execution_gates": {
+    "artifact_retrieval": false,
+    "baseline_conformance": false,
+    "guest_access": false,
+    "installation": false,
+    "linux_tests": false,
+    "native_turns": false,
+    "phase_3b_calibration": false,
+    "phase_3c": false
+  },
+  "extraction": {
+    "argv_template": [
+      "rtk",
+      "proxy",
+      ".venv/bin/python",
+      "scripts/phase3b_extract_source.py",
+      "REPOSITORY_ID",
+      "ARCHIVE_PATH",
+      "NEW_PRIVATE_OUTPUT_PATH"
+    ],
+    "compares_each_file_and_canonical_inventory": true,
+    "guest_path_and_resource_binding": null,
+    "offline_synthetic_fixture": "Three network-denied local tests passed: exact archive, symbolic-link refusal, and extra-file refusal.",
+    "offline_test_path": "tests/acceptance/test_phase3b_extract_source.py",
+    "offline_test_sha256": "9b413e202d1aab6df6f510844a0348dc6bd41ceebe460938a06b66588377c9d4",
+    "real_archive_validation": null,
+    "rejects_links_special_members_extra_files_duplicate_files_unsafe_paths": true,
+    "requires_prior_archive_size_and_sha256_match": true,
+    "script": "scripts/phase3b_extract_source.py",
+    "script_sha256": "c1f43da72196fb0d004197a875c897e54b9a8f90c8e642ae0285b7faa191a781",
+    "status": "source-bound candidate; blocked before archive extraction"
+  },
+  "frozen_package": {
+    "artifact_count": 23,
+    "bytes_changed": false,
+    "content_digest": "4bd188deb0089a79d018ed13b2fd2467927a53efc4d3d4e323f8cf43bdc892c0",
+    "id": "phase3a-20261016-v1",
+    "index_path": "docs/evaluation/phase-3a-frozen/package-index.json",
+    "index_sha256": "a264ce5458ddf053b482df5b99f669afa6139306887e1de92473eef5529970d1",
+    "planned_units": 768
+  },
+  "launch": {
+    "claude_effective_argv": null,
+    "codex_effective_argv": null,
+    "credential_route_and_isolation_readback": null,
+    "crewshal_candidate_source": "src/crewshal/dispatch.py",
+    "crewshal_candidate_source_sha256": "b4afe498e5d7f25b3fb5781e7142280de9722a06811b107b646c0acc37eeffd8",
+    "crewshal_effective_argv": null,
+    "requested_runtimes": [
+      {
+        "actual_executable_sha256": null,
+        "effective_configuration_sha256": null,
+        "id": "A",
+        "requested_model": "gpt-6.1-sol",
+        "requested_provider": "openai",
+        "resolved_model": null,
+        "resolved_provider": null,
+        "runtime": "codex",
+        "selected_configuration_sha256": "52ba0ba4146fa2637e430cfc8d7c932641becbc5b204bc81957f5cfea078212d",
+        "version": "0.160.1"
+      },
+      {
+        "actual_executable_sha256": null,
+        "effective_configuration_sha256": null,
+        "id": "B",
+        "requested_model": "claude-sonnet-5-5",
+        "requested_provider": "anthropic",
+        "resolved_model": null,
+        "resolved_provider": null,
+        "runtime": "claude-code",
+        "selected_configuration_sha256": "fb2d3d811fb4a1aa4f5bf6691e54f81502719aaec87673b778d95e59bb610fae",
+        "version": "2.1.278"
+      }
+    ],
+    "selected_runtime_constraints_sha256": "265d513b19dd5d92b3dc6fa68636fe2575d75d8b1637895439a818abc50b5ec7",
+    "status": "source selections only; no launch admitted"
+  },
+  "milestone": "Consolidated Linux campaign admission and exact input binding",
+  "proposed_decisions_not_approved": [
+    "Require at least 17179869184 guest-visible RAM bytes.",
+    "Use a separate 42949672960-byte VM-plus-ISO infrastructure ceiling.",
+    "Apply the 8589934592-byte retained-data ceiling to batch-owned data only.",
+    "Raise cumulative transfer ceiling to 17179869184 bytes and charge the prior 8589934592 bytes in full.",
+    "Rebind unknown subscription quota debit for the later campaign."
+  ],
+  "resource_ledgers": {
+    "api_equivalent_planning_usd": 200,
+    "approved_original_transfer_ceiling_bytes": 8589934592,
+    "batch_retained_data_ceiling_bytes": 8589934592,
+    "conservative_transfer_balance_bytes": 0,
+    "current_batch_retained_data_bytes": null,
+    "current_vm_plus_iso_host_allocated_bytes": 9093566464,
+    "future_guest_disk_upper_bound_bytes": null,
+    "known_cpython_archive_bytes": 20829824,
+    "known_iso_and_checksum_transfer_bytes": 3825518142,
+    "known_prospective_transfer_subtotal_bytes": 23607106,
+    "last_guest_var_tmp_free_bytes": 55538384896,
+    "last_guest_visible_memory_bytes": 16728174592,
+    "metered_api_usd": 0,
+    "other_artifact_dependency_signature_metadata_bytes_upper_bound": null,
+    "paid_host_usd": 0,
+    "prior_installer_conservative_charge_bytes": 4764416450,
+    "prior_installer_transfer_exact_bytes": null,
+    "proposed_cumulative_transfer_ceiling_bytes": 17179869184,
+    "proposed_minimum_guest_visible_memory_bytes": 17179869184,
+    "proposed_new_transfer_headroom_bytes": 8589934592,
+    "proposed_vm_plus_iso_ceiling_bytes": 42949672960,
+    "selected_source_archive_bytes": 2777282,
+    "subscription_quota_debit": "unknown; requires later owner acceptance",
+    "subscription_turn_limits": {
+      "claude_code": 256,
+      "codex": 256
+    }
+  },
+  "resource_limits": {
+    "campaign_days_after_first_qualified_turn": 14,
+    "historical_host_use_allowed": false,
+    "native_batch": {
+      "aggregate_charge_bytes": 805306368,
+      "deadline_seconds": 600,
+      "exact_qualified_limits_required": true
+    },
+    "new_droplet_use_allowed": false,
+    "preparation": {
+      "active_seconds": 28800,
+      "concurrent_task_units": 1,
+      "cpu_count": 4,
+      "disk_bytes": 25769803776,
+      "elapsed_seconds": 86400,
+      "memory_bytes": 12884901888
+    },
+    "task_unit_seconds": 5400,
+    "validator": {
+      "cpu_count": 4,
+      "disk_bytes": 8589934592,
+      "memory_bytes": 8589934592,
+      "per_check_seconds": 900
+    }
+  },
+  "schema_version": 1,
+  "starting_index": {
+    "files_verified": 149,
+    "mismatches": 0,
+    "path": "docs/PHASE-3B-SOURCE-READY-INPUTS-2026-10-18.json"
+  },
+  "status": "blocked; no Linux operation or evaluation authority",
+  "toolchain": {
+    "actual_guest_executable_hashes": null,
+    "all_required_fields_bound": false,
+    "candidate_manifest": "docs/PHASE-3B-LINUX-ARM64-TOOLCHAIN-MANIFEST-2026-10-18.json",
+    "candidate_sha256": "0b0053635e3b18f4e7a0cbeb6991316c2a9c5e30694ba8bb3bcea4ff221a26c0",
+    "selected_artifacts": [
+      {
+        "archive_bytes": null,
+        "digest": "sha256:8d6d1aad9e69b42481eda7039507d1f7ee93698f87713cecd873d287c1931632",
+        "exact_url": "https://github.com/rtk-ai/rtk/releases/download/v0.51.0/rtk-aarch64-unknown-linux-gnu.tar.gz",
+        "executable_sha256": null,
+        "extracted_bytes_upper_bound": null,
+        "id": "rtk",
+        "license_result": null,
+        "prerequisite_closure": null,
+        "safe_member_inventory_sha256": null,
+        "source": "https://github.com/rtk-ai/rtk/releases/expanded_assets/v0.51.0",
+        "version": "0.51.0"
+      },
+      {
+        "archive_bytes": 20829824,
+        "digest": "sha256:c2c4321961fab0fb999d66e0cecf521c2ab3994c7992873ea99e306c1094fd5a",
+        "exact_url": "https://www.python.org/ftp/python/3.12.15/Python-3.12.15.tar.xz",
+        "executable_sha256": null,
+        "extracted_bytes_upper_bound": null,
+        "id": "cpython",
+        "license_result": null,
+        "note": "Source build requires an exact compiler and Ubuntu library package closure.",
+        "prerequisite_closure": null,
+        "safe_member_inventory_sha256": null,
+        "source": "https://www.python.org/downloads/release/python-31215/",
+        "version": "3.12.15"
+      },
+      {
+        "archive_bytes": null,
+        "digest": "sha256:08bfbf538bad0e8cbb0269f0173cca28d705874a67a22f60b57d99dc99e30050",
+        "exact_url": "https://nodejs.org/download/release/v22.14.0/node-v22.14.0-linux-arm64.tar.xz",
+        "executable_sha256": null,
+        "extracted_bytes_upper_bound": null,
+        "id": "node",
+        "license_result": null,
+        "prerequisite_closure": null,
+        "safe_member_inventory_sha256": null,
+        "source": "https://nodejs.org/download/release/v22.14.0/SHASUMS256.txt",
+        "version": "22.14.0"
+      },
+      {
+        "archive_bytes": null,
+        "digest": null,
+        "exact_url": "https://github.com/oven-sh/bun/releases/download/bun-v1.2.2/bun-linux-aarch64.zip",
+        "executable_sha256": null,
+        "extracted_bytes_upper_bound": null,
+        "id": "bun",
+        "license_result": null,
+        "note": "The release lists SHASUMS256.txt and a detached signature. Their contents were not verified.",
+        "prerequisite_closure": null,
+        "safe_member_inventory_sha256": null,
+        "source": "https://github.com/oven-sh/bun/releases/expanded_assets/bun-v1.2.2",
+        "version": "1.2.2"
+      },
+      {
+        "archive_bytes": null,
+        "digest": null,
+        "direct_package_source": "https://www.swift.org/install/linux/tarball/",
+        "direct_ubuntu_packages": [
+          "binutils",
+          "git",
+          "gnupg2",
+          "libc6-dev",
+          "libcurl4-openssl-dev",
+          "libedit2",
+          "libgcc-13-dev",
+          "libncurses-dev",
+          "libpython3-dev",
+          "libsqlite3-0",
+          "libstdc++-13-dev",
+          "libxml2-dev",
+          "libz3-dev",
+          "pkg-config",
+          "tzdata",
+          "zip",
+          "unzip",
+          "zlib1g-dev"
+        ],
+        "exact_url": "https://download.swift.org/swift-6.0.3-release/ubuntu2404-aarch64/swift-6.0.3-RELEASE/swift-6.0.3-RELEASE-ubuntu24.04-aarch64.tar.gz",
+        "executable_sha256": null,
+        "extracted_bytes_upper_bound": null,
+        "id": "swift",
+        "license_result": null,
+        "note": "The GPG key, signature result, package versions, package digests, and transitive closure remain unknown.",
+        "prerequisite_closure": null,
+        "safe_member_inventory_sha256": null,
+        "signature_url": "https://download.swift.org/swift-6.0.3-release/ubuntu2404-aarch64/swift-6.0.3-RELEASE/swift-6.0.3-RELEASE-ubuntu24.04-aarch64.tar.gz.sig",
+        "source": "https://www.swift.org/install/linux/ubuntu/24_04/",
+        "version": "6.0.3"
+      },
+      {
+        "archive_bytes": null,
+        "digest": "sha512:684450e6d1f7c711fffdbf32a2b86a932d17a51f4742bd27a4289e319c5b24f6743553fc7e0ad1c7163e448ed5c40cd1ecf4198b2e681acc4622d8e6193a5cf2",
+        "exact_url": "https://download.visualstudio.microsoft.com/download/pr/6f79d99b-dc38-4c44-a549-32329419bb9f/a411ec38fb374e3a4676647b236ba021/dotnet-sdk-9.0.100-linux-arm64.tar.gz",
+        "executable_sha256": null,
+        "extracted_bytes_upper_bound": null,
+        "id": "dotnet-sdk",
+        "included_runtime": "9.0.0",
+        "license_result": null,
+        "prerequisite_closure": null,
+        "safe_member_inventory_sha256": null,
+        "source": "https://github.com/dotnet/core/blob/main/release-notes/9.0/9.0.0/release.json",
+        "version": "9.0.100"
+      },
+      {
+        "archive_bytes": null,
+        "digest": "sha512:f27d66dcdd249a6a2f87241b460238960240d163ffc081d8e7b42bd62702079f1a6784e3503dbd4ea8f9e816d82142fc829c759cbf9a1682b0340f0cebe16db5",
+        "exact_url": "https://download.visualstudio.microsoft.com/download/pr/501c5677-1a80-4232-9223-2c1ad336a304/867b5afc628837835a409cf4f465211d/dotnet-runtime-8.0.11-linux-arm64.tar.gz",
+        "executable_sha256": null,
+        "extracted_bytes_upper_bound": null,
+        "id": "dotnet-runtime-net8",
+        "license_result": null,
+        "note": "A net8.0 test must execute with an 8.0 runtime. Targeting and host pack selection remains unresolved.",
+        "prerequisite_closure": null,
+        "safe_member_inventory_sha256": null,
+        "source": "https://github.com/dotnet/core/blob/main/release-notes/8.0/8.0.11/release.json",
+        "version": "8.0.11"
+      },
+      {
+        "archive_bytes": null,
+        "digest": null,
+        "exact_url": "https://api.nuget.org/v3-flatcontainer/microsoft.netcore.app.ref/8.0.11/microsoft.netcore.app.ref.8.0.11.nupkg",
+        "executable_sha256": null,
+        "extracted_bytes_upper_bound": null,
+        "id": "dotnet-targeting-pack-net8",
+        "license_result": null,
+        "note": "The host pack and installation layout must also be resolved and pinned.",
+        "prerequisite_closure": null,
+        "safe_member_inventory_sha256": null,
+        "source": "https://www.nuget.org/packages/Microsoft.NETCore.App.Ref/8.0.11",
+        "version": "8.0.11"
+      },
+      {
+        "archive_bytes": null,
+        "digest": null,
+        "exact_url": null,
+        "executable_sha256": null,
+        "extracted_bytes_upper_bound": null,
+        "id": "cmake",
+        "license_result": null,
+        "prerequisite_closure": null,
+        "safe_member_inventory_sha256": null,
+        "source": "https://packages.ubuntu.com/noble/arm64/cmake",
+        "version": null
+      },
+      {
+        "archive_bytes": null,
+        "digest": null,
+        "exact_url": null,
+        "executable_sha256": null,
+        "extracted_bytes_upper_bound": null,
+        "id": "ninja",
+        "license_result": null,
+        "prerequisite_closure": null,
+        "safe_member_inventory_sha256": null,
+        "source": "https://packages.ubuntu.com/noble/arm64/ninja-build",
+        "version": null
+      },
+      {
+        "archive_bytes": null,
+        "digest": "sha512:f1yrJhwgimKQI1kYQlxdPJcFwkNZxZrbz7Hf89EAcnLqkQ7TiESzr2FgSZn13Ga5RuHjlVUfurzwq10wk9zw2g==",
+        "exact_url": "https://registry.npmjs.org/@openai/codex/-/codex-0.160.1.tgz",
+        "executable_sha256": null,
+        "extracted_bytes_upper_bound": null,
+        "id": "codex-wrapper",
+        "license_result": null,
+        "prerequisite_closure": null,
+        "safe_member_inventory_sha256": null,
+        "source": "docs/evaluation/phase-3a-frozen/runtime-selections.json",
+        "version": "0.160.1"
+      },
+      {
+        "archive_bytes": null,
+        "digest": "sha512:JLyjBlmjPvwTaicHemw+y5xQSz3Uja2r7F/xkvS8gFufTA2g132Ak+0fo35xnJ/k2uc9fTtjm0LrsEGI78L6Ng==",
+        "exact_url": "https://registry.npmjs.org/@openai/codex/-/codex-0.160.1-linux-arm64.tgz",
+        "executable_sha256": null,
+        "extracted_bytes_upper_bound": null,
+        "id": "codex-native",
+        "license_result": null,
+        "prerequisite_closure": null,
+        "safe_member_inventory_sha256": null,
+        "source": "docs/evaluation/phase-3a-frozen/runtime-selections.json",
+        "version": "0.160.1-linux-arm64"
+      },
+      {
+        "archive_bytes": null,
+        "digest": "sha512:mfNRqC0GaEXqmP97NiwJBeYBmRuqe2VzgLUreUUaEhyJxJWx2Z6ClW1tBOncGNNXdhj6EY4LPvUIWP+oq311CA==",
+        "exact_url": "https://registry.npmjs.org/@anthropic-ai/claude-code/-/claude-code-2.1.278.tgz",
+        "executable_sha256": null,
+        "extracted_bytes_upper_bound": null,
+        "id": "claude-wrapper",
+        "license_result": null,
+        "prerequisite_closure": null,
+        "safe_member_inventory_sha256": null,
+        "source": "docs/evaluation/phase-3a-frozen/runtime-selections.json",
+        "version": "2.1.278"
+      },
+      {
+        "archive_bytes": null,
+        "digest": "sha512:QAsHwRVX03nXgAA7pTdvZSLguegbAAPuLG1vY09YHhkukqD6FlkSDwYqK9XFh4up8rFjK7qrzXtokuNULP0nEg==",
+        "exact_url": "https://registry.npmjs.org/@anthropic-ai/claude-code-linux-arm64/-/claude-code-linux-arm64-2.1.278.tgz",
+        "executable_sha256": null,
+        "extracted_bytes_upper_bound": null,
+        "id": "claude-native",
+        "license_result": null,
+        "prerequisite_closure": null,
+        "safe_member_inventory_sha256": null,
+        "source": "docs/evaluation/phase-3a-frozen/runtime-selections.json",
+        "version": "2.1.278"
+      }
+    ],
+    "ubuntu_package_closure": {
+      "architecture": "arm64",
+      "download_bytes": null,
+      "exact_repository_snapshot": null,
+      "note": "Swift lists direct prerequisites. CPython, .NET, CMake, Ninja, and all transitive Ubuntu packages still need an exact offline resolution.",
+      "packages": null,
+      "retained_bytes": null,
+      "status": "unknown",
+      "suite": "noble",
+      "transitive_versions_and_digests": null
+    }
+  }
+}

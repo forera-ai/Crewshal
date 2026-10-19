@@ -1,8 +1,26 @@
 # Crewshal rolling handoff and project memory
 
-Last updated: 2026-10-18. This record supplies the next session and the owner with project history. [DEVELOPMENT-PLAN.md](DEVELOPMENT-PLAN.md) defines the milestone acceptance checks. Preserve the session ledger.
+Last updated: 2026-10-19. This record supplies the next session and the owner with project history. [DEVELOPMENT-PLAN.md](DEVELOPMENT-PLAN.md) defines the milestone acceptance checks. Preserve the session ledger.
 
 ## Current state
+
+**October 19: Consolidated Linux campaign admission remains blocked after local binding.**
+The session began at `9678937b5f92cc7f9721d441fea7e86ba25a26f7` on `codex/phase1-architecture` with a clean worktree.
+All 149 source-ready indexed file hashes matched.
+The frozen checker passed with 23 artifacts, 768 planned units, and digest `4bd188deb0089a79d018ed13b2fd2467927a53efc4d3d4e323f8cf43bdc892c0`.
+The [campaign manifest](PHASE-3B-CAMPAIGN-ADMISSION-MANIFEST-2026-10-19.json) binds four source archive identities and records unresolved toolchain, dependency, launch, and resource bounds.
+The source extractor and B1 manual script have exact source bytes but no archive or native conformance result.
+Three network-denied local extractor tests passed with synthetic archives.
+The old transfer allowance has zero conservative remaining balance.
+The proposed RAM, infrastructure, retained-data, and transfer changes remain unapproved.
+No changed-limit approval request was made because the exact batch lacks a transfer and retained-data upper bound.
+No guest, Linux test, Linux artifact retrieval, provider request, Jev call, or evaluation row ran.
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+Linux conformance, provider identities, native baselines, Phase 3B calibration, and Phase 3C remain closed.
+The [boundary record](PHASE-3B-CAMPAIGN-ADMISSION-BOUNDARY-2026-10-19.md) gives commands, results, costs, failures, and limits.
+The checkpoint version is `0.15.13`. The delivery revision is the commit containing this entry.
+Use the [next prompt](PHASE-3B-CAMPAIGN-ADMISSION-NEXT-SESSION-2026-10-19.md) and [exact inputs](PHASE-3B-CAMPAIGN-ADMISSION-INPUTS-2026-10-19.json).
+Earlier dated entries remain historical records.
 
 **October 18: Core source work is ready for consolidated Linux campaign admission.**
 The session began at `e314651` on `codex/phase1-architecture` with a clean worktree.

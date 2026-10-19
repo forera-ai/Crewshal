@@ -1,5 +1,17 @@
 # Crewshal phased development and acceptance plan
 
+## Current campaign admission boundary — 2026-10-19
+
+The [campaign manifest](PHASE-3B-CAMPAIGN-ADMISSION-MANIFEST-2026-10-19.json) binds known source inputs and records unresolved operational inputs.
+The [boundary record](PHASE-3B-CAMPAIGN-ADMISSION-BOUNDARY-2026-10-19.md) gives local checks and limits.
+The source extractor and B1 manual script are source-bound candidates without actual archive or native conformance.
+The old transfer allowance has zero conservative remaining balance.
+Changed RAM, infrastructure, retained-data, and transfer rules remain unapproved.
+The exact batch cannot support an approval request until its transfer and retained-data upper bounds are known.
+Use the [next prompt](PHASE-3B-CAMPAIGN-ADMISSION-NEXT-SESSION-2026-10-19.md) and [exact inputs](PHASE-3B-CAMPAIGN-ADMISSION-INPUTS-2026-10-19.json).
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+Linux qualification, native baselines, Phase 3B calibration, and Phase 3C remain closed.
+
 ## Current source boundary — 2026-10-18
 
 The completed Phase 2D, Phase 2E, and Phase 3A source milestones passed selected local Mac acceptance again.

@@ -1,5 +1,16 @@
 # Crewshal phased development and acceptance plan
 
+## Current exact campaign batch metadata boundary — 2026-10-19
+
+The [single admission ledger](PHASE-3B-CAMPAIGN-ADMISSION-MANIFEST-2026-10-19.json) records ten tool package or archive counts and four source archive counts.
+The [latest boundary](PHASE-3B-CAMPAIGN-BATCH-CLOSURE-METADATA-BOUNDARY-2026-10-19.md) records a 1,118,368,549-byte prospective lower bound.
+Four npm byte counts, safe archive inventories, extraction bounds, Ubuntu closure, and repository closures remain unbound.
+The old transfer balance remains zero under conservative accounting.
+Exact transfer, retained-data, guest-disk, and infrastructure upper bounds remain missing or unapproved.
+No changed-limit request, Linux operation, or evaluation row is admitted.
+Use the [next prompt](PHASE-3B-CAMPAIGN-BATCH-CLOSURE-CONTINUATION-2026-10-19.md) and [exact inputs](PHASE-3B-CAMPAIGN-BATCH-CLOSURE-METADATA-INPUTS-2026-10-19.json).
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+
 ## Current exact campaign batch boundary — 2026-10-19
 
 The [single admission ledger](PHASE-3B-CAMPAIGN-ADMISSION-MANIFEST-2026-10-19.json) binds eight tool archive sizes and four source archive sizes.

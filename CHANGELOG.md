@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.15.15 — 2026-10-19
+
+- Verify all 159 continuation inputs and the unchanged frozen Phase 3A package.
+- Record official Noble arm64 CMake and Ninja candidate package sizes and SHA-256 metadata.
+- Confirm that npm version metadata omits compressed byte counts for all four selected runtime tarballs.
+- Keep archive safety, extraction bounds, Ubuntu and repository closures, and exact resource upper bounds unknown.
+- Record a 1,118,368,549-byte prospective lower bound and zero conservative old transfer balance.
+- Publish the blocked metadata boundary, next prompt, and exact input index. No Linux or evaluation work ran.
+
 ## 0.15.14 — 2026-10-19
 
 - Verify all 156 continuation inputs and the unchanged frozen Phase 3A package.

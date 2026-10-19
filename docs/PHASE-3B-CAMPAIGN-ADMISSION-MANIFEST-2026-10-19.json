@@ -2,7 +2,7 @@
   "admission_blockers": [
     "Changed RAM, infrastructure, retained-data, and transfer rules lack owner approval.",
     "The current transfer balance is zero under conservative accounting.",
-    "Six tool entries still lack exact archive or package byte counts.",
+    "Four npm tarballs still lack exact compressed archive byte counts.",
     "Selected archives lack verified safe member inventories and extraction bounds.",
     "Ubuntu and selected repository dependency closures lack exact read-only package snapshots.",
     "The source extractor has no admitted selected archive result.",
@@ -12,7 +12,7 @@
   "approval_request": {
     "changed_limits_requested": false,
     "exact_batch_reviewable": false,
-    "reason": "Six tool entries still lack exact archive or package bytes. Safe archive inventories, Ubuntu and repository closures, transfer, retained-data, guest-disk, and launch bounds remain incomplete."
+    "reason": "Four npm tarballs still lack exact compressed bytes. Safe archive inventories, Ubuntu and repository closures, transfer, retained-data, guest-disk, and launch bounds remain incomplete."
   },
   "b1": {
     "effective_native_command_bound": false,
@@ -440,23 +440,25 @@
     "archive_member_inventories_verified": false,
     "artifact_body_bytes_retrieved": 0,
     "date": "2026-10-19",
-    "entry_revision": "b5259f2505b74c4059ee72940463e18fa357d2a0",
+    "entry_revision": "779b2c17c23fa6bc3f6f0b4edd53ea3b10df9a7d",
     "environment": "Darwin 27.2.0 arm64; Python 3.12.15; RTK 0.51.0",
     "http_metadata_response_bytes": null,
     "limit_statement": "The known subtotal is a lower bound. It cannot support a changed-limit approval request.",
     "metadata_methods": [
       "GitHub release JSON for RTK and Bun sizes.",
       "HTTP HEAD for seven exact artifact URLs.",
-      "npm version JSON for the Codex wrapper."
+      "npm version JSON for the Codex wrapper.",
+      "Official Ubuntu Noble arm64 package download pages for CMake and Ninja exact candidate package sizes and SHA-256 digests.",
+      "npm version JSON for all four selected runtime tarballs; dist metadata omitted compressed tarball byte counts."
     ],
     "missing_archive_bytes_ids": [
-      "cmake",
-      "ninja",
       "codex-wrapper",
       "codex-native",
       "claude-wrapper",
       "claude-native"
     ],
+    "npm_version_metadata_response_bytes": 12488,
+    "previous_read_only_research_entry_revision": "b5259f2505b74c4059ee72940463e18fa357d2a0",
     "repository_dependency_snapshots": null,
     "selected_source_archive_access_admitted": false,
     "selected_source_extractor_real_archive_result": null,
@@ -472,9 +474,9 @@
     "future_guest_disk_upper_bound_bytes": null,
     "known_cpython_archive_bytes": 20829824,
     "known_iso_and_checksum_transfer_bytes": 3825518142,
-    "known_prospective_transfer_subtotal_bytes": 1107938715,
+    "known_prospective_transfer_subtotal_bytes": 1118368549,
     "known_prospective_transfer_subtotal_is_upper_bound": false,
-    "known_tool_archive_bytes_subtotal": 1105161433,
+    "known_tool_archive_bytes_subtotal": 1115591267,
     "last_guest_var_tmp_free_bytes": 55538384896,
     "last_guest_visible_memory_bytes": 16728174592,
     "metered_api_usd": 0,
@@ -484,7 +486,7 @@
     "prior_installer_transfer_exact_bytes": null,
     "proposed_cumulative_transfer_ceiling_bytes": 17179869184,
     "proposed_minimum_guest_visible_memory_bytes": 17179869184,
-    "proposed_new_transfer_headroom_after_known_archives_bytes": 7481995877,
+    "proposed_new_transfer_headroom_after_known_archives_bytes": 7471566043,
     "proposed_new_transfer_headroom_bytes": 8589934592,
     "proposed_vm_plus_iso_ceiling_bytes": 42949672960,
     "selected_source_archive_bytes": 2777282,
@@ -672,30 +674,36 @@
         "version": "8.0.11"
       },
       {
-        "archive_bytes": null,
-        "digest": null,
+        "archive_bytes": 10305022,
+        "archive_bytes_evidence": "Official Ubuntu Noble arm64 package download page exact size; no package body read. The repository snapshot and installed closure remain unbound.",
+        "digest": "sha256:0bf2a58f636ad286e7f4552e709dfd1209a4d70056548a6c0c4965d7067e95a5",
         "exact_url": null,
         "executable_sha256": null,
         "extracted_bytes_upper_bound": null,
         "id": "cmake",
         "license_result": null,
+        "package_download_metadata_url": "https://packages.ubuntu.com/noble/arm64/cmake/download",
+        "package_filename": "cmake_3.28.3-1build7_arm64.deb",
         "prerequisite_closure": null,
         "safe_member_inventory_sha256": null,
         "source": "https://packages.ubuntu.com/noble/arm64/cmake",
-        "version": null
+        "version": "3.28.3-1build7"
       },
       {
-        "archive_bytes": null,
-        "digest": null,
+        "archive_bytes": 124812,
+        "archive_bytes_evidence": "Official Ubuntu Noble arm64 package download page exact size; no package body read. The repository snapshot and installed closure remain unbound.",
+        "digest": "sha256:b261a758b0c07e7ffa0d56b34e577d5c2d0122aa14f806a176e9b2609b2706b0",
         "exact_url": null,
         "executable_sha256": null,
         "extracted_bytes_upper_bound": null,
         "id": "ninja",
         "license_result": null,
+        "package_download_metadata_url": "https://packages.ubuntu.com/noble/arm64/ninja-build/download",
+        "package_filename": "ninja-build_1.11.1-2_arm64.deb",
         "prerequisite_closure": null,
         "safe_member_inventory_sha256": null,
         "source": "https://packages.ubuntu.com/noble/arm64/ninja-build",
-        "version": null
+        "version": "1.11.1-2"
       },
       {
         "archive_bytes": null,

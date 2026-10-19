@@ -4,6 +4,24 @@ Last updated: 2026-10-19. This record supplies the next session and the owner wi
 
 ## Current state
 
+**October 19: Exact campaign batch closure remains blocked after Ubuntu and npm metadata review.**
+The session began at `779b2c17c23fa6bc3f6f0b4edd53ea3b10df9a7d` with a clean worktree.
+All 159 continuation inputs matched their recorded size and SHA-256.
+The frozen checker retained 23 artifacts, 768 planned units, and digest `4bd188deb0089a79d018ed13b2fd2467927a53efc4d3d4e323f8cf43bdc892c0`.
+The [single ledger](PHASE-3B-CAMPAIGN-ADMISSION-MANIFEST-2026-10-19.json) now records exact official package metadata for CMake and Ninja.
+Ten tool package or archive counts and four source archive counts give a 1,118,368,549-byte prospective lower bound.
+Four npm tarballs still lack exact compressed counts. Safe archives, extraction bounds, Ubuntu closure, and repository closures remain unbound.
+The old transfer allowance has zero conservative remaining balance.
+Changed RAM, infrastructure, retained-data, and transfer rules remain unapproved.
+No exact transfer, retained-data, or guest-disk upper bound supports a changed-limit request.
+No selected source archive, artifact body, guest, Linux test, provider request, Jev call, or evaluation row ran.
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+Linux qualification, provider identity, native baselines, Phase 3B calibration, and Phase 3C remain closed.
+The [latest boundary](PHASE-3B-CAMPAIGN-BATCH-CLOSURE-METADATA-BOUNDARY-2026-10-19.md) records commands, results, costs, failures, and limits.
+The checkpoint version is `0.15.15`. The delivery revision is the commit containing this entry.
+Use the [next prompt](PHASE-3B-CAMPAIGN-BATCH-CLOSURE-CONTINUATION-2026-10-19.md) and [exact inputs](PHASE-3B-CAMPAIGN-BATCH-CLOSURE-METADATA-INPUTS-2026-10-19.json).
+Earlier dated entries remain historical records.
+
 **October 19: Exact campaign batch closure remains blocked after read-only metadata checks.**
 The session began at `b5259f2505b74c4059ee72940463e18fa357d2a0` with a clean worktree.
 All 156 continuation inputs matched their recorded size and SHA-256.

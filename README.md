@@ -10,6 +10,15 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**October 19: Exact campaign batch closure remains blocked after Ubuntu and npm metadata review.**
+The [single admission ledger](docs/PHASE-3B-CAMPAIGN-ADMISSION-MANIFEST-2026-10-19.json) records ten tool package or archive byte counts and four source archive byte counts.
+The [latest boundary](docs/PHASE-3B-CAMPAIGN-BATCH-CLOSURE-METADATA-BOUNDARY-2026-10-19.md) records four missing npm counts and unresolved archive and dependency closures.
+The known prospective subtotal is 1,118,368,549 bytes. It is a lower bound, not an admission ceiling.
+The old transfer balance remains zero. The exact batch cannot support a changed-limit approval request.
+Use the [next prompt](docs/PHASE-3B-CAMPAIGN-BATCH-CLOSURE-CONTINUATION-2026-10-19.md) and [exact inputs](docs/PHASE-3B-CAMPAIGN-BATCH-CLOSURE-METADATA-INPUTS-2026-10-19.json).
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+Linux qualification, provider identities, native baselines, Phase 3B calibration, and Phase 3C remain closed.
+
 **October 19: Exact campaign batch closure remains blocked after read-only metadata checks.**
 The [single admission ledger](docs/PHASE-3B-CAMPAIGN-ADMISSION-MANIFEST-2026-10-19.json) now binds eight tool archive byte counts and four source archive byte counts.
 The [latest boundary](docs/PHASE-3B-CAMPAIGN-BATCH-CLOSURE-BLOCKED-2026-10-19.md) records six missing tool byte counts and unverified archive and dependency closures.

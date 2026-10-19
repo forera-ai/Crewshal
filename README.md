@@ -10,6 +10,15 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**October 19: Exact campaign batch closure remains blocked after read-only metadata checks.**
+The [single admission ledger](docs/PHASE-3B-CAMPAIGN-ADMISSION-MANIFEST-2026-10-19.json) now binds eight tool archive byte counts and four source archive byte counts.
+The [latest boundary](docs/PHASE-3B-CAMPAIGN-BATCH-CLOSURE-BLOCKED-2026-10-19.md) records six missing tool byte counts and unverified archive and dependency closures.
+The known prospective archive subtotal is 1,107,938,715 bytes. It is a lower bound, not an admission ceiling.
+The old transfer allowance has zero conservative remaining balance. No changed-limit approval request is ripe.
+Use the [next prompt](docs/PHASE-3B-CAMPAIGN-BATCH-CLOSURE-NEXT-SESSION-2026-10-19.md) and [exact inputs](docs/PHASE-3B-CAMPAIGN-BATCH-CLOSURE-INPUTS-2026-10-19.json).
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+Linux qualification, provider identities, native baselines, Phase 3B calibration, and Phase 3C remain closed.
+
 **October 19: Consolidated Linux campaign admission remains blocked.**
 The [campaign manifest](docs/PHASE-3B-CAMPAIGN-ADMISSION-MANIFEST-2026-10-19.json) binds four source archives, a candidate extractor, and the B1 stage order.
 The [boundary record](docs/PHASE-3B-CAMPAIGN-ADMISSION-BOUNDARY-2026-10-19.md) records missing toolchain, dependency, launch, and resource bounds.

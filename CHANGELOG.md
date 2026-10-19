@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.15.14 — 2026-10-19
+
+- Verify all 156 continuation inputs and the unchanged frozen Phase 3A package.
+- Bind seven additional archive byte counts through read-only metadata. No archive body was read.
+- Keep six tool byte counts, safe archive inventories, extraction bounds, Ubuntu packages, and repository closures unknown.
+- Record a 1,107,938,715-byte prospective archive lower bound and zero conservative old transfer balance.
+- Publish the blocked batch boundary, next prompt, and exact input index. No Linux or evaluation work ran.
+
 ## 0.15.13 — 2026-10-19
 
 - Verify all 149 source-ready input hashes and the unchanged frozen Phase 3A package.

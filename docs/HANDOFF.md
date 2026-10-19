@@ -4,6 +4,26 @@ Last updated: 2026-10-19. This record supplies the next session and the owner wi
 
 ## Current state
 
+**October 19: Exact campaign batch closure remains blocked after read-only metadata checks.**
+The session began at `b5259f2505b74c4059ee72940463e18fa357d2a0` with a clean worktree.
+All 156 continuation inputs matched their recorded size and SHA-256.
+The frozen checker retained 23 artifacts, 768 planned units, and digest `4bd188deb0089a79d018ed13b2fd2467927a53efc4d3d4e323f8cf43bdc892c0`.
+The [single ledger](PHASE-3B-CAMPAIGN-ADMISSION-MANIFEST-2026-10-19.json) now binds eight tool archive byte counts and four source archive byte counts.
+The prospective archive subtotal is 1,107,938,715 bytes, which is only a lower bound.
+Four npm tarballs and CMake/Ninja packages still lack exact byte counts.
+Safe archive inventories, extraction bounds, Ubuntu packages, and repository dependency closures remain unbound.
+No selected source archive was accessed. Three network-denied synthetic extractor tests passed.
+The old transfer allowance has zero conservative remaining balance.
+Changed RAM, infrastructure, retained-data, and transfer rules remain unapproved.
+No exact transfer, retained-data, or guest-disk upper bound supports a changed-limit request.
+No guest, Linux test, artifact body, installation, provider request, Jev call, or evaluation row ran.
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+Linux qualification, provider identity, native baselines, Phase 3B calibration, and Phase 3C remain closed.
+The [latest boundary](PHASE-3B-CAMPAIGN-BATCH-CLOSURE-BLOCKED-2026-10-19.md) records commands, results, costs, failures, and limits.
+The checkpoint version is `0.15.14`. The delivery revision is the commit containing this entry.
+Use the [next prompt](PHASE-3B-CAMPAIGN-BATCH-CLOSURE-NEXT-SESSION-2026-10-19.md) and [exact inputs](PHASE-3B-CAMPAIGN-BATCH-CLOSURE-INPUTS-2026-10-19.json).
+Earlier dated entries remain historical records.
+
 **October 19: Consolidated Linux campaign admission remains blocked after local binding.**
 The session began at `9678937b5f92cc7f9721d441fea7e86ba25a26f7` on `codex/phase1-architecture` with a clean worktree.
 All 149 source-ready indexed file hashes matched.

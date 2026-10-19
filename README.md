@@ -10,6 +10,15 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**October 19: The approved archive continuation retrieved and verified all eight remaining archives.**
+Seven archives matched pinned digests. Swift passed detached-signature verification under the pinned key.
+The original failed receipt remains halted. The new receipt records eight successful attempts and no incomplete read.
+The [completion record](docs/PHASE-3B-CAPPED-ARCHIVE-CONTINUATION-COMPLETION-2026-10-19.md) gives commands, hashes, charges, and limits.
+The cumulative conservative charge is 10,008,484,533 bytes. All further body requests are closed.
+Use the [next prompt](docs/PHASE-3B-CAPPED-ARCHIVE-COMPLETE-NEXT-SESSION-2026-10-19.md) and [exact inputs](docs/PHASE-3B-CAPPED-ARCHIVE-COMPLETE-INPUTS-2026-10-19.json).
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+Linux qualification, Phase 3B calibration, and Phase 3C remain closed.
+
 **October 19: The halted archive continuation is ready for a separate owner decision.**
 The new transport binds the original halted receipt and rejects all eight attempted IDs before network access.
 Twelve offline tests cover redirects, errors, crash reservations, receipt changes, digest failures, and quota stops.

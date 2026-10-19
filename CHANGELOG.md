@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.16.1 — 2026-10-19
+
+- Record separate owner approval of seven digest-bound requests and Swift signature-first verification.
+- Verify all eight continuation archives and preserve both SQLite receipts and every original charge.
+- Close further body requests after a 10,008,484,533-byte cumulative conservative charge.
+- Keep archive execution, guests, Linux tests, providers, and evaluation rows closed.
+
 ## 0.16.0 — 2026-10-19
 
 - Add a separate, receipt-bound archive continuation transport for the eight unattempted IDs. Keep the original receipt halted and reject old IDs before network access.

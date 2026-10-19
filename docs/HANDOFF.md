@@ -4,6 +4,27 @@ Last updated: 2026-10-19. This record supplies the next session and the owner wi
 
 ## Current state
 
+**October 19: The approved capped archive continuation completed its eight requests.**
+The session began at `7d504534e74b1a4f2aea7557025df2c68c0d5cbe` with a clean worktree.
+All 175 exact review inputs matched their recorded sizes and SHA-256 values.
+The owner separately approved seven digest-bound requests and Swift signature-first verification in this Codex chat.
+The new receipt bound manifest SHA-256 `7e2b17bfc9409d01d606ebae3f081dfe5305c10032b9fbd115bd6227a1d78ffc`.
+Seven archives matched pinned digests. Swift passed pinned input hashes, key fingerprint, and detached-signature verification.
+The new receipt passed SQLite integrity checks and retained eight successful attempts with no incomplete read.
+Its SHA-256 is `01df021749e72c6aba7e309e603a815d83d66e7026161fab9c43cb2a8bd9cf37`.
+The original receipt remains failed and halted with SHA-256 `9cd1b85273ca68a29d156a35556b7dbf0cc8944da8ec5db3e26c15812c1f93f4`.
+No attempted URL was retried. All further body requests are closed.
+The prior 8,589,934,592-byte and original 311,183,922-byte conservative charges remain intact.
+The final cumulative conservative charge is 10,008,484,533 bytes under the 10,821,946,779-byte cap.
+The image, retained archives, source inventories, and original failed `.NET SDK` receipt remain intact.
+The [completion record](PHASE-3B-CAPPED-ARCHIVE-CONTINUATION-COMPLETION-2026-10-19.md) records commands, results, costs, failures, and limits.
+No archive was extracted or executed. No guest, Linux test, native turn, provider request, Jev call, or evaluation row ran.
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+Linux qualification, Phase 3B calibration, and Phase 3C remain closed.
+The checkpoint version is `0.16.1`. The delivery revision is the commit containing this entry.
+Use the [next prompt](PHASE-3B-CAPPED-ARCHIVE-COMPLETE-NEXT-SESSION-2026-10-19.md) and [exact inputs](PHASE-3B-CAPPED-ARCHIVE-COMPLETE-INPUTS-2026-10-19.json).
+Earlier dated entries remain historical records.
+
 **October 19: The halted archive continuation is prepared for a separate owner decision.**
 The session began at `901c46fefde60cb099f0cc383baf7bfc7e4051e6` with a clean worktree.
 All 170 exact entry inputs matched their recorded sizes and SHA-256 values.

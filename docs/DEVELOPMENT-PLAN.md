@@ -1,5 +1,16 @@
 # Crewshal phased development and acceptance plan
 
+## Current capped archive continuation completion — 2026-10-19
+
+The owner approved the separate seven-request continuation and Swift signature-first verification.
+All eight continuation archives passed their pinned digest or detached-signature checks.
+The [completion record](PHASE-3B-CAPPED-ARCHIVE-CONTINUATION-COMPLETION-2026-10-19.md) gives receipts, commands, charges, and limits.
+The original receipt remains failed and halted. The new receipt has no incomplete read.
+All further archive body requests are closed. The cumulative conservative charge is 10,008,484,533 bytes.
+Use the [next prompt](PHASE-3B-CAPPED-ARCHIVE-COMPLETE-NEXT-SESSION-2026-10-19.md) and [exact inputs](PHASE-3B-CAPPED-ARCHIVE-COMPLETE-INPUTS-2026-10-19.json).
+No archive was extracted or executed. Linux qualification, Phase 3B calibration, and Phase 3C remain closed.
+All 192 development rows remain planned, and all 576 sealed rows remain unexposed.
+
 ## Current halted archive review boundary — 2026-10-19
 
 The [review record](PHASE-3B-CAPPED-ARCHIVE-CONTINUATION-REVIEW-2026-10-19.md) binds a separate transport and receipt plan.

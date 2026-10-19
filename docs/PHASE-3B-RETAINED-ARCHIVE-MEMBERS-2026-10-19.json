@@ -1,0 +1,548 @@
+{
+  "archives": [
+    {
+      "archive_bytes": 36226213,
+      "counts": {
+        "directory": 1,
+        "regular": 1
+      },
+      "finding_examples": {},
+      "findings": {},
+      "format": "zip",
+      "id": "bun",
+      "largest_regular_bytes": 92743312,
+      "links": [],
+      "member_metadata_sha256": "1c936b30fb3b79157a1eee8c41455231a4e59414bc91ac58c1d5ed2e2b50e2f3",
+      "members": 2,
+      "regular_content_upper_bytes": 92743312
+    },
+    {
+      "archive_bytes": 104532073,
+      "counts": {
+        "regular": 4
+      },
+      "finding_examples": {},
+      "findings": {},
+      "format": "tar",
+      "id": "claude-native",
+      "largest_regular_bytes": 234021104,
+      "links": [],
+      "member_metadata_sha256": "12302a86fefd1dd9ae0b261023015195b50628f08563988fd0fa3d8a3cbe4b0c",
+      "members": 4,
+      "regular_content_upper_bytes": 234021698
+    },
+    {
+      "archive_bytes": 27538,
+      "counts": {
+        "regular": 7
+      },
+      "finding_examples": {},
+      "findings": {},
+      "format": "tar",
+      "id": "claude-wrapper",
+      "largest_regular_bytes": 167766,
+      "links": [],
+      "member_metadata_sha256": "2515e79018588a16bb76d428582a29e3baa3ad1bf18f2cff0973821c445555d8",
+      "members": 7,
+      "regular_content_upper_bytes": 184119
+    },
+    {
+      "archive_bytes": 155715063,
+      "counts": {
+        "regular": 46
+      },
+      "finding_examples": {},
+      "findings": {},
+      "format": "tar",
+      "id": "codex-native",
+      "largest_regular_bytes": 248966648,
+      "links": [],
+      "member_metadata_sha256": "acb4d855dbb2101283d3204948f182ab79d59d10dd598a6b12efeb5daae38478",
+      "members": 46,
+      "regular_content_upper_bytes": 401682212
+    },
+    {
+      "archive_bytes": 4904,
+      "counts": {
+        "regular": 3
+      },
+      "finding_examples": {},
+      "findings": {},
+      "format": "tar",
+      "id": "codex-wrapper",
+      "largest_regular_bytes": 8790,
+      "links": [],
+      "member_metadata_sha256": "5cb1a07ee27158bd3cf3dda8e28eca294a6382d6f39a28b88307e2edc1d726b5",
+      "members": 3,
+      "regular_content_upper_bytes": 13206
+    },
+    {
+      "archive_bytes": 20829824,
+      "counts": {
+        "directory": 357,
+        "regular": 4578
+      },
+      "finding_examples": {},
+      "findings": {},
+      "format": "tar",
+      "id": "cpython",
+      "largest_regular_bytes": 4289021,
+      "links": [],
+      "member_metadata_sha256": "2f5ec9601fbe140f837669ba636c5863eb563a497367d99637c166ec5488176e",
+      "members": 4935,
+      "regular_content_upper_bytes": 101715479
+    },
+    {
+      "archive_bytes": 198331,
+      "counts": {
+        "directory": 67,
+        "regular": 281
+      },
+      "finding_examples": {},
+      "findings": {},
+      "format": "tar",
+      "id": "dotnet-1",
+      "largest_regular_bytes": 69942,
+      "links": [],
+      "member_metadata_sha256": "cfab1d3d097741b7c2d38b25010784d54c9de31efa2f6885b2b234a0a1b7dd88",
+      "members": 348,
+      "regular_content_upper_bytes": 1152465
+    },
+    {
+      "archive_bytes": 29865496,
+      "counts": {
+        "directory": 7,
+        "regular": 188
+      },
+      "finding_examples": {
+        "dot_component": [
+          ".",
+          "./ThirdPartyNotices.txt",
+          "./host",
+          "./host/fxr"
+        ],
+        "noncanonical_path": [
+          ".",
+          "./ThirdPartyNotices.txt",
+          "./host",
+          "./host/fxr"
+        ]
+      },
+      "findings": {
+        "dot_component": 195,
+        "noncanonical_path": 195
+      },
+      "format": "tar",
+      "id": "dotnet-runtime-net8",
+      "largest_regular_bytes": 14188544,
+      "links": [],
+      "member_metadata_sha256": "dbb060d28678d682a8165a2f8e3c5b01a58bccc9dc46bfd21739de16e81da6e9",
+      "members": 195,
+      "regular_content_upper_bytes": 78708249
+    },
+    {
+      "archive_bytes": 204124866,
+      "counts": {
+        "directory": 816,
+        "regular": 4623
+      },
+      "finding_examples": {
+        "dot_component": [
+          ".",
+          "./host",
+          "./host/fxr",
+          "./host/fxr/9.0.0"
+        ],
+        "noncanonical_path": [
+          ".",
+          "./host",
+          "./host/fxr",
+          "./host/fxr/9.0.0"
+        ]
+      },
+      "findings": {
+        "dot_component": 5439,
+        "noncanonical_path": 5439
+      },
+      "format": "tar",
+      "id": "dotnet-sdk",
+      "largest_regular_bytes": 43825664,
+      "links": [],
+      "member_metadata_sha256": "5540e5da76a0db3fd8de0e0ada0f1f8486162c9da3e83cc6f3aeee4791c230c3",
+      "members": 5439,
+      "regular_content_upper_bytes": 593859529
+    },
+    {
+      "archive_bytes": 6845027,
+      "counts": {
+        "regular": 351
+      },
+      "finding_examples": {},
+      "findings": {},
+      "format": "zip",
+      "id": "dotnet-targeting-pack-net8",
+      "largest_regular_bytes": 7487681,
+      "links": [],
+      "member_metadata_sha256": "61f4d62610d895e09235f4ce2495bfaa16d8f4d85195883026cfee45fe3eb98d",
+      "members": 351,
+      "regular_content_upper_bytes": 39366330
+    },
+    {
+      "archive_bytes": 28636440,
+      "counts": {
+        "directory": 1118,
+        "regular": 4808,
+        "symlink": 3
+      },
+      "finding_examples": {
+        "symlink": [
+          "node-v22.14.0-linux-arm64/bin/npm",
+          "node-v22.14.0-linux-arm64/bin/npx",
+          "node-v22.14.0-linux-arm64/bin/corepack"
+        ]
+      },
+      "findings": {
+        "symlink": 3
+      },
+      "format": "tar",
+      "id": "node",
+      "largest_regular_bytes": 117532552,
+      "links": [
+        {
+          "escapes_root": false,
+          "kind": "symlink",
+          "name": "node-v22.14.0-linux-arm64/bin/npm",
+          "target": "../lib/node_modules/npm/bin/npm-cli.js"
+        },
+        {
+          "escapes_root": false,
+          "kind": "symlink",
+          "name": "node-v22.14.0-linux-arm64/bin/npx",
+          "target": "../lib/node_modules/npm/bin/npx-cli.js"
+        },
+        {
+          "escapes_root": false,
+          "kind": "symlink",
+          "name": "node-v22.14.0-linux-arm64/bin/corepack",
+          "target": "../lib/node_modules/corepack/dist/corepack.js"
+        }
+      ],
+      "member_metadata_sha256": "5131b23dbfee5da69427906389710fe6842faa09390547fdddc8540459c5c2ce",
+      "members": 5929,
+      "regular_content_upper_bytes": 182036840
+    },
+    {
+      "archive_bytes": 343014,
+      "counts": {
+        "directory": 26,
+        "regular": 147
+      },
+      "finding_examples": {},
+      "findings": {},
+      "format": "tar",
+      "id": "python-1",
+      "largest_regular_bytes": 114748,
+      "links": [],
+      "member_metadata_sha256": "8298750940738d2ca3e161da5fa6a9f5c2d489787224e83017abd48b73bc7ff5",
+      "members": 173,
+      "regular_content_upper_bytes": 947826
+    },
+    {
+      "archive_bytes": 4483862,
+      "counts": {
+        "regular": 1
+      },
+      "finding_examples": {},
+      "findings": {},
+      "format": "tar",
+      "id": "rtk",
+      "largest_regular_bytes": 9333072,
+      "links": [],
+      "member_metadata_sha256": "5242de0470d2609287320981c7a9f09c95a28c4dab12103aae8488151fa4ce7c",
+      "members": 1,
+      "regular_content_upper_bytes": 9333072
+    },
+    {
+      "archive_bytes": 655699,
+      "counts": {
+        "directory": 42,
+        "regular": 194
+      },
+      "finding_examples": {},
+      "findings": {},
+      "format": "tar",
+      "id": "swift-1",
+      "largest_regular_bytes": 462294,
+      "links": [],
+      "member_metadata_sha256": "b067c029fb8793060e5747a406dbd74b78b08a7fff3253774b15a1b34dbea1ec",
+      "members": 236,
+      "regular_content_upper_bytes": 1549662
+    },
+    {
+      "archive_bytes": 774149705,
+      "counts": {
+        "directory": 155,
+        "regular": 1535,
+        "symlink": 37
+      },
+      "finding_examples": {
+        "symlink": [
+          "swift-6.0.3-RELEASE-ubuntu24.04-aarch64/usr/bin/aarch64-swift-linux-musl-clang++.cfg",
+          "swift-6.0.3-RELEASE-ubuntu24.04-aarch64/usr/bin/clang",
+          "swift-6.0.3-RELEASE-ubuntu24.04-aarch64/usr/bin/clang++",
+          "swift-6.0.3-RELEASE-ubuntu24.04-aarch64/usr/bin/clang-cache"
+        ]
+      },
+      "findings": {
+        "symlink": 37
+      },
+      "format": "tar",
+      "id": "swift",
+      "largest_regular_bytes": 196086360,
+      "links": [
+        {
+          "escapes_root": false,
+          "kind": "symlink",
+          "name": "swift-6.0.3-RELEASE-ubuntu24.04-aarch64/usr/bin/aarch64-swift-linux-musl-clang++.cfg",
+          "target": "aarch64-swift-linux-musl-clang.cfg"
+        },
+        {
+          "escapes_root": false,
+          "kind": "symlink",
+          "name": "swift-6.0.3-RELEASE-ubuntu24.04-aarch64/usr/bin/clang",
+          "target": "clang-17"
+        },
+        {
+          "escapes_root": false,
+          "kind": "symlink",
+          "name": "swift-6.0.3-RELEASE-ubuntu24.04-aarch64/usr/bin/clang++",
+          "target": "clang"
+        },
+        {
+          "escapes_root": false,
+          "kind": "symlink",
+          "name": "swift-6.0.3-RELEASE-ubuntu24.04-aarch64/usr/bin/clang-cache",
+          "target": "clang"
+        },
+        {
+          "escapes_root": false,
+          "kind": "symlink",
+          "name": "swift-6.0.3-RELEASE-ubuntu24.04-aarch64/usr/bin/clang-cl",
+          "target": "clang"
+        },
+        {
+          "escapes_root": false,
+          "kind": "symlink",
+          "name": "swift-6.0.3-RELEASE-ubuntu24.04-aarch64/usr/bin/clang-cpp",
+          "target": "clang"
+        },
+        {
+          "escapes_root": false,
+          "kind": "symlink",
+          "name": "swift-6.0.3-RELEASE-ubuntu24.04-aarch64/usr/bin/ld.lld",
+          "target": "lld"
+        },
+        {
+          "escapes_root": false,
+          "kind": "symlink",
+          "name": "swift-6.0.3-RELEASE-ubuntu24.04-aarch64/usr/bin/ld64.lld",
+          "target": "lld"
+        },
+        {
+          "escapes_root": false,
+          "kind": "symlink",
+          "name": "swift-6.0.3-RELEASE-ubuntu24.04-aarch64/usr/bin/lld-link",
+          "target": "lld"
+        },
+        {
+          "escapes_root": false,
+          "kind": "symlink",
+          "name": "swift-6.0.3-RELEASE-ubuntu24.04-aarch64/usr/bin/llvm-ranlib",
+          "target": "llvm-ar"
+        },
+        {
+          "escapes_root": false,
+          "kind": "symlink",
+          "name": "swift-6.0.3-RELEASE-ubuntu24.04-aarch64/usr/bin/swift",
+          "target": "swift-driver"
+        },
+        {
+          "escapes_root": false,
+          "kind": "symlink",
+          "name": "swift-6.0.3-RELEASE-ubuntu24.04-aarch64/usr/bin/swift-api-digester",
+          "target": "swift-frontend"
+        },
+        {
+          "escapes_root": false,
+          "kind": "symlink",
+          "name": "swift-6.0.3-RELEASE-ubuntu24.04-aarch64/usr/bin/swift-api-extract",
+          "target": "swift-frontend"
+        },
+        {
+          "escapes_root": false,
+          "kind": "symlink",
+          "name": "swift-6.0.3-RELEASE-ubuntu24.04-aarch64/usr/bin/swift-autolink-extract",
+          "target": "swift-frontend"
+        },
+        {
+          "escapes_root": false,
+          "kind": "symlink",
+          "name": "swift-6.0.3-RELEASE-ubuntu24.04-aarch64/usr/bin/swift-build",
+          "target": "swift-package"
+        },
+        {
+          "escapes_root": false,
+          "kind": "symlink",
+          "name": "swift-6.0.3-RELEASE-ubuntu24.04-aarch64/usr/bin/swift-cache-tool",
+          "target": "swift-frontend"
+        },
+        {
+          "escapes_root": false,
+          "kind": "symlink",
+          "name": "swift-6.0.3-RELEASE-ubuntu24.04-aarch64/usr/bin/swift-experimental-sdk",
+          "target": "swift-package"
+        },
+        {
+          "escapes_root": false,
+          "kind": "symlink",
+          "name": "swift-6.0.3-RELEASE-ubuntu24.04-aarch64/usr/bin/swift-legacy-driver",
+          "target": "swift-frontend"
+        },
+        {
+          "escapes_root": false,
+          "kind": "symlink",
+          "name": "swift-6.0.3-RELEASE-ubuntu24.04-aarch64/usr/bin/swift-package-collection",
+          "target": "swift-package"
+        },
+        {
+          "escapes_root": false,
+          "kind": "symlink",
+          "name": "swift-6.0.3-RELEASE-ubuntu24.04-aarch64/usr/bin/swift-package-registry",
+          "target": "swift-package"
+        },
+        {
+          "escapes_root": false,
+          "kind": "symlink",
+          "name": "swift-6.0.3-RELEASE-ubuntu24.04-aarch64/usr/bin/swift-run",
+          "target": "swift-package"
+        },
+        {
+          "escapes_root": false,
+          "kind": "symlink",
+          "name": "swift-6.0.3-RELEASE-ubuntu24.04-aarch64/usr/bin/swift-sdk",
+          "target": "swift-package"
+        },
+        {
+          "escapes_root": false,
+          "kind": "symlink",
+          "name": "swift-6.0.3-RELEASE-ubuntu24.04-aarch64/usr/bin/swift-symbolgraph-extract",
+          "target": "swift-frontend"
+        },
+        {
+          "escapes_root": false,
+          "kind": "symlink",
+          "name": "swift-6.0.3-RELEASE-ubuntu24.04-aarch64/usr/bin/swift-test",
+          "target": "swift-package"
+        },
+        {
+          "escapes_root": false,
+          "kind": "symlink",
+          "name": "swift-6.0.3-RELEASE-ubuntu24.04-aarch64/usr/bin/swiftc",
+          "target": "swift-driver"
+        },
+        {
+          "escapes_root": false,
+          "kind": "symlink",
+          "name": "swift-6.0.3-RELEASE-ubuntu24.04-aarch64/usr/bin/swiftc-legacy-driver",
+          "target": "swift-frontend"
+        },
+        {
+          "escapes_root": false,
+          "kind": "symlink",
+          "name": "swift-6.0.3-RELEASE-ubuntu24.04-aarch64/usr/bin/wasm-ld",
+          "target": "lld"
+        },
+        {
+          "escapes_root": false,
+          "kind": "symlink",
+          "name": "swift-6.0.3-RELEASE-ubuntu24.04-aarch64/usr/bin/x86_64-swift-linux-musl-clang++.cfg",
+          "target": "x86_64-swift-linux-musl-clang.cfg"
+        },
+        {
+          "escapes_root": false,
+          "kind": "symlink",
+          "name": "swift-6.0.3-RELEASE-ubuntu24.04-aarch64/usr/lib/libIndexStore.so",
+          "target": "libIndexStore.so.17"
+        },
+        {
+          "escapes_root": false,
+          "kind": "symlink",
+          "name": "swift-6.0.3-RELEASE-ubuntu24.04-aarch64/usr/lib/liblldb.so",
+          "target": "liblldb.so.17"
+        },
+        {
+          "escapes_root": false,
+          "kind": "symlink",
+          "name": "swift-6.0.3-RELEASE-ubuntu24.04-aarch64/usr/lib/liblldb.so.17",
+          "target": "liblldb.so.17.0.0"
+        },
+        {
+          "escapes_root": false,
+          "kind": "symlink",
+          "name": "swift-6.0.3-RELEASE-ubuntu24.04-aarch64/usr/lib/libLTO.so",
+          "target": "libLTO.so.17"
+        },
+        {
+          "escapes_root": false,
+          "kind": "symlink",
+          "name": "swift-6.0.3-RELEASE-ubuntu24.04-aarch64/usr/lib/swift/clang",
+          "target": "../clang/17"
+        },
+        {
+          "escapes_root": false,
+          "kind": "symlink",
+          "name": "swift-6.0.3-RELEASE-ubuntu24.04-aarch64/usr/lib/swift/linux/lib_InternalSwiftScan.so",
+          "target": "../host/lib_InternalSwiftScan.so"
+        },
+        {
+          "escapes_root": false,
+          "kind": "symlink",
+          "name": "swift-6.0.3-RELEASE-ubuntu24.04-aarch64/usr/lib/swift_static/clang",
+          "target": "../clang/17"
+        },
+        {
+          "escapes_root": false,
+          "kind": "symlink",
+          "name": "swift-6.0.3-RELEASE-ubuntu24.04-aarch64/usr/local/lib/python3.12/dist-packages/lldb/_lldb.cpython-312-aarch64-linux-gnu.so",
+          "target": "../../../../../lib/liblldb.so"
+        },
+        {
+          "escapes_root": false,
+          "kind": "symlink",
+          "name": "swift-6.0.3-RELEASE-ubuntu24.04-aarch64/usr/local/lib/python3.12/dist-packages/lldb/lldb-argdumper",
+          "target": "../../../../../bin/lldb-argdumper"
+        }
+      ],
+      "member_metadata_sha256": "6ac9ddec801a7976c172604cbde5598da60b9da08b2e90845e5bd889c6ad7182",
+      "members": 1727,
+      "regular_content_upper_bytes": 2630388199
+    },
+    {
+      "archive_bytes": 1580238,
+      "counts": {
+        "directory": 122,
+        "regular": 460
+      },
+      "finding_examples": {},
+      "findings": {},
+      "format": "tar",
+      "id": "typescript-2",
+      "largest_regular_bytes": 691055,
+      "links": [],
+      "member_metadata_sha256": "efd334c7f8bfeb699aede33be40cabe9c4e45a3c57169c9636821c60f84d06b6",
+      "members": 582,
+      "regular_content_upper_bytes": 3917401
+    }
+  ],
+  "schema_version": 1
+}

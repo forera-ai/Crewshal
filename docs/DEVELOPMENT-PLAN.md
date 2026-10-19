@@ -1,5 +1,15 @@
 # Crewshal phased development and acceptance plan
 
+## Current retained archive inspection — 2026-10-19
+
+The [inspection record](PHASE-3B-RETAINED-ARCHIVE-INSPECTION-2026-10-19.md) covers all 16 retained archives.
+It records 19,978 members, 40 links, 5,634 noncanonical `.NET` paths, and regular content bounds.
+The combined 4,371,619,599-byte regular content bound exceeds the current retained-data cap.
+No archive was extracted or executed. Both receipts and all original charges remain intact.
+Use the [next prompt](PHASE-3B-RETAINED-ARCHIVE-NEXT-SESSION-2026-10-19.md) and [exact inputs](PHASE-3B-RETAINED-ARCHIVE-INPUTS-2026-10-19.json).
+Linux qualification, Phase 3B calibration, and Phase 3C remain closed.
+All 192 development rows remain planned, and all 576 sealed rows remain unexposed.
+
 ## Current capped archive continuation completion — 2026-10-19
 
 The owner approved the separate seven-request continuation and Swift signature-first verification.

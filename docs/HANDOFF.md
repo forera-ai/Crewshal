@@ -4,6 +4,27 @@ Last updated: 2026-10-19. This record supplies the next session and the owner wi
 
 ## Current state
 
+**October 19: Read-only retained archive inspection completed.**
+The session began at `00e061ad161063470054c67efa87feaf2273b835` with a clean worktree.
+All 178 exact entry inputs matched their recorded sizes and SHA-256 values.
+Both receipts matched pinned SHA-256 values and passed read-only SQLite checks.
+All 16 retained archives matched recorded lengths and SHA-256 values.
+The fixed image retained its 3,221,225,472-byte logical size and 1,437,798,400-byte allocation.
+Bounded metadata checks found 19,978 members and 4,371,619,599 regular content bytes.
+The `.NET` tarballs contain 5,634 noncanonical `./` paths. Node and Swift contain 40 links.
+No path escaped the archive root; no duplicate names, hard links, or special members appeared.
+The [inspection record](PHASE-3B-RETAINED-ARCHIVE-INSPECTION-2026-10-19.md) records commands, limits, and each archive bound.
+The [member report](PHASE-3B-RETAINED-ARCHIVE-MEMBERS-2026-10-19.json) records every link and exact metadata digests.
+No archive was extracted or executed. No URL was retried or requested again.
+The prior 8,589,934,592-byte and final 10,008,484,533-byte conservative charges remain intact.
+No guest, Linux test, native turn, provider request, Jev call, or evaluation row ran.
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+Executable hashes, effective commands, providers, and B1 conformance remain unknown.
+Linux qualification, Phase 3B calibration, and Phase 3C remain closed.
+The checkpoint version is `0.16.2`. The delivery revision is the commit containing this entry.
+Use the [next prompt](PHASE-3B-RETAINED-ARCHIVE-NEXT-SESSION-2026-10-19.md) and [exact inputs](PHASE-3B-RETAINED-ARCHIVE-INPUTS-2026-10-19.json).
+Earlier dated entries remain historical records.
+
 **October 19: The approved capped archive continuation completed its eight requests.**
 The session began at `7d504534e74b1a4f2aea7557025df2c68c0d5cbe` with a clean worktree.
 All 175 exact review inputs matched their recorded sizes and SHA-256 values.

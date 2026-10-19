@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.16.2 — 2026-10-19
+
+- Inspect all 16 retained archives without extraction or archived tool execution.
+- Record 19,978 members, 40 links, 5,634 noncanonical `.NET` paths, and regular content bounds.
+- Preserve both receipts, all original charges, the fixed image, and closed Linux and evaluation gates.
+- Publish the inspection report, exact inputs, and next-session prompt.
+
 ## 0.16.1 — 2026-10-19
 
 - Record separate owner approval of seven digest-bound requests and Swift signature-first verification.

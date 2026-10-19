@@ -2,8 +2,8 @@
   "admission_blockers": [
     "Changed RAM, infrastructure, retained-data, and transfer rules lack owner approval.",
     "The current transfer balance is zero under conservative accounting.",
-    "Four npm tarballs still lack exact compressed archive byte counts.",
-    "Selected archives lack verified safe member inventories and extraction bounds.",
+    "The four npm archive sizes are now receipt-bound; CMake, Ninja, Ubuntu, and repository dependency closures remain unresolved.",
+    "The retained archives have bounded member metadata, but .NET paths and Node/Swift links need an approved extraction policy and a full storage bound.",
     "Ubuntu and selected repository dependency closures lack exact read-only package snapshots.",
     "The source extractor has no admitted selected archive result.",
     "B1 lacks admitted native launch commands and conformance.",
@@ -12,7 +12,7 @@
   "approval_request": {
     "changed_limits_requested": false,
     "exact_batch_reviewable": false,
-    "reason": "The full campaign remains unreviewable. The separate sixteen-URL archive evidence stage has exact policy ceilings and awaits its own owner scope decision."
+    "reason": "The full campaign remains unreviewable. The sixteen archive requests are complete and closed. Archive extraction and Linux work are not admitted."
   },
   "archive_evidence_stage": {
     "active_seconds_cap": 7200,
@@ -969,5 +969,20 @@
     "planned_retained_logical_upper_bytes": 2206074261,
     "planned_retained_headroom_bytes": 1015151211,
     "planned_mounted_volume_headroom_bytes": 1015110251
+  },
+  "archive_member_inspection": {
+    "status": "bounded read-only metadata inspection complete; extraction and execution not admitted",
+    "report_path": "docs/PHASE-3B-RETAINED-ARCHIVE-MEMBERS-2026-10-19.json",
+    "report_sha256": "da7c20e5be010d317e02a04e9a00a1279fc854a0244a805b7021c855da5c04d5",
+    "archive_count": 16,
+    "logical_member_count": 19978,
+    "regular_content_upper_bytes": 4371619599,
+    "noncanonical_path_members": 5634,
+    "symlink_members": 40,
+    "escaping_link_targets": 0,
+    "duplicate_names": 0,
+    "special_members": 0,
+    "full_extraction_storage_bound_verified": false,
+    "archive_body_requests_admitted": false
   }
 }

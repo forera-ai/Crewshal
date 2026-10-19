@@ -10,6 +10,13 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**October 19: Read-only inspection covered all 16 retained archives.**
+The [inspection record](docs/PHASE-3B-RETAINED-ARCHIVE-INSPECTION-2026-10-19.md) records 19,978 members and regular content bounds.
+Both `.NET` tarballs contain noncanonical `./` paths. Node and Swift contain 40 links in total.
+The combined 4,371,619,599-byte regular content bound exceeds the current retained-data cap.
+No archive was extracted or executed. Use the [next prompt](docs/PHASE-3B-RETAINED-ARCHIVE-NEXT-SESSION-2026-10-19.md) and [exact inputs](docs/PHASE-3B-RETAINED-ARCHIVE-INPUTS-2026-10-19.json).
+All body requests, Linux qualification, Phase 3B calibration, and Phase 3C remain closed.
+
 **October 19: The approved archive continuation retrieved and verified all eight remaining archives.**
 Seven archives matched pinned digests. Swift passed detached-signature verification under the pinned key.
 The original failed receipt remains halted. The new receipt records eight successful attempts and no incomplete read.

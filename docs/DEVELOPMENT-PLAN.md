@@ -1,5 +1,14 @@
 # Crewshal phased development and acceptance plan
 
+## Current retained extractor source checkpoint — 2026-10-19
+
+The [source checkpoint](PHASE-3B-RETAINED-EXTRACTOR-SOURCE-2026-10-19.md) records local synthetic acceptance and read-only retained-input checks.
+The extractor binds twelve archive IDs, exact content bounds, a mounted free-space floor, the `.NET` path rule, and three Node links.
+The [single admission ledger](PHASE-3B-CAMPAIGN-ADMISSION-MANIFEST-2026-10-19.json) still denies retained extraction.
+The [separate decision proposal](PHASE-3B-RETAINED-EXTRACTION-DECISION-2026-10-19.md) defines one possible attempt.
+Use the [next prompt](PHASE-3B-RETAINED-EXTRACTION-DECISION-NEXT-SESSION-2026-10-19.md) and [exact inputs](PHASE-3B-RETAINED-EXTRACTOR-SOURCE-INPUTS-2026-10-19.json) after the owner resolves that decision.
+Linux qualification, Phase 3B calibration, and Phase 3C remain closed.
+
 ## Current retained extraction proposal — 2026-10-19
 
 The [proposal](PHASE-3B-RETAINED-EXTRACTION-PROPOSAL-2026-10-19.md) selects 12 retained archives for a bounded future extraction batch.

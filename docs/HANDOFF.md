@@ -4,6 +4,28 @@ Last updated: 2026-10-19. This record supplies the next session and the owner wi
 
 ## Current state
 
+**October 19: The bounded retained extractor passed local source acceptance.**
+The session began at `2c19bf3ad11b2d3618e0e6eaef3e314ec90f52f1` with a clean worktree.
+All 185 exact entry inputs matched their recorded sizes and SHA-256 values.
+The [source checkpoint](PHASE-3B-RETAINED-EXTRACTOR-SOURCE-2026-10-19.md) records the extractor, tests, commands, costs, and limits.
+The extractor binds twelve archive IDs, 511,667,961 regular content bytes, and a 536,870,912-byte free-space floor.
+It binds the `.NET` path rule, three Node links, frozen source inventories, and four excluded archives.
+Nineteen new synthetic tests and 22 related tests passed. Ruff, strict mypy, and the frozen Phase 3A checker passed.
+Both receipts, all 16 archives, and the fixed image passed read-only custody checks.
+The single admission ledger records the source candidate but keeps extraction admission false and its decision null.
+The [separate decision proposal](PHASE-3B-RETAINED-EXTRACTION-DECISION-2026-10-19.md) defines one possible attempt.
+No retained archive was extracted, installed, or executed. No URL was retried or requested again.
+The original sixteen URLs, object caps, 2,232,012,187-byte stage cap, and both receipt histories remain intact.
+The prior 8,589,934,592-byte and final 10,008,484,533-byte conservative charges remain intact.
+Known paid-host and metered API cost was USD 0. Subscription quota debit remains unknown.
+No guest, Linux test, native turn, provider request, Jev call, or evaluation row ran.
+Guest and VM allocation growth was zero. All 192 development rows remain planned, and all 576 sealed rows remain unexposed.
+Executable hashes, effective commands, providers, and B1 conformance remain unknown.
+Linux qualification, Phase 3B calibration, and Phase 3C remain closed.
+The checkpoint version is `0.17.0`. The delivery revision is the commit containing this entry.
+Use the [next prompt](PHASE-3B-RETAINED-EXTRACTION-DECISION-NEXT-SESSION-2026-10-19.md) and [exact inputs](PHASE-3B-RETAINED-EXTRACTOR-SOURCE-INPUTS-2026-10-19.json) after the owner resolves the separate decision.
+Earlier dated entries remain historical records.
+
 **October 19: A bounded retained archive extraction proposal is complete.**
 The session began at `9a00dcff8c7505d465b44916a28a87b1333eaa1d` with a clean worktree.
 All 182 exact entry inputs matched their recorded sizes and SHA-256 values.

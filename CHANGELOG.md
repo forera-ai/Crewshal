@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.17.0 — 2026-10-19
+
+- Add a bounded retained extractor with exact archive, member, content, path, link, and free-space checks.
+- Pass 19 synthetic extractor tests and 22 related tests. Verify all retained inputs without extraction.
+- Keep the single admission ledger closed and prepare a separate one-attempt extraction decision.
+- Preserve both receipts, historical charges, the fixed image, frozen Phase 3A bytes, and closed Linux and evaluation gates.
+
 ## 0.16.3 — 2026-10-19
 
 - Verify 182 indexed inputs, both receipts, all 16 retained archives, and fixed-image capacity without changing them.

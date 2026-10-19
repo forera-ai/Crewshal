@@ -10,6 +10,15 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**October 19: Local retained extractor source acceptance passed.**
+The [source checkpoint](docs/PHASE-3B-RETAINED-EXTRACTOR-SOURCE-2026-10-19.md) binds twelve archive IDs and the exact content and free-space limits.
+Nineteen synthetic extractor tests and 22 related tests passed. All retained inputs passed read-only custody checks.
+The [single admission ledger](docs/PHASE-3B-CAMPAIGN-ADMISSION-MANIFEST-2026-10-19.json) still denies extraction.
+The [separate decision proposal](docs/PHASE-3B-RETAINED-EXTRACTION-DECISION-2026-10-19.md) defines one possible extraction attempt.
+No retained archive was extracted, installed, or executed. No guest, Linux test, native turn, or evaluation row ran.
+Use the [next prompt](docs/PHASE-3B-RETAINED-EXTRACTION-DECISION-NEXT-SESSION-2026-10-19.md) and [exact inputs](docs/PHASE-3B-RETAINED-EXTRACTOR-SOURCE-INPUTS-2026-10-19.json) after the owner resolves that decision.
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+
 **October 19: A bounded retained extraction proposal is ready for source work.**
 The [proposal](docs/PHASE-3B-RETAINED-EXTRACTION-PROPOSAL-2026-10-19.md) selects 12 archives with 511,667,961 regular content bytes.
 It keeps four large archives retained and sets a 536,870,912-byte mounted free-space floor.

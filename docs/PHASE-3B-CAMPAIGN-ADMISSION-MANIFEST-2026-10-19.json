@@ -986,6 +986,16 @@
     "archive_body_requests_admitted": false
   },
   "archive_extraction_proposal": {
+    "source_candidate": {
+      "status": "local synthetic acceptance passed; retained extraction not admitted",
+      "script": "scripts/phase3b_extract_retained.py",
+      "script_sha256": "e31dd0a43d1323e85009311ec74cc85898ad49760f8d607326e9bc4b210540ae",
+      "test_path": "tests/acceptance/test_phase3b_extract_retained.py",
+      "test_sha256": "40d5e37da9f6ad9b8e3dd9b50dddf34ebb12036121edbc96f44f1fc83b19d79c",
+      "selected_ids_bound": 12,
+      "synthetic_tests": 19,
+      "retained_archive_extractions": 0
+    },
     "status": "planning complete; extraction and execution not admitted",
     "record_path": "docs/PHASE-3B-RETAINED-EXTRACTION-PROPOSAL-2026-10-19.md",
     "selected_ids": ["bun", "claude-wrapper", "codex-wrapper", "cpython", "dotnet-1", "dotnet-runtime-net8", "dotnet-targeting-pack-net8", "node", "python-1", "rtk", "swift-1", "typescript-2"],

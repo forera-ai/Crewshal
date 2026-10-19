@@ -871,7 +871,7 @@
     }
   },
   "archive_continuation": {
-    "status": "blocked; no further archive body request admitted",
+    "status": "reviewable preparation; no further archive body request admitted",
     "boundary_record": "docs/PHASE-3B-CAPPED-ARCHIVE-CONTINUATION-BOUNDARY-2026-10-19.md",
     "owner_decision": null,
     "original_receipt_sha256": "9cd1b85273ca68a29d156a35556b7dbf0cc8944da8ec5db3e26c15812c1f93f4",
@@ -926,10 +926,20 @@
         "archive_verified": false
       }
     },
-    "transport_script": null,
-    "new_receipt": "continuation.sqlite3; planned only; original receipt remains read-only",
+    "transport_script": "scripts/phase3b_capped_archive_continue.py",
+    "transport_script_sha256": "397c5647f8a74e05039b1e076fe4720b557533ee479aeb5327c78eea9fefbb76",
+    "transport_tool_version": "phase3b-capped-archive-continuation-v1",
+    "new_receipt": "continuation.sqlite3; prepare is closed until a separate owner decision; original receipt remains read-only and failed",
+    "receipt_tables": ["meta", "attempts", "responses", "reads"],
+    "receipt_journal_mode": "DELETE",
+    "receipt_synchronous_mode": "FULL",
+    "receipt_page_size_bytes": 4096,
+    "receipt_max_pages": 2032,
+    "swift_signature_first_approved": false,
+    "swift_signature_first_proposal": "docs/PHASE-3B-CAPPED-ARCHIVE-CONTINUATION-REVIEW-2026-10-19.md",
+    "signed_redirect_urls_publishable": false,
     "body_requests_admitted": false,
-    "continuation_index": "docs/PHASE-3B-CAPPED-ARCHIVE-CONTINUATION-INPUTS-2026-10-19.json",
+    "continuation_index": "docs/PHASE-3B-CAPPED-ARCHIVE-REVIEW-INPUTS-2026-10-19.json",
     "new_receipt_logical_cap_bytes": 16777216,
     "planned_retained_logical_upper_bytes": 2206074261,
     "planned_retained_headroom_bytes": 1015151211,

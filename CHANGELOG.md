@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.16.0 — 2026-10-19
+
+- Add a separate, receipt-bound archive continuation transport for the eight unattempted IDs. Keep the original receipt halted and reject old IDs before network access.
+- Add offline redirect, error, crash-reservation, changed-receipt, digest, and quota checks. Record the exact continuation commands and Swift signature-first proposal.
+- Preserve all original archive URLs, caps, charges, frozen Phase 3A bytes, and closed Linux and evaluation gates. No continuation body request ran.
+
 ## 0.15.18 — 2026-10-19
 
 - Verify all 168 continuation inputs and the retained `.NET SDK` length and SHA-512.

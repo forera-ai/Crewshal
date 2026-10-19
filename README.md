@@ -10,6 +10,15 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**October 19: The halted archive continuation is ready for a separate owner decision.**
+The new transport binds the original halted receipt and rejects all eight attempted IDs before network access.
+Twelve offline tests cover redirects, errors, crash reservations, receipt changes, digest failures, and quota stops.
+The [review record](docs/PHASE-3B-CAPPED-ARCHIVE-CONTINUATION-REVIEW-2026-10-19.md) fixes the receipt, commands, charges, and stop rules.
+Swift still lacks a trusted full archive digest. The review proposes pinned signature-first verification.
+No continuation receipt or selected archive body request exists. The prior 8,589,934,592-byte and current 311,183,922-byte charges remain intact.
+Use the [next prompt](docs/PHASE-3B-CAPPED-ARCHIVE-REVIEW-NEXT-SESSION-2026-10-19.md) and [exact inputs](docs/PHASE-3B-CAPPED-ARCHIVE-REVIEW-INPUTS-2026-10-19.json).
+All 192 development rows remain planned, and all 576 sealed rows remain unexposed.
+
 **October 19: The halted archive stage remains closed after custody and digest review.**
 All 168 continuation inputs matched their recorded size and SHA-256.
 The retained `.NET SDK` file matched its recorded length and SHA-512. Its original receipt remains failed.

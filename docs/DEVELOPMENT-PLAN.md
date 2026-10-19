@@ -1,5 +1,15 @@
 # Crewshal phased development and acceptance plan
 
+## Current halted archive review boundary — 2026-10-19
+
+The [review record](PHASE-3B-CAPPED-ARCHIVE-CONTINUATION-REVIEW-2026-10-19.md) binds a separate transport and receipt plan.
+Local deterministic tests pass, and the original receipt remains halted and unchanged.
+Swift lacks a trusted full archive digest. The review proposes an exact signature-first amendment.
+The [single admission ledger](PHASE-3B-CAMPAIGN-ADMISSION-MANIFEST-2026-10-19.json) keeps all body requests closed.
+The original transfer caps, charges, and zero guest growth remain fixed.
+Use the [next prompt](PHASE-3B-CAPPED-ARCHIVE-REVIEW-NEXT-SESSION-2026-10-19.md) and [exact inputs](PHASE-3B-CAPPED-ARCHIVE-REVIEW-INPUTS-2026-10-19.json).
+All 192 development rows remain planned, and all 576 sealed rows remain unexposed.
+
 ## Current halted archive continuation boundary — 2026-10-19
 
 The [continuation boundary](PHASE-3B-CAPPED-ARCHIVE-CONTINUATION-BOUNDARY-2026-10-19.md) verifies retained custody and fixes a new receipt plan.

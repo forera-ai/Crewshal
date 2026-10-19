@@ -4,6 +4,28 @@ Last updated: 2026-10-19. This record supplies the next session and the owner wi
 
 ## Current state
 
+**October 19: The halted archive continuation is prepared for a separate owner decision.**
+The session began at `901c46fefde60cb099f0cc383baf7bfc7e4051e6` with a clean worktree.
+All 170 exact entry inputs matched their recorded sizes and SHA-256 values.
+All 175 final continuation inputs matched their recorded sizes and SHA-256 values.
+The mounted image and original receipt remain intact. The receipt SHA-256 still matches `9cd1b85273ca68a29d156a35556b7dbf0cc8944da8ec5db3e26c15812c1f93f4`.
+It remains failed and halted. The retained SDK remains independently verified data, with no new attempt.
+The new [review record](PHASE-3B-CAPPED-ARCHIVE-CONTINUATION-REVIEW-2026-10-19.md) binds the separate transport, receipt, original scope, current ledger, eight IDs, quotas, commands, and stop rules.
+The transport SHA-256 is `397c5647f8a74e05039b1e076fe4720b557533ee479aeb5327c78eea9fefbb76`.
+Twelve new deterministic continuation tests pass. The original transport and extractor tests also pass.
+Ruff, strict mypy, formatting, and the frozen Phase 3A checker pass.
+Swift still lacks a trusted full archive digest. The review proposes pinned signature-first verification.
+The key and detached signature paths are planned and currently absent. No Swift archive verification is claimed.
+The [single admission ledger](PHASE-3B-CAMPAIGN-ADMISSION-MANIFEST-2026-10-19.json) keeps the new owner decision null and body admission false.
+The prior 8,589,934,592-byte and current 311,183,922-byte conservative charges remain intact.
+The original sixteen URLs, object caps, 2,232,012,187-byte stage cap, and zero guest growth remain unchanged.
+No continuation receipt, selected archive body request, guest, Linux test, native turn, provider request, Jev call, or evaluation row ran.
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+Linux qualification, provider identity, B1 conformance, Phase 3B calibration, and Phase 3C remain closed.
+The checkpoint version is `0.16.0`. The delivery revision is the commit containing this entry.
+Use the [next prompt](PHASE-3B-CAPPED-ARCHIVE-REVIEW-NEXT-SESSION-2026-10-19.md) and [exact inputs](PHASE-3B-CAPPED-ARCHIVE-REVIEW-INPUTS-2026-10-19.json).
+Earlier dated entries remain historical records.
+
 **October 19: The halted archive continuation remains blocked after custody and digest review.**
 The session began at `fd5fdf7332224c2d0d47d06ef2e6227a216dbf9b` with a clean worktree.
 All 168 continuation inputs matched their recorded size and SHA-256.

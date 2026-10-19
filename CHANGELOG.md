@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.18.0 — 2026-10-20
+
+- Add a bounded extractor candidate for four remaining retained archives and 37 recorded Swift links.
+- Pass 52 local tests, strict mypy, Ruff, and read-only preflight of the four archives.
+- Prepare a separate one-image, one-attempt decision with exact storage and free-space limits.
+- Keep image creation, extraction, installation, Linux work, and evaluation closed pending their gates.
+
 ## 0.17.2 — 2026-10-20
 
 - Correct live campaign blockers after the completed bounded extraction.

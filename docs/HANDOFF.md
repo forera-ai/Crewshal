@@ -4,6 +4,28 @@ Last updated: 2026-10-19. This record supplies the next session and the owner wi
 
 ## Current state
 
+**October 20: The remaining-archive extractor passed local source acceptance.**
+The session began at `e5a73c5c125476182910b938b0571dbe0c8039c9` with a clean worktree.
+All 194 exact entry inputs matched their recorded sizes and SHA-256 values.
+The [source checkpoint](PHASE-3B-REMAINING-EXTRACTOR-SOURCE-2026-10-20.md) records code, tests, read-only preflight, costs, and limits.
+The four archives contain 7,216 members and 3,859,951,638 regular content bytes.
+Swift has 37 recorded internal links. The `.NET SDK` has one leading `./` on its members.
+Eleven new synthetic tests and 41 related tests passed. Ruff, strict mypy, and frozen Phase 3A checks passed.
+Both receipts, all 16 archives, the fixed image, and the prior output manifest passed read-only custody checks.
+The [new proposal](PHASE-3B-REMAINING-ARCHIVE-PROPOSAL-2026-10-20.md) binds one 6 GiB image and one extraction attempt.
+The single admission ledger keeps new image creation and extraction false pending a separate exact owner decision.
+The original sixteen URLs, object caps, 2,232,012,187-byte stage cap, and both receipt histories remain intact.
+The prior 8,589,934,592-byte and final 10,008,484,533-byte conservative charges remain intact.
+Known paid-host and metered API cost was USD 0. Subscription quota debit remains unknown.
+No archive body request, guest, Linux test, native turn, provider request, or evaluation row ran.
+Guest and VM growth was zero. All 192 development rows remain planned, and all 576 sealed rows remain unexposed.
+Executable hashes, effective commands, providers, and B1 conformance remain unknown.
+Installation, archived tool execution, Linux qualification, Phase 3B calibration, and Phase 3C remain closed.
+The checkpoint version is `0.18.0`. The delivery revision is the commit containing this entry.
+Use the [next prompt](PHASE-3B-REMAINING-EXTRACTION-DECISION-NEXT-SESSION-2026-10-20.md) and [exact inputs](PHASE-3B-REMAINING-EXTRACTOR-INPUTS-2026-10-20.json).
+Earlier dated entries remain historical records.
+
+
 **October 20: The owner-approved retained extraction completed in one attempt.**
 The follow-up `0.17.2` checkpoint corrects stale live blockers in the single admission ledger.
 The session began at `a3f48ead823ff2fe3a1b04a409753be7e380e849` with a clean worktree.

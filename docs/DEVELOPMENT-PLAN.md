@@ -1,5 +1,15 @@
 # Crewshal phased development and acceptance plan
 
+## Current remaining-archive extractor proposal — 2026-10-20
+
+The [source checkpoint](PHASE-3B-REMAINING-EXTRACTOR-SOURCE-2026-10-20.md) records local acceptance and four read-only archive preflights.
+The [proposal](PHASE-3B-REMAINING-ARCHIVE-PROPOSAL-2026-10-20.md) binds one new image and one bounded extraction attempt.
+The single admission ledger keeps both actions closed until a separate exact owner decision.
+Use the [next prompt](PHASE-3B-REMAINING-EXTRACTION-DECISION-NEXT-SESSION-2026-10-20.md) and [exact inputs](PHASE-3B-REMAINING-EXTRACTOR-INPUTS-2026-10-20.json).
+Installation, Linux qualification, Phase 3B calibration, and Phase 3C remain closed.
+All 192 development rows remain planned, and all 576 sealed rows remain unexposed.
+
+
 ## Current retained extraction completion — 2026-10-20
 
 The owner approved the exact one-attempt decision on October 19.

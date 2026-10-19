@@ -297,11 +297,12 @@ class RetainedExtractor(unittest.TestCase):
         self.assertEqual((self.output / "bun/extra").read_bytes(), b"unexpected")
         self.assertFalse((self.output / "manifest.json").exists())
 
-    def test_real_cli_remains_closed(self) -> None:
+    def test_real_cli_closed_after_approved_attempt(self) -> None:
         proposal = json.loads(extractor.LEDGER.read_text())["archive_extraction_proposal"]
         self.assertFalse(proposal["extraction_admitted"])
-        self.assertIsNone(proposal["owner_extraction_decision"])
-        self.assertIsNone(proposal["extractor_sha256"])
+        self.assertEqual(proposal["completed_attempts"], 1)
+        self.assertIsNotNone(proposal["owner_extraction_decision"])
+        self.assertEqual(proposal["extractor_sha256"], extractor._sha256(Path(extractor.__file__)))
 
 
 if __name__ == "__main__":

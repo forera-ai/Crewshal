@@ -4,6 +4,28 @@ Last updated: 2026-10-19. This record supplies the next session and the owner wi
 
 ## Current state
 
+**October 19: A bounded retained archive extraction proposal is complete.**
+The session began at `9a00dcff8c7505d465b44916a28a87b1333eaa1d` with a clean worktree.
+All 182 exact entry inputs matched their recorded sizes and SHA-256 values.
+Both receipts matched pinned SHA-256 values and passed read-only SQLite checks.
+All 16 retained archive lengths and SHA-256 values matched their recorded values.
+The fixed image retained its 3,221,225,472-byte logical size and 1,437,798,400-byte allocation.
+The [proposal](PHASE-3B-RETAINED-EXTRACTION-PROPOSAL-2026-10-19.md) selects twelve archives with 511,667,961 regular content bytes.
+It excludes four large archives and sets a 536,870,912-byte mounted free-space floor.
+It binds `.NET` leading `./` normalization and three exact Node links. Swift remains excluded.
+The [single admission ledger](PHASE-3B-CAMPAIGN-ADMISSION-MANIFEST-2026-10-19.json) records the proposal without admitting extraction.
+No archive was extracted, installed, or executed. No URL was retried or requested again.
+The original sixteen URLs, object caps, 2,232,012,187-byte stage cap, and both receipt histories remain intact.
+The prior 8,589,934,592-byte and final 10,008,484,533-byte conservative charges remain intact.
+Known paid-host and metered API cost was USD 0. Subscription quota debit remains unknown.
+No guest, Linux test, native turn, provider request, Jev call, or evaluation row ran.
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+Executable hashes, effective commands, providers, and B1 conformance remain unknown.
+Linux qualification, Phase 3B calibration, and Phase 3C remain closed.
+The checkpoint version is `0.16.3`. The delivery revision is the commit containing this entry.
+Use the [next prompt](PHASE-3B-RETAINED-EXTRACTION-NEXT-SESSION-2026-10-19.md) and [exact inputs](PHASE-3B-RETAINED-EXTRACTION-INPUTS-2026-10-19.json).
+Earlier dated entries remain historical records.
+
 **October 19: Read-only retained archive inspection completed.**
 The session began at `00e061ad161063470054c67efa87feaf2273b835` with a clean worktree.
 All 178 exact entry inputs matched their recorded sizes and SHA-256 values.

@@ -984,5 +984,31 @@
     "special_members": 0,
     "full_extraction_storage_bound_verified": false,
     "archive_body_requests_admitted": false
+  },
+  "archive_extraction_proposal": {
+    "status": "planning complete; extraction and execution not admitted",
+    "record_path": "docs/PHASE-3B-RETAINED-EXTRACTION-PROPOSAL-2026-10-19.md",
+    "selected_ids": ["bun", "claude-wrapper", "codex-wrapper", "cpython", "dotnet-1", "dotnet-runtime-net8", "dotnet-targeting-pack-net8", "node", "python-1", "rtk", "swift-1", "typescript-2"],
+    "excluded_ids": ["swift", "dotnet-sdk", "codex-native", "claude-native"],
+    "selected_members": 12762,
+    "selected_regular_members": 11019,
+    "selected_directory_members": 1740,
+    "selected_symlink_members": 3,
+    "selected_regular_content_upper_bytes": 511667961,
+    "largest_selected_regular_member_bytes": 117532552,
+    "existing_retained_file_bytes": 1375908527,
+    "image_logical_bytes": 3221225472,
+    "mounted_free_bytes_at_review": 1784799232,
+    "minimum_mounted_free_bytes": 536870912,
+    "allocation_overhead_and_partial_output_budget_bytes": 736260359,
+    "dotnet_leading_dot_normalization": "only one leading ./ on pinned .NET tarballs; root . directory marker has no output",
+    "node_links": "only three exact recorded internal links, created after regular content readback",
+    "swift_links": "37 internal links remain excluded with the Swift archive",
+    "extractor_sha256": null,
+    "output_root": null,
+    "owner_extraction_decision": null,
+    "extraction_admitted": false,
+    "installation_admitted": false,
+    "archived_tool_execution_admitted": false
   }
 }

@@ -1,5 +1,14 @@
 # Crewshal phased development and acceptance plan
 
+## Current retained extraction proposal — 2026-10-19
+
+The [proposal](PHASE-3B-RETAINED-EXTRACTION-PROPOSAL-2026-10-19.md) selects 12 retained archives for a bounded future extraction batch.
+It binds 511,667,961 regular content bytes and a 536,870,912-byte mounted free-space floor.
+The four excluded archives remain intact. The single admission ledger keeps extraction and execution closed.
+Use the [next prompt](PHASE-3B-RETAINED-EXTRACTION-NEXT-SESSION-2026-10-19.md) and [exact inputs](PHASE-3B-RETAINED-EXTRACTION-INPUTS-2026-10-19.json).
+Linux qualification, Phase 3B calibration, and Phase 3C remain closed.
+All 192 development rows remain planned, and all 576 sealed rows remain unexposed.
+
 ## Current retained archive inspection — 2026-10-19
 
 The [inspection record](PHASE-3B-RETAINED-ARCHIVE-INSPECTION-2026-10-19.md) covers all 16 retained archives.

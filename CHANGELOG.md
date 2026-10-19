@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.16.3 — 2026-10-19
+
+- Verify 182 indexed inputs, both receipts, all 16 retained archives, and fixed-image capacity without changing them.
+- Propose one 12-archive extraction batch with exact content, free-space, path, link, and partial-output rules.
+- Keep extraction, installation, Linux work, native turns, and evaluation closed.
+- Preserve the original charges and receipt histories, and publish the next source-work prompt.
+
 ## 0.16.2 — 2026-10-19
 
 - Inspect all 16 retained archives without extraction or archived tool execution.

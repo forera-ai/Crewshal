@@ -10,6 +10,14 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**October 19: A bounded retained extraction proposal is ready for source work.**
+The [proposal](docs/PHASE-3B-RETAINED-EXTRACTION-PROPOSAL-2026-10-19.md) selects 12 archives with 511,667,961 regular content bytes.
+It keeps four large archives retained and sets a 536,870,912-byte mounted free-space floor.
+The single [admission ledger](docs/PHASE-3B-CAMPAIGN-ADMISSION-MANIFEST-2026-10-19.json) keeps extraction, installation, and execution closed.
+Both receipts, all 16 archives, and the fixed image passed read-only custody checks.
+Use the [next prompt](docs/PHASE-3B-RETAINED-EXTRACTION-NEXT-SESSION-2026-10-19.md) and [exact inputs](docs/PHASE-3B-RETAINED-EXTRACTION-INPUTS-2026-10-19.json).
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+
 **October 19: Read-only inspection covered all 16 retained archives.**
 The [inspection record](docs/PHASE-3B-RETAINED-ARCHIVE-INSPECTION-2026-10-19.md) records 19,978 members and regular content bounds.
 Both `.NET` tarballs contain noncanonical `./` paths. Node and Swift contain 40 links in total.

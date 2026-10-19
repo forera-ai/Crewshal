@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.15.18 — 2026-10-19
+
+- Verify all 168 continuation inputs and the retained `.NET SDK` length and SHA-512.
+- Preserve the failed SQLite receipt, its original script binding, and both conservative transfer charges.
+- Record official Bun and .NET targeting pack checksum inputs and the unresolved Swift archive digest.
+- Prepare a new receipt and transport plan without a body request, guest action, or evaluation row.
+- Keep the halted grant closed and defer a new owner decision until the continuation is reviewable.
+
 ## 0.15.17 — 2026-10-19
 
 - Record the owner's exact approval of the sixteen-URL archive evidence stage.

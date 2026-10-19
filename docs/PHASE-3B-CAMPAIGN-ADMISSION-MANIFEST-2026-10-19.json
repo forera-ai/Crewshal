@@ -869,5 +869,70 @@
       "suite": "noble",
       "transitive_versions_and_digests": null
     }
+  },
+  "archive_continuation": {
+    "status": "blocked; no further archive body request admitted",
+    "boundary_record": "docs/PHASE-3B-CAPPED-ARCHIVE-CONTINUATION-BOUNDARY-2026-10-19.md",
+    "owner_decision": null,
+    "original_receipt_sha256": "9cd1b85273ca68a29d156a35556b7dbf0cc8944da8ec5db3e26c15812c1f93f4",
+    "original_receipt_halted": true,
+    "original_failed_id": "dotnet-sdk",
+    "original_scope_sha256": "7286e3da3dee932f178108733bfaa6b111e1adba822b9628dfde7910b7da05cb",
+    "retained_dotnet_sdk": {
+      "bytes": 204124866,
+      "sha256": "b91b19f6bafd1184913082d135f575dd9faa53767b84d836c063ce52e8fab430",
+      "sha512_matches_selected_digest": true,
+      "transport_receipt_status": "failed"
+    },
+    "unattempted_ids": [
+      "bun",
+      "swift",
+      "dotnet-runtime-net8",
+      "dotnet-targeting-pack-net8",
+      "codex-wrapper",
+      "codex-native",
+      "claude-wrapper",
+      "claude-native"
+    ],
+    "unattempted_object_caps_total_bytes": 1920828265,
+    "prior_full_charge_bytes": 8589934592,
+    "current_stage_conservative_charge_bytes": 311183922,
+    "remaining_object_cap_bytes": 1920828265,
+    "original_stage_transfer_cap_bytes": 2232012187,
+    "maximum_cumulative_transfer_charge_bytes": 10821946779,
+    "digest_inputs": {
+      "bun": {
+        "sha256": "d1dbaa3e9af24549fad92bdbe4fb21fa53302cd048a8f004e85a240984c93d4d",
+        "source": "https://github.com/oven-sh/bun/releases/download/bun-v1.2.2/SHASUMS256.txt",
+        "source_bytes": 2075,
+        "source_sha256": "4716baa1ae9c95fa12bcbfd983e96cbb8da60609ab3575ca0ad0178a74810618",
+        "detached_signature_verified": false,
+        "archive_verified": false
+      },
+      "swift": {
+        "archive_digest": null,
+        "signature_url": "https://download.swift.org/swift-6.0.3-release/ubuntu2404-aarch64/swift-6.0.3-RELEASE/swift-6.0.3-RELEASE-ubuntu24.04-aarch64.tar.gz.sig",
+        "signature_sha256": "b80abe59b6533c65c13ff3067f96474cf451adbdfa5d72ff167a1a7c84c7d480",
+        "signer_fingerprint": "52BB7E3DE28A71BE22EC05FFEF80A866B47A981F",
+        "signer_key_source": "https://swift.org/keys/release-key-swift-6.x.asc",
+        "signer_key_sha256": "2ada84351b77be3a832bfb612c64cf3e22399c933645c490bab1f9fe18f3c229",
+        "signature_verified_against_archive": false,
+        "body_request_admitted": false
+      },
+      "dotnet-targeting-pack-net8": {
+        "sha512_base64": "oMIPTmsRuaFIosXYWzEHFCu2pQK0JdtkuQdT4j1szfZ8BVTHtYsBqWdjGV3u9uaWiJld6V7FanVVU+Z8HWFQ6Q==",
+        "source": "https://api.nuget.org/v3/catalog0/data/2024.11.12.18.26.32/microsoft.netcore.app.ref.8.0.11.json",
+        "catalog_package_size_bytes": 6845027,
+        "archive_verified": false
+      }
+    },
+    "transport_script": null,
+    "new_receipt": "continuation.sqlite3; planned only; original receipt remains read-only",
+    "body_requests_admitted": false,
+    "continuation_index": "docs/PHASE-3B-CAPPED-ARCHIVE-CONTINUATION-INPUTS-2026-10-19.json",
+    "new_receipt_logical_cap_bytes": 16777216,
+    "planned_retained_logical_upper_bytes": 2206074261,
+    "planned_retained_headroom_bytes": 1015151211,
+    "planned_mounted_volume_headroom_bytes": 1015110251
   }
 }

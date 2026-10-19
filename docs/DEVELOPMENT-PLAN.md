@@ -1,5 +1,13 @@
 # Crewshal phased development and acceptance plan
 
+## Current halted archive continuation boundary — 2026-10-19
+
+The [continuation boundary](PHASE-3B-CAPPED-ARCHIVE-CONTINUATION-BOUNDARY-2026-10-19.md) verifies retained custody and fixes a new receipt plan.
+The original SQLite receipt remains halted. No archive body request or owner decision is admitted by the plan.
+Swift still lacks a trusted full archive digest. The continuation transport and receipt do not exist yet.
+Use the [next prompt](PHASE-3B-CAPPED-ARCHIVE-CONTINUATION-NEXT-SESSION-2026-10-19.md) and [exact inputs](PHASE-3B-CAPPED-ARCHIVE-CONTINUATION-INPUTS-2026-10-19.json).
+All 192 development rows remain planned, and all 576 sealed rows remain unexposed.
+
 ## Current capped archive halt — 2026-10-19
 
 The owner approved the exact sixteen-URL archive evidence stage.

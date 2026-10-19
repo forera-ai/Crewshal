@@ -4,6 +4,26 @@ Last updated: 2026-10-19. This record supplies the next session and the owner wi
 
 ## Current state
 
+**October 19: The halted archive continuation remains blocked after custody and digest review.**
+The session began at `fd5fdf7332224c2d0d47d06ef2e6227a216dbf9b` with a clean worktree.
+All 168 continuation inputs matched their recorded size and SHA-256.
+The mounted image and original SQLite receipt remain intact. The receipt is halted and records the failed `.NET SDK` attempt.
+The retained SDK file independently matched 204,124,866 bytes and its recorded SHA-512.
+The receipt binds original script SHA-256 `79c547bcaecdd3ef85a1b4618cbb71b29f8fe28c93f2106380058c36079c14c4`.
+The repaired script SHA-256 is `e67c93816da58c242880c631b6f436c75011cf098e317c7a29ca2f1edb104f91`.
+Ten local tests, Ruff, strict mypy, and the frozen Phase 3A checker passed.
+Official sources supplied Bun and .NET targeting pack checksum inputs. Swift still lacks a trusted full archive digest.
+The [single admission ledger](PHASE-3B-CAMPAIGN-ADMISSION-MANIFEST-2026-10-19.json) retains the original sixteen URLs and caps.
+The prior 8,589,934,592-byte charge and the current 311,183,922-byte conservative charge remain intact.
+The [continuation boundary](PHASE-3B-CAPPED-ARCHIVE-CONTINUATION-BOUNDARY-2026-10-19.md) specifies a new receipt and transport plan.
+That transport does not exist. The original receipt remains closed, and no new archive body request ran.
+No guest, Linux test, native turn, provider request, Jev call, or evaluation row ran.
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+Linux qualification, provider identity, B1 conformance, Phase 3B calibration, and Phase 3C remain closed.
+The checkpoint version is `0.15.18`. The delivery revision is the commit containing this entry.
+Use the [next prompt](PHASE-3B-CAPPED-ARCHIVE-CONTINUATION-NEXT-SESSION-2026-10-19.md) and [exact inputs](PHASE-3B-CAPPED-ARCHIVE-CONTINUATION-INPUTS-2026-10-19.json).
+Earlier dated entries remain historical records.
+
 **October 19: The owner-approved capped archive stage halted after a transport digest-parser failure.**
 The session began at `f11e1b40b63d8b4e33a3b321a421a1293c231598` with a clean worktree.
 All 164 continuation inputs matched their recorded size and SHA-256.

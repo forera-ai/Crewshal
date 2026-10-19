@@ -10,6 +10,15 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**October 19: The halted archive stage remains closed after custody and digest review.**
+All 168 continuation inputs matched their recorded size and SHA-256.
+The retained `.NET SDK` file matched its recorded length and SHA-512. Its original receipt remains failed.
+The repaired transport passed local checks, but its hash differs from the original receipt binding.
+Official sources supplied Bun and .NET targeting pack checksum inputs. Swift still lacks a bound archive digest.
+The [continuation boundary](docs/PHASE-3B-CAPPED-ARCHIVE-CONTINUATION-BOUNDARY-2026-10-19.md) records the proposed new receipt and fixed charges.
+Use the [next prompt](docs/PHASE-3B-CAPPED-ARCHIVE-CONTINUATION-NEXT-SESSION-2026-10-19.md) and [exact inputs](docs/PHASE-3B-CAPPED-ARCHIVE-CONTINUATION-INPUTS-2026-10-19.json).
+No new archive body request or owner decision is admitted. All 192 development rows remain planned, and all 576 sealed rows remain unexposed.
+
 **October 19: The approved capped archive stage halted after a transport parser failure.**
 The owner approved the exact sixteen-URL stage and its fixed caps.
 Four source archives and three tool archives passed size and digest checks.

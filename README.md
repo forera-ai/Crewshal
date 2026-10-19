@@ -10,6 +10,15 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**October 20: The approved four-archive extraction completed once.**
+The [completion record](docs/PHASE-3B-REMAINING-EXTRACTION-COMPLETION-2026-10-20.md) records the commands, readback, costs, and limits.
+The new output contains 6,208 verified regular files, 3,859,951,638 content bytes, and 37 Swift links.
+All 16 archive hashes, both receipt hashes, both output manifests, and frozen Phase 3A checks passed.
+The new image stayed below its 7 GiB allocation cap. Mounted and host free space stayed above their floors.
+The single ledger closes further extraction. Installation, guest work, Linux tests, and evaluation remain closed.
+Use the [next prompt](docs/PHASE-3B-POST-REMAINING-EXTRACTION-NEXT-SESSION-2026-10-20.md) and [exact inputs](docs/PHASE-3B-POST-REMAINING-EXTRACTION-INPUTS-2026-10-20.json).
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+
 **October 20: Four remaining archives passed local extractor source checks.**
 The [source checkpoint](docs/PHASE-3B-REMAINING-EXTRACTOR-SOURCE-2026-10-20.md) records 52 tests and four read-only archive preflights.
 The [proposal](docs/PHASE-3B-REMAINING-ARCHIVE-PROPOSAL-2026-10-20.md) binds one new image and one extraction attempt.

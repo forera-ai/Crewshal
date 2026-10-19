@@ -1,6 +1,6 @@
 # Proposed decision: one bounded extraction of four remaining archives
 
-Date: 2026-10-20. Status: Proposed. New image creation and extraction are not admitted.
+Date: 2026-10-20. Status: Approved and completed once. See the [completion record](PHASE-3B-REMAINING-EXTRACTION-COMPLETION-2026-10-20.md).
 The prior twelve-archive extraction completed once. Its admission remains closed.
 This proposal covers only `swift`, `dotnet-sdk`, `codex-native`, and `claude-native`.
 Use the [single admission ledger](PHASE-3B-CAMPAIGN-ADMISSION-MANIFEST-2026-10-19.json) for this decision.

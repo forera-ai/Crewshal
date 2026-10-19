@@ -1,8 +1,30 @@
 # Crewshal rolling handoff and project memory
 
-Last updated: 2026-10-19. This record supplies the next session and the owner with project history. [DEVELOPMENT-PLAN.md](DEVELOPMENT-PLAN.md) defines the milestone acceptance checks. Preserve the session ledger.
+Last updated: 2026-10-20. This record supplies the next session and the owner with project history. [DEVELOPMENT-PLAN.md](DEVELOPMENT-PLAN.md) defines the milestone acceptance checks. Preserve the session ledger.
 
 ## Current state
+
+**October 20: The owner-approved four-archive extraction completed in one attempt.**
+The session began at `d440ae3eaeafc75c39745c2bf22e8909ba379aa1` with a clean worktree.
+All 200 exact entry inputs matched their recorded sizes and SHA-256 values.
+The [completion record](PHASE-3B-REMAINING-EXTRACTION-COMPLETION-2026-10-20.md) records commands, readback, costs, and limits.
+The owner approved the exact one-image, one-attempt proposal in this Codex chat on October 20.
+The output contains four selected IDs, 6,208 verified regular files, and 37 Swift links.
+Regular content totals 3,859,951,638 bytes. The manifest SHA-256 is `4075234d7996789333e62cd082b7c408abed38a26d0fd5d3fff2de666f39e79d`.
+The new image used 3,891,281,920 allocated bytes. Mounted free space was 2,331,660,288 bytes.
+Both receipts, all 16 archives, both output manifests, and frozen Phase 3A checks passed.
+The fixed image retained its logical size. Its allocation rose by 2,015,232 bytes for an unknown reason.
+The single ledger records one completed attempt and closes further extraction.
+The original sixteen URLs, object caps, 2,232,012,187-byte stage cap, and both receipt histories remain intact.
+The prior 8,589,934,592-byte and final 10,008,484,533-byte conservative charges remain intact.
+Known paid-host and metered API cost was USD 0. Subscription quota debit remains unknown.
+No archive body request, guest, Linux test, native turn, provider request, or evaluation row ran.
+Guest and VM growth was zero. All 192 development rows remain planned, and all 576 sealed rows remain unexposed.
+Executable hashes, effective commands, providers, and B1 conformance remain unknown.
+Installation, archived tool execution, Linux qualification, Phase 3B calibration, and Phase 3C remain closed.
+The checkpoint version is `0.18.1`. The delivery revision is the commit containing this entry.
+Use the [next prompt](PHASE-3B-POST-REMAINING-EXTRACTION-NEXT-SESSION-2026-10-20.md) and [exact inputs](PHASE-3B-POST-REMAINING-EXTRACTION-INPUTS-2026-10-20.json).
+Earlier dated entries remain historical records.
 
 **October 20: The remaining-archive extractor passed local source acceptance.**
 The session began at `e5a73c5c125476182910b938b0571dbe0c8039c9` with a clean worktree.

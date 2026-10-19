@@ -3,7 +3,7 @@
     "Changed RAM, infrastructure, retained-data, and transfer rules lack owner approval.",
     "The current transfer balance is zero under conservative accounting.",
     "The four npm archive sizes are now receipt-bound; CMake, Ninja, Ubuntu, and repository dependency closures remain unresolved.",
-    "The selected twelve archives passed the approved bounded extraction. The four excluded archives, including Swift links, lack an approved extraction and storage scope.",
+    "Both approved extraction batches completed. Installation and archived tool execution still lack an admitted campaign scope.",
     "Ubuntu and selected repository dependency closures lack exact read-only package snapshots.",
     "The earlier source-only extractor has no admitted selected-archive result. The bounded retained extractor completed the selected twelve-archive batch.",
     "B1 lacks admitted native launch commands and conformance.",
@@ -1030,7 +1030,7 @@
     "archived_tool_execution_admitted": false
   },
   "archive_extraction_remaining": {
-    "status": "local synthetic acceptance and read-only preflight passed; new image and extraction not admitted",
+    "status": "one approved new-image and extraction attempt completed; further attempts closed",
     "record_path": "docs/PHASE-3B-REMAINING-ARCHIVE-PROPOSAL-2026-10-20.md",
     "selected_ids": ["claude-native", "codex-native", "dotnet-sdk", "swift"],
     "selected_members": 7216,
@@ -1057,11 +1057,26 @@
     "test_sha256": "fd28da7e0fb484e9f81b4a312a9c425d96296c60969a4d84a850b1f651927124",
     "synthetic_tests": 11,
     "real_archive_preflights": 4,
-    "output_root": null,
-    "owner_decision": null,
+    "output_root": "/Volumes/CrewshalPhase3BRemainingStage/extracted-4-v1",
+    "owner_decision": "approved exact one-image, one-attempt remaining extraction on 2026-10-20 in current Codex chat",
     "new_image_creation_admitted": false,
     "extraction_admitted": false,
     "installation_admitted": false,
-    "archived_tool_execution_admitted": false
+    "archived_tool_execution_admitted": false,
+    "attempt_result": {
+      "date": "2026-10-20",
+      "entry_revision": "d440ae3eaeafc75c39745c2bf22e8909ba379aa1",
+      "attempts": 1,
+      "result": "complete",
+      "output_manifest_sha256": "4075234d7996789333e62cd082b7c408abed38a26d0fd5d3fff2de666f39e79d",
+      "output_tree_sha256": "d9f8710e45ac59aaec9f174c64ee6437e1f6d52bea2974195a2ec83c9ee0e79b",
+      "regular_files": 6208,
+      "regular_content_bytes": 3859951638,
+      "swift_links": 37,
+      "new_image_allocated_bytes": 3891281920,
+      "final_mounted_free_bytes": 2331660288,
+      "final_host_free_bytes": 143998521344,
+      "completion_record": "docs/PHASE-3B-REMAINING-EXTRACTION-COMPLETION-2026-10-20.md"
+    }
   }
 }

@@ -1,5 +1,15 @@
 # Crewshal phased development and acceptance plan
 
+## Current four-archive extraction completion — 2026-10-20
+
+The owner approved the exact one-image, one-attempt proposal on October 20.
+The [completion record](PHASE-3B-REMAINING-EXTRACTION-COMPLETION-2026-10-20.md) verifies four selected outputs.
+It records 6,208 regular files, 3,859,951,638 content bytes, and 37 Swift links.
+The single ledger closes further extraction. Installation and archived tool execution remain closed.
+Use the [next prompt](PHASE-3B-POST-REMAINING-EXTRACTION-NEXT-SESSION-2026-10-20.md) and [exact inputs](PHASE-3B-POST-REMAINING-EXTRACTION-INPUTS-2026-10-20.json).
+Linux qualification, Phase 3B calibration, and Phase 3C remain closed.
+All 192 development rows remain planned, and all 576 sealed rows remain unexposed.
+
 ## Current remaining-archive extractor proposal — 2026-10-20
 
 The [source checkpoint](PHASE-3B-REMAINING-EXTRACTOR-SOURCE-2026-10-20.md) records local acceptance and four read-only archive preflights.

@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.18.1 — 2026-10-20
+
+- Record the owner's exact one-image, one-attempt approval and the completed four-archive extraction.
+- Verify 6,208 regular files, 3,859,951,638 content bytes, and 37 Swift links.
+- Check all 16 archive hashes, both receipts, both output manifests, and frozen Phase 3A custody.
+- Close further extraction. Keep installation, guest work, Linux tests, native turns, and evaluation gated.
+
 ## 0.18.0 — 2026-10-20
 
 - Add a bounded extractor candidate for four remaining retained archives and 37 recorded Swift links.

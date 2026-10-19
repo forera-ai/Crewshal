@@ -4,6 +4,24 @@ Last updated: 2026-10-20. This record supplies the next session and the owner wi
 
 ## Current state
 
+**October 20: The post-extraction guest admission review is complete.**
+The session began at `aa8f19d` with a clean worktree.
+The [review](PHASE-3B-POST-EXTRACTION-ADMISSION-REVIEW-2026-10-20.md) records source constraints, VMware custody, costs, and limits.
+The TypeScript lock has 998 integrity entries. Python and .NET still need resolved dependency snapshots.
+Swift has no external Swift package dependency. Ubuntu, CMake, and Ninja closures remain unbound.
+Both historical VMware guests contain suspended-state files. Neither guest ran or changed in this review.
+The Phase 3B VM and ISO use 25,752,367,104 allocated host bytes, above the dated 9,093,566,464-byte readback.
+The [separate-guest proposal](PHASE-3B-SEPARATE-GUEST-CAPACITY-PROPOSAL-2026-10-20.md) defines one clone and capacity attempt.
+The owner choice and exact approval remain pending. The single ledger keeps all guest flags false.
+Both extraction attempts remain complete and closed. The original archives, receipts, charges, and Phase 3A custody remain intact.
+Known paid-host and metered API cost was USD 0. No archive body, guest, package install, native turn, or evaluation row ran.
+All 192 development rows remain planned, and all 576 sealed rows remain unexposed.
+Executable hashes, effective commands, providers, and B1 conformance remain unknown.
+Phase 3B calibration and Phase 3C remain closed.
+The checkpoint version is `0.18.2`. The delivery revision is the commit containing this entry.
+Use the [next prompt](PHASE-3B-GUEST-DECISION-NEXT-SESSION-2026-10-20.md) and [exact inputs](PHASE-3B-GUEST-DECISION-INPUTS-2026-10-20.json).
+Earlier dated entries remain historical records.
+
 **October 20: The owner-approved four-archive extraction completed in one attempt.**
 The session began at `d440ae3eaeafc75c39745c2bf22e8909ba379aa1` with a clean worktree.
 All 200 exact entry inputs matched their recorded sizes and SHA-256 values.

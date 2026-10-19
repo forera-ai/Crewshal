@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.18.2 — 2026-10-20
+
+- Review extracted source dependency metadata and existing guest custody without running a guest.
+- Record 998 Bun lock entries, direct Python and .NET constraints, and the missing package closures.
+- Propose one bounded separate-guest clone attempt while keeping its admission closed.
+- Preserve both suspended guests, both extraction results, receipts, charges, and frozen Phase 3A custody.
+
 ## 0.18.1 — 2026-10-20
 
 - Record the owner's exact one-image, one-attempt approval and the completed four-archive extraction.

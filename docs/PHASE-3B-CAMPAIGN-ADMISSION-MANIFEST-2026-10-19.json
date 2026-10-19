@@ -1078,5 +1078,25 @@
       "final_host_free_bytes": 143998521344,
       "completion_record": "docs/PHASE-3B-REMAINING-EXTRACTION-COMPLETION-2026-10-20.md"
     }
+  },
+  "guest_clone_capacity": {
+    "status": "proposed; owner decision pending; no guest action admitted",
+    "proposal": "docs/PHASE-3B-SEPARATE-GUEST-CAPACITY-PROPOSAL-2026-10-20.md",
+    "source_vmx": "/Volumes/X10Pro/Internal-Offload-2026-09-15/Moved/Virtual Machines.localized/Crewshal Phase 3B Ubuntu arm64.vmwarevm/Crewshal Phase 3B Ubuntu arm64.vmx",
+    "destination_vmx": "/Volumes/X10Pro/Crewshal-Phase3B-Consolidated-20261020.vmwarevm/Crewshal Phase 3B Consolidated.vmx",
+    "new_bundle_allocated_cap_bytes": 34359738368,
+    "combined_bundle_and_iso_allocated_cap_bytes": 68719476736,
+    "minimum_host_free_bytes": 68719476736,
+    "configured_memory_mib": 17408,
+    "minimum_guest_visible_memory_bytes": 17179869184,
+    "minimum_guest_free_disk_bytes": 42949672960,
+    "owner_decision": null,
+    "clone_admitted": false,
+    "guest_start_admitted": false,
+    "package_retrieval_admitted": false,
+    "installation_admitted": false,
+    "linux_qualification_admitted": false,
+    "archived_tool_execution_admitted": false,
+    "evaluation_admitted": false
   }
 }

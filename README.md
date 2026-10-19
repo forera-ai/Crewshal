@@ -10,6 +10,14 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**October 20: Phase 3B guest admission needs a new owner decision.**
+The [read-only review](docs/PHASE-3B-POST-EXTRACTION-ADMISSION-REVIEW-2026-10-20.md) records source dependencies and current VMware custody.
+Both historical guests contain suspended-state files. The Phase 3B VM and ISO now use 25,752,367,104 allocated host bytes.
+The [separate-guest proposal](docs/PHASE-3B-SEPARATE-GUEST-CAPACITY-PROPOSAL-2026-10-20.md) defines one bounded clone attempt.
+The single ledger keeps that attempt, installation, Linux tests, and evaluation closed pending exact decisions.
+Use the [next prompt](docs/PHASE-3B-GUEST-DECISION-NEXT-SESSION-2026-10-20.md) and [exact inputs](docs/PHASE-3B-GUEST-DECISION-INPUTS-2026-10-20.json).
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+
 **October 20: The approved four-archive extraction completed once.**
 The [completion record](docs/PHASE-3B-REMAINING-EXTRACTION-COMPLETION-2026-10-20.md) records the commands, readback, costs, and limits.
 The new output contains 6,208 verified regular files, 3,859,951,638 content bytes, and 37 Swift links.

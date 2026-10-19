@@ -1,5 +1,14 @@
 # Crewshal phased development and acceptance plan
 
+## Current Phase 3B guest admission decision — 2026-10-20
+
+The [read-only review](PHASE-3B-POST-EXTRACTION-ADMISSION-REVIEW-2026-10-20.md) records source constraints and suspended guest custody.
+The [separate-guest proposal](PHASE-3B-SEPARATE-GUEST-CAPACITY-PROPOSAL-2026-10-20.md) defines one bounded clone candidate.
+The owner must select and approve the guest path. The single ledger admits no guest action.
+Use the [next prompt](PHASE-3B-GUEST-DECISION-NEXT-SESSION-2026-10-20.md) and [exact inputs](PHASE-3B-GUEST-DECISION-INPUTS-2026-10-20.json).
+Installation, Linux qualification, Phase 3B calibration, and Phase 3C remain closed.
+All 192 development rows remain planned, and all 576 sealed rows remain unexposed.
+
 ## Current four-archive extraction completion — 2026-10-20
 
 The owner approved the exact one-image, one-attempt proposal on October 20.

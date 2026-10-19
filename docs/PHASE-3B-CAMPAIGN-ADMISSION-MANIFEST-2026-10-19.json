@@ -987,16 +987,16 @@
   },
   "archive_extraction_proposal": {
     "source_candidate": {
-      "status": "local synthetic acceptance passed; retained extraction not admitted",
+      "status": "local synthetic acceptance passed; one retained extraction completed",
       "script": "scripts/phase3b_extract_retained.py",
       "script_sha256": "e31dd0a43d1323e85009311ec74cc85898ad49760f8d607326e9bc4b210540ae",
       "test_path": "tests/acceptance/test_phase3b_extract_retained.py",
       "test_sha256": "40d5e37da9f6ad9b8e3dd9b50dddf34ebb12036121edbc96f44f1fc83b19d79c",
       "selected_ids_bound": 12,
       "synthetic_tests": 19,
-      "retained_archive_extractions": 0
+      "retained_archive_extractions": 1
     },
-    "status": "planning complete; extraction and execution not admitted",
+    "status": "one approved retained extraction attempt completed; further attempts closed",
     "record_path": "docs/PHASE-3B-RETAINED-EXTRACTION-PROPOSAL-2026-10-19.md",
     "selected_ids": ["bun", "claude-wrapper", "codex-wrapper", "cpython", "dotnet-1", "dotnet-runtime-net8", "dotnet-targeting-pack-net8", "node", "python-1", "rtk", "swift-1", "typescript-2"],
     "excluded_ids": ["swift", "dotnet-sdk", "codex-native", "claude-native"],
@@ -1014,10 +1014,17 @@
     "dotnet_leading_dot_normalization": "only one leading ./ on pinned .NET tarballs; root . directory marker has no output",
     "node_links": "only three exact recorded internal links, created after regular content readback",
     "swift_links": "37 internal links remain excluded with the Swift archive",
-    "extractor_sha256": null,
-    "output_root": null,
-    "owner_extraction_decision": null,
+    "extractor_sha256": "e31dd0a43d1323e85009311ec74cc85898ad49760f8d607326e9bc4b210540ae",
+    "output_root": "/Volumes/CrewshalPhase3BArchiveStage/extracted-12-v1",
+    "owner_extraction_decision": "approved exact one-attempt retained extraction on 2026-10-19 in current Codex chat",
     "extraction_admitted": false,
+    "completed_attempts": 1,
+    "output_manifest_sha256": "13e41f6e8156afd0e4284af200a1ac99f89b46aae7fbfd8f012933d5b56b4529",
+    "output_tree_sha256": "ea3f193c5811d591f4e0e78bf07f1bd527e4d7f22d28479fe68c46d499dcf3a2",
+    "output_regular_files": 11019,
+    "output_regular_content_bytes": 511667961,
+    "output_node_links": 3,
+    "mounted_free_bytes_after_readback": 1273950208,
     "installation_admitted": false,
     "archived_tool_execution_admitted": false
   }

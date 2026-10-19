@@ -2,6 +2,12 @@
 
 Date: 2026-10-19. Status: Proposed; no extraction is admitted.
 
+## Decision and outcome, 2026-10-20
+
+The owner approved this exact one-attempt proposal in the current Codex chat on 2026-10-19.
+The [completion record](PHASE-3B-RETAINED-EXTRACTION-COMPLETION-2026-10-20.md) records the successful single attempt.
+The admission ledger now closes further extraction. The proposal text below preserves its original review state.
+
 ## Exact proposed action
 
 Approve one local extraction attempt for the twelve selected IDs in the [single admission ledger](PHASE-3B-CAMPAIGN-ADMISSION-MANIFEST-2026-10-19.json).

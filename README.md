@@ -10,6 +10,16 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**October 20: The approved bounded retained extraction completed once.**
+The [completion record](docs/PHASE-3B-RETAINED-EXTRACTION-COMPLETION-2026-10-20.md) records its checks and limits.
+The output contains twelve selected archives, 11,019 verified regular files, and three recorded Node links.
+The regular content totals 511,667,961 bytes. Mounted free space stayed above the required floor.
+Both receipts, all 16 archives, the fixed image, and frozen Phase 3A custody passed read-only checks.
+The [single ledger](docs/PHASE-3B-CAMPAIGN-ADMISSION-MANIFEST-2026-10-19.json) closes further extraction.
+Installation, archived tool execution, guests, Linux tests, and evaluation remain closed.
+Use the [next prompt](docs/PHASE-3B-POST-EXTRACTION-NEXT-SESSION-2026-10-20.md) and [exact inputs](docs/PHASE-3B-POST-EXTRACTION-INPUTS-2026-10-20.json).
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+
 **October 19: Local retained extractor source acceptance passed.**
 The [source checkpoint](docs/PHASE-3B-RETAINED-EXTRACTOR-SOURCE-2026-10-19.md) binds twelve archive IDs and the exact content and free-space limits.
 Nineteen synthetic extractor tests and 22 related tests passed. All retained inputs passed read-only custody checks.

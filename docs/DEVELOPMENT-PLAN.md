@@ -1,5 +1,16 @@
 # Crewshal phased development and acceptance plan
 
+## Current retained extraction completion — 2026-10-20
+
+The owner approved the exact one-attempt decision on October 19.
+The [completion record](PHASE-3B-RETAINED-EXTRACTION-COMPLETION-2026-10-20.md) verifies twelve selected outputs.
+It records 11,019 regular files, 511,667,961 content bytes, and three Node links.
+The single admission ledger closes further extraction. Installation and archived tool execution remain closed.
+Use the [next prompt](PHASE-3B-POST-EXTRACTION-NEXT-SESSION-2026-10-20.md) and [exact inputs](PHASE-3B-POST-EXTRACTION-INPUTS-2026-10-20.json).
+Linux qualification, Phase 3B calibration, and Phase 3C remain closed.
+All 192 development rows remain planned, and all 576 sealed rows remain unexposed.
+
+
 ## Current retained extractor source checkpoint — 2026-10-19
 
 The [source checkpoint](PHASE-3B-RETAINED-EXTRACTOR-SOURCE-2026-10-19.md) records local synthetic acceptance and read-only retained-input checks.

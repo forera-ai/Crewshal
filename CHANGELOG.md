@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.17.1 — 2026-10-20
+
+- Record the owner's exact one-attempt approval and completed retained extraction.
+- Verify 11,019 output files, three Node links, both receipts, all 16 archives, and frozen Phase 3A custody.
+- Close further extraction while installation, archived tool execution, Linux work, and evaluation remain closed.
+- Preserve the original charges, URLs, caps, fixed image, and receipt histories.
+
 ## 0.17.0 — 2026-10-19
 
 - Add a bounded retained extractor with exact archive, member, content, path, link, and free-space checks.

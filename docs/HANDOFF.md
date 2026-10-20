@@ -4,6 +4,17 @@ Last updated: 2026-10-20. This record supplies the next session and the owner wi
 
 ## Current state
 
+**October 20: The owner approved one offline Ubuntu package snapshot.**
+The owner replied, “Approve this exact snapshot,” to the [one-start proposal](PHASE-3B-OFFLINE-PACKAGE-SNAPSHOT-PROPOSAL-2026-10-20.md).
+The [single ledger](PHASE-3B-CAMPAIGN-ADMISSION-MANIFEST-2026-10-19.json) admits one start of the powered-off separate clone.
+Run only the proposal's read-only commands after a clean worktree and exact preflight.
+The clone must keep its network and sharing disabled. The owner must enter the guest password locally.
+The attempt has not started at this checkpoint. Its result and costs remain unknown.
+Package retrieval, installation, Linux qualification, archived tools, native turns, and evaluation remain closed.
+The checkpoint version is `0.18.5`. The delivery revision is the commit containing this entry.
+Continue this same Phase 3B session with the approved snapshot. The prior 213-file index passed before this checkpoint.
+Earlier dated entries remain historical records.
+
 **October 20: The approved separate guest capacity attempt passed.**
 The session began at `9e790ac` with a clean worktree and a pushed checkpoint.
 The [completion record](PHASE-3B-SEPARATE-GUEST-CAPACITY-COMPLETION-2026-10-20.md) records one clone, one start, read-only capacity commands, and shutdown.

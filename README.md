@@ -10,6 +10,12 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**October 20: One offline Ubuntu package snapshot is approved.**
+The owner approved the [exact one-start proposal](docs/PHASE-3B-OFFLINE-PACKAGE-SNAPSHOT-PROPOSAL-2026-10-20.md).
+The [single admission ledger](docs/PHASE-3B-CAMPAIGN-ADMISSION-MANIFEST-2026-10-19.json) admits only read-only package queries in the separate clone.
+Package retrieval, installation, Linux qualification, archived tools, native turns, and evaluation remain closed.
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+
 **October 20: The approved separate guest passed its capacity check.**
 The [completion record](docs/PHASE-3B-SEPARATE-GUEST-CAPACITY-COMPLETION-2026-10-20.md) records one clone, one start, and an orderly shutdown.
 Ubuntu arm64 showed four CPUs, 17,760,559,104 memory bytes, and 55,519,887,360 free guest bytes.

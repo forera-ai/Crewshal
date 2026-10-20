@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.18.5 — 2026-10-20
+
+- Record the owner's exact approval for one offline Ubuntu package snapshot.
+- Bind the clone, read-only commands, limits, and stop rules in the single admission ledger.
+- Keep retrieval, installation, Linux qualification, archived tools, native turns, and evaluation closed.
+
 ## 0.18.4 — 2026-10-20
 
 - Complete the owner's one approved separate guest clone and capacity attempt.

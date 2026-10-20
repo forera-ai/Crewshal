@@ -1,7 +1,8 @@
 # Proposed Phase 3B Ubuntu package retrieval
 
-Date: 2026-10-20. Status: proposed; no execution authority.
+Date: 2026-10-20. Status: approved for one exact attempt in the current Codex chat.
 Entry revision: `2b6c939` on `codex/phase1-architecture`.
+The owner replied, “Approve this exact retrieval.” The single admission ledger records this decision.
 The [offline resolution capture](PHASE-3B-OFFLINE-RESOLUTION-COMPLETION-2026-10-20.md) found 101 package objects.
 Their listed sizes total 111,245,650 bytes. The largest object is 18,708,214 bytes.
 The current transfer balance is zero under the single admission ledger.

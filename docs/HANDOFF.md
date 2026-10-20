@@ -4,6 +4,19 @@ Last updated: 2026-10-20. This record supplies the next session and the owner wi
 
 ## Current state
 
+**October 20: The owner approved one bounded Ubuntu package retrieval.**
+The owner replied, “Approve this exact retrieval,” to the [one-start proposal](PHASE-3B-UBUNTU-PACKAGE-RETRIEVAL-PROPOSAL-2026-10-20.md).
+The [single ledger](PHASE-3B-CAMPAIGN-ADMISSION-MANIFEST-2026-10-19.json) admits only the proposal's clone start and download-only APT attempt.
+Run the exact offline preflight before connecting the network adapter.
+Keep sharing disabled. Disconnect the network adapter before shutdown.
+The new conservative transfer allowance is 167,772,160 bytes. The historical charge remains 10,008,484,533 bytes.
+The attempt has not started at this checkpoint. Its result and costs remain unknown.
+Installation, Linux qualification, archived tools, native turns, and evaluation remain closed.
+The checkpoint version is `0.18.10`. The delivery revision is the commit containing this entry.
+Continue this Phase 3B session with the approved retrieval.
+Use the [next prompt](PHASE-3B-PACKAGE-RETRIEVAL-APPROVED-NEXT-SESSION-2026-10-20.md) and [exact inputs](PHASE-3B-PACKAGE-RETRIEVAL-APPROVED-INPUTS-2026-10-20.json).
+Earlier dated entries remain historical records.
+
 **October 20: A bounded Ubuntu package retrieval decision is pending.**
 The [proposal](PHASE-3B-UBUNTU-PACKAGE-RETRIEVAL-PROPOSAL-2026-10-20.md) requests one clone start and download-only APT.
 It binds the offline list of 101 objects and 111,245,650 package bytes.

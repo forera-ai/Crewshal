@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.18.10 — 2026-10-20
+
+- Record the owner's exact approval for one Ubuntu package retrieval attempt.
+- Admit one isolated clone start and download-only APT under a 167,772,160-byte conservative transfer allowance.
+- Keep installation, Linux qualification, archived tools, native turns, and evaluation closed.
+
 ## 0.18.9 — 2026-10-20
 
 - Propose one isolated Ubuntu package retrieval attempt with a 167,772,160-byte conservative transfer ceiling.

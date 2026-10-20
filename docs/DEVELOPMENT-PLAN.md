@@ -1,5 +1,14 @@
 # Crewshal phased development and acceptance plan
 
+## Current approved Ubuntu package retrieval — 2026-10-20
+
+The owner approved one exact clone start and download-only APT attempt.
+The [proposal](PHASE-3B-UBUNTU-PACKAGE-RETRIEVAL-PROPOSAL-2026-10-20.md) binds 101 listed objects and a 167,772,160-byte new allowance.
+Verify the exact inputs, frozen custody, original guest hashes, clone isolation, and host limits before starting.
+Run the proposal's offline preflight before connecting the network adapter.
+Keep installation, Linux qualification, archived tools, native turns, and evaluation closed.
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+
 ## Current Ubuntu package retrieval decision — 2026-10-20
 
 The [proposal](PHASE-3B-UBUNTU-PACKAGE-RETRIEVAL-PROPOSAL-2026-10-20.md) defines one download-only attempt.

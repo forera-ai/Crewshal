@@ -10,6 +10,12 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**October 20: One bounded Ubuntu package retrieval is approved.**
+The owner approved the [exact one-start proposal](docs/PHASE-3B-UBUNTU-PACKAGE-RETRIEVAL-PROPOSAL-2026-10-20.md).
+The [single ledger](docs/PHASE-3B-CAMPAIGN-ADMISSION-MANIFEST-2026-10-19.json) admits one download-only attempt in the separate clone.
+The new conservative transfer allowance is 167,772,160 bytes. The prior charge remains unchanged.
+Installation, Linux qualification, archived tools, native turns, and evaluation remain closed.
+
 **October 20: One bounded Ubuntu package retrieval decision is pending.**
 The [proposal](docs/PHASE-3B-UBUNTU-PACKAGE-RETRIEVAL-PROPOSAL-2026-10-20.md) covers one isolated clone start and download-only APT.
 It proposes 167,772,160 bytes of additional conservative network charge for 101 listed package objects.

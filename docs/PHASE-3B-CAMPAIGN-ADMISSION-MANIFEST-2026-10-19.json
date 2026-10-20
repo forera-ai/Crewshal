@@ -1,18 +1,18 @@
 {
   "admission_blockers": [
-    "The approved clone, capacity attempt, and both offline package captures are complete. Wider transfer and evaluation rules lack owner approval.",
-    "The current transfer balance is zero under conservative accounting.",
+    "The approved clone, capacity attempt, and both offline package captures are complete. One bounded Ubuntu package retrieval is admitted; wider transfer and evaluation rules lack owner approval.",
+    "The historical transfer balance is zero. One new 167,772,160-byte conservative transfer allowance is admitted for Ubuntu package retrieval only.",
     "All sixteen archive sizes and hashes are receipt-bound; the offline Ubuntu package list has 101 objects, while repository dependency closures remain unresolved.",
     "Both approved extraction batches completed. Installation and archived tool execution still lack an admitted campaign scope.",
     "Both offline Ubuntu captures passed without retrieval or installation. The 101-object package list totals 111,245,650 bytes.",
-    "Both extraction batches and the separate guest captures are complete. No further guest start is admitted.",
+    "Both extraction batches and the separate guest captures are complete. One further clone start is admitted for Ubuntu package retrieval only.",
     "B1 lacks admitted native launch commands and conformance.",
     "Actual runtime executables, effective configuration, provider identities, and platform qualification remain unknown."
   ],
   "approval_request": {
     "changed_limits_requested": false,
     "exact_batch_reviewable": false,
-    "reason": "The full campaign remains unreviewable. The offline resolution capture is complete. Transfer, installation, and Linux qualification remain closed."
+    "reason": "The full campaign remains unreviewable. One bounded Ubuntu package retrieval is admitted. Installation and Linux qualification remain closed."
   },
   "archive_evidence_stage": {
     "active_seconds_cap": 7200,
@@ -1238,10 +1238,12 @@
   "ubuntu_package_retrieval": {
     "proposal": "docs/PHASE-3B-UBUNTU-PACKAGE-RETRIEVAL-PROPOSAL-2026-10-20.md",
     "owner_reviewed_proposal_sha256": "07fc6b3eddf853ee5a05bcdcdfefffb859d73442ed3d4d6474b56ab1e5e95fd5",
-    "status": "proposed; owner decision pending",
-    "guest_start_admitted": false,
-    "network_adapter_connection_admitted": false,
-    "package_retrieval_admitted": false,
+    "admission_proposal_sha256": "4ddc2be6369360e95c8390671317fc902d2604267a984058ccb89c3d8454db5c",
+    "owner_decision": "2026-10-20 owner reply in current Codex chat: Approve this exact retrieval.",
+    "status": "one bounded retrieval attempt admitted; attempt not yet begun",
+    "guest_start_admitted": true,
+    "network_adapter_connection_admitted": true,
+    "package_retrieval_admitted": true,
     "installation_admitted": false,
     "archived_tool_execution_admitted": false,
     "linux_qualification_admitted": false,

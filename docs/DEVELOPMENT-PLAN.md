@@ -1,5 +1,14 @@
 # Crewshal phased development and acceptance plan
 
+## Current separate guest capacity result — 2026-10-20
+
+The owner selected and approved one exact separate guest clone attempt.
+The [completion record](PHASE-3B-SEPARATE-GUEST-CAPACITY-COMPLETION-2026-10-20.md) shows that the clone passed CPU, RAM, disk, and host limits.
+The clone is powered off. Both historical guests remain unchanged.
+The single ledger closes further guest starts, package work, Linux qualification, and evaluation.
+Use the [continuation prompt](PHASE-3B-POST-CLONE-NEXT-SESSION-2026-10-20.md) and [exact inputs](PHASE-3B-POST-CLONE-INPUTS-2026-10-20.json).
+All 192 development rows remain planned, and all 576 sealed rows remain unexposed.
+
 ## Current retained toolchain readback — 2026-10-20
 
 The [readback completion](PHASE-3B-TOOLCHAIN-READBACK-COMPLETION-2026-10-20.md) binds all 16 retained archives to both output manifests.

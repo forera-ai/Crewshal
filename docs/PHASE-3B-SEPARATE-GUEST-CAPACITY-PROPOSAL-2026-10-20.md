@@ -1,7 +1,8 @@
 # Proposed Phase 3B separate-guest capacity attempt
 
-Date: 2026-10-20. Status: Draft. No guest action is admitted.
-This proposal uses the separate-guest planning assumption while the owner choice remains pending.
+Date: 2026-10-20. Status: The one approved attempt is complete and closed.
+The owner selected a separate guest and approved this exact attempt in the current Codex chat.
+The [completion record](PHASE-3B-SEPARATE-GUEST-CAPACITY-COMPLETION-2026-10-20.md) gives the observed result.
 It would preserve both historical VMware bundles and their suspended states.
 It covers one full clone attempt of the Phase 3B guest and one capacity check on the clone.
 It does not admit package retrieval, installation, archived tool execution, Linux qualification tests, native turns, or evaluation rows.

@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.18.4 — 2026-10-20
+
+- Complete the owner's one approved separate guest clone and capacity attempt.
+- Verify Ubuntu arm64, four CPUs, memory, guest disk, host space, and original guest custody.
+- Shut down the clone and close further guest action until a new campaign decision.
+- Keep installation, Linux qualification, archived tool execution, and evaluation closed.
+
 ## 0.18.3 — 2026-10-20
 
 - Bind sixteen retained archive inventories to their verified extraction manifests.

@@ -10,6 +10,14 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**October 20: The approved separate guest passed its capacity check.**
+The [completion record](docs/PHASE-3B-SEPARATE-GUEST-CAPACITY-COMPLETION-2026-10-20.md) records one clone, one start, and an orderly shutdown.
+Ubuntu arm64 showed four CPUs, 17,760,559,104 memory bytes, and 55,519,887,360 free guest bytes.
+The clone used 4,921,806,848 allocated host bytes. Both historical guests remained unchanged.
+Package retrieval, installation, Linux qualification, archived tool execution, and evaluation need separate admission.
+Use the [continuation prompt](docs/PHASE-3B-POST-CLONE-NEXT-SESSION-2026-10-20.md) and [exact inputs](docs/PHASE-3B-POST-CLONE-INPUTS-2026-10-20.json).
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+
 **October 20: All sixteen retained archive inventories have read-only output bindings.**
 The [toolchain readback](docs/PHASE-3B-TOOLCHAIN-READBACK-COMPLETION-2026-10-20.md) confirms 1,368,218,293 compressed bytes and 4,371,619,599 regular content bytes.
 It binds both output manifests and keeps installed executable hashes, effective commands, and providers unknown.

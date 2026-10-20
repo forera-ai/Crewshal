@@ -4,6 +4,22 @@ Last updated: 2026-10-20. This record supplies the next session and the owner wi
 
 ## Current state
 
+**October 20: The approved separate guest capacity attempt passed.**
+The session began at `9e790ac` with a clean worktree and a pushed checkpoint.
+The [completion record](PHASE-3B-SEPARATE-GUEST-CAPACITY-COMPLETION-2026-10-20.md) records one clone, one start, read-only capacity commands, and shutdown.
+The owner selected a separate guest and approved the exact proposal in this Codex chat.
+The clone showed Ubuntu 24.04.5 arm64, four CPUs, 17,760,559,104 memory bytes, and 55,519,887,360 free guest bytes.
+The final clone allocation was 4,921,806,848 bytes. Combined allocation was 30,674,173,952 bytes.
+The host had 139,072,647,168 free bytes. All approved storage limits passed.
+Both historical guests remained unchanged. The clone is powered off with its network and sharing disabled.
+The single ledger closes further guest starts, package work, Linux qualification, archived tool execution, and evaluation.
+Installed executable hashes, effective commands, providers, and B1 conformance remain null.
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+Known paid-host and metered API cost was USD 0. New network transfer was zero bytes.
+The checkpoint version is `0.18.4`. The delivery revision is the commit containing this entry.
+Use the [continuation prompt](PHASE-3B-POST-CLONE-NEXT-SESSION-2026-10-20.md) and [exact inputs](PHASE-3B-POST-CLONE-INPUTS-2026-10-20.json).
+Earlier dated entries remain historical records.
+
 **October 20: Retained toolchain inventory readback is complete.**
 The session began at `57cbae2` with a clean worktree.
 The [completion record](PHASE-3B-TOOLCHAIN-READBACK-COMPLETION-2026-10-20.md) records read-only commands, results, costs, and limits.

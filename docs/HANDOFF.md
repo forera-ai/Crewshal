@@ -4,6 +4,20 @@ Last updated: 2026-10-20. This record supplies the next session and the owner wi
 
 ## Current state
 
+**October 20: The approved storage-gated package retrieval completed.**
+The [completion record](PHASE-3B-APT-STORAGE-RETRY-COMPLETION-2026-10-20.md) records one download-only command and verified cache.
+All 101 package names, versions, and SHA-256 hashes matched guest candidate metadata.
+The new conservative charge is 116,542,541 bytes. The historical charge remains 10,008,484,533 bytes.
+The cumulative conservative charge is 10,125,027,074 bytes.
+The clone is off with network and sharing disconnected. The original guest's 31 files still match.
+No package was installed. The [offline installation proposal](PHASE-3B-OFFLINE-PACKAGE-INSTALLATION-PROPOSAL-2026-10-20.md) needs an owner decision.
+The [single ledger](PHASE-3B-CAMPAIGN-ADMISSION-MANIFEST-2026-10-19.json) admits no further guest start or installation.
+Archived tools, Linux qualification, native turns, and evaluation remain closed.
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+The checkpoint version is `0.18.15`. The delivery revision is the commit containing this entry.
+Continue this Phase 3B chat with the [next prompt](PHASE-3B-OFFLINE-INSTALLATION-DECISION-NEXT-SESSION-2026-10-20.md) and its exact input index.
+Earlier dated entries remain historical records.
+
 **October 20: The owner approved one storage-gated APT retry.**
 The owner replied, “Approve this exact retry,” to the [exact proposal](PHASE-3B-APT-STORAGE-RETRY-PROPOSAL-2026-10-20.md).
 The [single ledger](PHASE-3B-CAMPAIGN-ADMISSION-MANIFEST-2026-10-19.json) admits one clone start and one download-only APT attempt.

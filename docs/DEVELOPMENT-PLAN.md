@@ -1,5 +1,14 @@
 # Crewshal phased development and acceptance plan
 
+## Current completed APT retrieval and installation decision — 2026-10-20
+
+The [completion record](PHASE-3B-APT-STORAGE-RETRY-COMPLETION-2026-10-20.md) verifies 101 cached package hashes.
+The new conservative charge is 116,542,541 bytes. The cumulative charge is 10,125,027,074 bytes.
+The clone is off with network and sharing disabled. No package was installed.
+The [offline installation proposal](PHASE-3B-OFFLINE-PACKAGE-INSTALLATION-PROPOSAL-2026-10-20.md) needs a separate owner decision.
+Keep archived tools, Linux qualification, native turns, and evaluation closed.
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+
 ## Current approved storage-gated APT retry — 2026-10-20
 
 The owner approved the [exact retry proposal](PHASE-3B-APT-STORAGE-RETRY-PROPOSAL-2026-10-20.md).

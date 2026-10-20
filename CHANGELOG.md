@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.18.15 — 2026-10-20
+
+- Complete one approved download-only Ubuntu package retrieval and verify all 101 cached package hashes.
+- Charge 116,542,541 new network bytes and close the storage-gated admission.
+- Propose one exact offline installation while keeping execution and evaluation closed.
+
 ## 0.18.14 — 2026-10-20
 
 - Record the owner's exact approval for one storage-gated clone start and download-only APT retry.

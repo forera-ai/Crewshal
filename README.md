@@ -10,6 +10,12 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**October 20: One storage-gated APT retry is approved.**
+The owner approved the [exact retry proposal](docs/PHASE-3B-APT-STORAGE-RETRY-PROPOSAL-2026-10-20.md).
+The [single ledger](docs/PHASE-3B-CAMPAIGN-ADMISSION-MANIFEST-2026-10-19.json) admits one clone start and one download-only attempt.
+Recheck the 64 GiB host free-space floor before start and network connection.
+Installation, Linux qualification, native turns, and evaluation remain closed.
+
 **October 20: The isolated APT attempt stopped at the host storage floor.**
 The [stop record](docs/PHASE-3B-APT-ISOLATION-STORAGE-STOP-2026-10-20.md) closes one start and an owner reboot.
 Offline checks passed twice. The host fell below 64 GiB free before network connection.

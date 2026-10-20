@@ -4,6 +4,18 @@ Last updated: 2026-10-20. This record supplies the next session and the owner wi
 
 ## Current state
 
+**October 20: The owner approved one storage-gated APT retry.**
+The owner replied, “Approve this exact retry,” to the [exact proposal](PHASE-3B-APT-STORAGE-RETRY-PROPOSAL-2026-10-20.md).
+The [single ledger](PHASE-3B-CAMPAIGN-ADMISSION-MANIFEST-2026-10-19.json) admits one clone start and one download-only APT attempt.
+The owner reported restored host space. Recheck the 68,719,476,736-byte host floor before start and network connection.
+The previous attempt is closed. Keep network and sharing disabled until the offline preflight passes.
+The unused conservative transfer allowance remains 167,772,160 bytes. The historical charge remains 10,008,484,533 bytes.
+Installation, archived tools, Linux qualification, native turns, and evaluation remain closed.
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+The checkpoint version is `0.18.14`. The delivery revision is the commit containing this entry.
+Continue this Phase 3B chat with the [next prompt](PHASE-3B-APT-STORAGE-RETRY-APPROVED-NEXT-SESSION-2026-10-20.md) and its exact input index.
+Earlier dated entries remain historical records.
+
 **October 20: The isolated APT attempt stopped at the host storage floor.**
 The [stop record](PHASE-3B-APT-ISOLATION-STORAGE-STOP-2026-10-20.md) closes one agent start and one owner reboot.
 The isolated APT configuration showed no effective hooks. Both offline package lists matched 101 objects and 111,245,650 bytes.

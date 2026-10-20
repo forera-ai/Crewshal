@@ -1,5 +1,13 @@
 # Crewshal phased development and acceptance plan
 
+## Current approved storage-gated APT retry — 2026-10-20
+
+The owner approved the [exact retry proposal](PHASE-3B-APT-STORAGE-RETRY-PROPOSAL-2026-10-20.md).
+The single ledger admits one clone start and one download-only attempt.
+Recheck the 64 GiB host floor before start and network connection.
+Keep installation, Linux qualification, archived tools, native turns, and evaluation closed.
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+
 ## Current isolated APT storage stop — 2026-10-20
 
 The [stop record](PHASE-3B-APT-ISOLATION-STORAGE-STOP-2026-10-20.md) closes the approved isolated APT attempt.

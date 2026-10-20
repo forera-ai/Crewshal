@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.18.14 — 2026-10-20
+
+- Record the owner's exact approval for one storage-gated clone start and download-only APT retry.
+- Keep the 167,772,160-byte conservative allowance and all installation and evaluation gates unchanged.
+
 ## 0.18.13 — 2026-10-20
 
 - Close the isolated APT attempt after the host fell below its 64 GiB free-space floor.

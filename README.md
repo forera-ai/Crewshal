@@ -10,6 +10,11 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**October 20: One offline Ubuntu package installation is approved.**
+The owner approved the [exact installation proposal](docs/PHASE-3B-OFFLINE-PACKAGE-INSTALLATION-PROPOSAL-2026-10-20.md).
+The [single ledger](docs/PHASE-3B-CAMPAIGN-ADMISSION-MANIFEST-2026-10-19.json) admits one isolated clone start and one cached-package install.
+The clone network remains disconnected. Archived tools, Linux tests, native turns, and evaluation remain closed.
+
 **October 20: The storage-gated Ubuntu package retrieval completed.**
 The [completion record](docs/PHASE-3B-APT-STORAGE-RETRY-COMPLETION-2026-10-20.md) verifies 101 cached packages and all 101 hashes.
 The new conservative network charge was 116,542,541 bytes. The cumulative charge is 10,125,027,074 bytes.

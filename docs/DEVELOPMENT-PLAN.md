@@ -1,5 +1,13 @@
 # Crewshal phased development and acceptance plan
 
+## Current approved offline package installation — 2026-10-20
+
+The owner approved one exact clone start and offline installation of 101 verified cached packages.
+The [proposal](PHASE-3B-OFFLINE-PACKAGE-INSTALLATION-PROPOSAL-2026-10-20.md) binds the command, preflight, limits, and closure.
+The [single ledger](PHASE-3B-CAMPAIGN-ADMISSION-MANIFEST-2026-10-19.json) admits no network connection or package retrieval.
+Keep archived tools, Linux qualification, native turns, and evaluation closed.
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+
 ## Current completed APT retrieval and installation decision — 2026-10-20
 
 The [completion record](PHASE-3B-APT-STORAGE-RETRY-COMPLETION-2026-10-20.md) verifies 101 cached package hashes.

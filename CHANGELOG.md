@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.18.16 — 2026-10-20
+
+- Record the owner's exact approval for one offline installation of 101 verified cached Ubuntu packages.
+- Keep the clone network disconnected and all execution and evaluation gates closed.
+
 ## 0.18.15 — 2026-10-20
 
 - Complete one approved download-only Ubuntu package retrieval and verify all 101 cached package hashes.

@@ -10,6 +10,12 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**October 20: One bounded Ubuntu package retrieval decision is pending.**
+The [proposal](docs/PHASE-3B-UBUNTU-PACKAGE-RETRIEVAL-PROPOSAL-2026-10-20.md) covers one isolated clone start and download-only APT.
+It proposes 167,772,160 bytes of additional conservative network charge for 101 listed package objects.
+The [single ledger](docs/PHASE-3B-CAMPAIGN-ADMISSION-MANIFEST-2026-10-19.json) admits no network or guest action yet.
+Installation, Linux qualification, archived tools, native turns, and evaluation remain closed.
+
 **October 20: The approved offline package resolution capture completed once.**
 The [completion record](docs/PHASE-3B-OFFLINE-RESOLUTION-COMPLETION-2026-10-20.md) records the guest commands, results, shutdown, and limits.
 The offline APT list resolved 101 package objects totaling 111,245,650 bytes. Its largest object was 18,708,214 bytes.

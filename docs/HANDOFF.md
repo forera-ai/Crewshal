@@ -4,6 +4,18 @@ Last updated: 2026-10-20. This record supplies the next session and the owner wi
 
 ## Current state
 
+**October 20: A bounded Ubuntu package retrieval decision is pending.**
+The [proposal](PHASE-3B-UBUNTU-PACKAGE-RETRIEVAL-PROPOSAL-2026-10-20.md) requests one clone start and download-only APT.
+It binds the offline list of 101 objects and 111,245,650 package bytes.
+It proposes 167,772,160 bytes of additional conservative network charge, including overhead and stopped partial bodies.
+The owner has not approved this new transfer scope at this checkpoint.
+The [single ledger](PHASE-3B-CAMPAIGN-ADMISSION-MANIFEST-2026-10-19.json) keeps all action flags false.
+The clone is off. Its network and sharing remain disabled.
+The checkpoint version is `0.18.9`. The delivery revision is the commit containing this entry.
+Continue Phase 3B with the owner's decision and the [next prompt](PHASE-3B-PACKAGE-RETRIEVAL-DECISION-NEXT-SESSION-2026-10-20.md).
+Use the [exact inputs](PHASE-3B-PACKAGE-RETRIEVAL-DECISION-INPUTS-2026-10-20.json).
+Earlier dated entries remain historical records.
+
 **October 20: The approved offline package resolution capture completed.**
 The session began at `b6c9db6` with a clean, pushed worktree.
 All 217 exact entry inputs matched. The frozen Phase 3A checker passed.

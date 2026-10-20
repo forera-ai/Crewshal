@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.18.9 — 2026-10-20
+
+- Propose one isolated Ubuntu package retrieval attempt with a 167,772,160-byte conservative transfer ceiling.
+- Keep the single admission ledger closed until the owner decides on network connection and download-only APT.
+- Preserve installation, Linux qualification, native turns, and evaluation gates.
+
 ## 0.18.8 — 2026-10-20
 
 - Complete one owner-approved offline Ubuntu package resolution capture and shut down the separate clone.

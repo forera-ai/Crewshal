@@ -1234,5 +1234,23 @@
       "source_custody_manifest_sha256": "a7b1408d10f50aaf44e00c28e8ef71953ae3dc7055e83d1f904d49efc6c89dcf",
       "completion_record": "docs/PHASE-3B-OFFLINE-RESOLUTION-COMPLETION-2026-10-20.md"
     }
+  },
+  "ubuntu_package_retrieval": {
+    "proposal": "docs/PHASE-3B-UBUNTU-PACKAGE-RETRIEVAL-PROPOSAL-2026-10-20.md",
+    "owner_reviewed_proposal_sha256": "07fc6b3eddf853ee5a05bcdcdfefffb859d73442ed3d4d6474b56ab1e5e95fd5",
+    "status": "proposed; owner decision pending",
+    "guest_start_admitted": false,
+    "network_adapter_connection_admitted": false,
+    "package_retrieval_admitted": false,
+    "installation_admitted": false,
+    "archived_tool_execution_admitted": false,
+    "linux_qualification_admitted": false,
+    "native_turns_admitted": false,
+    "evaluation_admitted": false,
+    "new_conservative_transfer_cap_bytes": 167772160,
+    "proposed_cumulative_conservative_ceiling_bytes": 10176256693,
+    "offline_resolved_objects": 101,
+    "offline_resolved_package_bytes": 111245650,
+    "offline_largest_object_bytes": 18708214
   }
 }

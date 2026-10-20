@@ -1,5 +1,14 @@
 # Crewshal phased development and acceptance plan
 
+## Current Ubuntu package retrieval decision — 2026-10-20
+
+The [proposal](PHASE-3B-UBUNTU-PACKAGE-RETRIEVAL-PROPOSAL-2026-10-20.md) defines one download-only attempt.
+It caps additional conservative network charge at 167,772,160 bytes.
+The single ledger admits no guest start, network connection, package retrieval, or installation yet.
+The owner must decide the exact transfer scope before any action.
+Keep Linux qualification, archived tools, native turns, and evaluation closed.
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+
 ## Current offline package resolution result — 2026-10-20
 
 The [completion record](PHASE-3B-OFFLINE-RESOLUTION-COMPLETION-2026-10-20.md) verifies one start, read-only commands, and shutdown.

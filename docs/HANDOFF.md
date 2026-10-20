@@ -4,6 +4,20 @@ Last updated: 2026-10-20. This record supplies the next session and the owner wi
 
 ## Current state
 
+**October 20: The approved offline installation stopped at VMware suspension.**
+The [stop record](PHASE-3B-OFFLINE-INSTALLATION-SUSPEND-2026-10-20.md) closes one clone start before installation.
+VMware suspended the clone at 16:54:29 local time. The agent did not issue the installation command.
+The clone remains suspended with network and sharing disabled. Its package state is unobserved after suspension.
+The [single ledger](PHASE-3B-CAMPAIGN-ADMISSION-MANIFEST-2026-10-19.json) admits no further guest action.
+The [resume proposal](PHASE-3B-OFFLINE-INSTALLATION-RESUME-PROPOSAL-2026-10-20.md) needs a separate owner decision.
+The historical 10,008,484,533-byte archive charge and 116,542,541-byte package charge remain intact.
+The cumulative conservative charge remains 10,125,027,074 bytes.
+Archived tools, Linux qualification, native turns, and evaluation remain closed.
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+The checkpoint version is `0.18.17`. The delivery revision is the commit containing this entry.
+Continue this Phase 3B chat with the [next prompt](PHASE-3B-OFFLINE-INSTALLATION-RESUME-NEXT-SESSION-2026-10-20.md) and its exact input index.
+Earlier dated entries remain historical records.
+
 **October 20: The owner approved one exact offline Ubuntu package installation.**
 The owner replied, “Approve this exact installation,” to the [proposal](PHASE-3B-OFFLINE-PACKAGE-INSTALLATION-PROPOSAL-2026-10-20.md).
 The [single ledger](PHASE-3B-CAMPAIGN-ADMISSION-MANIFEST-2026-10-19.json) admits one clone start and one cached-package install.

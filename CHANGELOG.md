@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.18.17 — 2026-10-20
+
+- Close the approved offline installation start after VMware suspended the clone before the command ran.
+- Verify source guest custody, host limits, exact inputs, and frozen Phase 3A bytes.
+- Propose one bounded resume while keeping all installation and evaluation gates closed.
+
 ## 0.18.16 — 2026-10-20
 
 - Record the owner's exact approval for one offline installation of 101 verified cached Ubuntu packages.

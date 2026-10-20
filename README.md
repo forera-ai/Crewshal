@@ -10,6 +10,13 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**October 20: The approved offline installation stopped at VMware suspension.**
+The [stop record](docs/PHASE-3B-OFFLINE-INSTALLATION-SUSPEND-2026-10-20.md) closes one clone start before installation.
+The clone is suspended with network and sharing disabled. No installation command ran.
+The [resume proposal](docs/PHASE-3B-OFFLINE-INSTALLATION-RESUME-PROPOSAL-2026-10-20.md) needs a separate owner decision.
+The [single ledger](docs/PHASE-3B-CAMPAIGN-ADMISSION-MANIFEST-2026-10-19.json) admits no further guest action.
+Archived tools, Linux qualification, native turns, and evaluation remain closed.
+
 **October 20: One offline Ubuntu package installation is approved.**
 The owner approved the [exact installation proposal](docs/PHASE-3B-OFFLINE-PACKAGE-INSTALLATION-PROPOSAL-2026-10-20.md).
 The [single ledger](docs/PHASE-3B-CAMPAIGN-ADMISSION-MANIFEST-2026-10-19.json) admits one isolated clone start and one cached-package install.

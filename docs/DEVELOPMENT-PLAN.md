@@ -1,5 +1,14 @@
 # Crewshal phased development and acceptance plan
 
+## Current offline installation suspension — 2026-10-20
+
+The approved clone start ended in VMware suspension before the installation command ran.
+The [stop record](PHASE-3B-OFFLINE-INSTALLATION-SUSPEND-2026-10-20.md) verifies host limits and source custody.
+The [resume proposal](PHASE-3B-OFFLINE-INSTALLATION-RESUME-PROPOSAL-2026-10-20.md) needs a separate owner decision.
+The single ledger admits no further guest action until that decision.
+Keep archived tools, Linux qualification, native turns, and evaluation closed.
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+
 ## Current approved offline package installation — 2026-10-20
 
 The owner approved one exact clone start and offline installation of 101 verified cached packages.

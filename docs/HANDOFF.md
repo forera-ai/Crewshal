@@ -4,6 +4,22 @@ Last updated: 2026-10-20. This record supplies the next session and the owner wi
 
 ## Current state
 
+**October 20: The isolated APT attempt stopped at the host storage floor.**
+The [stop record](PHASE-3B-APT-ISOLATION-STORAGE-STOP-2026-10-20.md) closes one agent start and one owner reboot.
+The isolated APT configuration showed no effective hooks. Both offline package lists matched 101 objects and 111,245,650 bytes.
+The host had 41,177,645,056 free bytes before network connection, below the required 68,719,476,736 bytes.
+The clone is off. Its network and sharing remain disabled. No download or installation occurred.
+All 31 original guest files matched their custody manifest. The frozen Phase 3A checker passed.
+The later host readback reached 151,635,742,720 free bytes. Recheck space before any start and network connection.
+The [single ledger](PHASE-3B-CAMPAIGN-ADMISSION-MANIFEST-2026-10-19.json) closes the attempt and proposes no automatic retry.
+The [exact retry proposal](PHASE-3B-APT-STORAGE-RETRY-PROPOSAL-2026-10-20.md) needs a separate owner decision.
+The historical 10,008,484,533-byte conservative charge remains unchanged. The unused 167,772,160-byte allowance was not charged.
+Installation, archived tools, Linux qualification, native turns, and evaluation remain closed.
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+The checkpoint version is `0.18.13`. The delivery revision is the commit containing this entry.
+Continue this Phase 3B chat with the [next prompt](PHASE-3B-APT-STORAGE-RETRY-NEXT-SESSION-2026-10-20.md) and its exact input index.
+Earlier dated entries remain historical records.
+
 **October 20: The owner approved one isolated APT configuration attempt.**
 The owner replied, “Approve this exact attempt,” to the [one-start proposal](PHASE-3B-APT-CONFIG-ISOLATION-PROPOSAL-2026-10-20.md).
 The [single ledger](PHASE-3B-CAMPAIGN-ADMISSION-MANIFEST-2026-10-19.json) admits only its offline configuration checks and download-only APT attempt.

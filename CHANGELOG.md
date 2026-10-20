@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.18.13 — 2026-10-20
+
+- Close the isolated APT attempt after the host fell below its 64 GiB free-space floor.
+- Record two passing offline checks, an owner reboot, clone shutdown, and zero new transfer.
+- Propose one exact storage-gated retry while keeping guest, installation, native, and evaluation gates closed.
+
 ## 0.18.12 — 2026-10-20
 
 - Record the owner's exact approval for one isolated APT configuration and package retrieval attempt.

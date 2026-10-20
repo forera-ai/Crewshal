@@ -1,5 +1,14 @@
 # Crewshal phased development and acceptance plan
 
+## Current isolated APT storage stop — 2026-10-20
+
+The [stop record](PHASE-3B-APT-ISOLATION-STORAGE-STOP-2026-10-20.md) closes the approved isolated APT attempt.
+Both offline checks passed, but the host free-space floor failed before network connection.
+The clone is off. No package transfer or installation occurred.
+Host space later recovered. The [exact retry proposal](PHASE-3B-APT-STORAGE-RETRY-PROPOSAL-2026-10-20.md) still needs a separate owner decision.
+The single ledger admits no further guest action. Keep Linux qualification, native turns, and evaluation closed.
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+
 ## Current approved isolated APT attempt — 2026-10-20
 
 The owner approved the [exact proposal](PHASE-3B-APT-CONFIG-ISOLATION-PROPOSAL-2026-10-20.md) for one separate clone start.

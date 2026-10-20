@@ -10,6 +10,13 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**October 20: The isolated APT attempt stopped at the host storage floor.**
+The [stop record](docs/PHASE-3B-APT-ISOLATION-STORAGE-STOP-2026-10-20.md) closes one start and an owner reboot.
+Offline checks passed twice. The host fell below 64 GiB free before network connection.
+The clone is off. No package transfer or installation occurred.
+Host space later recovered, but the [exact retry proposal](docs/PHASE-3B-APT-STORAGE-RETRY-PROPOSAL-2026-10-20.md) needs a separate owner decision.
+The [single ledger](docs/PHASE-3B-CAMPAIGN-ADMISSION-MANIFEST-2026-10-19.json) admits no further guest action.
+
 **October 20: One isolated APT package retrieval is approved.**
 The owner approved the [exact one-start proposal](docs/PHASE-3B-APT-CONFIG-ISOLATION-PROPOSAL-2026-10-20.md).
 The [single ledger](docs/PHASE-3B-CAMPAIGN-ADMISSION-MANIFEST-2026-10-19.json) admits offline isolation checks before one download-only attempt.

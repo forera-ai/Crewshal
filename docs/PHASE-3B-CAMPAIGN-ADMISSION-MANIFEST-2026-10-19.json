@@ -1,18 +1,18 @@
 {
   "admission_blockers": [
-    "The approved clone, capacity attempt, both offline package captures, and first package retrieval preflight are complete. One isolated APT configuration start is admitted.",
+    "The approved clone, capacity attempt, both offline package captures, and both package retrieval preflights are complete. The isolated attempt stopped at the host free-space floor.",
     "The first package retrieval stopped at configured APT hooks before network connection. Its 167,772,160-byte proposed allowance was not used.",
     "All sixteen archive sizes and hashes are receipt-bound; the offline Ubuntu package list has 101 objects, while repository dependency closures remain unresolved.",
     "Both approved extraction batches completed. Installation and archived tool execution still lack an admitted campaign scope.",
     "Both offline Ubuntu captures passed without retrieval or installation. The 101-object package list totals 111,245,650 bytes.",
-    "Both extraction batches and the separate guest captures are complete. The first retrieval start is closed; one isolated APT configuration attempt is admitted.",
+    "Both extraction batches and the separate guest captures are complete. Both retrieval starts are closed; no further guest start or transfer is admitted.",
     "B1 lacks admitted native launch commands and conformance.",
     "Actual runtime executables, effective configuration, provider identities, and platform qualification remain unknown."
   ],
   "approval_request": {
     "changed_limits_requested": false,
     "exact_batch_reviewable": false,
-    "reason": "The full campaign remains unreviewable. The first retrieval stopped at configured hooks. One isolated APT configuration attempt is admitted. Installation and Linux qualification remain closed."
+    "reason": "The full campaign remains unreviewable. The isolated retrieval stopped at the host free-space floor. A separate exact decision and restored capacity are required. Installation and Linux qualification remain closed."
   },
   "archive_evidence_stage": {
     "active_seconds_cap": 7200,
@@ -1275,15 +1275,13 @@
       "completion_record": "docs/PHASE-3B-PACKAGE-RETRIEVAL-HOOK-STOP-2026-10-20.md"
     }
   },
-  "ubuntu_package_retrieval_isolated_config_proposal": {
-    "proposal": "docs/PHASE-3B-APT-CONFIG-ISOLATION-PROPOSAL-2026-10-20.md",
-    "owner_reviewed_proposal_sha256": "95f9738cc84761151b05e317324e698dc9f617da0694205cfc5584d12c6351d6",
-    "admission_proposal_sha256": "5e4bb62543ea7834637bd247b55d4a7ab10007792ae5afcddfc9ebbb2d4dfba0",
-    "owner_decision": "2026-10-20 owner reply in current Codex chat: Approve this exact attempt.",
-    "status": "one isolated APT configuration and download-only attempt admitted; attempt not yet begun",
-    "guest_start_admitted": true,
-    "network_adapter_connection_admitted": true,
-    "package_retrieval_admitted": true,
+  "ubuntu_package_retrieval_storage_retry_proposal": {
+    "proposal": "docs/PHASE-3B-APT-STORAGE-RETRY-PROPOSAL-2026-10-20.md",
+    "proposal_sha256": "523237700c1bad7c57bf82175e63b391f0a9fd183ac1533d76c51113fcda71da",
+    "status": "proposed; owner decision pending; host floor must pass again before start and network connection",
+    "guest_start_admitted": false,
+    "network_adapter_connection_admitted": false,
+    "package_retrieval_admitted": false,
     "installation_admitted": false,
     "archived_tool_execution_admitted": false,
     "linux_qualification_admitted": false,
@@ -1291,5 +1289,45 @@
     "evaluation_admitted": false,
     "proposed_new_conservative_transfer_cap_bytes": 167772160,
     "proposed_cumulative_conservative_ceiling_bytes": 10176256693
+  },
+  "ubuntu_package_retrieval_isolated_config_proposal": {
+    "proposal": "docs/PHASE-3B-APT-CONFIG-ISOLATION-PROPOSAL-2026-10-20.md",
+    "owner_reviewed_proposal_sha256": "95f9738cc84761151b05e317324e698dc9f617da0694205cfc5584d12c6351d6",
+    "admission_proposal_sha256": "5e4bb62543ea7834637bd247b55d4a7ab10007792ae5afcddfc9ebbb2d4dfba0",
+    "owner_decision": "2026-10-20 owner reply in current Codex chat: Approve this exact attempt.",
+    "status": "offline preflight passed twice; owner rebooted the clone; host free-space floor failed before network connection; attempt closed",
+    "guest_start_admitted": false,
+    "network_adapter_connection_admitted": false,
+    "package_retrieval_admitted": false,
+    "installation_admitted": false,
+    "archived_tool_execution_admitted": false,
+    "linux_qualification_admitted": false,
+    "native_turns_admitted": false,
+    "evaluation_admitted": false,
+    "proposed_new_conservative_transfer_cap_bytes": 167772160,
+    "proposed_cumulative_conservative_ceiling_bytes": 10176256693,
+    "result": {
+      "agent_guest_starts": 1,
+      "owner_guest_reboots": 1,
+      "offline_preflights_passed": 2,
+      "offline_resolved_objects": 101,
+      "offline_resolved_package_bytes": 111245650,
+      "offline_largest_object_bytes": 18708214,
+      "effective_apt_hooks_found": false,
+      "stop_reason": "Host free space fell below the approved 68,719,476,736-byte floor before network connection",
+      "network_adapter_connected": false,
+      "network_transfer_bytes": 0,
+      "package_retrieval_bytes": 0,
+      "new_conservative_transfer_charged_bytes": 0,
+      "paid_host_usd": 0,
+      "metered_api_usd": 0,
+      "clone_soft_stopped": true,
+      "final_clone_allocated_bytes": 4885889024,
+      "host_free_bytes_at_shutdown": 41177509888,
+      "later_host_free_bytes": 38627844096,
+      "source_custody_files_unchanged": 31,
+      "source_custody_manifest_sha256": "a7b1408d10f50aaf44e00c28e8ef71953ae3dc7055e83d1f904d49efc6c89dcf",
+      "completion_record": "docs/PHASE-3B-APT-ISOLATION-STORAGE-STOP-2026-10-20.md"
+    }
   }
 }

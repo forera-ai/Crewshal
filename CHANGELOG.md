@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.19.1 — 2026-10-20
+
+- Record the owner's approval for one exact offline toolchain transport and isolated clone stage.
+- Keep archived tool execution, Linux qualification, native turns, and evaluation closed.
+
 ## 0.19.0 — 2026-10-20
 
 - Add a bounded offline transport builder and guest staging script with four local synthetic tests.

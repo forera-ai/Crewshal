@@ -1,6 +1,6 @@
 {
   "admission_blockers": [
-    "The approved clone, capacity attempt, offline package captures, retrieval, and installation are complete. The offline toolchain staging proposal is pending. No further guest action is admitted.",
+    "The owner approved one exact offline toolchain transport build and isolated clone stage. No other guest action is admitted.",
     "The first package retrieval stopped at configured APT hooks before network connection. Its 167,772,160-byte proposed allowance was not used.",
     "All sixteen archive sizes and hashes are receipt-bound; the offline Ubuntu package list has 101 objects, while repository dependency closures remain unresolved.",
     "Both approved extraction batches and the offline package installation completed. Archived tool execution remains closed.",
@@ -1413,11 +1413,11 @@
   "offline_toolchain_staging_proposal": {
     "proposal": "docs/PHASE-3B-OFFLINE-TOOLCHAIN-STAGING-PROPOSAL-2026-10-20.md",
     "proposal_sha256": "df0cf80e08611ea79b569d35024f1a97744342b466a9eacc4211bdada3dbb25a",
-    "status": "proposed; no owner decision or staging action",
-    "owner_decision": null,
-    "host_transport_creation_admitted": false,
-    "guest_start_admitted": false,
-    "guest_staging_admitted": false,
+    "status": "approved; transport and guest stage not yet started",
+    "owner_decision": "2026-10-20 owner reply in current Codex chat: Approve this exact attempt.",
+    "host_transport_creation_admitted": true,
+    "guest_start_admitted": true,
+    "guest_staging_admitted": true,
     "network_adapter_connection_admitted": false,
     "archived_tool_execution_admitted": false,
     "linux_qualification_admitted": false,

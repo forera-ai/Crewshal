@@ -10,6 +10,11 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**October 20: One offline toolchain staging attempt is approved.**
+The owner approved the [exact proposal](docs/PHASE-3B-OFFLINE-TOOLCHAIN-STAGING-PROPOSAL-2026-10-20.md).
+The [single ledger](docs/PHASE-3B-CAMPAIGN-ADMISSION-MANIFEST-2026-10-19.json) admits one host transport and one isolated clone stage.
+The action has not started. Archived tool execution, Linux qualification, native turns, and evaluation remain closed.
+
 **October 20: Offline toolchain staging has a bounded proposal.**
 The [proposal](docs/PHASE-3B-OFFLINE-TOOLCHAIN-STAGING-PROPOSAL-2026-10-20.md) binds two verified output trees and one isolated clone stage.
 The local transport script passes four synthetic tests, Ruff, and mypy. Both retained output trees match their pinned manifests.

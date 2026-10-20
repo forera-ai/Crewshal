@@ -4,6 +4,16 @@ Last updated: 2026-10-20. This record supplies the next session and the owner wi
 
 ## Current state
 
+**October 20: One exact offline toolchain staging attempt is approved.**
+The owner replied, “Approve this exact attempt,” to the [proposal](PHASE-3B-OFFLINE-TOOLCHAIN-STAGING-PROPOSAL-2026-10-20.md).
+The [single ledger](PHASE-3B-CAMPAIGN-ADMISSION-MANIFEST-2026-10-19.json) admits one host transport build and one isolated clone stage.
+Recheck all 248 exact inputs, frozen custody, original guest hashes, source outputs, and host limits before the action.
+Keep the clone network and sharing disconnected. Archived tool execution and evaluation remain closed.
+The attempt has not started. Its result and new host allocation remain unknown.
+The cumulative conservative network charge remains 10,125,027,074 bytes.
+The checkpoint version is `0.19.1`. Continue this Phase 3B chat with the [next prompt](PHASE-3B-TOOLCHAIN-STAGING-APPROVED-NEXT-SESSION-2026-10-20.md).
+Earlier dated entries remain historical records.
+
 **October 20: A bounded offline toolchain staging decision is pending.**
 The [proposal](PHASE-3B-OFFLINE-TOOLCHAIN-STAGING-PROPOSAL-2026-10-20.md) binds two pinned source manifests and one isolated clone stage.
 The local transport script passed four synthetic tests, Ruff, and mypy. A read-only check matched both retained output trees.

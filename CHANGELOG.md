@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.18.18 — 2026-10-20
+
+- Record the owner's exact approval for one saved-state clone resume and one offline package installation.
+- Keep the clone network disconnected and all execution and evaluation gates closed.
+
 ## 0.18.17 — 2026-10-20
 
 - Close the approved offline installation start after VMware suspended the clone before the command ran.

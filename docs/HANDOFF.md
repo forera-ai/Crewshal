@@ -4,6 +4,18 @@ Last updated: 2026-10-20. This record supplies the next session and the owner wi
 
 ## Current state
 
+**October 20: The owner approved one exact offline installation resume.**
+The owner replied, “Approve this exact resume,” to the [proposal](PHASE-3B-OFFLINE-INSTALLATION-RESUME-PROPOSAL-2026-10-20.md).
+The [single ledger](PHASE-3B-CAMPAIGN-ADMISSION-MANIFEST-2026-10-19.json) admits one saved-state resume and one offline install.
+Recheck exact inputs, frozen custody, all 31 source guest hashes, host limits, and the guest package state.
+Keep the clone network and sharing disconnected. Stop if the offline simulation changes.
+The new network allowance is zero. The cumulative conservative charge remains 10,125,027,074 bytes.
+Archived tools, Linux qualification, native turns, and evaluation remain closed.
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+The checkpoint version is `0.18.18`. The delivery revision is the commit containing this entry.
+Continue this Phase 3B chat with the [next prompt](PHASE-3B-OFFLINE-INSTALLATION-RESUME-APPROVED-NEXT-SESSION-2026-10-20.md) and its exact input index.
+Earlier dated entries remain historical records.
+
 **October 20: The approved offline installation stopped at VMware suspension.**
 The [stop record](PHASE-3B-OFFLINE-INSTALLATION-SUSPEND-2026-10-20.md) closes one clone start before installation.
 VMware suspended the clone at 16:54:29 local time. The agent did not issue the installation command.

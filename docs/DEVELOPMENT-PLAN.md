@@ -1,5 +1,13 @@
 # Crewshal phased development and acceptance plan
 
+## Current approved offline installation resume — 2026-10-20
+
+The owner approved one exact saved-state resume and one offline installation of 101 cached packages.
+The [resume proposal](PHASE-3B-OFFLINE-INSTALLATION-RESUME-PROPOSAL-2026-10-20.md) binds its preflight, command, limits, and closure.
+The [single ledger](PHASE-3B-CAMPAIGN-ADMISSION-MANIFEST-2026-10-19.json) admits no network connection or package retrieval.
+Keep archived tools, Linux qualification, native turns, and evaluation closed.
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+
 ## Current offline installation suspension — 2026-10-20
 
 The approved clone start ended in VMware suspension before the installation command ran.

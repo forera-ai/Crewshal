@@ -1,7 +1,8 @@
 # Proposed Phase 3B package retrieval with isolated APT configuration
 
-Date: 2026-10-20. Status: proposed; no guest start or network action admitted.
+Date: 2026-10-20. Status: approved for one exact attempt in the current Codex chat.
 Entry revision: `4699791448ae196a025ee5148119714d464d3877` on `codex/phase1-architecture`.
+The owner replied, “Approve this exact attempt.” The single admission ledger records this decision.
 The [first approved attempt](PHASE-3B-PACKAGE-RETRIEVAL-HOOK-STOP-2026-10-20.md) stopped before network connection.
 The guest's default APT configuration contains update, dpkg, and apt frontend hooks.
 The first attempt used no package transfer allowance.

@@ -10,6 +10,12 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**October 20: One isolated APT package retrieval is approved.**
+The owner approved the [exact one-start proposal](docs/PHASE-3B-APT-CONFIG-ISOLATION-PROPOSAL-2026-10-20.md).
+The [single ledger](docs/PHASE-3B-CAMPAIGN-ADMISSION-MANIFEST-2026-10-19.json) admits offline isolation checks before one download-only attempt.
+The unused 167,772,160-byte conservative allowance remains the new transfer ceiling.
+Installation, Linux qualification, archived tools, native turns, and evaluation remain closed.
+
 **October 20: The approved Ubuntu package retrieval stopped before network connection.**
 The [completion record](docs/PHASE-3B-PACKAGE-RETRIEVAL-HOOK-STOP-2026-10-20.md) records configured APT hooks and an orderly clone shutdown.
 No package was retrieved. The new network charge was zero. The historical conservative charge remains unchanged.

@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.18.12 — 2026-10-20
+
+- Record the owner's exact approval for one isolated APT configuration and package retrieval attempt.
+- Admit one clone start and download-only APT under the unused 167,772,160-byte conservative allowance.
+- Keep installation, Linux qualification, archived tools, native turns, and evaluation closed.
+
 ## 0.18.11 — 2026-10-20
 
 - Stop the approved Ubuntu package retrieval at configured APT hooks before network connection.

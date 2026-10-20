@@ -1,5 +1,14 @@
 # Crewshal phased development and acceptance plan
 
+## Current approved isolated APT attempt — 2026-10-20
+
+The owner approved the [exact proposal](PHASE-3B-APT-CONFIG-ISOLATION-PROPOSAL-2026-10-20.md) for one separate clone start.
+Verify the exact inputs, original guest custody, clone isolation, host limits, and frozen Phase 3A bytes first.
+Require an empty APT configuration directory, no effective hooks, and the unchanged 101-object package list before network connection.
+Keep the new conservative transfer charge at or below 167,772,160 bytes.
+Keep installation, Linux qualification, archived tools, native turns, and evaluation closed.
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+
 ## Current Ubuntu package retrieval hook stop — 2026-10-20
 
 The [completion record](PHASE-3B-PACKAGE-RETRIEVAL-HOOK-STOP-2026-10-20.md) closes one approved guest start.

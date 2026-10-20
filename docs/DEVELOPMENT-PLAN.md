@@ -1,5 +1,13 @@
 # Crewshal phased development and acceptance plan
 
+## Current offline toolchain staging decision — 2026-10-20
+
+The [proposal](PHASE-3B-OFFLINE-TOOLCHAIN-STAGING-PROPOSAL-2026-10-20.md) binds one host transport build and one isolated guest stage.
+The transport script passed local synthetic checks. Both retained output trees match their pinned manifests.
+The single ledger admits no new host transport or guest action until the owner decides the exact scope.
+Keep archived tool execution, Linux qualification, native turns, and evaluation closed.
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+
 ## Current offline installation completion — 2026-10-20
 
 The [completion record](PHASE-3B-OFFLINE-INSTALLATION-COMPLETION-2026-10-20.md) verifies one approved resume and install.

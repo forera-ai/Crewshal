@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.19.0 — 2026-10-20
+
+- Add a bounded offline transport builder and guest staging script with four local synthetic tests.
+- Verify both retained extraction output trees read-only against pinned manifests.
+- Propose one isolated clone staging attempt with exact storage and resource limits.
+- Keep transport creation, guest action, archived tool execution, and evaluation closed pending owner review.
+
 ## 0.18.19 — 2026-10-20
 
 - Complete one approved offline Ubuntu package installation with 101 matched package versions.

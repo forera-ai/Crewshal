@@ -1,6 +1,6 @@
 {
   "admission_blockers": [
-    "The approved clone, capacity attempt, offline package captures, retrieval, and installation are complete. No further guest action is admitted.",
+    "The approved clone, capacity attempt, offline package captures, retrieval, and installation are complete. The offline toolchain staging proposal is pending. No further guest action is admitted.",
     "The first package retrieval stopped at configured APT hooks before network connection. Its 167,772,160-byte proposed allowance was not used.",
     "All sixteen archive sizes and hashes are receipt-bound; the offline Ubuntu package list has 101 objects, while repository dependency closures remain unresolved.",
     "Both approved extraction batches and the offline package installation completed. Archived tool execution remains closed.",
@@ -1409,6 +1409,26 @@
       "metered_api_usd": 0,
       "completion_record": "docs/PHASE-3B-APT-STORAGE-RETRY-COMPLETION-2026-10-20.md"
     }
+  },
+  "offline_toolchain_staging_proposal": {
+    "proposal": "docs/PHASE-3B-OFFLINE-TOOLCHAIN-STAGING-PROPOSAL-2026-10-20.md",
+    "proposal_sha256": "df0cf80e08611ea79b569d35024f1a97744342b466a9eacc4211bdada3dbb25a",
+    "status": "proposed; no owner decision or staging action",
+    "owner_decision": null,
+    "host_transport_creation_admitted": false,
+    "guest_start_admitted": false,
+    "guest_staging_admitted": false,
+    "network_adapter_connection_admitted": false,
+    "archived_tool_execution_admitted": false,
+    "linux_qualification_admitted": false,
+    "native_turns_admitted": false,
+    "evaluation_admitted": false,
+    "proposed_content_cap_bytes": 4371619599,
+    "proposed_combined_tar_cap_bytes": 5368709120,
+    "proposed_iso_cap_bytes": 6442450944,
+    "proposed_host_allocation_cap_bytes": 12884901888,
+    "proposed_clone_growth_cap_bytes": 8589934592,
+    "proposed_new_network_charge_cap_bytes": 0
   },
   "ubuntu_package_retrieval_isolated_config_proposal": {
     "proposal": "docs/PHASE-3B-APT-CONFIG-ISOLATION-PROPOSAL-2026-10-20.md",

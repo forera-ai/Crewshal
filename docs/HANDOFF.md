@@ -4,6 +4,17 @@ Last updated: 2026-10-20. This record supplies the next session and the owner wi
 
 ## Current state
 
+**October 20: A bounded offline toolchain staging decision is pending.**
+The [proposal](PHASE-3B-OFFLINE-TOOLCHAIN-STAGING-PROPOSAL-2026-10-20.md) binds two pinned source manifests and one isolated clone stage.
+The local transport script passed four synthetic tests, Ruff, and mypy. A read-only check matched both retained output trees.
+The [single ledger](PHASE-3B-CAMPAIGN-ADMISSION-MANIFEST-2026-10-19.json) admits no transport creation or guest action yet.
+The clone is off with network and sharing disabled. Archived tool execution, Linux qualification, native turns, and evaluation remain closed.
+The historical archive charge is 10,008,484,533 bytes. The package charge is 116,542,541 bytes.
+The cumulative conservative charge remains 10,125,027,074 bytes. All 192 development rows remain planned.
+All 576 sealed rows remain unexposed. The checkpoint version is `0.19.0`.
+Continue this Phase 3B chat with the [next prompt](PHASE-3B-TOOLCHAIN-STAGING-DECISION-NEXT-SESSION-2026-10-20.md) and exact input index.
+Earlier dated entries remain historical records.
+
 **October 20: The approved offline Ubuntu package installation completed.**
 The [completion record](PHASE-3B-OFFLINE-INSTALLATION-COMPLETION-2026-10-20.md) verifies one resume and one install.
 APT returned exit zero. All 101 cached package versions match the installed versions.

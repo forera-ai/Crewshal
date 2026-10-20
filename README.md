@@ -10,6 +10,12 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**October 20: Offline toolchain staging has a bounded proposal.**
+The [proposal](docs/PHASE-3B-OFFLINE-TOOLCHAIN-STAGING-PROPOSAL-2026-10-20.md) binds two verified output trees and one isolated clone stage.
+The local transport script passes four synthetic tests, Ruff, and mypy. Both retained output trees match their pinned manifests.
+The [single ledger](docs/PHASE-3B-CAMPAIGN-ADMISSION-MANIFEST-2026-10-19.json) admits no transport creation or guest action yet.
+Archived tool execution, Linux qualification, native turns, and evaluation remain closed.
+
 **October 20: The offline Ubuntu package installation completed.**
 The [completion record](docs/PHASE-3B-OFFLINE-INSTALLATION-COMPLETION-2026-10-20.md) verifies one approved resume and install.
 All 101 cached package versions match the installed versions. APT returned exit zero.

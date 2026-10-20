@@ -1,5 +1,13 @@
 # Crewshal phased development and acceptance plan
 
+## Current offline installation completion — 2026-10-20
+
+The [completion record](PHASE-3B-OFFLINE-INSTALLATION-COMPLETION-2026-10-20.md) verifies one approved resume and install.
+All 101 cached package versions match installed versions. The clone is off, and custody checks pass.
+The single ledger closes further guest action. The cumulative conservative charge remains 10,125,027,074 bytes.
+Continue Phase 3B admission work before any archived tool staging, execution, Linux qualification, or evaluation.
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+
 ## Current approved offline installation resume — 2026-10-20
 
 The owner approved one exact saved-state resume and one offline installation of 101 cached packages.

@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.18.19 — 2026-10-20
+
+- Complete one approved offline Ubuntu package installation with 101 matched package versions.
+- Verify clone shutdown, original guest custody, and resource limits.
+- Close the installation admission while keeping archived tools and evaluation closed.
+
 ## 0.18.18 — 2026-10-20
 
 - Record the owner's exact approval for one saved-state clone resume and one offline package installation.

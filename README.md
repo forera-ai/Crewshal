@@ -10,6 +10,13 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**October 20: The offline Ubuntu package installation completed.**
+The [completion record](docs/PHASE-3B-OFFLINE-INSTALLATION-COMPLETION-2026-10-20.md) verifies one approved resume and install.
+All 101 cached package versions match the installed versions. APT returned exit zero.
+The clone is off. Original guest custody and host limits pass.
+The [single ledger](docs/PHASE-3B-CAMPAIGN-ADMISSION-MANIFEST-2026-10-19.json) closes further guest action.
+Archived tools, Linux qualification, native turns, and evaluation remain closed.
+
 **October 20: One offline installation resume is approved.**
 The owner approved the [exact resume proposal](docs/PHASE-3B-OFFLINE-INSTALLATION-RESUME-PROPOSAL-2026-10-20.md).
 The [single ledger](docs/PHASE-3B-CAMPAIGN-ADMISSION-MANIFEST-2026-10-19.json) admits one saved-state resume and one offline install.

@@ -10,6 +10,13 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**October 20: The approved Ubuntu package retrieval stopped before network connection.**
+The [completion record](docs/PHASE-3B-PACKAGE-RETRIEVAL-HOOK-STOP-2026-10-20.md) records configured APT hooks and an orderly clone shutdown.
+No package was retrieved. The new network charge was zero. The historical conservative charge remains unchanged.
+The [isolated APT proposal](docs/PHASE-3B-APT-CONFIG-ISOLATION-PROPOSAL-2026-10-20.md) needs a separate owner decision.
+Installation, Linux qualification, archived tools, native turns, and evaluation remain closed.
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+
 **October 20: One bounded Ubuntu package retrieval is approved.**
 The owner approved the [exact one-start proposal](docs/PHASE-3B-UBUNTU-PACKAGE-RETRIEVAL-PROPOSAL-2026-10-20.md).
 The [single ledger](docs/PHASE-3B-CAMPAIGN-ADMISSION-MANIFEST-2026-10-19.json) admits one download-only attempt in the separate clone.

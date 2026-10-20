@@ -4,6 +4,24 @@ Last updated: 2026-10-20. This record supplies the next session and the owner wi
 
 ## Current state
 
+**October 20: The approved Ubuntu package retrieval stopped at configured hooks.**
+The [completion record](PHASE-3B-PACKAGE-RETRIEVAL-HOOK-STOP-2026-10-20.md) records one clone start, offline checks, and shutdown.
+The offline list still had 101 objects and 111,245,650 bytes.
+The guest exposed APT and dpkg hooks, so the approved stop rule applied before network connection.
+The clone is off. Its network and sharing remain disabled. All 31 original guest files still match.
+The final clone allocation was 4,880,777,216 bytes. The host had 139,160,035,328 free bytes.
+No package was retrieved or installed. Known new network charge, paid-host cost, and metered API cost were zero.
+The historical 10,008,484,533-byte conservative charge remains unchanged.
+The proposed 167,772,160-byte allowance was not used. The first attempt is closed.
+The [single ledger](PHASE-3B-CAMPAIGN-ADMISSION-MANIFEST-2026-10-19.json) admits no further guest or network action.
+The [isolated APT configuration proposal](PHASE-3B-APT-CONFIG-ISOLATION-PROPOSAL-2026-10-20.md) needs a separate owner decision.
+Installation, Linux qualification, archived tools, native turns, and evaluation remain closed.
+Installed executable hashes, effective commands, providers, and B1 conformance remain null.
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+The checkpoint version is `0.18.11`. The delivery revision is the commit containing this entry.
+Continue Phase 3B with the [next prompt](PHASE-3B-APT-CONFIG-DECISION-NEXT-SESSION-2026-10-20.md) and [exact inputs](PHASE-3B-APT-CONFIG-DECISION-INPUTS-2026-10-20.json).
+Earlier dated entries remain historical records.
+
 **October 20: The owner approved one bounded Ubuntu package retrieval.**
 The owner replied, “Approve this exact retrieval,” to the [one-start proposal](PHASE-3B-UBUNTU-PACKAGE-RETRIEVAL-PROPOSAL-2026-10-20.md).
 The [single ledger](PHASE-3B-CAMPAIGN-ADMISSION-MANIFEST-2026-10-19.json) admits only the proposal's clone start and download-only APT attempt.

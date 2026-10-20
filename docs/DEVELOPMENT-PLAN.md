@@ -1,5 +1,14 @@
 # Crewshal phased development and acceptance plan
 
+## Current Ubuntu package retrieval hook stop — 2026-10-20
+
+The [completion record](PHASE-3B-PACKAGE-RETRIEVAL-HOOK-STOP-2026-10-20.md) closes one approved guest start.
+The package list matched, but configured APT hooks triggered the approved stop rule before network connection.
+The new transfer charge was zero. The clone is off with network and sharing disabled.
+The [isolated APT proposal](PHASE-3B-APT-CONFIG-ISOLATION-PROPOSAL-2026-10-20.md) needs a separate owner decision.
+Keep installation, Linux qualification, archived tools, native turns, and evaluation closed.
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+
 ## Current approved Ubuntu package retrieval — 2026-10-20
 
 The owner approved one exact clone start and download-only APT attempt.

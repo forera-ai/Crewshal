@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.18.11 — 2026-10-20
+
+- Stop the approved Ubuntu package retrieval at configured APT hooks before network connection.
+- Verify the clone shutdown, host limits, original guest custody, and zero new network charge.
+- Propose one isolated APT configuration attempt under the unused 167,772,160-byte allowance.
+- Keep installation, Linux qualification, archived tools, native turns, and evaluation closed.
+
 ## 0.18.10 — 2026-10-20
 
 - Record the owner's exact approval for one Ubuntu package retrieval attempt.

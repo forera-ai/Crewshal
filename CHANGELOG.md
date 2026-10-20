@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.18.8 — 2026-10-20
+
+- Complete one owner-approved offline Ubuntu package resolution capture and shut down the separate clone.
+- Record 101 resolved package objects, 111,245,650 planned bytes, and an 18,708,214-byte largest object.
+- Verify guest and host limits, original guest custody, frozen Phase 3A bytes, and zero running VMs.
+- Close further guest starts and keep retrieval, installation, Linux qualification, native turns, and evaluation gated.
+
 ## 0.18.7 — 2026-10-20
 
 - Record the owner's exact approval for one offline Ubuntu package resolution capture.

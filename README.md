@@ -10,6 +10,14 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**October 20: The approved offline package resolution capture completed once.**
+The [completion record](docs/PHASE-3B-OFFLINE-RESOLUTION-COMPLETION-2026-10-20.md) records the guest commands, results, shutdown, and limits.
+The offline APT list resolved 101 package objects totaling 111,245,650 bytes. Its largest object was 18,708,214 bytes.
+The clone is off. Its network and sharing remain disabled. The original guest hashes still match.
+The [single ledger](docs/PHASE-3B-CAMPAIGN-ADMISSION-MANIFEST-2026-10-19.json) closes further guest starts and transfer.
+Installation, Linux qualification, archived tools, native turns, and evaluation remain closed.
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+
 **October 20: One offline package resolution capture is approved.**
 The owner approved the [exact one-start proposal](docs/PHASE-3B-OFFLINE-RESOLUTION-PROPOSAL-2026-10-20.md).
 The [single ledger](docs/PHASE-3B-CAMPAIGN-ADMISSION-MANIFEST-2026-10-19.json) admits only the proposal's read-only commands in the isolated clone.

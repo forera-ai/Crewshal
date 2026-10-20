@@ -4,6 +4,24 @@ Last updated: 2026-10-20. This record supplies the next session and the owner wi
 
 ## Current state
 
+**October 20: The approved offline package resolution capture completed.**
+The session began at `b6c9db6` with a clean, pushed worktree.
+All 217 exact entry inputs matched. The frozen Phase 3A checker passed.
+The [completion record](PHASE-3B-OFFLINE-RESOLUTION-COMPLETION-2026-10-20.md) records commands, results, limits, costs, and shutdown.
+The isolated Ubuntu clone showed four CPUs, 17,760,563,200 memory bytes, and 55,494,590,464 free guest bytes.
+The offline APT list returned 101 package objects totaling 111,245,650 bytes. Its largest object was 18,708,214 bytes.
+The clone is off. It uses 4,990,726,144 allocated host bytes. The host has 138,999,660,544 free bytes.
+All 31 original guest files matched the private custody manifest. Network and sharing remain disabled.
+No package was retrieved or installed. No archived tool, Linux test, native turn, or evaluation row ran.
+Known network transfer, paid-host cost, and metered API cost were zero.
+The [single ledger](PHASE-3B-CAMPAIGN-ADMISSION-MANIFEST-2026-10-19.json) closes this guest start.
+Transfer, installation, Linux qualification, native turns, and evaluation need later exact decisions.
+Installed executable hashes, effective commands, providers, and B1 conformance remain null.
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+The checkpoint version is `0.18.8`. The delivery revision is the commit containing this entry.
+Continue Phase 3B with the [next prompt](PHASE-3B-POST-RESOLUTION-NEXT-SESSION-2026-10-20.md) and [exact inputs](PHASE-3B-POST-RESOLUTION-INPUTS-2026-10-20.json).
+Earlier dated entries remain historical records.
+
 **October 20: The owner approved one offline package resolution capture.**
 The owner replied, “Approve this exact capture,” to the [one-start proposal](PHASE-3B-OFFLINE-RESOLUTION-PROPOSAL-2026-10-20.md).
 The [single ledger](PHASE-3B-CAMPAIGN-ADMISSION-MANIFEST-2026-10-19.json) admits one read-only start of the isolated clone.

@@ -1,5 +1,15 @@
 # Crewshal phased development and acceptance plan
 
+## Current offline package resolution result — 2026-10-20
+
+The [completion record](PHASE-3B-OFFLINE-RESOLUTION-COMPLETION-2026-10-20.md) verifies one start, read-only commands, and shutdown.
+The offline Ubuntu list resolved 101 package objects totaling 111,245,650 bytes.
+The largest object was 18,708,214 bytes. Guest capacity, host limits, and original guest custody passed.
+The single ledger closes further guest starts. No package was retrieved or installed.
+Prepare a separate exact transfer and installation decision before acting on the package list.
+Keep Linux qualification, archived tools, native turns, and evaluation closed.
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+
 ## Current offline package resolution capture — 2026-10-20
 
 The owner approved one start of the isolated clone for the [exact read-only commands](PHASE-3B-OFFLINE-RESOLUTION-PROPOSAL-2026-10-20.md).

@@ -1,5 +1,14 @@
 # Crewshal phased development and acceptance plan
 
+## Current offline Ubuntu package snapshot result — 2026-10-20
+
+The [completion record](PHASE-3B-OFFLINE-PACKAGE-SNAPSHOT-COMPLETION-2026-10-20.md) verifies one start, eight read-only commands, and shutdown.
+The guest capacity and host limits passed. The APT simulation ended without an error.
+The full candidate table and transfer closure remain unknown. No package was retrieved or installed.
+The single ledger closes further guest starts and all later campaign actions until a concrete decision.
+Continue with the [next prompt](PHASE-3B-POST-SNAPSHOT-NEXT-SESSION-2026-10-20.md) and [exact inputs](PHASE-3B-POST-SNAPSHOT-INPUTS-2026-10-20.json).
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+
 ## Current offline Ubuntu package snapshot — 2026-10-20
 
 The owner approved one start of the separate clone for the [exact read-only commands](PHASE-3B-OFFLINE-PACKAGE-SNAPSHOT-PROPOSAL-2026-10-20.md).

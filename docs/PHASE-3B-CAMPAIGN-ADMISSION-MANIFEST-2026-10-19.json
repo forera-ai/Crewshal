@@ -1,18 +1,18 @@
 {
   "admission_blockers": [
-    "The one approved guest clone and capacity attempt is complete. One offline package snapshot is admitted. Wider infrastructure, transfer, and evaluation rules lack owner approval.",
+    "The approved clone, capacity attempt, and offline package snapshot are complete. Wider infrastructure, transfer, and evaluation rules lack owner approval.",
     "The current transfer balance is zero under conservative accounting.",
     "All sixteen archive sizes and hashes are receipt-bound; CMake, Ninja, Ubuntu, and repository dependency closures remain unresolved.",
     "Both approved extraction batches completed. Installation and archived tool execution still lack an admitted campaign scope.",
-    "Ubuntu and selected repository dependency closures lack exact read-only package snapshots. One offline Ubuntu snapshot is admitted.",
-    "Both approved extraction batches and the separate guest capacity attempt are complete. Only one further read-only guest start is admitted.",
+    "The offline Ubuntu package snapshot passed simulation, but its full candidate table and transfer closure were not captured.",
+    "Both extraction batches, the separate guest capacity attempt, and the offline package snapshot are complete. Further guest starts remain closed.",
     "B1 lacks admitted native launch commands and conformance.",
     "Actual runtime executables, effective configuration, provider identities, and platform qualification remain unknown."
   ],
   "approval_request": {
     "changed_limits_requested": false,
     "exact_batch_reviewable": false,
-    "reason": "The full campaign remains unreviewable. Sixteen archive requests, both extraction batches, and one guest capacity attempt completed. One offline package snapshot is admitted. Installation and Linux qualification remain closed."
+    "reason": "The full campaign remains unreviewable. Sixteen archive requests, both extraction batches, guest capacity, and one offline package snapshot completed. Transfer, installation, and Linux qualification remain closed."
   },
   "archive_evidence_stage": {
     "active_seconds_cap": 7200,
@@ -1134,11 +1134,11 @@
     "owner_reviewed_proposal_sha256": "bbccd7172976b316ec3f3e15ae308847c589f5d4fd99115dd785939cfd575e69",
     "admission_proposal_sha256": "53ec2f8f8a873b519220946f8682350134ae7cb6a8256f93b8cec67f99727a6f",
     "owner_decision": "2026-10-20 owner reply in current Codex chat: Approve this exact snapshot.",
-    "status": "approved for one read-only guest start; attempt not yet begun",
+    "status": "one approved read-only guest start completed; further starts closed",
     "destination_vmx": "/Volumes/X10Pro/Crewshal-Phase3B-Consolidated-20261020.vmwarevm/Crewshal Phase 3B Consolidated.vmx",
-    "guest_start_admitted": true,
+    "guest_start_admitted": false,
     "guest_start_cap": 1,
-    "read_only_package_queries_admitted": true,
+    "read_only_package_queries_admitted": false,
     "network_transfer_cap_bytes": 0,
     "package_retrieval_admitted": false,
     "installation_admitted": false,
@@ -1154,6 +1154,32 @@
     "active_seconds_cap": 7200,
     "elapsed_seconds_cap": 14400,
     "paid_host_usd_cap": 0,
-    "metered_api_usd_cap": 0
+    "metered_api_usd_cap": 0,
+    "attempt_result": {
+      "date": "2026-10-20",
+      "entry_revision": "93b31fe",
+      "guest_starts": 1,
+      "guest_distribution": "Ubuntu 24.04.5 LTS",
+      "guest_kernel": "Linux 6.8.0-147-generic aarch64",
+      "guest_visible_cpus": 4,
+      "guest_visible_memory_bytes": 17760563200,
+      "guest_free_var_tmp_bytes": 55507247104,
+      "apt_list_entries": 68,
+      "apt_policy_command_completed": true,
+      "apt_simulation_completed_without_error": true,
+      "full_package_candidate_table_captured": false,
+      "full_resolved_transfer_closure_captured": false,
+      "network_transfer_bytes": 0,
+      "package_retrieval_bytes": 0,
+      "paid_host_usd": 0,
+      "metered_api_usd": 0,
+      "clone_soft_stopped": true,
+      "final_clone_allocated_bytes": 4977467392,
+      "final_combined_bundle_and_iso_allocated_bytes": 30729834496,
+      "final_host_free_bytes": 139016450048,
+      "source_custody_files_unchanged": 31,
+      "source_custody_manifest_sha256": "a7b1408d10f50aaf44e00c28e8ef71953ae3dc7055e83d1f904d49efc6c89dcf",
+      "completion_record": "docs/PHASE-3B-OFFLINE-PACKAGE-SNAPSHOT-COMPLETION-2026-10-20.md"
+    }
   }
 }

@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.18.6 — 2026-10-20
+
+- Complete the owner's single offline Ubuntu package snapshot and shut down the separate clone.
+- Verify local package lists, a successful no-action APT simulation, guest capacity, host limits, and original guest custody.
+- Record the missing full package table and keep transfer, installation, Linux qualification, native turns, and evaluation closed.
+
 ## 0.18.5 — 2026-10-20
 
 - Record the owner's exact approval for one offline Ubuntu package snapshot.

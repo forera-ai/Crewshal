@@ -4,6 +4,22 @@ Last updated: 2026-10-20. This record supplies the next session and the owner wi
 
 ## Current state
 
+**October 20: The one approved offline Ubuntu package snapshot completed.**
+The session began at `93b31fe` with a clean, pushed worktree.
+The [completion record](PHASE-3B-OFFLINE-PACKAGE-SNAPSHOT-COMPLETION-2026-10-20.md) records commands, results, limits, costs, and shutdown.
+The guest had four CPUs, 17,760,563,200 memory bytes, and 55,507,247,104 free guest bytes.
+Its APT lists held 68 entries. The exact no-action package simulation completed without an error.
+The full candidate table and transfer closure were not captured. Do not infer their sizes or completeness.
+The clone is off. It uses 4,977,467,392 allocated host bytes. The host has 139,016,450,048 free bytes.
+The 31 original guest files matched the private custody manifest. No package or archived tool ran.
+Known network transfer, package retrieval, paid-host cost, and metered API cost were zero.
+The single ledger closes further guest starts, transfer, installation, Linux qualification, native turns, and evaluation.
+Installed executable hashes, effective commands, providers, and B1 conformance remain null.
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+The checkpoint version is `0.18.6`. The delivery revision is the commit containing this entry.
+Continue Phase 3B with the [next prompt](PHASE-3B-POST-SNAPSHOT-NEXT-SESSION-2026-10-20.md) and [exact inputs](PHASE-3B-POST-SNAPSHOT-INPUTS-2026-10-20.json).
+Earlier dated entries remain historical records.
+
 **October 20: The owner approved one offline Ubuntu package snapshot.**
 The owner replied, “Approve this exact snapshot,” to the [one-start proposal](PHASE-3B-OFFLINE-PACKAGE-SNAPSHOT-PROPOSAL-2026-10-20.md).
 The [single ledger](PHASE-3B-CAMPAIGN-ADMISSION-MANIFEST-2026-10-19.json) admits one start of the powered-off separate clone.

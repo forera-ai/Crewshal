@@ -10,6 +10,13 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**October 20: The approved offline package snapshot completed once.**
+The [completion record](docs/PHASE-3B-OFFLINE-PACKAGE-SNAPSHOT-COMPLETION-2026-10-20.md) records eight read-only commands and a successful APT simulation.
+The clone is off. Its network and sharing remain disabled. The original guest hashes still match.
+The full package table was not captured. Transfer and installation need a new concrete decision.
+Use the [continuation prompt](docs/PHASE-3B-POST-SNAPSHOT-NEXT-SESSION-2026-10-20.md) and [exact inputs](docs/PHASE-3B-POST-SNAPSHOT-INPUTS-2026-10-20.json).
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+
 **October 20: One offline Ubuntu package snapshot is approved.**
 The owner approved the [exact one-start proposal](docs/PHASE-3B-OFFLINE-PACKAGE-SNAPSHOT-PROPOSAL-2026-10-20.md).
 The [single admission ledger](docs/PHASE-3B-CAMPAIGN-ADMISSION-MANIFEST-2026-10-19.json) admits only read-only package queries in the separate clone.

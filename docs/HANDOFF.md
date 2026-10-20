@@ -4,6 +4,17 @@ Last updated: 2026-10-20. This record supplies the next session and the owner wi
 
 ## Current state
 
+**October 20: The owner approved one offline package resolution capture.**
+The owner replied, “Approve this exact capture,” to the [one-start proposal](PHASE-3B-OFFLINE-RESOLUTION-PROPOSAL-2026-10-20.md).
+The [single ledger](PHASE-3B-CAMPAIGN-ADMISSION-MANIFEST-2026-10-19.json) admits one read-only start of the isolated clone.
+Run only the proposal's commands after a clean worktree, exact input check, custody check, and host limit check.
+The clone must keep network and sharing disabled. The owner must enter the password locally.
+The attempt has not started at this checkpoint. Its result and costs remain unknown.
+Package retrieval, installation, Linux qualification, archived tools, native turns, and evaluation remain closed.
+The checkpoint version is `0.18.7`. The delivery revision is the commit containing this entry.
+Continue this Phase 3B session with the approved resolution capture.
+Earlier dated entries remain historical records.
+
 **October 20: The one approved offline Ubuntu package snapshot completed.**
 The session began at `93b31fe` with a clean, pushed worktree.
 The [completion record](PHASE-3B-OFFLINE-PACKAGE-SNAPSHOT-COMPLETION-2026-10-20.md) records commands, results, limits, costs, and shutdown.

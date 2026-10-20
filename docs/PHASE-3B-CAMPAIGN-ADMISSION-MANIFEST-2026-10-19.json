@@ -1,18 +1,18 @@
 {
   "admission_blockers": [
-    "The approved clone, capacity attempt, and offline package snapshot are complete. Wider infrastructure, transfer, and evaluation rules lack owner approval.",
+    "The approved clone, capacity attempt, and first offline package snapshot are complete. One offline resolution capture is admitted. Wider transfer and evaluation rules lack owner approval.",
     "The current transfer balance is zero under conservative accounting.",
     "All sixteen archive sizes and hashes are receipt-bound; CMake, Ninja, Ubuntu, and repository dependency closures remain unresolved.",
     "Both approved extraction batches completed. Installation and archived tool execution still lack an admitted campaign scope.",
-    "The offline Ubuntu package snapshot passed simulation, but its full candidate table and transfer closure were not captured.",
-    "Both extraction batches, the separate guest capacity attempt, and the offline package snapshot are complete. Further guest starts remain closed.",
+    "The first offline Ubuntu snapshot passed simulation. One read-only resolution capture is admitted to bind its missing table and transfer closure.",
+    "Both extraction batches, separate guest capacity, and the first package snapshot are complete. Only one further read-only guest start is admitted.",
     "B1 lacks admitted native launch commands and conformance.",
     "Actual runtime executables, effective configuration, provider identities, and platform qualification remain unknown."
   ],
   "approval_request": {
     "changed_limits_requested": false,
     "exact_batch_reviewable": false,
-    "reason": "The full campaign remains unreviewable. Sixteen archive requests, both extraction batches, guest capacity, and one offline package snapshot completed. Transfer, installation, and Linux qualification remain closed."
+    "reason": "The full campaign remains unreviewable. One further offline resolution capture is admitted. Transfer, installation, and Linux qualification remain closed."
   },
   "archive_evidence_stage": {
     "active_seconds_cap": 7200,
@@ -1181,5 +1181,32 @@
       "source_custody_manifest_sha256": "a7b1408d10f50aaf44e00c28e8ef71953ae3dc7055e83d1f904d49efc6c89dcf",
       "completion_record": "docs/PHASE-3B-OFFLINE-PACKAGE-SNAPSHOT-COMPLETION-2026-10-20.md"
     }
+  },
+  "offline_resolution_capture": {
+    "proposal": "docs/PHASE-3B-OFFLINE-RESOLUTION-PROPOSAL-2026-10-20.md",
+    "owner_reviewed_proposal_sha256": "4f5b3c61fbe58d3dea77730dcc08a55c04481906c4fc598274ba5633d73bb715",
+    "admission_proposal_sha256": "84b0ac716d82fca56a356d2f75d55184bdf5f2b3ba51b3b2285a1df7e17b7695",
+    "owner_decision": "2026-10-20 owner reply in current Codex chat: Approve this exact capture.",
+    "status": "approved for one read-only guest start; attempt not yet begun",
+    "destination_vmx": "/Volumes/X10Pro/Crewshal-Phase3B-Consolidated-20261020.vmwarevm/Crewshal Phase 3B Consolidated.vmx",
+    "guest_start_admitted": true,
+    "guest_start_cap": 1,
+    "read_only_package_queries_admitted": true,
+    "network_transfer_cap_bytes": 0,
+    "package_retrieval_admitted": false,
+    "installation_admitted": false,
+    "archived_tool_execution_admitted": false,
+    "linux_qualification_admitted": false,
+    "native_turns_admitted": false,
+    "evaluation_admitted": false,
+    "clone_allocated_cap_bytes": 34359738368,
+    "combined_bundle_and_iso_allocated_cap_bytes": 68719476736,
+    "minimum_host_free_bytes": 68719476736,
+    "minimum_guest_visible_memory_bytes": 17179869184,
+    "minimum_guest_free_disk_bytes": 42949672960,
+    "active_seconds_cap": 7200,
+    "elapsed_seconds_cap": 14400,
+    "paid_host_usd_cap": 0,
+    "metered_api_usd_cap": 0
   }
 }

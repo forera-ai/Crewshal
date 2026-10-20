@@ -1,5 +1,13 @@
 # Crewshal phased development and acceptance plan
 
+## Current offline package resolution capture — 2026-10-20
+
+The owner approved one start of the isolated clone for the [exact read-only commands](PHASE-3B-OFFLINE-RESOLUTION-PROPOSAL-2026-10-20.md).
+Verify Git, exact inputs, frozen custody, original guest hashes, clone isolation, and host limits first.
+Capture the full candidate table, resolved package versions, package sizes, and command errors.
+Keep retrieval, installation, Linux qualification, archived tools, native turns, and evaluation closed.
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+
 ## Current offline Ubuntu package snapshot result — 2026-10-20
 
 The [completion record](PHASE-3B-OFFLINE-PACKAGE-SNAPSHOT-COMPLETION-2026-10-20.md) verifies one start, eight read-only commands, and shutdown.

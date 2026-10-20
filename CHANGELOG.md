@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.18.7 — 2026-10-20
+
+- Record the owner's exact approval for one offline Ubuntu package resolution capture.
+- Bind one isolated guest start and read-only APT commands in the single admission ledger.
+- Keep retrieval, installation, Linux qualification, archived tools, native turns, and evaluation closed.
+
 ## 0.18.6 — 2026-10-20
 
 - Complete the owner's single offline Ubuntu package snapshot and shut down the separate clone.

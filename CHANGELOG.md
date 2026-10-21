@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.23.0 — 2026-10-21
+
+- Bind local Phase 3B measurement records to exact evidence inventory files.
+- Add a read-only provenance check for inventory digests, artifact bytes, and attempt outcomes.
+- Keep source authentication, Linux qualification, and Phase 3B calibration unresolved.
+
 ## 0.22.0 — 2026-10-21
 
 - Add read-only validation for Phase 3B measurement claims and complete attempt coverage.

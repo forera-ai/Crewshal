@@ -4,6 +4,19 @@ Last updated: 2026-10-21. This record supplies the next session and the owner wi
 
 ## Current state
 
+**October 21: The Phase 3B local provenance checkpoint is complete.**
+The [checkpoint record](PHASE-3B-LOCAL-PROVENANCE-CHECKPOINT-2026-10-21.md) covers measurement links to inventory files.
+The new `check-provenance` command checks inventory digests, local bytes, and attempt outcomes.
+It cannot authenticate execution or qualify a platform. Every result keeps `evidence_verified: false`.
+Local fixture tests, related regressions, Ruff, mypy, the frozen checker, and an offline installed wheel passed.
+No Linux test, guest action, archived tool execution, native turn, or evaluation row ran.
+The historical archive charge remains 10,008,484,533 bytes. The package charge remains 116,542,541 bytes.
+The cumulative conservative charge remains 10,125,027,074 bytes.
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+The checkpoint version is `0.23.0`. Phase 3B acceptance remains open under ADR 0009.
+Continue with the [next prompt](PHASE-3B-LOCAL-PROVENANCE-NEXT-SESSION-2026-10-21.md).
+Earlier dated entries remain historical records.
+
 **October 21: The Phase 3B local measurement checkpoint is complete.**
 The [checkpoint record](PHASE-3B-LOCAL-MEASUREMENTS-CHECKPOINT-2026-10-21.md) covers read-only measurement claim checks.
 The new `check-measurements` command binds each declared attempt to its frozen schedule row and accounting fields.

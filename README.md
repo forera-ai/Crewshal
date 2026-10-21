@@ -10,6 +10,13 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**October 21: The Phase 3B local provenance checkpoint is complete.**
+The [development ledger](scripts/phase3b_development_ledger.py) binds each measurement record to declared inventory files.
+The `check-provenance` command checks inventory digests, local artifact bytes, and attempt outcomes.
+It cannot authenticate artifact origins or execution. See the [checkpoint record](docs/PHASE-3B-LOCAL-PROVENANCE-CHECKPOINT-2026-10-21.md).
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+Linux qualification and Phase 3B calibration remain closed.
+
 **October 21: The Phase 3B local measurement checkpoint is complete.**
 The [development ledger](scripts/phase3b_development_ledger.py) checks measurement claims against declared attempts and the frozen schedule.
 The `check-measurements` command rejects missing attempts, changed row identities, false final outcomes, and incomplete usage claims.

@@ -23,6 +23,7 @@ KIND = "phase3b-development-coverage-not-evidence"
 ACTIVE_STATUSES = {"failed", "interrupted", "cancelled", "verified", "accepted-with-waiver"}
 EVIDENCE_KIND = "phase3b-development-evidence-inventory-not-execution-proof"
 MEASUREMENT_KIND = "phase3b-development-measurement-claims-not-execution-proof"
+EVIDENCE_FIELDS = {"name", "kind", "bytes", "sha256"}
 ARTIFACT_NAME = re.compile(r"[A-Za-z0-9][A-Za-z0-9._-]{0,127}\Z")
 SHA256 = re.compile(r"[0-9a-f]{64}\Z")
 MAX_ARTIFACT_BYTES = 8 * 1024 * 1024
@@ -217,7 +218,7 @@ def check_evidence(ledger, bundle, artifact_dir, root=ROOT):
             kinds = set()
             for item in files:
                 freeze.require(
-                    isinstance(item, dict) and set(item) == {"name", "kind", "bytes", "sha256"},
+                    isinstance(item, dict) and set(item) == EVIDENCE_FIELDS,
                     "evidence file fields mismatch",
                 )
                 name = item["name"]
@@ -287,7 +288,14 @@ def check_measurements(ledger, bundle, root=ROOT):
     freeze.require(isinstance(bundle, dict), "measurement bundle must be an object")
     freeze.require(
         set(bundle)
-        == {"schema_version", "record_kind", "package_content_sha256", "ledger_sha256", "records"},
+        == {
+            "schema_version",
+            "record_kind",
+            "package_content_sha256",
+            "ledger_sha256",
+            "inventory_sha256",
+            "records",
+        },
         "measurement bundle fields mismatch",
     )
     freeze.require(
@@ -304,6 +312,11 @@ def check_measurements(ledger, bundle, root=ROOT):
         bundle["ledger_sha256"] == hashlib.sha256(ledger_bytes).hexdigest(),
         "measurement bundle ledger mismatch",
     )
+    freeze.require(
+        isinstance(bundle["inventory_sha256"], str)
+        and SHA256.fullmatch(bundle["inventory_sha256"]) is not None,
+        "measurement inventory digest invalid",
+    )
     expected = [
         (attempt_id, entry, scheduled)
         for entry, scheduled in zip(ledger["rows"], schedule_rows, strict=True)
@@ -317,8 +330,42 @@ def check_measurements(ledger, bundle, root=ROOT):
     counts = Counter()
     for (attempt_id, entry, scheduled), record in zip(expected, records, strict=True):
         freeze.require(
-            isinstance(record, dict) and set(record) == set(template), "measurement fields mismatch"
+            isinstance(record, dict) and set(record) == set(template) | {"evidence_refs"},
+            "measurement fields mismatch",
         )
+        refs = record["evidence_refs"]
+        freeze.require(isinstance(refs, list) and bool(refs), "measurement evidence refs missing")
+        names = set()
+        kinds = set()
+        for ref in refs:
+            freeze.require(
+                isinstance(ref, dict) and set(ref) == EVIDENCE_FIELDS,
+                "measurement evidence ref fields mismatch",
+            )
+            name = ref["name"]
+            kind = ref["kind"]
+            freeze.require(
+                isinstance(name, str)
+                and ARTIFACT_NAME.fullmatch(name) is not None
+                and name not in {".", ".."}
+                and name not in names,
+                "measurement evidence ref name invalid or reused",
+            )
+            freeze.require(
+                isinstance(kind, str) and ARTIFACT_NAME.fullmatch(kind) is not None,
+                "measurement evidence ref kind invalid",
+            )
+            freeze.require(
+                type(ref["bytes"]) is int and 0 < ref["bytes"] <= MAX_ARTIFACT_BYTES,
+                "measurement evidence ref size invalid",
+            )
+            freeze.require(
+                isinstance(ref["sha256"], str) and SHA256.fullmatch(ref["sha256"]) is not None,
+                "measurement evidence ref digest invalid",
+            )
+            names.add(name)
+            kinds.add(kind)
+        freeze.require("run" in kinds, "measurement evidence refs lack a run file")
         freeze.require(
             record["record_kind"] == MEASUREMENT_KIND
             and record["status"] == "unverified-development-claim"
@@ -505,6 +552,36 @@ def check_measurements(ledger, bundle, root=ROOT):
     }
 
 
+def check_provenance(ledger, inventory, measurements, artifact_dir, root=ROOT):
+    """Bind local measurement claims to inventory bytes without authenticating their source."""
+    evidence = check_evidence(ledger, inventory, artifact_dir, root)
+    measured = check_measurements(ledger, measurements, root)
+    inventory_bytes = json.dumps(inventory, sort_keys=True, separators=(",", ":")).encode()
+    freeze.require(
+        measurements["inventory_sha256"] == hashlib.sha256(inventory_bytes).hexdigest(),
+        "measurement inventory mismatch",
+    )
+    linked_files = 0
+    for attempt, record in zip(inventory["attempts"], measurements["records"], strict=True):
+        freeze.require(
+            record["evidence_refs"] == attempt["files"],
+            "measurement evidence refs differ from inventory",
+        )
+        freeze.require(
+            record["outcome"] == attempt["outcome"] and record["reason"] == attempt["reason"],
+            "measurement outcome differs from evidence inventory",
+        )
+        linked_files += len(record["evidence_refs"])
+    return {
+        **measured,
+        "evidence_files_checked": evidence["evidence_files_checked"],
+        "measurement_evidence_files_linked": linked_files,
+        "provenance_links_checked": True,
+        "evidence_verified": False,
+        "execution_allowed": False,
+    }
+
+
 def read_ledger(path):
     descriptor = os.open(path, os.O_RDONLY | os.O_NOFOLLOW | os.O_NONBLOCK)
     try:
@@ -532,6 +609,11 @@ def main():
     measurements = commands.add_parser("check-measurements", help="Check local measurement claims")
     measurements.add_argument("ledger", type=Path)
     measurements.add_argument("measurements", type=Path)
+    provenance = commands.add_parser("check-provenance", help="Check local claim and file links")
+    provenance.add_argument("ledger", type=Path)
+    provenance.add_argument("inventory", type=Path)
+    provenance.add_argument("measurements", type=Path)
+    provenance.add_argument("artifact_dir", type=Path)
     args = parser.parse_args()
     if args.command == "init":
         print(json.dumps(build(), indent=2, sort_keys=True))
@@ -546,10 +628,22 @@ def main():
                 sort_keys=True,
             )
         )
-    else:
+    elif args.command == "check-measurements":
         print(
             json.dumps(
                 check_measurements(read_ledger(args.ledger), read_ledger(args.measurements)),
+                sort_keys=True,
+            )
+        )
+    else:
+        print(
+            json.dumps(
+                check_provenance(
+                    read_ledger(args.ledger),
+                    read_ledger(args.inventory),
+                    read_ledger(args.measurements),
+                    args.artifact_dir,
+                ),
                 sort_keys=True,
             )
         )

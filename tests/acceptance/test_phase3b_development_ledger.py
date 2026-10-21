@@ -193,6 +193,63 @@ class Phase3BDevelopmentLedger(unittest.TestCase):
         )
         ledger.check_measurements(candidate, self._measurement_bundle(candidate, [record]))
 
+    def test_provenance_links_measurements_to_inventory_and_local_bytes(self):
+        candidate = copy.deepcopy(self.planned)
+        row = candidate["rows"][0]
+        row.update(status="failed", reason="Synthetic refusal.", attempt_ids=["attempt-1"])
+        with tempfile.TemporaryDirectory() as temporary:
+            path = Path(temporary) / "run.json"
+            path.write_bytes(b'{"synthetic":"refusal"}\n')
+            attempt = self._attempt(row, path)
+            inventory = self._inventory(candidate, [attempt])
+            record = self._measurement(candidate, 0, "attempt-1")
+            record["evidence_refs"] = copy.deepcopy(attempt["files"])
+            bundle = self._measurement_bundle(candidate, [record], inventory)
+            result = ledger.check_provenance(candidate, inventory, bundle, temporary)
+            self.assertEqual(result["measurement_evidence_files_linked"], 1)
+            self.assertEqual(result["evidence_files_checked"], 1)
+            self.assertIs(result["provenance_links_checked"], True)
+            self.assertIs(result["evidence_verified"], False)
+            self.assertIs(result["execution_allowed"], False)
+
+            changed = copy.deepcopy(bundle)
+            changed["records"][0]["evidence_refs"][0]["sha256"] = "0" * 64
+            with self.assertRaisesRegex(ERROR, "refs differ"):
+                ledger.check_provenance(candidate, inventory, changed, temporary)
+            changed = copy.deepcopy(bundle)
+            changed["inventory_sha256"] = "0" * 64
+            with self.assertRaisesRegex(ERROR, "inventory mismatch"):
+                ledger.check_provenance(candidate, inventory, changed, temporary)
+            path.write_bytes(b'{"synthetic":"forgery"}\n')
+            with self.assertRaisesRegex(ERROR, "digest mismatch"):
+                ledger.check_provenance(candidate, inventory, bundle, temporary)
+
+    def test_provenance_rejects_attempt_outcome_disagreement(self):
+        candidate = copy.deepcopy(self.planned)
+        row = candidate["rows"][0]
+        row.update(
+            status="failed", reason="Second attempt failed.", attempt_ids=["attempt-1", "attempt-2"]
+        )
+        with tempfile.TemporaryDirectory() as temporary:
+            attempts = []
+            records = []
+            for number, reason in ((1, "First attempt failed."), (2, row["reason"])):
+                path = Path(temporary) / f"run-{number}.json"
+                path.write_bytes(f'{{"attempt":{number}}}\n'.encode())
+                attempt = self._attempt(row, path)
+                attempt["attempt_id"] = f"attempt-{number}"
+                attempt["reason"] = reason
+                attempts.append(attempt)
+                record = self._measurement(candidate, 0, f"attempt-{number}")
+                record["reason"] = reason
+                record["evidence_refs"] = copy.deepcopy(attempt["files"])
+                records.append(record)
+            inventory = self._inventory(candidate, attempts)
+            bundle = self._measurement_bundle(candidate, records, inventory)
+            bundle["records"][0]["reason"] = "Different first outcome."
+            with self.assertRaisesRegex(ERROR, "outcome differs"):
+                ledger.check_provenance(candidate, inventory, bundle, temporary)
+
     @staticmethod
     def _measurement(candidate, row_index, attempt_id):
         template = freeze.parse(
@@ -217,16 +274,30 @@ class Phase3BDevelopmentLedger(unittest.TestCase):
             task_id=scheduled["task_id"],
         )
         record["identity"]["frozen_package_sha256"] = candidate["package_content_sha256"]
+        record["evidence_refs"] = [
+            {
+                "name": f"{attempt_id}.json",
+                "kind": "run",
+                "bytes": 1,
+                "sha256": "0" * 64,
+            }
+        ]
         return record
 
     @staticmethod
-    def _measurement_bundle(candidate, records):
+    def _measurement_bundle(candidate, records, inventory=None):
         canonical = json.dumps(candidate, sort_keys=True, separators=(",", ":")).encode()
+        inventory_bytes = (
+            json.dumps(inventory, sort_keys=True, separators=(",", ":")).encode()
+            if inventory is not None
+            else b""
+        )
         return {
             "schema_version": 1,
             "record_kind": ledger.MEASUREMENT_KIND,
             "package_content_sha256": candidate["package_content_sha256"],
             "ledger_sha256": hashlib.sha256(canonical).hexdigest(),
+            "inventory_sha256": hashlib.sha256(inventory_bytes).hexdigest(),
             "records": records,
         }
 

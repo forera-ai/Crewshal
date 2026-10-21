@@ -1,5 +1,13 @@
 # Crewshal phased development and acceptance plan
 
+## Current Phase 3B local provenance boundary — 2026-10-21
+
+The [local provenance checkpoint](PHASE-3B-LOCAL-PROVENANCE-CHECKPOINT-2026-10-21.md) binds measurement records to inventory files and local bytes.
+It checks declared references, digests, and outcomes. It does not authenticate an admitted run.
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+ADR 0009 defers Linux qualification and Phase 3B calibration.
+Continue with the [next prompt](PHASE-3B-LOCAL-PROVENANCE-NEXT-SESSION-2026-10-21.md).
+
 ## Current Phase 3B local measurement boundary — 2026-10-21
 
 The [local measurement checkpoint](PHASE-3B-LOCAL-MEASUREMENTS-CHECKPOINT-2026-10-21.md) checks measurement claims against attempts and frozen schedule rows.

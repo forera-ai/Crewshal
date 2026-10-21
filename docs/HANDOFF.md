@@ -4,6 +4,20 @@ Last updated: 2026-10-21. This record supplies the next session and the owner wi
 
 ## Current state
 
+**October 21: The Phase 3B local source review handoff checkpoint is complete.**
+The [checkpoint record](PHASE-3B-LOCAL-REVIEW-CHECKPOINT-2026-10-21.md) binds local claim results to declared inventory metadata.
+Each result includes the file kind, byte count, SHA-256 digest, source path, and comparison status.
+Every result requires later admitted source review and keeps `evidence_verified: false`.
+The 126 local fixture and related regression tests passed. Ruff, mypy, and the frozen package checker passed.
+The offline installed wheel check passed. No Linux test, guest action, native turn, or evaluation row ran.
+The historical archive charge remains 10,008,484,533 bytes. The package charge remains 116,542,541 bytes.
+The cumulative conservative charge remains 10,125,027,074 bytes.
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+The checkpoint version is `0.27.0`. Phase 3B acceptance remains open under ADR 0009.
+Continue with the [next prompt](PHASE-3B-LOCAL-REVIEW-NEXT-SESSION-2026-10-21.md).
+Check the [exact inputs](PHASE-3B-LOCAL-REVIEW-INPUTS-2026-10-21.json) before source work.
+Earlier dated entries remain historical records.
+
 **October 21: The Phase 3B local claim path checkpoint is complete.**
 The [checkpoint record](PHASE-3B-LOCAL-PATH-CHECKPOINT-2026-10-21.md) covers bounded JSON source paths across different schemas.
 Each populated measurement field declares a path for each named inventory file.

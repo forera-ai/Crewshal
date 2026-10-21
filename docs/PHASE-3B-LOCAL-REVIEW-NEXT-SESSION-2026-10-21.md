@@ -1,0 +1,35 @@
+# Phase 3B local source review continuation
+
+Work in `/Volumes/X10Pro/Crewshal` on the current branch.
+Read `AGENTS.md`, `/Users/hamedprooshani/.codex/RTK.md`, `docs/HANDOFF.md`, `docs/DEVELOPMENT-PLAN.md`, and `docs/ARCHITECTURE.md`.
+Read ADRs 0001 through 0009 and `docs/evaluation/phase-3a-frozen/README.md`.
+Verify every file in `docs/PHASE-3B-LOCAL-REVIEW-INPUTS-2026-10-21.json` before using it.
+Inspect Git state and preserve later work.
+
+Continue Phase 3B source development with local macOS fixtures and static checks.
+Review the next missing local source review requirement through the existing read-only ledger.
+Use declared claim paths and inventory digests to prepare later admitted evidence review.
+Keep missing paths, unsupported formats, and unmatched values visible and unverified.
+Do not infer event origin from file bytes, metadata, or a matching value.
+Keep every result unverified until admitted run evidence can establish its source.
+Keep the frozen Phase 3A package unchanged.
+Do not boot, resume, inspect, reconfigure, reconnect, or install into either VMware guest.
+Do not run Linux tests or qualification until the owner resumes the consolidated campaign.
+The staging command was not submitted before the clone suspended.
+Treat its console line and guest state as unknown. Do not press Return on that line.
+The single admission ledger closes the approved staging attempt. Do not reuse it.
+
+Preserve the transport ISO, retained archives, receipts, extraction images, and historical guests.
+Do not request archive bodies or retry consumed URLs.
+Keep the historical archive charge at 10,008,484,533 bytes and the package charge at 116,542,541 bytes.
+Keep the cumulative conservative charge at 10,125,027,074 bytes.
+Keep all 192 development rows planned and all 576 sealed rows unexposed.
+Keep executable hashes, effective commands, providers, and B1 conformance unknown until observed.
+Do not mark Phase 3B complete without development corpus runs and a frozen protocol amendment.
+
+Record commands, results, environment, revision, costs, failures, and limits.
+At a completed or blocked boundary, update README, CHANGELOG, handoff, the next prompt, and synchronized versions.
+Commit and push the current branch under standing owner authorization.
+
+Feed these files first: `AGENTS.md`, `docs/HANDOFF.md`, `docs/DEVELOPMENT-PLAN.md`, `docs/ARCHITECTURE.md`, ADRs 0001–0009, `docs/evaluation/phase-3a-frozen/README.md`, the single admission ledger, `docs/PHASE-3B-LOCAL-DEVELOPMENT-BOUNDARY-2026-10-21.md`, `docs/PHASE-3B-LOCAL-PROVENANCE-CHECKPOINT-2026-10-21.md`, `docs/PHASE-3B-LOCAL-SOURCE-ATTRIBUTION-CHECKPOINT-2026-10-21.md`, `docs/PHASE-3B-LOCAL-CONTENT-CHECKPOINT-2026-10-21.md`, `docs/PHASE-3B-LOCAL-PATH-CHECKPOINT-2026-10-21.md`, `docs/PHASE-3B-LOCAL-REVIEW-CHECKPOINT-2026-10-21.md`, and `scripts/phase3b_development_ledger.py`.
+The new exact input index names every additional required file.

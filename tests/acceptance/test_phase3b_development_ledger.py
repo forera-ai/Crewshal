@@ -341,8 +341,15 @@ class Phase3BDevelopmentLedger(unittest.TestCase):
             self.assertEqual(by_field["effort.context_bytes"]["status"], "matched")
             self.assertEqual(by_field["outcome"]["detail"], "value_differs")
             self.assertEqual(by_field["reason"]["detail"], "non_json_format")
+            self.assertEqual(by_field["reason"]["file_kind"], "notes")
+            self.assertEqual(by_field["reason"]["file_bytes"], notes.stat().st_size)
+            self.assertEqual(by_field["reason"]["file_sha256"], attempt["files"][1]["sha256"])
+            self.assertIs(by_field["reason"]["admitted_source_review_required"], True)
             self.assertEqual(
                 result["content_status_counts"], {"matched": 2, "unmatched": 1, "unsupported": 1}
+            )
+            self.assertTrue(
+                all(item["admitted_source_review_required"] for item in result["content_checks"])
             )
             self.assertIs(result["content_matches_are_execution_evidence"], False)
             self.assertIs(result["evidence_verified"], False)
@@ -423,6 +430,14 @@ class Phase3BDevelopmentLedger(unittest.TestCase):
             result = ledger.check_contents(candidate, inventory, bundle, temporary)
             self.assertEqual(result["content_status_counts"], {"matched": 4})
             self.assertTrue(all(item["status"] == "matched" for item in result["content_checks"]))
+            alternate_outcome = next(
+                item
+                for item in result["content_checks"]
+                if item["field"] == "outcome" and item["file"] == alternate.name
+            )
+            self.assertEqual(alternate_outcome["file_kind"], "trace")
+            self.assertEqual(alternate_outcome["file_sha256"], attempt["files"][1]["sha256"])
+            self.assertIs(alternate_outcome["admitted_source_review_required"], True)
             self.assertIs(result["evidence_verified"], False)
 
             record["source_refs"]["outcome"][1]["path"] = ["outcome"]

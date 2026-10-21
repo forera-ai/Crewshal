@@ -1,5 +1,14 @@
 # Crewshal phased development and acceptance plan
 
+## Current Phase 3B local source review handoff boundary — 2026-10-21
+
+The local checker now includes declared inventory kind, size, and digest in every claim comparison.
+It marks each comparison for later admitted source review, even when the declared value matches.
+The [checkpoint](PHASE-3B-LOCAL-REVIEW-CHECKPOINT-2026-10-21.md) records local checks and limits.
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+Development corpus runs and a frozen protocol amendment remain required for Phase 3B acceptance.
+ADR 0009 defers Linux qualification and calibration.
+
 ## Current Phase 3B local claim path boundary — 2026-10-21
 
 The local checker accepts a bounded JSON path for each declared field and inventory file.

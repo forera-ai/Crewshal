@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.27.0 — 2026-10-21
+
+- Bind each local claim comparison to its declared inventory kind, size, and SHA-256 digest.
+- Mark every comparison for later admitted source review, including exact local matches.
+- Keep missing paths, unsupported formats, and unmatched values visible and unverified.
+
 ## 0.26.0 — 2026-10-21
 
 - Allow bounded, declared JSON source paths for measurement fields across different file schemas.

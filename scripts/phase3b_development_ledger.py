@@ -748,9 +748,13 @@ def check_contents(ledger, inventory, measurements, artifact_dir, root=ROOT):
                             "attempt_id": attempt["attempt_id"],
                             "field": field,
                             "file": name,
+                            "file_kind": item["kind"],
+                            "file_bytes": item["bytes"],
+                            "file_sha256": item["sha256"],
                             "path": path,
                             "status": status,
                             "detail": detail,
+                            "admitted_source_review_required": True,
                         }
                     )
     finally:

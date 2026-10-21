@@ -10,6 +10,13 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**October 21: Phase 3B local development is paused at the Linux gate.**
+The owner stopped guest checks and asked for local development only.
+The [stop record](docs/PHASE-3B-LOCAL-DEVELOPMENT-BOUNDARY-2026-10-21.md) records the completed host transport and the suspended clone.
+The guest staging command was not submitted. The single admission ledger closes further guest action.
+Local synthetic tests pass. The 192 development rows remain planned, and the 576 sealed rows remain unexposed.
+Phase 3B calibration and acceptance remain open until the owner instructs the consolidated Linux campaign.
+
 **October 20: One offline toolchain staging attempt is approved.**
 The owner approved the [exact proposal](docs/PHASE-3B-OFFLINE-TOOLCHAIN-STAGING-PROPOSAL-2026-10-20.md).
 The [single ledger](docs/PHASE-3B-CAMPAIGN-ADMISSION-MANIFEST-2026-10-19.json) admits one host transport and one isolated clone stage.

@@ -1,8 +1,20 @@
 # Crewshal rolling handoff and project memory
 
-Last updated: 2026-10-20. This record supplies the next session and the owner with project history. [DEVELOPMENT-PLAN.md](DEVELOPMENT-PLAN.md) defines the milestone acceptance checks. Preserve the session ledger.
+Last updated: 2026-10-21. This record supplies the next session and the owner with project history. [DEVELOPMENT-PLAN.md](DEVELOPMENT-PLAN.md) defines the milestone acceptance checks. Preserve the session ledger.
 
 ## Current state
+
+**October 21: The owner stopped guest checks and requested local development only.**
+The [boundary record](PHASE-3B-LOCAL-DEVELOPMENT-BOUNDARY-2026-10-21.md) records the completed host transport and one consumed clone start.
+The clone suspended before the staging command was submitted. Do not resume it or submit the pending console line.
+The [single ledger](PHASE-3B-CAMPAIGN-ADMISSION-MANIFEST-2026-10-19.json) closes further guest action.
+Local synthetic tests, Ruff, the frozen Phase 3A checker, and the 249-file input check passed.
+No Linux tests, archived tool execution, native turns, or evaluation rows ran in this boundary.
+The historical archive charge is 10,008,484,533 bytes. The package charge is 116,542,541 bytes.
+The cumulative conservative charge remains 10,125,027,074 bytes. All 192 development rows remain planned.
+All 576 sealed rows remain unexposed. Phase 3B acceptance remains open under ADR 0009.
+The checkpoint version is `0.19.2`. Continue with the [next prompt](PHASE-3B-LOCAL-DEVELOPMENT-NEXT-SESSION-2026-10-21.md).
+Earlier dated entries remain historical records.
 
 **October 20: One exact offline toolchain staging attempt is approved.**
 The owner replied, “Approve this exact attempt,” to the [proposal](PHASE-3B-OFFLINE-TOOLCHAIN-STAGING-PROPOSAL-2026-10-20.md).

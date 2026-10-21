@@ -1,5 +1,15 @@
 # Crewshal phased development and acceptance plan
 
+## Current Phase 3B local boundary — 2026-10-21
+
+The owner stopped guest checks and requested local development only.
+The [boundary record](PHASE-3B-LOCAL-DEVELOPMENT-BOUNDARY-2026-10-21.md) closes the consumed staging attempt.
+The host transport is complete, but the guest staging command was not submitted before suspension.
+No guest action, Linux test, archived tool execution, native turn, or evaluation is admitted now.
+The 192 development rows remain planned. The 576 sealed rows remain unexposed.
+Phase 3B calibration needs later consolidated Linux qualification under ADR 0009.
+Do not mark Phase 3B complete until its recorded acceptance checks pass.
+
 ## Current approved offline toolchain stage — 2026-10-20
 
 The owner approved one exact host transport build and one isolated clone stage.

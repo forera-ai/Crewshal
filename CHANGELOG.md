@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.19.2 — 2026-10-21
+
+- Record the completed host transport and the stopped guest staging attempt.
+- Close guest and Linux actions under the owner's local development instruction.
+- Preserve Phase 3B acceptance as open, with all development and sealed rows unexecuted.
+
 ## 0.19.1 — 2026-10-20
 
 - Record the owner's approval for one exact offline toolchain transport and isolated clone stage.

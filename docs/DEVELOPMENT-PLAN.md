@@ -2,6 +2,10 @@
 
 ## Current Phase 3B local boundary — 2026-10-21
 
+The first local software checkpoint adds a read-only development coverage ledger.
+Its [record](PHASE-3B-LOCAL-LEDGER-CHECKPOINT-2026-10-21.md) verifies 192 planned entries against the frozen schedule.
+This check does not verify observations or complete Phase 3B acceptance.
+
 The owner stopped guest checks and requested local development only.
 The [boundary record](PHASE-3B-LOCAL-DEVELOPMENT-BOUNDARY-2026-10-21.md) closes the consumed staging attempt.
 The host transport is complete, but the guest staging command was not submitted before suspension.

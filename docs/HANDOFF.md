@@ -4,6 +4,19 @@ Last updated: 2026-10-21. This record supplies the next session and the owner wi
 
 ## Current state
 
+**October 21: The first Phase 3B local software checkpoint is complete.**
+The [checkpoint record](PHASE-3B-LOCAL-LEDGER-CHECKPOINT-2026-10-21.md) covers the new read-only development ledger check.
+It matches all 192 planned development rows to the frozen schedule and reports no verified evidence.
+The local fixture tests, related acceptance tests, Ruff, and the frozen Phase 3A checker passed.
+Mypy on the new script failed because that script and the imported frozen checker lack type annotations; Ruff passed.
+No Linux test, guest action, archived tool execution, native turn, or evaluation row ran.
+The 10,008,484,533-byte archive charge and 116,542,541-byte package charge remain unchanged.
+The cumulative conservative charge remains 10,125,027,074 bytes.
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+The checkpoint version is `0.20.0`. Phase 3B acceptance remains open under ADR 0009.
+Continue with the [next prompt](PHASE-3B-LOCAL-LEDGER-NEXT-SESSION-2026-10-21.md).
+Earlier dated entries remain historical records.
+
 **October 21: The owner stopped guest checks and requested local development only.**
 The [boundary record](PHASE-3B-LOCAL-DEVELOPMENT-BOUNDARY-2026-10-21.md) records the completed host transport and one consumed clone start.
 The clone suspended before the staging command was submitted. Do not resume it or submit the pending console line.

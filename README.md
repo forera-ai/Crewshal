@@ -10,6 +10,14 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**October 21: The first Phase 3B local software checkpoint is complete.**
+The [development ledger check](scripts/phase3b_development_ledger.py) creates and checks one planned entry for each of the 192 development rows.
+It binds each entry to the frozen Phase 3A package and rejects missing, changed, or repeated schedule rows.
+It grants no execution authority and verifies no run evidence.
+The [checkpoint record](docs/PHASE-3B-LOCAL-LEDGER-CHECKPOINT-2026-10-21.md) gives local commands and limits.
+All 192 rows remain planned. All 576 sealed rows remain unexposed.
+Linux qualification, native execution, and Phase 3B calibration remain closed.
+
 **October 21: Phase 3B local development is paused at the Linux gate.**
 The owner stopped guest checks and asked for local development only.
 The [stop record](docs/PHASE-3B-LOCAL-DEVELOPMENT-BOUNDARY-2026-10-21.md) records the completed host transport and the suspended clone.

@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.20.0 — 2026-10-21
+
+- Add a read-only Phase 3B development coverage ledger and local refusal checks.
+- Bind all 192 planned development entries to the frozen Phase 3A schedule.
+- Keep all 576 sealed rows unexposed and all execution and spending gates closed.
+
 ## 0.19.2 — 2026-10-21
 
 - Record the completed host transport and the stopped guest staging attempt.

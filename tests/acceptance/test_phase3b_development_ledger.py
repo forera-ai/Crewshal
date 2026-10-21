@@ -180,7 +180,9 @@ class Phase3BDevelopmentLedger(unittest.TestCase):
         row.update(status="failed", reason="Synthetic refusal.", attempt_ids=["attempt-1"])
         record = self._measurement(candidate, 0, "attempt-1")
         record["usage"]["new_input_tokens"] = 7
-        record["source_refs"]["usage.new_input_tokens"] = ["attempt-1.json"]
+        record["source_refs"]["usage.new_input_tokens"] = self._source(
+            "attempt-1.json", "usage.new_input_tokens"
+        )
         ledger.check_measurements(candidate, self._measurement_bundle(candidate, [record]))
         record["usage"]["unknown_usage"] = False
         with self.assertRaisesRegex(ERROR, "lacks counters"):
@@ -195,7 +197,8 @@ class Phase3BDevelopmentLedger(unittest.TestCase):
         with self.assertRaisesRegex(ERROR, "source fields mismatch"):
             ledger.check_measurements(candidate, self._measurement_bundle(candidate, [record]))
         for key in ("amount", "currency", "billing_evidence"):
-            record["source_refs"][f"usage.measured_cost.{key}"] = ["attempt-1.json"]
+            field = f"usage.measured_cost.{key}"
+            record["source_refs"][field] = self._source("attempt-1.json", field)
         ledger.check_measurements(candidate, self._measurement_bundle(candidate, [record]))
 
     def test_measurements_require_source_files_for_populated_observations(self):
@@ -207,19 +210,27 @@ class Phase3BDevelopmentLedger(unittest.TestCase):
         record["effort"]["context_bytes"] = 0
         with self.assertRaisesRegex(ERROR, "source fields mismatch"):
             ledger.check_measurements(candidate, self._measurement_bundle(candidate, [record]))
-        record["source_refs"]["effort.context_bytes"] = ["attempt-1.json"]
+        record["source_refs"]["effort.context_bytes"] = self._source(
+            "attempt-1.json", "effort.context_bytes"
+        )
         ledger.check_measurements(candidate, self._measurement_bundle(candidate, [record]))
-        record["source_refs"]["effort.context_bytes"] = ["missing.json"]
+        record["source_refs"]["effort.context_bytes"] = self._source(
+            "missing.json", "effort.context_bytes"
+        )
         with self.assertRaisesRegex(ERROR, "source file invalid"):
             ledger.check_measurements(candidate, self._measurement_bundle(candidate, [record]))
-        record["source_refs"]["effort.context_bytes"] = ["attempt-1.json", "attempt-1.json"]
+        record["source_refs"]["effort.context_bytes"] = (
+            self._source("attempt-1.json", "effort.context_bytes") * 2
+        )
         with self.assertRaisesRegex(ERROR, "source file invalid"):
             ledger.check_measurements(candidate, self._measurement_bundle(candidate, [record]))
-        record["source_refs"]["effort.context_bytes"] = ["attempt-1.json"]
+        record["source_refs"]["effort.context_bytes"] = self._source(
+            "attempt-1.json", "effort.context_bytes"
+        )
         record["checks"] = [{"result": "synthetic failure"}]
         with self.assertRaisesRegex(ERROR, "source fields mismatch"):
             ledger.check_measurements(candidate, self._measurement_bundle(candidate, [record]))
-        record["source_refs"]["checks"] = ["attempt-1.json"]
+        record["source_refs"]["checks"] = self._source("attempt-1.json", "checks")
         ledger.check_measurements(candidate, self._measurement_bundle(candidate, [record]))
 
     def test_provenance_links_measurements_to_inventory_and_local_bytes(self):
@@ -233,7 +244,9 @@ class Phase3BDevelopmentLedger(unittest.TestCase):
             inventory = self._inventory(candidate, [attempt])
             record = self._measurement(candidate, 0, "attempt-1")
             record["evidence_refs"] = copy.deepcopy(attempt["files"])
-            record["source_refs"] = {field: [path.name] for field in record["source_refs"]}
+            record["source_refs"] = {
+                field: self._source(path.name, field) for field in record["source_refs"]
+            }
             bundle = self._measurement_bundle(candidate, [record], inventory)
             result = ledger.check_provenance(candidate, inventory, bundle, temporary)
             self.assertEqual(result["measurement_evidence_files_linked"], 1)
@@ -243,7 +256,9 @@ class Phase3BDevelopmentLedger(unittest.TestCase):
             self.assertIs(result["execution_allowed"], False)
 
             changed = copy.deepcopy(bundle)
-            changed["records"][0]["source_refs"]["outcome"] = ["missing.json"]
+            changed["records"][0]["source_refs"]["outcome"] = self._source(
+                "missing.json", "outcome"
+            )
             with self.assertRaisesRegex(ERROR, "source file invalid"):
                 ledger.check_provenance(candidate, inventory, changed, temporary)
 
@@ -278,7 +293,9 @@ class Phase3BDevelopmentLedger(unittest.TestCase):
                 record = self._measurement(candidate, 0, f"attempt-{number}")
                 record["reason"] = reason
                 record["evidence_refs"] = copy.deepcopy(attempt["files"])
-                record["source_refs"] = {field: [path.name] for field in record["source_refs"]}
+                record["source_refs"] = {
+                    field: self._source(path.name, field) for field in record["source_refs"]
+                }
                 records.append(record)
             inventory = self._inventory(candidate, attempts)
             bundle = self._measurement_bundle(candidate, records, inventory)
@@ -312,10 +329,10 @@ class Phase3BDevelopmentLedger(unittest.TestCase):
             record["effort"]["context_bytes"] = 0
             record["evidence_refs"] = copy.deepcopy(attempt["files"])
             record["source_refs"] = {
-                "date": [run.name],
-                "outcome": [run.name],
-                "reason": [notes.name],
-                "effort.context_bytes": [run.name],
+                "date": self._source(run.name, "date"),
+                "outcome": self._source(run.name, "outcome"),
+                "reason": self._source(notes.name, "reason"),
+                "effort.context_bytes": self._source(run.name, "effort.context_bytes"),
             }
             bundle = self._measurement_bundle(candidate, [record], inventory)
             result = ledger.check_contents(candidate, inventory, bundle, temporary)
@@ -348,8 +365,12 @@ class Phase3BDevelopmentLedger(unittest.TestCase):
             record["date"] = "2026-10-20"
             record["effort"]["context_bytes"] = 0
             record["evidence_refs"] = copy.deepcopy(attempt["files"])
-            record["source_refs"] = {field: [path.name] for field in record["source_refs"]}
-            record["source_refs"]["effort.context_bytes"] = [path.name]
+            record["source_refs"] = {
+                field: self._source(path.name, field) for field in record["source_refs"]
+            }
+            record["source_refs"]["effort.context_bytes"] = self._source(
+                path.name, "effort.context_bytes"
+            )
             bundle = self._measurement_bundle(candidate, [record], inventory)
             result = ledger.check_contents(candidate, inventory, bundle, temporary)
             self.assertTrue(
@@ -365,6 +386,91 @@ class Phase3BDevelopmentLedger(unittest.TestCase):
             self.assertEqual(by_field["date"]["status"], "matched")
             self.assertEqual(by_field["effort.context_bytes"]["detail"], "value_differs")
             self.assertEqual(by_field["outcome"]["detail"], "path_missing")
+
+    def test_content_checks_use_each_files_declared_path(self):
+        candidate = copy.deepcopy(self.planned)
+        row = candidate["rows"][0]
+        row.update(status="failed", reason="Synthetic refusal.", attempt_ids=["attempt-1"])
+        with tempfile.TemporaryDirectory() as temporary:
+            run = Path(temporary) / "run.json"
+            run.write_text(
+                json.dumps({"date": "2026-10-20", "outcome": "failed", "reason": row["reason"]})
+            )
+            alternate = Path(temporary) / "alternate.json"
+            alternate.write_text(
+                json.dumps(
+                    {
+                        "events": [{"observed": {"state": "failed", "reason": row["reason"]}}],
+                        "outcome": "verified",
+                    }
+                )
+            )
+            attempt = self._attempt(row, run)
+            attempt["files"].append(self._file_ref(alternate, "trace"))
+            inventory = self._inventory(candidate, [attempt])
+            record = self._measurement(candidate, 0, "attempt-1")
+            record["date"] = "2026-10-20"
+            record["evidence_refs"] = copy.deepcopy(attempt["files"])
+            record["source_refs"] = {
+                "date": self._source(run.name, "date"),
+                "outcome": [
+                    {"file": run.name, "path": ["outcome"]},
+                    {"file": alternate.name, "path": ["events", 0, "observed", "state"]},
+                ],
+                "reason": [{"file": alternate.name, "path": ["events", 0, "observed", "reason"]}],
+            }
+            bundle = self._measurement_bundle(candidate, [record], inventory)
+            result = ledger.check_contents(candidate, inventory, bundle, temporary)
+            self.assertEqual(result["content_status_counts"], {"matched": 4})
+            self.assertTrue(all(item["status"] == "matched" for item in result["content_checks"]))
+            self.assertIs(result["evidence_verified"], False)
+
+            record["source_refs"]["outcome"][1]["path"] = ["outcome"]
+            result = ledger.check_contents(
+                candidate,
+                inventory,
+                self._measurement_bundle(candidate, [record], inventory),
+                temporary,
+            )
+            self.assertEqual(result["content_status_counts"], {"matched": 3, "unmatched": 1})
+            self.assertIs(result["evidence_verified"], False)
+            record["source_refs"]["outcome"][1]["path"] = ["events", 1, "observed", "state"]
+            result = ledger.check_contents(
+                candidate,
+                inventory,
+                self._measurement_bundle(candidate, [record], inventory),
+                temporary,
+            )
+            self.assertEqual(result["content_status_counts"], {"matched": 3, "unmatched": 1})
+            self.assertIn("path_missing", [item["detail"] for item in result["content_checks"]])
+
+    def test_source_paths_refuse_unbounded_or_ambiguous_declarations(self):
+        candidate = copy.deepcopy(self.planned)
+        candidate["rows"][0].update(
+            status="failed", reason="Synthetic refusal.", attempt_ids=["attempt-1"]
+        )
+        base = self._measurement(candidate, 0, "attempt-1")
+        for path in ([], ["x"] * 17, ["x" * 129], [1024], [-1], [True], [None]):
+            record = copy.deepcopy(base)
+            record["source_refs"]["outcome"][0]["path"] = path
+            with self.subTest(path=path), self.assertRaisesRegex(ERROR, "source path invalid"):
+                ledger.check_measurements(candidate, self._measurement_bundle(candidate, [record]))
+        for malformed in (
+            {"file": "attempt-1.json"},
+            {"file": "attempt-1.json", "path": ["outcome"], "other": 1},
+        ):
+            record = copy.deepcopy(base)
+            record["source_refs"]["outcome"] = [malformed]
+            with self.subTest(ref=malformed), self.assertRaisesRegex(ERROR, "ref fields invalid"):
+                ledger.check_measurements(candidate, self._measurement_bundle(candidate, [record]))
+        record = copy.deepcopy(base)
+        record["source_refs"]["outcome"] = self._source("attempt-1.json", "outcome") * 9
+        with self.assertRaisesRegex(ERROR, "source refs invalid"):
+            ledger.check_measurements(candidate, self._measurement_bundle(candidate, [record]))
+
+    @staticmethod
+    def _source(name, field):
+        return [{"file": name, "path": field.split(".")}]
 
     @staticmethod
     def _file_ref(path, kind):
@@ -409,7 +515,8 @@ class Phase3BDevelopmentLedger(unittest.TestCase):
             }
         ]
         record["source_refs"] = {
-            field: [f"{attempt_id}.json"] for field in ledger.measurement_source_fields(record)
+            field: Phase3BDevelopmentLedger._source(f"{attempt_id}.json", field)
+            for field in ledger.measurement_source_fields(record)
         }
         return record
 

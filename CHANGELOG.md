@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.26.0 — 2026-10-21
+
+- Allow bounded, declared JSON source paths for measurement fields across different file schemas.
+- Report each field, inventory file, path, and exact comparison result without authenticating its origin.
+- Keep Linux qualification, development corpus runs, and Phase 3B calibration unresolved.
+
 ## 0.25.0 — 2026-10-21
 
 - The checker adds bounded, read-only JSON path comparisons for declared Phase 3B measurement sources.

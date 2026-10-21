@@ -4,6 +4,19 @@ Last updated: 2026-10-21. This record supplies the next session and the owner wi
 
 ## Current state
 
+**October 21: The Phase 3B local claim path checkpoint is complete.**
+The [checkpoint record](PHASE-3B-LOCAL-PATH-CHECKPOINT-2026-10-21.md) covers bounded JSON source paths across different schemas.
+Each populated measurement field declares a path for each named inventory file.
+Local fixtures, related regressions, Ruff, mypy, and the frozen package checker passed.
+An offline installed wheel check passed. No Linux test, guest action, native turn, or evaluation row ran.
+The historical archive charge remains 10,008,484,533 bytes. The package charge remains 116,542,541 bytes.
+The cumulative conservative charge remains 10,125,027,074 bytes.
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+The checkpoint version is `0.26.0`. Phase 3B acceptance remains open under ADR 0009.
+Continue with the [next prompt](PHASE-3B-LOCAL-PATH-NEXT-SESSION-2026-10-21.md).
+Check the [exact inputs](PHASE-3B-LOCAL-PATH-INPUTS-2026-10-21.json) before source work.
+Earlier dated entries remain historical records.
+
 **October 21: The Phase 3B local claim content checkpoint is complete.**
 The [checkpoint record](PHASE-3B-LOCAL-CONTENT-CHECKPOINT-2026-10-21.md) covers exact comparisons at matching JSON paths.
 The checker reports each matched, unmatched, or unsupported file and field without authenticating the event origin.

@@ -1,5 +1,13 @@
 # Crewshal phased development and acceptance plan
 
+## Current Phase 3B local claim path boundary — 2026-10-21
+
+The local checker accepts a bounded JSON path for each declared field and inventory file.
+It reports the selected path and comparison result while keeping all results unverified.
+Local fixtures and static checks support this source checkpoint only.
+Development corpus runs and a frozen protocol amendment remain required for Phase 3B acceptance.
+ADR 0009 defers Linux qualification and calibration.
+
 ## Current Phase 3B local claim content boundary — 2026-10-21
 
 The [local content checkpoint](PHASE-3B-LOCAL-CONTENT-CHECKPOINT-2026-10-21.md) compares claims with matching paths in declared JSON files.

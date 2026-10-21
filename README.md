@@ -10,6 +10,15 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**October 21: The Phase 3B local claim path checkpoint is complete.**
+Each measurement source now declares one bounded JSON path for one field and inventory file.
+Paths can select nested objects and array entries in files with different schemas.
+The checker reports matched, unmatched, and unsupported values without authenticating run origin.
+The [checkpoint record](docs/PHASE-3B-LOCAL-PATH-CHECKPOINT-2026-10-21.md) gives local results and limits.
+The [next prompt](docs/PHASE-3B-LOCAL-PATH-NEXT-SESSION-2026-10-21.md) and [exact inputs](docs/PHASE-3B-LOCAL-PATH-INPUTS-2026-10-21.json) govern continuation.
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+Linux qualification and Phase 3B calibration remain closed.
+
 **October 21: The Phase 3B local claim content checkpoint is complete.**
 The `check-contents` command compares declared claims with matching paths in local JSON files.
 It reports exact matches, unmatched values, and unsupported formats for each field and file.

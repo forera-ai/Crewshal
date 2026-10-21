@@ -27,6 +27,10 @@ EVIDENCE_FIELDS = {"name", "kind", "bytes", "sha256"}
 ARTIFACT_NAME = re.compile(r"[A-Za-z0-9][A-Za-z0-9._-]{0,127}\Z")
 SHA256 = re.compile(r"[0-9a-f]{64}\Z")
 MAX_ARTIFACT_BYTES = 8 * 1024 * 1024
+MAX_SOURCE_REFS = 8
+MAX_SOURCE_PATH_DEPTH = 16
+MAX_SOURCE_KEY_LENGTH = 128
+MAX_SOURCE_INDEX = 1023
 
 
 def nonnegative_number(value):
@@ -577,15 +581,34 @@ def check_measurements(ledger, bundle, root=ROOT):
             isinstance(sources, dict) and set(sources) == measurement_source_fields(record),
             "measurement source fields mismatch",
         )
-        for field, source_names in sources.items():
+        for field, source_refs in sources.items():
             freeze.require(
-                isinstance(source_names, list)
-                and bool(source_names)
-                and all(isinstance(name, str) for name in source_names)
-                and len(source_names) == len(set(source_names))
-                and set(source_names) <= names,
-                f"measurement source file invalid for {field}",
+                isinstance(source_refs, list) and 0 < len(source_refs) <= MAX_SOURCE_REFS,
+                f"measurement source refs invalid for {field}",
             )
+            seen_source_files = set()
+            for source_ref in source_refs:
+                freeze.require(
+                    isinstance(source_ref, dict) and set(source_ref) == {"file", "path"},
+                    f"measurement source ref fields invalid for {field}",
+                )
+                name = source_ref["file"]
+                path = source_ref["path"]
+                freeze.require(
+                    isinstance(name, str) and name in names and name not in seen_source_files,
+                    f"measurement source file invalid for {field}",
+                )
+                freeze.require(
+                    isinstance(path, list)
+                    and 0 < len(path) <= MAX_SOURCE_PATH_DEPTH
+                    and all(
+                        (type(segment) is str and 0 < len(segment) <= MAX_SOURCE_KEY_LENGTH)
+                        or (type(segment) is int and 0 <= segment <= MAX_SOURCE_INDEX)
+                        for segment in path
+                    ),
+                    f"measurement source path invalid for {field}",
+                )
+                seen_source_files.add(name)
         counts[outcome] += 1
     return {
         **coverage,
@@ -659,8 +682,8 @@ def content_claim(record, field):
     return value
 
 
-def compare_json_content(content, field, claimed):
-    """Compare a claim only with its matching path in a JSON object."""
+def compare_json_content(content, path, claimed):
+    """Compare a claim only with its declared bounded JSON path."""
 
     def unique_pairs(pairs):
         result = {}
@@ -688,12 +711,13 @@ def compare_json_content(content, field, claimed):
         )
     except (UnicodeDecodeError, json.JSONDecodeError, ValueError, RecursionError):
         return "unsupported", "invalid_json"
-    if not isinstance(source, dict):
-        return "unsupported", "non_object_json"
-    for key in field.split("."):
-        if not isinstance(source, dict) or key not in source:
+    for segment in path:
+        if type(segment) is str and isinstance(source, dict) and segment in source:
+            source = source[segment]
+        elif type(segment) is int and isinstance(source, list) and segment < len(source):
+            source = source[segment]
+        else:
             return "unmatched", "path_missing"
-        source = source[key]
     if type(source) is type(claimed) and source == claimed:
         return "matched", "exact_value"
     return "unmatched", "value_differs"
@@ -708,20 +732,23 @@ def check_contents(ledger, inventory, measurements, artifact_dir, root=ROOT):
     try:
         for attempt, record in zip(inventory["attempts"], measurements["records"], strict=True):
             files = {item["name"]: item for item in attempt["files"]}
-            for field, names in sorted(record["source_refs"].items()):
+            for field, source_refs in sorted(record["source_refs"].items()):
                 claimed = content_claim(record, field)
-                for name in names:
+                for source_ref in source_refs:
+                    name = source_ref["file"]
+                    path = source_ref["path"]
                     item = files[name]
                     if not name.lower().endswith(".json"):
                         status, detail = "unsupported", "non_json_format"
                     else:
                         content = read_content_file(directory, item)
-                        status, detail = compare_json_content(content, field, claimed)
+                        status, detail = compare_json_content(content, path, claimed)
                     results.append(
                         {
                             "attempt_id": attempt["attempt_id"],
                             "field": field,
                             "file": name,
+                            "path": path,
                             "status": status,
                             "detail": detail,
                         }
@@ -772,7 +799,7 @@ def main():
     provenance.add_argument("measurements", type=Path)
     provenance.add_argument("artifact_dir", type=Path)
     contents = commands.add_parser(
-        "check-contents", help="Compare local JSON claims at matching paths"
+        "check-contents", help="Compare local JSON claims at declared source paths"
     )
     contents.add_argument("ledger", type=Path)
     contents.add_argument("inventory", type=Path)

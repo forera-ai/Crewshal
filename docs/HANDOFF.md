@@ -4,6 +4,19 @@ Last updated: 2026-10-21. This record supplies the next session and the owner wi
 
 ## Current state
 
+**October 21: The Phase 3B local evidence inventory checkpoint is complete.**
+The [checkpoint record](PHASE-3B-LOCAL-EVIDENCE-CHECKPOINT-2026-10-21.md) covers read-only attempt and artifact integrity checks.
+The new `check-evidence` command binds declared attempts to schedule rows and checks local file bytes.
+It cannot authenticate a run, provider, command, or platform. It always reports `evidence_verified: false`.
+Local fixture tests, related regressions, Ruff, the frozen checker, and an offline installed wheel passed.
+No Linux test, guest action, archived tool execution, native turn, or evaluation row ran.
+The historical archive charge remains 10,008,484,533 bytes. The package charge remains 116,542,541 bytes.
+The cumulative conservative charge remains 10,125,027,074 bytes.
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+The checkpoint version is `0.21.0`. Phase 3B acceptance remains open under ADR 0009.
+Continue with the [next prompt](PHASE-3B-LOCAL-EVIDENCE-NEXT-SESSION-2026-10-21.md).
+Earlier dated entries remain historical records.
+
 **October 21: The first Phase 3B local software checkpoint is complete.**
 The [checkpoint record](PHASE-3B-LOCAL-LEDGER-CHECKPOINT-2026-10-21.md) covers the new read-only development ledger check.
 It matches all 192 planned development rows to the frozen schedule and reports no verified evidence.

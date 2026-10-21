@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.21.0 — 2026-10-21
+
+- Add read-only integrity checks for declared Phase 3B attempt artifacts.
+- Reject missing attempts, unsafe artifact names, changed bytes, and final outcomes that disagree with the ledger.
+- Keep evidence authenticity, execution authority, and Phase 3B calibration unresolved.
+
 ## 0.20.0 — 2026-10-21
 
 - Add a read-only Phase 3B development coverage ledger and local refusal checks.

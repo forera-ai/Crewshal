@@ -10,6 +10,14 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**October 21: The Phase 3B local evidence inventory checkpoint is complete.**
+The [development ledger](scripts/phase3b_development_ledger.py) now checks declared attempts against local artifact sizes and SHA-256 hashes.
+The `check-evidence` command rejects missing attempts, changed files, unsafe names, and mismatched final outcomes.
+It does not prove that an artifact came from an admitted run. It always reports `evidence_verified: false`.
+The [checkpoint record](docs/PHASE-3B-LOCAL-EVIDENCE-CHECKPOINT-2026-10-21.md) gives the commands, fixture results, and limits.
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+Linux qualification, native execution, and Phase 3B calibration remain closed.
+
 **October 21: The first Phase 3B local software checkpoint is complete.**
 The [development ledger check](scripts/phase3b_development_ledger.py) creates and checks one planned entry for each of the 192 development rows.
 It binds each entry to the frozen Phase 3A package and rejects missing, changed, or repeated schedule rows.

@@ -1,0 +1,163 @@
+{
+  "schema_version": 1,
+  "purpose": "local LLM handoff transfer, not execution admission",
+  "entry_revision": "015e6b2dc0bda6f06628810aaf88038d52b70dbc",
+  "checkpoint_version": "0.27.1",
+  "files": [
+    {
+      "path": "AGENTS.md",
+      "bytes": 9043,
+      "sha256": "a44f3c5feac0b1c1434e6f2fe0303e5236141dea99754fa619660157e6e32f4d"
+    },
+    {
+      "path": "README.md",
+      "bytes": 71331,
+      "sha256": "3b6e7920e337696445d6e9d73b685e1201aaba458ec0a9bfad22b8a8e7b472fc"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "bytes": 82366,
+      "sha256": "a9038894073f0631c1cc36054b56f0cbb6261e81d488380024c80b76dd8ac636"
+    },
+    {
+      "path": "pyproject.toml",
+      "bytes": 920,
+      "sha256": "c2d489f132109a89b2ace4a061ffc6f0c5840db2c35d89911cd0a77c9b7bde81"
+    },
+    {
+      "path": "src/crewshal/__init__.py",
+      "bytes": 91,
+      "sha256": "ae80fd64d68a3734d4bc738c0999add7aff52b8be5951d53c96fddb2ac65f7b7"
+    },
+    {
+      "path": "docs/HANDOFF.md",
+      "bytes": 502509,
+      "sha256": "6f8f066936f8670fed536db8dd920ec84f567260aa15454c1d783af3865367e1"
+    },
+    {
+      "path": "docs/DEVELOPMENT-PLAN.md",
+      "bytes": 96969,
+      "sha256": "1af6c92c8abfc62ad8b0a488e0c22a62dc20dadd9027b611b5a6728db6ca53ae"
+    },
+    {
+      "path": "docs/ARCHITECTURE.md",
+      "bytes": 19345,
+      "sha256": "209da21b329875d5412ba0eafd201437d6303468325e3bf8b5b8fd113b69aa16"
+    },
+    {
+      "path": "docs/LOCAL-LLM-HANDOFF-2026-10-21.md",
+      "bytes": 12473,
+      "sha256": "7df0a5e96255efaf93ba2c57d0ae6834e90bf975e34544a42c2cec59e5298fd4"
+    },
+    {
+      "path": "docs/LOCAL-LLM-START-PROMPT-2026-10-21.md",
+      "bytes": 4336,
+      "sha256": "90c01251912b5f5e61b3c3cc8eafa6c44aec1d95e902a331507210dbb322cd71"
+    },
+    {
+      "path": "docs/PHASE-3B-LOCAL-REVIEW-CHECKPOINT-2026-10-21.md",
+      "bytes": 4180,
+      "sha256": "ac7ece5d28cf0250a0d7409f0b44fa54dce38bea2d43c09e77fb9885cccc97bc"
+    },
+    {
+      "path": "docs/PHASE-3B-LOCAL-DEVELOPMENT-BOUNDARY-2026-10-21.md",
+      "bytes": 4195,
+      "sha256": "e6b9c319a4475d4f2a590da9809ed77c3b6104108e44f5074d1a4a9633037510"
+    },
+    {
+      "path": "docs/PHASE-3B-CAMPAIGN-ADMISSION-MANIFEST-2026-10-19.json",
+      "bytes": 69657,
+      "sha256": "4b8c5137472f2000e34d6bae19dd4906eae701858544680cac4372d807e35125"
+    },
+    {
+      "path": "docs/PHASE-3B-CONSOLIDATED-LINUX-CAMPAIGN-2026-10-18.md",
+      "bytes": 6357,
+      "sha256": "58011937584b4df7e951d814a2fdfdcf1fabe835bb854ff1e5a0b00be9128214"
+    },
+    {
+      "path": "docs/PHASE-3B-LOCAL-REVIEW-INPUTS-2026-10-21.json",
+      "bytes": 50429,
+      "sha256": "fb224b22a06156c2587f05bd7413733c0f2993b9fba5e80b80c1c7d704cd35ff"
+    },
+    {
+      "path": "docs/PHASE-3A-COMPLETION-2026-10-18.md",
+      "bytes": 11831,
+      "sha256": "ed2c62773b41fae72d0603bb84732a86a4ff3dfc844054ae0b920d1e966a6cd0"
+    },
+    {
+      "path": "docs/evaluation/phase-3a-frozen/README.md",
+      "bytes": 7739,
+      "sha256": "95eb82810a7d9e873cfb79fa7d098366ca1dfc75aee702019570a64ca1eacc03"
+    },
+    {
+      "path": "docs/evaluation/phase-3a-frozen/package-index.json",
+      "bytes": 4830,
+      "sha256": "a264ce5458ddf053b482df5b99f669afa6139306887e1de92473eef5529970d1"
+    },
+    {
+      "path": "scripts/check_phase_3a_freeze.py",
+      "bytes": 20317,
+      "sha256": "e3e8fee8a594059059283db8b8c208b10463668d64ea2be3f4d3de6ad52cbe85"
+    },
+    {
+      "path": "scripts/phase3b_development_ledger.py",
+      "bytes": 35206,
+      "sha256": "9b1ef39f4a152ae254e26db060d98edcb67c9e691b3ebba883fdf3c630f26a9f"
+    },
+    {
+      "path": "tests/acceptance/test_phase3b_development_ledger.py",
+      "bytes": 29480,
+      "sha256": "8d0f9ebcc258e02829e27bdb7851e4087ec24410d3fd71c0b5b97cae186b516e"
+    },
+    {
+      "path": "INITIAL-EVALUATION-PLAN.md",
+      "bytes": 14592,
+      "sha256": "ab74f7c04ee2f0894cc95445edef618ce3227ef1d754e5d312af4d1d5ea03acd"
+    },
+    {
+      "path": "docs/decisions/0001-name-and-repository.md",
+      "bytes": 7328,
+      "sha256": "cecb3ecb8df79bff668af4f6374197a8f01867f80a31f1f9a83afacf3479fe47"
+    },
+    {
+      "path": "docs/decisions/0002-minimal-architecture.md",
+      "bytes": 3910,
+      "sha256": "d3a95bba05c6a27fef00f417e093d6496aa37f0fc064c679c67590f4556e8d98"
+    },
+    {
+      "path": "docs/decisions/0003-direct-linux-qualification.md",
+      "bytes": 11609,
+      "sha256": "dcd11ac51fc39fe62523dd7a2d351ef24cc902357203a55e34758f56a29ccf99"
+    },
+    {
+      "path": "docs/decisions/0004-retained-terminal-storage.md",
+      "bytes": 2748,
+      "sha256": "09883c39b2a7b52a198bbc5ab7e3e3e6840d7425e3d706dfdf3cc92714c67817"
+    },
+    {
+      "path": "docs/decisions/0005-official-subscription-pilot.md",
+      "bytes": 3214,
+      "sha256": "fd2cc19b5317307ca20510cd9a0bc60fd5874ae41a74b090fa0431091cdd4e53"
+    },
+    {
+      "path": "docs/decisions/0006-upfront-installation-charge.md",
+      "bytes": 2544,
+      "sha256": "d794f8d7d5b8f38eb04b4e4ff1fb837100b6964abe79bfe1610ef35e5f0bf629"
+    },
+    {
+      "path": "docs/decisions/0007-core-development-before-platform-qualification.md",
+      "bytes": 4907,
+      "sha256": "ade9437cbda53d723d9d42e1250ee40546e338582b0747404b7fafeea3169a8c"
+    },
+    {
+      "path": "docs/decisions/0008-agent-annotation-and-phase-3a-freeze.md",
+      "bytes": 4357,
+      "sha256": "8bf97676e997a5b333d20da15a9a953812d4d5add4c3e9578d96fef36645f3f3"
+    },
+    {
+      "path": "docs/decisions/0009-local-development-before-consolidated-linux-testing.md",
+      "bytes": 2592,
+      "sha256": "220ccc746718d69fe53f122c539df16344a09710066cf06d683fd4423e7fa34e"
+    }
+  ]
+}

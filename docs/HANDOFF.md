@@ -4,6 +4,27 @@ Last updated: 2026-10-21. This record supplies the next session and the owner wi
 
 ## Current state
 
+**October 21: The local LLM development handoff checkpoint is complete.**
+The [handoff](LOCAL-LLM-HANDOFF-2026-10-21.md) gives the local agent the project history and current gates.
+The [start prompt](LOCAL-LLM-START-PROMPT-2026-10-21.md) defines one bounded Phase 3B source session.
+The [input index](LOCAL-LLM-INPUTS-2026-10-21.json) binds the current transfer files.
+The owner will use Codex to supervise and review the local agent's patch before final publication.
+This documentation checkpoint changes no runtime behavior or frozen Phase 3A package byte.
+Its version is `0.27.1`. The delivery revision is the commit containing this entry.
+Base revision: `015e6b2dc0bda6f06628810aaf88038d52b70dbc` on `codex/phase1-architecture`.
+The checkout was clean before edits. Verification ran on macOS 27.2 arm64 with CPython 3.12.15.
+The 31 transfer file hashes and new document links matched. `git diff --check` passed.
+The frozen package checker passed with 23 artifacts, 768 planned units, and false execution flags.
+The focused ledger suite passed 18 tests. The offline `0.27.1` wheel built and installed.
+An isolated installed import and metadata check both reported `0.27.1`.
+No Linux-specific module ran. Linux and live qualification remain deferred.
+Phase 3B remains open. All 192 development rows remain planned, and all 576 sealed rows remain unexposed.
+No Linux test, guest action, native turn, evaluation row, or paid host action ran in this checkpoint.
+The historical archive charge remains 10,008,484,533 bytes. The package charge remains 116,542,541 bytes.
+The cumulative conservative charge remains 10,125,027,074 bytes.
+Continue with the [local LLM start prompt](LOCAL-LLM-START-PROMPT-2026-10-21.md).
+Earlier dated entries remain historical records.
+
 **October 21: The Phase 3B local source review handoff checkpoint is complete.**
 The [checkpoint record](PHASE-3B-LOCAL-REVIEW-CHECKPOINT-2026-10-21.md) binds local claim results to declared inventory metadata.
 Each result includes the file kind, byte count, SHA-256 digest, source path, and comparison status.

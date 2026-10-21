@@ -10,6 +10,11 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**October 21: The local LLM development handoff is ready.**
+The [handoff](docs/LOCAL-LLM-HANDOFF-2026-10-21.md) summarizes completed work, current gates, and Codex review steps.
+The [start prompt](docs/LOCAL-LLM-START-PROMPT-2026-10-21.md) and [input index](docs/LOCAL-LLM-INPUTS-2026-10-21.json) support the next local session.
+This documentation checkpoint is version `0.27.1`. Phase 3B acceptance and execution gates remain open.
+
 **October 21: The Phase 3B local source review handoff checkpoint is complete.**
 Each claim comparison now reports the declared inventory kind, size, digest, path, and local result.
 Every comparison still requires admitted source review. A matching value does not establish event origin.

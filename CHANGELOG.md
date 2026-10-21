@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.27.1 — 2026-10-21
+
+- Add a complete local LLM development handoff, start prompt, and exact input index.
+- Define the Codex review packet and preserve Phase 3B execution and spending gates.
+- Keep the frozen package and all evaluation rows unchanged.
+
 ## 0.27.0 — 2026-10-21
 
 - Bind each local claim comparison to its declared inventory kind, size, and SHA-256 digest.

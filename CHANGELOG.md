@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.25.0 — 2026-10-21
+
+- The checker adds bounded, read-only JSON path comparisons for declared Phase 3B measurement sources.
+- It reports exact matches, unmatched values, and unsupported formats without authenticating event origin.
+- Linux qualification, development corpus runs, and Phase 3B calibration remain unresolved.
+
 ## 0.24.0 — 2026-10-21
 
 - Require named local evidence files for each populated Phase 3B measurement observation.

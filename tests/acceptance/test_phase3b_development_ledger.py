@@ -286,6 +286,96 @@ class Phase3BDevelopmentLedger(unittest.TestCase):
             with self.assertRaisesRegex(ERROR, "outcome differs"):
                 ledger.check_provenance(candidate, inventory, bundle, temporary)
 
+    def test_content_checks_report_exact_unmatched_and_unsupported_values(self):
+        candidate = copy.deepcopy(self.planned)
+        row = candidate["rows"][0]
+        row.update(status="failed", reason="Synthetic refusal.", attempt_ids=["attempt-1"])
+        with tempfile.TemporaryDirectory() as temporary:
+            run = Path(temporary) / "run.json"
+            run.write_text(
+                json.dumps(
+                    {
+                        "date": "2026-10-20",
+                        "outcome": "verified",
+                        "reason": row["reason"],
+                        "effort": {"context_bytes": 0},
+                    }
+                )
+            )
+            notes = Path(temporary) / "notes.txt"
+            notes.write_text(row["reason"])
+            attempt = self._attempt(row, run)
+            attempt["files"].append(self._file_ref(notes, "notes"))
+            inventory = self._inventory(candidate, [attempt])
+            record = self._measurement(candidate, 0, "attempt-1")
+            record["date"] = "2026-10-20"
+            record["effort"]["context_bytes"] = 0
+            record["evidence_refs"] = copy.deepcopy(attempt["files"])
+            record["source_refs"] = {
+                "date": [run.name],
+                "outcome": [run.name],
+                "reason": [notes.name],
+                "effort.context_bytes": [run.name],
+            }
+            bundle = self._measurement_bundle(candidate, [record], inventory)
+            result = ledger.check_contents(candidate, inventory, bundle, temporary)
+            by_field = {item["field"]: item for item in result["content_checks"]}
+            self.assertEqual(by_field["date"]["status"], "matched")
+            self.assertEqual(by_field["effort.context_bytes"]["status"], "matched")
+            self.assertEqual(by_field["outcome"]["detail"], "value_differs")
+            self.assertEqual(by_field["reason"]["detail"], "non_json_format")
+            self.assertEqual(
+                result["content_status_counts"], {"matched": 2, "unmatched": 1, "unsupported": 1}
+            )
+            self.assertIs(result["content_matches_are_execution_evidence"], False)
+            self.assertIs(result["evidence_verified"], False)
+            self.assertIs(result["execution_allowed"], False)
+
+            run.write_text(run.read_text().replace('"verified"', '"rejected"'))
+            with self.assertRaisesRegex(ERROR, "digest mismatch"):
+                ledger.check_contents(candidate, inventory, bundle, temporary)
+
+    def test_content_checks_reject_duplicate_json_keys_and_type_equivalence(self):
+        candidate = copy.deepcopy(self.planned)
+        row = candidate["rows"][0]
+        row.update(status="failed", reason="Synthetic refusal.", attempt_ids=["attempt-1"])
+        with tempfile.TemporaryDirectory() as temporary:
+            path = Path(temporary) / "run.json"
+            path.write_text('{"date":"2026-10-20","date":"2026-10-20"}')
+            attempt = self._attempt(row, path)
+            inventory = self._inventory(candidate, [attempt])
+            record = self._measurement(candidate, 0, "attempt-1")
+            record["date"] = "2026-10-20"
+            record["effort"]["context_bytes"] = 0
+            record["evidence_refs"] = copy.deepcopy(attempt["files"])
+            record["source_refs"] = {field: [path.name] for field in record["source_refs"]}
+            record["source_refs"]["effort.context_bytes"] = [path.name]
+            bundle = self._measurement_bundle(candidate, [record], inventory)
+            result = ledger.check_contents(candidate, inventory, bundle, temporary)
+            self.assertTrue(
+                all(item["detail"] == "invalid_json" for item in result["content_checks"])
+            )
+
+            path.write_text('{"date":"2026-10-20","effort":{"context_bytes":false}}')
+            attempt["files"][0] = self._file_ref(path, "run")
+            record["evidence_refs"] = copy.deepcopy(attempt["files"])
+            bundle = self._measurement_bundle(candidate, [record], inventory)
+            result = ledger.check_contents(candidate, inventory, bundle, temporary)
+            by_field = {item["field"]: item for item in result["content_checks"]}
+            self.assertEqual(by_field["date"]["status"], "matched")
+            self.assertEqual(by_field["effort.context_bytes"]["detail"], "value_differs")
+            self.assertEqual(by_field["outcome"]["detail"], "path_missing")
+
+    @staticmethod
+    def _file_ref(path, kind):
+        content = path.read_bytes()
+        return {
+            "name": path.name,
+            "kind": kind,
+            "bytes": len(content),
+            "sha256": hashlib.sha256(content).hexdigest(),
+        }
+
     @staticmethod
     def _measurement(candidate, row_index, attempt_id):
         template = freeze.parse(

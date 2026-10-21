@@ -1,5 +1,13 @@
 # Crewshal phased development and acceptance plan
 
+## Current Phase 3B local claim content boundary — 2026-10-21
+
+The [local content checkpoint](PHASE-3B-LOCAL-CONTENT-CHECKPOINT-2026-10-21.md) compares claims with matching paths in declared JSON files.
+It reports unmatched and unsupported sources without authenticating the event origin.
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+ADR 0009 defers Linux qualification and Phase 3B calibration.
+Continue with the [next prompt](PHASE-3B-LOCAL-CONTENT-NEXT-SESSION-2026-10-21.md).
+
 ## Current Phase 3B local source attribution boundary — 2026-10-21
 
 The [local source attribution checkpoint](PHASE-3B-LOCAL-SOURCE-ATTRIBUTION-CHECKPOINT-2026-10-21.md) requires field-level links to declared local evidence files.

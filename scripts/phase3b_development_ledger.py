@@ -627,6 +627,118 @@ def check_provenance(ledger, inventory, measurements, artifact_dir, root=ROOT):
     }
 
 
+def read_content_file(directory, item):
+    """Read one inventory-bound regular file without following a link."""
+    descriptor = os.open(
+        item["name"], os.O_RDONLY | os.O_NOFOLLOW | os.O_NONBLOCK, dir_fd=directory
+    )
+    try:
+        file_stat = os.fstat(descriptor)
+        freeze.require(stat.S_ISREG(file_stat.st_mode), "content file must be regular")
+        freeze.require(file_stat.st_size == item["bytes"], "content file size mismatch")
+        with os.fdopen(descriptor, "rb", closefd=False) as stream:
+            content = stream.read(item["bytes"] + 1)
+        freeze.require(len(content) == item["bytes"], "content file size changed during read")
+        freeze.require(
+            hashlib.sha256(content).hexdigest() == item["sha256"],
+            "content file digest mismatch",
+        )
+        freeze.require(
+            os.fstat(descriptor).st_size == file_stat.st_size,
+            "content file size changed during read",
+        )
+        return content
+    finally:
+        os.close(descriptor)
+
+
+def content_claim(record, field):
+    value = record
+    for key in field.split("."):
+        value = value[key]
+    return value
+
+
+def compare_json_content(content, field, claimed):
+    """Compare a claim only with its matching path in a JSON object."""
+
+    def unique_pairs(pairs):
+        result = {}
+        for key, value in pairs:
+            if key in result:
+                raise ValueError("duplicate JSON key")
+            result[key] = value
+        return result
+
+    def reject_constant(value):
+        raise ValueError(f"non-finite JSON value: {value}")
+
+    def finite_float(value):
+        number = float(value)
+        if not math.isfinite(number):
+            raise ValueError("non-finite JSON number")
+        return number
+
+    try:
+        source = json.loads(
+            content,
+            object_pairs_hook=unique_pairs,
+            parse_constant=reject_constant,
+            parse_float=finite_float,
+        )
+    except (UnicodeDecodeError, json.JSONDecodeError, ValueError, RecursionError):
+        return "unsupported", "invalid_json"
+    if not isinstance(source, dict):
+        return "unsupported", "non_object_json"
+    for key in field.split("."):
+        if not isinstance(source, dict) or key not in source:
+            return "unmatched", "path_missing"
+        source = source[key]
+    if type(source) is type(claimed) and source == claimed:
+        return "matched", "exact_value"
+    return "unmatched", "value_differs"
+
+
+def check_contents(ledger, inventory, measurements, artifact_dir, root=ROOT):
+    """Report exact local JSON matches without authenticating observation origin."""
+    provenance = check_provenance(ledger, inventory, measurements, artifact_dir, root)
+    freeze.require(not Path(artifact_dir).is_symlink(), "artifact directory is a symlink")
+    directory = os.open(artifact_dir, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW)
+    results = []
+    try:
+        for attempt, record in zip(inventory["attempts"], measurements["records"], strict=True):
+            files = {item["name"]: item for item in attempt["files"]}
+            for field, names in sorted(record["source_refs"].items()):
+                claimed = content_claim(record, field)
+                for name in names:
+                    item = files[name]
+                    if not name.lower().endswith(".json"):
+                        status, detail = "unsupported", "non_json_format"
+                    else:
+                        content = read_content_file(directory, item)
+                        status, detail = compare_json_content(content, field, claimed)
+                    results.append(
+                        {
+                            "attempt_id": attempt["attempt_id"],
+                            "field": field,
+                            "file": name,
+                            "status": status,
+                            "detail": detail,
+                        }
+                    )
+    finally:
+        os.close(directory)
+    counts = Counter(item["status"] for item in results)
+    return {
+        **provenance,
+        "content_checks": results,
+        "content_status_counts": dict(sorted(counts.items())),
+        "content_matches_are_execution_evidence": False,
+        "evidence_verified": False,
+        "execution_allowed": False,
+    }
+
+
 def read_ledger(path):
     descriptor = os.open(path, os.O_RDONLY | os.O_NOFOLLOW | os.O_NONBLOCK)
     try:
@@ -659,6 +771,13 @@ def main():
     provenance.add_argument("inventory", type=Path)
     provenance.add_argument("measurements", type=Path)
     provenance.add_argument("artifact_dir", type=Path)
+    contents = commands.add_parser(
+        "check-contents", help="Compare local JSON claims at matching paths"
+    )
+    contents.add_argument("ledger", type=Path)
+    contents.add_argument("inventory", type=Path)
+    contents.add_argument("measurements", type=Path)
+    contents.add_argument("artifact_dir", type=Path)
     args = parser.parse_args()
     if args.command == "init":
         print(json.dumps(build(), indent=2, sort_keys=True))
@@ -680,10 +799,22 @@ def main():
                 sort_keys=True,
             )
         )
-    else:
+    elif args.command == "check-provenance":
         print(
             json.dumps(
                 check_provenance(
+                    read_ledger(args.ledger),
+                    read_ledger(args.inventory),
+                    read_ledger(args.measurements),
+                    args.artifact_dir,
+                ),
+                sort_keys=True,
+            )
+        )
+    else:
+        print(
+            json.dumps(
+                check_contents(
                     read_ledger(args.ledger),
                     read_ledger(args.inventory),
                     read_ledger(args.measurements),

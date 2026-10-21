@@ -6,8 +6,10 @@ execution, spending, calibration, or hold-out access.
 
 import argparse
 from collections import Counter
+from datetime import date
 import hashlib
 import json
+import math
 import os
 from pathlib import Path
 import re
@@ -20,9 +22,16 @@ ROOT = Path(__file__).resolve().parents[1]
 KIND = "phase3b-development-coverage-not-evidence"
 ACTIVE_STATUSES = {"failed", "interrupted", "cancelled", "verified", "accepted-with-waiver"}
 EVIDENCE_KIND = "phase3b-development-evidence-inventory-not-execution-proof"
+MEASUREMENT_KIND = "phase3b-development-measurement-claims-not-execution-proof"
 ARTIFACT_NAME = re.compile(r"[A-Za-z0-9][A-Za-z0-9._-]{0,127}\Z")
 SHA256 = re.compile(r"[0-9a-f]{64}\Z")
 MAX_ARTIFACT_BYTES = 8 * 1024 * 1024
+
+
+def nonnegative_number(value):
+    return (type(value) is int and value >= 0) or (
+        type(value) is float and math.isfinite(value) and value >= 0
+    )
 
 
 def frozen_inputs(root):
@@ -270,6 +279,232 @@ def check_evidence(ledger, bundle, artifact_dir, root=ROOT):
     }
 
 
+def check_measurements(ledger, bundle, root=ROOT):
+    """Check schedule and accounting claims without authenticating a run."""
+    coverage = validate(ledger, root)
+    _, schedule_rows, statuses = frozen_inputs(root)
+    template = freeze.parse(freeze.read(root, f"{freeze.PACKAGE}/measurement-template.json"))
+    freeze.require(isinstance(bundle, dict), "measurement bundle must be an object")
+    freeze.require(
+        set(bundle)
+        == {"schema_version", "record_kind", "package_content_sha256", "ledger_sha256", "records"},
+        "measurement bundle fields mismatch",
+    )
+    freeze.require(
+        type(bundle["schema_version"]) is int and bundle["schema_version"] == 1,
+        "measurement bundle schema mismatch",
+    )
+    freeze.require(bundle["record_kind"] == MEASUREMENT_KIND, "measurement bundle kind mismatch")
+    freeze.require(
+        bundle["package_content_sha256"] == ledger["package_content_sha256"],
+        "measurement bundle package mismatch",
+    )
+    ledger_bytes = json.dumps(ledger, sort_keys=True, separators=(",", ":")).encode()
+    freeze.require(
+        bundle["ledger_sha256"] == hashlib.sha256(ledger_bytes).hexdigest(),
+        "measurement bundle ledger mismatch",
+    )
+    expected = [
+        (attempt_id, entry, scheduled)
+        for entry, scheduled in zip(ledger["rows"], schedule_rows, strict=True)
+        for attempt_id in entry["attempt_ids"]
+    ]
+    records = bundle["records"]
+    freeze.require(
+        isinstance(records, list) and len(records) == len(expected),
+        "measurement attempt coverage mismatch",
+    )
+    counts = Counter()
+    for (attempt_id, entry, scheduled), record in zip(expected, records, strict=True):
+        freeze.require(
+            isinstance(record, dict) and set(record) == set(template), "measurement fields mismatch"
+        )
+        freeze.require(
+            record["record_kind"] == MEASUREMENT_KIND
+            and record["status"] == "unverified-development-claim"
+            and record["execution_allowed"] is False
+            and record["spend_authorized"] is False
+            and record["package_id"] == template["package_id"]
+            and record["annotation_method"] == template["annotation_method"],
+            "measurement claims authority or kind mismatch",
+        )
+        freeze.require(isinstance(record["date"], str), "measurement date invalid")
+        try:
+            valid_date = date.fromisoformat(record["date"]).isoformat() == record["date"]
+        except ValueError:
+            valid_date = False
+        freeze.require(valid_date, "measurement date invalid")
+        unit = record["unit"]
+        freeze.require(
+            isinstance(unit, dict) and set(unit) == set(template["unit"]),
+            "measurement unit fields mismatch",
+        )
+        for key, value in {
+            "attempt_id": attempt_id,
+            "schedule_row_id": scheduled["ordinal"],
+            "condition": scheduled["condition"],
+            "repetition": scheduled["repetition"],
+            "repository_id": scheduled["repository_id"],
+            "role_assignment": scheduled["role_assignment"],
+            "task_id": scheduled["task_id"],
+        }.items():
+            freeze.require(
+                type(unit[key]) is type(value) and unit[key] == value,
+                "measurement unit schedule mismatch",
+            )
+        for key in ("operation_id", "repository_revision"):
+            value = unit[key]
+            freeze.require(
+                value is None or (isinstance(value, str) and 0 < len(value) <= 128),
+                "measurement unit identity invalid",
+            )
+        outcome = record["outcome"]
+        freeze.require(
+            isinstance(outcome, str) and outcome in statuses - {"planned", "not-attempted"},
+            "measurement outcome invalid",
+        )
+        reason = record["reason"]
+        freeze.require(
+            isinstance(reason, str) and 0 < len(reason) <= 2048, "measurement reason invalid"
+        )
+        if attempt_id == entry["attempt_ids"][-1]:
+            freeze.require(
+                outcome == entry["status"] and reason == entry["reason"],
+                "final measurement does not match ledger",
+            )
+        identity = record["identity"]
+        freeze.require(
+            isinstance(identity, dict) and set(identity) == set(template["identity"]),
+            "measurement identity fields mismatch",
+        )
+        freeze.require(
+            identity["frozen_package_sha256"] == ledger["package_content_sha256"],
+            "measurement frozen package mismatch",
+        )
+        for key, value in identity.items():
+            if key != "frozen_package_sha256":
+                freeze.require(
+                    value is None
+                    or (isinstance(value, str) and SHA256.fullmatch(value) is not None),
+                    "measurement identity digest invalid",
+                )
+        if scheduled["condition"] != "P":
+            freeze.require(
+                identity["confirmed_model_sha256"] is None,
+                "baseline claims a Crewshal project model",
+            )
+        if scheduled["condition"] == "B0":
+            freeze.require(identity["review_identity_sha256"] is None, "B0 claims a reviewer")
+        effort = record["effort"]
+        freeze.require(
+            isinstance(effort, dict) and set(effort) == set(template["effort"]),
+            "measurement effort fields mismatch",
+        )
+        integer_effort = {
+            "context_bytes",
+            "correction_count",
+            "dispatches",
+            "retries",
+            "review_loops",
+        }
+        for key, value in effort.items():
+            if value is not None:
+                valid = (
+                    type(value) is int and value >= 0
+                    if key in integer_effort
+                    else nonnegative_number(value)
+                )
+                freeze.require(valid, "measurement effort invalid")
+        usage = record["usage"]
+        freeze.require(
+            isinstance(usage, dict) and set(usage) == set(template["usage"]),
+            "measurement usage fields mismatch",
+        )
+        freeze.require(type(usage["unknown_usage"]) is bool, "unknown usage flag invalid")
+        freeze.require(
+            usage["deduplication_key"] == template["usage"]["deduplication_key"]
+            and usage["cumulative_snapshot_rule"] == template["usage"]["cumulative_snapshot_rule"],
+            "usage accounting rule changed",
+        )
+        token_keys = (
+            "new_input_tokens",
+            "cached_input_tokens",
+            "cache_write_tokens",
+            "output_tokens",
+            "reasoning_tokens",
+        )
+        for key in token_keys:
+            value = usage[key]
+            freeze.require(
+                value is None or (type(value) is int and value >= 0), "usage token count invalid"
+            )
+        if usage["unknown_usage"] is False:
+            freeze.require(
+                all(usage[key] is not None for key in token_keys)
+                and isinstance(usage["provenance"], str)
+                and bool(usage["provenance"].strip()),
+                "complete usage claim lacks counters or provenance",
+            )
+        else:
+            freeze.require(
+                usage["provenance"] is None
+                or (isinstance(usage["provenance"], str) and bool(usage["provenance"].strip())),
+                "usage provenance invalid",
+            )
+        for key, fields in {
+            "measured_cost": ("amount", "currency", "billing_evidence"),
+            "estimated_cost": (
+                "amount",
+                "currency",
+                "formula",
+                "pricing_source",
+                "pricing_timestamp",
+            ),
+            "subscription_quota": ("value", "unit", "source"),
+        }.items():
+            part = usage[key]
+            freeze.require(
+                isinstance(part, dict) and set(part) == set(template["usage"][key]),
+                "usage cost fields mismatch",
+            )
+            amount_key = "value" if key == "subscription_quota" else "amount"
+            amount = part[amount_key]
+            freeze.require(
+                amount is None or nonnegative_number(amount),
+                "usage amount invalid",
+            )
+            if amount is not None:
+                freeze.require(
+                    all(
+                        isinstance(part[field], str) and bool(part[field].strip())
+                        for field in fields
+                        if field != amount_key
+                    ),
+                    "usage amount lacks provenance",
+                )
+            else:
+                freeze.require(
+                    all(part[field] is None for field in fields if field != amount_key),
+                    "usage metadata lacks amount",
+                )
+        freeze.require(
+            isinstance(record["checks"], list)
+            and isinstance(record["claims"], list)
+            and isinstance(record["waivers"], list)
+            and (record["review"] is None or isinstance(record["review"], dict)),
+            "measurement detail fields invalid",
+        )
+        counts[outcome] += 1
+    return {
+        **coverage,
+        "measurement_attempts_checked": len(records),
+        "measurement_outcome_counts": dict(sorted(counts.items())),
+        "measurement_claims_checked": True,
+        "evidence_verified": False,
+        "execution_allowed": False,
+    }
+
+
 def read_ledger(path):
     descriptor = os.open(path, os.O_RDONLY | os.O_NOFOLLOW | os.O_NONBLOCK)
     try:
@@ -294,17 +529,27 @@ def main():
     evidence.add_argument("ledger", type=Path)
     evidence.add_argument("inventory", type=Path)
     evidence.add_argument("artifact_dir", type=Path)
+    measurements = commands.add_parser("check-measurements", help="Check local measurement claims")
+    measurements.add_argument("ledger", type=Path)
+    measurements.add_argument("measurements", type=Path)
     args = parser.parse_args()
     if args.command == "init":
         print(json.dumps(build(), indent=2, sort_keys=True))
     elif args.command == "check":
         print(json.dumps(validate(read_ledger(args.ledger)), sort_keys=True))
-    else:
+    elif args.command == "check-evidence":
         print(
             json.dumps(
                 check_evidence(
                     read_ledger(args.ledger), read_ledger(args.inventory), args.artifact_dir
                 ),
+                sort_keys=True,
+            )
+        )
+    else:
+        print(
+            json.dumps(
+                check_measurements(read_ledger(args.ledger), read_ledger(args.measurements)),
                 sort_keys=True,
             )
         )

@@ -10,6 +10,14 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**October 21: The Phase 3B local measurement checkpoint is complete.**
+The [development ledger](scripts/phase3b_development_ledger.py) checks measurement claims against declared attempts and the frozen schedule.
+The `check-measurements` command rejects missing attempts, changed row identities, false final outcomes, and incomplete usage claims.
+It keeps measured cost, estimated cost, and subscription quota separate.
+It does not authenticate execution or grant authority. See the [checkpoint record](docs/PHASE-3B-LOCAL-MEASUREMENTS-CHECKPOINT-2026-10-21.md).
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+Linux qualification and Phase 3B calibration remain closed.
+
 **October 21: The Phase 3B local evidence inventory checkpoint is complete.**
 The [development ledger](scripts/phase3b_development_ledger.py) now checks declared attempts against local artifact sizes and SHA-256 hashes.
 The `check-evidence` command rejects missing attempts, changed files, unsafe names, and mismatched final outcomes.

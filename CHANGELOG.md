@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.22.0 — 2026-10-21
+
+- Add read-only validation for Phase 3B measurement claims and complete attempt coverage.
+- Bind records to frozen schedule rows and require explicit usage and cost provenance.
+- Keep run authentication, Linux qualification, and Phase 3B calibration unresolved.
+
 ## 0.21.0 — 2026-10-21
 
 - Add read-only integrity checks for declared Phase 3B attempt artifacts.

@@ -1,5 +1,13 @@
 # Crewshal phased development and acceptance plan
 
+## Current Phase 3B local measurement boundary — 2026-10-21
+
+The [local measurement checkpoint](PHASE-3B-LOCAL-MEASUREMENTS-CHECKPOINT-2026-10-21.md) checks measurement claims against attempts and frozen schedule rows.
+It checks unknown usage and separate cost fields, but it cannot authenticate execution.
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+The consumed guest staging attempt remains closed. ADR 0009 defers Linux tests and qualification.
+Continue with the [next prompt](PHASE-3B-LOCAL-MEASUREMENTS-NEXT-SESSION-2026-10-21.md).
+
 ## Current Phase 3B local evidence boundary — 2026-10-21
 
 The [local evidence checkpoint](PHASE-3B-LOCAL-EVIDENCE-CHECKPOINT-2026-10-21.md) checks declared attempts and local artifact integrity.

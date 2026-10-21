@@ -7,6 +7,7 @@ from pathlib import Path
 import tempfile
 import unittest
 
+from scripts import check_phase_3a_freeze as freeze
 from scripts import phase3b_development_ledger as ledger
 
 
@@ -140,6 +141,94 @@ class Phase3BDevelopmentLedger(unittest.TestCase):
             (Path(temporary) / "link.json").symlink_to(path)
             with self.assertRaises(OSError):
                 ledger.check_evidence(candidate, inventory, temporary)
+
+    def test_measurements_bind_attempts_without_verifying_execution(self):
+        candidate = copy.deepcopy(self.planned)
+        row = candidate["rows"][0]
+        row.update(status="failed", reason="Synthetic refusal.", attempt_ids=["attempt-1"])
+        measurement = self._measurement(candidate, 0, "attempt-1")
+        bundle = self._measurement_bundle(candidate, [measurement])
+        result = ledger.check_measurements(candidate, bundle)
+        self.assertEqual(result["measurement_attempts_checked"], 1)
+        self.assertEqual(result["measurement_outcome_counts"], {"failed": 1})
+        self.assertIs(result["evidence_verified"], False)
+        self.assertIs(result["execution_allowed"], False)
+        with self.assertRaisesRegex(ERROR, "coverage"):
+            ledger.check_measurements(candidate, self._measurement_bundle(candidate, []))
+
+    def test_measurements_reject_schedule_and_outcome_changes(self):
+        candidate = copy.deepcopy(self.planned)
+        row = candidate["rows"][0]
+        row.update(status="failed", reason="Synthetic refusal.", attempt_ids=["attempt-1"])
+        record = self._measurement(candidate, 0, "attempt-1")
+        for mutation, message in (
+            (lambda item: item["unit"].update(condition="P"), "schedule"),
+            (lambda item: item.update(outcome="verified"), "final measurement"),
+            (
+                lambda item: item["identity"].update(confirmed_model_sha256="a" * 64),
+                "baseline claims",
+            ),
+        ):
+            changed = copy.deepcopy(record)
+            mutation(changed)
+            with self.subTest(message=message), self.assertRaisesRegex(ERROR, message):
+                ledger.check_measurements(candidate, self._measurement_bundle(candidate, [changed]))
+
+    def test_measurements_preserve_partial_usage_and_cost_provenance(self):
+        candidate = copy.deepcopy(self.planned)
+        row = candidate["rows"][0]
+        row.update(status="failed", reason="Synthetic refusal.", attempt_ids=["attempt-1"])
+        record = self._measurement(candidate, 0, "attempt-1")
+        record["usage"]["new_input_tokens"] = 7
+        ledger.check_measurements(candidate, self._measurement_bundle(candidate, [record]))
+        record["usage"]["unknown_usage"] = False
+        with self.assertRaisesRegex(ERROR, "lacks counters"):
+            ledger.check_measurements(candidate, self._measurement_bundle(candidate, [record]))
+        record["usage"]["unknown_usage"] = True
+        record["usage"]["measured_cost"]["amount"] = 0
+        with self.assertRaisesRegex(ERROR, "lacks provenance"):
+            ledger.check_measurements(candidate, self._measurement_bundle(candidate, [record]))
+        record["usage"]["measured_cost"].update(
+            currency="USD", billing_evidence="synthetic-receipt"
+        )
+        ledger.check_measurements(candidate, self._measurement_bundle(candidate, [record]))
+
+    @staticmethod
+    def _measurement(candidate, row_index, attempt_id):
+        template = freeze.parse(
+            freeze.read(ledger.ROOT, f"{freeze.PACKAGE}/measurement-template.json")
+        )
+        schedule = freeze.parse(freeze.read(ledger.ROOT, f"{freeze.PACKAGE}/schedule.json"))
+        scheduled = [row for row in schedule["rows"] if row["split"] == "development"][row_index]
+        record = copy.deepcopy(template)
+        record.update(
+            record_kind=ledger.MEASUREMENT_KIND,
+            status="unverified-development-claim",
+            outcome=candidate["rows"][row_index]["status"],
+            reason=candidate["rows"][row_index]["reason"],
+        )
+        record["unit"].update(
+            attempt_id=attempt_id,
+            schedule_row_id=scheduled["ordinal"],
+            condition=scheduled["condition"],
+            repetition=scheduled["repetition"],
+            repository_id=scheduled["repository_id"],
+            role_assignment=scheduled["role_assignment"],
+            task_id=scheduled["task_id"],
+        )
+        record["identity"]["frozen_package_sha256"] = candidate["package_content_sha256"]
+        return record
+
+    @staticmethod
+    def _measurement_bundle(candidate, records):
+        canonical = json.dumps(candidate, sort_keys=True, separators=(",", ":")).encode()
+        return {
+            "schema_version": 1,
+            "record_kind": ledger.MEASUREMENT_KIND,
+            "package_content_sha256": candidate["package_content_sha256"],
+            "ledger_sha256": hashlib.sha256(canonical).hexdigest(),
+            "records": records,
+        }
 
     @staticmethod
     def _inventory(candidate, attempts):

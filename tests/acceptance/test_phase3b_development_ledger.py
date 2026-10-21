@@ -180,6 +180,7 @@ class Phase3BDevelopmentLedger(unittest.TestCase):
         row.update(status="failed", reason="Synthetic refusal.", attempt_ids=["attempt-1"])
         record = self._measurement(candidate, 0, "attempt-1")
         record["usage"]["new_input_tokens"] = 7
+        record["source_refs"]["usage.new_input_tokens"] = ["attempt-1.json"]
         ledger.check_measurements(candidate, self._measurement_bundle(candidate, [record]))
         record["usage"]["unknown_usage"] = False
         with self.assertRaisesRegex(ERROR, "lacks counters"):
@@ -191,6 +192,34 @@ class Phase3BDevelopmentLedger(unittest.TestCase):
         record["usage"]["measured_cost"].update(
             currency="USD", billing_evidence="synthetic-receipt"
         )
+        with self.assertRaisesRegex(ERROR, "source fields mismatch"):
+            ledger.check_measurements(candidate, self._measurement_bundle(candidate, [record]))
+        for key in ("amount", "currency", "billing_evidence"):
+            record["source_refs"][f"usage.measured_cost.{key}"] = ["attempt-1.json"]
+        ledger.check_measurements(candidate, self._measurement_bundle(candidate, [record]))
+
+    def test_measurements_require_source_files_for_populated_observations(self):
+        candidate = copy.deepcopy(self.planned)
+        candidate["rows"][0].update(
+            status="failed", reason="Synthetic refusal.", attempt_ids=["attempt-1"]
+        )
+        record = self._measurement(candidate, 0, "attempt-1")
+        record["effort"]["context_bytes"] = 0
+        with self.assertRaisesRegex(ERROR, "source fields mismatch"):
+            ledger.check_measurements(candidate, self._measurement_bundle(candidate, [record]))
+        record["source_refs"]["effort.context_bytes"] = ["attempt-1.json"]
+        ledger.check_measurements(candidate, self._measurement_bundle(candidate, [record]))
+        record["source_refs"]["effort.context_bytes"] = ["missing.json"]
+        with self.assertRaisesRegex(ERROR, "source file invalid"):
+            ledger.check_measurements(candidate, self._measurement_bundle(candidate, [record]))
+        record["source_refs"]["effort.context_bytes"] = ["attempt-1.json", "attempt-1.json"]
+        with self.assertRaisesRegex(ERROR, "source file invalid"):
+            ledger.check_measurements(candidate, self._measurement_bundle(candidate, [record]))
+        record["source_refs"]["effort.context_bytes"] = ["attempt-1.json"]
+        record["checks"] = [{"result": "synthetic failure"}]
+        with self.assertRaisesRegex(ERROR, "source fields mismatch"):
+            ledger.check_measurements(candidate, self._measurement_bundle(candidate, [record]))
+        record["source_refs"]["checks"] = ["attempt-1.json"]
         ledger.check_measurements(candidate, self._measurement_bundle(candidate, [record]))
 
     def test_provenance_links_measurements_to_inventory_and_local_bytes(self):
@@ -204,6 +233,7 @@ class Phase3BDevelopmentLedger(unittest.TestCase):
             inventory = self._inventory(candidate, [attempt])
             record = self._measurement(candidate, 0, "attempt-1")
             record["evidence_refs"] = copy.deepcopy(attempt["files"])
+            record["source_refs"] = {field: [path.name] for field in record["source_refs"]}
             bundle = self._measurement_bundle(candidate, [record], inventory)
             result = ledger.check_provenance(candidate, inventory, bundle, temporary)
             self.assertEqual(result["measurement_evidence_files_linked"], 1)
@@ -211,6 +241,11 @@ class Phase3BDevelopmentLedger(unittest.TestCase):
             self.assertIs(result["provenance_links_checked"], True)
             self.assertIs(result["evidence_verified"], False)
             self.assertIs(result["execution_allowed"], False)
+
+            changed = copy.deepcopy(bundle)
+            changed["records"][0]["source_refs"]["outcome"] = ["missing.json"]
+            with self.assertRaisesRegex(ERROR, "source file invalid"):
+                ledger.check_provenance(candidate, inventory, changed, temporary)
 
             changed = copy.deepcopy(bundle)
             changed["records"][0]["evidence_refs"][0]["sha256"] = "0" * 64
@@ -243,6 +278,7 @@ class Phase3BDevelopmentLedger(unittest.TestCase):
                 record = self._measurement(candidate, 0, f"attempt-{number}")
                 record["reason"] = reason
                 record["evidence_refs"] = copy.deepcopy(attempt["files"])
+                record["source_refs"] = {field: [path.name] for field in record["source_refs"]}
                 records.append(record)
             inventory = self._inventory(candidate, attempts)
             bundle = self._measurement_bundle(candidate, records, inventory)
@@ -282,6 +318,9 @@ class Phase3BDevelopmentLedger(unittest.TestCase):
                 "sha256": "0" * 64,
             }
         ]
+        record["source_refs"] = {
+            field: [f"{attempt_id}.json"] for field in ledger.measurement_source_fields(record)
+        }
         return record
 
     @staticmethod

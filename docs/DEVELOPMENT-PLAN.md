@@ -1,5 +1,13 @@
 # Crewshal phased development and acceptance plan
 
+## Current Phase 3B local source attribution boundary — 2026-10-21
+
+The [local source attribution checkpoint](PHASE-3B-LOCAL-SOURCE-ATTRIBUTION-CHECKPOINT-2026-10-21.md) requires field-level links to declared local evidence files.
+It checks declaration consistency and local bytes. It cannot authenticate the source of an observation.
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+ADR 0009 defers Linux qualification and Phase 3B calibration.
+Continue with the [next prompt](PHASE-3B-LOCAL-SOURCE-ATTRIBUTION-NEXT-SESSION-2026-10-21.md).
+
 ## Current Phase 3B local provenance boundary — 2026-10-21
 
 The [local provenance checkpoint](PHASE-3B-LOCAL-PROVENANCE-CHECKPOINT-2026-10-21.md) binds measurement records to inventory files and local bytes.

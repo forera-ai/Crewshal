@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.24.0 — 2026-10-21
+
+- Require named local evidence files for each populated Phase 3B measurement observation.
+- Reject missing and undeclared field sources, including sources for zero values and reported checks.
+- Keep execution authentication, Linux qualification, and Phase 3B calibration unresolved.
+
 ## 0.23.0 — 2026-10-21
 
 - Bind local Phase 3B measurement records to exact evidence inventory files.

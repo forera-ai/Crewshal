@@ -35,6 +35,36 @@ def nonnegative_number(value):
     )
 
 
+def measurement_source_fields(record):
+    """Name populated observations that need a declared local source file."""
+    fields = {"date", "outcome", "reason"}
+    for group, keys in (
+        ("unit", ("operation_id", "repository_revision")),
+        ("identity", tuple(key for key in record["identity"] if key != "frozen_package_sha256")),
+        ("effort", tuple(record["effort"])),
+        (
+            "usage",
+            (
+                "new_input_tokens",
+                "cached_input_tokens",
+                "cache_write_tokens",
+                "output_tokens",
+                "reasoning_tokens",
+                "provenance",
+            ),
+        ),
+    ):
+        fields.update(f"{group}.{key}" for key in keys if record[group][key] is not None)
+    for group in ("measured_cost", "estimated_cost", "subscription_quota"):
+        fields.update(
+            f"usage.{group}.{key}"
+            for key, value in record["usage"][group].items()
+            if value is not None
+        )
+    fields.update(key for key in ("checks", "claims", "review", "waivers") if record[key])
+    return fields
+
+
 def frozen_inputs(root):
     package = freeze.verify(root)
     schedule = freeze.parse(freeze.read(root, f"{freeze.PACKAGE}/schedule.json"))
@@ -330,7 +360,8 @@ def check_measurements(ledger, bundle, root=ROOT):
     counts = Counter()
     for (attempt_id, entry, scheduled), record in zip(expected, records, strict=True):
         freeze.require(
-            isinstance(record, dict) and set(record) == set(template) | {"evidence_refs"},
+            isinstance(record, dict)
+            and set(record) == set(template) | {"evidence_refs", "source_refs"},
             "measurement fields mismatch",
         )
         refs = record["evidence_refs"]
@@ -541,6 +572,20 @@ def check_measurements(ledger, bundle, root=ROOT):
             and (record["review"] is None or isinstance(record["review"], dict)),
             "measurement detail fields invalid",
         )
+        sources = record["source_refs"]
+        freeze.require(
+            isinstance(sources, dict) and set(sources) == measurement_source_fields(record),
+            "measurement source fields mismatch",
+        )
+        for field, source_names in sources.items():
+            freeze.require(
+                isinstance(source_names, list)
+                and bool(source_names)
+                and all(isinstance(name, str) for name in source_names)
+                and len(source_names) == len(set(source_names))
+                and set(source_names) <= names,
+                f"measurement source file invalid for {field}",
+            )
         counts[outcome] += 1
     return {
         **coverage,

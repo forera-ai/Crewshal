@@ -4,6 +4,19 @@ Last updated: 2026-10-21. This record supplies the next session and the owner wi
 
 ## Current state
 
+**October 21: The Phase 3B local source attribution checkpoint is complete.**
+The [checkpoint record](PHASE-3B-LOCAL-SOURCE-ATTRIBUTION-CHECKPOINT-2026-10-21.md) covers field-level links from measurement observations to declared files.
+The checker requires `source_refs` for populated run observations, identity fields, effort, usage, costs, and reported details.
+Local fixture tests, related regressions, Ruff, mypy, the frozen checker, and an offline installed wheel passed.
+No Linux test, guest action, archived tool execution, native turn, or evaluation row ran.
+The historical archive charge remains 10,008,484,533 bytes. The package charge remains 116,542,541 bytes.
+The cumulative conservative charge remains 10,125,027,074 bytes.
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+The checkpoint version is `0.24.0`. Phase 3B acceptance remains open under ADR 0009.
+Continue with the [next prompt](PHASE-3B-LOCAL-SOURCE-ATTRIBUTION-NEXT-SESSION-2026-10-21.md).
+Check the [exact inputs](PHASE-3B-LOCAL-SOURCE-ATTRIBUTION-INPUTS-2026-10-21.json) before source work.
+Earlier dated entries remain historical records.
+
 **October 21: The Phase 3B local provenance checkpoint is complete.**
 The [checkpoint record](PHASE-3B-LOCAL-PROVENANCE-CHECKPOINT-2026-10-21.md) covers measurement links to inventory files.
 The new `check-provenance` command checks inventory digests, local bytes, and attempt outcomes.

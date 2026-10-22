@@ -1,11 +1,5 @@
 # Changelog
 
-## 0.27.2 — 2026-10-22
-
-- Add one focused acceptance test for Phase 3B `read_ledger` input-file protections.
-- Cover regular-file parsing plus symlink, directory, empty, and oversize refusals.
-- Assert `errno.ELOOP` for symlink traversal, per Codex review finding (APPROVE).
-
 ## 0.27.1 — 2026-10-21
 
 - Add a complete local LLM development handoff, start prompt, and exact input index.

@@ -1,22 +1,8 @@
 # Crewshal rolling handoff and project memory
 
-Last updated: 2026-10-22. This record supplies the next session and the owner with project history. [DEVELOPMENT-PLAN.md](DEVELOPMENT-PLAN.md) defines the milestone acceptance checks. Preserve the session ledger.
+Last updated: 2026-10-21. This record supplies the next session and the owner with project history. [DEVELOPMENT-PLAN.md](DEVELOPMENT-PLAN.md) defines the milestone acceptance checks. Preserve the session ledger.
 
 ## Current state
-
-**October 22: The Phase 3B read-ledger input-file protection milestone is complete.**
-The focused acceptance test covers `read_ledger` refusals for symlink, directory, empty, and oversize inputs, plus regular-file round-trip parsing.
-The symlink case asserts `errno.ELOOP`, per the Codex review finding.
-Codex reviewed the packet [CODEX-REVIEW-PACKET-PHASE-3B-READ-LEDGER-TEST-2026-10-22.md](CODEX-REVIEW-PACKET-PHASE-3B-READ-LEDGER-TEST-2026-10-22.md) and returned verdict APPROVE.
-All 19 ledger tests passed. Ruff, mypy, and the frozen package checker passed.
-No source file changed. The frozen Phase 3A package is unchanged.
-The version is `0.27.2`. Base revision: `049cffd18c520f7f8460ec0889ff19ef579b3156` on `codex/phase1-architecture`.
-No Linux test, guest action, native turn, evaluation row, or paid host action ran.
-The historical archive charge remains 10,008,484,533 bytes. The package charge remains 116,542,541 bytes.
-The cumulative conservative charge remains 10,125,027,074 bytes.
-All 192 development rows remain planned. All 576 sealed rows remain unexposed.
-Phase 3B acceptance remains open under ADR 0009.
-Earlier dated entries remain historical records.
 
 **October 21: The local LLM development handoff checkpoint is complete.**
 The [handoff](LOCAL-LLM-HANDOFF-2026-10-21.md) gives the local agent the project history and current gates.

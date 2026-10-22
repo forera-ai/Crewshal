@@ -1,17 +1,8 @@
 # Crewshal rolling handoff and project memory
 
-Last updated: 2026-10-22. This record supplies the next session and the owner with project history. [DEVELOPMENT-PLAN.md](DEVELOPMENT-PLAN.md) defines the milestone acceptance checks. Preserve the session ledger.
+Last updated: 2026-10-21. This record supplies the next session and the owner with project history. [DEVELOPMENT-PLAN.md](DEVELOPMENT-PLAN.md) defines the milestone acceptance checks. Preserve the session ledger.
 
 ## Current state
-
-**October 22: Phase 3B local source blanket review complete.**
-No safe local source work remains for Phase 3B.
-The read-only development ledger implements all six checks (`build`, `validate`, `check-evidence`, `check-measurements`, `check-provenance`, `check-contents`) and passes 18 acceptance tests.
-All 192 development rows remain planned with empty attempts. Both execution and spending gates stay closed.
-Phase 3B acceptance requires admitted development corpus runs with complete accounting, which depend on later Linux qualification per ADR 0009.
-See [the blanket review](PHASE-3B-LOCAL-SOURCE-BLANKET-REVIEW-2026-10-22.md) for the full assessment.
-Version bumped to `0.27.2`. Base revision: `6858ba1afdfac3fe879dcca711f24e224dff23df` on `codex/phase1-architecture`.
-Continue with the [local LLM start prompt](LOCAL-LLM-START-PROMPT-2026-10-21.md).
 
 **October 21: The local LLM development handoff checkpoint is complete.**
 The [handoff](LOCAL-LLM-HANDOFF-2026-10-21.md) gives the local agent the project history and current gates.

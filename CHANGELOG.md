@@ -1,10 +1,5 @@
 # Changelog
 
-## 0.27.2 — 2026-10-22
-
-- Record Phase 3B local source blanket review: no safe local source work remains.
-- Add `docs/PHASE-3B-LOCAL-SOURCE-BLANKET-REVIEW-2026-10-22.md` documenting the full assessment.
-
 ## 0.27.1 — 2026-10-21
 
 - Add a complete local LLM development handoff, start prompt, and exact input index.

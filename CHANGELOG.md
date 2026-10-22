@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.27.2 — 2026-10-22
+
+- Prove each measurement record cannot grant execution or spend authority.
+- Refuse records that claim verification status, change kind, rebind the frozen package, or change annotation method.
+- Add no source behavior change; the guard already existed in the read-only ledger.
+
 ## 0.27.1 — 2026-10-21
 
 - Add a complete local LLM development handoff, start prompt, and exact input index.

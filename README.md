@@ -10,10 +10,18 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**October 22: The Phase 3B measurement authority guard test is complete.**
+Each measurement record must stay free of execution and spend authority claims.
+A record cannot claim verification status, change its kind, rebind the frozen package, or change annotation method.
+The guard already existed in the [development ledger](scripts/phase3b_development_ledger.py); this checkpoint proves it with a new acceptance test.
+The [review packet](docs/CODEX-REVIEW-PACKET-PHASE-3B-MEASUREMENT-AUTHORITY-TEST-2026-10-22.md) gives the diff and results.
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+Linux qualification and Phase 3B calibration remain closed.
+
 **October 21: The local LLM development handoff is ready.**
 The [handoff](docs/LOCAL-LLM-HANDOFF-2026-10-21.md) summarizes completed work, current gates, and Codex review steps.
 The [start prompt](docs/LOCAL-LLM-START-PROMPT-2026-10-21.md) and [input index](docs/LOCAL-LLM-INPUTS-2026-10-21.json) support the next local session.
-This documentation checkpoint is version `0.27.1`. Phase 3B acceptance and execution gates remain open.
+This documentation checkpoint is version `0.27.2`. Phase 3B acceptance and execution gates remain open.
 
 **October 21: The Phase 3B local source review handoff checkpoint is complete.**
 Each claim comparison now reports the declared inventory kind, size, digest, path, and local result.

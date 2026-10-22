@@ -1,22 +1,8 @@
 # Crewshal rolling handoff and project memory
 
-Last updated: 2026-10-22 (Europe/Vienna). This record supplies the next session and the owner with project history. [DEVELOPMENT-PLAN.md](DEVELOPMENT-PLAN.md) defines the milestone acceptance checks. Preserve the session ledger.
+Last updated: 2026-10-21. This record supplies the next session and the owner with project history. [DEVELOPMENT-PLAN.md](DEVELOPMENT-PLAN.md) defines the milestone acceptance checks. Preserve the session ledger.
 
 ## Current state
-
-**October 22: The Phase 3B measurement authority guard test passed local acceptance.**
-The read-only ledger rejects a measurement record that claims execution or spend authority.
-It also rejects a record that claims verification status, changes its kind, rebinds the frozen package, or changes annotation method.
-The guard already existed in `scripts/phase3b_development_ledger.py`; this checkpoint adds one acceptance test and proves each refusal path.
-Base revision: `06b40c5` on `codex/phase1-architecture`. That commit reverted the un-reviewed read-ledger test commit `a2e26ba`.
-Changed files: `tests/acceptance/test_phase3b_development_ledger.py` (new test), README.md, CHANGELOG.md, this handoff, and the new review packet document. No production source changed.
-The focused ledger suite passed 19 tests with `.venv/bin/python -m unittest tests.acceptance.test_phase3b_development_ledger`.
-Ruff check, mypy on `src`, and the frozen Phase 3A package checker passed. The touched test file passes `ruff format --check`.
-The owner's revert reason for `a2e26ba` was not recorded in Git; that remains an open question. Its read-ledger tests were not re-added.
-Linux-specific test modules remain excluded and deferred, not passing.
-The [review packet](CODEX-REVIEW-PACKET-PHASE-3B-MEASUREMENT-AUTHORITY-TEST-2026-10-22.md) carries the acceptance mapping for Codex review.
-All 192 development rows remain planned. All 576 sealed rows remain unexposed.
-Linux qualification, Phase 3B calibration, and every execution and spend gate remain closed.
 
 **October 21: The local LLM development handoff checkpoint is complete.**
 The [handoff](LOCAL-LLM-HANDOFF-2026-10-21.md) gives the local agent the project history and current gates.

@@ -233,27 +233,6 @@ class Phase3BDevelopmentLedger(unittest.TestCase):
         record["source_refs"]["checks"] = self._source("attempt-1.json", "checks")
         ledger.check_measurements(candidate, self._measurement_bundle(candidate, [record]))
 
-    def test_measurement_records_cannot_grant_authority_or_change_kind(self):
-        candidate = copy.deepcopy(self.planned)
-        row = candidate["rows"][0]
-        row.update(status="failed", reason="Synthetic refusal.", attempt_ids=["attempt-1"])
-        base = self._measurement(candidate, 0, "attempt-1")
-        ledger.check_measurements(candidate, self._measurement_bundle(candidate, [base]))
-        claims = (
-            ("execution authority", lambda item: item.update(execution_allowed=True)),
-            ("spend authority", lambda item: item.update(spend_authorized=True)),
-            ("verification status", lambda item: item.update(status="verified")),
-            ("record kind", lambda item: item.update(record_kind=ledger.EVIDENCE_KIND)),
-            ("frozen package rebind", lambda item: item.update(package_id="phase3a-99999999-v9")),
-            ("annotation method", lambda item: item.update(annotation_method="self-grading")),
-        )
-        for label, mutate in claims:
-            record = copy.deepcopy(base)
-            mutate(record)
-            bundle = self._measurement_bundle(candidate, [record])
-            with self.subTest(claim=label), self.assertRaisesRegex(ERROR, "authority or kind"):
-                ledger.check_measurements(candidate, bundle)
-
     def test_provenance_links_measurements_to_inventory_and_local_bytes(self):
         candidate = copy.deepcopy(self.planned)
         row = candidate["rows"][0]

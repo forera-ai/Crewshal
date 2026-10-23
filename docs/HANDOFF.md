@@ -1,8 +1,29 @@
 # Crewshal rolling handoff and project memory
 
-Last updated: 2026-10-21. This record supplies the next session and the owner with project history. [DEVELOPMENT-PLAN.md](DEVELOPMENT-PLAN.md) defines the milestone acceptance checks. Preserve the session ledger.
+Last updated: 2026-10-23. This record supplies the next session and the owner with project history. [DEVELOPMENT-PLAN.md](DEVELOPMENT-PLAN.md) defines the milestone acceptance checks. Preserve the session ledger.
 
 ## Current state
+
+**October 23: The Phase 3B read-ledger input-file protection test passed Codex review.**
+The focused acceptance test covers `read_ledger` refusals for symlink, directory, empty, and oversize inputs, plus regular-file round-trip parsing.
+The symlink case asserts `errno.ELOOP`.
+This re-presents the withdrawn v0.27.2 read-ledger test work (commits `a2e26ba`, reverted by `06b40c5`) under a fresh review boundary.
+The earlier packet's Codex APPROVE claim was not verified, and commit `4465faf` edited a dated README entry; both defects are excluded here.
+The [review packet](CODEX-REVIEW-PACKET-PHASE-3B-READ-LEDGER-INPUT-PROTECTION-2026-10-23.md) holds the exact diff, tests, results, and review outcome.
+Codex found no code defect. Codex corrected the package-check labels and verified a fresh offline wheel install.
+Changed files: `tests/acceptance/test_phase3b_development_ledger.py`, `pyproject.toml`, `src/crewshal/__init__.py`, `README.md`, `CHANGELOG.md`, `docs/HANDOFF.md`, and the review packet.
+The version is `0.27.2` in the working tree (`pyproject.toml` and `src/crewshal/__init__.py` synchronized). Base revision: `18b7a3568427e728ad64cba8c33a7d5b4f4ae20b` on `codex/phase1-architecture`.
+Verification ran on macOS 27.2 arm64 with CPython 3.12.15. The focused ledger suite passed 19 tests, and the regression set passed 127 tests.
+Ruff check and format, mypy, `git diff --check`, and the frozen package checker passed with both execution flags false.
+An offline wheel build and package-manager install into a fresh isolated target reported `0.27.2`.
+No production behavior changed. The acceptance test changed, and the frozen Phase 3A package is unchanged.
+No Linux test, guest action, native turn, evaluation row, or paid host action ran.
+The historical archive charge remains 10,008,484,533 bytes. The package charge remains 116,542,541 bytes.
+The cumulative conservative charge remains 10,125,027,074 bytes.
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+Phase 3B acceptance remains open under ADR 0009.
+The next unmet local source condition is the measurement-record authority guard test (withdrawn commit `4465faf`, reverted by `18b7a35`).
+Earlier dated entries remain historical records.
 
 **October 21: The local LLM development handoff checkpoint is complete.**
 The [handoff](LOCAL-LLM-HANDOFF-2026-10-21.md) gives the local agent the project history and current gates.

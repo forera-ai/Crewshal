@@ -10,6 +10,13 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**October 23: The Phase 3B read-ledger input-file protection test passed Codex review.**
+The focused acceptance test proves `read_ledger` refuses symlinked, directory, empty, and oversize input files.
+A regular bounded ledger file parses unchanged; the symlink refusal asserts `errno.ELOOP`.
+The [review packet](docs/CODEX-REVIEW-PACKET-PHASE-3B-READ-LEDGER-INPUT-PROTECTION-2026-10-23.md) holds the exact diff, results, and review outcome.
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+Linux qualification and Phase 3B calibration remain closed.
+
 **October 21: The local LLM development handoff is ready.**
 The [handoff](docs/LOCAL-LLM-HANDOFF-2026-10-21.md) summarizes completed work, current gates, and Codex review steps.
 The [start prompt](docs/LOCAL-LLM-START-PROMPT-2026-10-21.md) and [input index](docs/LOCAL-LLM-INPUTS-2026-10-21.json) support the next local session.

@@ -1,6 +1,7 @@
 """Local checks for Phase 3B development coverage, with no task execution."""
 
 import copy
+import errno
 import hashlib
 import json
 from pathlib import Path
@@ -482,6 +483,30 @@ class Phase3BDevelopmentLedger(unittest.TestCase):
         record["source_refs"]["outcome"] = self._source("attempt-1.json", "outcome") * 9
         with self.assertRaisesRegex(ERROR, "source refs invalid"):
             ledger.check_measurements(candidate, self._measurement_bundle(candidate, [record]))
+
+    def test_read_ledger_refuses_invalid_input_files(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            base = Path(temporary)
+            regular = base / "ledger.json"
+            regular.write_text(json.dumps(self.planned))
+            self.assertEqual(ledger.read_ledger(regular), self.planned)
+            link = base / "linked.json"
+            link.symlink_to(regular)
+            with self.assertRaises(OSError) as captured:
+                ledger.read_ledger(link)
+            self.assertEqual(captured.exception.errno, errno.ELOOP)
+            directory = base / "directory.json"
+            directory.mkdir()
+            with self.assertRaisesRegex(ERROR, "regular file"):
+                ledger.read_ledger(directory)
+            empty = base / "empty.json"
+            empty.write_bytes(b"")
+            with self.assertRaisesRegex(ERROR, "size bound"):
+                ledger.read_ledger(empty)
+            oversize = base / "oversize.json"
+            oversize.write_bytes(b"0" * (2 * 1024 * 1024 + 1))
+            with self.assertRaisesRegex(ERROR, "size bound"):
+                ledger.read_ledger(oversize)
 
     @staticmethod
     def _source(name, field):

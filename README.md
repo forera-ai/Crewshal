@@ -10,6 +10,13 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**October 23: The Phase 3B measurement-record authority guard test passed Codex review.**
+The focused acceptance test proves `check_measurements` refuses a measurement record that self-declares execution authority, spend authority, verified status, an evidence-inventory kind, a foreign frozen package, or a changed annotation method.
+Each refusal passed one single-clause mutation kill; removing any guarded clause fails its exact claim.
+No production source changed. The [review packet](docs/CODEX-REVIEW-PACKET-PHASE-3B-MEASUREMENT-AUTHORITY-GUARD-2026-10-23.md) holds the exact diff, results, limits, and review outcome.
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+Linux qualification and Phase 3B calibration remain closed.
+
 **October 23: The Phase 3B read-ledger input-file protection test passed Codex review.**
 The focused acceptance test proves `read_ledger` refuses symlinked, directory, empty, and oversize input files.
 A regular bounded ledger file parses unchanged; the symlink refusal asserts `errno.ELOOP`.

@@ -4,6 +4,22 @@ Last updated: 2026-10-23. This record supplies the next session and the owner wi
 
 ## Current state
 
+**October 23: The Phase 3B measurement-record authority guard test passed Codex review (v0.27.3).**
+The new acceptance test `test_measurement_records_cannot_grant_authority_or_change_kind` proves `check_measurements` refuses a measurement record that self-declares execution authority, spend authority, verified status, an evidence-inventory kind, a foreign frozen package, or a changed annotation method.
+A valid unverified record still passes the same guard. Each of the six refusals failed its exact claim under one single-clause mutation kill; the guard file returned byte-identical to HEAD (`git diff` clean on `scripts/phase3b_development_ledger.py`).
+No production source changed. The guard at `scripts/phase3b_development_ledger.py:404-412` was already live.
+The added test matches the test in withdrawn commit `4465faf`, which commit `18b7a35` reverted.
+Codex verified the test against the current guard. No approval claim from the withdrawn commit was reused.
+Local results: focused module 20 tests OK; five-module regression set 128 tests OK (baseline 127); Ruff, mypy, frozen checker (`consistent-frozen-source-package`, content sha256 `4bd188deb0…dc892c0` unchanged), and `git diff --check` clean. Linux-specific modules remain deferred per ADR 0009.
+Codex repeated the 128-test regression set, Ruff, mypy, and frozen-package checks.
+Codex also built and installed an offline wheel without pipelines. The fresh installed package reported `0.27.3`.
+The [review packet](CODEX-REVIEW-PACKET-PHASE-3B-MEASUREMENT-AUTHORITY-GUARD-2026-10-23.md) holds the exact diff, commands, results, limits, and review outcome.
+Hermes made no commit or push. Codex verified the test and corrected the evidence record before publication.
+Changed files: `tests/acceptance/test_phase3b_development_ledger.py`, `pyproject.toml`, `src/crewshal/__init__.py`, `README.md`, `CHANGELOG.md`, `docs/HANDOFF.md`, and the review packet.
+Remaining Phase 3B acceptance needs development corpus runs and a frozen protocol amendment.
+The next session must identify each required owner decision and the ADR 0009 Linux qualification gate before action.
+Current records name no further local source condition; verify that boundary before new implementation.
+
 **October 23: The Phase 3B read-ledger input-file protection test passed Codex review.**
 The focused acceptance test covers `read_ledger` refusals for symlink, directory, empty, and oversize inputs, plus regular-file round-trip parsing.
 The symlink case asserts `errno.ELOOP`.

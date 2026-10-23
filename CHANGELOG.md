@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.27.3 — 2026-10-23
+
+- Add one focused acceptance test that measurement records cannot grant execution authority.
+- Cover six refusals: execution authority, spend authority, verified status, record-kind change, frozen-package rebind, and annotation-method change.
+- Prove each refusal with one single-clause mutation kill against the existing guard.
+- Keep production source unchanged; treat withdrawn commit `4465faf` as historical evidence only.
+- Keep the frozen package, evaluation rows, and all execution flags unchanged.
+
 ## 0.27.2 — 2026-10-23
 
 - Add one focused acceptance test for Phase 3B `read_ledger` input-file protections.

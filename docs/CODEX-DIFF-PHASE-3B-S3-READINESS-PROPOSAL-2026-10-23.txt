@@ -1,0 +1,148 @@
+--- /var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T//g1_s3_readiness_backup/PHASE-3B-CONSOLIDATED-LINUX-CAMPAIGN-PROPOSAL-2026-10-23.md	2026-10-23 19:38:32
++++ docs/PHASE-3B-CONSOLIDATED-LINUX-CAMPAIGN-PROPOSAL-2026-10-23.md	2026-10-23 21:43:17
+@@ -2,8 +2,10 @@
+ 
+ Hermes prepared this document under the Crewshal profile. Revision 3 repairs every finding in
+ `docs/CODEX-AUDIT-PHASE-3B-CAMPAIGN-REVISION-2026-10-23.md`. The follow-up session of 2026-10-23 closed the
+-six findings of `docs/CODEX-AUDIT-PHASE-3B-CAMPAIGN-REVISION-3-2026-10-23.md` (section 15). This document
+-plans one bounded campaign:
++six findings of `docs/CODEX-AUDIT-PHASE-3B-CAMPAIGN-REVISION-3-2026-10-23.md` (section 15). A second
++follow-up session of 2026-10-23 applied the audits
++`docs/CODEX-AUDIT-PHASE-3B-G1-REVIEW-PACKET-2026-10-23.md` and
++`docs/CODEX-AUDIT-PHASE-3B-S3-DRIVER-INVENTORY-2026-10-23.md` (section 16). This document plans one bounded campaign:
+ the G1 consolidated Linux qualification gate from ADR 0009. It excludes all 192 development corpus rows,
+ all protocol amendment work, and all sealed evaluation work. Sections 1 and 12 state those boundaries.
+ 
+@@ -46,7 +48,7 @@
+ | S1 | Host observation and capacity admission (guest) | Commands bound; stage blocked | Owner decision 1 (host selection) and decision 2 (resource floors). Guest identity values stay unknown until an approved observation supplies them. |
+ | S1b | Retained-archive verification (macOS, no network) | Blocked | The attach action plus its observed disk identifier or device node. `diskutil mount` accepts a disk identifier or device node, not the volume path; no device node exists in any record and the volume is unmounted this session (audit REVISION-3 finding 1). |
+ | S2 | Deterministic test suite on the guest | Blocked; only the Mac-side checkout-archive command is bound | Owner decision 5 (transport method), then the guest-side preconditions (`source/` creation before extraction) plus S0b wheel closure and S1 observations. This row does not claim the guest commands are bound (audit REVISION-3 finding 3). |
+-| S3 | Containment probe requalification (guest) | Blocked | Per-case probe driver identity: for each of the 20 mandatory cases, the path and sha256 of one driver script plus its argument contract. No ready runner exists in `src/crewshal/qualification.py`; it is a record contract only (`src/crewshal/qualification.py:10-31`, `assess_qualification`). S0 produces the driver-candidate inventory that feeds this choice. |
++| S3 | Containment probe requalification (guest) | Blocked; local driver-candidate inventory saved | Per-case probe driver identity: for each of the 20 mandatory cases, the path and sha256 of one driver script plus its argument contract. The local candidate inventory is saved at `docs/PHASE-3B-S3-DRIVER-INVENTORY-2026-10-23.md` (candidate paths, digests, argument contracts, provisional case map). No ready runner exists in `src/crewshal/qualification.py`; it is a record contract only (`src/crewshal/qualification.py:10-31`, `assess_qualification`). Binding closes per case only when Codex accepts one driver and the chosen guest passes its actual admission gate. |
+ | S4 | Baseline conformance B0/B1/B2/P (guest, conditional) | Blocked | Two owner decisions: adopt the B1 manual script with its effective native commands bound in the campaign manifest (admission blocker unchanged), and define how the ten mandatory `baseline-conformance.json` cases run on Linux (the frozen case records carry macOS `sandbox-exec` commands). |
+ | S5 | Corpus execution boundary | Out of scope | None. Boundary statement only; requests nothing. |
+ 
+@@ -192,15 +194,30 @@
+ the Mac-side checkout-archive command below is bound. Source delivery contract: the Mac side creates one
+ clean archive of the approved revision, records its byte count and sha256 in `evidence/g1_delivery_ledger.txt`,
+ then transfers it by the owner-selected private transport (decision 5); the transfer command stays unbound
+-until decision 5 names the method. Bound Mac-side commands (working directory `/Volumes/X10Pro/Crewshal`;
+-`<HEAD>` is the ledger-approved revision):
++until decision 5 names the method. Bound Mac-side commands (working directory `/Volumes/X10Pro/Crewshal`).
++The earlier `<HEAD>` placeholder text failed `zsh -n` with `parse error near '>'` and failed `bash -n`; it is
++replaced by an explicit, quoted variable form (Codex G1 review-packet audit finding 1). The session sets
++`APPROVED_REVISION` to the full commit hash that Codex accepts in the campaign ledger. The command sequence
++archives exactly HEAD only after proving HEAD equals that approved revision; no floating ref is archived:
+ 
+ ```
++set -eu
++APPROVED_REVISION="0000000000000000000000000000000000000000"   # session binds the Codex-approved full hash here
++test "$(git rev-parse HEAD)" = "$APPROVED_REVISION"            # archive exactly HEAD, and only the approved revision
+ mkdir -p evidence
+-git archive --format=tar -o "evidence/g1_source_<HEAD>.tar" <HEAD>   # exact command; output stays untracked
+-shasum -a 256 "evidence/g1_source_<HEAD>.tar"   # append digest plus stat byte count to evidence/g1_delivery_ledger.txt
++ARCHIVE="evidence/g1_source_${APPROVED_REVISION}.tar"          # output stays untracked
++git archive --format=tar -o "$ARCHIVE" "$APPROVED_REVISION"
++{
++  printf 'archive=%s\n' "$ARCHIVE"
++  printf 'bytes=%s\n' "$(wc -c < "$ARCHIVE" | tr -d ' ')"
++  printf 'sha256=%s\n' "$(shasum -a 256 "$ARCHIVE" | cut -d' ' -f1)"
++} >> evidence/g1_delivery_ledger.txt                           # byte count and digest recorded before transfer
+ ```
+ 
++Static validation (this session, no execution): the saved block passes `zsh -n` and `bash -n` with exit 0;
++the old placeholder block failed both. The block was never run: this document milestone builds and transfers
++nothing, and the ledger file did not get created.
++
+ The guest commands below are a draft contract, not bound: they run only after decision 5 binds the arrival
+ path and S0b/S1 outputs exist, and they must create `source/` before extraction. Draft contract (guest,
+ plain), working directory after delivery `/srv/crewshal-batch/<batch-id>/`, source root
+@@ -330,8 +347,9 @@
+   stated price, time ceiling, and cost exposure before any approval (unchanged October 5 rule).
+ - Subscription quota: this plan runs no native runtime turns. The manifest records
+   `subscription_quota_debit: "unknown; requires later owner acceptance"` at line 593 and per-runtime turn
+-  limits of 256/256 (`resource_ledgers.subscription_turn_limits`). Accepting a possible debit stays an owner
+-  decision (decision 4); no quota submission is planned in G1.
++  limits of 256/256 (`resource_ledgers.subscription_turn_limits`). Accepting a possible debit is moved to
++  the later admitted gate that first requests native turns (section 12, audit finding 2); no quota decision
++  and no quota submission are requested before host action in G1.
+ 
+ ## 10. Cleanup authority (unchanged from revision 2)
+ 
+@@ -351,7 +369,8 @@
+ - U-6: installed executable digests for retained toolchains (null in readback; become observed or stay unknown).
+ - U-7: B1 effective native commands and the P-run definition on Linux (S4 blockers).
+ - U-8: Ubuntu package closure bytes (unrequested; needs a finite ceiling first).
+-- U-9: subscription quota debit (decision 4; no G1 submission planned).
++- U-9: subscription quota debit (deferred to the later admitted gate that requests native turns; no G1
++  submission planned, no acceptance requested before host action).
+ - U-10: retained-archive availability (volume unmounted; S1b verifies without network).
+ - U-11: per-case containment probe drivers (S3 blocker; S0 inventory feeds the choice).
+ - U-12: archive-volume attach identity — no disk identifier or device node is recorded in any document, and
+@@ -361,14 +380,22 @@
+ 
+ ## 12. Owner decisions required before any host action
+ 
++Four decisions gate a host action. The earlier decision 4 (quota acceptance) left this pre-host-action set
++in this session (Codex G1 review-packet audit finding 2); its text stays below in the deferred note, and the
++numbering keeps a gap so cross-references to decisions 1, 2, 3 and 5 stay stable.
++
+ | # | Decision | Effect when recorded |
+ | --- | --- | --- |
+ | 1 | Select the G1 host: option A1, option A2, or a separately-priced droplet variant (option B returns with its own cost exposure first). | Unblocks S1 command execution. |
+ | 2 | Record approved CPU/RAM/disk floors for the campaign, or explicitly keep them unapproved. | Makes S1 capacity stops effective; if unapproved, mutating stages stay blocked. Parked proposals in section 7 are never applied implicitly. |
+ | 3 | Fix a finite byte ceiling for the guest wheel closure before any S0b request (audit REVISION-3 finding 2), and approve the exact archive-image attach action whose observed disk identifier or device node is then recorded in the campaign ledger (finding 1). | Unblocks S0b and S1b only after both identities exist; opens no unknown-ceiling network allowance. |
+-| 4 | Accept or defer the possible subscription quota debit (manifest line 593; turn limits 256/256). G1 plans zero native turns. | Closes U-9 for the campaign ledger. |
+ | 5 | Select the source delivery transport (private path, owner-performed copy, or other private method). | Unblocks S2 delivery; byte count and digest are recorded before transfer regardless of method. |
+ 
++Deferred (not requested before any host action): accept or defer the possible subscription quota debit
++(manifest line 593; per-runtime turn limits 256/256). G1 plans zero native runtime turns and zero actual
++baseline runs, so this decision moves to the later admitted gate that first requests native turns; that
++gate must state each turn's exact purpose and a bounded count before approval. U-9 stays open until then.
++
+ No decision in this list opens a network allowance with an unknown ceiling. No decision here authorizes G2
+ corpus rows, sealed exposure, Phase 3C, deployment, or package release.
+ 
+@@ -453,6 +480,29 @@
+    marked historical in place, and their banners state that the revision-3 packet was created by this
+    follow-up session (finding 6).
+ 
++## 16. Correction log — G1 review-packet and S3-inventory audits (second follow-up session, 2026-10-23)
++
++Findings of `docs/CODEX-AUDIT-PHASE-3B-G1-REVIEW-PACKET-2026-10-23.md` (this document):
++
++1. Finding 1 (P1): the S2 Mac-side archive command no longer contains the `<HEAD>` placeholder that failed
++   `zsh -n`. The saved block uses an explicit quoted `APPROVED_REVISION` variable, proves HEAD equals it
++   before archiving, and appends the archive path, byte count and sha256 to
++   `evidence/g1_delivery_ledger.txt`. Static checks: the saved block passes `zsh -n` and `bash -n` (exit 0);
++   the removed placeholder block failed both. The block was not executed; no archive was built or transferred.
++2. Finding 2 (P2): owner decision 4 (quota acceptance) moved out of the pre-host-action set in section 12 to
++   the later admitted gate that first requests native turns, consistent with G1's zero actual baseline and
++   zero native turns. U-9 stays open until that gate; no quota choice is requested before host action.
++3. Finding 3 (P2): S3 readiness now links the saved local driver-candidate inventory
++   (`docs/PHASE-3B-S3-DRIVER-INVENTORY-2026-10-23.md`) with its candidate paths, digests, argument
++   contracts and provisional case map. S3 stays blocked; no guest command is bound.
++
++Findings of `docs/CODEX-AUDIT-PHASE-3B-S3-DRIVER-INVENTORY-2026-10-23.md` (closed in the paired inventory
++document, recorded here for one-packet review): the false x86_64 guest claim is removed with the effective
++guest architecture and admission state kept unknown; the six wrong source references are corrected against
++live source; case 20 `qualification-refusal` is labelled a fresh local assessor check, not a guest probe
++observation; every case mapping is labelled provisional until Codex accepts a driver and the guest passes
++its actual gate.
++
+ ## Preservation statement
+ 
+ The revision-3 session and this follow-up session changed no tracked file. It ran no Linux-specific test, guest action, droplet action, toolchain
+@@ -460,3 +510,12 @@
+ test discovery; the named-module regression rule stays in force. The documents it touched are the proposal
+ (rewrite to revision 3) and annotations to its two review packets, all untracked planning candidates. Codex
+ reviews before any owner decision request. Nothing in this document authorizes execution.
++
++The second follow-up session of 2026-10-23 (this section's author) changed exactly two untracked planning
++documents: this proposal (section 16, the S2 archive block, the S3 readiness row, sections 9 and 12) and
++the paired `docs/PHASE-3B-S3-DRIVER-INVENTORY-2026-10-23.md`. It ran no guest, Linux, droplet, mount,
++download, live-probe, evaluation-row, sealed-row, credential, or paid action. Its only executions were
++static `zsh -n`/`bash -n` syntax checks on saved shell blocks (no command in any checked block ran), targeted
++`sed`/`grep` source reads for reference verification, and two read-only line probes of
++`scripts/phase3b_capped_archive.py`. It changed no tracked file, version, frozen input, or Hermes
++configuration, and it built and transferred no archive. Codex reviews before any owner decision request.

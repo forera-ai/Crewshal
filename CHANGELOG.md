@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.27.4 — 2026-10-24
+
+- Record the reviewed G1 S3 planning inventory, campaign proposal, and owner decision gates.
+- Repair the Mac archive template so a failed byte-count command cannot write a success-looking ledger record.
+- Keep S2, S3, and S4 blocked. Defer Linux qualification, evaluation, and all host action.
+
 ## 0.27.3 — 2026-10-23
 
 - Add one focused acceptance test that measurement records cannot grant execution authority.

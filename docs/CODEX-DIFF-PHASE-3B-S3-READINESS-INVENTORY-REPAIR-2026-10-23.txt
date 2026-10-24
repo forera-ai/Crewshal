@@ -1,0 +1,32 @@
+--- /var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T//g1_s3_repair_backup/PHASE-3B-S3-DRIVER-INVENTORY-2026-10-23.md	2026-10-23 22:32:49
++++ docs/PHASE-3B-S3-DRIVER-INVENTORY-2026-10-23.md	2026-10-23 22:39:12
+@@ -59,8 +59,11 @@
+ 
+ ## Case-to-candidate map (all 20 mandatory cases)
+ 
+-Column N18 = native-full pair above; each N18 case is produced by `probe_native_full_v18.py` and checked in
+-`readback_native_full_v3.check_run` at the named field. Substrate columns mark the second candidate.
++Column N18 = native-full pair above. The guest probe and the local assessor are separate execution roles.
++Cases 1–19 come from `probe_native_full_v18.py` on the guest and are checked in
++`readback_native_full_v3.check_run` at the named field. Case 20 (`qualification-refusal`) does not come from
++the guest probe: it runs in the local readback assessor — `refusal()` performs a fresh local check inside the
++aggregator on the aggregating host (row 20). Substrate columns mark the second candidate.
+ Every mapping below stays provisional: it becomes binding only when Codex accepts one driver for that case
+ and the chosen guest passes its actual admission gate (section "Cross-cutting missing bindings").
+ 
+@@ -125,6 +128,15 @@
+ 4. The case-to-candidate map intro now labels every mapping provisional until Codex accepts one driver per
+    case and the chosen guest passes its actual admission gate.
+ 
++### Repair of the G1 S3-readiness re-audit (third follow-up session, 2026-10-23)
++
++Codex audit `docs/CODEX-AUDIT-PHASE-3B-G1-S3-READINESS-2026-10-23.md` found that the map introduction still
++contradicted the corrected case 20 row (its finding 2). Repaired: the introduction no longer says every N18
++case comes from the guest v18 probe. It now names the guest probe and the local assessor as separate
++execution roles, states that cases 1–19 come from the guest probe, and states that case 20 runs in the local
++readback assessor (`refusal()` inside `readback_native_full_v3.py`), not the guest probe. No other row,
++digest, or binding statement changed.
++
+ ## Statement of separation
+ 
+ The stored v18 records prove earlier direct-Linux aarch64 behaviour. They do not qualify the planned G1

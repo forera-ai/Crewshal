@@ -10,6 +10,13 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**October 24: The G1 S3 local planning repair passed Codex review.**
+The [campaign proposal](docs/PHASE-3B-CONSOLIDATED-LINUX-CAMPAIGN-PROPOSAL-2026-10-23.md) remains a checked planning draft.
+Its Mac archive template now refuses a failed byte-count command before it writes a ledger record.
+The [driver inventory](docs/PHASE-3B-S3-DRIVER-INVENTORY-2026-10-23.md) keeps case 20 in the local assessor.
+The [review packet](docs/CODEX-REVIEW-PACKET-PHASE-3B-G1-S3-REPAIR-2026-10-24.md) records offline Bash and Zsh checks.
+S2, S3, and S4 remain blocked. No guest, Linux test, evaluation row, or paid action ran.
+
 **October 23: The Phase 3B measurement-record authority guard test passed Codex review.**
 The focused acceptance test proves `check_measurements` refuses a measurement record that self-declares execution authority, spend authority, verified status, an evidence-inventory kind, a foreign frozen package, or a changed annotation method.
 Each refusal passed one single-clause mutation kill; removing any guarded clause fails its exact claim.

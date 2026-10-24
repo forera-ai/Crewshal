@@ -1,8 +1,23 @@
 # Crewshal rolling handoff and project memory
 
-Last updated: 2026-10-23. This record supplies the next session and the owner with project history. [DEVELOPMENT-PLAN.md](DEVELOPMENT-PLAN.md) defines the milestone acceptance checks. Preserve the session ledger.
+Last updated: 2026-10-24. This record supplies the next session and the owner with project history. [DEVELOPMENT-PLAN.md](DEVELOPMENT-PLAN.md) defines the milestone acceptance checks. Preserve the session ledger.
 
 ## Current state
+
+**October 24: The G1 S3 local planning repair passed Codex review (v0.27.4).**
+The [proposal](PHASE-3B-CONSOLIDATED-LINUX-CAMPAIGN-PROPOSAL-2026-10-23.md) contains a checked Mac archive template.
+The template checks `wc` and `shasum` exit status before it writes a delivery ledger record.
+Offline stubs under Bash and Zsh proved that a failed `wc` with numeric output writes no record.
+The [S3 inventory](PHASE-3B-S3-DRIVER-INVENTORY-2026-10-23.md) keeps case 20 in the local assessor.
+The [review packet](CODEX-REVIEW-PACKET-PHASE-3B-G1-S3-REPAIR-2026-10-24.md) records the exact repair and Codex verdict.
+The [owner decision packet](OWNER-DECISION-PACKET-PHASE-3B-REMAINING-GATES-2026-10-23.md) separates G1 from later run and protocol gates.
+Codex reran the focused Bash and Zsh stubs. The version import reported `0.27.4`.
+The frozen checker reported 23 artifacts, 768 planned units, and both execution flags false.
+An offline wheel build failed because `setuptools==80.9.0` was absent from the local cache.
+No installed-package pass is claimed for this documentation checkpoint.
+S2, S3, and S4 remain blocked. Guest facts and owner choices remain unknown.
+No guest, Linux test, evaluation row, paid service, or sealed task was used.
+The next session uses the [G1 decision-readiness prompt](PHASE-3B-G1-DECISION-READINESS-NEXT-SESSION-2026-10-24.md).
 
 **October 23: The Phase 3B measurement-record authority guard test passed Codex review (v0.27.3).**
 The new acceptance test `test_measurement_records_cannot_grant_authority_or_change_kind` proves `check_measurements` refuses a measurement record that self-declares execution authority, spend authority, verified status, an evidence-inventory kind, a foreign frozen package, or a changed annotation method.

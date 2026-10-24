@@ -1,0 +1,105 @@
+--- /var/folders/4p/xh823rjd32x53hbm_zvcjnqh0000gn/T//g1_s3_repair_backup/PHASE-3B-CONSOLIDATED-LINUX-CAMPAIGN-PROPOSAL-2026-10-23.md	2026-10-23 22:32:49
++++ docs/PHASE-3B-CONSOLIDATED-LINUX-CAMPAIGN-PROPOSAL-2026-10-23.md	2026-10-23 22:38:44
+@@ -47,7 +47,7 @@
+ | S0 | Local preflight and evidence baselining (macOS) | Bound | None. Runs with no approval (read-only); the bound first command creates `evidence/`. Sub-step S0b is blocked: no finite transfer ceiling exists in local records (audit REVISION-3 finding 2). |
+ | S1 | Host observation and capacity admission (guest) | Commands bound; stage blocked | Owner decision 1 (host selection) and decision 2 (resource floors). Guest identity values stay unknown until an approved observation supplies them. |
+ | S1b | Retained-archive verification (macOS, no network) | Blocked | The attach action plus its observed disk identifier or device node. `diskutil mount` accepts a disk identifier or device node, not the volume path; no device node exists in any record and the volume is unmounted this session (audit REVISION-3 finding 1). |
+-| S2 | Deterministic test suite on the guest | Blocked; only the Mac-side checkout-archive command is bound | Owner decision 5 (transport method), then the guest-side preconditions (`source/` creation before extraction) plus S0b wheel closure and S1 observations. This row does not claim the guest commands are bound (audit REVISION-3 finding 3). |
++| S2 | Deterministic test suite on the guest | Blocked; only the Mac-side checkout-archive command exists, as a checked template (Codex G1 S3-readiness audit finding 3) | Owner decision 5 (transport method), then the guest-side preconditions (`source/` creation before extraction) plus S0b wheel closure and S1 observations. The command binds when the campaign ledger supplies an approved revision. This row does not claim the guest commands are bound (audit REVISION-3 finding 3). |
+ | S3 | Containment probe requalification (guest) | Blocked; local driver-candidate inventory saved | Per-case probe driver identity: for each of the 20 mandatory cases, the path and sha256 of one driver script plus its argument contract. The local candidate inventory is saved at `docs/PHASE-3B-S3-DRIVER-INVENTORY-2026-10-23.md` (candidate paths, digests, argument contracts, provisional case map). No ready runner exists in `src/crewshal/qualification.py`; it is a record contract only (`src/crewshal/qualification.py:10-31`, `assess_qualification`). Binding closes per case only when Codex accepts one driver and the chosen guest passes its actual admission gate. |
+ | S4 | Baseline conformance B0/B1/B2/P (guest, conditional) | Blocked | Two owner decisions: adopt the B1 manual script with its effective native commands bound in the campaign manifest (admission blocker unchanged), and define how the ten mandatory `baseline-conformance.json` cases run on Linux (the frozen case records carry macOS `sandbox-exec` commands). |
+ | S5 | Corpus execution boundary | Out of scope | None. Boundary statement only; requests nothing. |
+@@ -191,32 +191,49 @@
+ ### Stage S2 — deterministic test suite on the chosen guest
+ 
+ Blocked; the stage readiness row does not claim bound guest commands (audit REVISION-3 finding 3). Only
+-the Mac-side checkout-archive command below is bound. Source delivery contract: the Mac side creates one
++the Mac-side checkout-archive command below exists, and only as a checked template until the campaign ledger
++supplies an approved revision (Codex G1 S3-readiness audit finding 3). Source delivery contract: the Mac side creates one
+ clean archive of the approved revision, records its byte count and sha256 in `evidence/g1_delivery_ledger.txt`,
+ then transfers it by the owner-selected private transport (decision 5); the transfer command stays unbound
+-until decision 5 names the method. Bound Mac-side commands (working directory `/Volumes/X10Pro/Crewshal`).
+-The earlier `<HEAD>` placeholder text failed `zsh -n` with `parse error near '>'` and failed `bash -n`; it is
+-replaced by an explicit, quoted variable form (Codex G1 review-packet audit finding 1). The session sets
+-`APPROVED_REVISION` to the full commit hash that Codex accepts in the campaign ledger. The command sequence
+-archives exactly HEAD only after proving HEAD equals that approved revision; no floating ref is archived:
++until decision 5 names the method. Checked-template Mac-side commands (working directory
++`/Volumes/X10Pro/Crewshal`). Until the campaign ledger supplies an approved revision, this sequence is a
++checked template, not a bound command: `APPROVED_REVISION` stays forty zeroes and the HEAD equality check
++refuses to archive under it (Codex G1 S3-readiness audit finding 3). The earlier `<HEAD>` placeholder text
++failed `zsh -n` with `parse error near '>'` and failed `bash -n`; it is replaced by an explicit, quoted
++variable form (Codex G1 review-packet audit finding 1). When Codex accepts a revision in the campaign
++ledger, the session replaces the forty-zero placeholder with that full commit hash. The command sequence
++archives exactly HEAD only after proving HEAD equals that approved revision; no floating ref is archived.
++It captures the byte count and the full digest output in separate checked assignments, validates both
++formats, and writes one complete ledger record only after both checks pass (Codex G1 S3-readiness audit
++finding 1):
+ 
+ ```
+ set -eu
+-APPROVED_REVISION="0000000000000000000000000000000000000000"   # session binds the Codex-approved full hash here
++APPROVED_REVISION="0000000000000000000000000000000000000000"   # checked template: the campaign ledger binds the Codex-approved full hash here
+ test "$(git rev-parse HEAD)" = "$APPROVED_REVISION"            # archive exactly HEAD, and only the approved revision
+ mkdir -p evidence
+ ARCHIVE="evidence/g1_source_${APPROVED_REVISION}.tar"          # output stays untracked
+ git archive --format=tar -o "$ARCHIVE" "$APPROVED_REVISION"
+-{
+-  printf 'archive=%s\n' "$ARCHIVE"
+-  printf 'bytes=%s\n' "$(wc -c < "$ARCHIVE" | tr -d ' ')"
+-  printf 'sha256=%s\n' "$(shasum -a 256 "$ARCHIVE" | cut -d' ' -f1)"
+-} >> evidence/g1_delivery_ledger.txt                           # byte count and digest recorded before transfer
++test -s "$ARCHIVE"                                             # refuse an empty archive before recording it
++BYTES="$(wc -c < "$ARCHIVE" | tr -d ' ')"                      # capture the byte count in a checked assignment
++DIGEST_LINE="$(shasum -a 256 "$ARCHIVE")"                      # capture the full digest output; no inner cut pipeline
++DIGEST="${DIGEST_LINE%% *}"                                    # the first whitespace-delimited field is the digest
++test -n "$BYTES" || exit 1                                     # fail closed when the byte count is missing
++case "$BYTES" in *[!0-9]*) exit 1 ;; esac                      # byte count must be digits only
++test "${#DIGEST}" -eq 64 || exit 1                             # digest must be exactly 64 characters
++case "$DIGEST" in *[!0-9a-f]*) exit 1 ;; esac                  # digest must be hexadecimal only
++{                                                                              # one complete record, written only after both checks pass
++  printf 'archive=%s\nbytes=%s\nsha256=%s\n' "$ARCHIVE" "$BYTES" "$DIGEST"
++} >> evidence/g1_delivery_ledger.txt                                           # byte count and digest recorded before transfer
+ ```
+ 
+-Static validation (this session, no execution): the saved block passes `zsh -n` and `bash -n` with exit 0;
+-the old placeholder block failed both. The block was never run: this document milestone builds and transfers
+-nothing, and the ledger file did not get created.
++Static validation (this session): the saved block passes `zsh -n` and `bash -n` with exit 0; the old
++placeholder block failed both. Offline stub tests ran this session in `$TMPDIR/g1_s3_stub_tests` only, with
++fake `git`, `wc` and `shasum` commands and no real archive: a failing byte-count command, a failing hash
++command, and a truncated-digest hash command each made the block exit nonzero before any append, so no
++ledger record exists afterwards; passing stubs wrote exactly one three-field record. The real sequence was
++never run: this document milestone builds and transfers nothing, `evidence/` stays absent in the checkout,
++and the ledger file did not get created.
+ 
+ The guest commands below are a draft contract, not bound: they run only after decision 5 binds the arrival
+ path and S0b/S1 outputs exist, and they must create `source/` before extraction. Draft contract (guest,
+@@ -503,6 +520,28 @@
+ observation; every case mapping is labelled provisional until Codex accepts a driver and the guest passes
+ its actual gate.
+ 
++## 17. Correction log — G1 S3-readiness re-audit closure (third follow-up session, 2026-10-23)
++
++Findings of `docs/CODEX-AUDIT-PHASE-3B-G1-S3-READINESS-2026-10-23.md` (this document):
++
++1. Finding 1 (P1): the S2 ledger block no longer puts `shasum | cut` inside `printf`. It now captures the
++   byte count (`BYTES`) and the full digest output (`DIGEST_LINE`, then its first field `DIGEST`) in
++   separate checked assignments, validates both formats (byte count digits only; digest exactly 64
++   hexadecimal characters), and appends one complete three-field record only after both checks pass. The
++   removed form could append `sha256=` with no digest after a failed `shasum` because the inner pipeline hid
++   the failure from `set -eu`. Static checks: the saved block passes `zsh -n` and `bash -n` (exit 0).
++   Offline stub tests (`$TMPDIR/g1_s3_stub_tests`, fake `git`/`wc`/`shasum`, no real archive): a failing
++   byte-count command, a failing hash command, and a truncated-digest hash command each stop the block with
++   nonzero exit before any append, leaving no complete ledger record; passing stubs write exactly one
++   three-field record. The block was not executed with real inputs; no archive was built or transferred.
++2. Finding 2 (P2): closed in the paired inventory document, recorded here for one-packet review: the
++   case-map introduction now names the guest probe and the local assessor as separate execution roles, and
++   states that case 20 (`qualification-refusal`) runs in the local readback assessor, not the guest probe.
++3. Finding 3 (P2): the section 2 S2 row and the stage text no longer call the Mac archive command bound.
++   They label it a checked template until the campaign ledger supplies an approved revision. The
++   forty-zero `APPROVED_REVISION` stays, and the HEAD equality check still refuses to archive under this
++   template. S2 stays blocked and the command was not run.
++
+ ## Preservation statement
+ 
+ The revision-3 session and this follow-up session changed no tracked file. It ran no Linux-specific test, guest action, droplet action, toolchain

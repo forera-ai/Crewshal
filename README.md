@@ -10,6 +10,12 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**October 24: The G1 proposal is ready for an owner decision.**
+The [decision-readiness packet](docs/PHASE-3B-G1-DECISION-READINESS-2026-10-24.md) names the choices and later gates.
+Codex corrected its host labels and source references before publication.
+Guest architectures and S4 conformance bindings remain unknown.
+No host action, Linux test, evaluation row, or paid action ran.
+
 **October 24: The G1 S3 local planning repair passed Codex review.**
 The [campaign proposal](docs/PHASE-3B-CONSOLIDATED-LINUX-CAMPAIGN-PROPOSAL-2026-10-23.md) remains a checked planning draft.
 Its Mac archive template now refuses a failed byte-count command before it writes a ledger record.

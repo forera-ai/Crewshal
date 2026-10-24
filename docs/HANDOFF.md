@@ -4,6 +4,16 @@ Last updated: 2026-10-24. This record supplies the next session and the owner wi
 
 ## Current state
 
+**October 24: The G1 decision-readiness packet passed Codex review (v0.27.5).**
+The [packet](PHASE-3B-G1-DECISION-READINESS-2026-10-24.md) identifies proposal section 12 decisions 1, 2, 3, and 5.
+It separates later S3, S4, corpus, and protocol gates.
+Codex corrected the packet's false A1 architecture label, omitted S4 choices, and wrong source references.
+The [audit](CODEX-AUDIT-ORNITH-G1-DECISION-READINESS-2026-10-24.md) records the model and process findings.
+Ornith Q4 used a 98,304-token server context. Hermes summarized before any completed prompt exceeded 70,000 tokens.
+The packet is ready for an owner decision. It grants no host, guest, Linux, evaluation, or spending authority.
+No source code or frozen package changed. No Linux-specific test ran.
+The next boundary is the owner's exact G1 choices. Later gates remain closed.
+
 **October 24: The G1 S3 local planning repair passed Codex review (v0.27.4).**
 The [proposal](PHASE-3B-CONSOLIDATED-LINUX-CAMPAIGN-PROPOSAL-2026-10-23.md) contains a checked Mac archive template.
 The template checks `wc` and `shasum` exit status before it writes a delivery ledger record.

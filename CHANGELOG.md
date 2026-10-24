@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.27.5 — 2026-10-24
+
+- Record the G1 owner decision-readiness packet and Codex corrections.
+- Keep guest architecture, S4 decisions, Linux qualification, and Phase 3B acceptance unresolved.
+- Record the Ornith 98,304-token run and its model-selection limits.
+
 ## 0.27.4 — 2026-10-24
 
 - Record the reviewed G1 S3 planning inventory, campaign proposal, and owner decision gates.

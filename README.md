@@ -10,6 +10,13 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**October 24: The G1 owner-response draft passed Codex review.**
+The [draft record](docs/PHASE-3B-G1-OWNER-RESPONSES-DRAFT-2026-10-24.md) preserves four exact responses from one Hermes export.
+It separates the selected CPU, RAM, and disk floors from other proposed limits.
+The wheel-closure ceiling is 20,000,000,000 bytes. The exact archive-image attach action lacks approval.
+The [next prompt](docs/PHASE-3B-G1-S1B-ACTION-NEXT-SESSION-2026-10-24.md) requests an offline S1b action proposal.
+No image, guest, Linux, download, evaluation, or spending action ran.
+
 **October 24: The G1 proposal is ready for an owner decision.**
 The [decision-readiness packet](docs/PHASE-3B-G1-DECISION-READINESS-2026-10-24.md) names the choices and later gates.
 Codex corrected its host labels and source references before publication.

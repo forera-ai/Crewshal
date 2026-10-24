@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.27.6 — 2026-10-24
+
+- Record the four exact G1 owner responses as draft evidence for later stage decisions.
+- Keep the archive-image attach action, wheel download, guest work, and evaluation closed.
+- Add the next prompt for an offline S1b action proposal and Codex review.
+
 ## 0.27.5 — 2026-10-24
 
 - Record the G1 owner decision-readiness packet and Codex corrections.

@@ -4,6 +4,20 @@ Last updated: 2026-10-24. This record supplies the next session and the owner wi
 
 ## Current state
 
+**October 24: The G1 owner-response draft passed Codex review (v0.27.6).**
+The [draft record](PHASE-3B-G1-OWNER-RESPONSES-DRAFT-2026-10-24.md) copies four `user_response` values from the Hermes export.
+It records A1, the selected section 7 CPU/RAM/disk floors, a 20,000,000,000-byte ceiling, and private-path transport.
+Codex limited the floor claim to Decision 2's CPU, RAM, and disk scope.
+The proposal still marks section 7 values as proposed. A reviewed amendment must reconcile the status before a stage relies on them.
+The export does not approve an exact image attach action. No current device or guest fact was observed.
+The four pinned archive blobs total 2,777,282 bytes. Their current availability remains unknown.
+At base `7b7b8aaa2a494ce6fd978b2209f8bbfc03eea69e`, a local parser matched the four exact responses and four archive identities.
+`git diff --check` passed. A source import reported `0.27.6`.
+No code test or installed-package check ran for this documentation checkpoint. Linux checks remain deferred.
+No image, guest, Linux, download, evaluation, or spending action ran. The frozen package did not change.
+The [next prompt](PHASE-3B-G1-S1B-ACTION-NEXT-SESSION-2026-10-24.md) prepares an offline S1b action proposal for Codex review.
+S0b, S1b, S2, S3, S4, G2, and Phase 3C remain closed.
+
 **October 24: The G1 decision-readiness packet passed Codex review (v0.27.5).**
 The [packet](PHASE-3B-G1-DECISION-READINESS-2026-10-24.md) identifies proposal section 12 decisions 1, 2, 3, and 5.
 It separates later S3, S4, corpus, and protocol gates.

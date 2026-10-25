@@ -10,6 +10,15 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**October 25: Hermes readiness passed, but the offline S1b proposal remains blocked.**
+Codex verified complete instruction reads, loaded skills, actual MCP calls, and separate final Git evidence.
+The implementation continuation produced no saved candidate within its configured 600-second budget.
+Codex interrupted that session and verified terminal state, server cancellation, and an unchanged checkout.
+The [blocked record](docs/CREWSHAL-S1B-BLOCKED-2026-10-25.md) preserves the failures and runtime limits.
+Package version `0.27.8` records this process boundary. It does not complete the action proposal.
+The [next prompt](docs/CREWSHAL-S1B-BLOCKED-NEXT-SESSION-2026-10-25.md) requires read-only runtime diagnosis before further dispatch.
+All campaign, Linux, evaluation, spending, and release gates remain closed.
+
 **October 25: The Crewshal governance skill and Hermes CLI connection are prepared.**
 The [versioned skill](skills/crewshal/SKILL.md) requires Sol 6.1 supervision, mandatory tools, independent review, and bounded correction attempts.
 The [setup record](docs/CREWSHAL-SKILL-SETUP-2026-10-25.md) separates verified CLI transport from failed worker readiness claims.

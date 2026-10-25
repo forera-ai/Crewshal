@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.27.8 — 2026-10-25
+
+- Record accepted Hermes readiness through complete saved results and actual MCP calls.
+- Record the refused continuation launch and the interrupted implementation run without a candidate.
+- Preserve the unverified finite-budget enforcement and the blocked offline S1b proposal.
+- Add a read-only diagnosis prompt. Keep all operational and evaluation gates closed.
+
 ## 0.27.7 — 2026-10-25
 
 - Add the versioned Crewshal governance skill and mandatory project routing.

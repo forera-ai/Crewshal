@@ -4,6 +4,29 @@ Last updated: 2026-10-25. This record supplies the next session and the owner wi
 
 ## Current state
 
+**October 25: Readiness passed, but the offline S1b action proposal remains blocked (v0.27.8).**
+The [blocked record](CREWSHAL-S1B-BLOCKED-2026-10-25.md) records the current evidence and failed continuation.
+Trusted turn metadata identified the supervisor as `gpt-6.1-sol`.
+The installed Crewshal skill remains `1.0.0`. The four required skill bodies appeared in the worker's effective prompt.
+Codex inspected complete saved reads, including all 78 AGENTS lines and the complete RTK instructions.
+The worker demonstrated graph status, coverage, Jev access, and a distinct final Git observation.
+Readiness exited 0 after 470.739 seconds. Its admission reached `terminal/completed`.
+The first implementation launch exited 2 before inference because resume refused a changed turn limit.
+Source inspection showed that resume retains its original policy, including the runtime budget.
+The corrected launch retained 25 turns and the original configured 600-second budget.
+It produced no tool call or saved candidate before Codex interrupted it after 623.226 seconds.
+The gateway reached `terminal/interrupted`. The matching server log confirmed cancellation and slot release.
+Configured budget enforcement did not establish a 600-second termination. Its effective behavior requires read-only diagnosis.
+No S1b action draft or stub test exists from this attempt. Do not claim proposal completion.
+Codex independently confirmed the original clean HEAD, status, staged diff, and unstaged diff after worker termination.
+Base revision: `659e8d46a6acf157565fecb96cec5b5825af601a` on `codex/phase1-architecture`.
+Delivery revision: the commit containing this entry. The package version is `0.27.8`.
+This process checkpoint changes README, CHANGELOG, HANDOFF, both version declarations, the blocked record, and its next prompt.
+Closure checks and their exit results appear in the blocked record. Source suites and installed-package checks did not run.
+Linux-specific modules remain deferred under ADR 0009. No guest, download, evaluation, deployment, or release ran.
+The [next prompt](CREWSHAL-S1B-BLOCKED-NEXT-SESSION-2026-10-25.md) requires runtime diagnosis before another implementation dispatch.
+All campaign stages, Phase 3B calibration, and Phase 3C remain closed. Earlier dated records remain historical evidence.
+
 **October 25: The global Crewshal skill and bounded Hermes CLI transport checkpoint are complete (v0.27.7).**
 The [skill](../skills/crewshal/SKILL.md) is version `1.0.0` and requires a version banner in every answer.
 It defines Sol 6.1 supervision, mandatory companion skills and MCP checks, independent review, and finite correction attempts.

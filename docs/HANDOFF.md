@@ -1,8 +1,28 @@
 # Crewshal rolling handoff and project memory
 
-Last updated: 2026-10-24. This record supplies the next session and the owner with project history. [DEVELOPMENT-PLAN.md](DEVELOPMENT-PLAN.md) defines the milestone acceptance checks. Preserve the session ledger.
+Last updated: 2026-10-25. This record supplies the next session and the owner with project history. [DEVELOPMENT-PLAN.md](DEVELOPMENT-PLAN.md) defines the milestone acceptance checks. Preserve the session ledger.
 
 ## Current state
+
+**October 25: The global Crewshal skill and bounded Hermes CLI transport checkpoint are complete (v0.27.7).**
+The [skill](../skills/crewshal/SKILL.md) is version `1.0.0` and requires a version banner in every answer.
+It defines Sol 6.1 supervision, mandatory companion skills and MCP checks, independent review, and finite correction attempts.
+The [setup record](CREWSHAL-SKILL-SETUP-2026-10-25.md) records all changes, commands, results, failures, and limitations.
+The parent read all 54 retrievable turns of `Prepare Crewshal handoff` and the project goal and governance records.
+A Sol 6.1 agent ran the Hermes smoke. The first launch rejected `--run-budget` before inference.
+The corrected launch used a 300-second profile budget and completed with 11 tool calls in 296,190 stream milliseconds.
+Actual graph and Jev calls passed. Independent Git comparisons confirmed no worker repository change.
+The worker falsely claimed complete instruction reads and two Git observations. Product readiness was rejected.
+The server context changed during admission. Codex reduced the next-request profile context to 93,696 tokens.
+A fresh request under that corrected binding remains untested. Cancellation and timeout enforcement remain untested.
+The skill now requires a separate readiness review before implementation dispatch.
+Skill validation, source-copy equality, links, whitespace, version checks, and the frozen-package check passed.
+The frozen content digest remains `4bd188deb0089a79d018ed13b2fd2467927a53efc4d3d4e323f8cf43bdc892c0`.
+Base revision: `1398badfdff94850cf7b7df0b79ee37350f2888d`; delivery revision: the commit containing this entry.
+Checks ran on macOS 27.2 arm64 with CPython 3.12.15. No source suite or installed-package check ran.
+No Linux test, guest action, image operation, download, evaluation row, deployment, or release ran.
+The [next prompt](CREWSHAL-SUPERVISED-NEXT-SESSION-2026-10-25.md) verifies readiness before the offline S1b action proposal.
+All campaign stages, Phase 3B calibration, and Phase 3C remain closed. Earlier dated records remain historical evidence.
 
 **October 24: The G1 owner-response draft passed Codex review (v0.27.6).**
 The [draft record](PHASE-3B-G1-OWNER-RESPONSES-DRAFT-2026-10-24.md) copies four `user_response` values from the Hermes export.

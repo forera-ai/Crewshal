@@ -1,5 +1,16 @@
 # Crewshal project instructions
 
+## Development supervision — owner instruction, 2026-10-25
+
+Load the global `crewshal` skill before project work. The versioned source is [skills/crewshal/SKILL.md](skills/crewshal/SKILL.md).
+Use Sol 6.1 for development orchestration. Hermes prepares bounded implementation candidates with the selected local model.
+Codex reviews evidence, governs integration, prepares continuation prompts, and publishes accepted checkpoints.
+Every worker must load `codebase-memory`, `caveman`, and `jev`, and verify its own required MCP access.
+Apply ASD-STE100 over conflicting compression rules. Start each answer with the active Crewshal skill version line.
+Verify actual readiness before source delegation. Worker completion claims cannot replace tool evidence or Codex review.
+Keep all existing architecture, security, Linux, evaluation, spending, and release gates.
+See the [setup record](docs/CREWSHAL-SKILL-SETUP-2026-10-25.md) and [next prompt](docs/CREWSHAL-SUPERVISED-NEXT-SESSION-2026-10-25.md).
+
 ## Human communication — owner rule, 2026-10-11
 
 Use [ASD-STE100](https://www.asd-ste100.org/) for all human-readable explanations and decision requests in this project.

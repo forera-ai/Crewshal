@@ -10,6 +10,13 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**October 25: The Crewshal governance skill and Hermes CLI connection are prepared.**
+The [versioned skill](skills/crewshal/SKILL.md) requires Sol 6.1 supervision, mandatory tools, independent review, and bounded correction attempts.
+The [setup record](docs/CREWSHAL-SKILL-SETUP-2026-10-25.md) separates verified CLI transport from failed worker readiness claims.
+The skill is installed globally as `crewshal` version `1.0.0`. This process checkpoint is package version `0.27.7`.
+The [next prompt](docs/CREWSHAL-SUPERVISED-NEXT-SESSION-2026-10-25.md) first verifies readiness, then permits offline S1b planning.
+No product implementation, Linux qualification, guest action, or evaluation ran in this checkpoint.
+
 **October 24: The G1 owner-response draft passed Codex review.**
 The [draft record](docs/PHASE-3B-G1-OWNER-RESPONSES-DRAFT-2026-10-24.md) preserves four exact responses from one Hermes export.
 It separates the selected CPU, RAM, and disk floors from other proposed limits.

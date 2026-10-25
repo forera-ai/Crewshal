@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.27.7 — 2026-10-25
+
+- Add the versioned Crewshal governance skill and mandatory project routing.
+- Define Sol 6.1 supervision, Hermes readiness checks, independent review, and bounded correction attempts.
+- Record the CLI transport check, rejected worker claims, profile corrections, and remaining runtime limitations.
+- Add the supervised S1b continuation prompt while preserving all campaign and evaluation gates.
+
 ## 0.27.6 — 2026-10-24
 
 - Record the four exact G1 owner responses as draft evidence for later stage decisions.

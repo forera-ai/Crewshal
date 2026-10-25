@@ -1,0 +1,14 @@
+interface:
+  display_name: "Crewshal"
+  short_description: "Govern Crewshal and review Hermes development"
+  default_prompt: "Use $crewshal to govern one milestone, supervise Hermes, and verify its final candidate."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "codebase-memory-mcp"
+      description: "Discover code and verify graph coverage."
+    - type: "mcp"
+      value: "jev"
+      description: "Support bounded typed decision checks."
+policy:
+  allow_implicit_invocation: true

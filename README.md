@@ -10,6 +10,14 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**October 25: The private Hermes deadline control passed offline checks; live proof remains blocked.**
+Nine fixtures cover continuing activity, generation checks, disconnects, cancellation failures, and terminal reconciliation.
+The [record](docs/CREWSHAL-HERMES-DEADLINE-CONTROL-2026-10-25.md) preserves the private control and its limitations.
+A preflight caught Codex's incorrect database-column assumption before any diagnostic session or model request.
+Package version `0.27.10` records this blocked process checkpoint. S1b dispatch remains closed.
+The [continuation prompt](docs/CREWSHAL-HERMES-DEADLINE-CONTINUATION-2026-10-25.md) requires verified admission mapping and live deadline evidence.
+All operational, Linux, evaluation, and release gates remain closed.
+
 **October 25: The Hermes runtime diagnosis is complete; S1b dispatch remains blocked.**
 The stored session policy contains 600 seconds and 25 turns.
 The [diagnosis](docs/CREWSHAL-HERMES-RUNTIME-DIAGNOSIS-2026-10-25.md) separates that policy from actual deadline enforcement.

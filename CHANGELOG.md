@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.27.10 — 2026-10-25
+
+- Record nine offline private deadline-control fixtures without changing Crewshal product behavior.
+- Preserve the failed D1 schema preflight and Codex's incorrect admission-column assumption.
+- Keep live deadline enforcement unproved and preserve all prior attempts and evidence.
+- Add a continuation prompt for admission mapping, failure cleanup, and bounded live proof before S1b dispatch.
+
 ## 0.27.9 — 2026-10-25
 
 - Record the directly inspected 600-second session policy and retained 25-turn limit.

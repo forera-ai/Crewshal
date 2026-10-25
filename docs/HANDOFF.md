@@ -4,6 +4,38 @@ Last updated: 2026-10-25. This record supplies the next session and the owner wi
 
 ## Current state
 
+**October 25: The private deadline control passed offline checks; the live milestone remains blocked (v0.27.10).**
+The [record](CREWSHAL-HERMES-DEADLINE-CONTROL-2026-10-25.md) separates nine passing fixtures from missing live termination evidence.
+Trusted turn metadata identified the supervisor as `gpt-6.1-sol`.
+The checkout started clean at `2897c5abbe91b5b5beef1f602de32df0226b8c8f` on `codex/phase1-architecture`.
+All 1,345 tracked files retained their hashes before publication edits.
+The private control fixes a monotonic total deadline and cancels only the exact session and execution generation.
+Fixtures cover continuing activity, wrong generations, disconnects, cancellation failure, hung reads, and missing terminal reconciliation.
+The final private runtime command exited 0 with nine tests in 0.113 seconds, using CPython 3.11.14.
+A planned 30-second read-only diagnostic had a separate 15-second cleanup allowance and one-worker limit.
+Its preflight exited 1 before launch because Codex incorrectly expected database column `input_id` instead of `request_id`.
+Exact current source maps RPC `input_id` into `Submission.request_id`. No runtime regression was established.
+The preserved probe runner remains unaccepted. Its failure cleanup also requires review before launch.
+Codex stopped the live route after that failed preflight. No new session, admission, worker, or model request ran.
+R1, the refused launch, and corrected I1 remain unchanged. No attempt count was reset.
+The original runtime inspector confirmed unchanged policy, profile bindings, terminal admissions, and all 33 original evidence hashes.
+The stored original policy remains 600 seconds and 25 turns. The profile default remains 45 turns.
+The model server remains PID 33814, with Ornith Q4, one slot, and context 93696.
+Codex reused accepted readiness without repeating worker, MCP, or approval probes.
+Private evidence remains under `deadline-20261025` within the preserved S1b evidence root.
+The control and live runner stay outside Crewshal product source. No adapter or orchestration framework was added.
+Publication checks and their final results appear in the private `closure-results.json`.
+The frozen checker, version import, whitespace checks, preservation checks, and local links passed with exit 0.
+The frozen digest remains `4bd188deb0089a79d018ed13b2fd2467927a53efc4d3d4e323f8cf43bdc892c0`.
+Product suites, Ruff, mypy, wheel builds, and installed-package checks remain not run for this process checkpoint.
+Linux-specific modules remain deferred under ADR 0009.
+Delivery revision: the commit containing this entry. Package version: `0.27.10`; skill version: `1.0.0`.
+The [continuation prompt](CREWSHAL-HERMES-DEADLINE-CONTINUATION-2026-10-25.md) completes this same deadline-control milestone before further S1b dispatch.
+Its exact input list includes the private control, rejected runner, failed preflight, saved test results, and evidence hashes.
+Live deadline enforcement remains unproved. S1b implementation belongs to a later session after that gate passes.
+All image actions, guests, downloads, Linux tests, campaigns, calibration, evaluation, deployment, and releases remain closed.
+Earlier dated entries remain historical evidence.
+
 **October 25: The read-only Hermes runtime diagnosis is complete (v0.27.9). S1b dispatch remains blocked.**
 The [diagnosis record](CREWSHAL-HERMES-RUNTIME-DIAGNOSIS-2026-10-25.md) supplies the new evidence and limitations.
 Trusted turn metadata identified this supervisor as `gpt-6.1-sol`.

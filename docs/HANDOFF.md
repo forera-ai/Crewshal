@@ -4,6 +4,32 @@ Last updated: 2026-10-25. This record supplies the next session and the owner wi
 
 ## Current state
 
+**October 25: The read-only Hermes runtime diagnosis is complete (v0.27.9). S1b dispatch remains blocked.**
+The [diagnosis record](CREWSHAL-HERMES-RUNTIME-DIAGNOSIS-2026-10-25.md) supplies the new evidence and limitations.
+Trusted turn metadata identified this supervisor as `gpt-6.1-sol`.
+The checkout started clean at `42357d48d839af77199a6fe8eb34a534b5d36fc8` on `codex/phase1-architecture`.
+Codex directly inspected the stored session policy: `run_budget_seconds=600` and `max_turns=25`.
+The current profile's 45-turn default does not replace the session's retained limit.
+The model server remained PID `33814`, using Ornith Q4, one slot, and a 93,696-token context.
+Relevant profile, SOUL, model, provider, approval, and fallback bindings remained unchanged during diagnosis.
+Source inspection found a turn-local wrap-up notice and separate local stream stale timing.
+The gateway timeout measures inactivity. Continuing request activity can refresh it.
+The server's last pre-cancellation sample reported 16,770 generated tokens for task `10047`.
+That sample proves generation, not useful reasoning, a completed candidate, final token usage, or billing.
+The continuation ended through explicit interruption after 623.226 seconds. Automatic 600-second termination remains unproved.
+The original admissions remain `terminal/completed` and `terminal/interrupted` for generations 1 and 2.
+Codex parsed the complete saved exports. No new tool call or candidate followed accepted readiness.
+The original 33 private evidence files remain byte-identical. The attempt ledger was not reset.
+No new worker, inference request, approval probe, profile edit, model switch, or server restart ran.
+The stale Hermes graph required exact source fallback. Current Crewshal record coverage had matching metadata.
+This checkpoint changes process records and synchronized version declarations only.
+Its closure commands and results appear in the diagnosis record. Linux checks remain deferred under ADR 0009.
+Delivery revision: the commit containing this entry. Package version: `0.27.9`; skill version: `1.0.0`.
+The [next prompt](CREWSHAL-HERMES-DEADLINE-NEXT-SESSION-2026-10-25.md) requires an independent total deadline and actual termination evidence.
+S1b implementation belongs to a later session after that runtime gate passes.
+All image actions, guests, downloads, campaign stages, Linux qualification, calibration, evaluation, and releases remain closed.
+Earlier dated entries remain historical evidence.
+
 **October 25: Readiness passed, but the offline S1b action proposal remains blocked (v0.27.8).**
 The [blocked record](CREWSHAL-S1B-BLOCKED-2026-10-25.md) records the current evidence and failed continuation.
 Trusted turn metadata identified the supervisor as `gpt-6.1-sol`.

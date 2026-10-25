@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.27.9 — 2026-10-25
+
+- Record the directly inspected 600-second session policy and retained 25-turn limit.
+- Explain local stream liveness, active generation, and explicit interruption without claiming a hard deadline.
+- Preserve the prior attempt ledger and private evidence. Keep S1b implementation blocked.
+- Add the independent deadline-control prompt without changing runtime configuration or product behavior.
+
 ## 0.27.8 — 2026-10-25
 
 - Record accepted Hermes readiness through complete saved results and actual MCP calls.

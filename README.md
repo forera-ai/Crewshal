@@ -10,6 +10,14 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**October 25: The Hermes runtime diagnosis is complete; S1b dispatch remains blocked.**
+The stored session policy contains 600 seconds and 25 turns.
+The [diagnosis](docs/CREWSHAL-HERMES-RUNTIME-DIAGNOSIS-2026-10-25.md) separates that policy from actual deadline enforcement.
+The server continued generation until explicit interruption. No automatic 600-second termination was proved.
+Package version `0.27.9` records this diagnosis without changing runtime behavior.
+The [next prompt](docs/CREWSHAL-HERMES-DEADLINE-NEXT-SESSION-2026-10-25.md) requires an independent deadline and actual termination evidence.
+No new worker request ran. All operational and evaluation gates remain closed.
+
 **October 25: Hermes readiness passed, but the offline S1b proposal remains blocked.**
 Codex verified complete instruction reads, loaded skills, actual MCP calls, and separate final Git evidence.
 The implementation continuation produced no saved candidate within its configured 600-second budget.

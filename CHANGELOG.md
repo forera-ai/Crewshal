@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.27.13 — 2026-10-28
+
+- Verify the owner-prepared Ornith service, current route, context, capacity, and matching load evidence.
+- Record 24 offline fixtures for admission mapping, deadlines, and failure cleanup outside product source.
+- Preserve D2's empty session and failed policy precheck without a prompt submission or model request.
+- Record the effective-toolset mismatch, supervisor errors, and exact continuation while keeping S1b closed.
+
 ## 0.27.12 — 2026-10-28
 
 - Record refused connections and absent listeners for the selected local model route and historical backend.

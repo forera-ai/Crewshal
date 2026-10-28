@@ -4,6 +4,43 @@ Last updated: 2026-10-28. This record supplies the next session and the owner wi
 
 ## Current state
 
+**October 28: Owner preparation passed; D2 failed before prompt submission (v0.27.13).**
+The [result](CREWSHAL-HERMES-DEADLINE-OWNER-PREP-RESULT-2026-10-28.md) continues the same private deadline-control milestone.
+Trusted local turn metadata identified this supervisor as `gpt-6.1-sol`.
+The checkout started clean at `664677379d3fb164223d5e140c0879ebc5149770` on `codex/phase1-architecture`.
+The owner-prepared service used PID `44430` at loopback port `8888`, with child model PID `47505` at port `59988`.
+Process arguments and matching logs selected cached Ornith `UD-Q4_K_XL`, context `93696`, and one slot.
+The current parent startup log linked the selected route to that model backend.
+The profile hash still matched the earlier October 28 observation. It did not match the October 25 baseline.
+Selected diagnosis fields and the SOUL hash matched. Fallback providers remained empty.
+Static review found a no-op Python appearance-plugin entry point and desktop color/glyph controls.
+The voice change selects an interactive recording shortcut. The full raw-profile history remains unknown.
+Hermes source remained clean at `bf0203a794a07aac3ff764972ab9087baa4e4f4e`; all 15 saved source hashes matched.
+Both historical manifests matched all 43 entries. All 78 starting private files retained their hashes.
+The new private lifecycle and independent SQLite fixture passed 15 tests. Nine preserved fixture copies also passed.
+The source maps RPC `input_id` to database `request_id`. The old runner remains unchanged and unaccepted.
+Source review also found that its `unattended=True` enables automatic approvals.
+D2 selected `unattended=False`, approval mode `deny`, one worker, and a requested empty toolset list.
+Its deadline was 30 seconds, with 15 seconds for cleanup and a separate 55-second process ceiling.
+The gateway created one empty session. The supervisor's stored-policy precheck then raised `AssertionError` before prompt submission.
+That precheck read the wrong orchestration section. The actual `delegation.orchestrator_enabled` setting remained false.
+The stored policy also enabled `codebase-memory-mcp`, `homeassistant`, and `jev` despite requested `toolsets=[]`.
+Direct policy inspection independently established that failed tool gate. No Hermes regression was established.
+The first control result lost the known creation identity. `D2-created.json` retained it for independent reconciliation.
+The reconciled session remained at generation `0`, with no admission, message, API call, tool call, or token use.
+A later observation query failed on nonexistent `runtime_state`; schema inspection corrected only that read-only query.
+D2's empty session and consumed intent remain preserved. No replay, cancellation, or session deletion ran.
+Original R1 and I1 admissions remained terminal. R1, the refused launch, I1, and D1 remain unchanged.
+No count was reset. No worker probe, approval probe, prompt submission, or model request ran.
+The private runner has no live acceptance. The same milestone remains blocked, and S1b remains closed.
+Private evidence resides in `deadline-20261028-owner-prep` under the preserved S1b root.
+The [next prompt](CREWSHAL-HERMES-DEADLINE-TOOL-GATE-NEXT-SESSION-2026-10-28.md) requires an offline effective-policy fixture and verified diagnostic tool suppression.
+It also requires the correct orchestration field and preserved session identity after post-creation failures.
+Use a supported per-session control if available. Any required profile decision needs exact bindings, effects, limits, and cleanup.
+Package version: `0.27.13`. Skill version: `1.0.0`. Delivery revision: the commit containing this entry.
+No profile edit, server operation, image action, guest action, download, Linux test, evaluation, deployment, or release ran.
+Earlier dated entries remain historical evidence.
+
 **October 28: Read-only reconciliation found no selected running model service (v0.27.12).**
 The [reconciliation record](CREWSHAL-HERMES-DEADLINE-RECONCILIATION-2026-10-28.md) adds listener and transport evidence to the earlier binding stop.
 Trusted local turn metadata identified this supervisor as `gpt-6.1-sol`.

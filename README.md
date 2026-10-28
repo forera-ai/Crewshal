@@ -10,6 +10,14 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**October 28: Owner preparation passed; D2 stopped before prompt submission.**
+The selected Ornith service now has verified context `93696`, one slot, and a matching route and load log.
+Twenty-four offline fixtures passed, including independent SQLite admission mapping and cleanup failure cases.
+The [result](docs/CREWSHAL-HERMES-DEADLINE-OWNER-PREP-RESULT-2026-10-28.md) records D2's failed effective-toolset gate and a supervisor precheck defect.
+D2 created one empty session. No prompt submission or model request ran. Live deadline proof remains absent.
+Package version `0.27.13` records this new blocked boundary. S1b remains closed.
+The [next prompt](docs/CREWSHAL-HERMES-DEADLINE-TOOL-GATE-NEXT-SESSION-2026-10-28.md) requires offline effective-policy verification before another diagnostic decision.
+
 **October 28: Read-only reconciliation found no running selected Hermes model service.**
 The selected loopback route and historical backend both refused connections. Neither port had a listener.
 The [reconciliation record](docs/CREWSHAL-HERMES-DEADLINE-RECONCILIATION-2026-10-28.md) preserves this new evidence and the unresolved profile binding.

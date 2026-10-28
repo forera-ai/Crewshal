@@ -10,6 +10,13 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**October 28: The Hermes deadline continuation stopped at changed runtime bindings.**
+The profile hash changed, and the previously verified model-server process is absent.
+The [binding record](docs/CREWSHAL-HERMES-DEADLINE-BINDING-STOP-2026-10-28.md) preserves the failed gate and unchanged historical evidence.
+No new Hermes session, request, or diagnostic ran. The private runner remains unaccepted.
+Package version `0.27.11` records this blocked boundary. S1b remains closed.
+The [next prompt](docs/CREWSHAL-HERMES-DEADLINE-RESUME-2026-10-28.md) requires runtime reconciliation before further deadline work.
+
 **October 25: The private Hermes deadline control passed offline checks; live proof remains blocked.**
 Nine fixtures cover continuing activity, generation checks, disconnects, cancellation failures, and terminal reconciliation.
 The [record](docs/CREWSHAL-HERMES-DEADLINE-CONTROL-2026-10-25.md) preserves the private control and its limitations.

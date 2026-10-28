@@ -1,8 +1,33 @@
 # Crewshal rolling handoff and project memory
 
-Last updated: 2026-10-25. This record supplies the next session and the owner with project history. [DEVELOPMENT-PLAN.md](DEVELOPMENT-PLAN.md) defines the milestone acceptance checks. Preserve the session ledger.
+Last updated: 2026-10-28. This record supplies the next session and the owner with project history. [DEVELOPMENT-PLAN.md](DEVELOPMENT-PLAN.md) defines the milestone acceptance checks. Preserve the session ledger.
 
 ## Current state
+
+**October 28: The same Hermes deadline-control milestone stopped at changed runtime bindings (v0.27.11).**
+The [binding record](CREWSHAL-HERMES-DEADLINE-BINDING-STOP-2026-10-28.md) records the failed start gate and remaining acceptance work.
+Trusted local turn metadata identified this supervisor as `gpt-6.1-sol`.
+The checkout started clean at `166019cb9ceac16e5203397a410b0b9e4207e089` on `codex/phase1-architecture`.
+The preserved runtime inspector exited 1 with `AssertionError: Diagnosis bindings changed.`
+The profile hash changed. Selected model, provider, budget, context-related thresholds, and approval fields still matched.
+The current plugin list differs from the preserved pre-R1 snapshot. The complete profile change history remains unknown.
+The previously verified model-server PID `33814` is absent. No replacement server was inspected or selected.
+Codex stopped dependent work under the continuation's explicit binding-failure rule.
+All ten deadline evidence hashes and all 33 original artifact hashes matched.
+Original admissions remain `terminal/completed` and `terminal/interrupted` for generations 1 and 2.
+R1 remains accepted historical evidence. Its reuse under the current runtime remains blocked.
+The refused launch, corrected I1, and failed D1 preflight remain unchanged. No count was reset.
+No new Hermes session, request, worker probe, approval probe, or live diagnostic ran.
+The nine passing fixtures remain historical results. No fixture was rerun or relabeled as current acceptance.
+Direct source confirms the RPC-to-database mapping. Independent SQLite mapping fixtures remain not run.
+Static runner review confirms missing cleanup when admission lookup fails after possible submission acceptance.
+The private controls remain unchanged and unaccepted for live use. S1b remains closed.
+Private closure evidence resides in `deadline-20261028-binding-stop` under the preserved S1b evidence root.
+Closure commands, results, environment, and limitations appear in the binding record.
+Delivery revision: the commit containing this entry. Package version: `0.27.11`; skill version: `1.0.0`.
+Use the [next prompt](CREWSHAL-HERMES-DEADLINE-RESUME-2026-10-28.md) to reconcile runtime bindings before remaining deadline work.
+No profile change, server restart, guest action, Linux test, campaign execution, evaluation, deployment, or release ran.
+Earlier dated entries remain historical evidence.
 
 **October 25: The private deadline control passed offline checks; the live milestone remains blocked (v0.27.10).**
 The [record](CREWSHAL-HERMES-DEADLINE-CONTROL-2026-10-25.md) separates nine passing fixtures from missing live termination evidence.

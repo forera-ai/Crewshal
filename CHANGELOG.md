@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.27.11 — 2026-10-28
+
+- Record the changed profile hash and absent previously verified model-server process.
+- Preserve all 43 historical artifact hashes and the original terminal admissions.
+- Keep the deadline runner unaccepted, with no new live diagnostic or implementation attempt.
+- Add a continuation prompt for runtime reconciliation before the remaining deadline checks.
+
 ## 0.27.10 — 2026-10-25
 
 - Record nine offline private deadline-control fixtures without changing Crewshal product behavior.

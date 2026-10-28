@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.27.12 — 2026-10-28
+
+- Record refused connections and absent listeners for the selected local model route and historical backend.
+- Compare current plugins with the stored R1 policy while preserving the unresolved full profile history.
+- Preserve all historical evidence, private controls, terminal admissions, and attempt counts.
+- Specify owner preparation and the next prompt without starting a model server or diagnostic.
+
 ## 0.27.11 — 2026-10-28
 
 - Record the changed profile hash and absent previously verified model-server process.

@@ -10,6 +10,13 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**October 28: Read-only reconciliation found no running selected Hermes model service.**
+The selected loopback route and historical backend both refused connections. Neither port had a listener.
+The [reconciliation record](docs/CREWSHAL-HERMES-DEADLINE-RECONCILIATION-2026-10-28.md) preserves this new evidence and the unresolved profile binding.
+All 43 historical artifact hashes matched. No private control change, worker probe, or live diagnostic ran.
+Package version `0.27.12` records the blocked boundary. The same deadline milestone and S1b remain incomplete.
+The [next prompt](docs/CREWSHAL-HERMES-DEADLINE-OWNER-PREP-NEXT-SESSION-2026-10-28.md) specifies owner preparation before further read-only runtime verification.
+
 **October 28: The Hermes deadline continuation stopped at changed runtime bindings.**
 The profile hash changed, and the previously verified model-server process is absent.
 The [binding record](docs/CREWSHAL-HERMES-DEADLINE-BINDING-STOP-2026-10-28.md) preserves the failed gate and unchanged historical evidence.

@@ -4,6 +4,34 @@ Last updated: 2026-10-28. This record supplies the next session and the owner wi
 
 ## Current state
 
+**October 28: Read-only reconciliation found no selected running model service (v0.27.12).**
+The [reconciliation record](CREWSHAL-HERMES-DEADLINE-RECONCILIATION-2026-10-28.md) adds listener and transport evidence to the earlier binding stop.
+Trusted local turn metadata identified this supervisor as `gpt-6.1-sol`.
+The checkout started clean at `4af37983b61671ce5ef985d05d0bc93cd98f1cbb` on `codex/phase1-architecture`.
+The selected route at loopback port `8888` and historical backend at port `63421` had no listeners.
+Both transport-only connection checks returned `ECONNREFUSED`. The process inventory found no `llama-server` process.
+The original PID `33814` remained absent. No current served model, context, capacity, or cancellation behavior could be verified.
+The profile hash still matched the earlier October 28 observation, not the accepted October 25 baseline.
+All saved selected fields and the SOUL hash matched. Fallback providers remained empty.
+The stored R1 policy lists only `homeassistant`; the current profile also lists `better-session-appearance`.
+A voice key differs from the stored effective policy. That comparison does not reconstruct the original raw profile.
+The full profile change history and its complete execution effects remain unknown.
+Hermes source remained clean at `bf0203a794a07aac3ff764972ab9087baa4e4f4e`; all saved source hashes matched.
+Both historical manifests matched all 43 entries. All 70 existing private files retained their starting hashes.
+Original admissions remained `terminal/completed` and `terminal/interrupted`. D1 had no admission or consumed intent.
+R1, the refused implementation launch, corrected I1, and failed D1 preflight remain unchanged. No count was reset.
+No new Hermes session, model request, worker probe, approval probe, or live diagnostic ran.
+Private controls remain unchanged. Mapping fixtures, cleanup repair, and live termination acceptance remain blocked by the runtime gate.
+The nine fixture passes remain historical. S1b remains closed.
+Private evidence resides in `deadline-20261028-reconciliation` under the preserved S1b evidence root.
+Publication checks, exact commands, environment, and limitations appear in the reconciliation record.
+Delivery revision: the commit containing this entry. Package version: `0.27.12`; skill version: `1.0.0`.
+The [next prompt](CREWSHAL-HERMES-DEADLINE-OWNER-PREP-NEXT-SESSION-2026-10-28.md) specifies owner preparation and the exact continuation inputs.
+The owner must prepare the existing selected local service before dependent work can resume.
+Profile reconciliation remains a separate prerequisite. A running service alone cannot pass that gate.
+No profile change, server start, model switch, guest action, Linux test, evaluation, deployment, or release ran.
+Earlier dated entries remain historical evidence.
+
 **October 28: The same Hermes deadline-control milestone stopped at changed runtime bindings (v0.27.11).**
 The [binding record](CREWSHAL-HERMES-DEADLINE-BINDING-STOP-2026-10-28.md) records the failed start gate and remaining acceptance work.
 Trusted local turn metadata identified this supervisor as `gpt-6.1-sol`.

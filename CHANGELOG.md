@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.27.14 — 2026-10-29
+
+- Verify actual empty diagnostic toolsets through the supported ACP surface and existing profile settings.
+- Record 21 passing offline fixtures and preserved session identity after failed policy validation.
+- Accept one live deadline interruption with terminal admission, server cancellation, and slot release during prompt processing.
+- Preserve prior failures, unknown usage, and scoped limits; prepare the separate offline S1b continuation.
+
 ## 0.27.13 — 2026-10-28
 
 - Verify the owner-prepared Ornith service, current route, context, capacity, and matching load evidence.

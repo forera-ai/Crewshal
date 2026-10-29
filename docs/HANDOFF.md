@@ -1,8 +1,48 @@
 # Crewshal rolling handoff and project memory
 
-Last updated: 2026-10-28. This record supplies the next session and the owner with project history. [DEVELOPMENT-PLAN.md](DEVELOPMENT-PLAN.md) defines the milestone acceptance checks. Preserve the session ledger.
+Last updated: 2026-10-29. This record supplies the next session and the owner with project history. [DEVELOPMENT-PLAN.md](DEVELOPMENT-PLAN.md) defines the milestone acceptance checks. Preserve the session ledger.
 
 ## Current state
+
+**October 29: Private deadline control passed bounded D3 acceptance (v0.27.14).**
+The [acceptance record](CREWSHAL-HERMES-DEADLINE-ACCEPTANCE-2026-10-28.md) records observations from October 28 and publication on October 29.
+Trusted local turn metadata identified this supervisor as `gpt-6.1-sol`.
+The checkout started clean at `3bdb459f42290cd07f98c2c9df540d4ede115ac7` on `codex/phase1-architecture`.
+All 43 historical manifest entries, 78 owner-preparation manifest entries, and 111 starting private files matched.
+All 1,353 tracked files retained their hashes before publication edits.
+The selected Ornith service retained context `93696`, one slot, route, and matching load evidence.
+Hermes source remained clean at `bf0203a794a07aac3ff764972ab9087baa4e4f4e`.
+The raw-profile hash matched the prior October 28 observation. Full raw-profile history remains unknown.
+The supported `no_mcp` sentinel removes default MCP servers; alone, it leaves the CLI `homeassistant` toolset.
+The existing `known_plugin_toolsets.acp` setting suppresses that plugin on the ACP surface.
+D3 used `source=acp` and `toolsets=["no_mcp"]` without a profile edit, bypass flag, or approval change.
+Its actual stored policy verified an empty effective toolset before the only prompt submission.
+The stored single-query approval mode remained `deny`; the ACP edit policy remained `ask`.
+The new private control retains known creation identity before policy validation.
+Twenty-one offline fixtures passed, including effective-policy, failure-cleanup, and independent SQLite mapping cases.
+The first fixture run failed because an in-memory tuple differed from stored JSON's list; its correction and failure remain recorded.
+D3 retained the original 30-second total deadline, 15-second cleanup allowance, and independent 55-second process ceiling.
+It used `finite=True`, `unattended=False`, and the verified existing gateway, with no ensure or restart path.
+It bound multiplexer epoch `12` and profile authority epoch `11` separately.
+The control requested interruption after `30.006967` seconds. Generation 1 reached `terminal/interrupted` after `30.233026` seconds.
+The foreground process exited 0 after `30.370292` seconds.
+The sole observed server task, `282`, received cancellation and released its slot.
+Server log entries place release `3.246341` seconds after cancellation. A later read captured that evidence after client exit.
+The server log carries no admission identifier. Task association uses the sole bounded request, selected route, and one slot.
+The supervisor and server log clocks were not independently synchronized.
+The model was still processing prompt tokens. Live generated-token streaming cancellation remains untested.
+The result does not prove automatic 600-second budget enforcement or general runtime conformance.
+The agent log reports one API call and zero tool turns. Database counters remain zero; final usage and billing remain unknown.
+R1, the refused launch, corrected I1, D1, and D2 remain unchanged. D2's empty session remains at generation 0.
+No attempt count was reset. No worker, approval, or MCP connection probe was repeated.
+Private evidence resides in `deadline-20261028-tool-gate` under the preserved S1b root.
+The independent live verifier, publication checks, frozen checker, and preservation verifier passed.
+Codex accepts this bounded deadline-control milestone and its process checkpoint.
+The ACP diagnostic policy does not requalify the CLI implementation surface.
+The [next prompt](CREWSHAL-S1B-AFTER-DEADLINE-NEXT-SESSION-2026-10-28.md) prepares the offline S1b action proposal in a separate session.
+S1b remains unstarted here. No image action, guest action, download, Linux test, evaluation, deployment, or release ran.
+Package version: `0.27.14`. Skill version: `1.0.0`. Delivery revision: the commit containing this entry.
+Earlier dated entries remain historical evidence.
 
 **October 28: Owner preparation passed; D2 failed before prompt submission (v0.27.13).**
 The [result](CREWSHAL-HERMES-DEADLINE-OWNER-PREP-RESULT-2026-10-28.md) continues the same private deadline-control milestone.

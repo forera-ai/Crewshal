@@ -10,6 +10,15 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**October 29: The private deadline-control milestone passed bounded D3 acceptance.**
+The October 28 diagnostic verified an empty actual toolset without changing the profile or approval controls.
+The independent control interrupted the exact generation after 30.006967 seconds; its admission then reached terminal state.
+The matching model-server log records cancellation and slot release during prompt processing.
+The [acceptance record](docs/CREWSHAL-HERMES-DEADLINE-ACCEPTANCE-2026-10-28.md) preserves 21 offline fixtures, live evidence, and limitations.
+Package version `0.27.14` records this bounded process result. Generated-token streaming cancellation remains untested.
+The [next prompt](docs/CREWSHAL-S1B-AFTER-DEADLINE-NEXT-SESSION-2026-10-28.md) resumes the offline S1b proposal in a separate session.
+All campaign, Linux, evaluation, spending, and release gates remain closed.
+
 **October 28: Owner preparation passed; D2 stopped before prompt submission.**
 The selected Ornith service now has verified context `93696`, one slot, and a matching route and load log.
 Twenty-four offline fixtures passed, including independent SQLite admission mapping and cleanup failure cases.

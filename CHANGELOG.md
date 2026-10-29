@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.27.16 — 2026-10-29
+
+- Diagnose the gap between protected auxiliary ownership, provider streaming, and terminal admission reconciliation.
+- Verify preserved manifests, unchanged runtime bindings, terminal admissions, and current idle server evidence through read-only observation.
+- Prepare a bounded repair proposal and offline acceptance cases without implementation or inference.
+- Preserve exhausted attempts, failed candidate checks, unknown release cause, and separate source-authority gates.
+
 ## 0.27.15 — 2026-10-29
 
 - Preserve I2's command-discipline refusal and I3's final saved candidate without resetting attempts.

@@ -10,6 +10,15 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**October 29: Read-only auxiliary-cancellation diagnosis is complete.**
+Hard cancellation reaches the compaction owner, but its separate provider thread can continue streaming.
+The private supervisor also returns on terminal admission before it establishes auxiliary termination.
+The [diagnosis and repair proposal](docs/CREWSHAL-AUXILIARY-CANCELLATION-DIAGNOSIS-2026-10-29.md) records current source, preserved evidence, and planned offline cases.
+The observed service is idle. No implementation, worker resume, inference, or live proof ran.
+Package version `0.27.16` records this process checkpoint. S1b and auxiliary termination acceptance remain blocked.
+The [next prompt](docs/CREWSHAL-AUXILIARY-CANCELLATION-NEXT-SESSION-2026-10-29.md) requires a cancellation capability, accepted source route, and new bounded budget.
+All operational, evaluation, and release gates remain closed.
+
 **October 29: The offline S1b proposal remains blocked after its final correction.**
 I3 saved a draft, but its harness failed compilation and its archive digest, identity, and cleanup checks failed review.
 The rejected bytes remain private. No attach-action draft is accepted or published.

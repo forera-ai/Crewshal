@@ -4,6 +4,46 @@ Last updated: 2026-10-29. This record supplies the next session and the owner wi
 
 ## Current state
 
+**October 29: Read-only auxiliary-cancellation diagnosis is complete (v0.27.16).**
+The [diagnosis](CREWSHAL-AUXILIARY-CANCELLATION-DIAGNOSIS-2026-10-29.md) traces separate admission, client, compactor, provider, and model-server lifetimes.
+Trusted local turn metadata identified the supervisor as `gpt-6.1-sol`.
+The checkout started clean at `37b2d72777a3efbd049e63f0a91b9f649b9cb5ae` on `codex/phase1-architecture`.
+Eight historical manifest sets matched. The starting manifests captured 233 private files and 1,357 tracked files.
+The rejected I3 candidate retained SHA-256 `f06318c540ed8ecbca092e59f140d49dea921cadef89173352741bd6cef6208c`.
+Hermes source remained clean at `bf0203a794a07aac3ff764972ab9087baa4e4f4e`.
+Profile, SOUL, selected settings, previous source hashes, and the stored I3 policy matched.
+Read-only observations found the selected Ornith Q4 service idle, with context `93696` and one slot.
+The gateway retained multiplexer epoch `12` and profile authority epoch `11` separately.
+The worker's four admissions remained terminal. The database reported no queued or started admission at observation.
+The only observation RPC was `runtime.describe`. No worker creation, resume, prompt submission, or model request ran.
+Graph discovery used Verify evidence; stale Hermes coverage required current-source fallback.
+The hard stop reaches the compactor's cancellation source and commit fence.
+The protected-call owner can raise cancellation before its daemon provider callback stops.
+The inspected local chat-stream consumer checks time limits without connecting that hard stop to request transport closure.
+Its silence watchdog can remain active while generation continues.
+The private lifecycle separately returns on terminal admission; foreground exit ends its outer client's supervision.
+These source findings explain I3's observed gap. No live instrumentation identified its specific daemon or socket.
+The final reconciliation time remains an observation time, not an exact release time. The clocks remain unsynchronized.
+The eventual server release cause remains unknown. D3's bounded prompt-processing acceptance remains unchanged.
+The diagnosis includes a bounded repair proposal and offline acceptance matrix. Neither was implemented or run.
+The owner must supply an attempt-owned cancellation capability or authorize a narrow external runtime repair through an accepted source route.
+Any source attempt also needs a new explicit bounded budget and accepted control readiness.
+I1, I2, and I3 remain exhausted. The current unaccepted runner cannot qualify itself by supervising another worker.
+New evidence resides in `aux-cancellation-20261029` under the preserved S1b root.
+The read-only observer and publication checks retain exact commands, exits, environment, source identities, and preservation evidence privately.
+Whitespace, frozen-package, version, link, scope, and preservation checks passed with exit 0.
+The verifier confirmed 1,352 unchanged tracked files, all 233 starting private files, and 12 current source hashes.
+A later staged check exposed an unstaged-diff assumption in the verifier. Its exit 1 and correction remain preserved privately.
+The corrected verifier compares the version change against the fixed base revision.
+It passed with exit 0 after that correction.
+Product tests, static product checks, wheel builds, and installed-package checks remain not run for this process checkpoint.
+Linux-specific checks remain deferred under ADR 0009. Actual total usage and billing remain unknown.
+The [next prompt](CREWSHAL-AUXILIARY-CANCELLATION-NEXT-SESSION-2026-10-29.md) requires the missing capability and authority before source work.
+Do not repeat an unchanged absence checkpoint. S1b, image actions, guests, downloads, Linux tests, campaigns, and evaluation remain closed.
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+Package version: `0.27.16`. Skill version: `1.0.0`. Delivery revision: the commit containing this entry.
+Earlier dated entries remain historical evidence.
+
 **October 29: The offline S1b action proposal remains blocked (v0.27.15).**
 The [blocked record](CREWSHAL-S1B-BLOCKED-2026-10-29.md) preserves failed corrections I2 and I3 and the auxiliary termination gap.
 Trusted local turn metadata identified the supervisor as `gpt-6.1-sol`.

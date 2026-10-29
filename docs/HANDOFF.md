@@ -4,6 +4,51 @@ Last updated: 2026-10-29. This record supplies the next session and the owner wi
 
 ## Current state
 
+**October 29: The isolated auxiliary-control repair passed offline acceptance (v0.27.17).**
+The owner authorized direct Sol 6.1 preparation for one offline repair milestone.
+Trusted local turn metadata identified this supervisor as `gpt-6.1-sol`.
+The checkout started clean at `04d208d502006ab9b37f6d2a4b0a09debd652ca2` on `codex/phase1-architecture`.
+The [repair record](CREWSHAL-AUXILIARY-CANCELLATION-REPAIR-2026-10-29.md) maps all 16 diagnosis cases to 39 passing offline tests.
+One implementation attempt and two corrections consumed this new budget. I1, I2, and I3 remain exhausted and unchanged.
+The candidate changes only the protected wrapper and adds its request-owned contract in the chat-stream watchdog file.
+The private supervisor separates gateway state, foreground exit, auxiliary closure, and matching server release.
+It retains the original deadline, one cleanup allowance, and the independent client ceiling.
+Unsupported protected callbacks refuse before dispatch. A cancelled attempt cannot restart after its host event clears.
+Partial evidence output cannot publish an acceptance record.
+The source candidate and controls remain private in `aux-repair-20261029` under the preserved S1b root.
+Installed Hermes source remained clean at `bf0203a794a07aac3ff764972ab9087baa4e4f4e`.
+Profile, SOUL, stored I3 policy, selected model, context `93696`, and one slot matched the earlier observation.
+The gateway retained multiplexer epoch `12` and profile authority epoch `11` separately.
+Read-only observation found zero active admissions and idle server slots. Only `runtime.describe` ran through RPC.
+No worker, model request, activation, restart, or profile change ran.
+Nine historical manifest sets matched. Twelve current source hashes matched before preparation.
+The starting tracked manifest contains 1,359 files. Historical private files and rejected I3 bytes remain unchanged.
+Jev was not functionally reprobed under the owner's model-request restriction. Its prior evidence remains explicitly historical.
+Graph discovery used Verify evidence. Stale Hermes metadata and an unrelated snippet required current-source fallback.
+The baseline reproduced unsupported dispatch after a preserved fixture-import failure.
+The first candidate passed 30 tests. Correction 1 passed 37 tests. Correction 2 and final verification passed 39 tests.
+The guard denies external fixture effects and verifies exact loaded candidates and completed fixture threads.
+Syntax, private Ruff, and read-only patch applicability checks passed.
+Configured Hermes router Ruff exited 2 for unsupported rule `PLR1708` and remains unavailable.
+The isolated router comparison retained 19 baseline diagnostics; both commands exited 1, with zero introduced diagnostics.
+The cumulative Codex review accepted the isolated offline scope. No separate reviewer model ran.
+The runtime patch SHA-256 is `7d47820263b5bd27847d13bf7e4cc835f6e24d7b521e7b63aeffeae0c428aec5`.
+Private manifests bind eight candidate artifacts and the complete saved evidence.
+Publication whitespace, frozen-package, version, import, link, scope, and preservation checks passed with exit 0.
+Offline checks used Darwin `27.2.0`, arm64, and CPython `3.11.14`; publication used CPython `3.12.16`.
+Product suites, product mypy, wheel builds, and installed-package checks remain not run for this process checkpoint.
+Linux-specific checks remain deferred under ADR 0009. Actual total billing remains unknown.
+The default selected callback still supplies no prepared request-owned transport operation.
+The candidate therefore establishes safe refusal for that path, not positive live cancellation qualification.
+The [activation proposal](CREWSHAL-AUXILIARY-CANCELLATION-ACTIVATION-PROPOSAL-2026-10-29.md) remains not ready for activation or live admission.
+It requires actual transport integration and an exact executable proof plan before operational approval.
+The [next prompt](CREWSHAL-AUXILIARY-CANCELLATION-REPAIR-NEXT-SESSION-2026-10-29.md) preserves those requirements and the consumed source budget.
+S1b, image actions, guests, downloads, Linux tests, campaigns, evaluation, merge, deployment, and releases remain closed.
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+D3 retains its original scope. I3's overrun, unknown release cause, and unsynchronized-clock limitation remain unchanged.
+Package version: `0.27.17`. Skill version: `1.0.0`. Delivery revision: the commit containing this entry.
+Earlier dated entries remain historical evidence.
+
 **October 29: Read-only auxiliary-cancellation diagnosis is complete (v0.27.16).**
 The [diagnosis](CREWSHAL-AUXILIARY-CANCELLATION-DIAGNOSIS-2026-10-29.md) traces separate admission, client, compactor, provider, and model-server lifetimes.
 Trusted local turn metadata identified the supervisor as `gpt-6.1-sol`.

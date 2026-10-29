@@ -10,6 +10,16 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**October 29: The isolated auxiliary-control repair passed offline acceptance.**
+The [repair record](docs/CREWSHAL-AUXILIARY-CANCELLATION-REPAIR-2026-10-29.md) maps 39 passing tests to all 16 diagnosis cases.
+The candidate adds request-owned cancellation controls, refusal before unsupported dispatch, and independent lifetime reconciliation.
+Installed Hermes source and services remain unchanged. No worker or model request ran.
+The default selected callback still lacks a prepared transport operation and would refuse protected inference.
+Package version `0.27.17` records this offline checkpoint. It does not qualify live auxiliary termination or reopen S1b.
+The [activation proposal](docs/CREWSHAL-AUXILIARY-CANCELLATION-ACTIVATION-PROPOSAL-2026-10-29.md) identifies the remaining transport and executable-proof requirements.
+Use the [next prompt](docs/CREWSHAL-AUXILIARY-CANCELLATION-REPAIR-NEXT-SESSION-2026-10-29.md) before further work.
+The repair budget is consumed. Activation, inference, operational work, evaluation, and releases remain closed.
+
 **October 29: Read-only auxiliary-cancellation diagnosis is complete.**
 Hard cancellation reaches the compaction owner, but its separate provider thread can continue streaming.
 The private supervisor also returns on terminal admission before it establishes auxiliary termination.

@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.27.17 — 2026-10-29
+
+- Record an isolated auxiliary-control candidate and 39 passing offline tests across all 16 diagnosis cases.
+- Verify refusal before unsupported protected dispatch, owned cancellation, commit fencing, and independent lifetime reconciliation.
+- Preserve unchanged installed source, profiles, services, historical evidence, and exhausted implementation budgets.
+- Prepare the transport-integration, activation, rollback, and live-proof requirements while keeping operational admission closed.
+
 ## 0.27.16 — 2026-10-29
 
 - Diagnose the gap between protected auxiliary ownership, provider streaming, and terminal admission reconciliation.

@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.27.18 — 2026-10-29
+
+- Record the approved transport task's failed identity and original-deadline feasibility gate before implementation.
+- Verify current submit refusal, saved submission fields, source identities, and historical preservation without operating Hermes.
+- Prepare an exact gateway-context scope amendment and carry the unused implementation budget forward.
+- Preserve the prior candidate, exhausted historical attempts, operational gates, and the earlier Jev preparation deviation.
+
 ## 0.27.17 — 2026-10-29
 
 - Record an isolated auxiliary-control candidate and 39 passing offline tests across all 16 diagnosis cases.

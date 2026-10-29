@@ -4,6 +4,42 @@ Last updated: 2026-10-29. This record supplies the next session and the owner wi
 
 ## Current state
 
+**October 29: The approved transport integration stopped before implementation (v0.27.18).**
+The owner approved the exact private two-file proposal, direct Sol 6.1 preparation, one implementation attempt, and two corrections.
+Trusted current turn metadata identifies `gpt-6.1-sol`.
+The checkout started clean at `61070f783522e59417eea8ef33618bb198d9d31c` on `codex/phase1-architecture`.
+The required feasibility gate found that authoritative identity and the original supervisor deadline do not reach the selected auxiliary seam.
+The historical private submission sends no original deadline. The selected RPC method rejects an added control field.
+The compression-fence deadline can move during prompt reading and cannot replace the fixed supervisor deadline.
+The [feasibility record](CREWSHAL-TRANSPORT-FEASIBILITY-2026-10-29.md) binds these findings to exact current source and preserved hashes.
+The [proposed scope amendment](CREWSHAL-TRANSPORT-CONTEXT-AMENDMENT-2026-10-29.md) adds three gateway files and a new private offline submission control.
+That amendment remains unapproved. No candidate source changed and no implementation attempt or correction was consumed.
+The approved budget retains one implementation attempt and two corrections, subject to the scope decision.
+The earlier repair budget remains consumed. I1, I2, and I3 remain exhausted.
+All nine historical manifest sets match. The repair checkpoint matches 79 entries, and all eight candidate hashes match.
+The twelve installed Hermes source hashes match. The approved private proposal retains its manifest identity.
+Starting manifests preserve 341 private files and 1,362 tracked repository files.
+The independent source audit exited 0 and confirmed the selected input boundary.
+Its synthetic fixture executes the exact extracted submit method, which refuses `auxiliary_control_v1` with `invalid_params`.
+This fixture does not execute the full RPC stack or any provider transport.
+The stale Hermes graph required current-source fallback. Empty graph results establish no absence.
+The installed-library transport feasibility check and transport tests remain not run because the prerequisite gate failed.
+The 39 earlier offline tests and Ruff limitations remain historical. No worker, model request, activation, or restart followed approval.
+The preceding preparation mistakenly ran one synthetic Jev probe despite the restriction; it reported `$0`. Actual billing remains unknown.
+That deviation remains preserved privately. No new probe ran after approval.
+No current service readiness or live admission is claimed. Installed source, profile, and services were not changed by this task.
+Private evidence resides in `aux-transport-integration-20261029-01a1883d` under the preserved S1b root.
+Whitespace, frozen-package, synchronized-version, local-import, scope, link, and preservation checks passed with exit 0.
+The closure verifier confirmed 1,357 unchanged tracked files and all 341 starting private files.
+It also confirmed eight candidate artifacts, twelve installed source hashes, profile hashes, and preserved historical document bytes.
+Publication checks used Darwin `27.2.0`, arm64, and CPython `3.12.16`.
+Product suites, product static checks, wheel builds, and installed-package checks remain not run for this documentation checkpoint.
+Linux-specific checks remain deferred under ADR 0009. All operational, evaluation, and release gates remain closed.
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+Use the [next prompt](CREWSHAL-TRANSPORT-CONTEXT-NEXT-SESSION-2026-10-29.md) only after resolving the exact scope decision.
+Package version: `0.27.18`. Skill version: `1.0.0`. Delivery revision: the commit containing this entry.
+Earlier dated entries remain historical evidence.
+
 **October 29: The isolated auxiliary-control repair passed offline acceptance (v0.27.17).**
 The owner authorized direct Sol 6.1 preparation for one offline repair milestone.
 Trusted local turn metadata identified this supervisor as `gpt-6.1-sol`.

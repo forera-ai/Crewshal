@@ -10,6 +10,14 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**October 29: The approved transport task stopped at its identity and deadline gate.**
+The [feasibility record](docs/CREWSHAL-TRANSPORT-FEASIBILITY-2026-10-29.md) identifies missing authoritative context at the selected auxiliary seam.
+The original supervisor deadline remains private to the submitting control. The selected RPC rejects an added control field.
+The [scope amendment](docs/CREWSHAL-TRANSPORT-CONTEXT-AMENDMENT-2026-10-29.md) proposes three gateway files and a new private offline submission control.
+No runtime source changed. The approved budget retains one implementation attempt and two corrections.
+Package version `0.27.18` records this new feasibility evidence. Transport integration and operational admission remain blocked.
+Use the [next prompt](docs/CREWSHAL-TRANSPORT-CONTEXT-NEXT-SESSION-2026-10-29.md) after the exact scope decision.
+
 **October 29: The isolated auxiliary-control repair passed offline acceptance.**
 The [repair record](docs/CREWSHAL-AUXILIARY-CANCELLATION-REPAIR-2026-10-29.md) maps 39 passing tests to all 16 diagnosis cases.
 The candidate adds request-owned cancellation controls, refusal before unsupported dispatch, and independent lifetime reconciliation.

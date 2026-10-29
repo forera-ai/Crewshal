@@ -10,6 +10,16 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**October 29: The offline S1b proposal remains blocked after its final correction.**
+I3 saved a draft, but its harness failed compilation and its archive digest, identity, and cleanup checks failed review.
+The rejected bytes remain private. No attach-action draft is accepted or published.
+The gateway became terminal while auxiliary compaction continued beyond the deadline and cleanup allowance.
+A later read captured server release. The current runner does not qualify that auxiliary path.
+The [blocked record](docs/CREWSHAL-S1B-BLOCKED-2026-10-29.md) preserves both corrections, failed checks, and limits.
+Package version `0.27.15` records this process boundary. The implementation attempt budget is exhausted.
+Use the [next prompt](docs/CREWSHAL-S1B-BLOCKED-NEXT-SESSION-2026-10-29.md) for read-only cancellation diagnosis without dispatch.
+All campaign, image, Linux, evaluation, spending, and release gates remain closed.
+
 **October 29: The private deadline-control milestone passed bounded D3 acceptance.**
 The October 28 diagnostic verified an empty actual toolset without changing the profile or approval controls.
 The independent control interrupted the exact generation after 30.006967 seconds; its admission then reached terminal state.

@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.27.15 — 2026-10-29
+
+- Preserve I2's command-discipline refusal and I3's final saved candidate without resetting attempts.
+- Reject the private draft after harness compilation, archive identity, mount identity, and cleanup checks failed.
+- Record auxiliary generation after gateway termination and beyond the independent deadline and cleanup allowance.
+- Preserve later server release, exhausted implementation attempts, and a read-only diagnostic continuation.
+
 ## 0.27.14 — 2026-10-29
 
 - Verify actual empty diagnostic toolsets through the supported ACP surface and existing profile settings.

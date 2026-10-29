@@ -4,6 +4,41 @@ Last updated: 2026-10-29. This record supplies the next session and the owner wi
 
 ## Current state
 
+**October 29: The offline S1b action proposal remains blocked (v0.27.15).**
+The [blocked record](CREWSHAL-S1B-BLOCKED-2026-10-29.md) preserves failed corrections I2 and I3 and the auxiliary termination gap.
+Trusted local turn metadata identified the supervisor as `gpt-6.1-sol`.
+The checkout started clean at `16d4019aef2bfee4e4632eb3a6570bdb198da119` on `codex/phase1-architecture`.
+All five historical manifest sets matched. The new starting manifest preserved 149 existing private files.
+Current Ornith Q4 process, route, context `93696`, one slot, source, profile, and SOUL bindings passed read-only checks.
+Codex reused R1 only for verified unchanged bindings. It repeated no successful worker, approval, or MCP probe.
+The original worker policy retained source `oneshot`, platform `cli`, budget `600`, and 25 turns.
+The continuation used `finite=True` and `unattended=False`, with separate multiplexer and profile authority epochs.
+Twenty-three private control fixtures passed. Their initial file-close warning and correction remain recorded.
+I2 repeated bare `cd` and `echo` after explicit instructions. Codex stopped generation 3 and verified server cancellation and release.
+I3 used one file-tool call and saved a 39,288-byte draft before runtime compaction.
+Its saved SHA-256 is `f06318c540ed8ecbca092e59f140d49dea921cadef89173352741bd6cef6208c`.
+The gateway became `terminal/interrupted`; its client exited after `456.715376` seconds.
+Auxiliary server task `14181` still generated at `635.708800` seconds, beyond the deadline and cleanup allowance.
+A later reconciliation observed release and idle capacity. No cancellation line for that task appeared in the retained interval.
+The current runner remains unaccepted for auxiliary termination. D3's earlier bounded acceptance remains unchanged.
+The action block passed syntax parsing. The test block failed compilation at line 386.
+The exact saved unittest command exited 1 at import. Zero saved action cases ran.
+A deterministic comparison found the wrong `python-1` digest. Two independent synthetic identity and cleanup tests also failed.
+The harness additionally leaves real mount-path filesystem dependencies unisolated. Do not run it after merely repairing syntax.
+Codex rejected the complete candidate and preserved it privately before removing the sole worker-owned new draft.
+Private evidence resides in `s1b-20261029` and its `I3` directory under the preserved S1b root.
+I1 plus corrections I2 and I3 exhausted the implementation budget. No attempt count was reset.
+The [next prompt](CREWSHAL-S1B-BLOCKED-NEXT-SESSION-2026-10-29.md) permits read-only auxiliary-cancellation diagnosis, with no new worker request.
+Any later implementation needs an explicit new bounded budget and accepted control readiness.
+The public checkpoint changes process records and synchronized version declarations only.
+Closure commands, environment, results, and preservation evidence appear in the blocked record and private closure results.
+Product suites, static product checks, wheel builds, and installed-package checks remain not run for this process checkpoint.
+Linux-specific checks remain deferred under ADR 0009. Actual total usage and billing remain unknown.
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+No image action, guest action, download, Linux test, campaign, evaluation, merge, deployment, or release ran.
+Package version: `0.27.15`. Skill version: `1.0.0`. Delivery revision: the commit containing this entry.
+Earlier dated entries remain historical evidence.
+
 **October 29: Private deadline control passed bounded D3 acceptance (v0.27.14).**
 The [acceptance record](CREWSHAL-HERMES-DEADLINE-ACCEPTANCE-2026-10-28.md) records observations from October 28 and publication on October 29.
 Trusted local turn metadata identified this supervisor as `gpt-6.1-sol`.

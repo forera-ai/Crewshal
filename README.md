@@ -10,6 +10,15 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**October 31: The isolated cancellation correction passed offline acceptance.**
+All 76 guarded tests passed, with no pending owned threads or denied external-effect attempts.
+Deterministic SDK fixtures establish the completed-inner cancellation mechanism and verify the correction.
+The strict metadata guard remains active. Installed Hermes source and profiles remain unchanged.
+Package version `0.27.20` records the [accepted offline correction](docs/CREWSHAL-CANCELLATION-CORRECTION-2026-10-31.md).
+The [next prompt](docs/CREWSHAL-LOCAL-MODEL-OBSERVATION-NEXT-SESSION-2026-10-31.md) assigns an observation translator and fixtures to the local Hermes model.
+That task requires accepted worker-control readiness before dispatch. Offline acceptance alone does not supply it.
+Activation, live proof, Linux tests, evaluation, and releases remain closed.
+
 **October 31: The approved transport-context candidate failed offline acceptance.**
 The owner approved the exact five-file scope amendment and retained the bounded source budget.
 The final guarded suite ran 71 tests: 70 passed and one concurrent cancellation case failed.

@@ -4,6 +4,51 @@ Last updated: 2026-10-31. This record supplies the next session and the owner wi
 
 ## Current state
 
+**October 31: One targeted cancellation correction passed offline acceptance (v0.27.20).**
+The owner approved the exact private correction proposal after read-only diagnosis.
+Its SHA-256 is `22224e830141602483f64ce906d2d655ab6c025d96d8e59d646b5bf97c558d20`.
+The grant permits direct Sol 6.1 preparation, one targeted correction, and zero automatic follow-up corrections.
+Current local turn metadata identifies `gpt-6.1-sol`.
+The checkout started clean at `5ee638397c9ddecdcc14af3e6245e2cc740685d2` on `codex/phase1-architecture`.
+The [acceptance record](CREWSHAL-CANCELLATION-CORRECTION-2026-10-31.md) binds the corrected private candidate and its limits.
+The complete guarded suite exited 0: all 76 tests passed.
+It recorded zero pending owned fixture threads and zero denied external-effect attempts.
+The separate negative guard command exited 1 as expected after catching a blocked subprocess attempt.
+No blocked subprocess executed. No live runtime connection or model request ran.
+The diagnostic first exercised unchanged candidate bytes through the installed SDK and controlled network backend.
+Two of three diagnostic cases failed at the intended post-stop behavior assertion; pending-read cancellation passed.
+The completed-inner trace showed cancellation count 1, persistent stop, then another chunk feed and provider read.
+The terminal-inner trace showed result construction after stop. The corrected cases perform none of that post-stop work.
+These new observations establish a controlled mechanism. They do not reconstruct the historical failed request's exact cause.
+The correction carries the persistent stop through the two existing agent files and checks it across await and closure boundaries.
+All three gateway candidates, the protected wrapper, original 71 tests, private submission, and private supervisor retain their bytes.
+The concurrency fixture retains its original deadline and `0.2`-second cleanup allowance.
+The metadata fixture covers `uname_result.processor` and the subsequently exposed `platform.architecture` path.
+The initial diagnostic's additional blocked attempts remain recorded. Cold-cache SDK metadata tests now pass without attempts.
+One new correction is consumed. No follow-up correction remains. All earlier implementation and correction budgets remain exhausted.
+Installed Hermes remains clean at `bf0203a794a07aac3ff764972ab9087baa4e4f4e`.
+Twelve source hashes, profile, SOUL, historical candidates, and historical runners remain unchanged.
+Starting snapshots preserve 513 private files and 1,367 tracked repository files.
+The preceding diagnosis verified 19 historical manifest sets. Graph work used Verify evidence and current-source fallback.
+Candidate syntax, cumulative patch applicability, and private Ruff passed. The patch was not applied.
+Isolated runtime Ruff retains 19 baseline diagnostics and zero introduced diagnostics; both commands exit 1.
+Configured `ruff.toml` remains unavailable for `PLR1708`; its correct candidate command exits 2.
+Private evidence resides in `aux-correction-20261031-01a1938d` under the preserved S1b root.
+The cumulative patch SHA-256 is `284cd55e118573debc8ddf1be3e5037f6b5e730eeadf89f44d4e90fa29779537`.
+Whitespace, frozen-package, local-import, synchronized-version, scope, link, and preservation checks passed with exit 0.
+Closure verified 1,362 unchanged tracked files, all 513 starting private files, seventeen candidate artifacts, and twelve installed source hashes.
+The initial wrong-directory whitespace failure and corrected explicit-checkout command remain preserved. Frozen bytes and disabled execution flags remain unchanged.
+The owner requested actual local-model implementation in the next session.
+The [next prompt](CREWSHAL-LOCAL-MODEL-OBSERVATION-NEXT-SESSION-2026-10-31.md) assigns an offline observation translator and deterministic fixtures to Hermes.
+It requires accepted control readiness for the exact worker route before dispatch. This checkpoint supplies no operational readiness.
+No worker, activation, application, restart, profile change, or Jev probe ran.
+Product tests, product mypy, wheel builds, and installation checks remain not run for this private-source evidence checkpoint.
+Linux checks remain deferred under ADR 0009. Actual total billing remains unknown.
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+Live proof, guests, Linux tests, campaigns, evaluation, merge, deployment, and releases remain closed.
+Package version: `0.27.20`. Skill version: `1.0.0`. Delivery revision: the commit containing this entry.
+Earlier dated entries remain historical evidence.
+
 **October 31: The approved transport-context candidate failed offline acceptance (v0.27.19).**
 The owner approved the exact October 29 scope amendment in this chat.
 It retained direct Sol 6.1 preparation, one implementation attempt, and two targeted corrections.

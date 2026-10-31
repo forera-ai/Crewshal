@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.27.20 — 2026-10-31
+
+- Record acceptance of one isolated auxiliary cancellation correction after the owner's new bounded grant.
+- Preserve persistent cancellation across completed-inner SDK waits, terminal stream races, and owned client closure.
+- Record all 76 guarded tests passing, cold-cache metadata isolation, and the strict guard's expected negative refusal.
+- Preserve historical failures, exhausted budgets, unchanged installed Hermes, and the configured Ruff limitation.
+- Add a concrete local-model implementation prompt for the offline observation translator with explicit worker-control readiness gates.
+
 ## 0.27.19 — 2026-10-31
 
 - Record approval of the exact trusted-context amendment and exhaustion of its bounded implementation budget.

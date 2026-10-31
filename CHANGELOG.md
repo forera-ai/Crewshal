@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.27.22 — 2026-10-31
+
+- Record read-only server-task association feasibility across the actual selected provider route.
+- Distinguish Studio monitor IDs, Studio completion IDs, native completion IDs, and native task IDs.
+- Preserve changed process observations, unverified source-to-binary provenance, and all prior attempt budgets.
+- Prepare an exact twelve-path offline source proposal and continuation prompt without operational authority.
+
 ## 0.27.21 — 2026-10-31
 
 - Record the approved private observation control and canonical RPC contract amendment.

@@ -10,6 +10,15 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**October 31: Read-only server-task association feasibility identified a cross-runtime contract gap.**
+The inspected Studio monitor and native slot contracts do not establish the required end-to-end association.
+The selected process changed; its observed arguments retain Ornith Q4, context `93696`, and one slot.
+Package version `0.27.22` records the [new findings](docs/CREWSHAL-SERVER-ASSOCIATION-FEASIBILITY-2026-10-31.md).
+The [bounded source proposal](docs/CREWSHAL-SERVER-ASSOCIATION-SOURCE-PROPOSAL-2026-10-31.md) remains unapproved and unimplemented.
+It proposes candidate work across Hermes, Studio, and the native slot serializer.
+The accepted observation-control patch remains unapplied. No local model request, worker, or service action ran.
+Use the [next prompt](docs/CREWSHAL-SERVER-ASSOCIATION-NEXT-SESSION-2026-10-31.md) for the exact source decision.
+
 **October 31: The private observation-control prerequisite passed offline source acceptance.**
 All 97 guarded tests passed, including the unchanged original 76 tests.
 The candidate adds local owner observations and fixes a newly verified canonical RPC mismatch.

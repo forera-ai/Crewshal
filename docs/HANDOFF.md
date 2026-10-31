@@ -4,6 +4,51 @@ Last updated: 2026-10-31. This record supplies the next session and the owner wi
 
 ## Current state
 
+**October 31: Read-only server-task association feasibility reached a new source decision boundary (v0.27.22).**
+Current local `turn_context` metadata identifies `gpt-6.1-sol`.
+The checkout started clean at `057c447e138cd03750a8244bee459491c3601d48` on `codex/phase1-architecture`.
+The [feasibility record](CREWSHAL-SERVER-ASSOCIATION-FEASIBILITY-2026-10-31.md) contains the new findings and evidence limits.
+The selected route uses Unsloth Studio, rather than Hermes's separate managed llama.cpp runtime.
+Studio implements authenticated owner-only slot forwarding, but Codex did not invoke it or extract credentials.
+Its monitor response header identifies a Studio request. Its inspected monitor contract retains no native task association.
+The standard GGUF stream creates a Studio completion ID. Passthrough paths can preserve native IDs.
+The available native slot serializer emits `id_task` without the native completion ID needed for a direct join.
+It retains the current or previous task, so a task ID alone does not establish active processing.
+Source-to-loaded-binary provenance remains unverified. These are source findings, not live conformance results.
+The current server process and port differ from historical observations.
+Its observed arguments retain Ornith `UD-Q4_K_XL`, context `93696`, and one slot.
+Codex performed no service action. Effective loaded context and new request behavior remain unverified.
+The accepted candidate preservation checker exited 0.
+It verified 618 preserved private files, 31 candidate files, 12 installed source hashes, and 22 unchanged contract support files.
+The profile, SOUL, cumulative patch applicability, and historical 97-test inputs also matched.
+The 97-test suite was not rerun. The accepted candidate remains unapplied and not live-qualified.
+Its cumulative patch and candidate manifest hashes retain the values in the preceding entry.
+One observation-control implementation attempt and both corrections remain consumed.
+All older budgets remain consumed. The separate translator budget remains unused.
+The [new source proposal](CREWSHAL-SERVER-ASSOCIATION-SOURCE-PROPOSAL-2026-10-31.md) requests one isolated association candidate.
+It lists twelve permitted runtime paths across Hermes, Studio, and the native slot serializer.
+It proposes direct Sol preparation, one implementation attempt, and at most two targeted corrections.
+The owner has not approved that proposal. No source implementation occurred.
+Its future native binary requirement would expand the earlier gateway-only operational boundary.
+No application, installed binary build, restart, or live proof is authorized now.
+No exact operational runner is accepted. Do not request approval for a placeholder.
+Private evidence resides in `server-association-20261031-01a193ca` under the preserved S1b root.
+It records fourteen source files, exact read ranges, hashes, selected processes, commands, and preservation manifests.
+Graph work used Verify evidence. Hermes generation `2026-09-02T17:14:19Z` remains stale.
+Current source supplied unavailable, changed, untracked, and missing graph evidence.
+Studio and native source have no listed graph project. Their source evidence remains bounded and direct.
+The synthetic Jev check returned probability `0.98`, confidence `0.96`, reported cost `0`, and latency `455` milliseconds.
+This supervisor check does not qualify a Hermes worker. Actual total billing remains unknown.
+No worker, local inference, authenticated HTTP observation, profile edit, or service action ran.
+Publication verification records exact commands and results in the private closure record.
+Product suites, Ruff, mypy, wheel builds, and installation checks remain not run for this documentation scope.
+Linux checks remain deferred under ADR 0009.
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+Product writes, guests, campaigns, evaluation, merge, deployment, and releases remain closed.
+Use the [next prompt](CREWSHAL-SERVER-ASSOCIATION-NEXT-SESSION-2026-10-31.md) after the exact source decision.
+Package version: `0.27.22`. Skill version: `1.0.0`. Delivery revision: the commit containing this entry.
+Earlier dated entries remain historical evidence.
+
 **October 31: The private observation-control prerequisite passed offline source acceptance (v0.27.21).**
 The owner approved bounded direct-Sol preparation and the exact four-path canonical-contract amendment.
 Trusted current turn metadata identified `gpt-6.1-sol`.

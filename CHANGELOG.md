@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.27.19 — 2026-10-31
+
+- Record approval of the exact trusted-context amendment and exhaustion of its bounded implementation budget.
+- Reject the private candidate after concurrent cancellation and external-effect guard checks failed.
+- Preserve all candidate versions, 71-test results, installed runtime hashes, and historical evidence.
+- Record a deterministic library cancellation-race diagnostic and prepare the next read-only diagnosis boundary.
+
 ## 0.27.18 — 2026-10-29
 
 - Record the approved transport task's failed identity and original-deadline feasibility gate before implementation.

@@ -10,6 +10,15 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**October 31: The approved transport-context candidate failed offline acceptance.**
+The owner approved the exact five-file scope amendment and retained the bounded source budget.
+The final guarded suite ran 71 tests: 70 passed and one concurrent cancellation case failed.
+The guard also blocked SDK metadata subprocess attempts. Installed Hermes source and profiles remain unchanged.
+The implementation attempt and both corrections are consumed. Codex rejected the private candidate.
+Package version `0.27.19` records the [failure and preservation checkpoint](docs/CREWSHAL-TRANSPORT-CONTEXT-STOP-2026-10-31.md).
+The [next prompt](docs/CREWSHAL-TRANSPORT-CONTEXT-STOP-NEXT-SESSION-2026-10-31.md) requires read-only diagnosis before any new bounded correction decision.
+Activation, inference, operational work, Linux tests, evaluation, and releases remain closed.
+
 **October 29: The approved transport task stopped at its identity and deadline gate.**
 The [feasibility record](docs/CREWSHAL-TRANSPORT-FEASIBILITY-2026-10-29.md) identifies missing authoritative context at the selected auxiliary seam.
 The original supervisor deadline remains private to the submitting control. The selected RPC rejects an added control field.

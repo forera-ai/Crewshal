@@ -1,8 +1,51 @@
 # Crewshal rolling handoff and project memory
 
-Last updated: 2026-10-29. This record supplies the next session and the owner with project history. [DEVELOPMENT-PLAN.md](DEVELOPMENT-PLAN.md) defines the milestone acceptance checks. Preserve the session ledger.
+Last updated: 2026-10-31. This record supplies the next session and the owner with project history. [DEVELOPMENT-PLAN.md](DEVELOPMENT-PLAN.md) defines the milestone acceptance checks. Preserve the session ledger.
 
 ## Current state
+
+**October 31: The approved transport-context candidate failed offline acceptance (v0.27.19).**
+The owner approved the exact October 29 scope amendment in this chat.
+It retained direct Sol 6.1 preparation, one implementation attempt, and two targeted corrections.
+Trusted turn metadata identified `gpt-6.1-sol` at preparation and October 31 resumption.
+The checkout started clean at `3e49122f70d60dca309c9cc61bfcd2b165ec3205` on `codex/phase1-architecture`.
+The [stop record](CREWSHAL-TRANSPORT-CONTEXT-STOP-2026-10-31.md) binds the rejected candidate, commands, failures, and next boundary.
+The final guarded command exited 1. It ran 71 tests: 70 passed and one failed.
+Concurrent SDK cancellation returned `AuxiliaryRequestUnresolved` after its cleanup allowance.
+The fixture retained one provider thread after a bounded join. The guard blocked nine metadata subprocess attempts.
+No blocked subprocess executed. No live gateway or model connection ran.
+The implementation attempt and both corrections are consumed. The earlier repair budget and I1, I2, and I3 remain exhausted.
+Codex rejects the runtime candidate for application or activation. This publication accepts only the failure and preservation record.
+All five candidate runtime files remain private under `aux-context-20261029-01a1889b` in the preserved S1b root.
+The new private submission control admits synthetic RPC fixtures only.
+Fourteen starting manifest sets matched. Starting manifests preserved 356 private files and 1,365 tracked repository files.
+The twelve installed source hashes, profile hash, and SOUL hash matched again on resumption.
+Installed Hermes source, schema, dependencies, profile, and historical runners remain unchanged.
+Graph discovery used Verify evidence. Stale Hermes generation `2026-09-02T17:14:19Z` required current-source fallback.
+The existing gateway executor and compression wrapper copy context. Their runtime source files did not change.
+Installed-library feasibility passed with controlled HTTP bytes below HTTPX and HTTPCore.
+The isolated source suites progressed through 53, 63, 66, and 71 tests. Their failures remain preserved separately.
+The 53-test preliminary pass did not cover the complete selected SDK path and cannot establish acceptance.
+Syntax, patch applicability, and private Ruff passed. Isolated runtime Ruff retained 19 baseline diagnostics with no introduced diagnostic.
+Configured Hermes Ruff remains unavailable for `PLR1708`; the correct `ruff.toml` check exited 2.
+An earlier explicit `pyproject.toml` check exited 0 but did not satisfy the configured gate.
+A deterministic Python 3.11 diagnostic returned an inner result after owner cancellation in `asyncio.wait_for`.
+This supports a concrete race hypothesis. It does not instrument or prove the exact cause of the failed SDK request.
+The guard stack reaches `platform.uname().processor`; the fixture patch of `platform.processor` did not cover it.
+No source correction remains authorized. The [next prompt](CREWSHAL-TRANSPORT-CONTEXT-STOP-NEXT-SESSION-2026-10-31.md) starts with read-only diagnosis.
+Further implementation needs a new explicit bounded budget or an owner-supplied candidate under exact authority.
+No new Jev request, worker, inference, activation, restart, live observation, or operational admission ran.
+Hermes fixtures used Darwin `27.2.0`, arm64, CPython `3.11.14`, OpenAI `2.24.0`, HTTPX `0.28.1`, and HTTPCore `1.0.9`.
+Product suites, product mypy, wheel builds, and installed-package checks remain not run for this rejected private runtime scope.
+Linux-specific checks remain deferred under ADR 0009. Actual total billing remains unknown.
+The prior D3 acceptance, I3 overrun, unknown release cause, and clock limitations remain unchanged.
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+S1b, model requests, image actions, guests, downloads, Linux tests, campaigns, evaluation, merge, deployment, and releases remain closed.
+Whitespace, frozen-package, synchronized-version, local-import, scope, link, and preservation checks passed with exit 0.
+Closure confirmed 1,360 unchanged tracked files, 356 preserved private files, 15 rejected candidate artifacts, and twelve installed source hashes.
+The frozen digest and both disabled execution flags remain unchanged. Publication checks used CPython `3.12.16` where applicable.
+Package version: `0.27.19`. Skill version: `1.0.0`. Delivery revision: the commit containing this entry.
+Earlier dated entries remain historical evidence.
 
 **October 29: The approved transport integration stopped before implementation (v0.27.18).**
 The owner approved the exact private two-file proposal, direct Sol 6.1 preparation, one implementation attempt, and two corrections.

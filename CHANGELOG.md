@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.27.21 — 2026-10-31
+
+- Record the approved private observation control and canonical RPC contract amendment.
+- Retain bounded owner snapshots, profile-scoped operator reads, and explicit unknown server association.
+- Record all 97 guarded tests passing, deterministic contract generation, and unchanged historical candidates.
+- Preserve failed fixture checks, consumed budgets, unchanged installed Hermes, and the remaining live association gap.
+- Prepare the exact continuation before operational approval or Hermes translator dispatch.
+
 ## 0.27.20 — 2026-10-31
 
 - Record acceptance of one isolated auxiliary cancellation correction after the owner's new bounded grant.

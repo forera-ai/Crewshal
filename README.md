@@ -10,6 +10,15 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**October 31: The private observation-control prerequisite passed offline source acceptance.**
+All 97 guarded tests passed, including the unchanged original 76 tests.
+The candidate adds local owner observations and fixes a newly verified canonical RPC mismatch.
+Package version `0.27.21` records the [source checkpoint](docs/CREWSHAL-AUXILIARY-OBSERVATION-CONTROL-2026-10-31.md).
+Installed Hermes, profiles, and services remain unchanged. No worker or model inference ran.
+A verified association between the auxiliary operation and its active server task remains unavailable.
+The translator remains unimplemented. Offline source acceptance does not establish worker-control readiness.
+Use the [next prompt](docs/CREWSHAL-AUXILIARY-OBSERVATION-CONTROL-NEXT-SESSION-2026-10-31.md) for the exact remaining feasibility boundary.
+
 **October 31: The isolated cancellation correction passed offline acceptance.**
 All 76 guarded tests passed, with no pending owned threads or denied external-effect attempts.
 Deterministic SDK fixtures establish the completed-inner cancellation mechanism and verify the correction.

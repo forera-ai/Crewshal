@@ -4,6 +4,51 @@ Last updated: 2026-10-31. This record supplies the next session and the owner wi
 
 ## Current state
 
+**October 31: The private observation-control prerequisite passed offline source acceptance (v0.27.21).**
+The owner approved bounded direct-Sol preparation and the exact four-path canonical-contract amendment.
+Trusted current turn metadata identified `gpt-6.1-sol`.
+The checkout started clean at `155831b30281785f613ba6465ce2664944ff0647` on `codex/phase1-architecture`.
+The [source record](CREWSHAL-AUXILIARY-OBSERVATION-CONTROL-2026-10-31.md) binds the private candidate and remaining operational gap.
+All 97 guarded tests passed: the unchanged original 76 tests and 21 new tests.
+The acceptance run retained no denied fixture effect or pending owned fixture thread.
+The separate negative guard command exited 1 as expected. No blocked subprocess executed.
+The source diagnostic found a previously uncovered canonical RPC mismatch.
+The description result rejected auxiliary fields, and the canonical submit validator rejected the control before dispatch.
+The approved amendment adds typed optional fields and regenerates two private artifacts.
+Only the two intended existing schemas change. Five auxiliary models are added.
+The new observation store retains up to 128 operations and never evicts active or terminal records.
+Only matching profile operators receive local closure observations.
+Unknown clock or epoch provenance remains incomplete. Server association remains explicitly unknown.
+The cumulative patch contains nine changed installed paths. Twenty-two unchanged support files permit isolated loading.
+The original private submission, supervisor, controlled transport, two gateway candidates, and seven original test files retain their bytes.
+One implementation attempt and both corrections are consumed. No source correction remains under this grant.
+The first focused run had two fixture errors. Correction 1 retained one missing fixture authority.
+Correction 2 passed the complete suite and removed one unused diagnostic import during verification.
+All failed outputs and initial diagnostic bytes remain preserved.
+Syntax, patch applicability, deterministic generation, private Ruff, and preservation checks passed.
+Isolated runtime Ruff retains 22 baseline diagnostics and zero introduced diagnostics; both commands exit 1.
+The historical configured `PLR1708` limitation remains unavailable.
+Starting snapshots preserve 618 private files and 1,369 tracked repository files.
+Twelve installed source hashes, profile, SOUL, and the earlier accepted candidates remain unchanged.
+The cumulative patch SHA-256 is `b0ab63564e43011f9973c0ff13999ee569572dbfc7ad1d3ae12bd211d7d8b03c`.
+The candidate manifest SHA-256 is `0ff31bcd6ed9c52cc77a1d9cf78152625c7a66e8792310bd56eec534ee35f66d`.
+Private evidence resides in `aux-observation-control-20261031-01a193a4` under the preserved S1b root.
+Read-only observation found the gateway ready with zero active profile admissions and distinct epochs `12` and `11`.
+The selected Ornith process and load log show context `93696` and one slot.
+The health endpoint returned 200. Server `/slots` and `/props` requests returned 401 without authentication.
+No credential was extracted. No verified managed observation binds the auxiliary operation to an active server task.
+The source candidate remains unapplied and not live-qualified. It does not unblock Hermes dispatch.
+No inference, worker, activation, restart, profile change, or new Jev functional probe ran.
+The translator remains unimplemented. Its budget remains unused.
+The [next prompt](CREWSHAL-AUXILIARY-OBSERVATION-CONTROL-NEXT-SESSION-2026-10-31.md) starts with supported server-association feasibility.
+It retains the exact operational approval gate for a later executable plan.
+Product suites, mypy, wheel builds, and installation checks remain not run for this private runtime-control scope.
+Linux tests remain deferred under ADR 0009. Actual total billing remains unknown.
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+Guests, Linux tests, campaigns, evaluation, merge, deployment, and releases remain closed.
+Package version: `0.27.21`. Skill version: `1.0.0`. Delivery revision: the commit containing this entry.
+Earlier dated entries remain historical evidence.
+
 **October 31: One targeted cancellation correction passed offline acceptance (v0.27.20).**
 The owner approved the exact private correction proposal after read-only diagnosis.
 Its SHA-256 is `22224e830141602483f64ce906d2d655ab6c025d96d8e59d646b5bf97c558d20`.

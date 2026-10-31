@@ -1,8 +1,60 @@
 # Crewshal rolling handoff and project memory
 
-Last updated: 2026-10-31. This record supplies the next session and the owner with project history. [DEVELOPMENT-PLAN.md](DEVELOPMENT-PLAN.md) defines the milestone acceptance checks. Preserve the session ledger.
+Last updated: 2026-11-01. This record supplies the next session and the owner with project history. [DEVELOPMENT-PLAN.md](DEVELOPMENT-PLAN.md) defines the milestone acceptance checks. Preserve the session ledger.
 
 ## Current state
+
+**November 1: The approved offline association bridge failed source acceptance (v0.27.23).**
+The owner approved the exact October 31 twelve-path proposal with `yes approved` in this chat.
+Current local `turn_context` metadata identifies `gpt-6.1-sol`.
+The checkout started clean at `6bee0d784b287b2e629c61170d50691c405073b3` on `codex/phase1-architecture`.
+The [stop record](CREWSHAL-ASSOCIATION-BRIDGE-STOP-2026-11-01.md) binds the private candidate, failed checks, review findings, and preserved inputs.
+The unchanged accepted baseline passed all 97 guarded tests before candidate comparison.
+The implementation script stopped after partial edits because its source match found two upstream constructors.
+Correction 1 completed the qualified edits. Its 118-test suite retained one failed Boolean timestamp case.
+Correction 2 made clock types strict and retained incomplete transport evidence.
+The final guarded command exited 1: 121 tests ran, 119 passed, and two new fixtures errored.
+All 97 original cases passed within that failed complete command.
+The new AST method filter also empties `AssociationTextResponse` and prevents two standard-route assertions from running.
+Independent read-only diagnostics confirmed two runtime defects without changing candidate bytes.
+A reused durable cancellation event retains another request's association callback.
+The ledger also accepts an earlier release after a later active observation.
+Codex rejects the source candidate for application and live qualification.
+The implementation attempt and both targeted corrections are consumed. No correction remains under this grant.
+The separate translator budget remains unused. All older budgets remain consumed.
+Four native serializer cases passed with actual native types in a private focused build.
+CMake was unavailable. Apple Clang built the complete native translation unit against installed libraries.
+The sandbox denied network access and live-profile reads during fixture execution.
+No installed server binary changed. Loaded-binary provenance remains unverified.
+Deterministic generation, candidate syntax, private Ruff, three patch checks, and source preservation passed.
+Runtime Ruff retained 55 baseline diagnostics and zero introduced diagnostics; both commands exit 1.
+The positive final run retained no pending owned fixture thread or denied external-effect attempt.
+The negative guard blocked its intended subprocess and exited 1 with the retained fixture errors.
+It also triggered the original metadata fixture's empty-denial assertion. No blocked subprocess executed.
+Starting manifests preserve 835 private files and 1,374 tracked repository files.
+Twelve installed source hashes, all 31 accepted candidate files, and all nine original test modules remain unchanged.
+Private evidence resides in `association-bridge-20261031-01a1940c` under the preserved S1b root.
+The final candidate manifest SHA-256 is `a255a737e81caa02637bdb05074c720f53144677f45add7cc4241bbc9951bc08`.
+The cumulative Hermes patch SHA-256 is `7f610f21cc3703240b050dbc7f66572c82784a430cb8876db47ba97663dad0ed`.
+The Studio patch SHA-256 is `a665bbde4aa68a047dc6e83134257fe5edfe9aaf5120ac679356bae7ec4c1b0f`.
+The native patch SHA-256 is `1e0be321aa84f39c722bb9941d51f031b019983040d78fe3c209b9de6d03d3ca`.
+These hashes identify rejected bytes and grant no operational authority.
+The current selected process retains Ornith Q4, context `93696`, and one slot in its arguments.
+Its executable digest, profile hash, and SOUL hash match the preserved bindings.
+Effective loaded context and new request behavior remain unverified.
+No inference, authenticated HTTP observation, worker, profile change, application, or service action ran.
+Graph work used Verify evidence, stale Hermes generation `2026-09-02T17:14:19Z`, and current-source fallback.
+The supervisor synthetic Jev check reported probability `0.98`, confidence `0.96`, cost `0`, and latency `479` milliseconds.
+Actual total billing remains unknown. This check does not qualify a worker.
+Publication verification records exact commands, environments, and exits in the private closure record.
+Product suites, mypy, wheel builds, and installation checks remain not run for this private-runtime failure checkpoint.
+Linux checks remain deferred under ADR 0009.
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+Product writes, guests, campaigns, evaluation, merge, deployment, and releases remain closed.
+The [single-correction proposal](CREWSHAL-ASSOCIATION-BRIDGE-CORRECTION-PROPOSAL-2026-11-01.md) owns three candidate paths and permits zero automatic follow-up corrections.
+That new proposal remains unapproved. Use the [next prompt](CREWSHAL-ASSOCIATION-BRIDGE-NEXT-SESSION-2026-11-01.md) after its exact decision.
+Package version: `0.27.23`. Skill version: `1.0.0`. Delivery revision: the commit containing this entry.
+Earlier dated entries remain historical evidence.
 
 **October 31: Read-only server-task association feasibility reached a new source decision boundary (v0.27.22).**
 Current local `turn_context` metadata identifies `gpt-6.1-sol`.

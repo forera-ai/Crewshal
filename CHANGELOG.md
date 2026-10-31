@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.27.23 — 2026-11-01
+
+- Record the approved private association candidate and its consumed implementation and correction budgets.
+- Preserve the fresh 97-test baseline, final 121-test failure, and four passing native serializer cases.
+- Reject the candidate after independent diagnostics confirmed callback retention and incorrect release ordering.
+- Preserve installed runtime source, accepted candidates, private artifacts, and closed operational gates.
+- Prepare an exact three-path correction proposal and continuation prompt without granting another correction.
+
 ## 0.27.22 — 2026-10-31
 
 - Record read-only server-task association feasibility across the actual selected provider route.

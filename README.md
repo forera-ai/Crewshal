@@ -10,6 +10,15 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**November 1: The approved private association bridge failed source acceptance.**
+The final guarded run passed 119 of 121 tests. All 97 original cases passed; two new fixtures errored.
+Independent review confirmed callback retention across requests and incorrect release ordering.
+Four native serializer cases passed, but the complete candidate remains rejected and unapplied.
+Package version `0.27.23` records the [failure checkpoint](docs/CREWSHAL-ASSOCIATION-BRIDGE-STOP-2026-11-01.md).
+The implementation attempt and both corrections are consumed. Installed runtime source and services remain unchanged.
+The [new three-path correction proposal](docs/CREWSHAL-ASSOCIATION-BRIDGE-CORRECTION-PROPOSAL-2026-11-01.md) remains unapproved.
+Use the [next prompt](docs/CREWSHAL-ASSOCIATION-BRIDGE-NEXT-SESSION-2026-11-01.md) after that exact decision.
+
 **October 31: Read-only server-task association feasibility identified a cross-runtime contract gap.**
 The inspected Studio monitor and native slot contracts do not establish the required end-to-end association.
 The selected process changed; its observed arguments retain Ornith Q4, context `93696`, and one slot.

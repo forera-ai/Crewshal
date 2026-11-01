@@ -4,6 +4,46 @@ Last updated: 2026-11-01. This record supplies the next session and the owner wi
 
 ## Current state
 
+**November 1: Read-only native provenance preparation reached the build-capability boundary (v0.27.25).**
+Current local `turn_context` metadata identifies `gpt-6.1-sol`.
+The checkout started clean at `3aaf79afe9f007d8467cb6344784bb12a29c5173` on `codex/phase1-architecture`.
+The [preparation record](CREWSHAL-NATIVE-BINARY-PREPARATION-2026-11-01.md) binds current cached binaries, build inputs, source inspection, and remaining limits.
+All 42 cached native runtime entries match their recorded hashes and sizes.
+The launcher depends on separate implementation libraries. Its digest alone does not establish their loaded identity.
+Cached vendor declarations name source commit `6f4cc4d72556554a7c137de536e2fbd93fd7f907` and release `b11985-mix-c116c32`.
+Those declarations do not establish reproducible source-to-binary provenance.
+The source tree has no Git metadata, CMake cache, or generated build graph in its `build` directory.
+A fresh native manifest records 3,964 regular files outside `build` and `.git`, excluding symlinks.
+CMake is unavailable on PATH and at seven selected locations. Other possible installations remain unknown.
+Apple Clang `21.0.0`, `make`, and macOS SDK `27.2` are available.
+The Metal lookup passed. The metallib lookup exited `72` and remains failed.
+The inspected embedded-source branch avoids that separate metallib build path; no complete build or Metal runtime pass follows.
+The smallest missing capability is an installed CMake `3.18` or newer executable for read-only verification.
+No tool download, installation, native build, runtime application, or service action follows from this checkpoint.
+The record defines later private-build inputs and proposed limits; an executable build proposal still needs verified tools and dependencies.
+A fresh process scan found a server using the inspected cached executable path.
+Its arguments specify Ornith Q4, context `93696`, and one slot. Effective loaded context and request behavior remain unverified.
+The selected profile retains provider `unsloth`, configured Ornith context `93696`, a `600`-second budget, and no fallback providers.
+No authenticated HTTP observation, socket connection, model request, worker, profile edit, or runtime source edit ran.
+Starting manifests preserve 1,291 private files and 1,379 tracked repository files.
+The accepted candidate's 46 files, 12 installed sources, support source, and 1,110 historical private files match their manifests.
+The candidate manifest, correction diff, and three cumulative patch hashes match the accepted review.
+The 130-test and four-case native results remain historical; this session did not rerun them.
+All older source budgets remain consumed. The separate translator budget remains unused.
+Private evidence resides in `association-operational-prep-20261101-01a198c7` under the preserved S1b root.
+Graph work used Verify evidence with generation `2026-10-31T21:18:33Z` and exact-source fallback where required.
+The synthetic Jev check returned probability `0.98`, confidence `0.96`, reported cost `0`, and latency `335` milliseconds.
+Actual total billing remains unknown.
+The frozen Phase 3A checker, whitespace check, synchronized version/import, scope, links, and preservation checks passed.
+Publication commands, outputs, environment, and final review reside in the private closure record.
+Product suites, Ruff, mypy, wheel builds, and installation checks remain not run for this documentation checkpoint.
+Linux checks remain deferred under ADR 0009.
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+Product writes, guests, campaigns, evaluation, merge, deployment, and releases remain closed.
+Use the [next prompt](CREWSHAL-NATIVE-BUILD-CAPABILITY-NEXT-SESSION-2026-11-01.md) after the installed CMake path becomes available.
+Package version: `0.27.25`. Skill version: `1.0.0`. Delivery revision: the commit containing this entry.
+Earlier dated entries remain historical evidence.
+
 **November 1: The single offline association correction passed source acceptance (v0.27.24).**
 The owner approved the exact three-path proposal with `approved` in the current chat.
 Current local `turn_context` metadata identifies `gpt-6.1-sol`.

@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.27.25 — 2026-11-01
+
+- Record read-only native provenance inspection and all 42 matching cached runtime entries.
+- Distinguish launcher identity, implementation libraries, vendor source declarations, and reproducible build evidence.
+- Preserve the accepted candidate, installed sources, historical results, and consumed source budgets.
+- Record unavailable CMake capability, the failed metallib lookup, and the supported embedded-source branch.
+- Prepare the installed-tool input request and bounded private-build requirements without authorizing execution.
+
 ## 0.27.24 — 2026-11-01
 
 - Record acceptance of the single approved offline correction within three candidate paths.

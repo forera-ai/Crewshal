@@ -10,6 +10,15 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**November 1: Read-only native preparation identified the missing build capability.**
+All 42 cached runtime entries match their recorded hashes and sizes.
+The server launcher depends on separate implementation libraries; its digest alone cannot establish their loaded identity.
+CMake is unavailable in the checked locations, and reproducible native build provenance remains unverified.
+Package version `0.27.25` records the [preparation boundary](docs/CREWSHAL-NATIVE-BINARY-PREPARATION-2026-11-01.md).
+The accepted candidate remains unchanged and unapplied. No build, service action, model request, or worker ran.
+Use the [next prompt](docs/CREWSHAL-NATIVE-BUILD-CAPABILITY-NEXT-SESSION-2026-11-01.md) after supplying an installed CMake `3.18` or newer path.
+Build execution, runtime application, live proof, and Hermes dispatch retain their separate gates.
+
 **November 1: The single offline association correction passed source acceptance.**
 All 130 guarded tests and four focused native serializer cases passed.
 The correction isolates request callbacks, preserves shared cancellation ownership, rejects stale observations, and prevents protected passthrough recovery.

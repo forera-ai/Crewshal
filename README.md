@@ -10,6 +10,15 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**November 1: The single offline association correction passed source acceptance.**
+All 130 guarded tests and four focused native serializer cases passed.
+The correction isolates request callbacks, preserves shared cancellation ownership, rejects stale observations, and prevents protected passthrough recovery.
+Package version `0.27.24` records the [accepted offline checkpoint](docs/CREWSHAL-ASSOCIATION-CORRECTION-2026-11-01.md).
+The candidate remains private and unapplied. The new correction is consumed, with no automatic follow-up correction.
+The closure scan observed no process named `llama-server`; current runtime readiness remains unverified.
+Use the [next prompt](docs/CREWSHAL-ASSOCIATION-OPERATIONAL-PREP-NEXT-SESSION-2026-11-01.md) for binary provenance and exact operational preparation.
+Runtime application, live proof, and Hermes dispatch retain their separate gates.
+
 **November 1: The approved private association bridge failed source acceptance.**
 The final guarded run passed 119 of 121 tests. All 97 original cases passed; two new fixtures errored.
 Independent review confirmed callback retention across requests and incorrect release ordering.

@@ -4,6 +4,57 @@ Last updated: 2026-11-01. This record supplies the next session and the owner wi
 
 ## Current state
 
+**November 1: The single offline association correction passed source acceptance (v0.27.24).**
+The owner approved the exact three-path proposal with `approved` in the current chat.
+Current local `turn_context` metadata identifies `gpt-6.1-sol`.
+The checkout started clean at `407744a3090dfe2284c1cfa138b89bd0e1b11025` on `codex/phase1-architecture`.
+The [acceptance record](CREWSHAL-ASSOCIATION-CORRECTION-2026-11-01.md) binds the corrected private candidate, actual checks, review, and remaining limits.
+All 130 guarded tests passed: 97 unchanged original cases and 33 association cases.
+All 24 retained association cases passed, including the two previously blocked standard-route assertions.
+Nine new tests cover request isolation, shared cancellation, durable borrowing, chronology, complete passthrough consumption, closure, and refusal.
+The correction keeps request callbacks immutable without attaching them to the shared cancellation event.
+The tracker retains the original event identity and borrows the original durable registration.
+The ledger rejects stale or overlapping observations and preserves unresolved evidence after a conflict.
+Protected passthrough stream failures retain incomplete evidence and refuse recovery or replay.
+The final run retained no pending owned fixture thread or denied external-effect attempt.
+The negative guard ran all 33 selected cases successfully, blocked its intended subprocess, and exited 1 as required.
+No blocked subprocess executed. The guard implementation remains unchanged.
+Four native serializer cases passed with actual native types in a fresh private focused build.
+No installed server binary changed. Loaded-binary provenance remains unverified.
+Candidate syntax, deterministic contract generation, private Ruff, three patch checks, exact scope, and preservation passed.
+Runtime Ruff retained 55 baseline diagnostics and zero introduced diagnostics; both commands exit 1.
+Read-only baseline diagnostics reproduced both prior runtime defects before candidate edits.
+The first fixture preflight exposed missing verification collaborators and failed; the corrected read-only scaffold passed before source edits.
+The first private Ruff check reported E731 in a new fixture callback.
+Codex made the equivalent named-function edit before candidate freeze and reran the complete passing suite.
+All failed inputs and outputs remain preserved. No failed behavioral case prompted a follow-up correction.
+The new targeted correction is consumed. Zero automatic follow-up corrections remain.
+All older budgets remain consumed. The separate translator budget remains unused.
+Starting manifests preserve 1,110 private files and 1,377 tracked repository files.
+Exactly the three approved candidate paths changed. All Hermes, native, generated, original test, submission, supervisor, and guard bytes remain unchanged.
+The twelve installed source hashes, profile hash, SOUL hash, and earlier accepted candidate inputs match their preserved bindings.
+Private evidence resides in `association-correction-20261101-01a1940c` under the preserved S1b root.
+The candidate manifest SHA-256 is `21c0b433ddf9ca7c32db426d92c09d1ea00b11883ecf37610b4eba9ceb6b8df4`.
+The correction diff SHA-256 is `3a5e7f6ef2e27359a9670264cdd6e0cb314d6376bbf6f7c9f068d20cdf885015`.
+The unchanged Hermes patch SHA-256 is `7f610f21cc3703240b050dbc7f66572c82784a430cb8876db47ba97663dad0ed`.
+The corrected Studio patch SHA-256 is `d45eb4f335e7b2940f14806e8bcf6c8c8b82d9efd8da71aa44f37fd1a11c4ee1`.
+The unchanged native patch SHA-256 is `1e0be321aa84f39c722bb9941d51f031b019983040d78fe3c209b9de6d03d3ca`.
+The candidate remains private, unapplied, and unqualified for live operation.
+The closure scan observed no process named `llama-server`. Its cause and transition time remain unknown.
+Current served identity, effective context, slot capacity, and request behavior remain unverified.
+No inference, authenticated HTTP observation, worker, profile edit, application, or service action ran.
+Graph work used Verify evidence and current-source fallback. The recorded Crewshal generation remained `2026-10-31T21:18:33Z`.
+The supervisor reused unchanged functional Jev evidence; no new Jev request ran. Actual total billing remains unknown.
+Publication verification records exact commands and environments in the private closure record.
+Product suites, mypy, wheel builds, and installation checks remain not run for this private-runtime source checkpoint.
+Linux checks remain deferred under ADR 0009.
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+Product writes, guests, campaigns, evaluation, merge, deployment, and releases remain closed.
+Use the [next prompt](CREWSHAL-ASSOCIATION-OPERATIONAL-PREP-NEXT-SESSION-2026-11-01.md) for read-only binary provenance and exact operational preparation.
+No operational action or Hermes dispatch follows from this source acceptance.
+Package version: `0.27.24`. Skill version: `1.0.0`. Delivery revision: the commit containing this entry.
+Earlier dated entries remain historical evidence.
+
 **November 1: The approved offline association bridge failed source acceptance (v0.27.23).**
 The owner approved the exact October 31 twelve-path proposal with `yes approved` in this chat.
 Current local `turn_context` metadata identifies `gpt-6.1-sol`.

@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.27.24 — 2026-11-01
+
+- Record acceptance of the single approved offline correction within three candidate paths.
+- Isolate request correlation while preserving shared cancellation and durable registration borrowing.
+- Reject stale observation intervals and prevent protected passthrough recovery after uncertain stream failures.
+- Record 130 passing guarded tests, four passing native serializer cases, and unchanged installed source bindings.
+- Preserve the earlier rejected candidate and prepare the binary-provenance and operational-planning continuation.
+
 ## 0.27.23 — 2026-11-01
 
 - Record the approved private association candidate and its consumed implementation and correction budgets.

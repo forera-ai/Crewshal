@@ -1,8 +1,56 @@
 # Crewshal rolling handoff and project memory
 
-Last updated: 2026-11-01. This record supplies the next session and the owner with project history. [DEVELOPMENT-PLAN.md](DEVELOPMENT-PLAN.md) defines the milestone acceptance checks. Preserve the session ledger.
+Last updated: 2026-11-03. This record supplies the next session and the owner with project history. [DEVELOPMENT-PLAN.md](DEVELOPMENT-PLAN.md) defines the milestone acceptance checks. Preserve the session ledger.
 
 ## Current state
+
+**November 3: Native tool discovery passed; restricted CMake execution reached a changed failure boundary (v0.27.26).**
+Current local `turn_context` metadata identifies `gpt-6.1-sol`.
+The checkout started clean at `f28689589f12d986afe6cfbbf342ee0d16b8b609` on `codex/phase1-architecture`.
+The [capability record](CREWSHAL-NATIVE-BUILD-CAPABILITY-2026-11-03.md) contains the new findings and control limitations.
+The owner requested local discovery with `check yourself`.
+Codex found CMake `4.3.4` in the local `uv` cache. Its ordinary version and capabilities commands passed.
+The exact private path, executable digest, and 4,041-file distribution manifest remain in private evidence.
+Current commands confirm Apple Clang `21.0.0`, SDK `27.2`, and GNU Make `3.81`.
+Arm64 OpenSSL `3.5.9` headers and libraries are present; its crypto library loaded and returned the expected version.
+No link test, TLS handshake, complete Metal build, or Metal runtime test ran.
+Private manifests bind the SDK, compiler resources, TLS files, selected tools, OS build, and 84 dyld cache files.
+These observed byte identities do not authenticate upstream provenance or establish loaded model-library identity.
+Fresh comparisons preserve all 3,964 native regular files and all 42 cached runtime entries.
+All 46 accepted candidate files, 12 installed sources, one support source, and 1,110 historical private files match.
+All 1,291 files in the November 1 starting private manifest also match.
+The candidate manifest, correction diff, three cumulative patches, profile, SOUL, and installed Crewshal skill bindings match.
+The accepted candidate remains unchanged, unapplied, and unqualified for operation.
+The historical 130 guarded tests and four native serializer cases were not rerun.
+All source budgets remain consumed. The translator budget remains unused.
+No new server observation ran. Current effective context, capacity, request behavior, and loaded library identity remain unverified.
+A synthetic network-only socket probe returned `EPERM`.
+A 64 MiB private APFS image reached `ENOSPC`, retained its fixed backing size, and detached successfully.
+Cleanup removed the exact detached image after evidence capture. No VMware guest image was inspected or operated.
+Four command-supervisor fixtures passed: successful exit, exit `7`, owned-group timeout, and scaled output exhaustion.
+Both proposed restricted CMake version checks then failed with exit `134` and reported signal `6`.
+The failure cause remains unknown. Both policies and failed results remain preserved.
+The route stopped after two unsuccessful policy variants. No native configuration or build followed.
+The two private runner scripts and exact build command remain unaccepted drafts.
+No complete private-build proposal is ready for owner approval.
+The draft retains fresh source, two output directories, required TLS and Metal, offline options, and independent network denial.
+Its proposed limits remain two parallel jobs, `1,800` seconds total including cleanup, and at most `8 GiB` new files.
+The next milestone must diagnose restricted CMake execution and verify the complete controls before requesting build approval.
+Private evidence resides in `native-build-capability-20261103-01a1a0f4` under the preserved S1b root.
+Initial graph work used Verify evidence with generation `2026-10-31T21:18:33Z` and current-file fallback for changed record metadata.
+Publication coverage reported refreshed generation `2026-11-03T10:44:41Z` with matching metadata for all seven intended paths.
+The synthetic Jev check returned probability `0.99`, confidence `0.98`, reported cost `0`, and latency `208` milliseconds.
+Actual total billing remains unknown.
+Whitespace, all 23 frozen Phase 3A artifacts, synchronized version/import, links, exact scope, and preservation checks passed.
+The private closure record contains exact commands, environment, and review evidence.
+Product tests, Ruff, mypy, wheel builds, package installation, native configuration, and native builds remain not run for this documentation boundary.
+Linux checks remain deferred under ADR 0009.
+No candidate edit, installed-source edit, model-service action, model request, authenticated route, credential extraction, or Hermes dispatch ran.
+All 192 development rows remain planned. All 576 sealed rows remain unexposed.
+Product writes, guests, campaigns, evaluation, merge, deployment, and releases remain closed.
+Use the [next prompt and exact inputs](CREWSHAL-NATIVE-BUILD-CONTROL-NEXT-SESSION-2026-11-03.md).
+Package version: `0.27.26`. Skill version: `1.0.0`. Delivery revision: the commit containing this entry.
+Earlier dated entries remain historical evidence.
 
 **November 1: Read-only native provenance preparation reached the build-capability boundary (v0.27.25).**
 Current local `turn_context` metadata identifies `gpt-6.1-sol`.

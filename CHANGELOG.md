@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.27.26 — 2026-11-03
+
+- Record discovered CMake 4.3.4, verified arm64 TLS, and pinned local toolchain inputs without building.
+- Preserve both restricted CMake failures and distinguish them from passing synthetic control checks.
+- Record unchanged accepted candidates, installed sources, cached runtime entries, and consumed source budgets.
+- Preserve the unready private build draft and prepare a bounded control-diagnosis continuation.
+- Keep native builds, application, model-service actions, operational proof, and worker dispatch closed.
+
 ## 0.27.25 — 2026-11-01
 
 - Record read-only native provenance inspection and all 42 matching cached runtime entries.

@@ -10,6 +10,16 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**November 3: Restricted CMake queries passed; complete build controls remain rejected.**
+A root-directory read exception removed the loader abort. CMake version and capabilities passed from an allowed working directory.
+Network and write restrictions remained active. Synthetic file, symlink, and TCP denial checks passed.
+Review fixtures exposed premature termination after pipe closure and false success while a detached child remained active.
+The proposed make path also failed under the restricted policy. No complete build proposal is ready.
+Package version `0.27.27` records the [diagnosis and control findings](docs/CREWSHAL-NATIVE-BUILD-CONTROL-DIAGNOSIS-2026-11-03.md).
+All preserved candidate, installed-source, toolchain, and historical bindings matched.
+Use the [next prompt and exact inputs](docs/CREWSHAL-NATIVE-BUILD-CONTROL-REPAIR-NEXT-SESSION-2026-11-03.md) for complete private control preparation.
+Native builds, application, model-service actions, live proof, and Hermes dispatch remain closed.
+
 **November 3: Native build tools are available; restricted CMake execution remains blocked.**
 Local discovery found CMake `4.3.4` and verified arm64 OpenSSL `3.5.9`, Apple Clang `21.0.0`, SDK `27.2`, and make.
 Both proposed restricted CMake version checks failed with exit `134` and reported signal `6`; the cause remains unknown.

@@ -4,6 +4,50 @@ Last updated: 2026-11-03. This record supplies the next session and the owner wi
 
 ## Current state
 
+**November 3: Restricted CMake diagnosis passed; complete build controls remain rejected (v0.27.27).**
+Current local `turn_context` metadata identifies `gpt-6.1-sol` in this checkout.
+The checkout started clean at `7596b4523409dc9a4d8623671418587530237c28` on `codex/phase1-architecture`.
+The [diagnosis record](CREWSHAL-NATIVE-BUILD-CONTROL-DIAGNOSIS-2026-11-03.md) contains exact findings, limits, and acceptance requirements.
+Both historical crash reports place the abort in loader ignition and cache discovery.
+Adding only `(literal "/")` to read-data exceptions removed the abort without permitting all root descendants.
+CMake then rejected the original working directory. Version and capabilities passed from an allowed directory.
+Network denial and write restrictions remained active.
+The final synthetic fixture passed allowed reads and writes, plus `EPERM` checks for external reads, writes, symlink access, and TCP.
+The exact compiler version query passed. The proposed make path failed with exit `71` through its Xcode shim.
+Its diagnostic identifies a denied cache path and a denied `SharedFrameworks` dependency.
+The system Python shim also failed. Failed fixture preflights and refinements remain preserved.
+Codex inspected both complete saved runner scripts. Codex preserved both drafts and rejected build acceptance.
+A synthetic descendant changed session, outlived its leader, and wrote a marker after the supervisor accepted success.
+A later exact-PID check confirmed that this finite owned child was gone.
+Another fixture closed its output streams before completing valid finite work.
+The supervisor killed it after approximately `0.020` seconds despite a `1`-second work budget.
+The same child completed with exit `0` outside that supervisor.
+Static review did not establish an independent total ceiling through cleanup and final evidence capture.
+The complete controls and private-build proposal remain unready. This checkpoint requests no build approval.
+Fresh checks preserve all `1,488` starting private files, `46` candidate files, `12` installed sources, and one support source.
+All `3,964` native regular files and all `42` cached runtime entries match.
+All selected tools, CMake distribution, SDK, compiler resources, TLS, and system-runtime manifests match.
+The profile, SOUL, companion skills, and versioned and installed Crewshal skill files match.
+The storage observation recorded `117,499,355,136` free bytes. It does not establish future admission or storage enforcement.
+No image action, native configuration, compiler probe, compilation, compiled runtime, candidate edit, or model-service action ran.
+No model request, credential extraction, Hermes dispatch, or translator work ran.
+The historical `130` guarded tests and four native cases remain historical. All source budgets remain consumed.
+The separate translator budget remains unused. Current model readiness and loaded library identity remain unverified.
+Private evidence resides in `native-build-diagnosis-20261103-01a1a1a5` under the preserved S1b root.
+Graph Verify evidence used generation `2026-11-03T10:46:35Z`, with exact-source fallback for unindexed private controls.
+Publication coverage reported generation `2026-11-03T13:54:00Z`, with matching metadata for all `23` selected paths.
+The Jev preflight returned probability `0.98`, confidence `0.96`, reported cost `0`, and latency `289` milliseconds.
+Actual total billing remains unknown.
+The private closure record binds publication checks, final scope, preservation, environment, and delivery revision.
+Whitespace, all `23` frozen artifacts, synchronized version/import, links, scope, historical records, and private preservation checks passed.
+The scope check preserved `1,378` tracked files outside the seven intended publication paths.
+Product suites, Ruff, mypy, wheel builds, and package installation remain not run for this documentation boundary.
+Linux checks remain deferred under ADR 0009. All `192` development rows remain planned; all `576` sealed rows remain unexposed.
+Product writes, guests, campaigns, evaluation, merge, deployment, and releases remain closed.
+Use the [control-preparation prompt and exact inputs](CREWSHAL-NATIVE-BUILD-CONTROL-REPAIR-NEXT-SESSION-2026-11-03.md).
+Package version: `0.27.27`. Skill version: `1.0.0`. Delivery revision: the commit containing this entry.
+Earlier dated entries remain historical evidence.
+
 **November 3: Native tool discovery passed; restricted CMake execution reached a changed failure boundary (v0.27.26).**
 Current local `turn_context` metadata identifies `gpt-6.1-sol`.
 The checkout started clean at `f28689589f12d986afe6cfbbf342ee0d16b8b609` on `codex/phase1-architecture`.

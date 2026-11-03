@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.27.27 — 2026-11-03
+
+- Record the root-directory exception and allowed working directory that permit restricted CMake queries.
+- Preserve network denial and record passing synthetic file, write, symlink, and TCP refusal checks.
+- Reject saved build controls after reproducing detached-child false success and premature termination after pipe closure.
+- Record the restricted make failure, unchanged preserved inputs, and incomplete independent deadline evidence.
+- Prepare the exact private control continuation while keeping build execution and operational gates closed.
+
 ## 0.27.26 — 2026-11-03
 
 - Record discovered CMake 4.3.4, verified arm64 TLS, and pinned local toolchain inputs without building.

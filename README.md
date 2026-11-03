@@ -10,6 +10,16 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**November 3: Direct make queries passed; kqueue descendant tracking is unsupported.**
+The exact Xcode make executable passed restricted version and dependency queries without extra framework or cache exceptions.
+CMake queries and synthetic file, symlink, and TCP refusal checks passed under the fresh query policy.
+The kernel refused `NOTE_TRACK` with `EV_ERROR` and `ENOTSUP`. Ordinary fork notifications did not track the detached child's lifetime.
+Package version `0.27.28` records the [changed control boundary](docs/CREWSHAL-NATIVE-LIFETIME-CONTROL-BOUNDARY-2026-11-03.md).
+Complete build controls remain unaccepted. No executable build proposal is ready for approval.
+Use the [next prompt and exact inputs](docs/CREWSHAL-NATIVE-LIFETIME-CONTROL-NEXT-SESSION-2026-11-03.md) to resolve complete descendant ownership first.
+All starting private files, accepted candidates, installed sources, and recorded toolchain bindings matched.
+Native builds, application, model-service actions, live proof, and Hermes dispatch remain closed.
+
 **November 3: Restricted CMake queries passed; complete build controls remain rejected.**
 A root-directory read exception removed the loader abort. CMake version and capabilities passed from an allowed working directory.
 Network and write restrictions remained active. Synthetic file, symlink, and TCP denial checks passed.

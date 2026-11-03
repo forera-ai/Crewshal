@@ -4,6 +4,50 @@ Last updated: 2026-11-03. This record supplies the next session and the owner wi
 
 ## Current state
 
+**November 3: Direct make queries passed; kqueue descendant tracking failed admission (v0.27.28).**
+Current local `turn_context` metadata identifies `gpt-6.1-sol` in this checkout.
+The checkout started clean at `5a5845084b53535884680650e12beaea1afae40f` on `codex/phase1-architecture`.
+The milestone attempted complete private native build-control preparation and stopped at a materially changed ownership boundary.
+The [control record](CREWSHAL-NATIVE-LIFETIME-CONTROL-BOUNDARY-2026-11-03.md) maps the results and remaining acceptance conditions.
+The direct Xcode make executable passed restricted version and dependency queries with exit `0` and no stderr.
+The dependency query names system `libxcselect` and `libSystem`; it does not require the earlier shim's framework exception.
+CMake version and capabilities also passed under the fresh query policy.
+The policy retains literal root access, network denial, and bounded write locations.
+Synthetic external reads, writes, symlink access, and TCP returned `EPERM`. Allowed synthetic reads and writes passed.
+The first query wrapper failed with exit `-25` despite plausible make output. That result remains failed and preserved.
+Moving the file limit below RTK produced the four passing harmless queries.
+The SDK explicitly marks `NOTE_TRACK`, `NOTE_TRACKERR`, and `NOTE_CHILD` unsupported since macOS 10.5.
+A fresh finite fixture confirmed `EV_ERROR` with `ENOTSUP` (`45`) when registering `NOTE_TRACK`.
+The Python call raised no exception; the returned error event still refused registration.
+Ordinary `NOTE_FORK` reported the leader's fork and exit without the detached child's lifetime.
+Both finite children completed, and exact-PID checks observed them absent. No process signal was sent.
+The fixture capture command exited `0`; complete descendant control did not pass.
+The first review extraction selected `udata` instead of `data` and failed its assertion. The corrected extraction confirmed the error event.
+No complete replacement supervisor or executable build proposal was accepted.
+Closed-pipe completion, independent total time, aggregate storage, evidence failures, admission, and cleanup checks remain not run for replacement controls.
+The required limits remain two parallel jobs, `1,800` seconds including cleanup and evidence, and at most `8 GiB` new files.
+Other supported ownership mechanisms remain unassessed. This result establishes no universal host-capability absence.
+Fresh checks preserve all `1,552` starting private files, `46` candidate files, `12` installed sources, and one support source.
+All `3,964` native regular files, `42` cached runtime entries, and recorded toolchain manifests match.
+The profile, SOUL, companion skills, and versioned and installed Crewshal skill files match.
+Private evidence resides in `native-control-preparation-20261103-01a1a1fb` under the preserved S1b root.
+Graph Verify evidence used generation `2026-11-03T13:54:00Z`, with exact-source fallback for private controls and the SDK header.
+The Jev preflight returned probability `0.99`, confidence `0.98`, reported cost `0`, and latency `229` milliseconds.
+Actual total billing remains unknown.
+The private publication and closure records bind exact commands, environment, scope, review, and delivery revision.
+The changed public paths are README, CHANGELOG, HANDOFF, synchronized versions, the control record, and its next-session prompt.
+Whitespace, all `23` frozen artifacts, synchronized version/import, links, historical text, private syntax, and exact seven-file scope passed.
+Scope verification preserved `1,380` tracked files outside publication scope. Publication coverage matched all `21` selected paths.
+All source budgets remain consumed. The separate translator budget remains unused.
+The historical `130` guarded tests and four native cases remain historical. Current model readiness and loaded library identity remain unverified.
+No native configuration, compiler probe, compilation, compiled runtime, candidate edit, image action, service action, model request, or worker ran.
+Product suites, Ruff, mypy, wheel builds, and package installation remain not run for this documentation boundary.
+Linux checks remain deferred under ADR 0009. All `192` development rows remain planned; all `576` sealed rows remain unexposed.
+Product writes, guests, campaigns, evaluation, merge, deployment, and releases remain closed.
+Use the [ownership continuation and exact inputs](CREWSHAL-NATIVE-LIFETIME-CONTROL-NEXT-SESSION-2026-11-03.md).
+Package version: `0.27.28`. Skill version: `1.0.0`. Delivery revision: the commit containing this entry.
+Earlier dated entries remain historical evidence.
+
 **November 3: Restricted CMake diagnosis passed; complete build controls remain rejected (v0.27.27).**
 Current local `turn_context` metadata identifies `gpt-6.1-sol` in this checkout.
 The checkout started clean at `7596b4523409dc9a4d8623671418587530237c28` on `codex/phase1-architecture`.

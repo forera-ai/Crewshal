@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.27.28 — 2026-11-03
+
+- Bind the direct Xcode make executable through restricted version and dependency queries without new framework or cache exceptions.
+- Record passing CMake queries and synthetic file, symlink, and TCP refusal checks under the fresh query policy.
+- Reject kqueue descendant tracking after observing an unsupported registration and incomplete ordinary fork notifications.
+- Preserve failed inputs, finite-child closure, all starting private files, accepted candidates, and installed bindings.
+- Keep complete build controls unaccepted and prepare the exact ownership continuation without requesting build approval.
+
 ## 0.27.27 — 2026-11-03
 
 - Record the root-directory exception and allowed working directory that permit restricted CMake queries.

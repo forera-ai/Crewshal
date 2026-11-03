@@ -10,6 +10,16 @@ The hypothesis: a human-confirmed model of an unfamiliar repository can reduce m
 
 ## Current status
 
+**November 3: An installed descendant observer captured detached and reparented process exits.**
+The SDK exposes a descendant-scoped Endpoint Security client with an entitlement requirement, without root or TCC requirements.
+The installed `estrace` diagnostic captured nine lifecycle events from a finite synthetic process tree.
+The detached grandchild changed executable, closed its streams, outlived its leader, and exited after reparenting.
+Package version `0.27.29` records the [observer capability boundary](docs/CREWSHAL-NATIVE-DESCENDANT-OBSERVER-BOUNDARY-2026-11-03.md).
+The diagnostic manual excludes application API use. Complete termination, event-loss handling, and independent deadline controls remain unaccepted.
+All starting private files and recorded candidate, installed-source, and toolchain bindings matched.
+Use the [next prompt and exact inputs](docs/CREWSHAL-NATIVE-DESCENDANT-OBSERVER-NEXT-SESSION-2026-11-03.md) to resolve the supported controller prerequisite.
+Builds, application, services, model requests, Hermes dispatch, and Linux work remain closed.
+
 **November 3: Direct make queries passed; kqueue descendant tracking is unsupported.**
 The exact Xcode make executable passed restricted version and dependency queries without extra framework or cache exceptions.
 CMake queries and synthetic file, symlink, and TCP refusal checks passed under the fresh query policy.

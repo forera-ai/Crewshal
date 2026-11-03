@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.27.29 — 2026-11-03
+
+- Identify the SDK's entitled descendant-scoped Endpoint Security interface without changing privileges or installing tools.
+- Record nine lifecycle events through finite fork, detach, executable changes, reparenting, and separate process exits.
+- Preserve the failed command-parser preflight and accept only the corrected finite observation evidence.
+- Verify saved event identities and four malformed-capture refusals without claiming complete ownership or deadline control.
+- Preserve starting files and prepare the supported-controller continuation while keeping builds and operational gates closed.
+
 ## 0.27.28 — 2026-11-03
 
 - Bind the direct Xcode make executable through restricted version and dependency queries without new framework or cache exceptions.

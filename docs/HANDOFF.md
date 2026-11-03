@@ -4,6 +4,56 @@ Last updated: 2026-11-03. This record supplies the next session and the owner wi
 
 ## Current state
 
+**November 3: Entitled diagnostic observed detached descendant exits; supported complete control remains unaccepted (v0.27.29).**
+Current local `turn_context` metadata identifies `gpt-6.1-sol` in this checkout.
+The checkout started clean at `5c93179c09ea9bac3f6e09d0e4246b7af0887645` on `codex/phase1-architecture`.
+The milestone assessed complete native descendant ownership before replacement build-control preparation.
+The [observer boundary](CREWSHAL-NATIVE-DESCENDANT-OBSERVER-BOUNDARY-2026-11-03.md) records the materially changed capability evidence and remaining acceptance conditions.
+The installed SDK exposes `es_new_descendants_client` from macOS `27.0`, with a required entitlement but without root or TCC requirements.
+The installed library resolves the interface. No direct client creation was attempted.
+The inspected Python launcher and Codex executable signatures lack that entitlement. Other entitled host software remains unassessed.
+The installed entitled `estrace` diagnostic captured nine lifecycle events through two forks, session change, executable changes, reparenting, and three exits.
+The finite grandchild closed its streams and outlived its leader. The observer exited after its completion marker.
+All three recorded PIDs were absent at later exact-PID checks. No process signal was sent.
+The first observer command failed with exit `64` because its parser consumed payload option `-I`.
+The targeted revision added an option separator and used fresh owned output paths. Its observer command exited `0` without stderr.
+Both capture harness commands exited `0`; the first observer result remains failed.
+Independent saved-capture review passed the event digest, audit-token transitions, separate exits, and marker relationships.
+It rejected missing middle events, a missing final exit, duplicate records, and incorrect executable-transition identity.
+Observed global sequence numbers run from `1` through `9`. Initial prefix and unseen terminal suffix completeness remain unknown.
+The diagnostic manual explicitly excludes application API use and disclaims schema stability.
+Its successful finite observations do not establish accepted complete lifetime control.
+The inspected launchd documentation covers process-group cleanup only. No service was configured.
+The smallest missing prerequisite remains an available supported complete controller with accepted admission, event-loss, termination, and closure behavior.
+No new helper proposal or approval request is ready. Native helper compilation, signing, installation, and privilege changes require a concrete separate scope decision.
+No replacement supervisor or executable private-build proposal was prepared or accepted.
+Both old runner drafts remain unchanged and unaccepted. The unsupported historical `NOTE_TRACK` route was not retried.
+Replacement pipe handling, independent total time, aggregate storage, admission, evidence failures, and cleanup checks remain not run.
+Required limits remain two parallel jobs, `1,800` seconds including cleanup and evidence, and at most `8 GiB` new files.
+Fresh preservation checks match all `1,604` starting private files, `46` candidate files, `12` installed sources, and one support source.
+The `3,964` native regular files and exact regular-file set match under recorded exclusions. All `42` cached runtime entries match.
+All selected toolchain manifests, profile, SOUL, companion skills, and versioned and installed Crewshal skill files match.
+The four exact tool paths and digests from the passing historical query record match without replaying resolved queries.
+Private evidence resides in `native-ownership-assessment-20261103-01a1a205` under the preserved S1b root.
+The historical byte-read catalogue covers `52` control files, `64` diagnosis files, and `74` capability files without claiming complete semantic review.
+Graph Verify evidence used generation `2026-11-03T15:26:27Z`, with exact-source fallback for private controls, installed headers, manuals, and signatures.
+The Jev preflight returned probability `0.98`, confidence `0.96`, reported cost `0`, and latency `279` milliseconds.
+Actual total billing remains unknown. RTK reports `1.1.0`.
+The private publication and closure records bind commands, exit statuses, environment, full scope, review, and delivery revision.
+The changed public files are README, CHANGELOG, HANDOFF, synchronized versions, the observer boundary, and its continuation prompt.
+Whitespace, all `23` frozen artifacts, synchronized version/import, links, historical text, private syntax, and exact seven-file scope passed.
+Scope verification preserved `1,382` tracked files outside publication scope. All `1,604` starting private-file comparisons passed.
+Product suites, Ruff, mypy, wheel builds, and package installation remain not run for this documentation boundary.
+Linux checks remain deferred under ADR 0009.
+No native configuration, compiler probe, compilation, compiled model runtime, candidate edit, image action, service action, credential extraction, model request, or worker ran.
+All source budgets remain consumed. The separate translator budget remains unused.
+The historical `130` guarded tests and four native cases remain historical. Current model readiness and loaded library identity remain unverified.
+All `192` development rows remain planned. All `576` sealed rows remain unexposed.
+Product writes, guests, campaigns, evaluation, merge, deployment, and releases remain closed.
+Use the [supported-controller continuation and exact inputs](CREWSHAL-NATIVE-DESCENDANT-OBSERVER-NEXT-SESSION-2026-11-03.md).
+Package version: `0.27.29`. Skill version: `1.0.0`. Delivery revision: the commit containing this entry.
+Earlier dated entries remain historical evidence.
+
 **November 3: Direct make queries passed; kqueue descendant tracking failed admission (v0.27.28).**
 Current local `turn_context` metadata identifies `gpt-6.1-sol` in this checkout.
 The checkout started clean at `5a5845084b53535884680650e12beaea1afae40f` on `codex/phase1-architecture`.
